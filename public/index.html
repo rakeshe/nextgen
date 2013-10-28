@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hotel Club - Great Holidays</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.5">
+	<!-- include bootstrap -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/hc_great_holidays.css" rel="stylesheet" media="screen">
+</head>
+<body>
+	<div class="container">
+		<!-- header -->
+		<div id="header" class="subContainer">
+			<div class="row">
+				
+				<!-- header logo -->
+				<div class="col-md-5 logo">
+					<a href="index.html" title="Hotelclub Logo">
+						<img src="http://www.tnetnoc.com/static/28.64.9/image/pos/hcl/en-au/logo-header.png" alt="Hotelclub Logo" />
+					</a>
+				</div>
+				
+				<!-- header links -->
+				<div class="col-md-offset-5">
+					<ul class="primary">
+						<li><a rel="nofollow" class="link" href="https://www.hotelclub.com/trips/current">My Bookings</a></li>
+						<li><a rel="nofollow" class="link" href="https://www.hotelclub.com/account/myclub">My Club</a></li>
+						<li><a rel="nofollow" class="link" href="https://www.hotelclub.com/account/myprofile">My Account</a></li>
+						<li><a rel="nofollow" class="link" href="https://www.hotelclub.com/trips/writeReview">Write a review</a> </li>
+						<li class="last"><a rel="nofollow" class="link" href="http://faq.hotelclub.com">Customer Service</a></li>
+					</ul>				
+							
+					<ul class="login">
+						<li class="welcomeText">Welcome sanand </li>
+						<li class="loyaltyTier">Silver Member:</li>
+						<li class="loyaltyInfo">0.00 Member Rewards** (Rs.0.00)</li>
+						<li class="signOutLink"><a rel="nofollow" class="link" href="https://www.hotelclub.com/account/logout">Sign out</a></li>
+					</ul>
+				</div>
+			
+			</div>
+		</div>
+		
+		<!-- headMenu -->
+		<div id="headMenu" class="subContainer">
+			<div class="row">
+				<!-- main menu -->
+				<div class="col-md-6">
+					<ul class="left_menu">
+						<li>Home</li>
+						<li>Life Style Club</li>
+					</ul>
+				</div>
+				
+				<!-- lang -->
+				<div class="col-md-offset-6">
+					<ul class="nav navbar-nav navbar-right right_menu">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">English <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Menu 1</a></li>
+								<li><a href="#">Menu 2</a></li>
+								<li><a href="#">Menu 3</a></li>
+								<li><a href="#">Menu 4</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			
+			</div>
+		</div>
+		
+		<!-- banner -->
+		<div id="banner" class="subContainer">
+			
+			<div id="campaignHeader">
+				<div class="row">
+				<div class="col-md-5">
+					<!-- search -->
+					<div id="searchBot">
+						<form class="datepicker" method="get" name="searchBot">
+							<div class="where">
+							<h2>Find a hotel deal</h2>
+							<p>Where</p>
+							<input type="text" id="locationText">
+							</div>      
+								<div class="line-two">
+									<div class="checkin">
+									<p>Check-in</p>
+									<input type="text" class="minDate hasDatepicker" id="startDate">
+									</div>
+									<div class="checkout">
+									<p>Check-out</p>
+									<input type="text" class="maxDate hasDatepicker" id="endDate">
+									</div>
+								</div>    
+							<div class="controls">
+							<div class="errorMessage">&nbsp;</div>
+							<input type="button" class="btn search-Button" onclick="doSearch(this.form)" value="Search" name="search">
+							</div>
+							<div class="promo-code">                        
+							<p>I have a promotion code</p>
+							<input type="text" name="couponCode" id="couponCode">
+							</div>                        
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="regionTabs">
+				<!-- Tabs -->
+			<div class="tabbable deal-tabs" id="deal-tabs">
+				<ul class="nav nav-tabs">
+				<li class="active"><a href="#tab1" data-toggle="tab">South East Asia</a></li>
+				<li><a href="#tab2" data-toggle="tab">North Asia</a></li>
+				<li><a href="#tab3" data-toggle="tab">Australia</a></li>
+				<li><a href="#tab4" data-toggle="tab">Europe &amp; US</a></li>
+				</ul>   
+			</div>
+			</div>
+			</div>
+			
+		</div>
+		
+		<!-- hotelList -->
+		<div id="hotelList" class="subContainer">
+			<div class="row">
+			<div class="tab-content">
+				<div class="col-md-6 tab-pane active" id="tab1"> <p> hotel list 1 <p> </div>
+				<div class="col-md-6 tab-pane" id="tab2"><p> hotel list 2 <p> </div>
+				<div class="col-md-6 tab-pane" id="tab3"><p> hotel list 3 <p> </div>
+				<div class="col-md-6 tab-pane" id="tab4"><p> hotel list 4 <p> </div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- mainContent -->
+		<div id="mainContent" class="subContainer">Main content comes here...</div>
+		
+		<!-- footMenu -->
+		<div id="footMenu" class="subContainer">
+			<div class="row">
+				<div class="col-md-12">
+				<ul class="footerLinks">
+					<li class="first"><a href="http://www.hotelclub.com/trips/current">My Bookings</a> </li>
+					<li><a href="https://www.hotelclub.com/account/myclub">My Club</a> </li>
+					<li><a href="http://www.hotelclub.com/account/myprofile">My Account</a></li>
+					<li><a href="http://www.hotelclub.com/info/page?id=AboutUs">About Us</a> </li>
+					<li><a href="http://careers.orbitz.com/">Careers</a> </li>
+					<li><a href="http://www.hotelclub.com/info/page?id=PrivacyPolicy">Privacy Policy</a> </li>
+					<li><a href="https://faq.hotelclub.com/">Contact Us</a> </li>
+					<li><a href="http://www.hotelclub.com/info/page?id=TermsAndConditions">Terms of Use</a> </li>
+					<li><a target="_blank" href="http://www.hotelclub.com/info/win?id=lowPriceGuaranteeTerms&amp;locale=en_AU">Best Price Guarantee</a> </li>
+					<li><a href="#">Mobile</a> </li>
+					<li><a href="http://www.hotelclub.com/travel-shop/">HotelClub TravelShop</a></li>
+					<li><a href="http://cartrawler.com/hotelclub/">Car Hire</a></li>
+					<li><a href="http://partner.isango.com/hotelclub">Tours &amp; Attractions</a></li>
+					<li><a href="http://www.hotelclub.com/TravelAgent.asp">Travel Agents</a> </li>
+					<li><a href="#">Contact Us</a> </li>
+					<li class="last"><a href="http://corp.orbitz.com/advertise/hotelclub"> Advertise with Us</a> </li>
+				</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- footer -->
+		<div id="footer" class="subContainer">
+			<div id="foot_img"><a href="http://www.bbbonline.org/cks.asp?id=108022784642"><img width="26" height="40" alt="Better Business Bureau" src="https://www.tnetnoc.com/siteImages/HCRG.en_AU/logos/bbb-1.png"></a></div>
+			<p></p><p>HotelClub is a registered trademark of HotelClub Pty Ltd.<br>HotelClub  is owned and operated by HotelClub Pty Ltd., an affiliate of HotelClub Limited, part of Orbitz Worldwide Inc<br></p><br><p>**1 Member Reward = 1 USD, converted to your currency today. See full <a title="Membership Terms and Conditions" href="http://www.hotelclub.com/info/win?id=MembershipTerms&amp;locale=en_AU" onclick="javascript: return popups(this);">Membership Terms and Conditions</a> for details.</p><p></p>
+		</div>
+	</div>
+	
+	<!-- include external js -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
