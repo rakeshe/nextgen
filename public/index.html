@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.5">
 	<!-- include bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="css/hc_great_holidays.css" rel="stylesheet" media="screen">
+	<link href="css/hc_great_holidays.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<div class="container">
