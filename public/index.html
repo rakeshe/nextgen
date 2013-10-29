@@ -5,7 +5,7 @@
 	<title>Hotel Club - Great Holidays</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.5">
 	<!-- include bootstrap -->
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="bootstrap-3.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/hc_great_holidays.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -72,64 +72,58 @@
 		</div>
 		
 		<!-- banner -->
-		<div id="banner" class="subContainer">
-			
-			<div id="campaignHeader">
+		<div id="banner" class="subContainer">			
 				<div class="row">
-				<div class="col-md-5">
-					<!-- search -->
-					<div id="searchBot">
-						<form class="datepicker" method="get" name="searchBot">
-							<div class="where">
-							<h2>Find a hotel deal</h2>
-							<p>Where</p>
-							<input type="text" id="locationText">
-							</div>      
-								<div class="line-two">
-									<div class="checkin">
-									<p>Check-in</p>
-									<input type="text" class="minDate hasDatepicker" id="startDate">
-									</div>
-									<div class="checkout">
-									<p>Check-out</p>
-									<input type="text" class="maxDate hasDatepicker" id="endDate">
-									</div>
-								</div>    
-							<div class="controls">
-							<div class="errorMessage">&nbsp;</div>
-							<input type="button" class="btn search-Button" onclick="doSearch(this.form)" value="Search" name="search">
+					<div id="searchBot" class="col-md-6">
+						<!-- search -->
+						<form class="form-inline datepicker" method="get" name="searchBot role="form">
+							<div class=" where">
+								<h2>Find a hotel deal</h2>
+								<p>Where</p>
+								<input type="text"  class="form-control input-md" placeholder="Location.." id="locationText">
+							</div>	
+							<div class="form-group col-md">
+								<p>Check-in</p>
+								<input type="text" class="check-input form-control input-sm "  placeholder="Check in">
 							</div>
-							<div class="promo-code">                        
-							<p>I have a promotion code</p>
-							<input type="text" name="couponCode" id="couponCode">
+							<div class="form-group col-md">
+								<p>Check-out</p>
+								<input type="text" class="check-input form-control input-sm "  placeholder="Check out">
+							</div>								
+							<div class="controls">
+							<div class="errorMessage">&nbsp;</div>	
+								<input type="button" class="btn btn-default col-md-offset-8" onclick="doSearch(this.form)" value="Search" name="search">
+							</div>
+							<div class=" promo-code">                        
+								<p>I have a promotion code</p>
+								<input type="text"  name="couponCode" id="couponCode" class="form-control input-md" placeholder="Location.." id="locationText">
 							</div>                        
-						</form>
+						</form>					
 					</div>
 				</div>
-			</div>
-			<div id="regionTabs">
-				<!-- Tabs -->
-			<div class="tabbable deal-tabs" id="deal-tabs">
-				<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab1" data-toggle="tab">South East Asia</a></li>
-				<li><a href="#tab2" data-toggle="tab">North Asia</a></li>
-				<li><a href="#tab3" data-toggle="tab">Australia</a></li>
-				<li><a href="#tab4" data-toggle="tab">Europe &amp; US</a></li>
-				</ul>   
-			</div>
-			</div>
-			</div>
-			
+				<div id="regionTabs">
+					<!-- Tabs -->
+					<div class="tabbable deal-tabs" id="deal-tabs">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">South East Asia</a></li>
+							<li><a href="#tab2" data-toggle="tab">North Asia</a></li>
+							<li><a href="#tab3" data-toggle="tab">Australia</a></li>
+							<li><a href="#tab4" data-toggle="tab">Europe &amp; US</a></li>
+						</ul>   
+					</div>				
+				</div>			
 		</div>
 		
 		<!-- hotelList -->
+		<div class="clearfix"></div>
+		<div class="red-line"></div>
 		<div id="hotelList" class="subContainer">
 			<div class="row">
 			<div class="tab-content">
-				<div class="col-md-6 tab-pane active" id="tab1"> <p> hotel list 1 <p> </div>
-				<div class="col-md-6 tab-pane" id="tab2"><p> hotel list 2 <p> </div>
-				<div class="col-md-6 tab-pane" id="tab3"><p> hotel list 3 <p> </div>
-				<div class="col-md-6 tab-pane" id="tab4"><p> hotel list 4 <p> </div>
+				<div class="col-md-6 tab-pane active" id="tab1"> <p> hotel list 1 Works  on Processing <p> </div>
+				<div class="col-md-6 tab-pane" id="tab2">hotel list 2 Works on Processing  </div>
+				<div class="col-md-6 tab-pane" id="tab3"><p> hotel list 3 Works on Processing <p> </div>
+				<div class="col-md-6 tab-pane" id="tab4"><p> hotel list 4 Works on Processing <p> </div>
 				</div>
 			</div>
 		</div>
@@ -172,6 +166,6 @@
 	
 	<!-- include external js -->
 	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="bootstrap-3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
