@@ -1,0 +1,134 @@
+$base-font-family: Arial,Helvetica,sans-serif;
+$base-font-size1: 11px;
+$base-font-size2: 12px;
+$base-font-size3: 13px;
+$base-color: #FFA0A0;
+$base-line-height: 1.167em;
+$menu-divider-color: #000;
+$base-link-color: #562D82;
+
+$test-border-color: blue;
+
+
+body{
+	font-size: $base-font-size2;
+	font-family: $base-font-family;
+	line-height: $base-line-height;
+}
+
+.subContainer{
+	border:1px solid $test-border-color;
+	padding: 10px;
+}
+
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	line-height: $base-line-height;
+}
+
+#header{
+	line-height: $base-line-height;
+	font-size: $base-font-size1;
+	ul.primary{
+		float: right;
+		padding: 15px 15px 0 0;
+		li{
+			border-right: 0.083em solid $menu-divider-color;
+			float: left;
+			padding: 0 9px;
+		}
+		.last{
+			border: 0px solid #CCCCCC;
+			padding-right: 0px;
+		}
+	}
+	
+	ul.login{
+		clear: right;
+		float: right;
+		padding: 10px 15px 0 0;
+		li{
+			float:left;
+			padding:0 0.25em;
+			color:#333333;
+		}
+	}
+	
+	li.loyaltyInfo{
+		font-weight:bold;
+	}
+}
+
+#header, #footer{
+	a{
+		text-decoration: none;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+a, a:link, .link{
+	color: $base-link-color;
+}
+
+.link{
+	cursor: pointer;
+	padding-bottom: 0;
+}
+
+.logo{
+	padding-left: 20px;
+}
+
+#headMenu{
+	font-size: $base-font-size3;
+	border-bottom: 5px solid #E21E28;
+	padding-right: 25px;
+	ul{
+		list-style-type: none;
+		margin: 0;
+	}
+}
+
+.left_menu li{
+	float: left;
+	padding: 5px 0 0;
+	text-align: left;
+	min-width: 134px;
+	margin-right: 10px;
+}
+
+.left_menu li, .right_menu > li{
+	border-top: 2px solid #E21E28;
+}
+
+.nav > li > a{
+	display: inline;
+	padding-right: 3px;
+}
+
+.navbar-nav > li > a{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#footMenu .footerLinks > li{
+	border-right: 0.083em solid #000000;
+	float: left;
+	list-style: none;
+	margin: 0.083em;
+	a{
+		padding:4px;
+	}
+}
+
+#foot_img{
+	float: left;
+	padding-right: 10px;
+}
