@@ -120,75 +120,256 @@
 		<div id="hotelList" class="subContainer">
 			<div class="row">
 			<div class="tab-content">
-				<div class="col-md-6 tab-pane active" id="tab1"> <p> hotel list 1 <p> </div>
-				
-				
-		<div class="col-md-6 tab-pane" id="tab2">
-		<?php
-				for($i=0;$i<=6;$i++){ ?>
-		<div class="hotelDeal" style="cursor: default;">
-		<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
-			<div class="image-section col-md-5" id="image_section">
-				<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
-				<div style="background-image:url('http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg');" class="image-of-hotel" id="image_hotel">
-				<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
-				<div class="hotel-image-text">
-				<div class="hotel-location">Bangkok</div>
-				<div class="ce-star star4">4</div>
+				<div class=" tab-pane active" id="tab1">
+					<!--Forloop Starts--> 
+		<?php for($i=0;$i<=6;$i++){ ?>
+			<div class="hotelDeal" style="cursor: default;">
+			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
+				<div class="image-section col-md-5" id="image_section">
+					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+					
+						<div >
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="image-of-hotel" id="image_hotel"/>
+						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+							<div class="hotel-image-text">
+								<div class="hotel-location">Bangkok</div>
+								<div class="ce-star star4">4</div>
+							</div>
+						</div>        
+					</a>
+					<!-- hidden controls -->
+					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
+					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
+					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
-				</div>        
-				</a>
-				<!-- hidden controls -->
-				<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
-				<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
-				<input type="hidden" value="4" id="hotel_stars_1149971">
-			</div>
-			<div class="middle-offer-section col-md-5">
-				<div class="hotelInfo">
-				<h3>
-				<!-- HOTEL NAME -->
-				<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
-				<div class="purple-color" title="Mode Sathorn Hotel">Mode Sathorn Hotel</div>                
-				</a>        
-				</h3>
-				<div class="campaign-promo-offer">Save 50%</div>
-				<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
-				<div class="members-extras-block">                
-				<!-- The Big Red Plus Sign -->
-				<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
-				<div class="font_red member-extras-text">Member Extras</div>
+				<div class="middle-offer-section col-md-5">
+					<div class="hotelInfo">
+						<h3>
+						<!-- HOTEL NAME -->
+							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<div class="purple-color" title="Mode Sathorn Hotel">Mode Sathorn Hotel</div>                
+							</a>        
+						</h3>
+						<div class="campaign-promo-offer">Save 50%</div>
+						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
+						<div class="members-extras-block">                
+							<!-- The Big Red Plus Sign -->
+							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<div class="font_red member-extras-text">Member Extras</div>
+						</div>
+						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
+						<div class="sign-out-member-offer" style="display: none;">  
+							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+								<!-- Show_JoinHotelClub_Popup()-->
+								<p>Freebies Included</p>
+								<p>Find out more &gt;&gt;</p>
+							</span>
+						</div>
+					</div>
 				</div>
-				<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
-				<div class="sign-out-member-offer" style="display: none;">  
-				<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
-				<!-- Show_JoinHotelClub_Popup()-->
-				<p>Freebies Included</p>
-				<p>Find out more &gt;&gt;</p>
-				</span>
-				</div>
-				</div>
-			</div>
 
-			<div class="saveBookInfo col-md-2">
-				Save<br> <span class="percentage">50%</span>
-				<div class="clear"></div>
-				<div class="button choseDatesButton">
-				<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
-				</div><br>
-				<p class="inclusions">Travel: Now - 31/12/2013</p>
-				<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+				<div class="saveBookInfo col-md-2">
+						Save<br> <span class="percentage">50%</span>
+						<div class="clear"></div>
+						<div class="button choseDatesButton">
+						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						</div><br>
+						<p class="inclusions">Travel: Now - 31/12/2013</p>
+						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
 				</div>
-				<div class="clear"></div>
+						<div class="clear"></div>
 			</div>
-<?php } ?>
-		</div>
+		<?php } ?>
+		<!--Forloop Ends--> 
+				</div>				
+				
+				<div class=" tab-pane" id="tab2">
+				<!--Forloop Starts--> 
+				<?php for($i=0;$i<=6;$i++){ ?>
+					<div class="hotelDeal" style="cursor: default;">
+					<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
+						<div class="image-section col-md-5" id="image_section">
+							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<div>
+								<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg" class="image-of-hotel" id="image_hotel"/>
+								<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+									<div class="hotel-image-text">
+										<div class="hotel-location">Austalia</div>
+										<div class="ce-star star4">4</div>
+									</div>
+								</div>        
+							</a>
+							<!-- hidden controls -->
+							<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
+							<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
+							<input type="hidden" value="4" id="hotel_stars_1149971">
+						</div>
+						<div class="middle-offer-section col-md-5">
+							<div class="hotelInfo">
+								<h3>
+								<!-- HOTEL NAME -->
+									<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+									<div class="purple-color" title="Mode Sathorn Hotel">Mode Sathorn Hotel</div>                
+									</a>        
+								</h3>
+								<div class="campaign-promo-offer">Save 50%</div>
+								<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
+								<div class="members-extras-block">                
+									<!-- The Big Red Plus Sign -->
+									<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+									<div class="font_red member-extras-text">Member Extras</div>
+								</div>
+								<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
+								<div class="sign-out-member-offer" style="display: none;">  
+									<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+										<!-- Show_JoinHotelClub_Popup()-->
+										<p>Freebies Included</p>
+										<p>Find out more &gt;&gt;</p>
+									</span>
+								</div>
+							</div>
+						</div>
 
-				<div class="col-md-6 tab-pane" id="tab3"><p> hotel list 3 <p> </div>
-				<div class="col-md-6 tab-pane" id="tab4"><p> hotel list 4 <p> </div>
+						<div class="saveBookInfo col-md-2">
+								Save<br> <span class="percentage">50%</span>
+								<div class="clear"></div>
+								<div class="button choseDatesButton">
+								<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+								</div><br>
+								<p class="inclusions">Travel: Now - 31/12/2013</p>
+								<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+						</div>
+								<div class="clear"></div>
+					</div>
+				<?php } ?>
+				<!--Forloop Ends--> 
+				</div>
+
+				<div class=" tab-pane" id="tab3">
+					<!--Forloop Starts--> 
+		<?php for($i=0;$i<=6;$i++){ ?>
+			<div class="hotelDeal" style="cursor: default;">
+			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
+				<div class="image-section col-md-5" id="image_section">
+					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+						<div>
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_316563.jpg" class="image-of-hotel" id="image_hotel"/>	
+						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+							<div class="hotel-image-text">
+								<div class="hotel-location">UK</div>
+								<div class="ce-star star4">4</div>
+							</div>
+						</div>        
+					</a>
+					<!-- hidden controls -->
+					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
+					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
+					<input type="hidden" value="4" id="hotel_stars_1149971">
+				</div>
+				<div class="middle-offer-section col-md-5">
+					<div class="hotelInfo">
+						<h3>
+						<!-- HOTEL NAME -->
+							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<div class="purple-color" title="Mode Sathorn Hotel">Jupiters Hotel and ...</div>                
+							</a>        
+						</h3>
+						<div class="campaign-promo-offer">Save 50%</div>
+						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
+						<div class="members-extras-block">                
+							<!-- The Big Red Plus Sign -->
+							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<div class="font_red member-extras-text">Member Extras</div>
+						</div>
+						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
+						<div class="sign-out-member-offer" style="display: none;">  
+							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+								<!-- Show_JoinHotelClub_Popup()-->
+								<p>Freebies Included</p>
+								<p>Find out more &gt;&gt;</p>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="saveBookInfo col-md-2">
+						Save<br> <span class="percentage">50%</span>
+						<div class="clear"></div>
+						<div class="button choseDatesButton">
+						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						</div><br>
+						<p class="inclusions">Travel: Now - 31/12/2013</p>
+						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+				</div>
+						<div class="clear"></div>
+			</div>
+		<?php } ?>
+		<!--Forloop Ends--> 
+				</div>
+				<div class="tab-pane" id="tab4">
+					<!--Forloop Starts--> 
+		<?php for($i=0;$i<=6;$i++){ ?>
+			<div class="hotelDeal" style="cursor: default;">
+			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
+				<div class="image-section col-md-5" id="image_section">
+					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+						<div>
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_23106.jpg" class="image-of-hotel" id="image_hotel"/>	
+						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+							<div class="hotel-image-text">
+								<div class="hotel-location">Bangkok</div>
+								<div class="ce-star star4">4</div>
+							</div>
+						</div>        
+					</a>
+					<!-- hidden controls -->
+					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
+					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
+					<input type="hidden" value="4" id="hotel_stars_1149971">
+				</div>
+				<div class="middle-offer-section col-md-5">
+					<div class="hotelInfo">
+						<h3>
+						<!-- HOTEL NAME -->
+							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<div class="purple-color" title="Mode Sathorn Hotel">Villa Alessandra</div>                
+							</a>        
+						</h3>
+						<div class="campaign-promo-offer">Save 50%</div>
+						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
+						<div class="members-extras-block">                
+							<!-- The Big Red Plus Sign -->
+							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<div class="font_red member-extras-text">Member Extras</div>
+						</div>
+						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
+						<div class="sign-out-member-offer" style="display: none;">  
+							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+								<!-- Show_JoinHotelClub_Popup()-->
+								<p>Freebies Included</p>
+								<p>Find out more &gt;&gt;</p>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="saveBookInfo col-md-2">
+						Save<br> <span class="percentage">50%</span>
+						<div class="clear"></div>
+						<div class="button choseDatesButton">
+						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						</div><br>
+						<p class="inclusions">Travel: Now - 31/12/2013</p>
+						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+				</div>
+						<div class="clear"></div>
+			</div>
+		<?php } ?>
+		<!--Forloop Ends--> 
+				</div>
 				</div>
 			</div>
 		</div>
-		
 		<!-- mainContent -->
 		<div id="mainContent" class="subContainer">Main content comes here...</div>
 		
