@@ -72,9 +72,10 @@
 		</div>
 		
 		<!-- banner -->
-		<div id="banner" class="subContainer">			
+		<div id="banner" >	
+		
 				<div class="row">
-					<div id="searchBot" class="col-md-3">
+					<div id="searchBot" class="col-md">
 						<!-- search -->
 						<form class="form-inline datepicker" method="get" name="searchBot role="form">
 							<div class=" where">
@@ -111,7 +112,8 @@
 							<li><a href="#tab4" data-toggle="tab">Europe &amp; US</a></li>
 						</ul>   
 					</div>				
-				</div>			
+				</div>		
+				<img src="img/HC_201301014_Major_Holiday_958_EN.jpg" id="" class="img-responsive" width="958" height="390" alt="Responsive image"/>	
 		</div>
 		
 		<!-- hotelList -->
@@ -123,13 +125,13 @@
 				<div class=" tab-pane active" id="tab1">
 					<!--Forloop Starts--> 
 		<?php for($i=0;$i<=6;$i++){ ?>
-			<div class="hotelDeal" style="cursor: default;">
+			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
-				<div class="image-section col-md-5" id="image_section">
+				<div class="image_section" id="image_section">
 					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
 					
 						<div >
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="image-of-hotel" id="image_hotel"/>
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120" />
 						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 							<div class="hotel-image-text">
 								<div class="hotel-location">Bangkok</div>
@@ -142,7 +144,7 @@
 					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
 					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
-				<div class="middle-offer-section col-md-5">
+				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
@@ -168,7 +170,7 @@
 					</div>
 				</div>
 
-				<div class="saveBookInfo col-md-2">
+				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
 						<div class="button choseDatesButton">
@@ -186,12 +188,12 @@
 				<div class=" tab-pane" id="tab2">
 				<!--Forloop Starts--> 
 				<?php for($i=0;$i<=6;$i++){ ?>
-					<div class="hotelDeal" style="cursor: default;">
+					<div class="hotelDeal col-md-6" style="cursor: default;">
 					<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
-						<div class="image-section col-md-5" id="image_section">
+						<div class="image_section" id="image_section">
 							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
 							<div>
-								<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg" class="image-of-hotel" id="image_hotel"/>
+								<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120"/>
 								<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 									<div class="hotel-image-text">
 										<div class="hotel-location">Austalia</div>
@@ -204,12 +206,12 @@
 							<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
 							<input type="hidden" value="4" id="hotel_stars_1149971">
 						</div>
-						<div class="middle-offer-section col-md-5">
+						<div class="middle-offer-section">
 							<div class="hotelInfo">
 								<h3>
 								<!-- HOTEL NAME -->
 									<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
-									<div class="purple-color" title="Mode Sathorn Hotel">Mode Sathorn Hotel</div>                
+									<div class="purple-color" title="Mode Sathorn Hotel">Landmark Hotel </div>                
 									</a>        
 								</h3>
 								<div class="campaign-promo-offer">Save 50%</div>
@@ -230,7 +232,7 @@
 							</div>
 						</div>
 
-						<div class="saveBookInfo col-md-2">
+						<div class="saveBookInfo">
 								Save<br> <span class="percentage">50%</span>
 								<div class="clear"></div>
 								<div class="button choseDatesButton">
@@ -248,12 +250,12 @@
 				<div class=" tab-pane" id="tab3">
 					<!--Forloop Starts--> 
 		<?php for($i=0;$i<=6;$i++){ ?>
-			<div class="hotelDeal" style="cursor: default;">
+			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
-				<div class="image-section col-md-5" id="image_section">
+				<div class="image_section" id="image_section">
 					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
 						<div>
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_316563.jpg" class="image-of-hotel" id="image_hotel"/>	
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_316563.jpg" class="img-responsive"  alt="Responsive image" id="image_hotel" width="182" height="120"/>	
 						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 							<div class="hotel-image-text">
 								<div class="hotel-location">UK</div>
@@ -266,7 +268,7 @@
 					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
 					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
-				<div class="middle-offer-section col-md-5">
+				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
@@ -292,7 +294,7 @@
 					</div>
 				</div>
 
-				<div class="saveBookInfo col-md-2">
+				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
 						<div class="button choseDatesButton">
@@ -309,12 +311,12 @@
 				<div class="tab-pane" id="tab4">
 					<!--Forloop Starts--> 
 		<?php for($i=0;$i<=6;$i++){ ?>
-			<div class="hotelDeal" style="cursor: default;">
+			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
-				<div class="image-section col-md-5" id="image_section">
+				<div class="image_section" id="image_section">
 					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
 						<div>
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_23106.jpg" class="image-of-hotel" id="image_hotel"/>	
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_23106.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120"/>	
 						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 							<div class="hotel-image-text">
 								<div class="hotel-location">Bangkok</div>
@@ -327,7 +329,7 @@
 					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
 					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
-				<div class="middle-offer-section col-md-5">
+				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
@@ -353,7 +355,7 @@
 					</div>
 				</div>
 
-				<div class="saveBookInfo col-md-2">
+				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
 						<div class="button choseDatesButton">
@@ -370,6 +372,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- mainContent -->
 		<div id="mainContent" class="subContainer">Main content comes here...</div>
 		
