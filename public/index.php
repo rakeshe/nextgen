@@ -57,20 +57,37 @@
 				<div class="col-md-offset-6">
 					<ul class="nav navbar-nav navbar-right right_menu">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">English <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Menu 1</a></li>
-								<li><a href="#">Menu 2</a></li>
-								<li><a href="#">Menu 3</a></li>
-								<li><a href="#">Menu 4</a></li>
+							<a href="index.php" class="dropdown-toggle" data-toggle="dropdown"  data-target="#">English <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<li><a href="#fr" data-toggle="tab">French</a></li>
+								<li><a href="#ch" data-toggle="tab">Chinese</a></li>
+								<li><a href="#ge" data-toggle="tab">German</a></li>
+								<li><a href="#sp" data-toggle="tab">Spanish</a></li>
 							</ul>
 						</li>
 					</ul>
+				<!-- Remove This Later Just Displays the Tab works-->
+					<div class="tab-content">
+						<div class=" tab-pane active" id="en">
+						English 
+						</div>
+						<div class=" tab-pane " id="fr">
+						French 
+						</div>
+						<div class=" tab-pane " id="ch">
+						Chinese 
+						</div>
+						<div class=" tab-pane " id="ge">
+						German 
+						</div>
+						<div class=" tab-pane " id="sp">
+						Spanish 
+						</div>
+					</div>
+				<!-- Remove This Later Just Displays the Tab works-->
 				</div>
-			
 			</div>
 		</div>
-		
 		<!-- banner -->
 		<div id="banner" >	
 		
@@ -106,10 +123,10 @@
 					<!-- Tabs -->
 					<div class="tabbable deal-tabs" id="deal-tabs">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab">South East Asia</a></li>
-							<li><a href="#tab2" data-toggle="tab">North Asia</a></li>
-							<li><a href="#tab3" data-toggle="tab">Australia</a></li>
-							<li><a href="#tab4" data-toggle="tab">Europe &amp; US</a></li>
+							<li class="active"><a href="#tab1" data-toggle="tab"  >South East Asia</a></li>
+							<li><a href="#tab2" data-toggle="tab"  >North Asia</a></li>
+							<li><a href="#tab3" data-toggle="tab"  >Australia</a></li>
+							<li><a href="#tab4" data-toggle="tab"  >Europe &amp; US</a></li>
 						</ul>   
 					</div>				
 				</div>		
@@ -128,27 +145,23 @@
 			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
 				<div class="image_section" id="image_section">
-					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
-					
+					<a>
 						<div >
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120" />
-						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
-							<div class="hotel-image-text">
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120" />
+						<div class="hotel-image-text">
 								<div class="hotel-location">Bangkok</div>
-								<div class="ce-star star4">4</div>
+								<div class="star4">
+								<img src="http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png" class="img-responsive ce-star" id="image_hotel" alt="Responsive image" width="148" height="12" />
+								</div>
 							</div>
 						</div>        
-					</a>
-					<!-- hidden controls -->
-					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
-					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
-					<input type="hidden" value="4" id="hotel_stars_1149971">
+					</a>					
 				</div>
 				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
-							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<a>
 							<div class="purple-color" title="Mode Sathorn Hotel">Mode Sathorn Hotel</div>                
 							</a>        
 						</h3>
@@ -156,12 +169,12 @@
 						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
 						<div class="members-extras-block">                
 							<!-- The Big Red Plus Sign -->
-							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" >  
 							<div class="font_red member-extras-text">Member Extras</div>
 						</div>
 						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
 						<div class="sign-out-member-offer" style="display: none;">  
-							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+							<span>
 								<!-- Show_JoinHotelClub_Popup()-->
 								<p>Freebies Included</p>
 								<p>Find out more &gt;&gt;</p>
@@ -173,11 +186,10 @@
 				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
-						<div class="button choseDatesButton">
-						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						<div class="btn button">
+						<a>Book</a>
 						</div><br>
 						<p class="inclusions">Travel: Now - 31/12/2013</p>
-						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
 				</div>
 						<div class="clear"></div>
 			</div>
@@ -191,26 +203,24 @@
 					<div class="hotelDeal col-md-6" style="cursor: default;">
 					<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
 						<div class="image_section" id="image_section">
-							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<a>
 							<div>
-								<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120"/>
+								<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>
 								<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 									<div class="hotel-image-text">
 										<div class="hotel-location">Austalia</div>
-										<div class="ce-star star4">4</div>
+										<div class="star4">
+								<img src="http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png" class="img-responsive ce-star" id="image_hotel" alt="Responsive image" width="148" height="12" />
+								</div>
 									</div>
 								</div>        
 							</a>
-							<!-- hidden controls -->
-							<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
-							<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
-							<input type="hidden" value="4" id="hotel_stars_1149971">
 						</div>
 						<div class="middle-offer-section">
 							<div class="hotelInfo">
 								<h3>
 								<!-- HOTEL NAME -->
-									<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+									<a>
 									<div class="purple-color" title="Mode Sathorn Hotel">Landmark Hotel </div>                
 									</a>        
 								</h3>
@@ -218,12 +228,12 @@
 								<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
 								<div class="members-extras-block">                
 									<!-- The Big Red Plus Sign -->
-									<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+									<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
 									<div class="font_red member-extras-text">Member Extras</div>
 								</div>
 								<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
 								<div class="sign-out-member-offer" style="display: none;">  
-									<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+									<span>
 										<!-- Show_JoinHotelClub_Popup()-->
 										<p>Freebies Included</p>
 										<p>Find out more &gt;&gt;</p>
@@ -235,11 +245,10 @@
 						<div class="saveBookInfo">
 								Save<br> <span class="percentage">50%</span>
 								<div class="clear"></div>
-								<div class="button choseDatesButton">
-								<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+								<div class="btn button">
+								<a>Book</a>
 								</div><br>
-								<p class="inclusions">Travel: Now - 31/12/2013</p>
-								<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+								<p class="inclusions">Travel: Now - 31/12/2013</p>								
 						</div>
 								<div class="clear"></div>
 					</div>
@@ -253,26 +262,23 @@
 			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
 				<div class="image_section" id="image_section">
-					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+					<a>
 						<div>
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_316563.jpg" class="img-responsive"  alt="Responsive image" id="image_hotel" width="182" height="120"/>	
-						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_316563.jpg" class="img-responsive"  alt="Responsive image" id="image_hotel" width="180" height="120"/>					
 							<div class="hotel-image-text">
 								<div class="hotel-location">UK</div>
-								<div class="ce-star star4">4</div>
+								<div class="star4">
+								<img src="http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png" class="img-responsive ce-star" id="image_hotel" alt="Responsive image" width="148" height="12" />
+								</div>
 							</div>
 						</div>        
 					</a>
-					<!-- hidden controls -->
-					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
-					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
-					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
 				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
-							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<a>
 							<div class="purple-color" title="Mode Sathorn Hotel">Jupiters Hotel and ...</div>                
 							</a>        
 						</h3>
@@ -280,12 +286,12 @@
 						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
 						<div class="members-extras-block">                
 							<!-- The Big Red Plus Sign -->
-							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
 							<div class="font_red member-extras-text">Member Extras</div>
 						</div>
 						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
 						<div class="sign-out-member-offer" style="display: none;">  
-							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+							<span>
 								<!-- Show_JoinHotelClub_Popup()-->
 								<p>Freebies Included</p>
 								<p>Find out more &gt;&gt;</p>
@@ -297,11 +303,10 @@
 				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
-						<div class="button choseDatesButton">
-						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						<div class="btn button">
+						<a >Book</a>
 						</div><br>
-						<p class="inclusions">Travel: Now - 31/12/2013</p>
-						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
+						<p class="inclusions">Travel: Now - 31/12/2013</p>						
 				</div>
 						<div class="clear"></div>
 			</div>
@@ -314,26 +319,24 @@
 			<div class="hotelDeal col-md-6" style="cursor: default;">
 			<?php //if ($i % 2) { echo "0"; } else { echo "2"; }  ?>
 				<div class="image_section" id="image_section">
-					<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+					<a>
 						<div>
-						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_23106.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="182" height="120"/>	
+						<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_23106.jpg" class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>	
 						<!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
 							<div class="hotel-image-text">
 								<div class="hotel-location">Bangkok</div>
-								<div class="ce-star star4">4</div>
+								<div class="star4">
+								<img src="http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png" class="img-responsive ce-star" id="image_hotel" alt="Responsive image" width="148" height="12" />
+								</div>
 							</div>
 						</div>        
 					</a>
-					<!-- hidden controls -->
-					<input type="hidden" value="Mode Sathorn Hotel" id="hotel_name_1149971">
-					<input type="hidden" value="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" id="hotel_img_1149971">
-					<input type="hidden" value="4" id="hotel_stars_1149971">
 				</div>
 				<div class="middle-offer-section">
 					<div class="hotelInfo">
 						<h3>
 						<!-- HOTEL NAME -->
-							<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">
+							<a href="javascript:void(0);">
 							<div class="purple-color" title="Mode Sathorn Hotel">Villa Alessandra</div>                
 							</a>        
 						</h3>
@@ -341,12 +344,12 @@
 						<input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
 						<div class="members-extras-block">                
 							<!-- The Big Red Plus Sign -->
-							<img class="members-extras-logo" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
+							<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">  
 							<div class="font_red member-extras-text">Member Extras</div>
 						</div>
 						<div class="sign-in-member-offer offer-for-existing-members font_red">Save 55%</div>
 						<div class="sign-out-member-offer" style="display: none;">  
-							<span onclick="JavaScript:gotoExternalSignInLink();" class="freebies-included">
+							<span>
 								<!-- Show_JoinHotelClub_Popup()-->
 								<p>Freebies Included</p>
 								<p>Find out more &gt;&gt;</p>
@@ -358,11 +361,10 @@
 				<div class="saveBookInfo">
 						Save<br> <span class="percentage">50%</span>
 						<div class="clear"></div>
-						<div class="button choseDatesButton">
-						<a onclick="ActionBookButton('1149971', '');" href="javascript:void(0);">Book</a>
+						<div class="btn button">
+						<a>Book</a>
 						</div><br>
 						<p class="inclusions">Travel: Now - 31/12/2013</p>
-						<input type="hidden" value="Travel: Now - 31/12/2013" id="hotel_inc2_1149971"> 
 				</div>
 						<div class="clear"></div>
 			</div>
@@ -372,10 +374,7 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- mainContent -->
-		<div id="mainContent" class="subContainer">Main content comes here...</div>
-		
+					
 		<!-- footMenu -->
 		<div id="footMenu" class="subContainer">
 			<div class="row">
