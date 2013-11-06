@@ -7,7 +7,7 @@ $base-line-height: 1.167em;
 $menu-divider-color: #000;
 $base-link-color: #562D82;
 $hotel_image_height: 120px;
-$test-border-color: blue;
+$test-border-color: #ccc;
 $hotel_border_color:#E21E28;
 
 body{
@@ -129,27 +129,33 @@ a, a:link, .link{
     margin: 0px 4px 0 0;
     padding: 13px 20px;
     z-index: 0;
+    font-size:14px;
+    border-radius: 0 0 0 0;
     }
 
 div#regionTabs div#deal-tabs.tabbable ul.nav li.active a {
-	background: url("../img/tab-bg-up.gif") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	background: none repeat scroll 0 0 $hotel_border_color;
 	color: #FFFFFF;
 	border-color:none;
 	margin: 0px 4px 0 0;
-	padding: 15px 20px;
+	padding: 13px 20px;
+	font-size:14px;
+	border-radius: 0 0 0 0;
 }
 #banner {
 	 z-index: 1;
 	}
+.container {  max-width: 990px; }
+
 #searchBot {
-	background: url("../img/trim-gradients.png") repeat-x scroll 0 0 #E9E6EE;
+	background: none repeat scroll 0 0 #F4F3F7;
 	border: 0.167em solid #E9E6EE;
 	left: 98px;
 	padding: 10px;
 	position: absolute;
 	background-size: 100% 100% ;
 	z-index: 2;
-	top: 140px;
+	top: 155px;
 
        h2 { font-weight:bold; font-size:20px; }
 
@@ -166,10 +172,12 @@ div#regionTabs div#deal-tabs.tabbable ul.nav li.active a {
 }
 
 .deal-tabs {
-    left: 85px;
-    position: absolute;
-    top: 485px;
+    left: 10px;
+    position: relative;
+    top: 379px;
 }
+
+.nav-tabs{ border:0px solid #CCC; }
 
 .input-size-search{
 	width:140px;
@@ -179,13 +187,12 @@ div#regionTabs div#deal-tabs.tabbable ul.nav li.active a {
     border-top: 5px solid $hotel_border_color;
     height: 5px;
     position: absolute;
-    width: 980px;
+    width: 959px;
 }
 .hotelDeal{
 	border-bottom: 1px solid #EEEEEE;
 	border-right: 1px solid #EEEEEE;
 	float: left;
-	height: $hotel_image_height;
 	margin-bottom: 9px;
 	padding: 3px;
 
@@ -270,7 +277,7 @@ p.inclusions {
     color: #999999;
     font-size: 10px;
     font-weight: normal !important;
-    margin: 5px 0 0;
+    margin: 2px 0 0;
     padding: 0;
 }
 
@@ -293,24 +300,21 @@ p.inclusions {
     top: 0;
 }
 .ce-star {
-    background: url("../img/ce-hotelstar-brand.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0);
     float: right;
-    height: 20px;
-    margin-right: 2px;
-    margin-top: -17px;
+    margin-top: -12px;
     position: relative;
     text-indent: -10000em;
-    width: 100px;
+	left:41px;
+    
 }
 .button a {
     background: none repeat scroll 0 0 $base-link-color;
     border-radius: 5px 5px 5px 5px;
-    bottom: -10px;
     color: #FFFFFF;
     font-size: $base-font-size2;
     font-weight: bold;
     height: 20px;
-    left: 0;
+    left: -8px;
     padding: 5px 10px;
     position: relative;
     text-decoration: none;
