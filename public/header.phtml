@@ -7,7 +7,7 @@
 	<!-- include bootstrap -->
 	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="css/hc_great_holidays.min.css" rel="stylesheet" media="screen">
+	<link href="css/hc_great_holidays.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	<div class="container">
@@ -55,12 +55,30 @@
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							<img src="img/mobile_menu.png" alt="Main Menu" />
 						</a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<ul class="dropdown-menu main_left_menu" role="menu" aria-labelledby="dLabel">
 							<li><a href="#" alt="Hotel">Hotel</a></li>
 							<li><a href="#" alt="Club Benefits">Club Benefits</a></li>
-							<li><a href="#" alt="English">English</a></li>
-							<li><a href="#" alt="AUD - Australian Dollar">AUD - Australian Dollar</a></li>
-							<li><a href="#" alt="Customer Service">Customer Service</a></li>
+							<li>
+								<a href="#" alt="English"><table width="100%"><tr>
+									<td width="15%"><div class="lang_menu_icon">&nbsp;</div></td>
+									<td>English</td>
+									<td align="right"><span class="glyphicon glyphicon-chevron-right"></span></td>
+								</tr></table></a>
+							</li>
+							<li>
+								<a href="#" alt="AUD - Australian Dollar"><table width="100%"><tr>
+									<td width="15%"><div class="curr_menu_icon">&nbsp;</div></td>
+									<td>AUD - Australian Dollar</td>
+									<td align="right"><span class="glyphicon glyphicon-chevron-right"></span></td>
+								</tr></table></a>
+							</li>
+							<li>
+								<a href="#" alt="Customer Service"><table width="100%"><tr>
+									<td width="15%"><div class="customer_menu_icon">&nbsp;</div></td>
+									<td>Customer Service</td>
+								</tr></table></a>
+
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -76,7 +94,7 @@
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							<img src="img/mobile_member.png" alt="Member Menu" /> <span class="visible-tablet">Welcome</span>
 						</a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
+						<ul class="dropdown-menu main_right_menu" role="menu" aria-labelledby="dLabel2">
 							<li><a href="#" alt="My Bookings">My Bookings</a></li> 
 							<li><a href="#" alt="My Account">My Account</a></li>
 							<li><a href="#" alt="Sign in">Sign in</a></li>
