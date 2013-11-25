@@ -7,7 +7,6 @@ line-height:1.167em;
 .subContainer {
 border-left:1px solid #CCC;
 border-right:2px solid #CCC;
-padding:10px;
 }
 
 ul {
@@ -192,6 +191,7 @@ border:0 solid #CCC;
 #dkt_banner .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover,.nav-tabs > li.active > a:focus {
 border:none;
 border-color:none;
+
 }
 
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li a:hover {
@@ -206,7 +206,7 @@ padding:13px 20px;
 
 .dropdown-submenu.pull-left>.dropdown-menu {
 left:-100%;
-margin-left:10px;
+margin-left:5px;
 -webkit-border-radius:6px 0 6px 6px;
 -moz-border-radius:6px 0 6px 6px;
 border-radius:6px 0 6px 6px;
@@ -374,7 +374,8 @@ background-color:#EEE;
 }
 
 #mbl_header img {
-height:35px;
+height:40px;
+    padding: 5px;
 }
 
 #mbl_logo img {
@@ -383,7 +384,7 @@ width:150px;
 
 #mbl_menu {
 cursor:pointer;
-box-shadow:10px 1px 20px #CCC;
+/*box-shadow:10px 1px 20px #CCC;*/
 width:20%;
 }
 
@@ -400,14 +401,14 @@ width:60%;
 #mbl_member {
 float:right;
 cursor:pointer;
-box-shadow:-10px 1px 20px #CCC;
+/*box-shadow:-10px 1px 20px #CCC;*/
 width:15%;
 }
 
 #tab_briefcase {
 float:right;
 cursor:pointer;
-box-shadow:-10px 1px 20px #CCC;
+/*box-shadow:-10px 1px 20px #CCC;*/
 width:5%;
 }
 
@@ -544,6 +545,7 @@ padding:7px;
 
 #mbl_banner ul.level2 {
 border-color:red;
+    background-color: #fff;
 }
 
 #mbl_banner ul.level2 li a:hover {
@@ -702,7 +704,7 @@ color:#5A3084;
 
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.level1 a,#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li a {
 background-color:#FFF;
-color:#562D82;
+/*color:#562D82;*/
 z-index:0;
 border-radius:0 0 0 0;
 font-size:14px;
@@ -778,6 +780,7 @@ padding-left:20px;
 padding-right:20px;
 }
 
-#dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-phone div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
-float:left;
+#dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu, #mbl_menu, #mbl_logo, #mbl_banner.visible-phone div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
+    float: left;
+    min-width: 150px;
 }

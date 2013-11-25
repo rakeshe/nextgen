@@ -1,10 +1,5 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 1:22 PM
- * @version    1.0
- */
+
 /**
  * Elements
  *
@@ -19,12 +14,16 @@ class Elements extends Phalcon\Mvc\User\Component
                 'caption' => 'Home',
                 'action' => 'index'
             ),
-            'cms' => array(
-                'caption' => 'Content MS',
+            'invoices' => array(
+                'caption' => 'Nextgen',
                 'action' => 'index'
             ),
-            'preview' => array(
-                'caption' => 'Preview',
+            'about' => array(
+                'caption' => 'About',
+                'action' => 'index'
+            ),
+            'contact' => array(
+                'caption' => 'Contact',
                 'action' => 'index'
             ),
         ),
@@ -36,13 +35,33 @@ class Elements extends Phalcon\Mvc\User\Component
         )
     );
 
-    /*private $_tabs = array(
+    private $_tabs = array(
+        'Nextgen' => array(
+            'controller' => 'invoices',
+            'action' => 'index',
+            'any' => false
+        ),
+        'Companies' => array(
+            'controller' => 'companies',
+            'action' => 'index',
+            'any' => true
+        ),
+        'Products' => array(
+            'controller' => 'products',
+            'action' => 'index',
+            'any' => true
+        ),
+        'Product Types' => array(
+            'controller' => 'producttypes',
+            'action' => 'index',
+            'any' => true
+        ),
         'Your Profile' => array(
-            'controller' => 'users',
+            'controller' => 'invoices',
             'action' => 'profile',
             'any' => false
         )
-    );*/
+    );
 
     /**
      * Builds header menu with left and right items

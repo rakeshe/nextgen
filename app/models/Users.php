@@ -1,10 +1,5 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 1:25 PM
- * @version    1.0
- */
+
 use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
 use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 

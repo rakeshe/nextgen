@@ -1,10 +1,4 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 2:41 PM
- * @version    1.0
- */
 
 use Phalcon\Events\Event,
 	Phalcon\Mvc\User\Plugin,

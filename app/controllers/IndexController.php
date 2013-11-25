@@ -1,13 +1,9 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 11:02 AM
- * @version    1.0
- */
 
 class IndexController extends ControllerBase
 {
+
+    const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';
     public function initialize()
     {
         $this->view->setTemplateAfter('main');
@@ -18,9 +14,30 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         if (!$this->request->isPost()) {
-            $this->flash->notice('This is a hotelclub application.
-                Currently under construction.
-                Please don\'t provide us any personal information. Thanks');
+            $this->flash->notice(
+                'Welcome to nextgen php app'
+            );
         }
+    }
+
+    public function pageAction()
+    {
+        $language = $this->dispatcher->getParam("language");
+        $campaignName = null == $this->dispatcher->getParam("campaignName") ? self::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
+        $menuTabMain  = $this->dispatcher->getParam("menuTabMain");
+        $menuTabSub   = $this->dispatcher->getParam("menuTabSub");
+        $translation = new translation($language);
+
+        $this->view->setVars(
+            array(
+                'language'     => $language,
+                'campaignName' => $campaignName,
+                'menuTabMain'  => $menuTabMain,
+                'menuTabSub'   => $menuTabSub,
+                "t" => $translation->getMessages(),
+            )
+        );
+
+
     }
 }

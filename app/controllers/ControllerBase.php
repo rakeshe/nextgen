@@ -1,10 +1,4 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 10:55 AM
- * @version    1.0
- */
 
 class ControllerBase extends Phalcon\Mvc\Controller
 {

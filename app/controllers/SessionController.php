@@ -1,10 +1,5 @@
 <?php
-/**
- *
- * @author     Rakesh Shrestha
- * @since      25/10/13 11:16 AM
- * @version    1.0
- */
+
 use Phalcon\Tag as Tag;
 
 class SessionController extends ControllerBase
@@ -19,8 +14,8 @@ class SessionController extends ControllerBase
     public function indexAction()
     {
         if (!$this->request->isPost()) {
-            Tag::setDefault('email', 'rego@nowhere.com');
-            Tag::setDefault('password', 'test');
+            Tag::setDefault('email', 'demo@phalconphp.com');
+            Tag::setDefault('password', 'phalcon');
         }
     }
 
@@ -54,7 +49,7 @@ class SessionController extends ControllerBase
             } else {
                 Tag::setDefault('email', '');
                 Tag::setDefault('password', '');
-                $this->flash->success('Thanks for sign-up, please log-in to start generating invoices');
+                $this->flash->success('Thanks for sign-up, please log-in to start nextgen');
                 return $this->forward('session/index');
             }
         }
@@ -89,7 +84,7 @@ class SessionController extends ControllerBase
             if ($user != false) {
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
-                return $this->forward('invoices/index');
+                return $this->forward('en/index');
             }
 
             $username = $this->request->getPost('email', 'alphanum');
@@ -97,7 +92,7 @@ class SessionController extends ControllerBase
             if ($user != false) {
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
-                return $this->forward('invoices/index');
+                return $this->forward('en/index');
             }
 
             $this->flash->error('Wrong email/password');
