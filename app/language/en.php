@@ -90,4 +90,11 @@ $messages = [
     'cb_row5_col1'              => 'With our Best Price Guarantee, if you find a better price for the same hotel on a different site, weâ€™ll match it.  Plus youâ€™ll earn Member Rewards on your booking.',
     'cb_row6_col1'              => 'Enjoy faster service from our travel experts without any booking or cancellation fees.',
     'cb_row7_col1'              => 'If youâ€™re a HotelClub Member and arenâ€™t delighted with your experience, let us know and weâ€™ll contact the hotel on your behalf and fix it.',
+    // More messages to be translated
+    'menu_best_value' => 'Best Value',
+    'menu_lowest_price' => 'Lowest Price',
+    'menu_distance' => 'Distance',
+    'menu_star_rating' => 'Star Rating',
+    'menu_reviewer_score' => 'Reviewer Score'
+
 ];

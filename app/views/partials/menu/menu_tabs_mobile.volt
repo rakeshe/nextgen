@@ -10,12 +10,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">�</button>
-                    <h2 id="myModalLabel" class="modal-title">Find a hotel deal</h2>
+                    <h2 id="myModalLabel" class="modal-title">{{ t._('find_hotel_now') }}</h2>
                 </div>
                 <div class="modal-body">
                     <form form"="" name="searchBot role=" method="get" class="form-inline datepicker">
                     <div class=" where">
-                        <h5>Where</h5>
+                        <h5>{{ t._('where') }}</h5>
                         <input type="text" id="locationText" placeholder="Location.." class="form-control input-md">
                     </div>
                     <div class="checkdate form-group ">
