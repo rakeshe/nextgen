@@ -27,13 +27,16 @@ class IndexController extends ControllerBase
         $menuTabMain  = $this->dispatcher->getParam("menuTabMain");
         $menuTabSub   = $this->dispatcher->getParam("menuTabSub");
         $translation = new translation($language);
-
+        $menu = new Menu();
         $this->view->setVars(
             array(
                 'language'     => $language,
                 'campaignName' => $campaignName,
                 'menuTabMain'  => $menuTabMain,
                 'menuTabSub'   => $menuTabSub,
+                'menuItemsTop' => $menu->getMenuItem('top'),
+                'menuItemsSite' => $menu->getMenuItem('site'),
+                'menuItemsLanguageOptions' => $menu->getMenuItem('languageOptions'),
                 "t" => $translation->getMessages(),
             )
         );

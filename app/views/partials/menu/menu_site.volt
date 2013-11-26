@@ -1,7 +1,8 @@
 <!-- main menu -->
 <div class="col-md-6">
     <ul class="left_menu">
-        <li>{{ t._('menu_home') }}</li>
-        <li>{{ t._('menu_club_benefits') }}</li>
+        {% for label,uri in menuItemsSite %}
+            <li><a class="link" href="{{ uri }}">{{ t._(label) }}</a></li>
+        {% endfor %}
     </ul>
 </div>
