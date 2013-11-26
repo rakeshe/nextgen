@@ -28,6 +28,10 @@ class IndexController extends ControllerBase
         $menuTabSub   = $this->dispatcher->getParam("menuTabSub");
         $translation = new translation($language);
         $menu = new Menu();
+        $currentUser = ['name' => 'Joe Bloggs',
+        'email' => 'joe.bloggs@nowhere.com',
+        'loyaltyTier' => 'Gold',
+        'rewardPoints' => 120];
         $this->view->setVars(
             array(
                 'language'     => $language,
@@ -37,6 +41,8 @@ class IndexController extends ControllerBase
                 'menuItemsTop' => $menu->getMenuItem('top'),
                 'menuItemsSite' => $menu->getMenuItem('site'),
                 'menuItemsLanguageOptions' => $menu->getMenuItem('languageOptions'),
+                'menuItemsAccount' => $menu->getMenuItem('account'),
+                'currentUser' => $currentUser,
                 "t" => $translation->getMessages(),
             )
         );

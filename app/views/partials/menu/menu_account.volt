@@ -1,4 +1,10 @@
-<li class="welcomeText">Welcome sanand </li>
-<li class="loyaltyTier">Silver Member:</li>
-<li class="loyaltyInfo">0.00 Member Rewards** (Rs.0.00)</li>
+{% if currentUser %}
+<li class="welcomeText">{{ t._('welcome') }} {{ currentUser['name'] }} </li>
+<li class="loyaltyTier">{{ currentUser['loyaltyTier'] }} Member:</li>
+<li class="loyaltyInfo">{{ currentUser['rewardPoints'] }} Member Rewards** ({{ currentUser['rewardPoints'] }})</li>
 <li class="signOutLink"><a rel="nofollow" class="link" href="https://www.hotelclub.com/account/logout">{{ t._('sign_out') }}</a></li>
+{% else %}
+    {% for label,uri in menuItemsAccount %}
+        <li><a class="link" href="{{ uri }}">{{ t._(label) }}</a></li>
+    {% endfor %}
+{% endif %}
