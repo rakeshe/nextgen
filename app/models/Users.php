@@ -22,4 +22,14 @@ class Users extends Phalcon\Mvc\Model
             return false;
         }
     }
+
+    // fake mehtods for now
+    public function getCurrentUser(){
+        return ['name' => 'Joe Bloggs',
+                'email' => 'joe.bloggs@nowhere.com',
+                'loyaltyTier' => 'Gold',
+                'rewardPoints' => 120];
+    }
+
+
 }
