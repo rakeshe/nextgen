@@ -14,7 +14,7 @@
     </div>
     <div class="form-group ">
         <p>{{ t._('check_out') }}</p>
-        <input type="text" class="form-control input-sm "  placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm"  placeholder="dd/mm/yy">
     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>
