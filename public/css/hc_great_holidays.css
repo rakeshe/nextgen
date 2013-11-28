@@ -409,7 +409,14 @@ p.inclusions {
     width:0;
     margin:3px 0 0 3px;
 }
-
+#mbl_banner .modal-dialog .dropdown-menu{
+    background-color:#FFFFFF;
+    TEXT-ALIGN: center;
+    }
+#mbl_banner .modal-body{
+width:100%;
+height: auto;
+}
 #mbl_banner ul.nav li a {
     background-color:#FFF;
     color:#562D82;
@@ -538,8 +545,7 @@ padding:0;
 .carousel-caption {
     z-index:2;
     text-align:left;
-    left:15px;
-    display:none!important;
+    right:0;
     margin:5px 0 0;
     padding:0 0 0 5px;
 }
@@ -669,20 +675,21 @@ padding:0;
 }
 
 #dkt_banner .dropdown-submenu>a:after,#mbl_banner .dropdown-submenu>a:after {
-    display:block;
-    content:" ";
-    float:right;
-    width:0;
-    height:0;
-    margin-top:5px;
-    margin-right:-10px;
-    border-color:transparent transparent transparent #ccc;
-    border-style:solid;
-    border-width:5px 0 5px 5px;
+    border-color: #CCCCCC rgba(0, 0, 0, 0) -moz-use-text-color;
+    border-style: solid solid dotted;
+    border-width: 5px 5px 0;
+    content: "";
+    display: inline-block;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    width: 0;
+
 }
 
 #dkt_banner .dropdown-submenu:hover>a:after,#mbl_banner .dropdown-submenu:hover>a:after {
-    border-left-color:#fff;
+
+    border-color: #FFFFFF rgba(0, 0, 0, 0) -moz-use-text-color;
 }
 
 #dkt_banner .dropdown-submenu.pull-left,#mbl_banner .dropdown-submenu.pull-left {
