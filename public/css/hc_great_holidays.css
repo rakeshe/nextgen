@@ -19,7 +19,7 @@ ul {
 li {
     line-height:1.167em;
 }
-
+/* desktop version - starts */
 #dkt_header {
     line-height:1.167em;
     font-size:11px;
@@ -166,7 +166,8 @@ a,a:link,.link {
     text-decoration:underline;
     color:#562D82;
 }
-
+/* desktop version - ends */
+/**************Desktop-2*********/
 #banner {
     z-index:1;
 }
@@ -367,7 +368,8 @@ p.inclusions {
     text-decoration:none;
     padding:5px 10px;
 }
-
+/**************Desktop-2*********/
+/* mobile version - starts */
 #mbl_header {
     background-color:#EEE;
 }
@@ -479,7 +481,8 @@ p.inclusions {
     text-align:center;
     padding:10px;
 }
-
+/* mobile version - ends */
+/************mobile2*************/
 #mbl_banner .modal-content {
     background-color:#E6E1EB;
 }
@@ -648,9 +651,13 @@ padding:0;
 .visible-phone #Phone-Itemcard clearfix{
 
 }
+/************mobile2*************/
+/* tablet version - starts */
 #sort_by span a {
     padding:5px;
 }
+/*********************/
+/* tablet version - ends */
 
 .carousel-caption {
     z-index:2;
