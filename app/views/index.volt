@@ -16,5 +16,6 @@
         {{ javascript_include('js/jquery.js') }}
         {{ javascript_include('bootstrap/js/bootstrap.min.js') }}
         {{ javascript_include('js/utils.js') }}
+        {{ javascript_include('js/nextgen.js') }}
     </body>
 </html>
