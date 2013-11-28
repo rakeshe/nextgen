@@ -9,7 +9,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">�</button>
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
                     <h2 id="myModalLabel" class="modal-title">{{ t._('find_hotel_now') }}</h2>
                 </div>
                 <!-- use existing search form - this is duplicate content -->
