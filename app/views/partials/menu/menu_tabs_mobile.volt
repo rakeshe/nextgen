@@ -12,6 +12,7 @@
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">�</button>
                     <h2 id="myModalLabel" class="modal-title">{{ t._('find_hotel_now') }}</h2>
                 </div>
+                <!-- use existing search form - this is duplicate content -->
                 <div class="modal-body">
                     <form form"="" name="searchBot role=" method="get" class="form-inline datepicker">
                     <div class=" where">
@@ -45,96 +46,14 @@
             <div class="modal-body">
                 <div class="dropdown clearfix">
                     <ul class="dropdown-menu" style="display:block">
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#">Australia & NZ</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#">Sydney</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Melbourne</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Brisbane</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Auckland</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#">USA</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#">New york</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Washington</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">California</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Chicago</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#">Europe</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#">London</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">German</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Italy</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">France</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#">Asia</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#">India</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">China</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Singapore</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#">Srilanka</a>
-                                </li>
-                            </ul>
-                        </li>
+                        {{ partial('partials/menu/menu_tabs') }}
                     </ul>
                 </div>
             </div>
 
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+{#@todo change the menu select titles#}
     <table width="100%">
         <tbody><tr>
             <td width="50%">
