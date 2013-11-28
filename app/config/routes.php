@@ -70,7 +70,7 @@ class configRouter extends Phalcon\Mvc\Router
         $this->add(
             self::RE_LANGUAGE_CODE . self::RE_SEOPATH_ALPHANUM . '/:params',
             array(
-                "language"     => 1,
+                "languageCode"     => 1,
                 "campaignName" => 2,
                 "params"       => 3,
                 "controller"   => 'index',
@@ -84,7 +84,7 @@ class configRouter extends Phalcon\Mvc\Router
         $this->add(
             self::RE_LANGUAGE_CODE . self::RE_SEOPATH_ALPHANUM . self::RE_SEOPATH_ALPHA . '/:params',
             array(
-                "language"     => 1,
+                "languageCode"     => 1,
                 "campaignName" => 2,
                 "menuTabMain"  => 3,
                 "params"       => 4,
@@ -99,7 +99,7 @@ class configRouter extends Phalcon\Mvc\Router
         $this->add(
             self::RE_LANGUAGE_CODE . self::RE_SEOPATH_ALPHANUM . self::RE_SEOPATH_ALPHA . self::RE_SEOPATH_ALPHA . '/:params',
             array(
-                "language"     => 1,
+                "languageCode"     => 1,
                 "campaignName" => 2,
                 "menuTabMain"  => 3,
                 "menuTabSub"   => 4,
