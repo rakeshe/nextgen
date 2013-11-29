@@ -5,7 +5,16 @@ body {
     padding:0px;
     margin:0px;
 }
-
+@font-face {
+    font-family: SerifaStd-Roman;
+    src: url(font/SerifaStd-Roman.otf);
+    url(font/SerifaStd-Roman.otf) format('opentype');
+}
+@font-face {
+    font-family: SerifaStd-Light;
+    src: url(font/SerifaStd-Light.otf);
+    url(font/SerifaStd-Light.otf) format('opentype');
+}
 .subContainer {
     border-left:1px solid #CCC;
     border-right:2px solid #CCC;
@@ -543,18 +552,20 @@ padding:0;
 /* tablet version - ends */
 
 .carousel-caption {
-    z-index:2;
-    text-align:left;
-    right:0;
-    margin:5px 0 0;
-    padding:0 0 0 5px;
+    height: auto;
+    left: 50%;
+    max-width: 47%;
+    right: 0;
+    text-align: left;
+    z-index: 2;
+
 }
 
 .carousel-caption h2 {
     background-color:#F4F3F7;
     color:#000;
     opacity:0.75;
-    max-width:10em;
+    max-width:100%;
     margin:0;
 }
 
@@ -562,7 +573,7 @@ padding:0;
     background-color:#F4F3F7;
     color:#000;
     opacity:0.75!important;
-    max-width:11em;
+    max-width:100%;
     margin:0;
 }
 
@@ -570,7 +581,7 @@ padding:0;
     background-color:#E21E28;
     opacity:0.85!important;
     color:#fff;
-    max-width:20em;
+    max-width:100%;
     font-weight:700;
     margin:0;
 }
@@ -622,7 +633,7 @@ padding:0;
     color:#5A3084;
 }
 
-#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.level1 a,#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li a {
+#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.level1 a{
     background-color:#FFF;
     color:#562D82;
     z-index:0;
@@ -631,8 +642,7 @@ padding:0;
     margin:0 4px 0 0;
     padding:13px 45px;
 }
-
-#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.level1 a:hover,#dkt_banner .active a {
+#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.level1 a:hover{
     background-color:#E21E28;
     border-radius:0 0 0 0;
     color:#FFF;
@@ -641,7 +651,24 @@ padding:0;
     margin:0 4px 0 0;
     padding:13px 45px;
 }
-
+#dkt_banner ul.desktop-tabs .active a {
+    background-color:#E21E28 !important;
+    border-radius:0 0 0 0 !important;
+    color:#FFF !important;
+    font-size:14px !important;
+    border-color:none !important;
+    margin:0 4px 0 0 !important;
+    padding:13px 45px !important;
+}
+div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul.dropdown-menu li a{
+    background-color:#FFF !important;
+    color:#562D82 !important;
+    z-index:0;
+    border-radius:0 0 0 0;
+    font-size:14px;
+    margin:0 4px 0 0;
+    padding:13px 45px;
+}
 #dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider {
     margin:0;
 }
