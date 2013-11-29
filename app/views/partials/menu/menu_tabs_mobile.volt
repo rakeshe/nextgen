@@ -60,7 +60,7 @@
                 <div id="accordion" class="panel-group">
                     <div class="panel">
                         <div class="panel-heading">
-                            <ul class="nav nav-tabs">
+                            <ul class="nav">
                                 <li  class="dropdown">
                                     <a class="dropdown-toggle" data-target="#Regions" data-toggle="modal" href="#">Australia & NZ<b class="caret"></b></a>
 
