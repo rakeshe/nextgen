@@ -18,17 +18,18 @@ class Page extends Phalcon\Mvc\Model
 
     public function getData(){
         if(null === $this->data){
-            $this->data = $this->loadDataFile();
+            $this->loadDataFile();
         }
         return $this->data;
     }
 
     protected function loadDataFile(){
-        $data = [];
+        $dataPage = [];
+        $dataHotels = [];
         $this->dataFilePath = __DIR__.'/../../cache/campaign_data_' . $this->languageCode .'.php';
         if(file_exists($this->dataFilePath)){
             require $this->dataFilePath;
-            return $data;
+            $this->data = array_merge($dataPage,['hotels'=> $dataHotels]);
 
         }
     }
