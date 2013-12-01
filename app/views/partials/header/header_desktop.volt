@@ -5,7 +5,7 @@
         <!-- header logo -->
         <div class="col-md-5 logo">
             <a href="/" title="Hotelclub Logo">
-                <img src="http://www.tnetnoc.com/static/28.64.9/image/pos/hcl/en-au/logo-header.png" alt="Hotelclub Logo" />
+                <img src="/img/logo-header.png" alt="Hotelclub Logo" />
             </a>
         </div>
 

@@ -545,8 +545,11 @@ padding:0;
 }
 /************mobile2*************/
 /* tablet version - starts */
+#sort_by {
+    margin:16px 0px 0 20px;
+}
 #sort_by span a {
-    padding:5px;
+    padding:15px;
 }
 /*********************/
 /* tablet version - ends */
