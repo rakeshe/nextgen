@@ -1,5 +1,5 @@
 <!-- desktop header -->
-<div id="dkt_header" class="visible-desktop">
+<div id="dkt_header">
     <div class="row">
 
         <!-- header logo -->
