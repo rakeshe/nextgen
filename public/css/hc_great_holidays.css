@@ -21,7 +21,7 @@
 
 body{ font-size:12px; line-height:1.167em; padding:0px; margin:0px; }
 
-.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; /*padding:10px;*/ }
+.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
 
 ul{ list-style:none; margin:0; padding:0; }
 
