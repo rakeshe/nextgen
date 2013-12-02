@@ -1,35 +1,32 @@
-body {
-    font-size:12px;
-    font-family:#ffa0a0;
-    line-height:1.167em;
-    padding:0px;
-    margin:0px;
+@font-face {
+    font-family: "SerifaStd-Roman";
+    src: url('SerifaStd-Roman.otf');
+    url('SerifaStd-Roman.otf') format('opentype');
 }
 @font-face {
-    font-family: SerifaStd-Roman;
-    src: url(font/SerifaStd-Roman.otf);
-    url(font/SerifaStd-Roman.otf) format('opentype');
-}
-@font-face {
-    font-family: SerifaStd-Light;
-    src: url(font/SerifaStd-Light.otf);
-    url(font/SerifaStd-Light.otf) format('opentype');
-}
-.subContainer {
-    border-left:1px solid #CCC;
-    border-right:2px solid #CCC;
-    /*padding:10px;*/
+    font-family: "SerifaStd-Light";
+    src: url('SerifaStd-Light.otf');
+    url('SerifaStd-Light.otf') format('opentype');
 }
 
-ul {
-    list-style:none;
-    margin:0;
-    padding:0;
-}
+/* reponsive design - starts */
+@media (min-width: 1200px) { } /* Large desktop */
 
-li {
-    line-height:1.167em;
+@media (min-width:979px) and (max-width:1199px){ } /* desktop */
+
+@media (max-width:978px){
+	.container{ min-width:100%; padding:0; margin:0; }
 }
+/* reponsive design - ends */
+
+body{ font-size:12px; line-height:1.167em; padding:0px; margin:0px; }
+
+.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
+
+ul{ list-style:none; margin:0; padding:0; }
+
+li{ line-height:1.167em; }
+
 /* desktop version - starts */
 #dkt_header { line-height: 1.167em; font-size: 11px; }
 
@@ -68,8 +65,6 @@ a, a:link, .link{ color: #562d82; }
 .navbar-nav > li > a{ padding-top: 2px; padding-bottom: 5px; }
 
 /*.row{ margin-left:0px !important; }*/
-
-.container{ padding:0px 5px; }
 
 .footerLinks > li{ border-right: 0.083em solid #000000; float: left; list-style: none; margin: 0.083em; }
 
