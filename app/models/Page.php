@@ -8,7 +8,6 @@
  */
 class Page extends Phalcon\Mvc\Model
 {
-
     protected $dataFilePath;
     protected $data;
     protected $languageCode = 'en';
@@ -16,23 +15,37 @@ class Page extends Phalcon\Mvc\Model
     protected $menuTabMain;
     protected $menuTabSub;
 
-    public function getData(){
-        if(null === $this->data){
+    public function getData()
+    {
+        if (null === $this->data) {
             $this->loadDataFile();
         }
         return $this->data;
     }
 
-    protected function loadDataFile(){
-        $dataPage = [];
-        $dataHotels = [];
-        $this->dataFilePath = __DIR__.'/../../cache/campaign_data_' . $this->languageCode .'.php';
-        if(file_exists($this->dataFilePath)){
+    protected function loadDataFile()
+    {
+        $dataPage           = [];
+        $dataHotels         = [];
+        $this->dataFilePath = __DIR__ . '/../../cache/campaign_data_' . $this->languageCode . '.php';
+        if (file_exists($this->dataFilePath)) {
             require $this->dataFilePath;
-            $this->data = array_merge($dataPage,['hotels'=> $dataHotels]);
-
+            $this->data              = array_merge($dataPage, ['hotels' => $dataHotels]);
+            $this->data['activeTab'] = $this->getCurrentTab();
         }
     }
+
+    protected function getCurrentTab()
+    {
+        if (!(empty($this->data['tabs']))) {
+            if ($this->menuTabMain === null && $this->menuTabSub === null) {
+
+            } else {
+                return $this->menuTabSub === null ? $this->data['tabs'][$this->menuTabMain] : $this->data['tabs'][$this->menuTabMain][$this->menuTabSub];
+            }
+        }
+    }
+
     /**
      * @param mixed $languageCode
      */
