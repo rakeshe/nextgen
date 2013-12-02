@@ -1,12 +1,12 @@
 @font-face {
     font-family: "SerifaStd-Roman";
-    src: url('font/SerifaStd-Roman.otf');
-    url('font/SerifaStd-Roman.otf') format('opentype');
+    src: url('SerifaStd-Roman.otf');
+    url('SerifaStd-Roman.otf') format('opentype');
 }
 @font-face {
     font-family: "SerifaStd-Light";
-    src: url('font/SerifaStd-Light.otf');
-    url('font/SerifaStd-Light.otf') format('opentype');
+    src: url('SerifaStd-Light.otf');
+    url('SerifaStd-Light.otf') format('opentype');
 }
 
 /* reponsive design - starts */
