@@ -6139,20 +6139,21 @@ body.modal-open,
 
 .carousel-indicators li {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 1px;
+  width: 13px;
+  height: 13px;
+  margin: 2px;
   text-indent: -999px;
   cursor: pointer;
-  border: 1px solid #ffffff;
+  background-color: #ffffff;
   border-radius: 10px;
 }
 
 .carousel-indicators .active {
-  width: 12px;
-  height: 12px;
-  margin: 0;
-  background-color: #ffffff;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 3px solid #ffffff;
+    background-color: #E21E28;
 }
 
 .carousel-caption {
