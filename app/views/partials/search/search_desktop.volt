@@ -10,11 +10,11 @@
     </div>
     <div class="form-group ">
         <p>{{ t._('check_in') }}</p>
-        <input type="text" class="form-control input-sm"  placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm datepicker"  id="checkin" placeholder="dd/mm/yy">
     </div>
     <div class="form-group ">
         <p>{{ t._('check_out') }}</p>
-        <input type="text" class="form-control input-sm"  placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm datepicker"  id="checkout" placeholder="dd/mm/yy">
     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>

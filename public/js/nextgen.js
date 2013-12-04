@@ -1,12 +1,12 @@
 /**
  *
  * @package    nextgen
- * @author     Rakesh Shrestha
  * @since      26/11/13 7:25 PM
  * @version    1.0
  */
-// Date picker widget
 $(document).ready(function(){
+
+    /** Search Form date picker */
     var closeText = "Close";
     var currentText = "Today";
     var checkRates = "Check Rates";
