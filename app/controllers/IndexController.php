@@ -5,7 +5,8 @@ class IndexController extends ControllerBase
 
     const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';
     const DEFAULT_PAGE_LAYOUT = 'main';
-    protected $baseUri;
+    protected $uriBase;
+    protected $uriFull;
     protected $pageLayout;
     protected $languageCode;
     protected $campaignName;
@@ -41,11 +42,11 @@ class IndexController extends ControllerBase
 
     public function pageAction()
     {
-
         $this->view->setVars(
             array(
                 'pageLayout' => $this->getPageLayout(),
-                'baseUri'                  => $this->baseUri,
+                'uriBase'                  => $this->uriBase,
+                'uriFull'                  => $this->uriFull,
                 'languageCode'             => $this->languageCode,
                 'campaignName'             => $this->campaignName,
                 'menuTabMain'              => $this->menuTabMain,
@@ -106,7 +107,8 @@ class IndexController extends ControllerBase
         $this->menuTabMain  = $this->dispatcher->getParam("menuTabMain");
         $this->menuTabSub   = $this->dispatcher->getParam("menuTabSub");
         $this->translation  = new translation($this->languageCode);
-        $this->baseUri = '/' . $this->languageCode . '/' . $this->campaignName;
+        $this->uriFull = $this->router->getRewriteUri();
+        $this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
 
         // Setup data for the page
         $dataModel = new Page();
