@@ -45,3 +45,20 @@ $(document).ready(function(){
         $('.carousel').carousel('next');
 
 });
+
+/* Region Tabs-Mobile Toggle Event */
+$(document).ready(function(){
+$( "#regions" ).click(function() {
+$( ".region_panels" ).hide();
+$( ".region_menu" ).show();
+
+$( ".btn-default" ).click(function() {
+$(".btn-default").find("span").removeClass("glyphicon-minus").addClass( "glyphicon-plus" );
+$(this).find("span ").toggleClass( "glyphicon-minus glyphicon-plus" );
+});
+
+
+});
+});
+
+/* /Region Tabs-Mobile Toggle Event */
