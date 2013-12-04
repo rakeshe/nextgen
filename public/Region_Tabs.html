@@ -5,7 +5,7 @@
     <!-- include bootstrap -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
     <link media="screen" rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link media="screen" rel="stylesheet" href="css/hc_great_holidays.css">
+    <link media="screen" rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div class="container">
@@ -149,10 +149,8 @@
 
 <!-- desktop banner -->
 <div class="visible-desktop" id="dkt_banner">
-
     <!-- Desktop region tabs -->
     <div id="regionTabs">
-
         <!-- Tabs -->
         <div id="deal-tabs" class="tabbable deal-tabs">
             <div class="dropdown clearfix">
@@ -313,117 +311,20 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="Regions" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-body">
-                <div class="dropdown clearfix">
-                    <ul class="dropdown-menu" style="display:block">
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#tab1">Australia & NZ</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#tab1">Sydney</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab2">Melbourne</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab3">Brisbane</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab4">Auckland</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#tab2">USA</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#tab1">New york</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab2">Washington</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab3">California</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab4">Chicago</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#tab3">Europe</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#tab1">London</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab2">German</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab3">Italy</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab4">France</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu level1" >
-                            <a tabindex="-1" href="#tab4">Asia</a>
-                            <ul class="dropdown-menu level2">
-                                <li>
-                                    <a tabindex="-1" href="#tab1">India</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab2">China</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab3">Singapore</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a tabindex="-1" href="#tab4">Srilanka</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
+   <div class="region_panels">
     <table width="100%">
         <tbody><tr>
             <td width="50%">
-                <div id="accordion" class="panel-group">
-                    <div class="panel">
+			  <div class="panel-group">
+                  <div class="panel">
                         <div class="panel-heading">
-                            <ul class="nav ">
-                                <li  class="dropdown">
-                                    <a class="dropdown-toggle" data-target="#Regions" data-toggle="modal" href="#">Australia & NZ<b class="caret"></b></a>
-
+                            <a id="regions" href="#">Australia & NZ<span class="right-caret"></span> </a>
                         </div>
                     </div>
                 </div>
             </td>
             <td align="right">
-                <div id="accordion" class="panel-group">
+                <div  class="panel-group">
                     <div class="panel">
                         <div class="panel-heading">
                             <a data-target="#myModal" data-toggle="modal" href="#">Search more hotels <span class="right-caret"></span> </a>
@@ -432,15 +333,136 @@
                 </div>
             </td>
         </tr>
-        </tbody></table>
-</div>
-<!-- Dialog box phone Tabs -->
+        </tbody>
+ </table>
+ </div>
+		<div class="region_menu">
+			<table width="100%">
+				<tbody>
+				<tr>
+					<div class="btn-group-vertical">
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Australia
+						<span class="glyphicon glyphicon-plus"></span>
+						</button>
+							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
+								<li>
+								<a tabindex="-1" href="#tab1">Sydney</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab2">Melbourne</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab3">Brisbane</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab4">Auckland</a>
+								</li>
+							</ul>
+						</div>
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Europe
+						<span class="glyphicon glyphicon-plus"></span>
+						</button>
+							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
+								<li>
+								<a tabindex="-1" href="#tab1">New york</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab2">Washington</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab3">California</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab4">Chicago</a>
+								</li>
+							</ul>
+						</div>
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Asia
+						<span class="glyphicon glyphicon-plus"></span>
+						</button>
+							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
+								<li>
+								<a tabindex="-1" href="#tab1">London</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab2">German</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab3">Italy</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab4">France</a>
+								</li>
+							</ul>
+						</div>
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						USA
+						<span class="glyphicon glyphicon-plus"></span>
+						</button>
+							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
+								<li>
+								<a tabindex="-1" href="#tab1">India</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab2">China</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab3">Singapore</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+								<a tabindex="-1" href="#tab4">Srilanka</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					</div>  
+				<tr>
+				</tbody>
+			</table>
+		</div>
+ </div>
+ <!-- Dialog box phone Tabs -->
 <!-- /mobile banner -->
 </div>
 <!-- END VIEW PARTIAL: banner.phtml -->
+
 <!-- include external js -->
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- /include external js -->
+<script>
+$(document).ready(function(){
+$( "#regions" ).click(function() {
+$( ".region_panels" ).hide();
+$( ".region_menu" ).show();
+
+$( ".btn-default" ).click(function() {
+$(".btn-default").find("span").removeClass("glyphicon-minus").addClass( "glyphicon-plus" );
+$(this).find("span ").toggleClass( "glyphicon-minus glyphicon-plus" );
+});
+
+
+});
+});
+</script>
 </body>
 </html> 
