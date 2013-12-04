@@ -368,7 +368,7 @@ p.inclusions {
     background-color:#E6E1EB;
 }
 
-#mbl_banner div#accordion.panel-group div.panel div.panel-heading a {
+#mbl_banner .region_panels .panel-group div.panel div.panel-heading a {
     background-color:#FFF;
     color:#562D82;
     z-index:0;
@@ -437,8 +437,8 @@ height: auto;
 }
 
 #mbl_banner ul.level2 li a:hover {
-    background-color:#CCC;
-    color:#000;
+  background-color:#FFF;
+    color:#333333;
 }
 
 #mbl_banner li.level1 a:hover {
@@ -450,10 +450,44 @@ height: auto;
     font-size:14px;
     font-weight:700;
     height:3em;
-    text-align:left;
-    width:14em;
+    text-align:center;
+    background-color:#FFF;
 }
-
+#mbl_banner .region_menu{
+display:none;
+max-width:100%;
+}
+#mbl_banner .region_menu .glyphicon {
+width:2%;
+}
+.region_menu .dropdown-menu {
+left:50% !important;
+top:0% !important;
+ }
+ .region_menu .btn-group, .btn-group-vertical{
+display:block;
+max-width:100%;
+ }
+ #mbl_banner .region_menu .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{
+   background-color:#FFF;
+     color:#562D82;
+	 border-color:#ADADAD;
+ }
+ .region_menu .btn-default,.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active,.dropdown-toggle .btn-default {
+  width:50%;
+  float:left;
+  height:3em;
+  background-color:#FFF;
+  color:#562D82;
+  font-weight:bold;
+ }
+ .region_menu .level2 {
+   width:50%;
+  }
+ .region_menu .dropdown-menu{
+ padding:0;
+ margin:0;
+ }
 .visible-phone body{
     padding-right:0px;
     padding-left:0px;
