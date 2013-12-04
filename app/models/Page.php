@@ -35,13 +35,18 @@ class Page extends Phalcon\Mvc\Model
         }
     }
 
+    /* @todo refactor this logic */
     protected function getCurrentTab()
     {
         if (!(empty($this->data['tabs']))) {
             if ($this->menuTabMain === null && $this->menuTabSub === null) {
-
-            } else {
-                return $this->menuTabSub === null ? $this->data['tabs'][$this->menuTabMain] : $this->data['tabs'][$this->menuTabMain][$this->menuTabSub];
+                //return default
+            }
+            if ($this->menuTabSub === null && !empty($this->data['tabs'][$this->menuTabMain])) {
+                return $this->data['tabs'][$this->menuTabMain];
+            }
+            if ($this->menuTabSub !== null && !empty($this->data['tabs'][$this->menuTabSub])) {
+                return $this->data['tabs'][$this->menuTabSub];
             }
         }
     }
