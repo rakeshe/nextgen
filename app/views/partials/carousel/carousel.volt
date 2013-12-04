@@ -11,15 +11,13 @@
             {% if not(banner['img'] is empty) %}
                 {% if index == 0 %}
                     {% set item_class = ' active' %}
-                    {% set offset_class = ' col-md-offset-3' %}
                 {% else %}
                     {% set item_class = '' %}
-                    {% set offset_class = ' col-xs-6' %}
                 {% endif %}
                 <div class="item{{ item_class }}">
                     <img src="{{ banner['img'] }}" alt="Member" />
                     <div class="row">
-                        <div class="carousel-caption visible-tablet{{ offset_class }}">
+                        <div class="carousel-caption hidden-phone">
                             <h2>{{ banner['h1'] }}</h2>
                             <h3>{{ banner['h2'] }} </h3>
                             <h5>{{ banner['promo'] }}</h5>
@@ -31,4 +29,4 @@
         {% endfor %}
     </div>
 </div>
-<!-- /Carousel -->
+<!-- carousel -->
