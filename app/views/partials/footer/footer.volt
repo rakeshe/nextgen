@@ -2,7 +2,7 @@
 <!-- footer - desktop starts -->
 <div class="visible-desktop">
     <!-- sections with links (eg Hotel Partners, Travel Shop) -->
-    <div id="footSectionLink" class="subContainer">
+  {#  <div id="footSectionLink" class="subContainer">
         <div class="hzondal_line">&nbsp;</div>
         <div class="shadow_line">
             <div class="row">
@@ -79,13 +79,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>#}
 
     <!-- promo banner (static) -->
     <div id="footPromo" class="subContainer">
-        <a href="http://www.hotelclub.com" title="Hotel Club"><img src="img/footer_promo_banner.png" alt="Hotel Club" /></a>
+        <a href="http://www.hotelclub.com" title="Hotel Club">[ BANNER GOES HERE ]{#<img src="img/footer_promo_banner.png" alt="Hotel Club" />#}</a>
     </div>
-
+{#
     <!-- Top destinations and hotels url group -->
     <div id="footDestinations" class="subContainer">
         <div class="hzondal_line">&nbsp;</div>
@@ -127,7 +127,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>#}
 
     <!-- Our partners url group -->
     <div id="footPartner" class="subContainer">
