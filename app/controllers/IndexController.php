@@ -4,7 +4,9 @@ class IndexController extends ControllerBase
 {
 
     const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';
+    const DEFAULT_PAGE_LAYOUT = 'main';
     protected $baseUri;
+    protected $pageLayout;
     protected $languageCode;
     protected $campaignName;
     protected $menuTabMain;
@@ -22,7 +24,7 @@ class IndexController extends ControllerBase
 
     public function initialize()
     {
-        $this->view->setTemplateAfter('main');
+        $this->view->setTemplateAfter($this->getPageLayout());
         Phalcon\Tag::setTitle('Welcome');
         parent::initialize();
         $this->setupPage();
@@ -42,6 +44,7 @@ class IndexController extends ControllerBase
 
         $this->view->setVars(
             array(
+                'pageLayout' => $this->getPageLayout(),
                 'baseUri'                  => $this->baseUri,
                 'languageCode'             => $this->languageCode,
                 'campaignName'             => $this->campaignName,
@@ -96,7 +99,6 @@ class IndexController extends ControllerBase
     {
         $this->user = new Users();
         $this->menu = new Menu();
-
         $this->languageCode = $this->dispatcher->getParam("languageCode");
         $this->campaignName = null == $this->dispatcher->getParam(
             "campaignName"
@@ -116,5 +118,13 @@ class IndexController extends ControllerBase
 
         $this->data = $dataModel->getData();
 
+    }
+
+    protected function getPageLayout(){
+        if(empty($this->data['meta']['pageLayout'])){
+            // use session if avail
+            return self::DEFAULT_PAGE_LAYOUT;
+
+        }
     }
 }
