@@ -446,7 +446,9 @@ p.inclusions {
 .glyphicon-arrow-right {
     padding:1px;
 }
-
+#mbl_banner .region_menu .glyphicon{
+top:-3px;
+}
 .nav .caret {
     border-top-color:red;
 }
@@ -497,8 +499,8 @@ height: auto;
 #mbl_banner .dropdown-menu > li > a {
     font-size:14px;
     font-weight:700;
-    height:3em;
-    text-align:center;
+    height:2.9em;
+    text-align:left;
     background-color:#FFF;
 }
 #mbl_banner .region_menu{
@@ -508,19 +510,26 @@ max-width:100%;
 #mbl_banner .region_menu .glyphicon {
 width:2%;
 }
+.region_menu  .dropdown-toggle span{
+float:right;
+}
 .region_menu .dropdown-menu {
 left:50% !important;
-top:0% !important;
+/*top:0% !important;*/
  }
  .region_menu .btn-group, .btn-group-vertical{
 display:block;
 max-width:100%;
  }
- #mbl_banner .region_menu .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{
+#mbl_banner .region_menu .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{
    background-color:#FFF;
      color:#562D82;
 	 border-color:#ADADAD;
  }
+#mbl_banner .region_menu .btn-default:focus{
+  background-color:#E21E28 !important;
+  color:#FFF !important;
+}
  .region_menu .btn-default,.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active,.dropdown-toggle .btn-default {
   width:50%;
   float:left;
@@ -528,6 +537,7 @@ max-width:100%;
   background-color:#FFF;
   color:#562D82;
   font-weight:bold;
+  text-align:left;
  }
  .region_menu .level2 {
    width:50%;
@@ -628,6 +638,10 @@ padding:0;
 }
 #sort_by span a {
     padding:15px;
+}
+#sort_by span a:hover{
+color:#562D82;
+text-decoration:none;
 }
 /*********************/
 /* tablet version - ends */
@@ -737,9 +751,10 @@ clear:both;
 	padding:1%;
 }
 #dkt_carousel .carousel-indicators {
-    margin-left:15%;
+    margin-left:12%;
     opacity:0.80;
 }
+
 #dkt_header li.loyaltyInfo,#mbl_banner .modal-content h5,h2 {
     font-weight:700;
 }
