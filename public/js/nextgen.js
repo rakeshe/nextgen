@@ -51,14 +51,24 @@ $(document).ready(function(){
 $( "#regions" ).click(function() {
 $( ".region_panels" ).hide();
 $( ".region_menu" ).show();
-
-$( ".btn-default" ).click(function() {
-$(".btn-default").find("span").removeClass("glyphicon-minus").addClass( "glyphicon-plus" );
-$(this).find("span ").toggleClass( "glyphicon-minus glyphicon-plus" );
 });
 
+$( ".dropdown-toggle" ).click(function() {
+$(this).find("span").toggleClass( "glyphicon-minus");
+if($( ".glyphicon" ).hasClass( "glyphicon-minus" ) == true){
+$(".btn-default").find("span").removeClass("glyphicon-minus");
+$(this).find("span").toggleClass( "glyphicon-minus");
+}
+var button_count=$( "#mbl_banner .region_menu .btn-group-vertical" ).find("button").length; 
+var get_id=$(this).attr("id").replace(/[^0-9]/g, ''); 
+get_id=get_id-1;
+var setpos = get_id*41;
+setpos=-setpos;
+var getpos= setpos+"px";
+$( "#mbl_banner .region_menu .dropdown-menu" ).css("top",""+getpos+"");
 
 });
+
 });
 
 /* /Region Tabs-Mobile Toggle Event */
