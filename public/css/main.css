@@ -584,39 +584,109 @@ padding:0;
 /*********************/
 /* tablet version - ends */
 
-.carousel-caption {
+.hidden-phone .carousel-caption {
     height: auto;
-    left: 50%;
-    max-width: 47%;
+    left: 47%;
+    max-width: 52%;
     right: 0;
     text-align: left;
     z-index: 2;
+	top:10%;
 
 }
-
-.carousel-caption h2 {
+.hidden-phone .carousel-caption span{
+line-height:19px;
+clear:both;
+}
+.hidden-phone .carousel-caption .deal_text1 span{
     background-color:#F4F3F7;
     color:#000;
     opacity:0.75;
-    max-width:100%;
-    margin:0;
+    font-size:32px; 
+	font-family:SerifaStd-Roman;
+	font-weight:normal;
+	display:inline-block;
+	position:relative;
+	padding:10px;
+	
 }
 
-.carousel-caption h3 {
+.hidden-phone .carousel-caption .deal_text2 span{
     background-color:#F4F3F7;
     color:#000;
     opacity:0.75!important;
-    max-width:100%;
-    margin:0;
+	font-family:SerifaStd-Light;
+	font-weight:normal;
+	font-size:28px;
+	display:inline-block;
+	position:relative;
+	padding:10px;
+
 }
 
-.carousel-caption h5 {
+.hidden-phone .carousel-caption .promo_text span{
     background-color:#E21E28;
-    opacity:0.85!important;
+    opacity:0.91!important;
     color:#fff;
-    max-width:100%;
+	padding:6px;
     font-weight:700;
-    margin:0;
+	font-family:SerifaStd-Roman;
+	font-weight:lighter;
+	font-size:20px;
+	display:inline-block;
+	position:relative;
+	
+}
+.visible-phone .carousel-caption{
+    height: auto;
+    left: 0%;
+    width: 90%;
+    right: 0;
+	top:0;
+    text-align: left;
+    z-index: 2;
+	margin-left:10%;
+	margin-top:6%;
+}
+
+.visible-phone .carousel-caption span{
+line-height:15px;
+clear:both;
+}
+.visible-phone .carousel-caption .deal_text1 span{
+    background-color:#F4F3F7;
+    color:#000;
+    opacity:0.75;
+    font-size:23px;
+	font-family:SerifaStd-Roman;
+	font-weight:normal;
+	display:inline-block;
+	position:relative;
+	padding:2%;
+}
+
+.visible-phone .carousel-caption .deal_text2 span{
+    background-color:#F4F3F7;
+    color:#000;
+    opacity:0.75!important;
+	font-family:SerifaStd-Light;
+	font-weight:normal;
+	font-size:22px;
+	display:inline-block;
+	position:relative;
+	padding:2%;
+}
+
+.visible-phone .carousel-caption .promo_text span{
+    background-color:#E21E28;
+    opacity:0.91!important;
+    color:#fff;
+    font-family:SerifaStd-Roman;
+	font-weight:lighter;
+	font-size:15px;
+	display:inline-block;
+	position:relative;
+	padding:1%;
 }
 #dkt_carousel .carousel-indicators {
     margin-left:15%;
@@ -634,7 +704,7 @@ padding:0;
     background-color:#F4F3F7;
     border:.167em solid #E9E6EE;
     position:absolute;
-    z-index:2;
+    z-index:5;
     opacity:0.95;
     padding:0 10px 5px;
     margin:10px;
