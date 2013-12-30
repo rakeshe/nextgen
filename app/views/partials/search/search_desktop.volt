@@ -18,7 +18,7 @@
     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>
-        <input type="button" class="btn btn-default col-md-offset-8" onclick="doSearch(this.form)" value="{{ t._('search') }}" name="search">
+        <input type="button" class="btn  col-md-offset-8" onclick="doSearch(this.form)" value="{{ t._('search') }}" name="search">
     </div>
     <div class=" promo-code">
         <p>I have a promotion code</p>

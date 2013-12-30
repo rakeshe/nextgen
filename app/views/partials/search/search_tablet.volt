@@ -9,15 +9,15 @@
     </div>
     <div class="form-group ">
         <p>Check-in</p>
-        <input type="text" class="form-control input-sm"  placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm datepicker "  id="tab_checkin" placeholder="dd/mm/yy">
     </div>
     <div class="form-group ">
         <p>Check-out</p>
-        <input type="text" class="form-control input-sm "  placeholder="dd/mm/yy">
-    </div>
+	 <input type="text" class="form-control input-sm datepicker "  id="tab_checkout" placeholder="dd/mm/yy">
+     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>
-        <input type="button" class="btn btn-default col-md-offset-8" onclick="doSearch(this.form)" value="Search" name="search">
+        <input type="button" class="btn col-md-offset-8" onclick="doSearch(this.form)" value="Search" name="search">
     </div>
     <div class=" promo-code">
         <p>I have a promotion code</p>

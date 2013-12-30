@@ -643,6 +643,38 @@ padding:0;
 color:#562D82;
 text-decoration:none;
 }
+#tbl_banner ul.nav li a {
+    background-color:#FFF;
+    color:#562D82;
+    z-index:0;
+    border-radius:0 0 0 0;
+    font-size:12px;
+    margin:0 4px 0 0;
+    padding:7px;
+}
+
+#tbl_banner ul.level2 {
+    border-color:red;
+	top:0;
+}
+
+#tbl_banner ul.level2 li a:hover {
+  background-color:#FFF;
+    color:#333333;
+}
+
+#tbl_banner li.level1 a:hover {
+    background-color:#E21E28;
+    color:#FFF;
+}
+
+#tbl_banner .dropdown-menu > li > a {
+    font-size:14px;
+    font-weight:700;
+    height:2.9em;
+    text-align:left;
+    background-color:#FFF;
+}
 /*********************/
 /* tablet version - ends */
 
@@ -835,7 +867,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     margin:0 4px 0 0;
     padding:13px 45px;
 }
-#dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider {
+#dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider,#tbl_banner .dropdown-menu .divider {
     margin:0;
 }
 
