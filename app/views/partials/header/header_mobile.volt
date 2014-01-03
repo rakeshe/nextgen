@@ -8,21 +8,21 @@
             <li class="horiz_border"><a href="#" alt="Club Benefits" class="no_horiz_border">Club Benefits</a></li>
             <li>
                 <a href="#" alt="English"><table width="100%"><tr>
-                            <td width="15%"><div class="lang_menu_icon">&nbsp;</div></td>
+                            <td width="20%"><div class="lang_menu_icon">&nbsp;</div></td>
                             <td>English</td>
                             <td align="right"><span class="glyphicon glyphicon-chevron-right"></span></td>
                         </tr></table></a>
             </li>
             <li>
                 <a href="#" alt="AUD - Australian Dollar"><table width="100%"><tr>
-                            <td width="15%"><div class="curr_menu_icon">&nbsp;</div></td>
+                            <td width="20%"><div class="curr_menu_icon">&nbsp;</div></td>
                             <td>AUD - Australian Dollar</td>
                             <td align="right"><span class="glyphicon glyphicon-chevron-right"></span></td>
                         </tr></table></a>
             </li>
             <li>
                 <a href="#" alt="Customer Service"><table width="100%"><tr>
-                            <td width="15%"><div class="customer_menu_icon">&nbsp;</div></td>
+                            <td width="20%"><div class="customer_menu_icon">&nbsp;</div></td>
                             <td>Customer Service</td>
                         </tr></table></a>
 
@@ -45,7 +45,7 @@
     <div id="mbl_member">
         <div class="dropdown pull-right">
             <a class="dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="mbl_member_logo">
-                <span>Welcome</span>
+             <span class="visible-tablet">Welcome</span>
             </a>
             <ul class="dropdown-menu main_right_menu" role="menu" aria-labelledby="dLabel2">
                 <li><a href="#" alt="My Bookings">My Bookings</a></li>
