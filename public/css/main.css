@@ -741,6 +741,7 @@ clear:both;
     z-index: 2;
 	margin-left:10%;
 	margin-top:6%;
+	position:absolute;
 }
 
 .visible-phone .carousel-caption span{
