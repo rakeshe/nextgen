@@ -24,7 +24,7 @@
 				<div  class="terms"><span>{{ banner['terms'] }}</span></div>
                         </div>
                     </div>
-		       <div class="visible-phone">
+		    <div class="visible-phone">
                         <div class="carousel-caption ">
 				<div  class="deal_text1"><span>{{ banner['h1'] }}</span></div>
 				<div  class="deal_text2"><span>{{ banner['h2'] }} </span></div>
