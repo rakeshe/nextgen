@@ -44,8 +44,10 @@
 
     <div id="mbl_member">
         <div class="dropdown pull-right">
-            <a class="dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="mbl_member_logo">
-             <span class="visible-tablet">Welcome</span>
+            <a class="visible-tablet dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="tbl_member_logo">
+             <span >Welcome</span>
+            </a>
+	    <a class="hidden-tablet dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="mbl_member_logo">
             </a>
             <ul class="dropdown-menu main_right_menu" role="menu" aria-labelledby="dLabel2">
                 <li><a href="#" alt="My Bookings">My Bookings</a></li>
