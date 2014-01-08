@@ -10,8 +10,8 @@ body *{ font-family: Arial,Helvetica,sans-serif; font-size:12px; }
 .ui-widget-header .ui-state-disabled{ display:none; }
 .ui-datepicker-header{ color:#333; }
 .ui-datepicker .ui-datepicker-header{ padding:0px; }
-.ui-widget-header .ui-icon-circle-triangle-w{ background:url('http://www.tnetnoc.com/static/28.60.12/image/brand/hcl/action-prev-md.png'); }
-.ui-widget-header .ui-icon-circle-triangle-e{ background:url('http://www.tnetnoc.com/static/28.60.12/image/brand/hcl/action-next-md.png'); }
+.ui-widget-header .ui-icon-circle-triangle-w{ background:url('http://www.tnetnoc.com/static/28.68.9/image/brand/hcl/action-prev-md.png'); }
+.ui-widget-header .ui-icon-circle-triangle-e{ background:url('http://www.tnetnoc.com/static/28.68.9/image/brand/hcl/action-next-md.png'); }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{ background:none; border:none; margin:2px 0px; text-align:center; }
 .ui-state-default:hover, .ui-state-default:focus{ background-color:rgb(233,230,238)/*#E0E0E0*/; }
 .ui-datepicker-calendar tr td span{ color:rgb(102,102,102) !important; font-weight:normal !important; }
