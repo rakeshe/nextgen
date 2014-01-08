@@ -344,15 +344,15 @@ p.inclusions {
 /* mobile version - starts */
 #mbl_header{ background-color: #ECECEC; box-shadow:2px 2px 2px #CCC; border-bottom:1px solid #CCC; }
 
-#mbl_menu_logo, #mbl_member_logo, #mbl_brief_logo{ position:relative; cursor:pointer; background-image: url('../img/icon-menu-sprite.png'); height:60px; width:64px; display:block; background-repeat:no-repeat; }
+#mbl_menu_logo, #mbl_member_logo, #tbl_member_logo, #mbl_brief_logo{ position:relative; cursor:pointer; background-image: url('../img/icon-menu-sprite.png'); height:60px; width:64px; display:block; background-repeat:no-repeat; }
 
 #mbl_menu_logo{ background-position:0px 0px; border-right:1px solid #CCC; }
 
 #mbl_main_logo{ height:60px; display:block; } 
 #mbl_main_logo > img{ padding:14px; }
 
-#mbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right; width:120px; padding:25px 5px 0; text-decoration:none; font-size:14px; }
-
+#mbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right; width:65px; padding:25px 5px 0; text-decoration:none; font-size:14px; }
+#tbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right; width:120px; padding:25px 5px 0; text-decoration:none; font-size:14px; }
 #mbl_menu_logo:active, #mbl_menu .open > a, #mbl_member_logo:active, #mbl_member .open > a { background-color: #B4B4B4; color:#FFF !important; text-shadow:2px 2px 1px rgba(0,0,0,0.4); box-shadow:0 3px 3px #555 inset; }
 
 #mbl_menu .dropdown-menu, #mbl_member .dropdown-menu{ margin:0px; border:none; }
