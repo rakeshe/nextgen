@@ -4,6 +4,7 @@ $messages = [
     'head_welcome_to_hc'        => 'Welcome to HotelClub',
     'menu_home'                 => 'Home',
     'menu_club_benefits'        => 'Club Benefits',
+    'menu_travel_insurance'     => 'Travel Insurance',
     'menu_lang_en'              => 'English',
     'main_banner_text1'         => 'Get more from your holiday â€“',
     'main_banner_text2'         => 'Exclusive hotel deals.',

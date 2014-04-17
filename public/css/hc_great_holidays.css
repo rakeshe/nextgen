@@ -585,7 +585,7 @@ padding:0;
 }
 #dkt_carousel .carousel-indicators {
 
-    margin-left:17%;
+    margin-bottom:2%;
 }
 #dkt_header li.loyaltyInfo,#mbl_banner .modal-content h5,h2 {
     font-weight:700;
@@ -621,6 +621,7 @@ padding:0;
     color:#FFF;
     font-size:15px;
     font-weight:700;
+    padding:6px 10px;
 }
 
 #banner #dkt_searchBot .search_contacts,#banner #tbt_searchBot .search_contacts {
