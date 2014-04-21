@@ -58,6 +58,7 @@ try {
                     switch ($exception->getCode()) {
                         case \Phalcon\Mvc\Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
                         case \Phalcon\Mvc\Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                        default:
                             $dispatcher->forward(
                                 array(
                                     'controller' => 'error',

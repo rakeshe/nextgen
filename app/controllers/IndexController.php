@@ -112,8 +112,10 @@ class IndexController extends ControllerBase
 
         // Setup data for the page
         $dataModel = new Page();
+        if ($this->languageCode != null)
+        	$dataModel->setLanguageCode($this->languageCode);
+        
         $dataModel
-            ->setLanguageCode($this->languageCode)
             ->setCampaignName($this->campaignName)
             ->setMenuTabMain($this->menuTabMain)
             ->setMenuTabSub($this->menuTabSub);
