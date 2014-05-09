@@ -32,7 +32,7 @@ class Page extends Phalcon\Mvc\Model
         if (file_exists($this->dataFilePath)) {
             require $this->dataFilePath;
             $this->data              = array_merge($dataPage, ['hotels' => $dataHotels]);
-            $this->data['activeTab'] = array('onegs'=>$this->getCurrentTab());
+            $this->data['activeTab'] = $this->getCurrentTab();
         }
     }
 		protected function getCurrentTab()
