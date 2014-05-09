@@ -5,6 +5,7 @@
  * @author     Rakesh Shrestha
  * @since      27/11/13 5:17 PM
  * @version    1.0
+ * @Updated	   Ravi
  */
 class Page extends Phalcon\Mvc\Model
 {
@@ -24,33 +25,50 @@ class Page extends Phalcon\Mvc\Model
     }
 
     protected function loadDataFile()
-    {
+    { 
         $dataPage           = [];
         $dataHotels         = [];
         $this->dataFilePath = __DIR__ . '/../../cache/campaign_data_' . $this->languageCode . '.php';
         if (file_exists($this->dataFilePath)) {
             require $this->dataFilePath;
             $this->data              = array_merge($dataPage, ['hotels' => $dataHotels]);
-            $this->data['activeTab'] = $this->getCurrentTab();
+            $this->data['activeTab'] = array('onegs'=>$this->getCurrentTab());
         }
     }
-
-    /* @todo refactor this logic */
+		protected function getCurrentTab()
+		{
+		 if (!(empty($this->data['tabs']))) {
+			if ($this->menuTabMain === null && $this->menuTabSub === null) {
+			 return "china";
+			}
+			if ($this->menuTabSub == null && !empty($this->menuTabMain)) {
+			return $this->menuTabMain;
+			}
+			if ($this->menuTabSub != null && !empty($this->menuTabSub)) {
+			return $this->menuTabSub;
+			}
+			//return $this->menuTabSub;
+			}
+		}
+    /* @todo refactor this logic 
     protected function getCurrentTab()
-    {
+    { //echo "<pre>"; print_r($this->menuTabSub);
         if (!(empty($this->data['tabs']))) {
             if ($this->menuTabMain === null && $this->menuTabSub === null) {
-                //return default
+                return $this->menuTabMain;
             }
             if ($this->menuTabSub === null && !empty($this->data['tabs'][$this->menuTabMain])) {
-                return $this->data['tabs'][$this->menuTabMain];
+               // return $this->data['tabs'][$this->menuTabMain];
+			   return $this->menuTabMain;
             }
             if ($this->menuTabSub !== null && !empty($this->data['tabs'][$this->menuTabSub])) {
-                return $this->data['tabs'][$this->menuTabSub];
+                //return $this->data['tabs'][$this->menuTabSub];
+				 return $this->menuTabSub;
+				 
             }
         }
     }
-
+*/
     /**
      * @param mixed $languageCode
      */
