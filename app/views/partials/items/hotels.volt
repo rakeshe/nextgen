@@ -3,7 +3,6 @@
 > pageData['tabs']#}
 <!-- START VIEW PARTIAL: hotel/item list -->
 <!-- Hotel List -->
-
 <div class="clearfix"></div>
 <div id="hotelList" class="subContainer">
 <div class="row">
@@ -11,9 +10,12 @@
 <div class="tab-content hidden-phone">
 <div class=" tab-pane active" id="tab1">
 <!--Forloop Starts-->
+
 {% if not(pageData['activeTab']['onegs'] is empty) %}
-    {% for oneg in pageData['activeTab']['onegs'] if hotels[oneg] is defined %}
-<div id="hotel-{{ oneg }}" class="hotelDeal col-xs-12 col-md-6" style="cursor: default;">
+    {# for oneg in pageData['activeTab']['onegs'] if hotels[oneg] is defined #}
+	{# *************************************************************************** #}
+	{%  for index, hotel in pageData['hotels'] %}
+<div id="hotel[0]" class="hotelDeal col-xs-12 col-md-6" style="cursor: default;">
     <div class="row">
         <div class="image_section col-xs-4 col-md-5" id="image_section">
             <a>
@@ -40,8 +42,8 @@
                         <div class="purple-color" title="Mode Sathorn Hotel">{{ hotel['name'] }}</div>
                     </a>
                 </h3>
-                <div class="campaign-promo-offer">Save {{ hotel['dicount_percent'] }}%</div>
-                <input type="hidden" value="Save 50%" id="hotel_inc1_{{ oneg }}">
+                <div class="campaign-promo-offer">Save {{ hotel['discount_percent'] }}%</div>
+                <input type="hidden" value="Save 50%" id="">
 
                 <div class="members-extras-block">
                     <!-- The Big Red Plus Sign -->
