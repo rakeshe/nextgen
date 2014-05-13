@@ -39,7 +39,7 @@ class Page extends Phalcon\Mvc\Model
 		{
 		 if (!(empty($this->data['tabs']))) {
 			if ($this->menuTabMain === null && $this->menuTabSub === null) {
-			 return "china";
+			 return "Australia";
 			}
 			if ($this->menuTabSub == null && !empty($this->menuTabMain)) {
 			return $this->menuTabMain;
