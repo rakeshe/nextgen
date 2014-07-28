@@ -17,10 +17,8 @@ class Module {
 
         $loader->registerNamespaces(array(
             'HC\TI\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
-            'HC\TI\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,
-            'HC\Components' => __DIR__ . "/../../vendor/components",
+            'HC\TI\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
             'HC\Library' => __DIR__ . "/../../vendor/library",
-            'HC\Language' => __DIR__ . "/../../vendor/language",
             'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
         ));
 

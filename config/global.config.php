@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Global menu configuration
+ * Global website menu configuration
  * @author     K.N. Santosh Hegde
  * @since      28/7/2014
  * @version    1.0

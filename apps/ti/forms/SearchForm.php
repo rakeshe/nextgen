@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package    Search Form
@@ -6,13 +7,13 @@
  * @since      30/4/2014
  * @version    1.0
  */
+
 namespace HC\Forms;
 
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Select AS Select;
 use Phalcon\Validation\Validator\PresenceOf;
-
 
 class SearchForm extends Form {
 
@@ -23,12 +24,12 @@ class SearchForm extends Form {
     public function buildForm() {
 
         //Country of Residence
-        $sConfig = \HC\TI\Module::getConfig()->searchConfig;        
-        
+        $sConfig = \HC\TI\Module::getConfig()->searchConfig;
+
         $country = new Select(
                 'ddlcountry', (array) $sConfig->countryOfResidence, array(
-                'class' => 'dropdown-tog',
-                'style' => 'min-width: 100px !important;'
+            'class' => 'dropdown-tog',
+            'style' => 'min-width: 100px !important;'
                 )
         );
         $country->addValidators(array(
@@ -67,46 +68,40 @@ class SearchForm extends Form {
         //Date of Birth
         $dob = new Text('Adob1', array(
             'class' => 'Adult_date form-control',
-            'name'  => 'AdobOne[]',
-			'readonly'=>'readonly',
-            
+            'name' => 'AdobOne[]',
+            'readonly' => 'readonly',
         ));
-		$dob1 = new Text('Adob2', array(
+        $dob1 = new Text('Adob2', array(
             'class' => 'Adult_date form-control',
-            'name'  => 'AdobOne[]',
-            
+            'name' => 'AdobOne[]',
         ));
-		$dob2 = new Text('Adob3', array(
+        $dob2 = new Text('Adob3', array(
             'class' => 'Adult_date form-control',
-            'name'  => 'AdobOne[]',
-            
+            'name' => 'AdobOne[]',
         ));
-  
-		$dob3 = new Text('Adob4', array(
-			'class' => 'Adult_date form-control',
-			'name'  => 'AdobOne[]',
-			
-		));
-	  
-	    $dob4 = new Text('Adob5', array(
-			'class' => 'Adult_date form-control',
-			'name'  => 'AdobOne[]',
-			
-		));
-  
-  
+
+        $dob3 = new Text('Adob4', array(
+            'class' => 'Adult_date form-control',
+            'name' => 'AdobOne[]',
+        ));
+
+        $dob4 = new Text('Adob5', array(
+            'class' => 'Adult_date form-control',
+            'name' => 'AdobOne[]',
+        ));
+
+
         $this->add($dob);
-		$this->add($dob1);
-		$this->add($dob2);
-		$this->add($dob3);
-		$this->add($dob4);
-		
+        $this->add($dob1);
+        $this->add($dob2);
+        $this->add($dob3);
+        $this->add($dob4);
+
 
         //Specify Dates
         $strDate = new Text('dStartDate', array(
             'class' => 'form-control datepicker',
-			'readonly'=>'readonly',
-            
+            'readonly' => 'readonly',
         ));
         $strDate->addValidators(array(
             new PresenceOf(array(
@@ -118,8 +113,7 @@ class SearchForm extends Form {
         //Specify Dates
         $endDate = new Text('dEndDate', array(
             'class' => 'form-control datepicker',
-			'readonly'=>'readonly',
-            
+            'readonly' => 'readonly',
         ));
         $endDate->addValidators(array(
             new PresenceOf(array(
@@ -127,17 +121,13 @@ class SearchForm extends Form {
                     ))
         ));
         $this->add($endDate);
-        
+
         //Specify Dates
         $couponCode = new Text('couponCode', array(
             'class' => 'form-control',
-            'value' => $this->request->get('promotionCode',array('alphanum', 'trim'))
-        ));        
+            'value' => $this->request->get('promotionCode', array('alphanum', 'trim'))
+        ));
         $this->add($couponCode);
     }
 
-	
-	
-	
-    }
-
+}
