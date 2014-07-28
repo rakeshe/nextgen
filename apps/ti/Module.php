@@ -16,12 +16,12 @@ class Module {
         $loader = new \Phalcon\Loader();
 
         $loader->registerNamespaces(array(
-            'HC\TI\Controllers' => __DIR__ . '/controllers/',
-            'HC\TI\Models' => __DIR__ . '/models/',
+            'HC\TI\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
+            'HC\TI\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,
             'HC\Components' => __DIR__ . "/../../vendor/components",
             'HC\Library' => __DIR__ . "/../../vendor/library",
             'HC\Language' => __DIR__ . "/../../vendor/language",
-            'HC\Forms' => __DIR__ . "/forms/"
+            'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
         ));
 
         $loader->registerClasses(
@@ -39,7 +39,7 @@ class Module {
 
             $view = new \Phalcon\Mvc\View();
 
-            $view->setViewsDir(__DIR__.'/views/');
+            $view->setViewsDir(__DIR__.'/'.static::getConfig()->application->viewsDir);
 
             $view->registerEngines(array(
                 '.volt' => function($view, $di) {
