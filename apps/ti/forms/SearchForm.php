@@ -23,10 +23,10 @@ class SearchForm extends Form {
     public function buildForm() {
 
         //Country of Residence
-        $sConfig = new \HC\Components\SearchBox();
+        $sConfig = \HC\TI\Module::getConfig()->searchConfig;        
         
         $country = new Select(
-                'ddlcountry', (array) $sConfig->getValueByKey('countryOfResidence'), array(
+                'ddlcountry', (array) $sConfig->countryOfResidence, array(
                 'class' => 'dropdown-tog',
                 'style' => 'min-width: 100px !important;'
                 )
@@ -40,7 +40,7 @@ class SearchForm extends Form {
 
         //Adult
         $adultData = [];
-        foreach (explode(',', $sConfig->getValueByKey('adult')->value) as $key => $value) {
+        foreach (explode(',', $sConfig->adult->value) as $key => $value) {
             $adultData[$value] = $value;
         }
         $adult = new Select('ddlAdult', $adultData, array('class' => 'dropdown-tog'));
@@ -53,7 +53,7 @@ class SearchForm extends Form {
 
         //Dependants
         $depsData = [];
-        foreach (explode(',', $sConfig->getValueByKey('dependants')->value) as $key => $value) {
+        foreach (explode(',', $sConfig->dependants->value) as $key => $value) {
             $depsData[$value] = $value;
         }
         $deps = new Select('ddlChild', $depsData, array('class' => 'dropdown-tog'));

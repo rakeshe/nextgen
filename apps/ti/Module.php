@@ -58,6 +58,12 @@ class Module {
 
             return $view;
         }, true);
+        
+       //To override Global configuration with module config..
+       //Get global config, override with module config and set to DI
+       $globalConfig = $di->get('config');
+       $globalConfig->merge(static::getConfig());
+       $di->set('config', $globalConfig);
     }
     
     public static function getConfig() {

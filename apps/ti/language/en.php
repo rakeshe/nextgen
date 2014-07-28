@@ -1,6 +1,7 @@
 <?php
 
 $messages = [
+    'set-title'                   => 'Tarvel Insurance',
     'head_welcome_to_hc'          => 'Welcome to HotelClub',
     'menu_home'                   => 'Home',
     'menu_club_benefits'          => 'Club Benefits',

@@ -12,21 +12,26 @@ namespace HC\TI\Controllers;
 
 class IndexController extends ControllerBase {
 
-    private $searchConfig;
     private $translation;
     private $searchForm;
-    private $menu;
-    private $destinatin;
     private $azPricingGW;
     private $azPurchasingGWForAU;
-    private $azPurchasingGWForNZ;
-    private $config;
+    private $azPurchasingGWForNZ;   
 
     public function initialize() {
-
-        $this->view->setTemplateAfter('main');
-        \Phalcon\Tag::setTitle('Tarvel Insurance');
-        $this->load();
+       //Load classes which is required each request
+        $this->searchForm = new \HC\Forms\SearchForm();       
+    }
+    
+    /**
+     * Loading first time
+     */
+    public function init() {
+        $this->translation = new \HC\Library\Translation($this->getLang(), 
+                $this->config->application->LanguageDir); 
+         $this->view->setTemplateAfter('main');         
+        \Phalcon\Tag::setTitle($this->translation->getTranslation()->_('set-title'));
+               
     }
 
     /**
@@ -35,18 +40,6 @@ class IndexController extends ControllerBase {
      */
     public function getLang() {
         return 'en';
-    }
-
-    /**
-     * initilize...
-     */
-    public function load() {
-        $this->config = \HC\TI\Module::getConfig();
-        $this->searchConfig = new \HC\Components\SearchBox();
-        $this->translation = new \HC\Language\Translation($this->getLang());
-        $this->searchForm = new \HC\Forms\SearchForm();
-        $this->menu = new \HC\Components\Menu();
-        $this->destinatin = $this->config->destination;
     }
 
     /**
@@ -67,15 +60,18 @@ class IndexController extends ControllerBase {
             }
             return;
         }
+        // load classes
+        $this->init(); 
+        //set variable for view
         $this->view->setVars(array(
-            'searchBoxConf' => $this->searchConfig->getAll(),
-            't' => $this->translation->getTranslation(),
-            'form' => $this->searchForm,
-            'menuItemsTop' => $this->menu->getItemeByKey('top'),
-            'menuItemsSite' => $this->menu->getItemeByKey('site'),
-            'menuItemsLanguageOptions' => $this->menu->getItemeByKey('languageOptions'),
-            'menuItemsAccount' => $this->menu->getItemeByKey('account'),
-            'destination' => json_encode($this->destinatin)
+            'searchBoxConf'         => $this->config->searchConfig,
+            't'                     => $this->translation->getTranslation(),
+            'form'                  => $this->searchForm,
+            'menuItemsTop'          => $this->config->menuItems->top,
+            'menuItemsSite'         => $this->config->menuItems->site,
+            'menuItemsLanguageOptions' => $this->config->menuItems->languageOptions,
+            'menuItemsAccount'      => $this->config->menuItems->account,
+            'destination'           => json_encode($this->config->destination)
         ));
     }
 
@@ -97,10 +93,10 @@ class IndexController extends ControllerBase {
      */
     public function getPriceDetails() {
         //getting api settings        
-        $apiConfig = $this->searchConfig->getValueByKey('APIData');       
+        $apiConfig = $this->config->searchConfig->APIData;       
 
         $this->loadGateWayUrls(); // load gateway urls        
-        $apiConfig = $this->searchConfig->getValueByKey('APIData'); //getting api settings         
+        $apiConfig = $this->config->searchConfig->APIData; //getting api settings         
         $priceModel = new \HC\TI\Models\PricingModel(); // pricing api model
         $nowObj = new \DateTime();
         $now = $nowObj->format('d/m/Y');
@@ -202,17 +198,17 @@ class IndexController extends ControllerBase {
      */
     public function loadGateWayUrls() {
         //getting api settings        
-        $apiConfig = $this->searchConfig->getValueByKey('APIData');
+        $apiConfig = $this->config->searchConfig->APIData;
 
         //using the gateway url depend on the environment
         if ($apiConfig['environment'] == 'live')
-            $data = $this->searchConfig->getValueByKey('liveGateWay');
+            $data = $this->config->searchConfig->liveGateWay;
         elseif ($apiConfig['environment'] == 'staging')
-            $data = $this->searchConfig->getValueByKey('stagingGateWay');
+            $data = $this->config->searchConfig->stagingGateWay;
 
-        $this->azPricingGW = $data['AllianzPricingGateway'];
-        $this->azPurchasingGWForAU = $data['AllianzPurchasingGatewayForAU'];
-        $this->azPurchasingGWForNZ = $data['AllianzPurchasingGatewayForNZ'];
+        $this->azPricingGW          = $data['AllianzPricingGateway'];
+        $this->azPurchasingGWForAU  = $data['AllianzPurchasingGatewayForAU'];
+        $this->azPurchasingGWForNZ  = $data['AllianzPurchasingGatewayForNZ'];
     }
 
     /**

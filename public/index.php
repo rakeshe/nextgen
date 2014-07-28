@@ -35,6 +35,8 @@ try {
 		$session->start();
 		return $session;
 	});
+        //Register Global configuration
+        $di->set('config', require __DIR__ . '/../config/global.config.php');
 
 	//Set the views cache service
 	$di->set('viewCache', function(){
