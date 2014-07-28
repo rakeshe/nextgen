@@ -35,4 +35,11 @@ $router->add('/travel-insurance', array(
 	'action' => 'index'
 ));
 
+$router->add('/nextgen', array(
+	'module' => 'nextgen',
+	'namespace' => 'HC\Nextgen\Controllers\\',
+	'controller' => 'index',
+	'action' => 'index'
+));
+
 return $router;
