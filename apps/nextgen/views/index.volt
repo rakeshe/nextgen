@@ -14,10 +14,10 @@
     </head>
     <body>
         {{ content() }}
-        {{ javascript_include('js/jquery.js') }}        
+        {{ javascript_include('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js') }}   
+        {{ javascript_include('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}   
+        {{ javascript_include('bootstrap2.3/js/bootstrap.min.js') }}          
         {{ javascript_include('js/utils.js') }}
-        {{ javascript_include('js/nextgen.js') }}
-        {{ javascript_include('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
-      
+        {{ javascript_include('js/nextgen.js') }}      
     </body>
 </html>
