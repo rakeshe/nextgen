@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * Global website menu configuration
@@ -22,27 +23,11 @@ return new \Phalcon\Config(array(
             'menu_write_a_review' => 'https://www.hotelclub.com/trips/writeReview',
             'menu_customer_service' => 'http://faq.hotelclub.com'
         ),
-        'languageOptions' => array(
-            'en' => 'English',
-            'cs' => '繁體中文 (台灣)',
-            'cn' => '简体中文',
-            'de' => 'Deutsch',
-            'es' => 'Español',
-            'fr' => 'Français',
-            'hk' => '繁體中文 (香港)',
-            'it' => 'Italiano',
-            'ja' => '日本語',
-            'ko' => '한국어',
-            'ms' => 'Bahasa Melayu',
-            'nl' => 'Nederlands',
-            'pt' => 'Português',
-            'ru' => 'Русский',
-            'se' => 'Svenska',
-            'th' => 'ไทย'
-        ),
         'site' => array(
             'menu_home' => 'http://www.hotelclub.com/',
             'menu_club_benefits' => 'http://www.hotelclub.com/club-benefits'
+        ),
+        'rightSite' => array(
         ),
         'account' => array(
             'sign_in' => "https://www.hotelclub.com/account/login?destinationUrl=%2F",
@@ -63,4 +48,4 @@ return new \Phalcon\Config(array(
             'register' => "https://www.hotelclub.com/account/registration?destinationUrl=%2F"
         )
     )
-));
+        ));

@@ -55,6 +55,7 @@ class IndexController extends ControllerBase
                 'menuItemsTop'             => $this->menu->top,
                 'menuItemsSite'            => $this->menu->site,
                 'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsRightSite'       => $this->menu->rightSite,
                 'menuItemsAccount'         => $this->menu->account,
                 'currentUser'              => $this->user->getCurrentUser() ,
                 "t"                        => $this->translation->getTranslation(),

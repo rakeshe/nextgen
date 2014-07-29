@@ -1,5 +1,5 @@
 {{ content() }}
-{{ partial('partials/header/header') }}
+{{ partial('../../common/views/header/header') }}
 <!-- START VIEW PARTIAL: banner.phtml -->
 <div id="banner" class="subContainer">
 
@@ -17,4 +17,4 @@
 
 {{ partial('partials/items/hotels') }}
 
-{{ partial('partials/footer/footer') }}
+{{ partial('../../common/views/footer/footer') }}

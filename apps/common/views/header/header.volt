@@ -1,4 +1,35 @@
-{#@todo - convert to volt#}
+<div id="header" class="subContainer visible-md visible-lg">
+    
+	<!-- desktop header -->
+<div id="dkt_header">
+    <div class="row">
+
+        <!-- header logo -->
+        <div class="logo">
+            <a href="/" title="Hotelclub Logo">
+                <img src="/img/logo-header.png" alt="Hotelclub Logo" />
+            </a>
+        </div>
+
+        <!-- header links -->
+        <div class="col-md-offset-5">
+            <ul class="primary">
+                {{ partial('../../common/views/menu/menu_top') }}
+            </ul>
+
+            <ul class="login">
+                {{ partial('../../common/views/menu/menu_account') }}
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!-- /desktop header -->
+	
+</div>
+<div id="mbl_header" class="hidden-md hidden-lg">
+   
+   {#@todo - convert to volt#}
 <!-- mobile header -->
 <div id="mbl_menu">
     <div class="dropdown">
@@ -48,3 +79,13 @@
 <div class="clear">&nbsp;</div>
 <!-- /mobile header -->
     
+   
+</div>
+<!-- headMenu -->
+<div id="headMenu" class="subContainer visible-md visible-lg">
+    <div class="row">
+        {{ partial('../../common/views/menu/menu_site') }}
+		{{ partial('../../common/views/menu/menu_options') }}
+    </div>
+</div>
+<!-- /headMenu -->

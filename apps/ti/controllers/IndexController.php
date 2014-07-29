@@ -68,8 +68,7 @@ class IndexController extends ControllerBase {
             't'                     => $this->translation->getTranslation(),
             'form'                  => $this->searchForm,
             'menuItemsTop'          => $this->config->menuItems->top,
-            'menuItemsSite'         => $this->config->menuItems->site,
-            'menuItemsLanguageOptions' => $this->config->menuItems->languageOptions,
+            'menuItemsSite'         => $this->config->menuItems->site,            
             'menuItemsAccount'      => $this->config->menuItems->account,
             'destination'           => json_encode($this->config->destination)
         ));

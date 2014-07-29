@@ -2,6 +2,7 @@
 
 $messages = [
     'head_welcome_to_hc'        => 'Welcome to HotelClub',
+	'ascott_specials'        => 'Ascott Specials',
     'menu_home'                 => 'Home',
     'menu_club_benefits'        => 'Club Benefits',
     'menu_travel_insurance'     => 'Travel Insurance',
