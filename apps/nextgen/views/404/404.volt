@@ -1,3 +1,4 @@
+{{ partial('../../common/views/header/header') }}
 <div align="center" id="fourohfour">
     <div class="sub-content">
         <strong>ERROR 404</strong>
@@ -14,3 +15,4 @@
         [ERROR]
     </div>
 </div>
+{{ partial('../../common/views/footer/footer') }}

@@ -11,7 +11,7 @@ $router->removeExtraSlashes(true);
     define('DEFAULT_ROUTE_CONTROLLER', 'index');
     define('DEFAULT_ROUTE_ACTION','page');
 
- /**
+        /**
          * Set language route
          */
         $router->add(
@@ -20,7 +20,7 @@ $router->removeExtraSlashes(true);
                 'controller' => 'index',
                 'action'     => 'setLanguage',
                 'module' => 'nextgen',
-	'namespace' => 'HC\Nextgen\Controllers\\',
+                'namespace' => 'HC\Nextgen\Controllers\\',
             )
         );
 
@@ -73,6 +73,14 @@ $router->add('/travel-insurance', array(
 	'controller' => 'index',
 	'action' => 'index',
          "params"       => 4,
+));
+
+//Set 404 paths
+$router->notFound(array(
+    'module' => 'nextgen',
+    'namespace' => 'HC\Nextgen\Controllers\\',
+    'controller' => 'Error',
+    'action' => 'show404',
 ));
 
 
