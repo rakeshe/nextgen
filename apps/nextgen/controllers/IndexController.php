@@ -42,7 +42,7 @@ class IndexController extends ControllerBase
     }
 
     public function pageAction()
-    {
+    {       
         $this->view->setVars(
             array(
                 'pageLayout' => $this->getPageLayout(),
@@ -52,13 +52,13 @@ class IndexController extends ControllerBase
                 'campaignName'             => $this->campaignName,
                 'menuTabMain'              => $this->menuTabMain,
                 'menuTabSub'               => $this->menuTabSub,
-                'menuItemsTop'             => $this->menu->getMenuItem('top'),
-                'menuItemsSite'            => $this->menu->getMenuItem('site'),
-                'menuItemsLanguageOptions' => $this->menu->getMenuItem('languageOptions'),
-                'menuItemsAccount'         => $this->menu->getMenuItem('account'),
+                'menuItemsTop'             => $this->menu->top,
+                'menuItemsSite'            => $this->menu->site,
+                'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsAccount'         => $this->menu->account,
                 'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getMessages(),
-                "pageData"      => $this->data
+                "t"                        => $this->translation->getTranslation(),
+                "pageData"                 => $this->data
             )
         );
 
@@ -100,7 +100,7 @@ class IndexController extends ControllerBase
     protected function setupPage()
     {
         $this->user = new \HC\Nextgen\Models\Users();
-        $this->menu = new $this->config->menuItems;
+        $this->menu = $this->config->menuItems;
         $this->languageCode = $this->dispatcher->getParam("languageCode");
         $this->campaignName = null == $this->dispatcher->getParam(
             "campaignName"

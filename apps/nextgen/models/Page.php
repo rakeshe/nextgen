@@ -29,7 +29,7 @@ class Page extends \Phalcon\Mvc\Model
     { 
         $dataPage           = [];
         $dataHotels         = [];
-        $this->dataFilePath = __DIR__ . '/../../cache/campaign_data_' . $this->languageCode . '.php';
+        $this->dataFilePath = __DIR__ . '../../../../data/cache/campaign_data_' . $this->languageCode . '.php';
         if (file_exists($this->dataFilePath)) {
             require $this->dataFilePath;
             $this->data              = array_merge($dataPage, ['hotels' => $dataHotels]);
