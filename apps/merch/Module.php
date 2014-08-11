@@ -7,7 +7,7 @@
  * @version    1.0
  */
 
-namespace HC\Nextgen;
+namespace HC\Merch;
 
 class Module {
 
@@ -16,8 +16,8 @@ class Module {
         $loader = new \Phalcon\Loader();
 
         $loader->registerNamespaces(array(
-            'HC\Nextgen\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
-            'HC\Nextgen\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
+            'HC\Merch\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
+            'HC\Merch\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
             'HC\Library' => __DIR__ . "/../../vendor/library",
             'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
         ));

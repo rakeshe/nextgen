@@ -5,7 +5,7 @@
  * @since      25/11/13 11:44 AM
  * @version    1.0
  */
-namespace HC\Nextgen\Controllers;
+namespace HC\Merch\Controllers;
 class ErrorController extends ControllerBase
 {
     protected $uriBase;
@@ -47,7 +47,7 @@ class ErrorController extends ControllerBase
     
     protected function setupPage()
     {
-        $this->user = new \HC\Nextgen\Models\Users();
+        $this->user = new \HC\Merch\Models\Users();
         $this->menu = $this->config->menuItems;
         $this->languageCode = $this->dispatcher->getParam("languageCode");       
         $this->menuTabMain  = $this->dispatcher->getParam("menuTabMain");

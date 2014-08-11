@@ -1,5 +1,5 @@
 <?php
-namespace HC\Nextgen\Controllers;
+namespace HC\Merch\Controllers;
 use Phalcon\Tag as Tag;
 
 class SessionController extends ControllerBase

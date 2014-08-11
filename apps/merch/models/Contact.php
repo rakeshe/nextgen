@@ -1,5 +1,5 @@
 <?php
-namespace HC\Nextgen\Models;
+namespace HC\Merch\Models;
 class Contact extends Phalcon\Mvc\Model
 {
 

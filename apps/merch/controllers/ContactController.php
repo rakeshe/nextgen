@@ -1,5 +1,5 @@
 <?php
-namespace HC\Nextgen\Controllers;
+namespace HC\Merch\Controllers;
 class ContactController extends ControllerBase
 {
     public function initialize()

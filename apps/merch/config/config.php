@@ -39,7 +39,7 @@ return new \Phalcon\Config(array(
         'modelsDir' => 'models/',
         'viewsDir' => 'views/',
         'formsDir' => 'forms/',
-        'LanguageDir' => 'nextgen/language/'
+        'LanguageDir' => 'merch/language/'
     ),
     'metadata' => array(
         'adapter' => 'Apc',

@@ -1,5 +1,5 @@
 <?php
-namespace HC\Nextgen\Controllers;
+namespace HC\Merch\Controllers;
 class IndexController extends ControllerBase
 {
 
@@ -100,7 +100,7 @@ class IndexController extends ControllerBase
 
     protected function setupPage()
     {
-        $this->user = new \HC\Nextgen\Models\Users();
+        $this->user = new \HC\Merch\Models\Users();
         $this->menu = $this->config->menuItems;
         $this->languageCode = $this->dispatcher->getParam("languageCode");
         $this->campaignName = null == $this->dispatcher->getParam(
@@ -114,7 +114,7 @@ class IndexController extends ControllerBase
         $this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
 
         // Setup data for the page
-        $dataModel = new \HC\Nextgen\Models\Page();
+        $dataModel = new \HC\Merch\Models\Page();
         if ($this->languageCode != null)
         	$dataModel->setLanguageCode($this->languageCode);
         
@@ -133,5 +133,5 @@ class IndexController extends ControllerBase
             return self::DEFAULT_PAGE_LAYOUT;
 
         }
-    }
+    }    
 }

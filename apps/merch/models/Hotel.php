@@ -5,7 +5,7 @@
  * @since      3/12/13 9:29 AM
  * @version    1.0
  */
-namespace HC\Nextgen\Models;
+namespace HC\Merch\Models;
 class Hotel extends Phalcon\Mvc\Model
 {
     protected $id;

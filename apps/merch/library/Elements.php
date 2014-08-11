@@ -5,7 +5,7 @@
  *
  * Helps to build UI elements for the application
  */
-namespace HC\Nextgen\Component;
+namespace HC\Merch\Component;
 class Elements extends Phalcon\Mvc\User\Component
 {
 

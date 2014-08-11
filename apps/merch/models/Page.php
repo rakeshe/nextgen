@@ -7,7 +7,7 @@
  * @version    1.0
  * @Updated	   Ravi
  */
-namespace HC\Nextgen\Models;
+namespace HC\Merch\Models;
 class Page extends \Phalcon\Mvc\Model
 {
     protected $dataFilePath;

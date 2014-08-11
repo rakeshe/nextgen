@@ -1,5 +1,5 @@
 <?php
-namespace HC\Nextgen\Models;
+namespace HC\Merch\Models;
 use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
 use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 
