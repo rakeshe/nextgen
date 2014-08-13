@@ -59,7 +59,9 @@ class IndexController extends ControllerBase
                 'menuItemsAccount'         => $this->menu->account,
                 'currentUser'              => $this->user->getCurrentUser() ,
                 "t"                        => $this->translation->getTranslation(),
-                "pageData"                 => $this->data
+                "pageData"                 => $this->data,
+				"lncode"                 => 'en_AU',
+				
             )
         );
 

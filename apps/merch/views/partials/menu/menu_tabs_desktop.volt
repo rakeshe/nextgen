@@ -3,7 +3,15 @@
     <!-- Desktop region tabs -->
     <div id="regionTabs">
         <!-- Tabs -->
-        <div id="deal-tabs" class="tabbable deal-tabs">
+		 <div id="deal-tabs" class="tabbable deal-tabs">
+		{% if not(pageData['hotels'] is empty) %}
+		<div class="dropdown clearfix">
+		<ul class="dropdown-menu desktop-tabs" style="display:block">
+		{{ partial('partials/menu/menu_tabs') }}
+		</ul>
+		</div>
+		{% endif %}
+        {#<div id="deal-tabs" class="tabbable deal-tabs">
             <div class="dropdown clearfix">
                 <ul class="dropdown-menu desktop-tabs" style="display:block">
                     <li class="active dropdown-submenu level1" >
@@ -92,7 +100,7 @@
                 </ul>
             </div>
 
-        </div>
+        </div> #}
         <div class="clearfix"></div>
         <div class="red-line"></div>
     </div>
