@@ -1,4 +1,8 @@
 <?php
+/**
+ * Phalcon router accepts the patters in LIFO (Last In First Out) ordeer (note: 'notFound' executes will last)
+ * So, Default, frequently accessible urls patterns is defined in LIFO order
+ */
 
 $router = new \Phalcon\Mvc\Router(false);
 
@@ -17,17 +21,16 @@ define('DEFAULT_ROUTE_ACTION', 'page');
 
 
 /**
- * Set default route
+ * Set 404 (page not found) route
  */
-$defaultRoutePaths = [
-    'module'     => DEFAULT_ROUTE_MODULE,
-    'namespace'  => DEFAULT_ROUTE_NAMESPACE,
-    'controller' => DEFAULT_ROUTE_CONTROLLER,
-    'action'     => DEFAULT_ROUTE_ACTION,
-    'language'   => DEFAULT_ROUTE_LOCALE
-];
-
-$router->setDefaults($defaultRoutePaths)->add('/', $defaultRoutePaths);
+$router->notFound(
+    array(
+        'module'     => 'merch',
+        'namespace'  => DEFAULT_ROUTE_NAMESPACE,
+        'controller' => 'Error',
+        'action'     => 'show404',
+    )
+);
 
 /**
  * Set language route
@@ -42,76 +45,9 @@ $router->add(
     )
 );
 
-/**
- * matches: /merch/ja_JP/Summer-Escape/
- */
-$router->add(
-    MODULE_NAME . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . '/:params',
-    array(
-        "languageCode" => 2,
-        "campaignName" => 3,
-        "params"       => 4,
-        "controller"   => 'campaign',
-        "action"       => 'index',
-        'module'       => 'merch',
-        'namespace'    => 'HC\Merch\Controllers\\',
-    )
-);
-
-/**
- * matches: merch/ja_JP/Summer-Escape/Asia/
- */
-$router->add(
-    MODULE_NAME . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . '/:params',
-    array(
-        'languageCode' => 2,
-        'campaignName' => 3,
-        'regionName'   => 4,
-        'params'       => 5,
-        'controller'   => 'campaign',
-        'action'       => 'region',
-        'module'       => 'merch',
-        'namespace'    => 'HC\Merch\Controllers\\',
-    )
-);
-
-/**
- * matches: merch/ja_JP/Summer-Escape/Asia/India/
- */
-$router->add(
-    MODULE_NAME . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
-    array(
-        'languageCode' => 2,
-        'campaignName' => 3,
-        'regionName'   => 4,
-        'countryName'  => 5,
-        'params'       => 6,
-        'controller'   => 'campaign',
-        'action'       => 'country',
-        'module'       => 'merch',
-        'namespace'    => 'HC\Merch\Controllers\\',
-    )
-);
-
-/**
- * matches: /merch/ja_JP/Summer-Escape/Asia/India/Bangalore/
- */
-$router->add(
-    MODULE_NAME . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
-    array(
-        'languageCode' => 2,
-        'campaignName' => 3,
-        'regionName'   => 4,
-        'countryName'  => 5,
-        'cityName'     => 6,
-        'params'       => 7,
-        'controller'   => 'campaign',
-        'action'       => 'city',
-        'module'       => 'merch',
-        'namespace'    => 'HC\Merch\Controllers\\',
-    )
-);
-
+//**********************************************************//
+//************ Travel Insurance Module Url Routes **********//
+//**********************************************************//
 /**
  * matches: /travel-insurance
  */
@@ -126,16 +62,90 @@ $router->add(
     )
 );
 
-
-// Set 404 paths
-$router->notFound(
+//**********************************************************//
+//****************** Merch Module Url Routes ***************//
+//**********************************************************//
+/**
+ * matches: /merch/ja_JP/Summer-Escape/
+ */
+$router->add(
+    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . '/:params',
     array(
-        'module'     => 'merch',
-        'namespace'  => DEFAULT_ROUTE_NAMESPACE,
-        'controller' => 'Error',
-        'action'     => 'show404',
+        "languageCode" => 1,
+        "campaignName" => 2,
+        "params"       => 3,
+        "controller"   => 'campaign',
+        "action"       => 'index',
+        'module'       => 'merch',
+        'namespace'    => 'HC\Merch\Controllers\\',
     )
 );
 
+/**
+ * matches: merch/ja_JP/Summer-Escape/Asia/
+ */
+$router->add(
+    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . '/:params',
+    array(
+        'languageCode' => 1,
+        'campaignName' => 2,
+        'regionName'   => 3,
+        'params'       => 4,
+        'controller'   => 'campaign',
+        'action'       => 'region',
+        'module'       => 'merch',
+        'namespace'    => 'HC\Merch\Controllers\\',
+    )
+);
+
+/**
+ * matches: merch/ja_JP/Summer-Escape/Asia/India/
+ */
+$router->add(
+    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
+    array(
+        'languageCode' => 1,
+        'campaignName' => 2,
+        'regionName'   => 3,
+        'countryName'  => 4,
+        'params'       => 5,
+        'controller'   => 'campaign',
+        'action'       => 'country',
+        'module'       => 'merch',
+        'namespace'    => 'HC\Merch\Controllers\\',
+    )
+);
+
+/**
+ * matches: /merch/ja_JP/Summer-Escape/Asia/India/Bangalore/
+ */
+$router->add(
+    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
+    array(
+        'languageCode' => 1,
+        'campaignName' => 2,
+        'regionName'   => 3,
+        'countryName'  => 4,
+        'cityName'     => 5,
+        'params'       => 6,
+        'controller'   => 'campaign',
+        'action'       => 'city',
+        'module'       => 'merch',
+        'namespace'    => 'HC\Merch\Controllers\\',
+    )
+);
+
+
+/**
+ * Set default route
+ */
+$defaultRoutePaths = [
+    'module'     => DEFAULT_ROUTE_MODULE,
+    'namespace'  => DEFAULT_ROUTE_NAMESPACE,
+    'controller' => DEFAULT_ROUTE_CONTROLLER,
+    'action'     => DEFAULT_ROUTE_ACTION,
+    'language'   => DEFAULT_ROUTE_LOCALE
+];
+$router->setDefaults($defaultRoutePaths)->add('/', $defaultRoutePaths);
 
 return $router;
