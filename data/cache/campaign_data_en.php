@@ -66,28 +66,28 @@ $dataPage = [
     ],
     'banners' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item1.png',
             'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
             'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
             'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
@@ -142,265 +142,242 @@ $dataHotels = [
     ]
 ];
 $dataBanners = [
-    'Free-Nights-Sale' => [
+    'Summer Escape' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
-            'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
+            'promo' =>'',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
     'Northeast-Asia' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
-            'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
+            'img' => '//www.hotelclub.com/marketing/DOS/HC_20140610_Mid-yearEscapeSale_960x390_EN_SEOUL.jpg',
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
-    'Australia' => [
+    'Pacific' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
-            'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
+            'img' => '//www.hotelclub.com/Marketing/DOS/HC_20140708_SummerEscapeSale_960x390_EN_ASIA.jpg',
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
-    'China' => [
+    'Southeast-Asia' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
-            'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
+            'img' => '//www.hotelclub.com/Marketing/DOS/HC_20140722_Mid-yearEscapeSale_960x390_EN_AU.jpg',
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
-    'South-Korea' => [
+    'Europe-UAE' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
-            'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
+            'img' => '//www.hotelclub.com/Marketing/DOS/HC_20140217_London_960.jpg',
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
-    'Taiwan' => [
+    'Americas' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
-            'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
+            'img' => '//www.hotelclub.com/marketing/DOS/HC_20140602_HawaiiSale_960x390_EN.jpg',
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
     'Sydney' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
     'Melbourne' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
     'Brisbane' => [
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item1.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item2.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
         [
-            'h1' => 'Free Nights Delight Sale',
-            'h2' => 'Escape for a few nights more',
+            'h1' => 'Escape the everyday',
+            'h2' => 'Up to 70% OFF Hotels',
             'promo' =>'offer text',
-            'url' => '/Free-Night-Sale/',
+            'url' => '#',
             'terms' => 'terms',
             'img' => '/img/carousel_item3.png',
-            'badge'=> '//www.hotelclub.com/Marketing/campaigns/great-escapes-jan-2013/exclusive-member-rewards_EN.png'
         ],
     ],
 ];
+
+
+
+echo json_encode($dataBanners);
