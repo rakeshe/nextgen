@@ -38,6 +38,7 @@ return new \Phalcon\Config(array(
         'controllersDir' => 'controllers/',
         'modelsDir' => 'models/',
         'viewsDir' => 'views/',
+        'helpersDir' => 'helpers/',
         'formsDir' => 'forms/',
         'LanguageDir' => 'merch/language/'
     ),

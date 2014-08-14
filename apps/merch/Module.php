@@ -18,6 +18,7 @@ class Module {
         $loader->registerNamespaces(array(
             'HC\Merch\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
             'HC\Merch\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
+            'HC\Merch\Helpers' => __DIR__ . '/'. static::getConfig()->application->helpersDir,
             'HC\Library' => __DIR__ . "/../../vendor/library",
             'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
         ));
