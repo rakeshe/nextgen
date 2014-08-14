@@ -380,4 +380,4 @@ $dataBanners = [
 
 
 
-echo json_encode($dataBanners);
+//echo json_encode($dataBanners);

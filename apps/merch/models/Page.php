@@ -10,9 +10,12 @@
 namespace HC\Merch\Models;
 class Page extends \Phalcon\Mvc\Model
 {
-    protected $dataFilePath;
+    protected $campaignFilePath;
+    protected $bannerFilePath;
+    protected $hotelFilePath;
     protected $data;
-    protected $languageCode = 'en';
+    protected $languageCode = 'en_AU';
+    protected $region = 'Northeast-Asia';
     protected $campaignName;
     protected $menuTabMain;
     protected $menuTabSub;
@@ -20,23 +23,37 @@ class Page extends \Phalcon\Mvc\Model
     public function getData()
     {
         if (null === $this->data) {
-            $this->loadDataFile();
+            $this->data['hotels'] = $this->loadCampaignData();
+            $banner = $this->loadBannerData();
+            $this->data['banners'] = $banner[$this->region];
+            $this->data['activeTab'] = $this->getCurrentTab(); //get current tab            
         }
         return $this->data;
     }
 
-    protected function loadDataFile()
+    protected function loadCampaignData()
     { 
-        $dataPage           = [];
-        $dataHotels         = [];
-        $this->dataFilePath = __DIR__ . '../../../../data/cache/campaign_data_' . $this->languageCode . '.php';
-        if (file_exists($this->dataFilePath)) {
-            require $this->dataFilePath;
-            $this->data              = array_merge($dataPage, ['hotels' => $dataHotels]);
-            $this->data['activeTab'] = $this->getCurrentTab();
+        $this->campaignFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_campaign_data.json';
+        if (file_exists($this->campaignFilePath)) {
+            return json_decode(file_get_contents($this->campaignFilePath), TRUE);
         }
     }
-		protected function getCurrentTab()
+    
+    protected function loadBannerData() {
+        $this->bannerFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_banner_data.json';
+        if (file_exists($this->bannerFilePath)) {
+            return json_decode(file_get_contents($this->bannerFilePath), TRUE);
+        }
+    }
+    
+    protected function loadHotelData() {
+        $this->hotelFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_deals_data.json';
+        if (file_exists($this->hotelFilePath)) {
+            return json_decode(file_get_contents($this->hotelFilePath), TRUE);
+        }
+    }
+
+    protected function getCurrentTab()
 		{
 		 if (!(empty($this->data['tabs']))) {
 			if ($this->menuTabMain === null && $this->menuTabSub === null) {
