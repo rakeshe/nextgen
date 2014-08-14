@@ -1,14 +1,15 @@
 <!-- carousel -->
 <div id="dkt_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
     <ol class="carousel-indicators">
-        {% for index, banner in pageData['banners'] %}
-            <li data-target="#dkt_carousel" data-slide-to="{{ index }}"></li>
+        {% for index, banner in banners %}
+            <li data-target="#dkt_carousel" data-slide-to="{{ banner['h1'] }}"></li>
         {% endfor %}
     </ol>
     <!-- Carousel items -->
     <div class="carousel-inner">
-        {% for index, banner in pageData['banners'] %}
+        {% for index, banner in banners %}       
             {% if not(banner['img'] is empty) %}
+            
                 {% if index == 0 %}
                     {% set item_class = ' active' %}
                 {% else %}

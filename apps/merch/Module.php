@@ -43,6 +43,9 @@ class Module {
                 'compiledPath' => __DIR__.'/../../data/volt/',
                 'compiledSeparator' => '_',
             ));
+            $compiler = $volt->getCompiler();
+            //This binds the function name 'shuffle' in Volt to the PHP function 'str_shuffle'
+            $compiler->addFunction('print_r', 'print_r');
 
             return $volt;
         },

@@ -15,7 +15,7 @@ class Page extends \Phalcon\Mvc\Model
     protected $hotelFilePath;
     protected $data;
     protected $languageCode = 'en_AU';
-    protected $region = 'Northeast-Asia';
+    protected $region = 'Summer Escape';
     protected $campaignName;
     protected $menuTabMain;
     protected $menuTabSub;
@@ -23,27 +23,39 @@ class Page extends \Phalcon\Mvc\Model
     public function getData()
     {
         if (null === $this->data) {
-            $this->data['hotels'] = $this->loadCampaignData();
-            $banner = $this->loadBannerData();
-            $this->data['banners'] = $banner[$this->region];
-            $this->data['activeTab'] = $this->getCurrentTab(); //get current tab            
+            $this->data['hotels'] = $this->loadHotelData();                   
         }
         return $this->data;
     }
+    
+    /**
+     * Get only region data from campaing
+     * @param String $region
+     * return array
+     */
+    public function getDataByRegion($region) {
+        if (array_key_exists($region,  $this->loadCampaignData())) {
+           $this->data['hotels'] = @$this->loadCampaignData()[$region];
+        } else {
+            return false;
+        }
+    }        
 
-    protected function loadCampaignData()
+    public function loadCampaignData()
     { 
         $this->campaignFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_campaign_data.json';
         if (file_exists($this->campaignFilePath)) {
             return json_decode(file_get_contents($this->campaignFilePath), TRUE);
         }
+        return false;
     }
     
-    protected function loadBannerData() {
+    public function loadBannerData() {
         $this->bannerFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_banner_data.json';
         if (file_exists($this->bannerFilePath)) {
             return json_decode(file_get_contents($this->bannerFilePath), TRUE);
         }
+        return false;
     }
     
     protected function loadHotelData() {
@@ -51,6 +63,7 @@ class Page extends \Phalcon\Mvc\Model
         if (file_exists($this->hotelFilePath)) {
             return json_decode(file_get_contents($this->hotelFilePath), TRUE);
         }
+        return false;
     }
 
     protected function getCurrentTab()

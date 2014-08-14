@@ -91,7 +91,7 @@ $router->add(
         'campaignName' => 2,
         'regionName'   => 3,
         'params'       => 4,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'region',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',

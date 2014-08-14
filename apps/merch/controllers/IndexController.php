@@ -24,6 +24,10 @@ class IndexController extends ControllerBase
     /** @var  translation */
     protected $translation;
     protected $data;
+    protected $DDMenue;
+    protected $region = 'Southeast-Asia';
+    private $dataModel;
+    
 
     public function initialize()
     {
@@ -35,6 +39,11 @@ class IndexController extends ControllerBase
         $this->translation  = new \HC\Library\Translation($this->languageCode, 
                 $this->config->application->LanguageDir);  
         
+        $this->dataModel = new \HC\Merch\Models\Page();   
+        $this->dataModel->setLanguageCode($this->languageCode);
+        $this->DDMenue = $this->dataModel->loadCampaignData();
+       
+        //var_dump($this->banner);
         // Setup data for the page
         $this->user = new \HC\Merch\Models\Users();
         
@@ -48,10 +57,8 @@ class IndexController extends ControllerBase
     }
 
     public function pageAction()
-    {       
-        $dataModel = new \HC\Merch\Models\Page();        
-        $dataModel ->setLanguageCode($this->languageCode);
-        $this->data = $dataModel->getData();   	
+    {        
+        $this->data = $this->dataModel->getData();   	
         $this->view->setVars(
             array(
                 'pageLayout'               => $this->getPageLayout(),
@@ -65,8 +72,36 @@ class IndexController extends ControllerBase
                 'menuItemsAccount'         => $this->menu->account,
                 'currentUser'              => $this->user->getCurrentUser() ,
                 "t"                        => $this->translation->getTranslation(),
-                "pageData"                 => $this->data,		
+                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
+                'DDMenue'                  => $this->DDMenue,
+                "hotels"                   => $this->dataModel->getDataByRegion($this->region),
+                "hotelsDetails"            => $this->dataModel->getData()
 				
+            )
+        );
+        $this->view->pick('index/page');
+    }
+    
+    public function regionAction() {
+        
+        $this->region = $this->dispatcher->getParam("regionName");       
+        $this->view->setVars(
+            array(
+                'pageLayout'               => $this->getPageLayout(),
+                'uriBase'                  => $this->uriBase,
+                'uriFull'                  => $this->uriFull,
+                'languageCode'             => $this->languageCode,               
+                'menuItemsTop'             => $this->menu->top,
+                'menuItemsSite'            => $this->menu->site,
+                'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsRightSite'       => $this->menu->rightSite,
+                'menuItemsAccount'         => $this->menu->account,
+                'currentUser'              => $this->user->getCurrentUser() ,
+                "t"                        => $this->translation->getTranslation(),
+                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
+                'DDMenue'                  => $this->DDMenue,
+                "hotels"                   => $this->dataModel->getDataByRegion($this->region),
+                "hotelsDetails"            => $this->dataModel->getData()				
             )
         );
         $this->view->pick('index/page');
