@@ -1,15 +1,16 @@
-{% for tab in pageData['hotels'] %}
+{% for tab in DDMenue %}
 <li class="dropdown-submenu level1">
-<a tabindex="-1" href="/{{ lncode }}/{{ campaignName }}/{{ tab['name'] }}">{{ tab['name'] }}</a>
-{% if not(tab['hotels'] is empty) %}
-<ul class="dropdown-menu level2">
-{% for tabSub in tab['hotels'] %}
+<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}">{{ tab['name'] }}</a>
+{% if not(tab is empty) %}
+{#<ul class="dropdown-menu level2">
+{% for tabSub in tab %}
 <li>
-<a tabindex="-1" href="/{{ lncode }}/{{ campaignName }}/{{ tab['name'] }}//{{ tabSub['name']  }}">{{ tabSub['name'] }}</a>
+<a tabindex="-1" href="/{{ uriBase }}/{{ tabSub['name']  }}">{{ tabSub['name'] }}</a>
 </li>
 <li class="divider"></li>
+
 {% endfor %}
-</ul>
+</ul> #}
 {% endif %}
 </li>
 {% endfor %}

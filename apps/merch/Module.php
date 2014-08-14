@@ -46,6 +46,8 @@ class Module {
             $compiler = $volt->getCompiler();
             //This binds the function name 'shuffle' in Volt to the PHP function 'str_shuffle'
             $compiler->addFunction('print_r', 'print_r');
+			$compiler->addFunction('isArray', 'is_array');
+
 
             return $volt;
         },
