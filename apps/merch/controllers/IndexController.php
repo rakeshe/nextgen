@@ -8,8 +8,10 @@ class IndexController extends ControllerBase
     protected $uriBase;
     protected $uriFull;
     protected $pageLayout;
-    protected $languageCode;
-    protected $campaignName;
+    protected $languageCode = 'en_AU';
+    protected $campaignName = 'Summer-Escape';
+    protected $city;
+    protected $country;
     protected $menuTabMain;
     protected $menuTabSub;
 
@@ -28,30 +30,34 @@ class IndexController extends ControllerBase
         $this->view->setTemplateAfter($this->getPageLayout());
         \Phalcon\Tag::setTitle('Welcome');
         parent::initialize();
-        $this->setupPage();
+        
+        $this->menu = $this->config->menuItems;        
+        $this->translation  = new \HC\Library\Translation($this->languageCode, 
+                $this->config->application->LanguageDir);  
+        
+        // Setup data for the page
+        $this->user = new \HC\Merch\Models\Users();
+        
+        //$this->setupPage();
+        $this->getBaseUrl();
     }
 
     public function indexAction()
     {
-    	echo 'in index';
-        if (!$this->request->isPost()) {
-            $this->flash->notice(
-                'Welcome to nextgen php app'
-            );
-        }
+        
     }
 
     public function pageAction()
     {       
+        $dataModel = new \HC\Merch\Models\Page();        
+        $dataModel ->setLanguageCode($this->languageCode);
+        $this->data = $dataModel->getData();   	
         $this->view->setVars(
             array(
-                'pageLayout' => $this->getPageLayout(),
+                'pageLayout'               => $this->getPageLayout(),
                 'uriBase'                  => $this->uriBase,
                 'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,
-                'campaignName'             => $this->campaignName,
-                'menuTabMain'              => $this->menuTabMain,
-                'menuTabSub'               => $this->menuTabSub,
+                'languageCode'             => $this->languageCode,               
                 'menuItemsTop'             => $this->menu->top,
                 'menuItemsSite'            => $this->menu->site,
                 'menuItemsLanguageOptions' => $this->menu->languageOptions,
@@ -59,13 +65,11 @@ class IndexController extends ControllerBase
                 'menuItemsAccount'         => $this->menu->account,
                 'currentUser'              => $this->user->getCurrentUser() ,
                 "t"                        => $this->translation->getTranslation(),
-                "pageData"                 => $this->data,
-				"lncode"                 => 'en_AU',
+                "pageData"                 => $this->data,		
 				
             )
         );
-
-
+        $this->view->pick('index/page');
     }
 
     /**
@@ -113,7 +117,7 @@ class IndexController extends ControllerBase
         $this->translation  = new \HC\Library\Translation($this->languageCode, 
                 $this->config->application->LanguageDir);
         $this->uriFull = $this->router->getRewriteUri();
-        $this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
+        //$this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
 
         // Setup data for the page
         $dataModel = new \HC\Merch\Models\Page();
@@ -136,4 +140,9 @@ class IndexController extends ControllerBase
 
         }
     }    
+    
+    protected function getBaseUrl() {
+        $this->uriBase = '/merch/' . $this->languageCode . '/' . $this->campaignName;
+    }
+        
 }
