@@ -35,7 +35,7 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getDataByRegion($region) {
         if (array_key_exists($region,  $this->loadCampaignData())) {
-           $this->data['hotels'] = @$this->loadCampaignData()[$region];
+           return $this->loadCampaignData()[$region];
         } else {
             return false;
         }
@@ -43,7 +43,7 @@ class Page extends \Phalcon\Mvc\Model
 
     public function loadCampaignData()
     { 
-        $this->campaignFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_campaign_data.json';
+        $this->campaignFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_campaign_data.json';
         if (file_exists($this->campaignFilePath)) {
             return json_decode(file_get_contents($this->campaignFilePath), TRUE);
         }
@@ -51,15 +51,15 @@ class Page extends \Phalcon\Mvc\Model
     }
     
     public function loadBannerData() {
-        $this->bannerFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_banner_data.json';
+        $this->bannerFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_banner_data.json';
         if (file_exists($this->bannerFilePath)) {
             return json_decode(file_get_contents($this->bannerFilePath), TRUE);
         }
         return false;
     }
     
-    protected function loadHotelData() {
-        $this->hotelFilePath = __DIR__ . '../../../../data/cache/' . $this->languageCode. '_deals_data.json';
+    public function loadHotelData() {
+        $this->hotelFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_deals_data.json';
         if (file_exists($this->hotelFilePath)) {
             return json_decode(file_get_contents($this->hotelFilePath), TRUE);
         }

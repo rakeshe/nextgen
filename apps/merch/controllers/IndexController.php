@@ -25,7 +25,7 @@ class IndexController extends ControllerBase
     protected $translation;
     protected $data;
     protected $DDMenue;
-    protected $region = 'Southeast-Asia';
+    protected $region = 'Pacific';
     private $dataModel;
     
 
@@ -53,7 +53,28 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        
+        $this->data = $this->dataModel->getData();   	
+        $this->view->setVars(
+            array(
+                'pageLayout'               => $this->getPageLayout(),
+                'uriBase'                  => $this->uriBase,
+                'uriFull'                  => $this->uriFull,
+                'languageCode'             => $this->languageCode,               
+                'menuItemsTop'             => $this->menu->top,
+                'menuItemsSite'            => $this->menu->site,
+                'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsRightSite'       => $this->menu->rightSite,
+                'menuItemsAccount'         => $this->menu->account,
+                'currentUser'              => $this->user->getCurrentUser() ,
+                "t"                        => $this->translation->getTranslation(),
+                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
+                'DDMenue'                  => $this->DDMenue,
+                "hotels"                   => $this->dataModel->getDataByRegion($this->region)['Australia']['Sydney'],
+                "hotelDetails"             => $this->dataModel->loadHotelData()
+				
+            )
+        );
+        $this->view->pick('index/page');
     }
 
     public function pageAction()
@@ -74,17 +95,16 @@ class IndexController extends ControllerBase
                 "t"                        => $this->translation->getTranslation(),
                 'banners'                  => $this->dataModel->loadBannerData()[$this->region],
                 'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getDataByRegion($this->region),
-                "hotelsDetails"            => $this->dataModel->getData()
+                "hotels"                   => $this->dataModel->getDataByRegion($this->region)['Australia']['Sydney'],
+                "hotelDetails"             => $this->dataModel->loadHotelData()
 				
             )
-        );
-        $this->view->pick('index/page');
+        );        
     }
     
     public function regionAction() {
         
-        $this->region = $this->dispatcher->getParam("regionName");       
+        //$this->region = $this->dispatcher->getParam("regionName");       
         $this->view->setVars(
             array(
                 'pageLayout'               => $this->getPageLayout(),
@@ -100,11 +120,20 @@ class IndexController extends ControllerBase
                 "t"                        => $this->translation->getTranslation(),
                 'banners'                  => $this->dataModel->loadBannerData()[$this->region],
                 'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getDataByRegion($this->region),
-                "hotelsDetails"            => $this->dataModel->getData()				
+                "hotels"                   => $this->dataModel->getDataByRegion($this->region)['Australia']['Sydney'],
+                "hotelDetails"             => $this->dataModel->loadHotelData()				
             )
         );
         $this->view->pick('index/page');
+    }
+    
+    public function countryAction() {
+        
+    }
+
+
+    public function cityAction() {
+        
     }
 
     /**
