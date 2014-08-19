@@ -37,9 +37,25 @@ class Page extends \Phalcon\Mvc\Model
         if (array_key_exists($region,  $this->loadCampaignData())) {
            return $this->loadCampaignData()[$region];
         } else {
-            return false;
+            return FALSE;
         }
     }        
+    
+    public function getDefaultHoteles($region) {
+        return $this->getDataByRegion($region)['Australia']['Sydney'];
+    }
+    
+    public function getCampaignDefaultHotels($region) {
+        return $this->getDataByRegion($region)['Australia']['Sydney'];
+    }
+    
+    public function getRegionDefaultHotels($region) {
+        return $this->getDataByRegion($region)['Australia']['Sydney'];
+    }
+    
+    public function getCountryDefaultHotels($region) {
+        return $this->getDataByRegion($region)['Australia']['Sydney'];
+    }
 
     public function loadCampaignData()
     { 
