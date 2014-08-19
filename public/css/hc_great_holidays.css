@@ -126,7 +126,15 @@ a, a:link, .link{ color: #562d82; }
     margin:0 4px 0 0;
     padding:13px 20px;
 }
-
+#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level3 li a:hover {
+    background-color:#ccc!important;
+    color:#000!important;
+    z-index:0;
+    border-radius:0 0 0 0;
+    font-size:14px;
+    margin:0 4px 0 0;
+    padding:13px 20px;
+}
 .dropdown-submenu.pull-left>.dropdown-menu {
     left:-100%;
     margin-left:10px;
@@ -154,6 +162,13 @@ a, a:link, .link{ color: #562d82; }
     padding:0;
 }
 
+#dkt_banner #regionTabs .dropdown ul.level3 {
+    float:left;
+    left:177px;
+    position:absolute;
+    top:14px;
+    padding:0;
+}
 .red-line {
     border-top:5px solid #E21E28;
     height:5px;
