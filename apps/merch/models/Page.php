@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package    Page.php
@@ -7,9 +8,12 @@
  * @version    1.0
  * @Updated	   Ravi
  */
+
 namespace HC\Merch\Models;
-class Page extends \Phalcon\Mvc\Model
-{
+
+class Page extends \Phalcon\Mvc\Model {
+
+    const DEFAULT_PAGE_REGION = 'Pacific';
     protected $campaignFilePath;
     protected $bannerFilePath;
     protected $hotelFilePath;
@@ -20,107 +24,157 @@ class Page extends \Phalcon\Mvc\Model
     protected $menuTabMain;
     protected $menuTabSub;
 
-    public function getData()
-    {
+    public function getData() {
         if (null === $this->data) {
-            $this->data['hotels'] = $this->loadHotelData();                   
+            $this->data['hotels'] = $this->loadHotelData();
         }
         return $this->data;
     }
-    
+
     /**
      * Get only region data from campaing
      * @param String $region
      * return array
      */
     public function getDataByRegion($region) {
-        if (array_key_exists($region,  $this->loadCampaignData())) {
-           return $this->loadCampaignData()[$region];
+        if (array_key_exists($region, $this->loadCampaignData())) {
+            return $this->loadCampaignData()[$region];
         } else {
             return FALSE;
         }
-    }        
-    
-    public function getDefaultHoteles($region) {
-        return $this->getDataByRegion($region)['Australia']['Sydney'];
-    }
-    
-    public function getCampaignDefaultHotels($region) {
-        return $this->getDataByRegion($region)['Australia']['Sydney'];
-    }
-    
-    public function getRegionDefaultHotels($region) {
-        return $this->getDataByRegion($region)['Australia']['Sydney'];
-    }
-    
-    public function getCountryDefaultHotels($region) {
-        return $this->getDataByRegion($region)['Australia']['Sydney'];
     }
 
-    public function loadCampaignData()
-    { 
-        $this->campaignFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_campaign_data.json';
+    public function getDefaultHoteles($region) {
+        $data = [];
+        foreach ($this->getDataByRegion($region) as $key => $val) {
+          if ($key != 'name' && $key != 'sort') {
+              foreach ($val as $k => $v) {
+                if ($k != 'name' && $k != 'sort') {                   
+                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+                }
+              }            
+          }
+        }        
+        return $data; 
+    }
+
+    public function getCampaignDefaultHotels($region) {
+        $data = [];
+        foreach ($this->getDataByRegion($region) as $key => $val) {
+          if ($key != 'name' && $key != 'sort') {
+              foreach ($val as $k => $v) {
+                if ($k != 'name' && $k != 'sort') {                   
+                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+                }
+              }            
+          }
+        }        
+        return $data; 
+    }
+
+    public function getRegionDefaultHotels($region) {
+        
+        $data = [];
+        foreach ($this->getDataByRegion($region) as $key => $val) {
+          if ($key != 'name' && $key != 'sort') {
+              foreach ($val as $k => $v) {
+                if ($k != 'name' && $k != 'sort') {                   
+                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+                }
+              }            
+          }
+        }        
+        return $data;         
+    }
+
+    public function getCountryDefaultHotels($region, $country) {
+        $data = [];
+        foreach ($this->getDataByRegion($region)[$country] as $key => $val) {
+            if ($key != 'name' && $key != 'sort') {
+                $data[key($val['deals'])] = $val['deals'][key($val['deals'])];
+            }
+        }
+        return $data;        
+    }
+    
+    public function getHotelsByCity($region, $country, $city) {
+        $data = [];
+        foreach ($this->getDataByRegion($region)[$country][$city] as $key => $val) {
+            return $this->getDataByRegion($region)[$country][$city]['deals'];
+        }
+        return $data;  
+    }
+
+    public function loadCampaignData() {
+        $this->campaignFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_campaign_data.json';
         if (file_exists($this->campaignFilePath)) {
             return json_decode(file_get_contents($this->campaignFilePath), TRUE);
         }
         return false;
     }
-    
+
     public function loadBannerData() {
-        $this->bannerFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_banner_data.json';
+        $this->bannerFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_banner_data.json';
         if (file_exists($this->bannerFilePath)) {
             return json_decode(file_get_contents($this->bannerFilePath), TRUE);
         }
         return false;
     }
-    
+
     public function loadHotelData() {
-        $this->hotelFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode. '_deals_data.json';
+        $this->hotelFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_deals_data.json';
         if (file_exists($this->hotelFilePath)) {
             return json_decode(file_get_contents($this->hotelFilePath), TRUE);
         }
         return false;
     }
+    
+    public function getBanner($region) {
+        if ( !array_key_exists($region, $this->loadBannerData())) {
+          return $this->loadBannerData()[self::DEFAULT_PAGE_REGION];
+        }
+        return $this->loadBannerData()[$region];
+    }
 
-    protected function getCurrentTab()
-		{
-		 if (!(empty($this->data['tabs']))) {
-			if ($this->menuTabMain === null && $this->menuTabSub === null) {
-			 return "Australia";
-			}
-			if ($this->menuTabSub == null && !empty($this->menuTabMain)) {
-			return $this->menuTabMain;
-			}
-			if ($this->menuTabSub != null && !empty($this->menuTabSub)) {
-			return $this->menuTabSub;
-			}
-			//return $this->menuTabSub;
-			}
-		}
-    /* @todo refactor this logic 
-    protected function getCurrentTab()
-    { //echo "<pre>"; print_r($this->menuTabSub);
+    protected function getCurrentTab() {
         if (!(empty($this->data['tabs']))) {
             if ($this->menuTabMain === null && $this->menuTabSub === null) {
+                return "Australia";
+            }
+            if ($this->menuTabSub == null && !empty($this->menuTabMain)) {
                 return $this->menuTabMain;
             }
-            if ($this->menuTabSub === null && !empty($this->data['tabs'][$this->menuTabMain])) {
-               // return $this->data['tabs'][$this->menuTabMain];
-			   return $this->menuTabMain;
+            if ($this->menuTabSub != null && !empty($this->menuTabSub)) {
+                return $this->menuTabSub;
             }
-            if ($this->menuTabSub !== null && !empty($this->data['tabs'][$this->menuTabSub])) {
-                //return $this->data['tabs'][$this->menuTabSub];
-				 return $this->menuTabSub;
-				 
-            }
+            //return $this->menuTabSub;
         }
     }
-*/
+
+    /* @todo refactor this logic 
+      protected function getCurrentTab()
+      { //echo "<pre>"; print_r($this->menuTabSub);
+      if (!(empty($this->data['tabs']))) {
+      if ($this->menuTabMain === null && $this->menuTabSub === null) {
+      return $this->menuTabMain;
+      }
+      if ($this->menuTabSub === null && !empty($this->data['tabs'][$this->menuTabMain])) {
+      // return $this->data['tabs'][$this->menuTabMain];
+      return $this->menuTabMain;
+      }
+      if ($this->menuTabSub !== null && !empty($this->data['tabs'][$this->menuTabSub])) {
+      //return $this->data['tabs'][$this->menuTabSub];
+      return $this->menuTabSub;
+
+      }
+      }
+      }
+     */
+
     /**
      * @param mixed $languageCode
      */
-    public function setLanguageCode($languageCode)
-    {
+    public function setLanguageCode($languageCode) {
         $this->languageCode = $languageCode;
         return $this;
     }
@@ -128,8 +182,7 @@ class Page extends \Phalcon\Mvc\Model
     /**
      * @param mixed $campaignName
      */
-    public function setCampaignName($campaignName)
-    {
+    public function setCampaignName($campaignName) {
         $this->campaignName = $campaignName;
         return $this;
     }
@@ -137,8 +190,7 @@ class Page extends \Phalcon\Mvc\Model
     /**
      * @param mixed $menuTabMain
      */
-    public function setMenuTabMain($menuTabMain)
-    {
+    public function setMenuTabMain($menuTabMain) {
         $this->menuTabMain = $menuTabMain;
         return $this;
     }
@@ -146,30 +198,25 @@ class Page extends \Phalcon\Mvc\Model
     /**
      * @param mixed $menuTabSub
      */
-    public function setMenuTabSub($menuTabSub)
-    {
+    public function setMenuTabSub($menuTabSub) {
         $this->menuTabSub = $menuTabSub;
         return $this;
     }
 
-
-    public function getConnectionService()
-    {
-
+    public function getConnectionService() {
+        
     }
 
-    public function setForceExists($bool = true)
-    {
-
+    public function setForceExists($bool = true) {
+        
     }
 
-    public function dumpResult($var, $foo)
-    {
-
+    public function dumpResult($var, $foo) {
+        
     }
 
-    public function getConnection()
-    {
-
+    public function getConnection() {
+        
     }
+
 }

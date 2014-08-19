@@ -3,7 +3,7 @@ namespace HC\Merch\Controllers;
 class IndexController extends ControllerBase
 {
 
-    const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';
+    const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';    
     const DEFAULT_PAGE_LAYOUT = 'main';
     protected $uriBase;
     protected $uriFull;
@@ -52,53 +52,20 @@ class IndexController extends ControllerBase
     }
 
     public function indexAction()
-    {
-        $this->data = $this->dataModel->getData();   	
+    {      
         $this->view->setVars(
-            array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
-                'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getDefaultHoteles($this->region),
-                "hotelDetails"             => $this->dataModel->loadHotelData()
-				
-            )
-        );
+            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
+                    $this->buildTemplateVars()
+        ));        
         $this->view->pick('index/page');
     }
 
     public function pageAction()
     {          
         $this->view->setVars(
-            array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
-                'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getCampaignDefaultHotels($this->region),
-                "hotelDetails"             => $this->dataModel->loadHotelData()
-				
-            )
-        );        
+            array_merge(array ("hotels" => $this->dataModel->getCampaignDefaultHotels($this->region)),
+                    $this->buildTemplateVars()
+        ));
     }
     
     public function regionAction() {        
@@ -110,58 +77,29 @@ class IndexController extends ControllerBase
         }
         
         $this->view->setVars(
-            array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
-                'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getRegionDefaultHotels($this->region),
-                "hotelDetails"             => $this->dataModel->loadHotelData()				
-            )
-        );
+            array_merge(array ("hotels" => $this->dataModel->getRegionDefaultHotels($this->region)),
+                    $this->buildTemplateVars()
+        ));    
         $this->view->pick('index/page');
-    }
+    }   
     
     public function countryAction() {
         
         $this->region  = $this->dispatcher->getParam("regionName");
         $this->country = $this->dispatcher->getParam("countryName");
         
+        echo $this->region;
         //if invalid region or country
         if ($this->dataModel->getDataByRegion($this->region) == FALSE || 
                 !is_array($this->dataModel->getDataByRegion($this->region)[$this->country])) {
             
             $this->redirectToDefaultPage();
-        }
+        }      
         
         $this->view->setVars(
-            array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
-                'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getCountryDefaultHotels($this->region),
-                "hotelDetails"             => $this->dataModel->loadHotelData()				
-            )
-        );
+            array_merge(array ("hotels" => $this->dataModel->getCountryDefaultHotels($this->region, $this->country)),
+                    $this->buildTemplateVars()
+        ));        
         $this->view->pick('index/page');
     }
 
@@ -182,24 +120,12 @@ class IndexController extends ControllerBase
         }
         
         $this->view->setVars(
-            array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->loadBannerData()[$this->region],
-                'DDMenue'                  => $this->DDMenue,
-                "hotels"                   => $this->dataModel->getDataByRegion($this->region)[$this->country][$this->city],
-                "hotelDetails"             => $this->dataModel->loadHotelData()				
-            )
-        );
+            array_merge(array ("hotels" => $this->dataModel->getHotelsByCity(
+                    $this->region, $this->country, $this->city
+                    )),
+                    $this->buildTemplateVars()
+        ));        
+        
         $this->view->pick('index/page');
     }
 
@@ -262,6 +188,27 @@ class IndexController extends ControllerBase
 
         $this->data = $dataModel->getData();
 
+    }
+    
+    private function buildTemplateVars() {
+        
+       return array(
+                'pageLayout'               => $this->getPageLayout(),
+                'uriBase'                  => $this->uriBase,
+                'uriFull'                  => $this->uriFull,
+                'languageCode'             => $this->languageCode,               
+                'menuItemsTop'             => $this->menu->top,
+                'menuItemsSite'            => $this->menu->site,
+                'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsRightSite'       => $this->menu->rightSite,
+                'menuItemsAccount'         => $this->menu->account,
+                'currentUser'              => $this->user->getCurrentUser() ,
+                "t"                        => $this->translation->getTranslation(),
+                'banners'                  => $this->dataModel->getBanner($this->region),
+                'DDMenue'                  => $this->DDMenue,                
+                "hotelDetails"             => $this->dataModel->loadHotelData()				
+            );
+        
     }
 
     protected function getPageLayout(){

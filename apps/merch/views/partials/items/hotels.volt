@@ -13,9 +13,8 @@
 <!--Forloop Starts-->
 
 <!-- SET OF HOTELS-->
-
-{% if( not(hotels['deals'] is empty)) %}
-        {% for index, hotels in hotels['deals']%}            
+{% if( isArray(hotels)) %}
+        {% for index, hls in hotels %}            
         
 <div class="hotelDeal col-xs-12 col-md-6" style="cursor: default;">
     <div class="row">
@@ -41,7 +40,7 @@
                 <h3>
                     <!-- HOTEL NAME -->
                     <a>
-                        <div class="purple-color" title="{{hotels['name']}}">{{hotels['name']}}</div>
+                        <div class="purple-color" title="{{hotelDetails[index]['name']}}">{{hotelDetails[index]['name']}}</div>
                     </a>
                 </h3>
                 <div class="campaign-promo-offer">{{hotelDetails[index]['promo_offer']}}</div>
