@@ -17,7 +17,7 @@ define('DEFAULT_ROUTE_MODULE', 'merch');
 define('DEFAULT_ROUTE_NAMESPACE', 'HC\Merch\Controllers');
 define('DEFAULT_ROUTE_LOCALE', 'en_AU');
 define('DEFAULT_ROUTE_CONTROLLER', 'index');
-define('DEFAULT_ROUTE_ACTION', 'page');
+define('DEFAULT_ROUTE_ACTION', 'index');
 
 
 /**
@@ -74,8 +74,8 @@ $router->add(
         "languageCode" => 1,
         "campaignName" => 2,
         "params"       => 3,
-        "controller"   => 'campaign',
-        "action"       => 'index',
+        "controller"   => 'index',
+        "action"       => 'page',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
@@ -109,7 +109,7 @@ $router->add(
         'regionName'   => 3,
         'countryName'  => 4,
         'params'       => 5,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'country',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
@@ -128,7 +128,7 @@ $router->add(
         'countryName'  => 4,
         'cityName'     => 5,
         'params'       => 6,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'city',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
