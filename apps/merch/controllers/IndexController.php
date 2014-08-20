@@ -3,13 +3,15 @@ namespace HC\Merch\Controllers;
 class IndexController extends ControllerBase
 {
 
-    const DEFAULT_PAGE_CAMPAIGN = 'test-campaign';    
+    const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';    
+    const DEFSULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'main';
+    const DEFAULT_PAGE_REGION = 'Pacific';
     protected $uriBase;
     protected $uriFull;
     protected $pageLayout;
-    protected $languageCode = 'en_AU';
-    protected $campaignName = 'Summer-Escape';
+    protected $languageCode;
+    protected $campaignName;
     protected $city;
     protected $country;
     protected $menuTabMain;
@@ -25,34 +27,20 @@ class IndexController extends ControllerBase
     protected $translation;
     protected $data;
     protected $DDMenue;
-    protected $region = 'Pacific';
-    private $dataModel;
+    protected $region;
+    private   $dataModel;
     
-
     public function initialize()
     {
         $this->view->setTemplateAfter($this->getPageLayout());
         \Phalcon\Tag::setTitle('Welcome');
         parent::initialize();
-        
-        $this->menu = $this->config->menuItems;        
-        $this->translation  = new \HC\Library\Translation($this->languageCode, 
-                $this->config->application->LanguageDir);  
-        
-        $this->dataModel = new \HC\Merch\Models\Page();   
-        $this->dataModel->setLanguageCode($this->languageCode);
-        $this->DDMenue = $this->dataModel->loadCampaignData();
-       
-        //var_dump($this->banner);
-        // Setup data for the page
-        $this->user = new \HC\Merch\Models\Users();
-        
-        //$this->setupPage();
-        $this->getBaseUrl();
-    }
+        $this->setupPage();       
+    }    
 
     public function indexAction()
     {      
+        //echo 'testing...';
         $this->view->setVars(
             array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
                     $this->buildTemplateVars()
@@ -70,7 +58,6 @@ class IndexController extends ControllerBase
     
     public function regionAction() {        
         
-        $this->region = $this->dispatcher->getParam("regionName");
         //if invalid region
         if ($this->dataModel->getDataByRegion($this->region) == FALSE) {            
             $this->redirectToDefaultPage();
@@ -85,10 +72,6 @@ class IndexController extends ControllerBase
     
     public function countryAction() {
         
-        $this->region  = $this->dispatcher->getParam("regionName");
-        $this->country = $this->dispatcher->getParam("countryName");
-        
-        echo $this->region;
         //if invalid region or country
         if ($this->dataModel->getDataByRegion($this->region) == FALSE || 
                 !is_array($this->dataModel->getDataByRegion($this->region)[$this->country])) {
@@ -106,11 +89,7 @@ class IndexController extends ControllerBase
 
     public function cityAction() {
         
-        $this->region   = $this->dispatcher->getParam("regionName");
-        $this->country  = $this->dispatcher->getParam("countryName");
-        $this->city     = $this->dispatcher->getParam("cityName");
-        
-        //if invalid region or country
+        //if invalid region or country or city
         if ($this->dataModel->getDataByRegion($this->region) == FALSE || 
                 !is_array($this->dataModel->getDataByRegion($this->region)[$this->country]) ||
                 !is_array($this->dataModel->getDataByRegion($this->region)[$this->country][$this->city])                
@@ -127,8 +106,92 @@ class IndexController extends ControllerBase
         ));        
         
         $this->view->pick('index/page');
+    }   
+    
+    /**
+     * Set Input data to properties
+     */    
+    public function setInputvar() {
+        
+        $this->campaignName = (null == $this->dispatcher->getParam("campaignName")) ? 
+                self::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
+        
+        $this->languageCode = (null == $this->dispatcher->getParam("languageCode")) ? 
+                self::DEFSULT_PAGE_LANG : $this->dispatcher->getParam("languageCode");
+        
+        $this->region = (null == $this->dispatcher->getParam("regionName")) ? 
+                self::DEFAULT_PAGE_REGION : $this->dispatcher->getParam("regionName");       
+        
+        $this->country = (null == $this->dispatcher->getParam("countryName")) ? null :
+                $this->dispatcher->getParam("countryName");
+        $this->city = (null == $this->dispatcher->getParam("cityName")) ? null : 
+                $this->dispatcher->getParam("cityName");
+    }
+    
+    /**
+     * Setting page data
+     */
+    protected function setupPage()
+    {
+        //setting class variable
+        $this->setInputvar();
+        $this->user = new \HC\Merch\Models\Users();
+        //get Top menu 
+        $this->menu     = $this->config->menuItems;        
+        //get translation obj
+        $this->translation  = new \HC\Library\Translation($this->languageCode, 
+                $this->config->application->LanguageDir);
+        //get site url
+        $this->uriFull = $this->router->getRewriteUri();    
+        $this->uriBase = $this->getBaseUrl();
+
+        // Setup data for the page
+        $this->dataModel = new \HC\Merch\Models\Page();           
+        $this->dataModel
+                ->setCampaignName($this->campaignName)
+                ->setRegion($this->region)
+                ->setLanguageCode($this->languageCode);
+        //Drop down menu
+        $this->DDMenue  = $this->dataModel->loadCampaignData();       
+       
+    }
+    
+    private function buildTemplateVars() {
+        
+       return array(
+                'pageLayout'               => $this->getPageLayout(),
+                'uriBase'                  => $this->uriBase,
+                'uriFull'                  => $this->uriFull,
+                'languageCode'             => $this->languageCode,               
+                'menuItemsTop'             => $this->menu->top,
+                'menuItemsSite'            => $this->menu->site,
+                'menuItemsLanguageOptions' => $this->menu->languageOptions,
+                'menuItemsRightSite'       => $this->menu->rightSite,
+                'menuItemsAccount'         => $this->menu->account,
+                'currentUser'              => $this->user->getCurrentUser() ,
+                "t"                        => $this->translation->getTranslation(),
+                'banners'                  => $this->dataModel->getBanner($this->region),
+                'DDMenue'                  => $this->DDMenue,                
+                "hotelDetails"             => $this->dataModel->loadHotelData()				
+            );
+        
     }
 
+    protected function getPageLayout(){
+        if(empty($this->data['meta']['pageLayout'])){
+            // use session if avail
+            return self::DEFAULT_PAGE_LAYOUT;
+        }
+    }    
+    
+    protected function getBaseUrl() {
+        return '/merch/' . $this->languageCode . '/' . $this->campaignName;
+    }
+    
+    private function redirectToDefaultPage() {
+        return $this->response->redirect('merch/'. $this->languageCode. '/'. $this->campaignName);
+    }
+    
     /**
      * @return mixed
      */
@@ -159,72 +222,6 @@ class IndexController extends ControllerBase
     public function getCampaignName()
     {
         return $this->campaignName;
-    }
-
-    protected function setupPage()
-    {
-        $this->user = new \HC\Merch\Models\Users();
-        $this->menu = $this->config->menuItems;
-        $this->languageCode = $this->dispatcher->getParam("languageCode");
-        $this->campaignName = null == $this->dispatcher->getParam(
-            "campaignName"
-        ) ? self::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
-        $this->menuTabMain  = $this->dispatcher->getParam("menuTabMain");
-        $this->menuTabSub   = $this->dispatcher->getParam("menuTabSub");
-        $this->translation  = new \HC\Library\Translation($this->languageCode, 
-                $this->config->application->LanguageDir);
-        $this->uriFull = $this->router->getRewriteUri();
-        //$this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
-
-        // Setup data for the page
-        $dataModel = new \HC\Merch\Models\Page();
-        if ($this->languageCode != null)
-        	$dataModel->setLanguageCode($this->languageCode);
-        
-        $dataModel
-            ->setCampaignName($this->campaignName)
-            ->setMenuTabMain($this->menuTabMain)
-            ->setMenuTabSub($this->menuTabSub);
-
-        $this->data = $dataModel->getData();
-
-    }
-    
-    private function buildTemplateVars() {
-        
-       return array(
-                'pageLayout'               => $this->getPageLayout(),
-                'uriBase'                  => $this->uriBase,
-                'uriFull'                  => $this->uriFull,
-                'languageCode'             => $this->languageCode,               
-                'menuItemsTop'             => $this->menu->top,
-                'menuItemsSite'            => $this->menu->site,
-                'menuItemsLanguageOptions' => $this->menu->languageOptions,
-                'menuItemsRightSite'       => $this->menu->rightSite,
-                'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
-                "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->getBanner($this->region),
-                'DDMenue'                  => $this->DDMenue,                
-                "hotelDetails"             => $this->dataModel->loadHotelData()				
-            );
-        
-    }
-
-    protected function getPageLayout(){
-        if(empty($this->data['meta']['pageLayout'])){
-            // use session if avail
-            return self::DEFAULT_PAGE_LAYOUT;
-
-        }
-    }    
-    
-    protected function getBaseUrl() {
-        $this->uriBase = '/merch/' . $this->languageCode . '/' . $this->campaignName;
-    }
-    
-    private function redirectToDefaultPage() {
-        return $this->response->redirect('merch/'. $this->languageCode. '/'. $this->campaignName);
     }
         
 }

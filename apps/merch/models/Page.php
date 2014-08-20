@@ -18,11 +18,9 @@ class Page extends \Phalcon\Mvc\Model {
     protected $bannerFilePath;
     protected $hotelFilePath;
     protected $data;
-    protected $languageCode = 'en_AU';
-    protected $region = 'Summer Escape';
-    protected $campaignName;
-    protected $menuTabMain;
-    protected $menuTabSub;
+    protected $languageCode;
+    protected $region;
+    protected $campaignName;    
 
     public function getData() {
         if (null === $this->data) {
@@ -170,6 +168,16 @@ class Page extends \Phalcon\Mvc\Model {
       }
       }
      */
+    
+    /**
+     * 
+     * @param String $region
+     * @return \HC\Merch\Models\Page
+     */
+    public function setRegion($region) {
+        $this->region = $region;
+        return $this;
+    }
 
     /**
      * @param mixed $languageCode

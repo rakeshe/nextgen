@@ -14,6 +14,7 @@ class ErrorController extends ControllerBase
     protected $menuTabMain;    
     protected $user;  
     protected $menu; 
+    protected $campaignName;
     protected $translation;
    
     public function initialize()
