@@ -14,13 +14,25 @@ namespace HC\Merch\Models;
 class Page extends \Phalcon\Mvc\Model {
 
     const DEFAULT_PAGE_REGION = 'Pacific';
+    const DEFAULT_PAGE_LANG = 'en_AU';
+
     protected $campaignFilePath;
     protected $bannerFilePath;
     protected $hotelFilePath;
     protected $data;
     protected $languageCode;
     protected $region;
-    protected $campaignName;    
+    protected $campaignName;
+    protected $cachePath;
+    protected $fileCampaignPFx = '_campaign_data.json';
+    protected $fileDealsPFx = '_deals_data.json';
+    protected $fileBannerPFx = '_banner_data.json';
+    protected $langFilePath;
+
+    public function initialize() {
+        $this->cachePath    = __DIR__ . '/../../../data/cache/';
+        $this->langFilePath = __dir__ . '/../language/';
+    }
 
     public function getData() {
         if (null === $this->data) {
@@ -35,54 +47,63 @@ class Page extends \Phalcon\Mvc\Model {
      * return array
      */
     public function getDataByRegion($region) {
-        if (array_key_exists($region, $this->loadCampaignData())) {
-            return $this->loadCampaignData()[$region];
-        } else {
-            return FALSE;
+        if (is_array($this->loadCampaignData())) {
+            if (array_key_exists($region, $this->loadCampaignData())) {
+                return $this->loadCampaignData()[$region];
+            }
         }
+        return FALSE;
     }
 
     public function getDefaultHoteles($region) {
-        $data = [];
-        foreach ($this->getDataByRegion($region) as $key => $val) {
-          if ($key != 'name' && $key != 'sort') {
-              foreach ($val as $k => $v) {
-                if ($k != 'name' && $k != 'sort') {                   
-                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+        $data = [];        
+        foreach ($this->loadCampaignData() as $key => $val) {
+            if ($key != 'name' && $key != 'sort') {
+                foreach ($val as $k => $v) {
+                    if ($k != 'name' && $k != 'sort') {                       
+                        foreach ($v as $k1 => $v1) {
+                            if ($k1 != 'name' && $k1 != 'sort') {                       
+                                $data[key($v1['deals'])] = $v1['deals'][key($v1['deals'])];                                 
+                            }
+                        }                         
+                    }
                 }
-              }            
-          }
+            }
         }        
-        return $data; 
+        return $data;
     }
 
-    public function getCampaignDefaultHotels($region) {
-        $data = [];
-        foreach ($this->getDataByRegion($region) as $key => $val) {
-          if ($key != 'name' && $key != 'sort') {
-              foreach ($val as $k => $v) {
-                if ($k != 'name' && $k != 'sort') {                   
-                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+    public function getCampaignDefaultHotels() {
+        $data = [];        
+        foreach ($this->loadCampaignData() as $key => $val) {
+            if ($key != 'name' && $key != 'sort') {
+                foreach ($val as $k => $v) {
+                    if ($k != 'name' && $k != 'sort') {                       
+                        foreach ($v as $k1 => $v1) {
+                            if ($k1 != 'name' && $k1 != 'sort') {                       
+                                $data[key($v1['deals'])] = $v1['deals'][key($v1['deals'])];                                 
+                            }
+                        }                         
+                    }
                 }
-              }            
-          }
+            }
         }        
-        return $data; 
+        return $data;
     }
 
     public function getRegionDefaultHotels($region) {
-        
+
         $data = [];
         foreach ($this->getDataByRegion($region) as $key => $val) {
-          if ($key != 'name' && $key != 'sort') {
-              foreach ($val as $k => $v) {
-                if ($k != 'name' && $k != 'sort') {                   
-                  $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+            if ($key != 'name' && $key != 'sort') {
+                foreach ($val as $k => $v) {
+                    if ($k != 'name' && $k != 'sort') {
+                        $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+                    }
                 }
-              }            
-          }
-        }        
-        return $data;         
+            }
+        }
+        return $data;
     }
 
     public function getCountryDefaultHotels($region, $country) {
@@ -92,46 +113,61 @@ class Page extends \Phalcon\Mvc\Model {
                 $data[key($val['deals'])] = $val['deals'][key($val['deals'])];
             }
         }
-        return $data;        
+        return $data;
     }
-    
+
     public function getHotelsByCity($region, $country, $city) {
         $data = [];
         foreach ($this->getDataByRegion($region)[$country][$city] as $key => $val) {
             return $this->getDataByRegion($region)[$country][$city]['deals'];
         }
-        return $data;  
+        return $data;
     }
 
     public function loadCampaignData() {
-        $this->campaignFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_campaign_data.json';
+        $this->campaignFilePath = $this->cachePath . $this->languageCode . $this->fileCampaignPFx;
         if (file_exists($this->campaignFilePath)) {
             return json_decode(file_get_contents($this->campaignFilePath), TRUE);
         }
-        return false;
+        return FALSE;
     }
 
-    public function loadBannerData() {
-        $this->bannerFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_banner_data.json';
-        if (file_exists($this->bannerFilePath)) {
-            return json_decode(file_get_contents($this->bannerFilePath), TRUE);
+    /**
+     * Default flag is TRUE -> if primary file is not exists then, it will load default file
+     * 
+     * @param boolean $defaultFlag
+     * @return array | boolean
+     */
+    public function loadBannerData($defaultFlag = FALSE) {
+        if (file_exists($this->cachePath . $this->languageCode . $this->fileBannerPFx)) {
+            return json_decode(file_get_contents($this->cachePath . $this->languageCode . $this->fileBannerPFx), TRUE);
         }
-        return false;
+        //if default flag is true then, load default banner file
+        if ($defaultFlag == TRUE) {
+            if (file_exists($this->cachePath . self::DEFAULT_PAGE_LANG . $this->fileBannerPFx)) {
+                return json_decode(file_get_contents($this->cachePath . self::DEFAULT_PAGE_LANG . $this->fileBannerPFx), TRUE);
+            }
+        }
+        return FALSE;
     }
 
     public function loadHotelData() {
-        $this->hotelFilePath = __DIR__ . '/../../../data/cache/' . $this->languageCode . '_deals_data.json';
+        $this->hotelFilePath = $this->cachePath . $this->languageCode . $this->fileDealsPFx;
         if (file_exists($this->hotelFilePath)) {
             return json_decode(file_get_contents($this->hotelFilePath), TRUE);
         }
-        return false;
+        return FALSE;
     }
-    
+
     public function getBanner($region) {
-        if ( !array_key_exists($region, $this->loadBannerData())) {
-          return $this->loadBannerData()[self::DEFAULT_PAGE_REGION];
+        $bannerData = $this->loadBannerData(TRUE);
+        if (is_array($bannerData)) {
+            if (array_key_exists($region, $bannerData)) {
+                return $bannerData[$region];
+            }
+            return $this->loadBannerData()[self::DEFAULT_PAGE_REGION];
         }
-        return $this->loadBannerData()[$region];
+        return FALSE;
     }
 
     protected function getCurrentTab() {
@@ -147,6 +183,13 @@ class Page extends \Phalcon\Mvc\Model {
             }
             //return $this->menuTabSub;
         }
+    }
+    
+    public function isLanguageFileExists() {
+        if (file_exists($this->langFilePath . $this->languageCode . '.php'))
+            return TRUE;
+        else
+            return FALSE;
     }
 
     /* @todo refactor this logic 
@@ -168,7 +211,7 @@ class Page extends \Phalcon\Mvc\Model {
       }
       }
      */
-    
+
     /**
      * 
      * @param String $region

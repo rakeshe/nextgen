@@ -4,7 +4,7 @@ class IndexController extends ControllerBase
 {
 
     const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';    
-    const DEFSULT_PAGE_LANG = 'en_AU';
+    const DEFAULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'main';
     const DEFAULT_PAGE_REGION = 'Pacific';
     protected $uriBase;
@@ -35,21 +35,21 @@ class IndexController extends ControllerBase
         $this->view->setTemplateAfter($this->getPageLayout());
         \Phalcon\Tag::setTitle('Welcome');
         parent::initialize();
-        $this->setupPage();       
+        $this->setupPage();
+        $this->campaignFileCheck();
     }    
 
     public function indexAction()
-    {      
-        //echo 'testing...';
+    {              
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
+            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles()),
                     $this->buildTemplateVars()
         ));        
         $this->view->pick('index/page');
     }
 
     public function pageAction()
-    {          
+    {        
         $this->view->setVars(
             array_merge(array ("hotels" => $this->dataModel->getCampaignDefaultHotels($this->region)),
                     $this->buildTemplateVars()
@@ -108,6 +108,10 @@ class IndexController extends ControllerBase
         $this->view->pick('index/page');
     }   
     
+    public function setLanguageAction() {
+        $this->response->redirect('merch/'. $this->languageCode. '/'. $this->campaignName);
+    }
+    
     /**
      * Set Input data to properties
      */    
@@ -117,13 +121,14 @@ class IndexController extends ControllerBase
                 self::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
         
         $this->languageCode = (null == $this->dispatcher->getParam("languageCode")) ? 
-                self::DEFSULT_PAGE_LANG : $this->dispatcher->getParam("languageCode");
+                self::DEFAULT_PAGE_LANG : $this->dispatcher->getParam("languageCode");
         
         $this->region = (null == $this->dispatcher->getParam("regionName")) ? 
                 self::DEFAULT_PAGE_REGION : $this->dispatcher->getParam("regionName");       
         
         $this->country = (null == $this->dispatcher->getParam("countryName")) ? null :
                 $this->dispatcher->getParam("countryName");
+        
         $this->city = (null == $this->dispatcher->getParam("cityName")) ? null : 
                 $this->dispatcher->getParam("cityName");
     }
@@ -138,13 +143,7 @@ class IndexController extends ControllerBase
         $this->user = new \HC\Merch\Models\Users();
         //get Top menu 
         $this->menu     = $this->config->menuItems;        
-        //get translation obj
-        $this->translation  = new \HC\Library\Translation($this->languageCode, 
-                $this->config->application->LanguageDir);
-        //get site url
-        $this->uriFull = $this->router->getRewriteUri();    
-        $this->uriBase = $this->getBaseUrl();
-
+        
         // Setup data for the page
         $this->dataModel = new \HC\Merch\Models\Page();           
         $this->dataModel
@@ -153,11 +152,22 @@ class IndexController extends ControllerBase
                 ->setLanguageCode($this->languageCode);
         //Drop down menu
         $this->DDMenue  = $this->dataModel->loadCampaignData();       
+        
+        if ($this->dataModel->isLanguageFileExists() == FALSE)
+            $this->languageCode = self::DEFAULT_PAGE_LANG;
+        
+        //get translation obj
+        $this->translation  = new \HC\Library\Translation($this->languageCode, 
+                $this->config->application->LanguageDir);
+        //get site url
+        $this->uriFull = $this->router->getRewriteUri();    
+        $this->uriBase = $this->getBaseUrl();
+
+        
        
     }
     
-    private function buildTemplateVars() {
-        
+    private function buildTemplateVars() {       
        return array(
                 'pageLayout'               => $this->getPageLayout(),
                 'uriBase'                  => $this->uriBase,
@@ -176,6 +186,13 @@ class IndexController extends ControllerBase
             );
         
     }
+    
+    private function campaignFileCheck() {
+        
+        if ($this->dataModel->loadCampaignData() == FALSE) {            
+            return $this->response->redirect('merch/'. self::DEFAULT_PAGE_LANG. '/'. self::DEFAULT_PAGE_CAMPAIGN);
+        }
+    }
 
     protected function getPageLayout(){
         if(empty($this->data['meta']['pageLayout'])){
@@ -189,7 +206,7 @@ class IndexController extends ControllerBase
     }
     
     private function redirectToDefaultPage() {
-        return $this->response->redirect('merch/'. $this->languageCode. '/'. $this->campaignName);
+        return $this->response->redirect('merch/'. self::DEFAULT_PAGE_LANG. '/'. self::DEFAULT_PAGE_CAMPAIGN);
     }
     
     /**

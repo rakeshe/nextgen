@@ -36,12 +36,13 @@ $router->notFound(
  * Set language route
  */
 $router->add(
-    "/set-language/{language:[a-z]+}",
+    "/set-language" . RE_LANGUAGE_CODE,
     array(
         'controller' => DEFAULT_ROUTE_CONTROLLER,
         'action'     => 'setLanguage',
         'module'     => DEFAULT_ROUTE_MODULE,
         'namespace'  => 'HC\Merch\Controllers\\',
+        'languageCode' => 1
     )
 );
 
