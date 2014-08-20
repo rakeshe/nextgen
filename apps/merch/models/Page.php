@@ -55,7 +55,7 @@ class Page extends \Phalcon\Mvc\Model {
         return FALSE;
     }
 
-    public function getDefaultHoteles($region) {
+    public function getDefaultHoteles() {
         $data = [];        
         foreach ($this->loadCampaignData() as $key => $val) {
             if ($key != 'name' && $key != 'sort') {
