@@ -5,13 +5,13 @@
 	<ul class="dropdown-menu level2">
 	{% for tabSub in tab %}
 	{% if isArray(tabSub) %}
-	<li>
+	<li class="dropdown-submenu">
 	<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }}</a>
 	{% if not(tabSub is empty) %}
-		<ul class="dropdown-submenu level3">
+		<ul class="dropdown-menu level3">
 		{% for tabSubmenu in tabSub %}
 		{% if isArray(tabSubmenu) %}
-		<li>
+		<li class="dropdown-submenu">
 		<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}/{{ tabSubmenu['name']  }}">{{ tabSubmenu['name'] }}</a>
 		</li>
 		<li class="divider"></li>
