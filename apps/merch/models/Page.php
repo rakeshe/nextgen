@@ -33,7 +33,7 @@ class Page extends \Phalcon\Mvc\Model {
         $this->cachePath    = __DIR__ . '/../../../data/cache/';
         $this->langFilePath = __dir__ . '/../language/';
     }
-
+    
     public function getData() {
         if (null === $this->data) {
             $this->data['hotels'] = $this->loadHotelData();

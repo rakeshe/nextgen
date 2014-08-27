@@ -11,6 +11,7 @@ $router->removeExtraSlashes(true);
 define('MODULE_NAME', '/([a-z\-]+)');
 define('RE_SEOPATH_ALPHANUM', '/([a-zA-Z0-9\-]+)');
 define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
+//define('RE_SEOPATH_ALPHA', '/^[\\s\\d\\p{L}]+$/u');
 define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
 
 define('DEFAULT_ROUTE_MODULE', 'merch');

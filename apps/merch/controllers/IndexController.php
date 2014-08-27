@@ -49,11 +49,22 @@ class IndexController extends ControllerBase
     }
 
     public function pageAction()
-    {        
+    {  
+        /*
+        if (!empty($this->dispatcher->getParams()[0]) && !empty($this->dispatcher->getParams()[1]) && 
+                !empty($this->dispatcher->getParams()[2])) {
+            die('got city');
+        } elseif (!empty($this->dispatcher->getParams()[0]) && !empty($this->dispatcher->getParams()[1])) {
+            die('got country');
+        } elseif (!empty($this->dispatcher->getParams()[0])) {
+            die('got region');
+        }
+         * */
+         
         $this->view->setVars(
             array_merge(array ("hotels" => $this->dataModel->getCampaignDefaultHotels($this->region)),
                     $this->buildTemplateVars()
-        ));
+        ));         
     }
     
     public function regionAction() {        

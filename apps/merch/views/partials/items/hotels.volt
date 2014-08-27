@@ -21,15 +21,15 @@
         <div class="image_section col-md-5" id="image_section">
             <a>
                 <div>
-                    <img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_307928.jpg"
+                    <img src="{{ HotelHelper.getClassicHotelImageUri(hotelDetails[index]['oneg']) }}"
                          class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>
                     <!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
-                    <div class="hotel-image-text">
+                    <div class="hotel-image-text" style="top:-30px;left:110px;">
                         <div class="location-text">{{hotelDetails[index]['country']}}</div>
                         <div class="star4">
-                            <img src="http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png"
-                                 class="img-responsive ce-star" id="image_hotel" alt="Responsive image" width="148"
-                                 height="12"/>
+                            <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
+                                 class="img-responsive" id="image_hotel" alt="Responsive image" width=""
+                                 height=""/>
                         </div>
                     </div>
                 </div>

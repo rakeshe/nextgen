@@ -40,7 +40,8 @@ return new \Phalcon\Config(array(
         'viewsDir' => 'views/',
         'helpersDir' => 'helpers/',
         'formsDir' => 'forms/',
-        'LanguageDir' => 'merch/language/'
+        'LanguageDir' => 'merch/language/',
+        'componentDir' => 'library/'
     ),
     'metadata' => array(
         'adapter' => 'Apc',
