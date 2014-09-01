@@ -14,6 +14,7 @@ class ErrorController extends ControllerBase
     protected $menuTabMain;    
     protected $user;  
     protected $menu; 
+    protected $campaignName;
     protected $translation;
    
     public function initialize()
@@ -49,7 +50,7 @@ class ErrorController extends ControllerBase
     {
         $this->user = new \HC\Merch\Models\Users();
         $this->menu = $this->config->menuItems;
-        $this->languageCode = $this->dispatcher->getParam("languageCode");       
+        $this->languageCode = 'en_AU';       
         $this->menuTabMain  = $this->dispatcher->getParam("menuTabMain");
         $this->menuTabSub   = $this->dispatcher->getParam("menuTabSub");
         $this->translation  = new \HC\Library\Translation($this->languageCode, 

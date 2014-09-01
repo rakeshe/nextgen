@@ -5,8 +5,8 @@
  *
  * Helps to build UI elements for the application
  */
-namespace HC\Merch\Component;
-class Elements extends Phalcon\Mvc\User\Component
+namespace HC\Merch\Library;
+class Elements extends \Phalcon\Mvc\User\Component
 {
 
     private $_headerMenu = array(
@@ -92,7 +92,7 @@ class Elements extends Phalcon\Mvc\User\Component
                 } else {
                     echo '<li>';
                 }
-                echo Phalcon\Tag::linkTo($controller.'/'.$option['action'], $option['caption']);
+                echo \Phalcon\Tag::linkTo($controller.'/'.$option['action'], $option['caption']);
                 echo '</li>';
             }
             echo '</ul>';
@@ -111,7 +111,7 @@ class Elements extends Phalcon\Mvc\User\Component
             } else {
                 echo '<li>';
             }
-            echo Phalcon\Tag::linkTo($option['controller'].'/'.$option['action'], $caption), '<li>';
+            echo \Phalcon\Tag::linkTo($option['controller'].'/'.$option['action'], $caption), '<li>';
         }
         echo '</ul>';
     }

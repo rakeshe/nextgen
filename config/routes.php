@@ -10,14 +10,15 @@ $router->removeExtraSlashes(true);
 
 define('MODULE_NAME', '/([a-z\-]+)');
 define('RE_SEOPATH_ALPHANUM', '/([a-zA-Z0-9\-]+)');
-define('RE_SEOPATH_ALPHA', '/([a-zA-Z\-]+)');
+define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
+//define('RE_SEOPATH_ALPHA', '/^[\\s\\d\\p{L}]+$/u');
 define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
 
 define('DEFAULT_ROUTE_MODULE', 'merch');
 define('DEFAULT_ROUTE_NAMESPACE', 'HC\Merch\Controllers');
 define('DEFAULT_ROUTE_LOCALE', 'en_AU');
 define('DEFAULT_ROUTE_CONTROLLER', 'index');
-define('DEFAULT_ROUTE_ACTION', 'page');
+define('DEFAULT_ROUTE_ACTION', 'index');
 
 
 /**
@@ -36,12 +37,13 @@ $router->notFound(
  * Set language route
  */
 $router->add(
-    "/set-language/{language:[a-z]+}",
+    "/set-language" . RE_LANGUAGE_CODE,
     array(
         'controller' => DEFAULT_ROUTE_CONTROLLER,
         'action'     => 'setLanguage',
         'module'     => DEFAULT_ROUTE_MODULE,
         'namespace'  => 'HC\Merch\Controllers\\',
+        'languageCode' => 1
     )
 );
 
@@ -74,8 +76,8 @@ $router->add(
         "languageCode" => 1,
         "campaignName" => 2,
         "params"       => 3,
-        "controller"   => 'campaign',
-        "action"       => 'index',
+        "controller"   => 'index',
+        "action"       => 'page',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
@@ -91,7 +93,7 @@ $router->add(
         'campaignName' => 2,
         'regionName'   => 3,
         'params'       => 4,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'region',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
@@ -109,7 +111,7 @@ $router->add(
         'regionName'   => 3,
         'countryName'  => 4,
         'params'       => 5,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'country',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
@@ -128,7 +130,7 @@ $router->add(
         'countryName'  => 4,
         'cityName'     => 5,
         'params'       => 6,
-        'controller'   => 'campaign',
+        'controller'   => 'index',
         'action'       => 'city',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',

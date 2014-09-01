@@ -18,6 +18,11 @@ class HotelHelper extends \Phalcon\Tag
      * Define uri for cached content at Orbitz Global Platform
      */
     const ORBITZ_HOTEL_CONTENT_URI = 'http://www.tnetnoc.com/hotelimages/';
+    
+    /**
+     * Define uri for cached site images at Orbitz Global Platform
+     */
+    const ORBITZ_HOTEL_SITE_IMAGES_URI = 'http://www.tnetnoc.com/siteImages/';
     /**
      * Define uri for cache content at HotelClub
      */
@@ -27,6 +32,10 @@ class HotelHelper extends \Phalcon\Tag
      */
     const ORBITZ_HOTEL_FOLDER_ID = '2631759';
 
+    
+    static public function getStarUri($star = 5) {
+        return self::ORBITZ_HOTEL_SITE_IMAGES_URI .'ORB/icons/stars/star' .$star. '/medium/star' .$star. '-1.png';
+    }
 
     /**
      * @param $oneg

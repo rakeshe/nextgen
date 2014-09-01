@@ -20,7 +20,8 @@ class Module {
             'HC\Merch\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
             'HC\Merch\Helpers' => __DIR__ . '/'. static::getConfig()->application->helpersDir,
             'HC\Library' => __DIR__ . "/../../vendor/library",
-            'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
+            'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir,
+            'HC\Merch\Library' => __DIR__ . '/' . static::getConfig()->application->componentDir,
         ));
 
         $loader->register();
@@ -43,6 +44,11 @@ class Module {
                 'compiledPath' => __DIR__.'/../../data/volt/',
                 'compiledSeparator' => '_',
             ));
+            $compiler = $volt->getCompiler();
+            //This binds the function name 'shuffle' in Volt to the PHP function 'str_shuffle'
+            $compiler->addFunction('print_r', 'print_r');
+			$compiler->addFunction('isArray', 'is_array');
+
 
             return $volt;
         },
@@ -57,6 +63,18 @@ class Module {
        $globalConfig = $di->get('config');
        $globalConfig->merge(static::getConfig());
        $di->set('config', $globalConfig);
+       
+       //set element class to di
+       /*
+       $di->set('elements', function() {
+          return new \HC\Merch\Library\Elements();
+       });
+        */
+       //set the helper class to di
+       $di->set('HotelHelper', function(){
+        return new \HC\Merch\Helpers\HotelHelper();
+       });
+        
     }
     
     public static function getConfig() {

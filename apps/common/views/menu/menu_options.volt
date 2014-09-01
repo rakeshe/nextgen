@@ -15,7 +15,7 @@
             <ul class="dropdown-menu">
                 {% for language_code,label in menuItemsLanguageOptions %}
                     <li lang="{{ language_code }}" class="">
-                        <a href="/{{ language_code }}/test-campaing/" class="link">{{ label }}</a>
+                        <a href="/set-language/{{ language_code }}" class="link">{{ label }}</a>
                     </li>
                 {% endfor %}
             </ul>

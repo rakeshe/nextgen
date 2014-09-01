@@ -77,19 +77,19 @@
 						</button>
 							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Austalia-NZ/Sydney">Sydney</a>
+								<a tabindex="-1" href="{{ uriBase }}/Austalia-NZ/Sydney">Sydney</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Austalia-NZ/Melbourne">Melbourne</a>
+								<a tabindex="-1" href="{{ uriBase }}/Austalia-NZ/Melbourne">Melbourne</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Austalia-NZ/Brisbane">Brisbane</a>
+								<a tabindex="-1" href="{{ uriBase }}/Austalia-NZ/Brisbane">Brisbane</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Austalia-NZ/Auckland">Auckland</a>
+								<a tabindex="-1" href="{{ uriBase }}/Austalia-NZ/Auckland">Auckland</a>
 								</li>
 								</ul>
 						</div>
@@ -100,19 +100,19 @@
 						</button>
 							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/USA/New-york">New york</a>
+								<a tabindex="-1" href="{{ uriBase }}/USA/New-york">New york</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/USA/Washington">Washington</a>
+								<a tabindex="-1" href="{{ uriBase }}/USA/Washington">Washington</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/USA/California">California</a>
+								<a tabindex="-1" href="{{ uriBase }}/USA/California">California</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/USA/Chicago">Chicago</a>
+								<a tabindex="-1" href="{{ uriBase }}/USA/Chicago">Chicago</a>
 								</li>
 							</ul>
 						</div>
@@ -123,19 +123,19 @@
 						</button>
 							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Europe/London">London</a>
+								<a tabindex="-1" href="{{ uriBase }}/Europe/London">London</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Europe/German">German</a>
+								<a tabindex="-1" href="{{ uriBase }}/Europe/German">German</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Europe/Italy">Italy</a>
+								<a tabindex="-1" href="{{ uriBase }}/Europe/Italy">Italy</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Europe/France">France</a>
+								<a tabindex="-1" href="{{ uriBase }}/Europe/France">France</a>
 								</li>
 							</ul>
 						</div>
@@ -146,19 +146,19 @@
 						</button>
 							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" class="dropdown-menu level2">
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Asia/india">India</a>
+								<a tabindex="-1" href="{{ uriBase }}/Asia/india">India</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Asia/China">China</a>
+								<a tabindex="-1" href="{{ uriBase }}/Asia/China">China</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Asia/Singapore">Singapore</a>
+								<a tabindex="-1" href="{{ uriBase }}/Asia/Singapore">Singapore</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-								<a tabindex="-1" href="/en/test-campaign/Asia/Srilanka">Srilanka</a>
+								<a tabindex="-1" href="{{ uriBase }}/Asia/Srilanka">Srilanka</a>
 								</li>
 							</ul>
 						</div>
