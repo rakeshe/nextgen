@@ -75,9 +75,10 @@ class Module {
         return new \HC\Merch\Helpers\HotelHelper();
        });
        
-       //set the couch class to di
-       $di->set('Couch', function(){
-           $obj = new \HC\Library\Couchbase('127.0.1.1', '', '', 'merch');
+       //set the couch class to di      
+       $di->set('Couch', function() use($di){
+           $conf = $di->get('config')->couchbase;
+           $obj = new \HC\Library\Couchbase($conf['host'], $conf['user'], $conf['password'], $conf['bucket']);
            $obj->connect();           
           return $obj->couchbase;
        });      
