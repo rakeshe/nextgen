@@ -153,7 +153,13 @@ class IndexController extends ControllerBase
         $this->setInputvar();
         $this->user = new \HC\Merch\Models\Users();
         //get Top menu 
-        $this->menu     = $this->config->menuItems;        
+        //$this->menu     = $this->config->menuItems;        
+        try {
+            $this->menu = json_decode($this->Couch->get("menuItems"));
+        } catch (CouchbaseException $ex) {
+            echo $ex->getMessage();
+        }
+        
         
         // Setup data for the page
         $this->dataModel = new \HC\Merch\Models\Page();           
