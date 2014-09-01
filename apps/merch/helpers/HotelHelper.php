@@ -79,7 +79,7 @@ class HotelHelper extends \Phalcon\Tag
     static public function getBookingpath(String $oneg){
 
         return true;
-               
+
 
     }
 }
