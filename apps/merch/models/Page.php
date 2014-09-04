@@ -73,7 +73,7 @@ class Page extends \Phalcon\Mvc\Model {
     }
 
     public function getCampaignDefaultHotels() {
-        $data = [];        
+        $data = [];
         foreach ($this->loadCampaignData() as $key => $val) {
             if ($key != 'name' && $key != 'sort') {
                 foreach ($val as $k => $v) {
@@ -92,12 +92,13 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function getRegionDefaultHotels($region) {
 
-        $data = [];
+        $data = [];        
         foreach ($this->getDataByRegion($region) as $key => $val) {
             if ($key != 'name' && $key != 'sort') {
                 foreach ($val as $k => $v) {
                     if ($k != 'name' && $k != 'sort') {
-                        $data[key($v['deals'])] = $v['deals'][key($v['deals'])];
+                        foreach ($v['deals'] as $kd => $vd)
+                           $data[$kd] = $vd;
                     }
                 }
             }
@@ -106,12 +107,15 @@ class Page extends \Phalcon\Mvc\Model {
     }
 
     public function getCountryDefaultHotels($region, $country) {
-        $data = [];
+        $data = [];        
         foreach ($this->getDataByRegion($region)[$country] as $key => $val) {
             if ($key != 'name' && $key != 'sort') {
-                $data[key($val['deals'])] = $val['deals'][key($val['deals'])];
+                foreach ($val['deals'] as $k => $v) {
+                if ($k != 'name' && $k != 'sort') 
+                    $data[$k] = $v;                
+                }            
             }
-        }
+        }        
         return $data;
     }
 
