@@ -11,10 +11,14 @@
 
 namespace HC\Merch\Models;
 
+use Phalcon\Exception;
+
 class Page extends \Phalcon\Mvc\Model {
 
+    const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
+    const DEFAULT_PAGE_LAYOUT = 'main';    
 
     protected $campaignFilePath;
     protected $bannerFilePath;
@@ -23,14 +27,9 @@ class Page extends \Phalcon\Mvc\Model {
     protected $languageCode;
     protected $region;
     protected $campaignName;
-    protected $cachePath;
-    protected $fileCampaignPFx = '_campaign_data.json';
-    protected $fileDealsPFx = '_deals_data.json';
-    protected $fileBannerPFx = '_banner_data.json';
     protected $langFilePath;
 
     public function initialize() {
-        $this->cachePath    = __DIR__ . '/../../../data/cache/';
         $this->langFilePath = __dir__ . '/../language/';
     }
     
@@ -124,37 +123,64 @@ class Page extends \Phalcon\Mvc\Model {
         return $data;
     }
 
+    /**
+     * Load the campaign data
+     * @return bool|array
+     */
     public function loadCampaignData() {
-        $this->campaignFilePath = $this->cachePath . $this->languageCode . $this->fileCampaignPFx;
-        if (file_exists($this->campaignFilePath)) {
-            return json_decode(file_get_contents($this->campaignFilePath), TRUE);
+        try {
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get(md5(strtolower($this->campaignName)).':'.$this->languageCode.':campaign');
+            if (!empty($var))
+                return json_decode($var, TRUE);
+
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
         }
         return FALSE;
     }
 
     /**
-     * Default flag is TRUE -> if primary file is not exists then, it will load default file
+     * Default flag is TRUE -> if primary data is not exists then, it will load default data
      * 
      * @param boolean $defaultFlag
      * @return array | boolean
      */
     public function loadBannerData($defaultFlag = FALSE) {
-        if (file_exists($this->cachePath . $this->languageCode . $this->fileBannerPFx)) {
-            return json_decode(file_get_contents($this->cachePath . $this->languageCode . $this->fileBannerPFx), TRUE);
-        }
-        //if default flag is true then, load default banner file
-        if ($defaultFlag == TRUE) {
-            if (file_exists($this->cachePath . self::DEFAULT_PAGE_LANG . $this->fileBannerPFx)) {
-                return json_decode(file_get_contents($this->cachePath . self::DEFAULT_PAGE_LANG . $this->fileBannerPFx), TRUE);
+
+        try {
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get(md5(strtolower($this->campaignName)).':'.$this->languageCode.':banner');
+            if (!empty($var))
+                return json_decode($var, TRUE);
+
+            if ($defaultFlag == TRUE) {
+                $varDefault = $Couch->get(md5(strtolower(self::DEFAULT_PAGE_CAMPAIGN)).':'.self::DEFAULT_PAGE_LANG.':banner');
+                if (!empty($varDefault))
+                    return json_decode($varDefault, TRUE);
             }
+
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
         }
         return FALSE;
+
     }
 
+    /**
+     * Load the hotel deals
+     * @return bool|array
+     */
+
     public function loadHotelData() {
-        $this->hotelFilePath = $this->cachePath . $this->languageCode . $this->fileDealsPFx;
-        if (file_exists($this->hotelFilePath)) {
-            return json_decode(file_get_contents($this->hotelFilePath), TRUE);
+        try {
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get(md5(strtolower($this->campaignName)).':'.$this->languageCode.':deals');
+            if (!empty($var))
+                return json_decode($var, TRUE);
+
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
         }
         return FALSE;
     }
@@ -165,7 +191,7 @@ class Page extends \Phalcon\Mvc\Model {
             if (array_key_exists($region, $bannerData)) {
                 return $bannerData[$region];
             }
-            return $this->loadBannerData()[self::DEFAULT_PAGE_REGION];
+            return $this->loadBannerData(TRUE)[self::DEFAULT_PAGE_REGION];
         }
         return FALSE;
     }
