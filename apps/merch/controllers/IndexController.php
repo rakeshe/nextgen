@@ -124,6 +124,8 @@ class IndexController extends ControllerBase
     }   
     
     public function setLanguageAction() {
+        //Store user selected language to session
+        $this->session->set('languageCode', $this->languageCode);
         $this->response->redirect('merch/'. $this->languageCode. '/'. $this->campaignName);
     }
     
@@ -135,8 +137,9 @@ class IndexController extends ControllerBase
         $this->campaignName = (null == $this->dispatcher->getParam("campaignName")) ? 
                 \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
         
-        $this->languageCode = (null == $this->dispatcher->getParam("languageCode")) ? 
-                \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->dispatcher->getParam("languageCode");
+        $this->languageCode = (null == $this->dispatcher->getParam("languageCode")) ?
+                (!$this->session->has('languageCode')) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->session->get('languageCode')
+                : $this->dispatcher->getParam("languageCode");
         
         $this->region = (null == $this->dispatcher->getParam("regionName")) ? 
                 \HC\Merch\Models\Page::DEFAULT_PAGE_REGION : $this->dispatcher->getParam("regionName");       
@@ -174,8 +177,9 @@ class IndexController extends ControllerBase
         //Drop down menu
         $this->DDMenue  = $this->dataModel->loadCampaignData();       
         
+        //Validating language file. if language file is not exists, set the default one
         if ($this->dataModel->isLanguageFileExists() == FALSE)
-            $this->languageCode = self::DEFAULT_PAGE_LANG;
+            $this->languageCode = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;
         
         //get translation obj
         $this->translation  = new \HC\Library\Translation($this->languageCode, 
