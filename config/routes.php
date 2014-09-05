@@ -20,7 +20,6 @@ define('DEFAULT_ROUTE_LOCALE', 'en_AU');
 define('DEFAULT_ROUTE_CONTROLLER', 'index');
 define('DEFAULT_ROUTE_ACTION', 'index');
 
-
 /**
  * Set 404 (page not found) route
  */
