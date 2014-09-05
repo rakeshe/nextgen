@@ -9,9 +9,9 @@
                     </li>
          {% endfor %}
 	{% endif %}		
-	{% if menuItemsLanguageOptions is defined%}
+	{% if menuItemsLanguageOptions is defined%}        
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">English <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode] }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 {% for language_code,label in menuItemsLanguageOptions %}
                     <li lang="{{ language_code }}" class="">
