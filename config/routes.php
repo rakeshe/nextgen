@@ -7,7 +7,6 @@
 $router = new \Phalcon\Mvc\Router(false);
 
 $router->removeExtraSlashes(true);
-
 define('MODULE_NAME', '/([a-z\-]+)');
 define('RE_SEOPATH_ALPHANUM', '/([a-zA-Z0-9\-]+)');
 define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
