@@ -8,6 +8,9 @@ return new \Phalcon\Config(array(
         'password' => '',
         'dbname' => 'test',
     ),
+    'couchbase' => array(
+        'bucket' => 'merch'
+    ),
     'menuItems' => array(
         'site' => array(
             'menu_travel_insurance' => 'http://www.hotelclub.com/travel-insurance'

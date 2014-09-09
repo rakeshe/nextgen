@@ -7,10 +7,10 @@
 $router = new \Phalcon\Mvc\Router(false);
 
 $router->removeExtraSlashes(true);
-
 define('MODULE_NAME', '/([a-z\-]+)');
 define('RE_SEOPATH_ALPHANUM', '/([a-zA-Z0-9\-]+)');
 define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
+
 //define('RE_SEOPATH_ALPHA', '/^[\\s\\d\\p{L}]+$/u');
 define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
 
@@ -19,7 +19,6 @@ define('DEFAULT_ROUTE_NAMESPACE', 'HC\Merch\Controllers');
 define('DEFAULT_ROUTE_LOCALE', 'en_AU');
 define('DEFAULT_ROUTE_CONTROLLER', 'index');
 define('DEFAULT_ROUTE_ACTION', 'index');
-
 
 /**
  * Set 404 (page not found) route

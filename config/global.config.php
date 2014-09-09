@@ -14,6 +14,12 @@ return new \Phalcon\Config(array(
         'password' => '115',
         'dbname' => '115',
     ),
+    'couchbase' => array(
+        'host'  => '127.0.1.1',
+        'port'  => 8091,
+        'user'  => '',
+        'password' => '',  
+    ),
     'menuItems' => array(
         'top' => array(
             'menu_my_bookings' => 'https://www.hotelclub.com/trips/current',
