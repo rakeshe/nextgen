@@ -37,6 +37,7 @@ class IndexController extends ControllerBase
         parent::initialize();
         $this->setupPage();
         $this->campaignFileCheck();
+		var_dump( new \Couchbase);
     }    
 
     public function indexAction()
