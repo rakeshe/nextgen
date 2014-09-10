@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="74273a63-94dd-489a-b3c6-321382fafa75" name="Default" comment="" />
+    <list default="true" id="74273a63-94dd-489a-b3c6-321382fafa75" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" afterPath="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="nextgen.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,37 +29,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="campaign_data_en.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="207" column="42" selection-start="10441" selection-end="10441" vertical-scroll-proportion="0.0" vertical-offset="3100" max-vertical-offset="6596">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="31" selection-start="1811" selection-end="1811" vertical-scroll-proportion="-8.576923" vertical-offset="440" max-vertical-offset="1275">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HotelHelper.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="21" selection-start="1559" selection-end="1559" vertical-scroll-proportion="1.2822857" vertical-offset="0" max-vertical-offset="1530">
+              <folding>
+                <element signature="e#6#98#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Module.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="1105">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/app.config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="2" selection-start="245" selection-end="245" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="306">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/global.config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="28" selection-start="301" selection-end="301" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="884">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="17" selection-start="3430" selection-end="3430" vertical-scroll-proportion="-86.96154" vertical-offset="0" max-vertical-offset="2499">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="campaign_data_en.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="390" column="41" selection-start="18873" selection-end="18873" vertical-scroll-proportion="0.58488375" vertical-offset="6127" max-vertical-offset="6987">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Page.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/merch/models/Page.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="36" selection-start="682" selection-end="682" vertical-scroll-proportion="-11.769231" vertical-offset="102" max-vertical-offset="2176">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu_tabs_desktop.volt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/menu/menu_tabs_desktop.volt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="32" selection-start="2851" selection-end="2851" vertical-scroll-proportion="-34.653847" vertical-offset="0" max-vertical-offset="1802">
+            <state line="148" column="17" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-26.73077" vertical-offset="1770" max-vertical-offset="2618">
               <folding />
             </state>
           </provider>
@@ -78,6 +113,11 @@
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/apps/merch/models/Page.php" />
         <option value="$PROJECT_DIR$/config/routes.php" />
+        <option value="$PROJECT_DIR$/data/cache/campaign_data_en.php" />
+        <option value="$PROJECT_DIR$/data/cache/en_AU_banner_data.json" />
+        <option value="$PROJECT_DIR$/apps/merch/config/config.php" />
+        <option value="$PROJECT_DIR$/apps/merch/Module.php" />
+        <option value="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" />
       </list>
     </option>
   </component>
@@ -166,60 +206,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="volt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cache" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -238,6 +224,68 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nextgen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -248,8 +296,14 @@
     <property name="ignore_missing_gitignore" value="true" />
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+    <property name="recentsLimit" value="5" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.campaign_data_en.php">
+    <configuration default="false" name="campaign_data_en.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/data/cache/campaign_data_en.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
@@ -263,7 +317,14 @@
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
-    <list size="0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.campaign_data_en.php" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.campaign_data_en.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <changelist date="1407803112220">
@@ -285,30 +346,34 @@
       <created>1407811431188</created>
       <updated>1407811431188</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[NG-48] View helper for hotel \HC\Merch\Helpers\HotelHelper">
+      <created>1407976145846</created>
+      <updated>1407976145846</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28756756" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28647926" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3149946" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47388536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17465389" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14323749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47388536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39459458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3145946" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -350,14 +415,16 @@
     </option>
     <MESSAGE value="routes in progress" />
     <MESSAGE value="[NG-32] use named const, default routes updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="[NG-32] use named const, default routes updates" />
+    <MESSAGE value="[NG-47] Add banner json data" />
+    <MESSAGE value="[NG-48] View helper for hotel \HC\Merch\Helpers\HotelHelper" />
+    <option name="LAST_COMMIT_MESSAGE" value="[NG-48] View helper for hotel \HC\Merch\Helpers\HotelHelper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/apps/merch/models/Page.php</url>
-          <line>31</line>
+          <line>48</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
@@ -365,6 +432,27 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="206" column="42" selection-start="10398" selection-end="10398" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="23" selection-start="2074" selection-end="2074" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258" />
@@ -377,29 +465,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_layouts_main.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="221" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="50" selection-start="1124" selection-end="1124" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="510" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/controllers/IndexController.php">
@@ -429,29 +500,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="1172" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="1172" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_layouts_main.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="221" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="510" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/controllers/IndexController.php">
@@ -499,21 +553,6 @@
         <state line="55" column="4" selection-start="1526" selection-end="1526" vertical-scroll-proportion="-5.269231" vertical-offset="696" max-vertical-offset="1241" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="72" selection-start="890" selection-end="890" vertical-scroll-proportion="0.22235434" vertical-offset="0" max-vertical-offset="841" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_layouts_main.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="142" selection-end="142" vertical-scroll-proportion="0.13934426" vertical-offset="0" max-vertical-offset="854" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_ti_views_index_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="425" selection-end="425" vertical-scroll-proportion="0.19906323" vertical-offset="0" max-vertical-offset="854" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.49485713" vertical-offset="434" max-vertical-offset="1309" />
@@ -539,48 +578,14 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.30058652" vertical-offset="356" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.036208734" vertical-offset="0" max-vertical-offset="939">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.33333334" vertical-offset="537" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_merch_views_404_404.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="555" selection-end="555" vertical-scroll-proportion="0.73015875" vertical-offset="13" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/volt/c__www_nextgen_apps_merch_views_index.volt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.720548" vertical-offset="128" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="2" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.036208734" vertical-offset="0" max-vertical-offset="939" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="379">
-          <folding>
-            <marker date="1407806357241" expanded="true" signature="-1:-1" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="379" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../phalcon-devtools/ide/1.2.4/Phalcon/Mvc/Router.php">
@@ -592,71 +597,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/ErrorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1584" selection-end="1584" vertical-scroll-proportion="1.1216495" vertical-offset="136" max-vertical-offset="1037">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/controllers/CampaignController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="141" selection-end="161" vertical-scroll-proportion="-0.78969073" vertical-offset="434" max-vertical-offset="1972">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/controllers/ContactController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="247" selection-end="247" vertical-scroll-proportion="0.28041238" vertical-offset="0" max-vertical-offset="782">
-          <folding />
-        </state>
+        <state line="45" column="0" selection-start="1584" selection-end="1584" vertical-scroll-proportion="1.1216495" vertical-offset="136" max-vertical-offset="1037" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/.name">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633">
-          <folding />
-        </state>
+        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="484" selection-end="484" vertical-scroll-proportion="0.3131313" vertical-offset="72" max-vertical-offset="1615">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="484" selection-end="484" vertical-scroll-proportion="0.3131313" vertical-offset="72" max-vertical-offset="1615" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="44" selection-start="3483" selection-end="3483" vertical-scroll-proportion="0.5858586" vertical-offset="1566" max-vertical-offset="2431">
+        <state line="116" column="44" selection-start="3483" selection-end="3483" vertical-scroll-proportion="0.5858586" vertical-offset="1566" max-vertical-offset="2431" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/menu/menu_tabs_desktop.volt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="32" selection-start="2851" selection-end="2851" vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1802" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/models/Hotel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cache/en_AU_banner_data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="4128" selection-start="4128" selection-end="4128" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/controllers/ContactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="43" selection-start="169" selection-end="169" vertical-scroll-proportion="0.17525773" vertical-offset="0" max-vertical-offset="782" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/controllers/CampaignController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="1" selection-start="212" selection-end="212" vertical-scroll-proportion="0.14604811" vertical-offset="0" max-vertical-offset="1972" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cache/en_AU_campaign_data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="93153" selection-start="93153" selection-end="93153" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/models/Page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="37" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.720504" vertical-offset="68" max-vertical-offset="2176">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/items/hotels.volt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="173" column="39" selection-start="7300" selection-end="7300" vertical-scroll-proportion="0.38946164" vertical-offset="2601" max-vertical-offset="25092" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="207" column="42" selection-start="10441" selection-end="10441" vertical-scroll-proportion="0.0" vertical-offset="3100" max-vertical-offset="6596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="2" selection-start="245" selection-end="245" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/global.config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="301" selection-end="301" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="884">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="17" selection-start="3430" selection-end="3430" vertical-scroll-proportion="-86.96154" vertical-offset="0" max-vertical-offset="2499">
+        <state line="148" column="17" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-26.73077" vertical-offset="1770" max-vertical-offset="2618">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/models/Page.php">
+    <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="36" selection-start="682" selection-end="682" vertical-scroll-proportion="-11.769231" vertical-offset="102" max-vertical-offset="2176">
+        <state line="39" column="31" selection-start="1811" selection-end="1811" vertical-scroll-proportion="-8.576923" vertical-offset="440" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/menu/menu_tabs_desktop.volt">
+    <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="32" selection-start="2851" selection-end="2851" vertical-scroll-proportion="-34.653847" vertical-offset="0" max-vertical-offset="1802">
+        <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
+    <entry file="file://$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="390" column="41" selection-start="18873" selection-end="18873" vertical-scroll-proportion="0.58488375" vertical-offset="6127" max-vertical-offset="6987">
-          <folding />
+        <state line="66" column="21" selection-start="1559" selection-end="1559" vertical-scroll-proportion="1.2822857" vertical-offset="0" max-vertical-offset="1530">
+          <folding>
+            <element signature="e#6#98#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

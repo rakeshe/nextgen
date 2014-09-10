@@ -79,4 +79,16 @@ class HotelHelper extends \Phalcon\Tag
     {
         return self::image(self::getClassicHotelImageUri($oneg));
     }
+
+
+    /**
+     * @param String $oneg
+     * @return bool
+     */
+    static public function getBookingpath(String $oneg){
+
+        return true;
+
+
+    }
 }

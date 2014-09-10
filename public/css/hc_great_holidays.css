@@ -142,7 +142,7 @@ a, a:link, .link{ color: #562d82; }
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
-
+#dkt_banner .dropdown-menu{ background-color:#ffffff !important; }
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu {
     min-width:auto;
     top:-17px;
@@ -164,7 +164,7 @@ a, a:link, .link{ color: #562d82; }
 
 #dkt_banner #regionTabs .dropdown ul.level3 {
     float:left;
-    left:177px;
+    left:143px;
     position:absolute;
     top:14px;
     padding:0;
