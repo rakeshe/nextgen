@@ -221,6 +221,16 @@ class Page extends \Phalcon\Mvc\Model {
         else
             return FALSE;
     }
+    
+    public function getMenu() {
+        
+        try {
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            return json_decode($Couch->get("menuItems"));
+        } catch (CouchbaseException $ex) {
+            echo $ex->getMessage();
+        }     
+    }
 
     /* @todo refactor this logic 
       protected function getCurrentTab()

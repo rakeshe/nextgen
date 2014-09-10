@@ -136,7 +136,7 @@ class IndexController extends ControllerBase
         
         $this->campaignName = (null == $this->dispatcher->getParam("campaignName")) ? 
                 \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
-        
+       
         $this->languageCode = (null == $this->dispatcher->getParam("languageCode")) ?
                 (!$this->session->has('languageCode')) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->session->get('languageCode')
                 : $this->dispatcher->getParam("languageCode");
@@ -151,45 +151,48 @@ class IndexController extends ControllerBase
                 $this->dispatcher->getParam("cityName");
     }
     
+    private function isValidLanguage() {
+        
+        if ($this->dataModel->isLanguageFileExists() == FALSE) {
+            //redirect
+            $this->session->set('languageCode', $this->languageCode);
+            $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
+        }
+    }
+
+
     /**
      * Setting page data
      */
     protected function setupPage()
     {
         //setting class variable
-        $this->setInputvar();
-        $this->user = new \HC\Merch\Models\Users();
-        //get Top menu 
-        //$this->menu     = $this->config->menuItems;        
-        try {
-            $this->menu = json_decode($this->Couch->get("menuItems"));
-        } catch (CouchbaseException $ex) {
-            echo $ex->getMessage();
-        }
-        
+        $this->setInputvar();        
         
         // Setup data for the page
         $this->dataModel = new \HC\Merch\Models\Page();           
         $this->dataModel
                 ->setCampaignName($this->campaignName)
                 ->setRegion($this->region)
-                ->setLanguageCode($this->languageCode);
-        //Drop down menu
-        $this->DDMenue  = $this->dataModel->loadCampaignData();       
+                ->setLanguageCode($this->languageCode); 
         
-        //Validating language file. if language file is not exists, set the default one
+        //$this->menu     = $this->config->menuItems;   //get Top menu 
+        $this->menu = $this->dataModel->getMenu();        
+        
+        //Drop down menu
+        $this->DDMenue  = $this->dataModel->loadCampaignData();
+       
+        //Validating language file. if language file is not exists, set the default one       
         if ($this->dataModel->isLanguageFileExists() == FALSE)
-            $this->languageCode = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;
+            $this->languageCode = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;        
         
         //get translation obj
         $this->translation  = new \HC\Library\Translation($this->languageCode, 
                 $this->config->application->LanguageDir);
         //get site url
         $this->uriFull = $this->router->getRewriteUri();    
-        $this->uriBase = $this->getBaseUrl();
-
-        
-       
+        $this->uriBase = $this->getBaseUrl();        
+        $this->user = new \HC\Merch\Models\Users();
     }
     
     private function buildTemplateVars() {       
