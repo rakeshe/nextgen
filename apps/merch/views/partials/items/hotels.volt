@@ -24,9 +24,9 @@
                     <img src="{{ HotelHelper.getClassicHotelImageUri(hotelDetails[index]['oneg']) }}"
                          class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>
                     <!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
-                    <div class="hotel-image-text" style="top:-30px;left:110px;">
+                    <div class="hotel-image-text" style="">
                         <div class="location-text">{{hotelDetails[index]['country']}}</div>
-                        <div class="star4">
+                        <div class="ce-star star4">
                             <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
                                  class="img-responsive" id="image_hotel" alt="Responsive image" width=""
                                  height=""/>
@@ -35,7 +35,7 @@
                 </div>
             </a>
         </div>
-        <div class="middle-offer-section col-md-5">
+        <div class="middle-offer-section col-md-4">
             <div class="hotelInfo">
                 <h3>
                     <!-- HOTEL NAME -->

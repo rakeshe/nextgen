@@ -1,6 +1,6 @@
 <!-- Desktop Search Widget -->
 <div class="clearfix"></div>
-<div id="dkt_searchBot" class="visible-desktop">
+<div id="dkt_searchBot" class="visible-md visible-lg">
     <!-- search -->
     <form class="form-inline datepicker" method="get" name="searchBot role="form">
     <div class=" where">

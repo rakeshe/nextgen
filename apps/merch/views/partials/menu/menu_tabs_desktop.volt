@@ -1,5 +1,5 @@
 <!-- desktop banner -->
-<div class="visible-desktop" id="dkt_banner">
+<div class="visible-md visible-lg" id="dkt_banner">
     <!-- Desktop region tabs -->
     <div id="regionTabs">
         <!-- Tabs -->

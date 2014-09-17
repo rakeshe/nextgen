@@ -1,6 +1,6 @@
 <!-- mobile banner -->
 
-<div class="visible-phone" id="mbl_banner">
+<div class="visible-xs" id="mbl_banner">
     <!-- Button trigger modal -->
 
     <!-- Dialog box phone Tabs -->

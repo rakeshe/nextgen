@@ -4,9 +4,8 @@
     <head>
         <meta charset="utf-8">
         {{ get_title() }}
-        {{ stylesheet_link('bootstrap2.3/css/bootstrap-responsive.css') }}
-        {{ stylesheet_link('bootstrap2.3/css//bootstrap.css') }}
-        {{ stylesheet_link('css/hc_great_holidays.css') }}
+        {{ stylesheet_link('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') }}
+        {{ stylesheet_link('css/merch.css') }}
         {{ stylesheet_link('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css') }}       
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Great hotel deals, no booking fees & member rewards. Cheap hotels in over 74,000 hotels worldwide. Get more from your holiday. Join us at hotelclub.com.">
@@ -16,7 +15,7 @@
         {{ content() }}
         {{ javascript_include('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js') }}   
         {{ javascript_include('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}   
-        {{ javascript_include('bootstrap2.3/js/bootstrap.min.js') }}          
+        {{ javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}          
         {{ javascript_include('js/utils.js') }}
         {{ javascript_include('js/nextgen.js') }}      
     </body>

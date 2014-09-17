@@ -1,5 +1,5 @@
 <!-- Tablet search widget -->
-<div id="tbt_searchBot" class="visible-tablet">
+<div id="tbt_searchBot" class="visible-sm">
     <!-- search -->
     <form class="form-inline datepicker" method="get" name="searchBot role="form">
     <div class=" where">

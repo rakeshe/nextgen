@@ -1,5 +1,5 @@
 <!-- tablet banner -->
-<div class="region_menu visible-tablet" id="tbl_banner">
+<div class="region_menu visible-sm" id="tbl_banner">
 			<table width="100%">
 				<tbody>
 				<tr>
