@@ -116,14 +116,19 @@ a, a:link, .link{ color: #562d82; }
     border:none;
     border-color:none;
 }
+ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
+width:100%;
+}
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li.dropdown-submenu a{
     background-color:#f4f4f5 !important;
 	color:#333!important;
     z-index:0;
     border-radius:0 0 0 0;
     font-size:12px!important;
-    margin:0 4px 0 0;
+    margin:0 4px 0 2px;
     padding:13px 13px;
+	border-bottom: 1px solid black;
+	
 }
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level3 li.dropdown-submenu a{
 	background-color:#f4f4f5 !important;
@@ -723,7 +728,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     padding:13px 45px;
 }
 #dkt_banner .dropdown-submenu.divider{
-background-color:"red";
+background-color:none !important;
 }
 #dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider {
     margin:0;
