@@ -232,8 +232,14 @@ a, a:link, .link{ color: #562d82; }
 }
 
 .purple-color {
-    color:#562D82;
-    font-weight:700;
+    color: #562d82;
+    font-weight: 700;
+    height: 106% !important;
+    overflow: hidden;
+    padding-top: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
 }
 
 .campaign-promo-offer {
