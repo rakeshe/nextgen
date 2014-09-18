@@ -35,7 +35,7 @@
                 </div>
             </a>
         </div>
-        <div class="middle-offer-section col-md-4">
+        <div class="middle-offer-section col-xs-12 col-sm-5 col-md-4">
             <div class="hotelInfo">
                 <h3>
                     <!-- HOTEL NAME -->
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="saveBookInfo col-md-2">
+        <div class="saveBookInfo col-xs-7 col-md-2">
             Save<br> <span class="percentage">{{hotelDetails[index]['discount']}}%</span>
 
             <div class="clearfix "></div>

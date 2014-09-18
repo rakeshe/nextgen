@@ -152,7 +152,7 @@ a, a:link, .link{ color: #562d82; }
     margin:0 4px 0 0;
     padding:13px 13px;
 }
-.dropdown-submenu.pull-left>.dropdown-menu {
+/*.dropdown-submenu.pull-left>.dropdown-menu {
     left:-100%;
     margin-left:10px;
     -webkit-border-radius:6px 0 6px 6px;
@@ -175,7 +175,7 @@ a, a:link, .link{ color: #562d82; }
     float:left;
     left:0;
     position:absolute;
-    top:54px;
+    top:52px;
     padding:0;
 	background-color:#f4f4f5 !important;
 	border:1px solid #e21e28;
@@ -716,6 +716,9 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     margin:0 4px 0 0;
     padding:13px 45px;
 }
+#dkt_banner .dropdown-submenu.divider{
+background-color:"red";
+}
 #dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider {
     margin:0;
 }
@@ -738,7 +741,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     display:block;
 }
 
-#dkt_banner .dropup .dropdown-submenu>.dropdown-menu,#mbl_banner .dropup .dropdown-submenu>.dropdown-menu {
+/* #dkt_banner .dropup .dropdown-submenu>.dropdown-menu,#mbl_banner .dropup .dropdown-submenu>.dropdown-menu {
     top:auto;
     bottom:0;
     margin-top:0;
@@ -765,7 +768,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 
     border-color: #ccc rgba(0, 0, 0, 0) -moz-use-text-color;
 }
-
+*/
 #dkt_banner .dropdown-submenu.pull-left,#mbl_banner .dropdown-submenu.pull-left {
     float:none;
 }
@@ -778,3 +781,4 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-phone div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
     float:left;
 }
+
