@@ -235,17 +235,17 @@ width:100%;
     position:relative;
     float:left;
 }
-
-.purple-color {
-    color: #562d82;
-    font-weight: 700;
-    height: 106% !important;
+div#banner a div.purple-color{
+    height: 100% !important;
     overflow: hidden;
     padding-top: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 75%;
+    width:69%;
 }
+.purple-color {
+    color: #562d82;
+    font-weight: 700;}
 
 .campaign-promo-offer {
     font-size:12px;
@@ -391,7 +391,7 @@ p.inclusions {
 
 .dropdown-menu{ text-align: left; }
 
-.dropdown-menu{ background-color:#B4B4B4; }
+.dropdown-menu{ background-color:#FFF; }
 
 .main_left_menu{ border-radius:0 0 10px 0; }
 

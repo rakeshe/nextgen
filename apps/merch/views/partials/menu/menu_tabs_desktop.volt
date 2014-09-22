@@ -16,4 +16,5 @@
     </div>
     <!-- /Desktop region tabs -->
  </div>
+  </div>
 <!-- /desktop banner -->

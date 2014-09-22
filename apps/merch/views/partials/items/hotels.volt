@@ -16,9 +16,9 @@
 {% if( isArray(hotels)) %}
         {% for index, hls in hotels %}            
         
-<div class="hotelDeal col-xs-12 col-md-6" style="cursor: default;">
+<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">
     <div class="row">
-        <div class="image_section col-md-5" id="image_section">
+        <div class="image_section col-xs-5 col-sm-5 col-md-5" id="image_section">
             <a>
                 <div>
                     <img src="{{ HotelHelper.getClassicHotelImageUri(hotelDetails[index]['oneg']) }}"
@@ -35,7 +35,7 @@
                 </div>
             </a>
         </div>
-        <div class="middle-offer-section col-xs-12 col-sm-5 col-md-4">
+        <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">
             <div class="hotelInfo">
                 <h3>
                     <!-- HOTEL NAME -->
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="saveBookInfo col-xs-7 col-md-2">
+        <div class="saveBookInfo col-xs-2 col-sm-2 col-md-2">
             Save<br> <span class="percentage">{{hotelDetails[index]['discount']}}%</span>
 
             <div class="clearfix "></div>
