@@ -97,7 +97,11 @@ class IndexController extends ControllerBase
         }      
         
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getCountryDefaultHotels($this->region, $this->country)),
+            array_merge(array (
+                "hotels" => $this->dataModel->getCountryDefaultHotels(
+                        $this->region, $this->country),
+                "country" => $this->country
+                ),
                     $this->buildTemplateVars()
         ));        
         $this->view->pick('index/page');
@@ -114,9 +118,13 @@ class IndexController extends ControllerBase
         }
 
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getHotelsByCity(
-                    $this->region, $this->country, $this->city
-                    )),
+            array_merge(array (
+                "hotels" => $this->dataModel->getHotelsByCity(
+                        $this->region, $this->country, $this->city
+                    ),
+                "country" => $this->country,
+                "city" => $this->city
+                ),
                     $this->buildTemplateVars()
         ));        
         
@@ -210,7 +218,8 @@ class IndexController extends ControllerBase
                 "t"                        => $this->translation->getTranslation(),
                 'banners'                  => $this->dataModel->getBanner($this->region),
                 'DDMenue'                  => $this->DDMenue,                
-                "hotelDetails"             => $this->dataModel->loadHotelData()				
+                "hotelDetails"             => $this->dataModel->loadHotelData(),
+                "region"                   => $this->region
             );
         
     }

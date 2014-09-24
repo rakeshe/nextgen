@@ -1,3 +1,20 @@
+{% if city is not defined %}
+{% set city = "" %}
+{% endif %}
+{% if country is defined and country != "" %}
+<ol class="breadcrumb" style="margin-top:1%;">
+    {% for key, citys in DDMenue[region][country] %}
+        {% if key != "name" and key != "sort" %}
+        <li>
+            <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}" {% if key == city %} 
+                class="active" {%endif%}>
+                     {{ key }}
+            </a>
+        </li>
+        {% endif %}
+    {% endfor %}   
+</ol>
+{% endif%}
 <!-- START VIEW PARTIAL: hotel/item list -->
 <!-- Hotel List -->
 <div class="clearfix"></div>
