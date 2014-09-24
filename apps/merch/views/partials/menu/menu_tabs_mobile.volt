@@ -1,6 +1,6 @@
 <!-- mobile banner -->
 
- 		<div class="hidden-lg hidden-md" id="mbl_banner">
+ 		<div class="visible-xs" id="mbl_banner">
 		    <!-- Dialog box phone Tabs -->
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
@@ -63,19 +63,19 @@
         </tbody>
  </table>
  </div>
-			<div id="region_menu" style="display:none">
-        <!-- Tabs -->
+			<div class="region_menu">
+              <!-- Tabs -->
 		 <div id="deal-tabs" class="tabbable deal-tabs">
 		{% if not(DDMenue is empty) %}
-		<div class="dropdown clearfix" style="position:relative!important;">
-		<ul class="dropdown-menu mobile-tabs" style="display:block">
+		<div class="dropdown clearfix">
+		<ul class="dropdown-menu desktop-tabs" style="display:block">
 		{{ partial('partials/menu/menu_tabs') }}
 		</ul>
 		</div>
 		{% endif %}
         <div class="clearfix"></div>
         <div class="red-line"></div>
-    </div>
+		</div>
 		</div>
 
 <!-- /mobile banner -->

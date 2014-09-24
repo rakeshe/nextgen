@@ -11,13 +11,83 @@
 
 /* reponsive design - starts */
 @media (min-width: 1200px) {
-.container{ width:1024px;}
+.container{ width:980px;}
  } /* Large desktop */
 
 @media (min-width:979px) and (max-width:1199px){ .container{ min-width:100%;} } /* desktop */
 
 @media (max-width:978px){
 	.container{ min-width:100%; padding:0; margin:0; }
+}
+@media only screen
+and (max-device-width: 480px) {
+.container {
+padding:0;
+}
+.subContainer{
+padding:0 !important;
+margin:0;
+}
+#tab1, #tab2, #tab3, #tab4 {margin:10px !important;}
+.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
+.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
+.hotelInfo h3 {
+color:#562D82;
+font-size:14px !important;
+line-height:9px;
+margin:0 0 3px;
+padding:0;
+}
+.button a{
+ background-color: #562d82;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 11px !important;
+    font-weight: 700;
+    height: 20px;
+    left: -8px;
+    padding: 4px 7px !important;
+    position: relative;
+}
+.region_menu .dropdown-menu {
+min-width:50% !important;
+}
+}
+@media only screen 
+and (min-device-width : 481px) 
+and (max-device-width : 767px) 
+{
+.container {
+padding:0;
+}
+.subContainer{
+padding:0 !important;
+margin:0;
+}
+#tab1, #tab2, #tab3, #tab4 {margin:10px !important;}
+.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
+.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
+.hotelInfo h3 {
+color:#562D82;
+font-size:14px !important;
+line-height:9px;
+margin:0 0 3px;
+padding:0;
+}
+.button a{
+ background-color: #562d82;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 11px !important;
+    font-weight: 700;
+    height: 20px;
+    left: -8px;
+    padding: 4px 7px !important;
+    position: relative;
+}
+.region_menu .dropdown-menu {
+min-width:50% !important;
+}
 }
 /* reponsive design - ends */
 
@@ -395,14 +465,14 @@ p.inclusions {
 
 .dropdown-menu{ background-color:#FFF; }
 
-.main_left_menu{ border-radius:0 0 10px 0; }
+.main_left_menu{ border-radius:0 0 10px 0;background-color:#B4B4B4;  }
 
-.main_right_menu{ border-radius:0 0 0 10px; }
+.main_right_menu{ border-radius:0 0 0 10px; background-color:#B4B4B4;  }
 
 #mbl_header .dropdown-menu{ box-shadow:none; }
 
 #mbl_header .dropdown-menu > li > a{ margin:10px; padding:5px; border-bottom:1px solid #909090; color:#FFF; font-size:17px; font-weight:bold; text-shadow:2px 2px 1px rgba(0,0,0,0.4); }
-
+#mbl_header .dropdown-menu > li > a{ background-color:#B4B4B4 !important; }
 #mbl_header .dropdown-menu > li > a:hover{ background-color:#B4B4B4; }
 
 .horiz_border{ border-bottom: 1px solid #909090; }
@@ -509,42 +579,44 @@ height: auto;
     font-weight:700;
     height:3em;
     text-align:left;
-    width:14em;
+    width:100%;
 }
-
-.visible-phone body{
+#mbl_banner .menu-glyphicon {
+top:-16px;
+position:relative;
+left:100%;}
+#mbl_banner ul.dropdown-menu.level2 {
+left:100%;
+min-width:50%;	
+}
+.visible-xs body{
     padding-right:0px;
     padding-left:0px;
 }
-.visible-phone  .hotelCard{
+.visible-xs  .hotelCard{
     border:1px solid #CCC;width:100%;
 }
 
-.visible-phone #Phone-Itemcard .hote_image{
+.visible-xs #Phone-Itemcard .hote_image{
     float:left;width:70px;padding:3px;width:33%;
 }
 
-.visible-phone #Phone-Itemcard .middle-offer-section {
+.visible-xs #Phone-Itemcard .middle-offer-section {
     float:left;padding:3px;width:37%;
 }
 
-.visible-phone #Phone-Itemcard .deals {
+.visible-xs #Phone-Itemcard .deals {
     float:left; text-align:center; border-left:1px solid #CCC; vertical-align:center; margin:7px 0;width:30%;
 }
-
-/*.visible-phone .hotelInfo h3 {
-color:#562D82;
-font-size:12px;
-line-height:9px;
-margin:0 0 3px;
-padding:0;
+#mbl_banner div.region_menu {
+display:none;
 }
-*/
-.visible-phone #Phone-Itemcard .rating {
+
+.visible-xs #Phone-Itemcard .rating {
     clear:both;
 }
 
-.visible-phone #Phone-Itemcard .sign-out-member-offer {
+.visible-xs #Phone-Itemcard .sign-out-member-offer {
     float:left;
     position:relative;
 }
@@ -553,48 +625,48 @@ padding:0;
     color:red;
 }
 
-.visible-phone #Phone-Itemcard .sign-out-member-offer p {
+.visible-xs #Phone-Itemcard .sign-out-member-offer p {
     color:#562D82;
     background-color:#EEEAF3;
 
 }
 
-.visible-phone #Phone-Itemcard .hotel-image-text {
+.visible-xs #Phone-Itemcard .hotel-image-text {
     position:relative;
     top:0;
 }
 
-.visible-phone #Phone-Itemcard .hotel-image-text .location-text {
+.visible-xs #Phone-Itemcard .hotel-image-text .location-text {
     color:#ccc;
     font-weight:700;
 }
 
-.visible-phone #Phone-Itemcard  .offers_rate{
+.visible-xs #Phone-Itemcard  .offers_rate{
     color:red; padding:3px;
 }
 
-.visible-phone #Phone-Itemcard  .offers_rate .offers_percentage {
+.visible-xs #Phone-Itemcard  .offers_rate .offers_percentage {
     font-size:18px;
 }
-.visible-phone #Phone-Itemcard  .offers_rate p
+.visible-xs #Phone-Itemcard  .offers_rate p
 {
     height:0;
 }
-.visible-phone #Phone-Itemcard  .valid_dates p {
+.visible-xs #Phone-Itemcard  .valid_dates p {
     padding:3px;color:#CCC;
 }
-.visible-phone #Phone-Itemcard  .button_book{
+.visible-xs #Phone-Itemcard  .button_book{
 
     padding:3px;
 }
-.visible-phone #Phone-Itemcard .button_book a {
+.visible-xs #Phone-Itemcard .button_book a {
     background-color:#562D82;
     color:#FFFFFF;
     font-size:12px;
     font-weight:bold;
     padding:4px;
 }
-.visible-phone #Phone-Itemcard clearfix{
+.visible-xs #Phone-Itemcard clearfix{
 
 }
 /************mobile2*************/
@@ -791,7 +863,7 @@ background-color:none !important;
     padding-right:20px;
 }
 
-#dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-phone div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
+#dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-xs div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
     float:left;
 }
 

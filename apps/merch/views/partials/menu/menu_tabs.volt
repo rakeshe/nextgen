@@ -1,13 +1,13 @@
 {% for tab in DDMenue %}
 <li class="dropdown-submenu level1">
-<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}">{{ tab['name'] }} <b class="caret"></b> </a>
+<a class="menu-icons" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}"> {{ tab['name'] }} <span class="menu-glyphicon visible-xs glyphicon glyphicon-plus"></span> <b class="hidden-xs caret"></b> </a>
 {% if not(tab is empty) %}
 	<ul class="dropdown-menu level2">
 	{% for tabSub in tab %}
 	{% if isArray(tabSub) %}
 	<li class="dropdown-submenu" >
-	<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }} <b class="right-caret"></b></a>
-	{% if not(tabSub is empty) %}
+	<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }} </a>
+{#	{% if not(tabSub is empty) %}
 		<ul class="dropdown-menu level3">
 		{% for tabSubmenu in tabSub %}
 		{% if isArray(tabSubmenu) %}
@@ -18,7 +18,7 @@
 		{% endif %}
 		{% endfor %}
 		</ul> 
-	{% endif %}
+	{% endif %} #}
 	</li>
 	<li class="divider"></li>
 	{% endif %}

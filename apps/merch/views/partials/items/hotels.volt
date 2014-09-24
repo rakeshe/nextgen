@@ -41,7 +41,7 @@
                     <img src="{{ HotelHelper.getClassicHotelImageUri(hotelDetails[index]['oneg']) }}"
                          class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>
                     <!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
-                    <div class="hotel-image-text" style="">
+                    <div class=" hidden-xs hotel-image-text" style="">
                         <div class="location-text">{{hotelDetails[index]['country']}}</div>
                         <div class="ce-star star4">
                             <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
@@ -58,15 +58,25 @@
                     <!-- HOTEL NAME -->
                     <a>
                         <div class="purple-color" title="{{hotelDetails[index]['name']}}">
-						{{substr(hotelDetails[index]['name'],0,15)}}
-						{% if hotelDetails[index]['name']|length >=  15 %}
+						{{substr(hotelDetails[index]['name'],0,11)}}
+						{% if hotelDetails[index]['name']|length >=  11 %}
 						  ...
 						{% endif %}
 						
 						</div>
                     </a>
                 </h3>
-                <div class="campaign-promo-offer">{{hotelDetails[index]['promo_offer']}}</div>
+				 <div class=" clearfix visible-xs hotel-image-text" style="">
+				  <div class="rating">
+                    <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
+                                 class="img-responsive" id="image_hotel" alt="Responsive image" width=""
+                                 height=""/>
+                        </div>
+					<div class="hotel-image-text">
+						<div class="location-text">{{hotelDetails[index]['country']}}</div>
+					</div>
+				 </div>
+                <div class="hidden-xs campaign-promo-offer">{{hotelDetails[index]['promo_offer']}}</div>
                 <input type="hidden" value="Save 50%" id="hotel_inc1_1149971">
 
                 <div class="members-extras-block">
