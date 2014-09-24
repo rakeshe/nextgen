@@ -40,7 +40,13 @@
                 <h3>
                     <!-- HOTEL NAME -->
                     <a>
-                        <div class="purple-color" title="{{hotelDetails[index]['name']}}">{{hotelDetails[index]['name']}}</div>
+                        <div class="purple-color" title="{{hotelDetails[index]['name']}}">
+						{{substr(hotelDetails[index]['name'],0,15)}}
+						{% if hotelDetails[index]['name']|length >=  15 %}
+						  ...
+						{% endif %}
+						
+						</div>
                     </a>
                 </h3>
                 <div class="campaign-promo-offer">{{hotelDetails[index]['promo_offer']}}</div>

@@ -113,6 +113,7 @@ $(document).ready(function(){
 
 /* Region Tabs-Mobile Toggle Event */
 $(document).ready(function(){
+		
 $( "#regions" ).click(function() {
 $( "#mbl_banner .region_panels" ).hide();
 $( "#mbl_banner .region_menu" ).show();
