@@ -1,5 +1,5 @@
 <!-- mobile banner -->
- <div class="red-line"></div>
+ <div class=" hidden-lg hidden-md red-line"></div>
  		<div class="visible-xs visible-sm" id="mbl_banner">
 		    <!-- Dialog box phone Tabs -->
     <!-- Modal -->

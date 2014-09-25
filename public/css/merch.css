@@ -54,7 +54,29 @@ min-width:100% !important;
 }
 .red-line{ top:0px !important;}
 .btn-group, .btn-group-vertical { min-width:50% !important;}
+.carousel-caption h2 {
+font-size:14px !impotant;
+}
 
+.carousel-caption h3 {
+ font-size:12px !impotant;
+}
+
+.carousel-caption h5 {
+ font-size:10px !impotant;
+}
+div.carousel-caption h3 span {
+font-size:14px !impotant;
+}
+#mbl_member_logo{
+width:70px !important;
+}
+.btn.button > a{
+margin-left: 12px ;
+}
+p.inclusions{
+margin:2px 0 0 10px !important;
+}
 }
 @media only screen 
 and (min-device-width : 481px) 
@@ -92,6 +114,12 @@ padding:0;
 min-width:100% !important;
 }
 .red-line{ top:0px !important;}
+.btn.button > a{
+margin-left: 12px ;
+}
+p.inclusions{
+margin:2px 0 0 10px !important;
+}
 }
 @media only screen 
 and (min-device-width : 768px) 
@@ -302,7 +330,7 @@ width:100%;
     border-top:5px solid #E21E28;
     height:5px;
     position:relative;
-    top:31px;
+    top:0px;
 }
 
 .tab-content {
@@ -417,7 +445,7 @@ p.inclusions {
     left:0;
     position:relative;
     top:-19px;
-	width:179px;
+	width:100%;
 }
 
 .hotelDeal .row #image_section.image_section a .hotel-image-text .location-text{
@@ -462,7 +490,7 @@ p.inclusions {
 #mbl_main_logo{ height:60px; display:block; }
 #mbl_main_logo > img{ padding:14px; }
 
-#mbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right; width:120px; padding:25px 5px 0; text-decoration:none; font-size:14px; }
+#mbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right; width:120px; padding:25px 2px 0; text-decoration:none; font-size:14px; }
 
 #mbl_menu_logo:active, #mbl_menu .open > a, #mbl_member_logo:active, #mbl_member .open > a { background-color: #B4B4B4; color:#FFF !important; text-shadow:2px 2px 1px rgba(0,0,0,0.4); box-shadow:0 3px 3px #555 inset; }
 
@@ -712,13 +740,19 @@ display:none;
 /* tablet version - ends */
 
 .carousel-caption {
-    height: auto;
+    background-color: transparent;
+    display: inline-block;
+    float: right;
+    height: 100px;
     left: 50%;
-    max-width: 47%;
+    margin: 0 !important;
+    opacity: 1;
+    padding: 10px;
+    position: absolute;
     right: 0;
     text-align: left;
-    z-index: 2;
-
+    top: 191px;
+    z-index: 1;
 }
 
 .carousel-caption h2 {
@@ -727,6 +761,7 @@ display:none;
     opacity:0.75;
     max-width:100%;
     margin:0;
+	font-family:SerifaStd55Roman;
 }
 
 .carousel-caption h3 {
@@ -735,6 +770,7 @@ display:none;
     opacity:0.75!important;
     max-width:100%;
     margin:0;
+	font-family:SerifaStd55Roman;
 }
 
 .carousel-caption h5 {
@@ -744,10 +780,11 @@ display:none;
     max-width:100%;
     font-weight:700;
     margin:0;
+	font-family:SerifaStd55Roman;
 }
 #dkt_carousel .carousel-indicators {
 
-    margin-bottom:2%;
+    margin-bottom:3%;
 }
 #dkt_header li.loyaltyInfo,#mbl_banner .modal-content h5,h2 {
     font-weight:700;
@@ -906,10 +943,13 @@ background-color:none !important;
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-xs div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
     float:left;
 }
-
+.panel-heading > a{
+font-size:14px;
+}
+.panel-group {margin-bottom:1px !important;}
 .bread-crumb-location {
 padding: 1.5em 0em 1em 1em;
-margin: 0px 10px;
+margin-left:17px;
 border-bottom: 1px solid rgb(226, 30, 40);
 display: inline-block;
 }

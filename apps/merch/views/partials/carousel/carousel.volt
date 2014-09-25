@@ -18,7 +18,7 @@
                 <div class="item{{ item_class }}">
                     <img src="{{ banner['img'] }}" alt="Member" />
                      <div class="row">
-	                  <div class="hidden-phone">
+	                  <div class="hidden-xs">
 	                        <div class="carousel-caption ">
 					<h2>{{ banner['h1'] }}</h2>
 					<h3><span>{{ banner['h2'] }} </h3>
@@ -27,7 +27,7 @@
 	                        </div>
 	                     </div>
                     </div>
-		    <div class="visible-phone">
+		    <div class="visible-xs">
 		    	<div class="row">
                         <div class="carousel-caption ">
 				<div  class="deal_text1"><span>{{ banner['h1'] }}</span></div>

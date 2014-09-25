@@ -12,8 +12,9 @@
 		</div>
 		{% endif %}
         <div class="clearfix"></div>
-        <div class="red-line"></div>
+       
     </div>
+	 <div class="red-line"></div>
     <!-- /Desktop region tabs -->
  </div>
   </div>

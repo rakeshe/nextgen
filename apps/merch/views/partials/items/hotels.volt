@@ -3,7 +3,7 @@
 {% endif %}
 {% if country is defined and country != "" %}
 <div class="row">
-<div class="col-md-10 col-md-push-1 bread-crumb-location">
+<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bread-crumb-location">
 <ul class="bread-crumb-Links">
     {% set cntFlag = false %}
     {{cntFlag}}
@@ -30,7 +30,7 @@
 <!-- START VIEW PARTIAL: hotel/item list -->
 <!-- Hotel List -->
 <div class="clearfix"></div>
-<div id="hotelList" class="subContainer">
+<div id="hotelList" class="">
 <div class="row">
 <!-- Visible Desktop/Tablets Hotel Item List -->
     
@@ -47,7 +47,7 @@
         
 <div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">
     <div class="row">
-        <div class="image_section col-xs-5 col-sm-5 col-md-5" id="image_section">
+        <div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">
             <a>
                 <div>
                     <img src="{{ HotelHelper.getClassicHotelImageUri(hotelDetails[index]['oneg']) }}"
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        <div class="saveBookInfo col-xs-2 col-sm-2 col-md-2">
+        <div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">
             Save<br> <span class="percentage">{{hotelDetails[index]['discount']}}%</span>
 
             <div class="clearfix "></div>
