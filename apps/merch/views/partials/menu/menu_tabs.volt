@@ -1,6 +1,6 @@
 {% for tab in DDMenue %}
 <li class="dropdown-submenu level1">
-<a class="menu-icons" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}"> {{ tab['name'] }} <span class="menu-glyphicon visible-xs visible-sm glyphicon glyphicon-plus"></span> <b class="hidden-xs ="hidden-sm caret"></b> </a>
+<a class="menu-icons" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}"> {{ tab['name'] }} <b class="menu-glyphicon visible-xs visible-sm glyphicon glyphicon-plus"></b> <span class="hidden-xs hidden-sm caret"></span> </a>
 {% if not(tab is empty) %}
 	<ul class="dropdown-menu level2">
 	{% for tabSub in tab %}

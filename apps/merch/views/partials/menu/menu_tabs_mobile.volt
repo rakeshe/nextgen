@@ -38,11 +38,11 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-	   <div class="region_panels hidden-md hidden-lg ">
+	   <div class="region_panels">
     <table width="100%">
         <tbody><tr>
             <td width="50%">
-			  <div class="panel-group">
+			  <div class="hidden-md hidden-lg panel-group">
                   <div class="panel">
                         <div class="panel-heading">
                             <a id="regions" href="javascript:void(0)">{{ region }}<span class="right-caret"></span> </a>

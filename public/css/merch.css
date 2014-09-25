@@ -54,6 +54,9 @@ min-width:100% !important;
 }
 .red-line{ top:0px !important;}
 .btn-group, .btn-group-vertical { min-width:50% !important;}
+.btn-group > .btn, .btn-group-vertical > .btn {
+font-weight:bold;
+}
 .carousel-caption h2 {
 font-size:14px !impotant;
 }
@@ -77,11 +80,34 @@ margin-left: 12px ;
 p.inclusions{
 margin:2px 0 0 10px !important;
 }
+.btn-group-vertical >.btn:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
+.btn.btn-default.dropdown-toggle:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
+.bread-crumb-location ul.bread-crumb-Links li.bread-crumb-li a
+{
+font-size:11px!important;
+}
+.btn.btn-default.dropdown-toggle{ min-width:100%}
 }
 @media only screen 
 and (min-device-width : 481px) 
 and (max-device-width : 767px) 
 {
+.btn-group-vertical >.btn:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+font-weight:bold;
+}
 .container {
 padding:0;
 }
@@ -120,11 +146,25 @@ margin-left: 12px ;
 p.inclusions{
 margin:2px 0 0 10px !important;
 }
+.btn.btn-default.dropdown-toggle{ min-width:100%}
+.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
 }
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
+.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+font-weight:bold;
+}
 .region_menu .dropdown-menu {
 min-width:50% !important;
 }
@@ -133,12 +173,19 @@ min-width:50% !important;
 .region_menu .dropdown-menu {
     min-width: 99% !important;
 }
+.hotelDeal .row #image_section.image_section a .hotel-image-text {width:68%!important;}
+.btn.btn-default.dropdown-toggle{ min-width:100%}
 }
 
 @media only screen 
 and (min-device-width : 481px) 
 and (max-device-width : 767px) 
 {
+.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+background-color:red !important;
+color:#fff;
+font-weight:bold;
+}
 .region_menu .dropdown-menu {
 min-width:50% !important;
 }
@@ -600,6 +647,11 @@ p.inclusions {
     vertical-align:top;
     width:0;
     margin:3px 0 0 3px;
+}
+  .caret{ left: 100%;
+    position: relative;
+    right: 0;
+    top: -12px;
 }
 #mbl_banner .modal-dialog .dropdown-menu{
     background-color:#FFFFFF;

@@ -69,12 +69,16 @@
                 <h3>
                     <!-- HOTEL NAME -->
                     <a>
-                        <div class="purple-color" title="{{hotelDetails[index]['name']}}">
+                        <div class="hidden-sm purple-color" title="{{hotelDetails[index]['name']}}">
 						{{substr(hotelDetails[index]['name'],0,11)}}
 						{% if hotelDetails[index]['name']|length >=  11 %}
 						  ...
 						{% endif %}
 						
+						</div>
+						<div title="{{hotelDetails[index]['name']}}" class="visible-sm purple-color">
+						{{hotelDetails[index]['name']}}
+												
 						</div>
                     </a>
                 </h3>
