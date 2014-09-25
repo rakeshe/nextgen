@@ -1,19 +1,31 @@
 {% if city is not defined %}
-{% set city = "" %}
+{% set city = false %}
 {% endif %}
 {% if country is defined and country != "" %}
-<ol class="breadcrumb" style="margin-top:1%;">
+<div class="row">
+<div class="col-md-10 col-md-push-1 bread-crumb-location">
+<ul class="bread-crumb-Links">
+    {% set cntFlag = false %}
+    {{cntFlag}}
+    {% set ddLength = DDMenue[region][country] | length -2 %}
+    {% set ddCounter = 1%}
     {% for key, citys in DDMenue[region][country] %}
         {% if key != "name" and key != "sort" %}
-        <li>
-            <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}" {% if key == city %} 
-                class="active" {%endif%}>
-                     {{ key }}
-            </a>
+        {% if cntFlag == false %}
+        <li class="bread-crumb-first-li{% if city == false %} bread-crumb-li-selected{%endif%}">
+            <a href="{{ uriBase }}/{{ region }}/{{ country }}">{{ country }}&nbsp;&nbsp;&nbsp;>></a>
         </li>
+        {% set cntFlag = true %}
+        {% endif %}      
+        <li class="{% if ddLength == ddCounter %}bread-crumb-last-li{% else %}bread-crumb-li{%endif%}{% if key == city %} bread-crumb-li-selected{%endif%}">
+            <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}">{{ key }}</a>
+        </li>
+        {% set ddCounter = ddCounter + 1 %}
         {% endif %}
     {% endfor %}   
-</ol>
+</ul>
+</div>
+</div>
 {% endif%}
 <!-- START VIEW PARTIAL: hotel/item list -->
 <!-- Hotel List -->
