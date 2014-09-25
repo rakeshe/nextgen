@@ -1,6 +1,6 @@
 <!-- mobile banner -->
-
- 		<div class="visible-xs" id="mbl_banner">
+ <div class="red-line"></div>
+ 		<div class="visible-xs visible-sm" id="mbl_banner">
 		    <!-- Dialog box phone Tabs -->
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
@@ -45,13 +45,13 @@
 			  <div class="panel-group">
                   <div class="panel">
                         <div class="panel-heading">
-                            <a id="regions" href="javascript:void(0)">Australia & NZ<span class="right-caret"></span> </a>
+                            <a id="regions" href="javascript:void(0)">{{ region }}<span class="right-caret"></span> </a>
                         </div>
                     </div>
                 </div>
             </td>
             <td align="right">
-                <div  class="panel-group">
+                <div  class="panel-group hidden-sm">
                     <div class="panel">
                         <div class="panel-heading">
                             <a data-target="#myModal" data-toggle="modal" href="#">Search more hotels <span class="right-caret"></span> </a>
@@ -63,19 +63,54 @@
         </tbody>
  </table>
  </div>
-			<div class="region_menu">
-              <!-- Tabs -->
-		 <div id="deal-tabs" class="tabbable deal-tabs">
-		{% if not(DDMenue is empty) %}
-		<div class="dropdown clearfix">
-		<ul class="dropdown-menu desktop-tabs" style="display:block">
-		{{ partial('partials/menu/menu_tabs') }}
-		</ul>
+ {# This code for Mouse over with same concept#}
+	{#<div class="region_menu">
+	<!-- Tabs -->
+		<div id="deal-tabs" class="tabbable deal-tabs">
+			{% if not(DDMenue is empty) %}
+				<div class="dropdown clearfix">
+				<ul class="dropdown-menu desktop-tabs" style="display:block">
+				{{ partial('partials/menu/menu_tabs') }}
+				</ul>
+				</div>
+			{% endif %}
+			<div class="clearfix"></div>
 		</div>
-		{% endif %}
-        <div class="clearfix"></div>
-        <div class="red-line"></div>
+	</div>
+#}
+<div class="region_menu">
+      		 <!-- Tabs -->
+			<table width="100%">
+				<tbody>
+				<tr>
+					<div class="btn-group-vertical">
+					{% if not(DDMenue is empty) %}
+						{% for tab in DDMenue %}
+						<div class="btn-group">						
+						<button type="button" id="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						{{ tab['name'] }}
+					    <span class="glyphicon glyphicon-plus"></span>
+						</button>
+						{% if not(tab is empty) %}
+							<ul aria-labelledby="btnGroupVerticalDrop4" role="menu" id="" class="dropdown-menu level2">
+							{% for tabSub in tab %}
+							{% if isArray(tabSub) %}
+								<li>
+								<a tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }}</a>
+								</li>
+								<li class="divider"></li>
+							{% endif %}
+								{% endfor %}
+								</ul>
+								{% endif %}
+								
+							</div>
+							{% endfor %}
+								{% endif %}
+						
+					</div>  
+				<tr>
+				</tbody>
+			</table>
 		</div>
-		</div>
-
 <!-- /mobile banner -->

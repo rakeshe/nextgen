@@ -50,8 +50,11 @@ padding:0;
     position: relative;
 }
 .region_menu .dropdown-menu {
-min-width:50% !important;
+min-width:100% !important;
 }
+.red-line{ top:0px !important;}
+.btn-group, .btn-group-vertical { min-width:50% !important;}
+
 }
 @media only screen 
 and (min-device-width : 481px) 
@@ -86,7 +89,35 @@ padding:0;
     position: relative;
 }
 .region_menu .dropdown-menu {
+min-width:100% !important;
+}
+.red-line{ top:0px !important;}
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+.region_menu .dropdown-menu {
 min-width:50% !important;
+}
+.red-line{ top:0px !important;}
+.btn-group, .btn-group-vertical { min-width:50% !important;}
+.region_menu .dropdown-menu {
+    min-width: 99% !important;
+}
+}
+
+@media only screen 
+and (min-device-width : 481px) 
+and (max-device-width : 767px) 
+{
+.region_menu .dropdown-menu {
+min-width:50% !important;
+}
+.red-line{ top:0px !important;}
+.btn-group, .btn-group-vertical { min-width:50% !important;}
+.region_menu .dropdown-menu {
+    min-width: 99% !important;
 }
 }
 /* reponsive design - ends */
@@ -821,7 +852,16 @@ background-color:none !important;
     -moz-border-radius:0 6px 6px;
     border-radius:0 6px 6px 6px;
 }
-
+#mbl_banner .dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px;
+    border-radius:0 6px 6px 6px;
+	width:100%
+}
 #dkt_banner .dropdown-submenu:hover>.dropdown-menu,#mbl_banner .dropdown-submenu:hover>.dropdown-menu {
     display:block;
 }

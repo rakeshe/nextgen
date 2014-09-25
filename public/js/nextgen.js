@@ -118,6 +118,7 @@ $( "#regions" ).click(function() {
 $( "#mbl_banner .region_panels" ).hide();
 $( "#mbl_banner .region_menu" ).show();
 });
+/* hover mobile responsive*/
 $( ".menu-icons" ).hover(
 function() {
 $( this ).find("span").removeClass( "glyphicon-plus" );
@@ -126,6 +127,23 @@ $( this ).find("span").removeClass( "glyphicon-plus" );
  $( this ).find("span").removeClass( "glyphicon-minus" );
   $( this ).find("span").addClass( "glyphicon-plus" );
 });
+/* Ontouch mobile responsive*/
+$( ".region_menu .dropdown-toggle" ).click(function() {
+$(this).find("span").toggleClass( "glyphicon-minus");
+if($( ".glyphicon" ).hasClass( "glyphicon-minus" ) == true){
+$(".btn-default").find("span").removeClass("glyphicon-minus");
+$(this).find("span").toggleClass( "glyphicon-minus");
+}
+var button_count=$( ".region_menu .btn-group-vertical" ).find("button").length; 
+var get_id=$(this).attr("id").replace(/[^0-9]/g, ''); 
+get_id=get_id-1;
+var setpos = get_id*1;
+setpos=-setpos;
+var getpos= setpos+"px";
+$( ".region_menu .dropdown-menu" ).css("top",""+getpos+"");
+
+});
+
 });
 
 
