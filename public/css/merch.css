@@ -94,7 +94,10 @@ background-color:red !important;
 color:#fff;
 font-weight:bold;
 }
-.bread-crumb-location ul.bread-crumb-Links li.bread-crumb-li a
+.bread-crumb-location{
+margin-left:0px !important;
+}
+.bread-crumb-location ul.bread-crumb-Links li.bread-crumb-li a,.bread-crumb-last-li a
 {
 font-size:11px!important;
 }
