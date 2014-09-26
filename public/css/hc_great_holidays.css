@@ -730,7 +730,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 
 #dkt_banner .dropdown-submenu:hover>a:after,#mbl_banner .dropdown-submenu:hover>a:after {
 
-    border-color: #FFFFFF rgba(0, 0, 0, 0) -moz-use-text-color;
+    border-color: #ccc rgba(0, 0, 0, 0) -moz-use-text-color;
 }
 
 #dkt_banner .dropdown-submenu.pull-left,#mbl_banner .dropdown-submenu.pull-left {
