@@ -21,7 +21,7 @@
     </div>
     <div class=" promo-code">
         <p>I have a promotion code</p>
-        <input type="text"  name="couponCode" id="couponCode" class="form-control input-md" placeholder="Location.." id="locationText">
+        <input type="text"  name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText">
     </div>
 
     </form>

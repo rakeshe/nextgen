@@ -38,7 +38,7 @@ $(document).ready(function(){
     });
  /** /Search Form Tablet date picker */
 
-     /** Search Form Dektop date picker  */
+     /** Search Form Desktop date picker  */
     var closeText = "Close";
     var currentText = "Today";
     var checkRates = "Check Rates";
@@ -79,7 +79,7 @@ $(document).ready(function(){
         dateFormat: 'dd/mm/yy',
         maxDate: '+364D',
         minDate: 0,
-        numberOfMonths: 2,
+        numberOfMonths: 1,
         showCurrentAtPos: 0,
         closeText: closeText,
         currentText: currentText,
@@ -93,7 +93,7 @@ $(document).ready(function(){
         dateFormat: 'dd/mm/yy',
         maxDate: '+364D',
         minDate: 0,
-        numberOfMonths: 2,
+        numberOfMonths: 1,
         showCurrentAtPos: 0,
         closeText: closeText,
         currentText: currentText,
