@@ -130,10 +130,10 @@ $( this ).find("b").removeClass( "glyphicon-plus" );
 });
 /* Ontouch mobile responsive*/
 $( ".region_menu .dropdown-toggle" ).click(function() {
-$(this).find("b").toggleClass( "glyphicon-minus");
+$(this).find("span").toggleClass( "glyphicon-minus");
 if($( ".glyphicon" ).hasClass( "glyphicon-minus" ) == true){
-$(".btn-default").find("b").removeClass("glyphicon-minus");
-$(this).find("b").toggleClass( "glyphicon-minus");
+$(".btn-default").find("span").removeClass("glyphicon-minus");
+$(this).find("span").toggleClass( "glyphicon-minus");
 }
 var button_count=$( ".region_menu .btn-group-vertical" ).find("button").length; 
 var get_id=$(this).attr("id").replace(/[^0-9]/g, ''); 
