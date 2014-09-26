@@ -50,7 +50,7 @@
 
 <div id="mbl_logo">
     <a href="index.html" title="Hotelclub Logo" class="head_menu_pad" id="mbl_main_logo">
-        <img src="img/logo-tablet.png" alt="Hotelclub Logo" />
+        <img src="/img/logo-tablet.png" alt="Hotelclub Logo" />
     </a>
 </div>
 
