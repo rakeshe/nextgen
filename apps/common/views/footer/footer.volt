@@ -6,7 +6,7 @@
         <div class="hzondal_line">&nbsp;</div>
         <div class="row">
             <div class="col-md-8 col-lg-9">
-			   <ul><li class="col-md-3 col-lg-2 link-label">Travel insurance links:</li></ul>
+			   <ul><li class="col-md-3 col-lg-3 link-label">Travel insurance links:</li></ul>
                <ul class="footerLinks">
                     <li class="first"><a href="https://faq.hotelclub.com/">Contact Us</a> </li>
                     <li><a href="http://www.hotelclub.com/info/page?id=TermsAndConditions">Product Disclosure Statement </a> </li>
