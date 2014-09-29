@@ -44,6 +44,7 @@
                         </tr></table></a>
 
             </li>
+			{{ partial('../../common/views/menu/menu_options-tab') }}
         </ul>
     </div>
 </div>
@@ -55,22 +56,20 @@
 </div>
 
 <div id="mbl_brief_member">
-    <!--<div id="tab_briefcase" class="visible-tablet">
+    <!--<div id="tab_briefcase" class="visible-sm">
         <a href="#" title="Hotelclub" class="head_menu_pad" id="mbl_brief_logo"><span>&nbsp;</span></a>
     </div>-->
 
     <div id="mbl_member">
         <div class="dropdown pull-right">
-           {# <a class="visible-tablet dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="tbl_member_logo">
+           {# <a class="visible-sm dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="tbl_member_logo">
              <span >Welcome</span>
             </a> #}
 	    <a class=" dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="mbl_member_logo"> <strong class="visible-sm" > Welcome </strong>
             </a>
             <ul class="dropdown-menu main_right_menu" role="menu" aria-labelledby="dLabel2">
-                <li><a href="#" alt="My Bookings">My Bookings</a></li>
-                <li><a href="#" alt="My Account">My Account</a></li>
-                <li><a href="#" alt="Sign in">Sign in</a></li>
-                <li><a href="#" alt="Register">Register</a></li>
+                               {{ partial('../../common/views/menu/menu_top') }}
+                           {{ partial('../../common/views/menu/menu_account') }}
             </ul>
         </div>
     </div>
