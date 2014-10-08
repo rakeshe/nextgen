@@ -246,7 +246,21 @@ class IndexController extends ControllerBase
         return $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
     }
     
-    /**
+    public function getLocationAction() {
+        
+        if (!empty($this->request->get("q"))) {        
+            header('text/javascript');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,"http://www.hotelclub.com/helper/hotelSmartfill");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'searchedText=' . trim($this->request->get("q")));
+            $var = curl_exec ($ch);        
+            curl_close ($ch);            
+        }
+        die();
+    }
+
+        /**
      * @return mixed
      */
     public function getLanguageCode()
