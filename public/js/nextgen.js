@@ -187,6 +187,16 @@ $(document).ready(function(){
 
 });
 
+$("#btnSearch").click(function() {
+    var local = $("#locationText").val(),
+    checkIn = $("#checkin").val(),
+    checkOut = $("#checkout").val(),
+    promo = $("#couponCode").val(),
+    languageCode = $("#btnSearch").data('local');
+    window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="+promo+"&hotel.keyword.key="+local+"&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&locale="+languageCode+"&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+    console.log(local + checkIn + checkOut + promo );
+})
+
 
 
 /* /Region Tabs-Mobile Toggle Event */

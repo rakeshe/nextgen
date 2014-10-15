@@ -18,11 +18,11 @@
     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>
-        <input type="button" class="btn col-md-offset-9" onclick="doSearch(this.form)" value="{{ t._('search') }}" name="search">
+        <input type="button" id="btnSearch" data-local="{{ languageCode }}" class="btn col-md-offset-9" value="{{ t._('search') }}" name="search">
     </div>
     <div class=" promo-code">
         <p>I have a promotion code</p>
-        <input type="text"  name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText">
+        <input type="text" name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText" />        
     </div>
     <div class="search_contacts row">
         <div class="glyphicon glyphicon-earphone col-md-1">
