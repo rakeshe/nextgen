@@ -246,10 +246,15 @@ class IndexController extends ControllerBase
         return $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
     }
     
+    /**
+     * Get location fron hotelclub
+     * passing  value to 'searchedText'
+     */
+       
     public function getLocationAction() {
         
-        if (!empty($this->request->get("q"))) {        
-            header('text/javascript');
+        if (!empty($this->request->get("q"))) {
+            header('Content-type: application/json');
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,"http://www.hotelclub.com/helper/hotelSmartfill");
             curl_setopt($ch, CURLOPT_POST, 1);

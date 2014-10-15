@@ -67,7 +67,7 @@ $router->add(
 //****************** get lang for now ***************//
 //**********************************************************//
 /**
- * matches: /merch/ja_JP/Summer-Escape/
+ * get location
  */
 $router->add(
     '/merch/get-location/:params',
