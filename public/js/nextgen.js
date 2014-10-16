@@ -186,8 +186,43 @@ $(document).ready(function(){
   });
 
 });
-
+function validate_searchform(){
+  var flag = false;
+  var errFlag = false;
+  if ($.trim($('#locationText').val()) == ''){	
+  $( ".destination_search" ).html("<p class='error_msg'>Enter location(s)</p>");
+  $( ".checkBoxDestinations" ).addClass("errorFocusChk");
+  flag = true;
+  }else {
+  $( ".destination_search" ).empty();
+  $(".checkBoxDestinations").removeClass('errorFocusChk');
+  }
+  if ($.trim($('input[name="checkin"]').val()) == ''){
+  $( ".checkBoxDestinations" ).css("outline","0px solid none");		
+  $( ".startdate" ).html("<p class='error_msg'>Select date</p>");		
+  $("input[name='checkin']").addClass('errorFocus');
+  flag = true;
+  errFlag = true;
+  } else {
+  $( ".startdate" ).empty();
+  $("input[name='checkin']").removeClass('errorFocus');
+  }
+  if ($.trim($('input[name="checkout"]').val()) == ''){
+  $( ".checkBoxDestinations" ).css("outline","0px solid none");		
+  $( ".startdate" ).html("<p class='error_msg'>Select date</p>");		
+  $("input[name='checkout']").addClass('errorFocus');
+  flag = true;
+  } else {
+  if (errFlag == false)
+  $( ".startdate" ).empty();
+  $("input[name='checkout']").removeClass('errorFocus');
+  }	
+  if (flag == false)
+  return true;
+  return false;
+  }
 $("#btnSearch").click(function() {
+    validate_searchform();
     var local = $("#locationText").val(),
     checkIn = $("#checkin").val(),
     checkOut = $("#checkout").val(),

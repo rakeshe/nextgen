@@ -7,14 +7,15 @@
         <h2>{{ t._('find_hotel_now') }}</h2>
         <p>{{ t._('where') }}</p>
         <input type="text"  class="form-control input-md" placeholder="Location.." id="locationText">
+		<p class="col-xs-5 col-sm-5 col-md-6 col-lg-5 location_search" id="location_search"></p>
     </div>
     <div class="form-group ">
         <p>{{ t._('check_in') }}</p>
-        <input type="text" class="form-control input-sm datepicker"  id="checkin" placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm datepicker" name="checkin"  id="checkin" placeholder="dd/mm/yy">
     </div>
     <div class="form-group ">
         <p>{{ t._('check_out') }}</p>
-        <input type="text" class="form-control input-sm datepicker"  id="checkout" placeholder="dd/mm/yy">
+        <input type="text" class="form-control input-sm datepicker" name="checkout" id="checkout" placeholder="dd/mm/yy">
     </div>
     <div class="controls">
         <div class="errorMessage">&nbsp;</div>
