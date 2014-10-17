@@ -9,29 +9,15 @@
 namespace HC\Library;
 class Translation
 {
-    const DEFAULT_PAGE_LANGUAGE = 'en';
-
     protected $language;
     protected $messages;
-    protected $filePath;
 
-    public function __construct($language = false, $filePath = false)
-    {
-        if ($filePath == false) {
-            throw new \Phalcon\Exception('Please specify language file');
-        }
-        $this->filePath = $filePath;
-        $this->language = null === $language ? self::DEFAULT_PAGE_LANGUAGE : $language;       
+    public function __construct($language, $message = [])
+    {        
+        $this->language = $language;
+        $this->messages = $message;       
     }
-    
-    /**
-     * Set language path
-     * @param string $path
-     */    
-    public function setPath($path) {
-        $this->filePath = $path;
-    }
-    
+   
     /**
      * Get translation object
      * @return \Phalcon\Translate\Adapter\NativeArray
@@ -40,17 +26,9 @@ class Translation
 
     public function getTranslation()
     {
-        $messages = [];
-        $languageFile = __DIR__. '/../../apps/'. $this->filePath . $this->language . '.php';        
-        //Check if we have a translation file for that lang
-        if (file_exists($languageFile)) {//Check if we have a translation file for that lang
-            require $languageFile;
-        } else {
-           throw new \Phalcon\Exception('Language file not found');
-        }
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
-            "content" => $messages
+            "content" => $this->messages
         ));
     }
     

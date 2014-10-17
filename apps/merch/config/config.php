@@ -9,7 +9,7 @@ return new \Phalcon\Config(array(
         'dbname' => 'test',
     ),
     'couchbase' => array(
-        'bucket' => 'merch'
+        'bucket' => 'hc-nextgen'
     ),
     'menuItems' => array(
         'site' => array(

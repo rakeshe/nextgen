@@ -20,124 +20,90 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'main';    
 
-    protected $campaignFilePath;
-    protected $bannerFilePath;
-    protected $hotelFilePath;
-    protected $data;
     protected $languageCode;
     protected $region;
     protected $campaignName;
-    protected $langFilePath;
+    public $validLang = FALSE;
+    
+    
+    public $dealsData = NULL;
+    public $langData = [];
+    public $menuData = NULL;
+    
+    //document names
+    protected $dealsDocName;
+    protected $langDocName;
+    protected $menuDocName;
 
-    public function initialize() {
-        $this->langFilePath = __dir__ . '/../language/';
+    public function init() {
+        
+        //initialize couchbase document names
+        $this->initDocNames();
+        //set the document data
+        $this->initBuckets();
     }
     
-    public function getData() {
-        if (null === $this->data) {
-            $this->data['hotels'] = $this->loadHotelData();
-        }
-        return $this->data;
+    public function initBuckets() {
+        $this->loadCouchDeals();
+        $this->loadCouchLanguage();
+        $this->loadCouchMenu();
     }
 
-    /**
-     * Get only region data from campaing
-     * @param String $region
-     * return array
-     */
-    public function getDataByRegion($region) {
-        if (is_array($this->loadCampaignData())) {
-            if (array_key_exists($region, $this->loadCampaignData())) {
-                return $this->loadCampaignData()[$region];
-            }
-        }
+    public function initDocNames() {
+        //initialize couchbase document name
+        $this->dealsDocName = "merch:deal:" . md5(strtolower($this->campaignName)) . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
+        $this->langDocName  = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
+        $this->menuDocName  = "merch:menu:" . md5('site-menu');
+    }
+
+
+    public function loadCouchDeals() {
+        try {           
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get($this->dealsDocName);
+            if(!empty($var))
+                $this->dealsData = json_decode ($var, TRUE);
+            
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
+        }        
         return FALSE;
     }
-
-    public function getDefaultHoteles() {
-        $data = [];        
-        foreach ($this->loadCampaignData() as $key => $val) {
-            if ($key != 'name' && $key != 'sort') {
-                foreach ($val as $k => $v) {
-                    if ($k != 'name' && $k != 'sort') {                       
-                        foreach ($v as $k1 => $v1) {
-                            if ($k1 != 'name' && $k1 != 'sort') {                       
-                                $data[key($v1['deals'])] = $v1['deals'][key($v1['deals'])];                                 
-                            }
-                        }                         
-                    }
-                }
-            }
+    
+    public function loadCouchLanguage() {
+         try {            
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get($this->langDocName);
+            if(!empty($var))
+                $this->langData = json_decode ($var, TRUE);
+            
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
         }        
-        return $data;
+        return FALSE;
     }
-
-    public function getCampaignDefaultHotels() {
-        $data = [];
-        foreach ($this->loadCampaignData() as $key => $val) {
-            if ($key != 'name' && $key != 'sort') {
-                foreach ($val as $k => $v) {
-                    if ($k != 'name' && $k != 'sort') {                       
-                        foreach ($v as $k1 => $v1) {
-                            if ($k1 != 'name' && $k1 != 'sort') {                       
-                                $data[key($v1['deals'])] = $v1['deals'][key($v1['deals'])];                                 
-                            }
-                        }                         
-                    }
-                }
-            }
+    
+    public function loadCouchMenu() {
+         try {            
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get($this->menuDocName);
+            if(!empty($var))
+                $this->menuData = json_decode ($var);  
+            
+        } catch(\Exception $ex) {
+            echo $ex->getMessage();
         }        
-        return $data;
-    }
-
-    public function getRegionDefaultHotels($region) {
-
-        $data = [];        
-        foreach ($this->getDataByRegion($region) as $key => $val) {
-            if ($key != 'name' && $key != 'sort') {
-                foreach ($val as $k => $v) {
-                    if ($k != 'name' && $k != 'sort') {
-                        foreach ($v['deals'] as $kd => $vd)
-                           $data[$kd] = $vd;
-                    }
-                }
-            }
-        }
-        return $data;
-    }
-
-    public function getCountryDefaultHotels($region, $country) {
-        $data = [];        
-        foreach ($this->getDataByRegion($region)[$country] as $key => $val) {
-            if ($key != 'name' && $key != 'sort') {
-                foreach ($val['deals'] as $k => $v) {
-                if ($k != 'name' && $k != 'sort') 
-                    $data[$k] = $v;                
-                }            
-            }
-        }        
-        return $data;
-    }
-
-    public function getHotelsByCity($region, $country, $city) {
-        $data = [];
-        foreach ($this->getDataByRegion($region)[$country][$city] as $key => $val) {
-            return $this->getDataByRegion($region)[$country][$city]['deals'];
-        }
-        return $data;
-    }
-
+        return FALSE;
+    }  
+    
     /**
      * Load the campaign data
      * @return bool|array
      */
     public function loadCampaignData() {
         try {
-            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var = $Couch->get(md5(strtolower($this->campaignName)).':'.$this->languageCode.':campaign');
-            if (!empty($var))
-                return json_decode($var, TRUE);
-
+            return $this->dealsData['campaign'];
+            
         } catch(\Exception $ex) {
             echo $ex->getMessage();
         }
@@ -178,10 +144,7 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function loadHotelData() {
         try {
-            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var = $Couch->get(md5(strtolower($this->campaignName)).':'.$this->languageCode.':deals');
-            if (!empty($var))
-                return json_decode($var, TRUE);
+            return $this->dealsData['deals'];
 
         } catch(\Exception $ex) {
             echo $ex->getMessage();
@@ -189,69 +152,86 @@ class Page extends \Phalcon\Mvc\Model {
         return FALSE;
     }
 
-    public function getBanner($region) {
-        $bannerData = $this->loadBannerData(TRUE);
-        if (is_array($bannerData)) {
-            if (array_key_exists($region, $bannerData)) {
-                return $bannerData[$region];
-            }
-            return $this->loadBannerData(TRUE)[self::DEFAULT_PAGE_REGION];
+    public function getBanner($campaign) {
+        try {            
+            if (key_exists($campaign, $this->dealsData['banner'])) {
+                return $this->dealsData['banner'][$campaign];
+            } else {
+                return array_shift($this->dealsData['banner']);
+            }            
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
+
         return FALSE;
     }
+    
+    public function getCityHoteles($region, $country, $city) {
+        return $this->getDefaultHoteles();
+    }
+    
+    public function getCountryHoteles($region, $country) {
+        return $this->getDefaultHoteles();
+    }
+    
+    public function getRegionHoteles($region) {
+        return $this->getDefaultHoteles();
+    }
 
-    protected function getCurrentTab() {
-        if (!(empty($this->data['tabs']))) {
-            if ($this->menuTabMain === null && $this->menuTabSub === null) {
-                return "Australia";
+    public function getDefaultHoteles() {
+        $data = [];
+        foreach ($this->dealsData['campaign'] as $key => $val) {
+            if ($key != 'name' && $key != 'sort') {
+               foreach ($val as $k => $v) {
+                    if ($k != 'name' && $k != 'sort') {                       
+                        foreach ($v as $k1 => $v1) {
+                            if ($k1 != 'name' && $k1 != 'sort') {      
+                                foreach($v1 as $k2 => $v2) {
+                                    if ($k2 != 'name' && $k2 != 'sort') {     
+                                       $data[$k2] = $v2;
+                                    }
+                                }                                                                 
+                            }
+                        }                         
+                    }
+                }
             }
-            if ($this->menuTabSub == null && !empty($this->menuTabMain)) {
-                return $this->menuTabMain;
-            }
-            if ($this->menuTabSub != null && !empty($this->menuTabSub)) {
-                return $this->menuTabSub;
-            }
-            //return $this->menuTabSub;
         }
-    }
-    
-    public function isLanguageFileExists() {
-        if (file_exists($this->langFilePath . $this->languageCode . '.php'))
+        return $data;
+    }    
+
+    public function isLanguageExists() {
+        if (!empty($this->langData))
             return TRUE;
-        else
+       
+        return FALSE;
+    }
+    public function isValidDefaultCampaign() {
+        
+        $this->dealsDocName = "merch:deal:" . md5(strtolower(self::DEFAULT_PAGE_CAMPAIGN)) . ":" . self::DEFAULT_PAGE_LANG;
+        $this->loadCouchDeals();
+        if ($this->dealsData == NULL)
             return FALSE;
+        
+        return TRUE;
+    }
+
+
+    public function setDefaultLang() {
+        try {
+            $this->langDocName  = "merch:lang:" . md5('lang-' . self::DEFAULT_PAGE_LANG) . ":" . self::DEFAULT_PAGE_LANG;
+            $this->loadCouchLanguage();
+            if (!empty($this->langData))
+                return TRUE;
+            
+            return FALSE;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+        $this->session->set('languageCode', self::DEFAULT_PAGE_LANG);
     }
     
-    public function getMenu() {
-        
-        try {
-            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            return json_decode($Couch->get("menuItems"));
-        } catch (CouchbaseException $ex) {
-            echo $ex->getMessage();
-        }     
-    }
-
-    /* @todo refactor this logic 
-      protected function getCurrentTab()
-      { //echo "<pre>"; print_r($this->menuTabSub);
-      if (!(empty($this->data['tabs']))) {
-      if ($this->menuTabMain === null && $this->menuTabSub === null) {
-      return $this->menuTabMain;
-      }
-      if ($this->menuTabSub === null && !empty($this->data['tabs'][$this->menuTabMain])) {
-      // return $this->data['tabs'][$this->menuTabMain];
-      return $this->menuTabMain;
-      }
-      if ($this->menuTabSub !== null && !empty($this->data['tabs'][$this->menuTabSub])) {
-      //return $this->data['tabs'][$this->menuTabSub];
-      return $this->menuTabSub;
-
-      }
-      }
-      }
-     */
-
     /**
      * 
      * @param String $region

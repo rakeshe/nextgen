@@ -32,11 +32,11 @@ class IndexController extends ControllerBase
         \Phalcon\Tag::setTitle('Welcome');
         parent::initialize();
         $this->setupPage();
-        $this->campaignFileCheck();
+        
     }    
 
     public function indexAction()
-    {       
+    {   
         $this->view->setVars(
             array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles()),
                     $this->buildTemplateVars()
@@ -44,7 +44,7 @@ class IndexController extends ControllerBase
         $this->view->pick('index/page');
     }
 
-    public function pageAction()
+    public function campaignAction()
     {
         //Routing if unicode exists on parameter
         if (!empty($this->dispatcher->getParams()[0]) && !empty($this->dispatcher->getParams()[1]) && 
@@ -68,21 +68,18 @@ class IndexController extends ControllerBase
             $this->dispatcher->forward(array('controller' => 'index', 'action' => 'region'));
         }
          
+       // print_r($this->dataModel->getDefaultHotels($this->region)); exit;
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getCampaignDefaultHotels($this->region)),
+            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
                     $this->buildTemplateVars()
-        ));         
+        ));      
+        $this->view->pick('index/page');
     }
     
     public function regionAction() {        
         
-        //if invalid region
-        if ($this->dataModel->getDataByRegion($this->region) == FALSE) {            
-            $this->redirectToDefaultPage(); // redirect to default page
-        }
-
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getRegionDefaultHotels($this->region)),
+            array_merge(array ("hotels" => $this->dataModel->getRegionHoteles($this->region)),
                     $this->buildTemplateVars()
         ));    
         $this->view->pick('index/page');
@@ -90,15 +87,9 @@ class IndexController extends ControllerBase
     
     public function countryAction() {
         
-        //if invalid region or country
-        if ($this->dataModel->getDataByRegion($this->region) == FALSE || 
-                !is_array($this->dataModel->getDataByRegion($this->region)[$this->country])) {            
-            $this->redirectToDefaultPage(); //redirect to default page
-        }      
-        
         $this->view->setVars(
             array_merge(array (
-                "hotels" => $this->dataModel->getCountryDefaultHotels(
+                "hotels" => $this->dataModel->getCountryHoteles(
                         $this->region, $this->country),
                 "country" => $this->country
                 ),
@@ -109,17 +100,9 @@ class IndexController extends ControllerBase
 
 
     public function cityAction() {
-        //if invalid region or country or city
-        if ($this->dataModel->getDataByRegion($this->region) == FALSE || 
-                !is_array($this->dataModel->getDataByRegion($this->region)[$this->country]) ||
-                !is_array($this->dataModel->getDataByRegion($this->region)[$this->country][$this->city])                
-                ) {            
-            $this->redirectToDefaultPage(); // redirect to default page
-        }
-
         $this->view->setVars(
             array_merge(array (
-                "hotels" => $this->dataModel->getHotelsByCity(
+                "hotels" => $this->dataModel->getCityHoteles(
                         $this->region, $this->country, $this->city
                     ),
                 "country" => $this->country,
@@ -138,9 +121,43 @@ class IndexController extends ControllerBase
     }
     
     /**
+     * Setting page data
+     */
+    protected function setupPage()
+    {
+        //setting class variable
+        $this->setInputvars();
+        // Setup data for the page
+        $this->dataModel = new \HC\Merch\Models\Page();
+        $this->dataModel
+                ->setCampaignName($this->campaignName)
+                ->setRegion($this->region)
+                ->setLanguageCode($this->languageCode)
+                ->init();
+        
+        //Check campaign
+        $this->validateCampaign();
+        
+        //Validate language
+        $this->validateLanguage();
+        
+        //set menu data
+        $this->menu = $this->dataModel->menuData;        
+        //set Drop-down menu
+        $this->DDMenue  = $this->dataModel->loadCampaignData();       
+        //set translation obj        
+        $this->translation  = new \HC\Library\Translation($this->languageCode,
+                $this->dataModel->langData);        
+        //set site url
+        $this->uriFull = $this->router->getRewriteUri();   
+        //set uri base
+        $this->uriBase = $this->getBaseUrl();        
+    }
+    
+    /**
      * Set Input data to properties
      */    
-    public function setInputvar() {
+    public function setInputvars() {
         
         $this->campaignName = (null == $this->dispatcher->getParam("campaignName")) ? 
                 \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam("campaignName");
@@ -149,8 +166,8 @@ class IndexController extends ControllerBase
                 (!$this->session->has('languageCode')) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->session->get('languageCode')
                 : $this->dispatcher->getParam("languageCode");
         
-        $this->region = (null == $this->dispatcher->getParam("regionName")) ? 
-                \HC\Merch\Models\Page::DEFAULT_PAGE_REGION : $this->dispatcher->getParam("regionName");       
+        $this->region = (null == $this->dispatcher->getParam("regionName")) ? NULL :
+                $this->dispatcher->getParam("regionName");                
         
         $this->country = (null == $this->dispatcher->getParam("countryName")) ? null :
                 $this->dispatcher->getParam("countryName");
@@ -159,51 +176,46 @@ class IndexController extends ControllerBase
                 $this->dispatcher->getParam("cityName");
     }
     
-    private function isValidLanguage() {
-        
-        if ($this->dataModel->isLanguageFileExists() == FALSE) {
-            //redirect
-            $this->session->set('languageCode', $this->languageCode);
-            $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
-        }
+    /**
+     * If Campaign document doesn't exists, checkout the default campaign and redirect it
+     * If default campaign does not exists, load 404 page
+     */
+    
+    private function validateCampaign() {       
+       
+        if ($this->dataModel->dealsData == NULL) {
+            
+            if ($this->dataModel->isValidDefaultCampaign())
+                $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. 
+                        \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
+            else       
+                $this->dispatcher->forward(array('controller' => 'index', 'action' => 'show404'));
+         }
     }
-
 
     /**
-     * Setting page data
+     * If language document doesn't exists, take default language and redirect with same requested parameter
+     * If default lang doesn't exists display it same
      */
-    protected function setupPage()
-    {
-        //setting class variable
-        $this->setInputvar();        
+    private function validateLanguage() {
         
-        // Setup data for the page
-        $this->dataModel = new \HC\Merch\Models\Page();           
-        $this->dataModel
-                ->setCampaignName($this->campaignName)
-                ->setRegion($this->region)
-                ->setLanguageCode($this->languageCode); 
-        
-        //$this->menu     = $this->config->menuItems;   //get Top menu 
-        $this->menu = $this->dataModel->getMenu();        
-        
-        //Drop down menu
-        $this->DDMenue  = $this->dataModel->loadCampaignData();
-       
-        //Validating language file. if language file is not exists, set the default one       
-        if ($this->dataModel->isLanguageFileExists() == FALSE)
-            $this->languageCode = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;        
-        
-        //get translation obj
-        $this->translation  = new \HC\Library\Translation($this->languageCode, 
-                $this->config->application->LanguageDir);
-        //get site url
-        $this->uriFull = $this->router->getRewriteUri();    
-        $this->uriBase = $this->getBaseUrl();        
-        $this->user = new \HC\Merch\Models\Users();
-    }
+        if ($this->dataModel->isLanguageExists() == FALSE) {
+            if ($this->dataModel->setDefaultLang()) {
+                $url = 'merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. $this->campaignName;
+                if ($this->region != null)
+                    $url .= '/' . $this->region;
+                if ($this->country != null)
+                    $url .= '/' . $this->country;
+                if ($this->city != null)
+                    $url .= '/' . $this->city;
+                        
+                //redirect to same url
+                $this->response->redirect($url);
+            }            
+        }
+    }   
     
-    private function buildTemplateVars() {       
+    private function buildTemplateVars() {
        return array(
                 'pageLayout'               => $this->getPageLayout(),
                 'uriBase'                  => $this->uriBase,
@@ -214,29 +226,21 @@ class IndexController extends ControllerBase
                 'menuItemsLanguageOptions' => (array) $this->menu->languageOptions,
                 'menuItemsRightSite'       => $this->menu->rightSite,
                 'menuItemsAccount'         => $this->menu->account,
-                'currentUser'              => $this->user->getCurrentUser() ,
                 "t"                        => $this->translation->getTranslation(),
-                'banners'                  => $this->dataModel->getBanner($this->region),
-                'DDMenue'                  => $this->DDMenue,                
+                'banners'                  => $this->dataModel->getBanner($this->campaignName),
+                'DDMenue'                  => $this->DDMenue,
                 "hotelDetails"             => $this->dataModel->loadHotelData(),
                 "region"                   => $this->region
             );
         
-    }
-    
-    private function campaignFileCheck() {
-        
-        if ($this->dataModel->loadCampaignData() == FALSE) {            
-            return $this->response->redirect('merch/'. \HC\Merch\Models\Page::DEFAULT_PAGE_LANG. '/'. \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN);
-        }
-    }
+    }    
 
     protected function getPageLayout(){
         if(empty($this->data['meta']['pageLayout'])){
             // use session if avail
             return \HC\Merch\Models\Page::DEFAULT_PAGE_LAYOUT;
         }
-    }    
+    }
     
     protected function getBaseUrl() {
         return '/merch/' . $this->languageCode . '/' . $this->campaignName;
@@ -263,38 +267,14 @@ class IndexController extends ControllerBase
             curl_close ($ch);            
         }
         die();
-    }
-
-        /**
-     * @return mixed
-     */
-    public function getLanguageCode()
-    {
-        return $this->languageCode;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMenuTabMain()
-    {
-        return $this->menuTabMain;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMenuTabSub()
-    {
-        return $this->menuTabSub;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCampaignName()
-    {
-        return $this->campaignName;
+    }    
+    
+    public function show404Action() {
+        
+        $this->view->setVars(
+                $this->buildTemplateVars()
+                ); 
+       $this->view->pick('404/404');
     }
         
 }

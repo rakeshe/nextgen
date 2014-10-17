@@ -54,7 +54,7 @@ class ErrorController extends ControllerBase
         $this->menuTabMain  = $this->dispatcher->getParam("menuTabMain");
         $this->menuTabSub   = $this->dispatcher->getParam("menuTabSub");
         $this->translation  = new \HC\Library\Translation($this->languageCode, 
-                $this->config->application->LanguageDir);
+                []);
         $this->uriFull = $this->router->getRewriteUri();
         $this->uriBase = '/' . $this->languageCode . '/' . $this->campaignName;
     }

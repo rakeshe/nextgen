@@ -92,7 +92,7 @@ $router->add(
         "campaignName" => 2,
         "params"       => 3,
         "controller"   => 'index',
-        "action"       => 'page',
+        "action"       => 'campaign',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
