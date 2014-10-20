@@ -6,24 +6,23 @@
     <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bread-crumb-location">
         <ul class="bread-crumb-Links">
             {% if DDMenue[region][country] is defined%}
-            {% set cntFlag = false %}
-            {{cntFlag}}
-            {% set ddLength = DDMenue[region][country] | length -2 %}
-            {% set ddCounter = 1%}
-            {% for key, citys in DDMenue[region][country] %}
-            {% if key != "name" and key != "sort" %}
-            {% if cntFlag == false %}
-            <li class="bread-crumb-first-li{% if city == false %} bread-crumb-li-selected{%endif%}">
-                <a href="{{ uriBase }}/{{ region }}/{{ country }}">{{ country }}&nbsp;&nbsp;&nbsp;>></a>
-            </li>
-            {% set cntFlag = true %}
-            {% endif %}      
-            <li class="{% if ddLength == ddCounter %}bread-crumb-last-li{% else %}bread-crumb-li{%endif%}{% if key == city %} bread-crumb-li-selected{%endif%}">
-                <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}">{{ key }}</a>
-            </li>
-            {% set ddCounter = ddCounter + 1 %}
-            {% endif %}
-            {% endfor %}   
+                {% set cntFlag = false %}           
+                {% set ddLength = DDMenue[region][country] | length -2 %}
+                {% set ddCounter = 1%}
+                {% for key, citys in DDMenue[region][country] %}
+                    {% if key != "name" and key != "sort" %}
+                        {% if cntFlag == false %}
+                            <li class="bread-crumb-first-li{% if city == false %} bread-crumb-li-selected{%endif%}">
+                                <a href="{{ uriBase }}/{{ region }}/{{ country }}">{{ country }}&nbsp;&nbsp;&nbsp;>></a>
+                            </li>
+                        {% set cntFlag = true %}
+                        {% endif %}      
+                            <li class="{% if ddLength == ddCounter %}bread-crumb-last-li{% else %}bread-crumb-li{%endif%}{% if key == city %} bread-crumb-li-selected{%endif%}">
+                                <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}">{{ key }}</a>
+                            </li>
+                        {% set ddCounter = ddCounter + 1 %}
+                    {% endif %}
+                {% endfor %}   
             {% endif %}
         </ul>
     </div>
