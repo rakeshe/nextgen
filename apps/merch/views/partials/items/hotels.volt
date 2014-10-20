@@ -5,6 +5,7 @@
 <div class="row">
     <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bread-crumb-location">
         <ul class="bread-crumb-Links">
+            {% if DDMenue[region][country] is defined%}
             {% set cntFlag = false %}
             {{cntFlag}}
             {% set ddLength = DDMenue[region][country] | length -2 %}
@@ -23,6 +24,7 @@
             {% set ddCounter = ddCounter + 1 %}
             {% endif %}
             {% endfor %}   
+            {% endif %}
         </ul>
     </div>
 </div>
@@ -138,6 +140,8 @@
                 </div>
                 <!-- SET OF HOTELS-->
                 {% endfor %}
+                {% else %}
+                <div>Offers are subject to availability and may change without notice prior to reservation confirmation. Specific offer terms and conditions are available on the website. Rates may not be available on some peak dates.</div>
                 {% endif %}
             </div>    
 

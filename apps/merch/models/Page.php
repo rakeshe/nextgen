@@ -166,8 +166,25 @@ class Page extends \Phalcon\Mvc\Model {
         return FALSE;
     }
     
+    /**
+     * To get all hotels inside the city
+     * 
+     * @param type $region
+     * @param type $country
+     * @param type $city
+     * @return type array
+     */
     public function getCityHoteles($region, $country, $city) {
-        return $this->getDefaultHoteles();
+        $data = [];
+        if (isset($this->dealsData['campaign'][$region][$country][$city])){
+            foreach ($this->dealsData['campaign'][$region][$country][$city] as $key => $val) {
+                if ($key != 'name' && $key != 'sort') {
+                   
+                    $data[$key] = $val;
+                }
+            }           
+        }     
+        return $data;
     }
     
     public function getCountryHoteles($region, $country) {
