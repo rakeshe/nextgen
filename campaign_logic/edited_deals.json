@@ -1,0 +1,3833 @@
+{
+  "meta": {
+    "id_campaign": "78",
+    "url": "Summer-escape",
+    "coupon_code": "CELEBRATE",
+    "promo_start": "2014-07-22",
+    "promo_end": "2014-11-28",
+    "title": "HotelClub's Global Sale",
+    "description": "Global Sale! Great deals on hotels around the world - free nights, member extras, up to 50% off. Limted time only - book now!",
+    "terms": "Angebote sind nach Verfügbarkeit und können ohne Ankündigung geändert werden (vor Buchungsbestätigung).Spezifische Angebotsbedingungen und Konditionen diesbezüglich finden Sie auf unserer Webseite. Die Angebote und Preise könnten unter Umständen nicht an bestimmten Tagen, z.B. in der Hauptsaison, verfügbar sein. ",
+    "id_campaign_attributes": "80",
+    "fk_campaign": "78",
+    "locales": "EN,CN,HK,CS,JP,MS,FR",
+    "booking_start": "2014-07-22",
+    "booking_end": "2014-07-28",
+    "stay_start": "2013-01-01",
+    "stay_end": "2015-12-31",
+    "onegs_per_city": "12",
+    "min_rating": "3",
+    "max_rating": "5",
+    "deal_sources": "SLF,PWS,QLV",
+    "deal_types": "PO",
+    "min_discount": "20.00",
+    "max_los": "1",
+    "moo": "0",
+    "exclusive": "0",
+    "exclude_onegs": "",
+    "dt_created": "2014-07-22 21:59:38",
+    "flag": "1"
+  },
+  "banner": {
+    "Summer Escape": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "",
+        "url": "",
+        "terms": "terms",
+        "img": "/img/carousel_item1.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Northeast-Asia": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "www.hotelclub.com/marketing/DOS/HC_20140610_Mid-yearEscapeSale_960x390_EN_SEOUL.jpg"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "mg": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Pacific": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "//www.hotelclub.com/Marketing/DOS/HC_20140708_SummerEscapeSale_960x390_EN_ASIA.jpg"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Southeast-Asia": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "//www.hotelclub.com/Marketing/DOS/HC_20140722_Mid-yearEscapeSale_960x390_EN_AU.jpg"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Europe-UAE": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "//www.hotelclub.com/Marketing/DOS/HC_20140217_London_960.jpg"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Americas": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo]": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "//www.hotelclub.com/marketing/DOS/HC_20140602_HawaiiSale_960x390_EN.jpg"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Sydney": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item1.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Melbourne": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item1.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "ur": " #",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ],
+    "Brisbane": [
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item1.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item2.png"
+      },
+      {
+        "h1": "Escape the everyday",
+        "h2": "Up to 70% OFF Hotels",
+        "promo": "offer text",
+        "url": "#",
+        "terms": "terms",
+        "img": "/img/carousel_item3.png"
+      }
+    ]
+  },
+  "campaign": {
+    "Nordostasien": {
+      "name": "Nordostasien",
+      "sort": "3",
+      "China": {
+        "name": "China",
+        "sort": "999",
+        "Shanghai": {
+          "156094": {
+            "oneg": "239035",
+            "name": null,
+            "sort": "29"
+          },
+          "156095": {
+            "oneg": "292077",
+            "name": null,
+            "sort": "12"
+          },
+          "name": "Shanghai",
+          "sort": "99"
+        }
+      }
+    },
+    "Pazifik": {
+      "name": "Pazifik",
+      "sort": "1",
+      "Australien": {
+        "name": "Australien",
+        "sort": "1",
+        "Adelaide": {
+          "156038": {
+            "oneg": "317347",
+            "name": null,
+            "sort": "12"
+          },
+          "156039": {
+            "oneg": "330791",
+            "name": null,
+            "sort": "2"
+          },
+          "name": "Adelaide",
+          "sort": "99"
+        },
+        "Brisbane": {
+          "156050": {
+            "oneg": "314035",
+            "name": null,
+            "sort": "45"
+          },
+          "156051": {
+            "oneg": "319234",
+            "name": null,
+            "sort": "99"
+          },
+          "name": "Brisbane",
+          "sort": "99"
+        },
+        "Canberra": {
+          "156033": {
+            "oneg": "1055021",
+            "name": null,
+            "sort": "9"
+          },
+          "156034": {
+            "oneg": "181790",
+            "name": null,
+            "sort": "8"
+          },
+          "156035": {
+            "oneg": "266505",
+            "name": null,
+            "sort": "7"
+          },
+          "156036": {
+            "oneg": "307883",
+            "name": null,
+            "sort": "1"
+          },
+          "156037": {
+            "oneg": "727651",
+            "name": null,
+            "sort": "1"
+          },
+          "name": "Canberra",
+          "sort": "99"
+        },
+        "Melbourne": {
+          "156075": {
+            "oneg": "1033831",
+            "name": null,
+            "sort": "2"
+          },
+          "156076": {
+            "oneg": "1297841",
+            "name": null,
+            "sort": "4"
+          },
+          "name": "Melbourne",
+          "sort": "99"
+        }
+      }
+    },
+    "Südostasien": {
+      "name": "Südostasien",
+      "sort": "2",
+      "Indonesien": {
+        "name": "Indonesien",
+        "sort": "2",
+        "Bali": {
+          "156040": {
+            "oneg": "1038221",
+            "name": null,
+            "sort": "3"
+          },
+          "156041": {
+            "oneg": "235462",
+            "name": null,
+            "sort": "1"
+          },
+          "name": "Bali",
+          "sort": "99"
+        }
+      },
+      "Thailand": {
+        "name": "Thailand",
+        "sort": "1",
+        "Suratthani": {
+          "156067": {
+            "oneg": "209446",
+            "name": null,
+            "sort": "2"
+          },
+          "name": "Suratthani",
+          "sort": "99"
+        }
+      },
+      "Philippinen": {
+        "name": "Philippinen",
+        "sort": "6",
+        "Manila": {
+          "156073": {
+            "oneg": "314140",
+            "name": null,
+            "sort": "3"
+          },
+          "156074": {
+            "oneg": "449221",
+            "name": null,
+            "sort": "2"
+          },
+          "name": "Manila",
+          "sort": "99"
+        }
+      },
+      "Vietnam": {
+        "name": "Vietnam",
+        "sort": "5",
+        "Hanoi": {
+          "156062": {
+            "oneg": "1268401",
+            "name": null,
+            "sort": "99"
+          },
+          "156063": {
+            "oneg": "374871",
+            "name": null,
+            "sort": "99"
+          },
+          "name": "Hanoi",
+          "sort": "99"
+        },
+        "Ho-Chi-Minh-Stadt (Saigon)": {
+          "156064": {
+            "oneg": "209963",
+            "name": null,
+            "sort": "99"
+          },
+          "156065": {
+            "oneg": "818471",
+            "name": null,
+            "sort": "99"
+          },
+          "name": "Ho-Chi-Minh-Stadt (Saigon)",
+          "sort": "99"
+        }
+      },
+      "Singapur": {
+        "name": "Singapur",
+        "sort": "3",
+        "Singapur": {
+          "156096": {
+            "oneg": "27728",
+            "name": null,
+            "sort": "99"
+          },
+          "156097": {
+            "oneg": "304908",
+            "name": "Quincy Hotel Singapore (The)",
+            "sort": "99"
+          },
+          "name": "Singapur",
+          "sort": "99"
+        }
+      }
+    }
+  },
+  "deals": {
+    "156033": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Canberra",
+      "hotel_name_old": "[1PO] Hotel Hotel Canberra",
+      "hotel_name": "Hotel Hotel Canberra",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156033",
+      "oneg_id": "1055021",
+      "market_text": "AUSTRALIA - CANBERRA",
+      "promo_code": "July 22 2014 HotelClub 48hr Canberra",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-28",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156034": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Canberra",
+      "hotel_name_old": "[1PO] Clifton Suites On Northbourne Canberra Hotel",
+      "hotel_name": "Clifton Suites On Northbourne Canberra Hotel",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 12/09/2014",
+      "id_deal": "156034",
+      "oneg_id": "181790",
+      "market_text": "AUSTRALIA - CANBERRA",
+      "promo_code": "July 22 2014 HotelClub 48hr Canberra",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-28",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-09-12",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156035": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Canberra",
+      "hotel_name_old": "[1PO] Hotel Realm Canberra",
+      "hotel_name": "Hotel Realm Canberra",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Free Breakfast Daily",
+          "offer_moo_off": "Free Breakfast Daily"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156035",
+      "oneg_id": "266505",
+      "market_text": "AUSTRALIA - CANBERRA",
+      "promo_code": "July 22 2014 HotelClub 48hr Canberra",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-28",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156036": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Canberra",
+      "hotel_name_old": "[1PO] Pavilion on Northbourne Hotel Canberra",
+      "hotel_name": "Pavilion on Northbourne Hotel Canberra",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 14/09/2014",
+      "id_deal": "156036",
+      "oneg_id": "307883",
+      "market_text": "AUSTRALIA - CANBERRA",
+      "promo_code": "July 22 2014 HotelClub 48hr Canberra",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-28",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-09-14",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156037": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Canberra",
+      "hotel_name_old": "[1PO] Burbury Hotel Canberra",
+      "hotel_name": "Burbury Hotel Canberra",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Free Breakfast Daily",
+          "offer_moo_off": "FREE Breakfast Daily"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156037",
+      "oneg_id": "727651",
+      "market_text": "AUSTRALIA - CANBERRA",
+      "promo_code": "July 22 2014 HotelClub 48hr Canberra",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-28",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156038": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Adelaide",
+      "hotel_name_old": "[1PO] Hotel Grand Chancellor Adelaide On Currie",
+      "hotel_name": "Hotel Grand Chancellor Adelaide On Currie",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 20%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 20%",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 30/09/2014",
+      "id_deal": "156038",
+      "oneg_id": "317347",
+      "market_text": "AUSTRALIA - ADELAIDE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-09-30",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156039": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Adelaide",
+      "hotel_name_old": "[1PO] Hotel Grand Chancellor Adelaide On Hindley",
+      "hotel_name": "Hotel Grand Chancellor Adelaide On Hindley",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 20%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 20%",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 16/01/2015",
+      "id_deal": "156039",
+      "oneg_id": "330791",
+      "market_text": "AUSTRALIA - ADELAIDE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2015-01-16",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156040": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "2",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Indonesien",
+      "country_code": "ID",
+      "city_name": "Bali",
+      "hotel_name_old": "[1PO] Ize Seminyak",
+      "hotel_name": "Ize Seminyak",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 7 Days in Advance & Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "FREE Breakfast & Late Check Out (Weekdays)",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "FREE Breakfast & Late Check Out (Weekdays)",
+      "travel_text": "Travel: Now - 01/04/2015",
+      "id_deal": "156040",
+      "oneg_id": "1038221",
+      "market_text": "INDONESIA - BALI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-03-13",
+      "stay_end": "2015-04-01",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156041": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "2",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Indonesien",
+      "country_code": "ID",
+      "city_name": "Bali",
+      "hotel_name_old": "[1PO] Keraton Jimbaran Resort & Spa Bali",
+      "hotel_name": "Keraton Jimbaran Resort & Spa Bali",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 45%",
+          "offer_moo_off": "Save 45%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156041",
+      "oneg_id": "235462",
+      "market_text": "INDONESIA - BALI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156042": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] The Continent Hotel Bangkok",
+      "hotel_name": "The Continent Hotel Bangkok",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 55%",
+          "offer_moo_off": "Save 55%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156042",
+      "oneg_id": "1050651",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156043": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Hua Chang Heritage Hotel",
+      "hotel_name": "Hua Chang Heritage Hotel",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 40%",
+          "offer_off": "40% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 49%",
+          "offer_moo_off": "Save 49%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156043",
+      "oneg_id": "1149991",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156044": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Dusit Thani Hotel Bangkok",
+      "hotel_name": "Dusit Thani Hotel Bangkok",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 14 Days in Advance & Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "Free Internet Access, 10% off Food, 15% off Spa",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 35%",
+          "offer_moo_off": "Save 35%"
+        }
+      },
+      "offer_value_t": "Free Internet Access, 10% off Food, 15% off Spa",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156044",
+      "oneg_id": "269227",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156045": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Bandara Suites Silom Bangkok",
+      "hotel_name": "Bandara Suites Silom Bangkok",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 45%",
+          "offer_off": "45% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "45.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 50%",
+          "offer_moo_off": "Save 50%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156045",
+      "oneg_id": "312765",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156046": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Chatrium Hotel Riverside Bangkok",
+      "hotel_name": "Chatrium Hotel Riverside Bangkok",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 67%",
+          "offer_off": "67% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "67.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156046",
+      "oneg_id": "312891",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156047": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Emporium Suites by Chatrium",
+      "hotel_name": "Emporium Suites by Chatrium",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 63%",
+          "offer_off": "63% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "63.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 70%",
+          "offer_moo_off": "Save 70%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156047",
+      "oneg_id": "332429",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156048": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Ambassador Hotel Bangkok",
+      "hotel_name": "Ambassador Hotel Bangkok",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 70%",
+          "offer_off": "67% Ersparnis",
+          "offer_value": "",
+          "percent_off": "67.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156048",
+      "oneg_id": "338891",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156049": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Bangkok",
+      "hotel_name_old": "[1PO] Pullman Bangkok Hotel G",
+      "hotel_name": "Pullman Bangkok Hotel G",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25% with FREE Breakfasts",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "FREE Breakfasts",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30% with FREE Breakfasts",
+          "offer_moo_off": "Save 30% with FREE Breakfasts"
+        }
+      },
+      "offer_value_t": "FREE Breakfasts",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156049",
+      "oneg_id": "81321",
+      "market_text": "THAILAND - BANGKOK",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156050": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Brisbane",
+      "hotel_name_old": "[1PO] Rendezvous Hotel Brisbane Anzac Square",
+      "hotel_name": "Rendezvous Hotel Brisbane Anzac Square",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 25%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 25%",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "FREE Late Check-out + Internet",
+          "offer_moo_off": "FREE Late Check-out + Internet"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 30/12/2014",
+      "id_deal": "156050",
+      "oneg_id": "314035",
+      "market_text": "AUSTRALIA - BRISBANE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-30",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156051": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Brisbane",
+      "hotel_name_old": "[1PO] Adina Apartment Hotel Brisbane",
+      "hotel_name": "Adina Apartment Hotel Brisbane",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 25%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 25%",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "FREE Upgrade + Late Check-out",
+          "offer_moo_off": "FREE Upgrade + Late Check-out"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 30/12/2014",
+      "id_deal": "156051",
+      "oneg_id": "319234",
+      "market_text": "AUSTRALIA - BRISBANE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-30",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156052": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "6",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Philippinen",
+      "country_code": "PH",
+      "city_name": "Cebu",
+      "hotel_name_old": "[1PO] Waterfront Cebu City Hotel & Casino",
+      "hotel_name": "Waterfront Cebu City Hotel & Casino",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 30 Days In Advance & Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "Book 30 Days In Advance & Save 25%",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 25% + Free Upgrade",
+          "offer_moo_off": "Save 25% + FREE Upgrade"
+        }
+      },
+      "offer_value_t": "Book 30 days in advance & Save 25%",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156052",
+      "oneg_id": "307844",
+      "market_text": "PHILIPPINES - CEBU",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156053": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "6",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Philippinen",
+      "country_code": "PH",
+      "city_name": "Cebu",
+      "hotel_name_old": "[1PO] Quest Hotel & conference Center - Cebu",
+      "hotel_name": "Quest Hotel & conference Center - Cebu",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 60%",
+          "offer_off": "60% Ersparnis",
+          "offer_value": "Save 60%",
+          "percent_off": "60.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Free Late Check-out",
+          "offer_moo_off": "FREE Late Check-out"
+        }
+      },
+      "offer_value_t": "Save 60%",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156053",
+      "oneg_id": "858061",
+      "market_text": "PHILIPPINES - CEBU",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156054": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] HUG Collection @ Nimman Hotel",
+      "hotel_name": "HUG Collection @ Nimman Hotel",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 80%",
+          "offer_off": "80% Ersparnis",
+          "offer_value": "",
+          "percent_off": "80.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 85%",
+          "offer_moo_off": "Save 85%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156054",
+      "oneg_id": "1124041",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156055": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] De Naga Chiang Mai ",
+      "hotel_name": "De Naga Chiang Mai ",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 7 Days In Advance & Save 32%",
+          "offer_off": "32% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "32.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 36%",
+          "offer_moo_off": "Save 36%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156055",
+      "oneg_id": "304868",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156056": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] Manathai Village Chiang Mai",
+      "hotel_name": "Manathai Village Chiang Mai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30%",
+          "offer_moo_off": "Save 30%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156056",
+      "oneg_id": "321097",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156057": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] Eurana Boutique Hotel Chiang Mai",
+      "hotel_name": "Eurana Boutique Hotel Chiang Mai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 14 Days In Advance & Save 40%",
+          "offer_off": "40% Ersparnis",
+          "offer_value": "",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 45%",
+          "offer_moo_off": "Save 45%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156057",
+      "oneg_id": "321682",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156058": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] RatiLanna Riverside Spa Resort Chiang Mai",
+      "hotel_name": "RatiLanna Riverside Spa Resort Chiang Mai",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 36%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 36%",
+          "offer_value": "",
+          "percent_off": "36.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 40%",
+          "offer_moo_off": "Save 40%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156058",
+      "oneg_id": "322179",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156059": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] The Small Hotel Chiang Mai",
+      "hotel_name": "The Small Hotel Chiang Mai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 35%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 35%",
+          "offer_value": "",
+          "percent_off": "35.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 40%",
+          "offer_moo_off": "Save 40%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156059",
+      "oneg_id": "332085",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156060": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] Suriwongse Hotel Chiang Mai",
+      "hotel_name": "Suriwongse Hotel Chiang Mai",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 40%",
+          "offer_off": "40% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 55%",
+          "offer_moo_off": "Save 55%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156060",
+      "oneg_id": "334560",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156061": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Chiang Mai",
+      "hotel_name_old": "[1PO] The Rim Resort Chiang Mai",
+      "hotel_name": "The Rim Resort Chiang Mai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 7 Days In Advance & Save 28%",
+          "offer_off": "28% Ersparnis",
+          "offer_value": "",
+          "percent_off": "28.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 32%",
+          "offer_moo_off": "Save 32%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156061",
+      "oneg_id": "454261",
+      "market_text": "THAILAND - CHIANG MAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156062": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "5",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Vietnam",
+      "country_code": "VN",
+      "city_name": "Hanoi",
+      "hotel_name_old": "[1PO] Golden Lotus Luxury Hotel",
+      "hotel_name": "Golden Lotus Luxury Hotel",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "FREE Internet & Breakfast",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 57%",
+          "offer_moo_off": "Save 57%"
+        }
+      },
+      "offer_value_t": "FREE Internet & Breakfast",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156062",
+      "oneg_id": "1268401",
+      "market_text": "VIETNAM - HANOI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-01",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156063": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "5",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Vietnam",
+      "country_code": "VN",
+      "city_name": "Hanoi",
+      "hotel_name_old": "[1PO] Medallion Hanoi Hotel",
+      "hotel_name": "Medallion Hanoi Hotel",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 45%",
+          "offer_off": "45% Ersparnis",
+          "offer_value": "FREE Internet & Breakfast",
+          "percent_off": "45.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 60%",
+          "offer_moo_off": "Save 60%"
+        }
+      },
+      "offer_value_t": "FREE Internet & Breakfast",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156063",
+      "oneg_id": "374871",
+      "market_text": "VIETNAM - HANOI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-01",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156064": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "5",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Vietnam",
+      "country_code": "VN",
+      "city_name": "Ho-Chi-Minh-Stadt (Saigon)",
+      "hotel_name_old": "[1PO] Rex Hotel Ho Chi Minh City",
+      "hotel_name": "Rex Hotel Ho Chi Minh City",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 45%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 45%",
+          "offer_value": "FREE Internet & Breakfast",
+          "percent_off": "45.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Stay 3 nights & Save 45%",
+          "offer_moo_off": "Stay 3 Nights & Save 45%"
+        }
+      },
+      "offer_value_t": "FREE Internet & Breakfast",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156064",
+      "oneg_id": "209963",
+      "market_text": "VIETNAM - HO CHI MINH CITY",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-01",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156065": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "5",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Vietnam",
+      "country_code": "VN",
+      "city_name": "Ho-Chi-Minh-Stadt (Saigon)",
+      "hotel_name_old": "[1PO] Hotel Nikko Saigon",
+      "hotel_name": "Hotel Nikko Saigon",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 30%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 30%",
+          "offer_value": "FREE Internet",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Stay 3 Nights & Save 38%",
+          "offer_moo_off": "Stay 3 Nights & Save 38%"
+        }
+      },
+      "offer_value_t": "Free Internet",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156065",
+      "oneg_id": "818471",
+      "market_text": "VIETNAM - HO CHI MINH CITY",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-01",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156066": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] Chaweng Regent Beach Resort Samui",
+      "hotel_name": "Chaweng Regent Beach Resort Samui",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156066",
+      "oneg_id": "194620",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2013-11-29",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156067": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Suratthani",
+      "hotel_name_old": "[1PO] The Library Hotel Kho Samui",
+      "hotel_name": "The Library Hotel Kho Samui",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156067",
+      "oneg_id": "209446",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156068": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] Melati Beach Resort & Spa Samui",
+      "hotel_name": "Melati Beach Resort & Spa Samui",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156068",
+      "oneg_id": "282866",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-30",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156069": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] The Kala Resort Samui",
+      "hotel_name": "The Kala Resort Samui",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 50%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 50%",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/01/2016",
+      "id_deal": "156069",
+      "oneg_id": "323225",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-02-17",
+      "stay_end": "2016-01-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156070": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] Chaba Cabana Beach Resort Samui",
+      "hotel_name": "Chaba Cabana Beach Resort Samui",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 40%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 40%",
+          "offer_value": "",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156070",
+      "oneg_id": "327582",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-05-01",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156071": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] Chaba Samui Resort",
+      "hotel_name": "Chaba Samui Resort",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 40%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 40%",
+          "offer_value": "",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156071",
+      "oneg_id": "327583",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-05-01",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156072": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Koh Samui",
+      "hotel_name_old": "[1PO] The Sarann Resort Samui",
+      "hotel_name": "The Sarann Resort Samui",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 45%",
+          "offer_off": "45% Ersparnis",
+          "offer_value": "",
+          "percent_off": "45.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 21/12/2014",
+      "id_deal": "156072",
+      "oneg_id": "349961",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-25",
+      "stay_end": "2014-12-21",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156073": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "6",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Philippinen",
+      "country_code": "PH",
+      "city_name": "Manila",
+      "hotel_name_old": "[1PO] Oakwood Premier Joy~Nostalg Center Manila",
+      "hotel_name": "Oakwood Premier Joy~Nostalg Center Manila",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 8 Days In Advance & Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "Save 25%",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30%",
+          "offer_moo_off": "Save 30%"
+        }
+      },
+      "offer_value_t": "Save 25%",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156073",
+      "oneg_id": "314140",
+      "market_text": "PHILIPPINES - MANILA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156074": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "6",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Philippinen",
+      "country_code": "PH",
+      "city_name": "Manila",
+      "hotel_name_old": "[1PO] BEST WESTERN PLUS Antel Hotel",
+      "hotel_name": "BEST WESTERN PLUS Antel Hotel",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "Save 30%",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Free WiFi & Welcome Gift",
+          "offer_moo_off": "Free WiFi & Welcome Gift"
+        }
+      },
+      "offer_value_t": "Save 30%",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156074",
+      "oneg_id": "449221",
+      "market_text": "PHILIPPINES - MANILA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156075": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Melbourne",
+      "hotel_name_old": "[1PO] Pegasus Apartment Hotel Melbourne",
+      "hotel_name": "Pegasus Apartment Hotel Melbourne",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save Up to 20%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 20%",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 30/12/2014",
+      "id_deal": "156075",
+      "oneg_id": "1033831",
+      "market_text": "AUSTRALIA - MELBOURNE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-30",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156076": {
+      "sort_order": "99",
+      "sort_region": "1",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Pacific",
+      "region_name": "Pazifik",
+      "country_name": "Australien",
+      "country_code": "AU",
+      "city_name": "Melbourne",
+      "hotel_name_old": "[1PO] Oaks WRAP on Southbank",
+      "hotel_name": "Oaks WRAP on Southbank",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save Up to 38%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 38%",
+          "offer_value": "",
+          "percent_off": "38.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Free WiFi",
+          "offer_moo_off": "Free WiFi"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 30/12/2014",
+      "id_deal": "156076",
+      "oneg_id": "1297841",
+      "market_text": "AUSTRALIA - MELBOURNE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-30",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156077": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Amari Garden Pattaya",
+      "hotel_name": "Amari Garden Pattaya",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 4 Nights & Pay Only 3",
+          "offer_off": null,
+          "offer_value": "",
+          "percent_off": "0.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156077",
+      "oneg_id": "1257201",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-25",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156078": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Dusit Thani Resort Pattaya",
+      "hotel_name": "Dusit Thani Resort Pattaya",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156078",
+      "oneg_id": "249300",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-24",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156079": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Amari Orchid Pattaya",
+      "hotel_name": "Amari Orchid Pattaya",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 4 Nights & Pay Only 3",
+          "offer_off": null,
+          "offer_value": "",
+          "percent_off": "0.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156079",
+      "oneg_id": "302424",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-25",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156080": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] The Bayview Pattaya",
+      "hotel_name": "The Bayview Pattaya",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156080",
+      "oneg_id": "318048",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-06",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156081": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Intimate Hotel by Tim Boutique",
+      "hotel_name": "Intimate Hotel by Tim Boutique",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 24%",
+          "offer_off": "24% Ersparnis",
+          "offer_value": "",
+          "percent_off": "24.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156081",
+      "oneg_id": "319891",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-25",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156082": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Siam Bayshore Resort & Spa Pattaya",
+      "hotel_name": "Siam Bayshore Resort & Spa Pattaya",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 53%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 53%",
+          "offer_value": "",
+          "percent_off": "53.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156082",
+      "oneg_id": "327185",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-25",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156083": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Page10 Hotel Pattaya",
+      "hotel_name": "Page10 Hotel Pattaya",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 44%",
+          "offer_off": "44% Ersparnis",
+          "offer_value": "",
+          "percent_off": "44.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156083",
+      "oneg_id": "515471",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-17",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156084": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Sheraton Pattaya Resort",
+      "hotel_name": "Sheraton Pattaya Resort",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156084",
+      "oneg_id": "85196",
+      "market_text": "THAILAND - PATTAYA",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156085": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Pattaya",
+      "hotel_name_old": "[1PO] Sheraton Pattaya Resort",
+      "hotel_name": "Sheraton Pattaya Resort",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 19/12/2014",
+      "id_deal": "156085",
+      "oneg_id": "85196",
+      "market_text": "THAILAND - KOH SAMUI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-19",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156086": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Patong Beach Hotel Phuket",
+      "hotel_name": "Patong Beach Hotel Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 40%",
+          "offer_moo_off": "Save 40%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156086",
+      "oneg_id": "198737",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156087": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Horizon Patong Beach Resort & Spa Phuket",
+      "hotel_name": "Horizon Patong Beach Resort & Spa Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30% + 20% off Spa & Food",
+          "offer_moo_off": "Save 30% + 20% off Spa & Food"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156087",
+      "oneg_id": "233968",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156088": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Duangjitt Resort & Spa Phuket",
+      "hotel_name": "Duangjitt Resort & Spa Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 55%",
+          "offer_off": "55% Ersparnis",
+          "offer_value": "",
+          "percent_off": "55.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 60% + 40% off Spa",
+          "offer_moo_off": "Save 60% + 40% off Spa"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156088",
+      "oneg_id": "238817",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156089": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] The Royal Paradise Hotel & Spa Phuket",
+      "hotel_name": "The Royal Paradise Hotel & Spa Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 60%",
+          "offer_off": "60% Ersparnis",
+          "offer_value": "",
+          "percent_off": "60.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 65%",
+          "offer_moo_off": "Save 65%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156089",
+      "oneg_id": "259943",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156090": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Thavorn Beach Village & Spa Phuket",
+      "hotel_name": "Thavorn Beach Village & Spa Phuket",
+      "hotel_rating": "5",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 42%",
+          "offer_off": "42% Ersparnis",
+          "offer_value": "",
+          "percent_off": "42.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 47%",
+          "offer_moo_off": "Save 47%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156090",
+      "oneg_id": "322019",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156091": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Sawasdee Village Phuket",
+      "hotel_name": "Sawasdee Village Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Book 30 Days In Advance & Save 20%",
+          "offer_off": "20% Ersparnis",
+          "offer_value": "",
+          "percent_off": "20.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 35%",
+          "offer_moo_off": "Save 35%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156091",
+      "oneg_id": "328678",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156092": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] The Kee Resort & Spa Phuket",
+      "hotel_name": "The Kee Resort & Spa Phuket",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 55% + 10% off Food",
+          "offer_moo_off": "Save 55% + 10% off Food"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156092",
+      "oneg_id": "368871",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156093": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Phuket",
+      "hotel_name_old": "[1PO] Baan Laimai Beach Resort & Spa Patong",
+      "hotel_name": "Baan Laimai Beach Resort & Spa Patong",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 65%",
+          "offer_off": "60% Ersparnis",
+          "offer_value": "",
+          "percent_off": "60.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 70% + 10% off Food",
+          "offer_moo_off": "Save 70% + 10% off Food"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156093",
+      "oneg_id": "423521",
+      "market_text": "THAILAND - PHUKET",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156094": {
+      "sort_order": "99",
+      "sort_region": "3",
+      "sort_country": "999",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Northeast Asia",
+      "region_name": "Nordostasien",
+      "country_name": "China",
+      "country_code": "CN",
+      "city_name": "Shanghai",
+      "hotel_name_old": "[1PO] New Harbour Service Apartment Shanghai",
+      "hotel_name": "New Harbour Service Apartment Shanghai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 3 Nights & Save 46%",
+          "offer_off": "Bei 3 Übernachtungen sparen Sie 46%",
+          "offer_value": "",
+          "percent_off": "46.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156094",
+      "oneg_id": "239035",
+      "market_text": "CHINA - SHANGHAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156095": {
+      "sort_order": "99",
+      "sort_region": "3",
+      "sort_country": "999",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Northeast Asia",
+      "region_name": "Nordostasien",
+      "country_name": "China",
+      "country_code": "CN",
+      "city_name": "Shanghai",
+      "hotel_name_old": "[1PO] Dingtian Ruili Service Apartment Shanghai",
+      "hotel_name": "Dingtian Ruili Service Apartment Shanghai",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "",
+          "offer_moo_off": ""
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156095",
+      "oneg_id": "292077",
+      "market_text": "CHINA - SHANGHAI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156096": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "3",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Singapur",
+      "country_code": "SG",
+      "city_name": "Singapur",
+      "hotel_name_old": "[1PO] Village Hotel Albert Court by Far East Hospitality (formerly known as Albert Court Village Hotel)",
+      "hotel_name": "Village Hotel Albert Court by Far East Hospitality (formerly known as Albert Court Village Hotel)",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "",
+          "offer_off": "35% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "35.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 35%",
+          "offer_moo_off": "Save 35%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 28/02/2015",
+      "id_deal": "156096",
+      "oneg_id": "27728",
+      "market_text": "SINGAPORE - SINGAPORE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-20",
+      "stay_end": "2015-02-28",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156097": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "3",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Singapur",
+      "country_code": "SG",
+      "city_name": "Singapur",
+      "hotel_name_old": "[1PO] Quincy Hotel Singapore (The)",
+      "hotel_name": "Quincy Hotel Singapore (The)",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "FREE WiFi, 3 Meals, One-Way Land Transfer",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 25%",
+          "offer_moo_off": "Save 25%"
+        }
+      },
+      "offer_value_t": "FREE WiFi, 3 Meals, One-Way Land Transfer",
+      "travel_text": "Travel: Now - 31/12/2014",
+      "id_deal": "156097",
+      "oneg_id": "304908",
+      "market_text": "SINGAPORE - SINGAPORE",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-06-20",
+      "stay_end": "2014-12-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156098": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Sand Sea Resort",
+      "hotel_name": "Sand Sea Resort",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 35%",
+          "offer_off": "35% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "35.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 40%",
+          "offer_moo_off": "Save 40%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156098",
+      "oneg_id": "1240111",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156099": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Ao Nang Mountain View Hotel",
+      "hotel_name": "Ao Nang Mountain View Hotel",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30%",
+          "offer_moo_off": "Save 30%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156099",
+      "oneg_id": "1319591",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156100": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Aree Tara Resort Krabi",
+      "hotel_name": "Aree Tara Resort Krabi",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 30%",
+          "offer_off": "30% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "30.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 34%",
+          "offer_moo_off": "Save 34%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156100",
+      "oneg_id": "310934",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156101": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Vogue Resort & Spa Ao Nang",
+      "hotel_name": "Vogue Resort & Spa Ao Nang",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 28%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 28%",
+          "offer_value": "FREE WiFi",
+          "percent_off": "28.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 44%",
+          "offer_moo_off": "Save 44%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 20/12/2014",
+      "id_deal": "156101",
+      "oneg_id": "321087",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-12-20",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156102": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] The Small Hotel Krabi",
+      "hotel_name": "The Small Hotel Krabi",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 25%",
+          "offer_off": "25% Ersparnis",
+          "offer_value": "FREE WiFi",
+          "percent_off": "25.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 30%",
+          "offer_moo_off": "Save 30%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156102",
+      "oneg_id": "331965",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156103": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Aonang Paradise Resort Krabi",
+      "hotel_name": "Aonang Paradise Resort Krabi",
+      "hotel_rating": "3",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 40%",
+          "offer_off": "40% Ersparnis",
+          "offer_value": "",
+          "percent_off": "40.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 48%",
+          "offer_moo_off": "Save 48%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156103",
+      "oneg_id": "338880",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156104": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] Aonang Cliff Beach Resort",
+      "hotel_name": "Aonang Cliff Beach Resort",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Stay 2 Nights & Save 60%",
+          "offer_off": "Bei 2 Übernachtungen sparen Sie 60%",
+          "offer_value": "FREE WiFi",
+          "percent_off": "60.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 70%",
+          "offer_moo_off": "Save 70%"
+        }
+      },
+      "offer_value_t": "Free WiFi",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156104",
+      "oneg_id": "340045",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    },
+    "156105": {
+      "sort_order": "99",
+      "sort_region": "2",
+      "sort_country": "1",
+      "rank_region": "2",
+      "rank_country": "2",
+      "rank_city": "99",
+      "region_alt_name": "Southeast Asia",
+      "region_name": "Südostasien",
+      "country_name": "Thailand",
+      "country_code": "TH",
+      "city_name": "Krabi",
+      "hotel_name_old": "[1PO] The Cliff Ao Nang Resort Krabi",
+      "hotel_name": "The Cliff Ao Nang Resort Krabi",
+      "hotel_rating": "4",
+      "offer": {
+        "offer_1": {
+          "offer_text": "Save 50%",
+          "offer_off": "50% Ersparnis",
+          "offer_value": "",
+          "percent_off": "50.00",
+          "dollar_off": "0.00"
+        }
+      },
+      "offer_moo_t": {
+        "offer_moo_t_1": {
+          "offer_moo_text": "Save 55%",
+          "offer_moo_off": "Save 55%"
+        }
+      },
+      "offer_value_t": "",
+      "travel_text": "Travel: Now - 31/10/2014",
+      "id_deal": "156105",
+      "oneg_id": "429511",
+      "market_text": "THAILAND - KRABI",
+      "promo_code": "July 22 2014 HotelClub Mid-Year Sale",
+      "promo_start": "2014-07-28",
+      "promo_end": "2014-08-03",
+      "booking_start": "2014-07-22",
+      "booking_end": "2014-07-27",
+      "stay_start": "2014-07-22",
+      "stay_end": "2014-10-31",
+      "validated": "1",
+      "advance_book_days": "0",
+      "is_moo": "0"
+    }
+  }
+}
