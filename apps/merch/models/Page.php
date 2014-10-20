@@ -220,7 +220,7 @@ class Page extends \Phalcon\Mvc\Model {
         return $data;
     }
 
-    public function getRegionHoteles($region, $limit = 2) {       
+    public function getRegionHoteles($region, $limit = 2) {
         $data = [];
         if (isset($this->dealsData['campaign'][$region])) {
             $cntName = false;
@@ -228,7 +228,7 @@ class Page extends \Phalcon\Mvc\Model {
             foreach ($this->dealsData['campaign'][$region] as $keyRegion => $value) {
                 if ($keyRegion != 'name' && $keyRegion != 'sort') {
                     foreach ($value as $key => $val) {
-                        if ($key != 'name' && $key != 'sort') {                            
+                        if ($key != 'name' && $key != 'sort') {
                             //Remove unwanted keys
                             unset($val['sort'], $val['name']);
                             //Sort the data using sork key
@@ -264,30 +264,19 @@ class Page extends \Phalcon\Mvc\Model {
                     }
                 }
             }
-        }       
+        }
         return $data;
     }
 
     public function getDefaultHoteles() {
-        $data = [];
-        foreach ($this->dealsData['campaign'] as $key => $val) {
-            if ($key != 'name' && $key != 'sort') {
-                foreach ($val as $k => $v) {
-                    if ($k != 'name' && $k != 'sort') {
-                        foreach ($v as $k1 => $v1) {
-                            if ($k1 != 'name' && $k1 != 'sort') {
-                                foreach ($v1 as $k2 => $v2) {
-                                    if ($k2 != 'name' && $k2 != 'sort') {
-                                        $data[$k2] = $v2;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        return $this->getRegionHoteles($this->region);
+    }
+
+    public function getFirstRegion() {
+        if (isset($this->dealsData['campaign']) && !empty($this->dealsData['campaign'])) {
+            return key($this->dealsData['campaign']);
         }
-        return $data;
+        return FALSE;
     }
 
     public function isLanguageExists() {

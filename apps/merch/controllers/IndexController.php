@@ -37,8 +37,11 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {   
+        $this->region = $this->dataModel->getFirstRegion();
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles()),
+            array_merge(array ("hotels" => $this->dataModel->getRegionHoteles(
+                    $this->region
+                    )),
                     $this->buildTemplateVars()
         ));        
         $this->view->pick('index/page');
@@ -68,9 +71,11 @@ class IndexController extends ControllerBase
             $this->dispatcher->forward(array('controller' => 'index', 'action' => 'region'));
         }
          
-       // print_r($this->dataModel->getDefaultHotels($this->region)); exit;
+        $this->region = $this->dataModel->getFirstRegion();
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
+            array_merge(array ("hotels" => $this->dataModel->getRegionHoteles(
+                    $this->region
+                    )),
                     $this->buildTemplateVars()
         ));      
         $this->view->pick('index/page');

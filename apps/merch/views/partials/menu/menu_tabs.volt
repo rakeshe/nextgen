@@ -1,3 +1,6 @@
+{% if region is not defined %}
+{% set region = "" %}
+{% endif %}
 {% for tab in DDMenue %}
 <li class="dropdown-submenu level1">
 <a class="menu-icons" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}"> {{ tab['name'] }} <b class="menu-glyphicon visible-xs visible-sm glyphicon glyphicon-plus"></b> <span class="hidden-xs hidden-sm caret"></span> </a>
