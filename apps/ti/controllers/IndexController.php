@@ -27,9 +27,11 @@ class IndexController extends ControllerBase {
      * Loading first time
      */
     public function init() {
+        
+        require_once __DIR__ . '/../language/' . $this->getLang() . '.php';       
         $this->translation = new \HC\Library\Translation($this->getLang(), 
-                $this->config->application->LanguageDir); 
-         $this->view->setTemplateAfter('main');         
+                $messages); 
+        $this->view->setTemplateAfter('main');         
         \Phalcon\Tag::setTitle($this->translation->getTranslation()->_('set-title'));
                
     }

@@ -45,10 +45,11 @@ class Module {
                 'compiledSeparator' => '_',
             ));
             $compiler = $volt->getCompiler();
-            //This binds the function ex: name 'shuffle' in Volt to the PHP function 'str_shuffle'
+            //This binds the function php function to volt function
             $compiler->addFunction('print_r', 'print_r');
-			$compiler->addFunction('isArray', 'is_array');
-			$compiler->addFunction('substr', 'substr');			
+            $compiler->addFunction('empty', 'empty');
+            $compiler->addFunction('isArray', 'is_array');
+            $compiler->addFunction('substr', 'substr');			
 
             return $volt;
         },

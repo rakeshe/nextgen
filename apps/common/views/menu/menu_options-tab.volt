@@ -1,17 +1,14 @@
 <!-- lang -->
-	{% if menuItemsLanguageOptions is defined%}        
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode] }} <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                {% for language_code,label in menuItemsLanguageOptions %}
-                    <li lang="{{ language_code }}" class="">
-                        <a href="/set-language/{{ language_code }}" class="link">{{ label }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+{% if not empty (menuItemsLanguageOptions) %}        
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode] }} <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        {% for language_code,label in menuItemsLanguageOptions %}
+        <li lang="{{ language_code }}" class="">
+            <a href="/set-language/{{ language_code }}" class="link">{{ label }}</a>
         </li>
-		{% endif %}
-
-
-{#{{ todo: add js for pjax switcher }}#}
+        {% endfor %}
+    </ul>
+</li>
+{% endif %}
 

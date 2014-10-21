@@ -45,8 +45,8 @@ class Couchbase  {
     public function connect() {
         try {
             $this->couchbase = new \Couchbase($this->host, $this->user, $this->password, $this->bucket, $this->connPrrsist);
-        } catch (CouchbaseException $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $ex) {
+            die($ex->getMessage());
         }
     } 
 

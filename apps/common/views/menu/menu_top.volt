@@ -1,3 +1,5 @@
-{% for label,uri in menuItemsTop %}
-    <li><a rel="nofollow" class="link" href="{{ uri }}">{{ t._(label) }}</a></li>
-{% endfor %}
+{% if not empty(menuItemsTop) %}
+    {% for label,uri in menuItemsTop %}
+        <li><a rel="nofollow" class="link" href="{{ uri }}">{{ t._(label) }}</a></li>
+    {% endfor %}
+{% endif %}
