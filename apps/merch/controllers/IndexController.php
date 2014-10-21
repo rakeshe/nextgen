@@ -279,7 +279,7 @@ class IndexController extends ControllerBase
         
         $this->view->setVars(
                 $this->buildTemplateVars()
-                ); 
+                );
        $this->view->pick('404/404');
     }
         
