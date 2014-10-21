@@ -1153,3 +1153,14 @@ border: 0px;
    border: 1px solid #4E4E51 !important;
    box-shadow: 5px 5px 5px #888888;
 }
+
+#dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.levelActive a {
+    background-color: #e21e28;
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 4px 0 0;
+    padding-bottom: 13px;
+    padding-top: 13px;   
+    z-index: 0;
+}
