@@ -27,7 +27,7 @@ $router->notFound(
     array(
         'module'     => 'merch',
         'namespace'  => DEFAULT_ROUTE_NAMESPACE,
-        'controller' => 'Error',
+        'controller' => 'index',
         'action'     => 'show404',
     )
 );
@@ -71,7 +71,7 @@ $router->add(
  */
 $router->add(
     '/merch/get-location/:params',
-    array(        
+    array(       
         "controller"   => 'index',
         "action"       => 'getLocation',
         'module'       => 'merch',

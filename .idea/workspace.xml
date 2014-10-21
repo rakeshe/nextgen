@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74273a63-94dd-489a-b3c6-321382fafa75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" afterPath="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nextgen.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,66 +31,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="campaign_data_en.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/logs/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="207" column="42" selection-start="10441" selection-end="10441" vertical-scroll-proportion="0.0" vertical-offset="3100" max-vertical-offset="6596">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="31" selection-start="1811" selection-end="1811" vertical-scroll-proportion="-8.576923" vertical-offset="440" max-vertical-offset="1275">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HotelHelper.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="21" selection-start="1559" selection-end="1559" vertical-scroll-proportion="1.2822857" vertical-offset="0" max-vertical-offset="1530">
-              <folding>
-                <element signature="e#6#98#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Module.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="1105">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/app.config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="2" selection-start="245" selection-end="245" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="306">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="global.config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/global.config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="28" selection-start="301" selection-end="301" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="884">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="17" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-26.73077" vertical-offset="1770" max-vertical-offset="2618">
+            <state vertical-scroll-proportion="0.05654102" vertical-offset="0" max-vertical-offset="902">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -118,13 +75,14 @@
         <option value="$PROJECT_DIR$/apps/merch/config/config.php" />
         <option value="$PROJECT_DIR$/apps/merch/Module.php" />
         <option value="$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="PhpServers">
-    <option name="servers">
+    <servers>
       <server host="nextgen" name="nextgen" />
-    </option>
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="php CLI">
     <include_path>
@@ -132,10 +90,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -151,7 +109,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -210,82 +168,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nextgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -297,6 +179,11 @@
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\www\nextgen" />
+    </key>
   </component>
   <component name="RunManager" selected="PHP Script.campaign_data_en.php">
     <configuration default="false" name="campaign_data_en.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/data/cache/campaign_data_en.php">
@@ -311,10 +198,22 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
       <method />
     </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <envs />
       <method />
     </configuration>
     <list size="1">
@@ -332,49 +231,60 @@
       <option name="DESCRIPTION" value="routes in progress" />
     </changelist>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="74273a63-94dd-489a-b3c6-321382fafa75" name="Default" comment="" />
       <created>1406178251459</created>
+      <option name="number" value="Default" />
       <updated>1406178251459</updated>
     </task>
     <task id="LOCAL-00001" summary="routes in progress">
       <created>1407803112478</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
       <updated>1407803112478</updated>
     </task>
     <task id="LOCAL-00002" summary="[NG-32] use named const, default routes updates">
       <created>1407811431188</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
       <updated>1407811431188</updated>
     </task>
     <task id="LOCAL-00003" summary="[NG-48] View helper for hotel \HC\Merch\Helpers\HotelHelper">
       <created>1407976145846</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
       <updated>1407976145846</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28647926" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14323749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47388536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19648562" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39459458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3145946" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47388536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39459458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -405,6 +315,9 @@
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
     </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -424,287 +337,375 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/apps/merch/models/Page.php</url>
-          <line>48</line>
+          <line>36</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="5" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="42" selection-start="10398" selection-end="10398" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6596">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="23" selection-start="2074" selection-end="2074" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1275">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1275">
+          <caret line="49" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1105">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1105">
+          <caret line="34" column="87" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/plugins/Security.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717">
+          <caret line="90" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309">
+          <caret line="51" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369">
+          <caret line="74" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/forms/SearchForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363">
+          <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/plugins/Security.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.0" vertical-offset="1172" max-vertical-offset="1717" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1172" max-vertical-offset="1717">
+          <caret line="90" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1309">
+          <caret line="51" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369">
+          <caret line="74" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/forms/SearchForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363">
+          <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="1258">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/plugins/Security.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/library/simple_html_dom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="12" selection-start="2654" selection-end="2654" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="28713" />
+        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="28713">
+          <caret line="47" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/plugins/cache.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.020183487" vertical-offset="6" max-vertical-offset="833" />
+        <state vertical-scroll-proportion="0.020183487" vertical-offset="6" max-vertical-offset="833">
+          <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/library/Translation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="4" selection-start="1526" selection-end="1526" vertical-scroll-proportion="-5.269231" vertical-offset="696" max-vertical-offset="1241" />
+        <state vertical-scroll-proportion="-5.269231" vertical-offset="696" max-vertical-offset="1241">
+          <caret line="55" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/Module.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.49485713" vertical-offset="434" max-vertical-offset="1309" />
+        <state vertical-scroll-proportion="0.49485713" vertical-offset="434" max-vertical-offset="1309">
+          <caret line="51" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="4369">
+          <caret line="74" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/forms/SearchForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2363">
+          <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/ti/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1241299" vertical-offset="969" max-vertical-offset="3179" />
+        <state vertical-scroll-proportion="-1.1241299" vertical-offset="969" max-vertical-offset="3179">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/plugins/Security.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.036208734" vertical-offset="0" max-vertical-offset="939" />
+        <state vertical-scroll-proportion="0.036208734" vertical-offset="0" max-vertical-offset="939">
+          <caret line="2" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="379" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="379">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../phalcon-devtools/ide/1.2.4/Phalcon/Mvc/Router.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="24" selection-start="3613" selection-end="3613" vertical-scroll-proportion="0.34285715" vertical-offset="2743" max-vertical-offset="6970">
-          <folding />
+        <state vertical-scroll-proportion="0.34285715" vertical-offset="2743" max-vertical-offset="6970">
+          <caret line="179" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/ErrorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1584" selection-end="1584" vertical-scroll-proportion="1.1216495" vertical-offset="136" max-vertical-offset="1037" />
+        <state vertical-scroll-proportion="1.1216495" vertical-offset="136" max-vertical-offset="1037">
+          <caret line="45" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/.name">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633">
+          <caret line="0" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="484" selection-end="484" vertical-scroll-proportion="0.3131313" vertical-offset="72" max-vertical-offset="1615" />
+        <state vertical-scroll-proportion="0.3131313" vertical-offset="72" max-vertical-offset="1615">
+          <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="44" selection-start="3483" selection-end="3483" vertical-scroll-proportion="0.5858586" vertical-offset="1566" max-vertical-offset="2431" />
+        <state vertical-scroll-proportion="0.5858586" vertical-offset="1566" max-vertical-offset="2431">
+          <caret line="116" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/menu/menu_tabs_desktop.volt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="32" selection-start="2851" selection-end="2851" vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1802" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1802">
+          <caret line="53" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/models/Hotel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/cache/en_AU_banner_data.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="4128" selection-start="4128" selection-end="4128" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+          <caret line="0" column="4128" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/ContactController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="43" selection-start="169" selection-end="169" vertical-scroll-proportion="0.17525773" vertical-offset="0" max-vertical-offset="782" />
+        <state vertical-scroll-proportion="0.17525773" vertical-offset="0" max-vertical-offset="782">
+          <caret line="6" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/controllers/CampaignController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="1" selection-start="212" selection-end="212" vertical-scroll-proportion="0.14604811" vertical-offset="0" max-vertical-offset="1972" />
+        <state vertical-scroll-proportion="0.14604811" vertical-offset="0" max-vertical-offset="1972">
+          <caret line="11" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/cache/en_AU_campaign_data.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="93153" selection-start="93153" selection-end="93153" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
+          <caret line="0" column="93153" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/models/Page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="37" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.720504" vertical-offset="68" max-vertical-offset="2176">
+        <state vertical-scroll-proportion="0.720504" vertical-offset="68" max-vertical-offset="2176">
+          <caret line="48" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/merch/views/partials/items/hotels.volt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="39" selection-start="7300" selection-end="7300" vertical-scroll-proportion="0.38946164" vertical-offset="2601" max-vertical-offset="25092" />
+        <state vertical-scroll-proportion="0.38946164" vertical-offset="2601" max-vertical-offset="25092">
+          <caret line="173" column="39" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49543378" vertical-offset="807" max-vertical-offset="1683">
+          <caret line="73" column="7" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21205099" vertical-offset="480" max-vertical-offset="1343">
+          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/cache/campaign_data_en.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="42" selection-start="10441" selection-end="10441" vertical-scroll-proportion="0.0" vertical-offset="3100" max-vertical-offset="6596">
-          <folding />
+        <state vertical-scroll-proportion="0.48551565" vertical-offset="3100" max-vertical-offset="6596">
+          <caret line="207" column="42" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1547">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/app.config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="2" selection-start="245" selection-end="245" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="306">
+        <state vertical-scroll-proportion="0.21347032" vertical-offset="0" max-vertical-offset="876">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/global.config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="28" selection-start="301" selection-end="301" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="884">
+        <state vertical-scroll-proportion="0.0102739725" vertical-offset="110" max-vertical-offset="986">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="17" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-26.73077" vertical-offset="1770" max-vertical-offset="2618">
+        <state vertical-scroll-proportion="0.49543378" vertical-offset="2031" max-vertical-offset="2907">
+          <caret line="148" column="17" selection-start-line="148" selection-start-column="17" selection-end-line="148" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/config/config.php">
+    <entry file="file://$PROJECT_DIR$/data/logs/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="31" selection-start="1811" selection-end="1811" vertical-scroll-proportion="-8.576923" vertical-offset="440" max-vertical-offset="1275">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/Module.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="87" selection-start="1040" selection-end="1040" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="1105">
+        <state vertical-scroll-proportion="0.05654102" vertical-offset="0" max-vertical-offset="902">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/merch/helpers/HotelHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="21" selection-start="1559" selection-end="1559" vertical-scroll-proportion="1.2822857" vertical-offset="0" max-vertical-offset="1530">
-          <folding>
-            <element signature="e#6#98#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

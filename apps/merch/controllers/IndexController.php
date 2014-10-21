@@ -37,8 +37,11 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {   
+        $this->region = $this->dataModel->getFirstRegion();
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles()),
+            array_merge(array ("hotels" => $this->dataModel->getRegionHoteles(
+                    $this->region
+                    )),
                     $this->buildTemplateVars()
         ));        
         $this->view->pick('index/page');
@@ -68,9 +71,11 @@ class IndexController extends ControllerBase
             $this->dispatcher->forward(array('controller' => 'index', 'action' => 'region'));
         }
          
-       // print_r($this->dataModel->getDefaultHotels($this->region)); exit;
+        $this->region = $this->dataModel->getFirstRegion();
         $this->view->setVars(
-            array_merge(array ("hotels" => $this->dataModel->getDefaultHoteles($this->region)),
+            array_merge(array ("hotels" => $this->dataModel->getRegionHoteles(
+                    $this->region
+                    )),
                     $this->buildTemplateVars()
         ));      
         $this->view->pick('index/page');
@@ -256,16 +261,17 @@ class IndexController extends ControllerBase
      */
        
     public function getLocationAction() {
-        
-        if (!empty($this->request->get("q"))) {
-            header('Content-type: application/json');
+       
+        ob_start(null, 0, false);
+        if ($this->request->get("q") != NULL) {
+            header('Content-type: application/json; charset=utf-8');
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,"http://www.hotelclub.com/helper/hotelSmartfill");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, 'searchedText=' . trim($this->request->get("q")));
-            $var = curl_exec ($ch);        
-            curl_close ($ch);            
-        }
+            $var = curl_exec ($ch);
+            curl_close ($ch);
+        }        
         die();
     }    
     
