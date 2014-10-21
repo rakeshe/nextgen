@@ -80,9 +80,9 @@
     </option>
   </component>
   <component name="PhpServers">
-    <option name="servers">
+    <servers>
       <server host="nextgen" name="nextgen" />
-    </option>
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="php CLI">
     <include_path>
@@ -230,6 +230,9 @@
       <option name="PATH" value="C:\Users\rshrestha\.WebIde70\config\shelf\routes_in_progress.patch" />
       <option name="DESCRIPTION" value="routes in progress" />
     </changelist>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
