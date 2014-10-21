@@ -261,16 +261,17 @@ class IndexController extends ControllerBase
      */
        
     public function getLocationAction() {
-        
-        if (!empty($this->request->get("q"))) {
-            header('Content-type: application/json');
+       
+        ob_start(null, 0, false);
+        if ($this->request->get("q") != NULL) {
+            header('Content-type: application/json; charset=utf-8');
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,"http://www.hotelclub.com/helper/hotelSmartfill");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, 'searchedText=' . trim($this->request->get("q")));
-            $var = curl_exec ($ch);        
-            curl_close ($ch);            
-        }
+            $var = curl_exec ($ch);
+            curl_close ($ch);
+        }        
         die();
     }    
     

@@ -144,47 +144,6 @@ var getpos= setpos+"px";
 $( ".region_menu .dropdown-menu" ).css("top",""+getpos+"");
 
 });
-
-$(document).ready(function(){
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
-    }
- 
-    $( "#locationText" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax({
-           url: "/merch/get-location",
-          dataType: "json",
-          data: {
-             q: request.term
-          },
-          success: function( data ) {
-            console.log(data.suggestion);
-            var dataArr = [];
-            $.each(data, function(key, val){
-              dataArr.push(val.suggestion);
-                console.log(key+'--'+val.suggestion);
-            });
-            response( dataArr );
-          }
-        });
-      },
-      minLength: 1,
-      select: function( event, ui ) {
-        log( ui.item ?
-          "Selected: " + ui.item.label :
-          "Nothing selected, input was " + this.value);
-      },
-      open: function() {
-        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-      },
-      close: function() {
-        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-      }
-    });
-  });
-
 });
 function validate_searchform(){
   var flag = false;
@@ -230,7 +189,47 @@ $("#btnSearch").click(function() {
     languageCode = $("#btnSearch").data('local');
     window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="+promo+"&hotel.keyword.key="+local+"&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&locale="+languageCode+"&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
     console.log(local + checkIn + checkOut + promo );
-})
+});
+
+$(document).ready(function(){
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+    $( "#locationText" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+           url: "/merch/get-location",
+          dataType: "json",
+          data: {
+             q: request.term
+          },
+          success: function( data ) {
+            console.log(data.suggestion);
+            var dataArr = [];
+            $.each(data, function(key, val){
+              dataArr.push(val.suggestion);
+                console.log(key+'--'+val.suggestion);
+            });
+            response( dataArr );
+          }
+        });
+      },
+      minLength: 1,
+      select: function( event, ui ) {
+        log( ui.item ?
+          "Selected: " + ui.item.label :
+          "Nothing selected, input was " + this.value);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+  });
 
 
 
