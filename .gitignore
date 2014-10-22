@@ -1,3 +1,4 @@
 .idea/*
-data/logs
-data/volt
+src/main/webapp/data/cache
+src/main/webapp/data/logs
+src/main/webapp/data/volt
