@@ -22,21 +22,11 @@
 	                        <div class="carousel-caption ">
 					<div class="deal_text1">{{ banner['h1'] }}</div><br/>
 					<div class="deal_text2">{{ banner['h2'] }}</div><br/>
-					{% if banner['promo'] is not empty %} <div class="deal_text5">{{ banner['promo'] }}</div> <br/> {% endif %}
-					<div class="deal_text6">{{ banner['terms'] }}</div><br/>
+					{% if banner['promo'] is not '' %} <div class="deal_text5">{{ banner['promo'] }}</div> <br/> {% endif %}
+					{% if banner['terms'] is not '' %} <div class="deal_text6">{{ banner['terms'] }}</div><br/> {% endif %}
 	                        </div>
 	                     </div>
                     </div>
-		    {# <div class="visible-xs">
-		    	<div class="row">
-                        <div class="carousel-caption ">
-				<div  class="deal_text1"><span>{{ banner['h1'] }}</span></div>
-				<div  class="deal_text2"><span>{{ banner['h2'] }} </span></div>
-				<div  class="promo_text"><span>{{ banner['promo'] }}</span></div>
-				<div  class="terms"><span>{{ banner['terms'] }}</span></div>
-                        </div>
-                       </div>
-                    </div> #}
                 </div>
             {% endif %}
         {% endfor %}
