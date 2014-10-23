@@ -1,12 +1,12 @@
 @font-face {
-    font-family: "SerifaStd-Roman";
-    src: url('SerifaStd-Roman.otf');
-    url('SerifaStd-Roman.otf') format('opentype');
+    font-family: "SerifaStd55Roman";
+    src: url('../font/SerifaStd-Roman.otf');
+    url('../font/SerifaStd-Roman.otf') format('opentype');
 }
 @font-face {
-    font-family: "SerifaStd-Light";
-    src: url('SerifaStd-Light.otf');
-    url('SerifaStd-Light.otf') format('opentype');
+    font-family: "SerifaStd55Light";
+    src: url('../font/SerifaStd-Light.otf');
+    url('../font/SerifaStd-Light.otf') format('opentype');
 }
 
 /* reponsive design - starts */
@@ -19,236 +19,295 @@
 @media (max-width:978px){
 	.container{ min-width:100%; padding:0; margin:0; }
 }
+
 @media only screen
 and (max-device-width: 480px) {
-.container {
-padding:0;
-}
-.subContainer{
-padding:0 !important;
-margin:0;
-}
-#tab1, #tab2, #tab3, #tab4 {margin:10px !important;}
-.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
-.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
-.hotelInfo h3 {
-color:#562D82;
-font-size:14px !important;
-line-height:9px;
-margin:0 0 3px;
-padding:0;
-}
-.button a{
- background-color: #562d82;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 11px !important;
-    font-weight: 700;
-    height: 20px;
-    left: -8px;
-    padding: 4px 7px !important;
-    position: relative;
-}
-.region_menu .dropdown-menu {
-min-width:100% !important;
-}
-.red-line{ top:0px !important;}
-.btn-group, .btn-group-vertical { min-width:50% !important;}
-.btn-group > .btn, .btn-group-vertical > .btn {
-font-weight:bold;
+	.container {
+		padding:0;
+	}
+	.subContainer{
+		padding:0 !important;
+		margin:0;
+	}
+	#tab1, #tab2, #tab3, #tab4 { margin:10px !important;}
+	.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
+	.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
+	.hotelInfo h3 {
+		color:#562D82;
+		font-size:14px !important;
+		line-height:9px;
+		margin:0 0 3px;
+		padding:0;
+	}
+	.button a{
+		background-color: #562d82;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 11px !important;
+		font-weight: 700;
+		height: 20px;
+		left: -8px;
+		padding: 4px 7px !important;
+		position: relative;
+	}
+	.region_menu .dropdown-menu {
+		min-width:100% !important;
+	}
+	.red-line{ top:0px !important;}
+	.btn-group, .btn-group-vertical { min-width:50% !important;}
+	.btn-group > .btn, .btn-group-vertical > .btn {
+		font-weight:bold;
+	}
+	.carousel-caption {
+		text-shadow: none !important;
+		padding:0 !important;
+		top: 16px !important;
+		right: 16px !important;
+	}
+
+	.carousel-caption h2 {
+		font-size:20px !important;
+	}
+
+	.carousel-caption h3 {
+		font-size:11px !important;
+	}
+
+	.carousel-caption h5 {
+		font-size:14px !important;
+	}
+	div.carousel-caption h3 span {
+		font-size:15px !important;
+	}
+	.carousel-caption h6{
+		font-size:14px !important;
+		font-family:SerifaStd55Roman;
+	}
+	#mbl_member_logo{
+		width:70px !important;
+	}
+	.btn.button > a{
+		margin-left: 12px ;
+	}
+	p.inclusions{
+		margin:2px 0 0 10px !important;
+	}
+	.btn-group-vertical >.btn:hover {
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.btn.btn-default.dropdown-toggle:hover {
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.bread-crumb-location{
+		margin-left:0px !important;
+	}
+	.bread-crumb-location ul.bread-crumb-Links li.bread-crumb-li a,.bread-crumb-last-li a
+	{
+		font-size:11px!important;
+	}
+	.btn.btn-default.dropdown-toggle{ min-width:100%}
+	/*modified by mohan - 20141023*/
+	.carousel-caption {
+		 text-shadow: none !important;
+		 top: 16px !important;
+		 right: 16px !important;
+		 left:32% !important;
+		 padding:0 !important;		
+	}
+	.deal_text1{
+		font-size:125%!important;
+		line-height:12px !important;
+		padding:7px !important;
+	}
+	.deal_text2{
+		font-size:100%!important;
+		line-height:12px !important;
+		padding:4px 6px 6px 6px !important;
+	}
+	.deal_text5 {
+		font-size: 100% !important;
+		padding:5px !important;
+		margin:5px 0 0 0 !important;
+	}
+	.deal_text6 {
+		font-size: 85% !important;
+		padding:5px 10px 5px 10px !important;
+		margin:5px 0 0 0 !important;
+	}
+	/*modified by mohan - 20141023*/
 }
 
-.carousel-caption h2 {
-font-size:20px !important;
-}
-
-.carousel-caption h3 {
- font-size:11px !important;
-}
-
-.carousel-caption h5 {
- font-size:14px !important;
-}
-div.carousel-caption h3 span {
-font-size:15px !important;
-}
-.carousel-caption h6{
-font-size:14px !important;
-font-family:SerifaStd55Roman;
-}
-#mbl_member_logo{
-width:70px !important;
-}
-.btn.button > a{
-margin-left: 12px ;
-}
-p.inclusions{
-margin:2px 0 0 10px !important;
-}
-.btn-group-vertical >.btn:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.btn.btn-default.dropdown-toggle:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.bread-crumb-location{
-margin-left:0px !important;
-}
-.bread-crumb-location ul.bread-crumb-Links li.bread-crumb-li a,.bread-crumb-last-li a
-{
-font-size:11px!important;
-}
-.btn.btn-default.dropdown-toggle{ min-width:100%}
-.carousel-caption {
-     top: 16px !important;
-	 left:32% !important;
-}
-}
 @media only screen 
 and (min-device-width : 481px) 
-and (max-device-width : 767px) 
-{
+and (max-device-width : 767px) {
 .btn-group-vertical >.btn:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.btn-group > .btn, .btn-group-vertical > .btn {
-font-weight:bold;
-}
-.container {
-padding:0;
-}
-.subContainer{
-padding:0 !important;
-margin:0;
-}
-#tab1, #tab2, #tab3, #tab4 {margin:10px !important;}
-.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
-.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
-.hotelInfo h3 {
-color:#562D82;
-font-size:14px !important;
-line-height:9px;
-margin:0 0 3px;
-padding:0;
-}
-.button a{
- background-color: #562d82;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 11px !important;
-    font-weight: 700;
-    height: 20px;
-    left: -8px;
-    padding: 4px 7px !important;
-    position: relative;
-}
-.region_menu .dropdown-menu {
-min-width:100% !important;
-}
-.red-line{ top:0px !important;}
-.btn.button > a{
-margin-left: 12px ;
-}
-p.inclusions{
-margin:2px 0 0 10px !important;
-}
-.btn.btn-default.dropdown-toggle{ min-width:100%}
-.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.carousel-caption h2 {
-font-size:20px !important;
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.btn-group > .btn, .btn-group-vertical > .btn {
+		font-weight:bold;
+	}
+	.container {
+		padding:0;
+	}
+	.subContainer{
+		padding:0 !important;
+		margin:0;
+	}
+	#tab1, #tab2, #tab3, #tab4 {margin:10px !important;}
+	.col-xs-2, .col-sm-2, .col-md-2 {margin:0 !important;padding:0 !important;}
+	.campaign-promo-offer,.sign-in-member-offer{font-size:11px !important;}
+	.hotelInfo h3 {
+		color:#562D82;
+		font-size:14px !important;
+		line-height:9px;
+		margin:0 0 3px;
+		padding:0;
+	}
+	.button a{
+		background-color: #562d82;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 11px !important;
+		font-weight: 700;
+		height: 20px;
+		left: -8px;
+		padding: 4px 7px !important;
+		position: relative;
+	}
+	.region_menu .dropdown-menu {
+		min-width:100% !important;
+	}
+	.red-line{ top:0px !important;}
+	.btn.button > a{
+		margin-left: 12px ;
+	}
+	p.inclusions{
+		margin:2px 0 0 10px !important;
+	}
+	.btn.btn-default.dropdown-toggle{ min-width:100%}
+	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.carousel-caption h2 {
+		font-size:20px !important;
+	}
+
+	.carousel-caption h3 {
+		font-size:11px !important;
+	}
+
+	.carousel-caption h5 {
+		font-size:14px !important;
+	}
+	div.carousel-caption h3 span {
+		font-size:15px !important;
+	}
+	.carousel-caption h6{
+		font-size:14px !important;
+		font-family:SerifaStd55Roman;
+	}
+	/*modified by mohan - 20141023*/
+	.carousel-caption {
+		 text-shadow: none !important;
+		 top: 29px !important;
+		 right: 29px !important;
+		 left:32% !important;
+		 padding:0 !important;
+	}
+	.deal_text1{
+		font-size:125%!important;
+		line-height:12px !important;
+		padding:7px !important;
+	}
+	.deal_text2{
+		font-size:100%!important;
+		line-height:12px !important;
+		padding:4px 6px 6px 6px !important;
+	}
+	.deal_text5 {
+		font-size: 100% !important;
+		padding:5px !important;
+		margin:5px 0 0 0 !important;
+	}
+	.deal_text6{
+		font-size: 85% !important;
+		padding:5px 10px 5px 10px !important;
+		margin:5px 0 0 0 !important;
+	}
+	/*modified by mohan - 20141023*/
 }
 
-.carousel-caption h3 {
- font-size:11px !important;
-}
-
-.carousel-caption h5 {
- font-size:14px !important;
-}
-div.carousel-caption h3 span {
-font-size:15px !important;
-}
-.carousel-caption h6{
-font-size:14px !important;
-font-family:SerifaStd55Roman;
-}
-.carousel-caption {
-     top: 29px !important;
-	 left:32% !important;
-}
-}
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
-.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.btn-group > .btn, .btn-group-vertical > .btn {
-font-weight:bold;
-}
-.region_menu .dropdown-menu {
-min-width:50% !important;
-}
-.red-line{ top:0px !important;}
-.btn-group, .btn-group-vertical { min-width:50% !important;}
-.region_menu .dropdown-menu {
-    min-width: 99% !important;
-}
-.hotelDeal .row #image_section.image_section a .hotel-image-text {width:68%!important;}
-.btn.btn-default.dropdown-toggle{ min-width:100%}
+	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.btn-group > .btn, .btn-group-vertical > .btn {
+		font-weight:bold;
+	}
+	.region_menu .dropdown-menu {
+		min-width:50% !important;
+	}
+	.red-line{ top:0px !important;}
+	.btn-group, .btn-group-vertical { min-width:50% !important;}
+	.region_menu .dropdown-menu {
+		min-width: 99% !important;
+	}
+	.hotelDeal .row #image_section.image_section a .hotel-image-text {width:68%!important;}
+	.btn.btn-default.dropdown-toggle{ min-width:100%}
 }
 
 @media only screen 
 and (min-device-width : 481px) 
 and (max-device-width : 767px) 
 {
-.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
-background-color:red !important;
-color:#fff;
-font-weight:bold;
-}
-.region_menu .dropdown-menu {
-min-width:50% !important;
-}
-.red-line{ top:0px !important;}
-.btn-group, .btn-group-vertical { min-width:50% !important;}
-.region_menu .dropdown-menu {
-    min-width: 99% !important;
-}
-.carousel-caption {
-     top: 126px !important;
-	 left:40% !important;
-}
-.carousel-caption h2 {
-font-size:30px !important;
-}
-
-.carousel-caption h3 {
- font-size:25px !important;
-}
-
-.carousel-caption h5 {
- font-size:14px !important;
-}
-div.carousel-caption h3 span {
-font-size:25px !important;
-}
-.carousel-caption h6{
-font-size:14px !important;
-}
+	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+		background-color:red !important;
+		color:#fff;
+		font-weight:bold;
+	}
+	.region_menu .dropdown-menu {
+		min-width:50% !important;
+	}
+	.red-line{ top:0px !important;}
+	.btn-group, .btn-group-vertical { min-width:50% !important;}
+	.region_menu .dropdown-menu {
+		min-width: 99% !important;
+	}
+	.carousel-caption {
+		text-shadow: none !important;
+		top: 36px !important;
+		right: 36px !important;
+		left:40% !important;
+		padding:0 !important;
+	}
+	.carousel-caption h2 {
+		font-size:30px !important;
+	}
+	.carousel-caption h3 {
+		font-size:25px !important;
+	}
+	.carousel-caption h5 {
+		font-size:14px !important;
+	}
+	div.carousel-caption h3 span {
+		font-size:25px !important;
+	}
+	.carousel-caption h6{
+		font-size:14px !important;
+	}
 }
 /* reponsive design - ends */
 
@@ -326,7 +385,6 @@ a, a:link, .link{ color: #562d82; }
 #banner {
     z-index:1;
 }
-
 .glyphicon-earphone {
     border:1px solid #5A3084;
     line-height:3;
@@ -334,23 +392,20 @@ a, a:link, .link{ color: #562d82; }
     width:40px;
     margin-left:12px;
 }
-
 #dkt_banner .deal-tabs {
     left:10px;
     position:relative;
     top:-31px;
 }
-
 #dkt_banner .nav-tabs {
     border:0 solid #CCC;
 }
-
 #dkt_banner .nav-tabs > li.active > a,.nav-tabs > li.active > a:hover,.nav-tabs > li.active > a:focus {
     border:none;
     border-color:none;
 }
 ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
-width:100%;
+	width:100%;
 }
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li.dropdown-submenu a{
     background-color:#f4f4f5 !important;
@@ -403,12 +458,10 @@ width:100%;
     top:-17px;
     padding:0;
 }
-
 #dkt_banner #regionTabs #deal-tabs .desktop-tabs {
     background-color:transparent!important;
     border:none!important;
 }
-
 #dkt_banner #regionTabs .dropdown ul.level2 {
     float:left;
     left:0;
@@ -418,7 +471,6 @@ width:100%;
 	background-color:#f4f4f5 !important;
 	border:1px solid #e21e28;
 }
-
 #dkt_banner #regionTabs .dropdown ul.level3 {
     float:left;
     left:143px;
@@ -434,17 +486,14 @@ width:100%;
     position:relative;
     top:0px;
 }
-
 .tab-content {
     position:relative;
     /*top:-32px;
     left:-10px;*/
 }
-
 #tab1,#tab2,#tab3,#tab4 {
     margin:24px;
 }
-
 .hotelDeal {
     border-bottom:1px solid #EEE;
     border-right:1px solid #EEE;
@@ -452,7 +501,6 @@ width:100%;
     padding:3px;
 	height:155px;
 }
-
 .image_section {
     height:120px;
     left:0;
@@ -481,8 +529,7 @@ width:100%;
     color: #562d82;
     font-weight: 700;
 	line-height:1em;
-	}
-
+}
 .campaign-promo-offer {
     font-size:12px;
     font-weight:700;
@@ -497,7 +544,6 @@ width:100%;
     width:auto;
     margin:8px 0 1px;
 }
-
 .hotelInfo h3 {
     color: #562d82;
     font-size: 15px;
@@ -505,7 +551,6 @@ width:100%;
     margin: 0 0 3px;
     padding: 0;
 }
-
 .container #hotelList.subContainer .row .tab-content #tab1.tab-pane .hotelDeal .row .middle-offer-section .hotelInfo h3 {
     color:#562D82;
     font-size:15px;
@@ -513,7 +558,6 @@ width:100%;
     margin:0 0 3px;
     padding:0;
 }
-
 .saveBookInfo {
     background:url('http://www.hotelclub.com/Ad-unit/images/dealshadow.gif') no-repeat scroll 0 0 rgba(0,0,0,0);
     color:#E21E28;
@@ -527,7 +571,6 @@ width:100%;
     float:left;
     padding:0 0 0 20px;
 }
-
 .percentage {
     color:#E21E28;
     font-size:24px;
@@ -535,7 +578,6 @@ width:100%;
     line-height:24px;
     text-align:center;
 }
-
 p.inclusions {
     color:#999;
     font-size:10px;
@@ -543,7 +585,6 @@ p.inclusions {
     margin:2px 0 0;
     padding:0;
 }
-
 .hotelDeal .row #image_section.image_section a .hotel-image-text {
     background-image:url('http://www.hotelclub.com/Ad-unit/images/ce_location_background.png');
     height:20px;
@@ -552,7 +593,6 @@ p.inclusions {
     top:-19px;
 	width:100%;
 }
-
 .hotelDeal .row #image_section.image_section a .hotel-image-text .location-text{
     color:#FFF;
     left:5px;
@@ -561,7 +601,6 @@ p.inclusions {
     position:relative;
     top:0;
 }
-
 .ce-star {
     background: url("http://www.hotelclub.com/ad-unit/images/ce-hotelstar-brand.png") no-repeat scroll 0 50% transparent;
     float:right;
@@ -652,14 +691,12 @@ p.inclusions {
 .customer_menu_icon{ background-position:-10px -399px; }
 
 #mbl_banner table tr td:first-child{ border-right: 1px solid #CCC; }
-
 #phone_footer{ text-align:center; padding:10px; }
 /* mobile version - ends */
 /************mobile2*************/
 #mbl_banner .modal-content {
     background-color:#E6E1EB;
 }
-
 #mbl_banner div#accordion.panel-group div.panel div.panel-heading a {
     background-color:#FFF;
     color:#562D82;
@@ -669,7 +706,6 @@ p.inclusions {
     margin:0 4px 0 0;
     padding:7px;
 }
-
 .btn-search {
     background-color:#5A3084;
     color:#fff;
@@ -677,24 +713,19 @@ p.inclusions {
     float:right;
     border-color:#5B3280;
 }
-
 #mbl_banner .checkdate {
     width:50%;
     float:left;
 }
-
 #mbl_banner .controls {
-    margin:0 0 35px;
+	margin:0 0 35px;
 }
-
 .glyphicon-arrow-right {
     padding:1px;
 }
-
 .nav .caret {
     border-top-color:red;
 }
-
 .right-caret {
     border-bottom:4px solid transparent;
     border-top:4px solid transparent;
@@ -706,7 +737,7 @@ p.inclusions {
     width:0;
     margin:3px 0 0 3px;
 }
- li.dropdown-submenu.level1 a.menu-icons span.caret{ left: 100%;
+li.dropdown-submenu.level1 a.menu-icons span.caret{ left: 100%;
     position: relative;
     right: 0;
     top: -12px;
@@ -715,21 +746,21 @@ p.inclusions {
 	border-left: 4px solid transparent !important;
 	border-style:solid !important;
 }
-  .caret{
-  left:0;
-  top:0;
-  border-top: 4px solid !important;
+.caret{
+    left:0;
+    top:0;
+    border-top: 4px solid !important;
 	border-right: 4px solid transparent !important;
 	border-left: 4px solid transparent !important;
 	border-style:solid !important;
-  }
+}
 #mbl_banner .modal-dialog .dropdown-menu{
     background-color:#FFFFFF;
     TEXT-ALIGN: center;
     }
 #mbl_banner .modal-body{
-width:100%;
-height: auto;
+	width:100%;
+	height: auto;
 }
 #mbl_banner ul.nav li a {
     background-color:#FFF;
@@ -740,21 +771,17 @@ height: auto;
     margin:0 4px 0 0;
     padding:7px;
 }
-
 #mbl_banner ul.level2 {
     border-color:red;
 }
-
 #mbl_banner ul.level2 li a:hover {
     background-color:#CCC;
     color:#000;
 }
-
 #mbl_banner li.level1 a:hover {
     background-color:#E21E28;
     color:#FFF;
 }
-
 #mbl_banner .dropdown-menu > li > a {
     font-size:14px;
     font-weight:700;
@@ -763,12 +790,12 @@ height: auto;
     width:100%;
 }
 #mbl_banner .menu-glyphicon {
-top:-16px;
-position:relative;
-left:100%;}
-#mbl_banner ul.dropdown-menu.level2 {
-left:100%;
-min-width:50%;	
+	top:-16px;
+	position:relative;
+	left:100%;}
+	#mbl_banner ul.dropdown-menu.level2 {
+	left:100%;
+	min-width:50%;	
 }
 .visible-xs body{
     padding-right:0px;
@@ -777,55 +804,43 @@ min-width:50%;
 .visible-xs  .hotelCard{
     border:1px solid #CCC;width:100%;
 }
-
 .visible-xs #Phone-Itemcard .hote_image{
     float:left;width:70px;padding:3px;width:33%;
 }
-
 .visible-xs #Phone-Itemcard .middle-offer-section {
     float:left;padding:3px;width:37%;
 }
-
 .visible-xs #Phone-Itemcard .deals {
     float:left; text-align:center; border-left:1px solid #CCC; vertical-align:center; margin:7px 0;width:30%;
 }
 #mbl_banner div.region_menu {
 display:none;
 }
-
 .visible-xs #Phone-Itemcard .rating {
     clear:both;
 }
-
 .visible-xs #Phone-Itemcard .sign-out-member-offer {
     float:left;
     position:relative;
 }
-
 .font_red {
     color:red;
 }
-
 .visible-xs #Phone-Itemcard .sign-out-member-offer p {
     color:#562D82;
     background-color:#EEEAF3;
-
 }
-
 .visible-xs #Phone-Itemcard .hotel-image-text {
     position:relative;
     top:0;
 }
-
 .visible-xs #Phone-Itemcard .hotel-image-text .location-text {
     color:#ccc;
     font-weight:700;
 }
-
 .visible-xs #Phone-Itemcard  .offers_rate{
     color:red; padding:3px;
 }
-
 .visible-xs #Phone-Itemcard  .offers_rate .offers_percentage {
     font-size:18px;
 }
@@ -848,7 +863,6 @@ display:none;
     padding:4px;
 }
 .visible-xs #Phone-Itemcard clearfix{
-
 }
 /************mobile2*************/
 /* tablet version - starts */
@@ -862,53 +876,46 @@ display:none;
 /* tablet version - ends */
 
 .carousel-caption {
-    background-color: transparent;
+	text-shadow: none !important;
     display: inline-block;
     float: right;
-    height: 100px;
-    left: 50%;
     margin: 0 !important;
     opacity: 1;
     padding: 10px;
     position: absolute;
-    right: 0;
-    text-align: left;
-    top: 191px;
+    right: 50px;
+    text-align: right;
+    top: 50px;
     z-index: 1;
+	font-family:SerifaStd55Roman !important;
 }
-
 .carousel-caption h2 {
-    background-color:#F4F3F7;
-    color:#000;
-    opacity:0.75;
-    max-width:100%;
-    margin:0;
-	font-family:SerifaStd55Roman;
+	background-color:#E21E28;
+	padding: 10px;
+    color:#FFF !important;
+	font-family:SerifaStd55Roman !important;
+	font-size:32px;
 }
-
 .carousel-caption h3 {
-    background-color:#F4F3F7;
-    color:#000;
-    opacity:0.75!important;
-    max-width:100%;
-    margin:0;
-	font-family:SerifaStd55Roman;
+	padding: 10px;
+    color:#FFF !important;
+	font-family:SerifaStd55Roman !important;
 }
-
+.carousel-caption h3 span{
+	background-color:#E21E28;
+}
 .carousel-caption h5 {
-    background-color:#E21E28;
-    opacity:0.85!important;
-    color:#fff;
-    max-width:100%;
+	background-color:#E21E28;
+    color:#FFF;
     font-weight:700;
-    margin:0;
-	font-family:SerifaStd55Roman;
+	font-family:SerifaStd55Roman !important;
 }
 .carousel-caption h6{
-font-family:SerifaStd55Roman;
+	font-family:SerifaStd55Roman !important;
+	background-color:#E21E28;
+	padding:10px;
 }	
 #dkt_carousel .carousel-indicators {
-
     margin-bottom:3%;
 }
 #dkt_header li.loyaltyInfo,#mbl_banner .modal-content h5,h2 {
@@ -918,7 +925,6 @@ font-family:SerifaStd55Roman;
 #dkt_header a,#footer a,.hotelDeal a {
     text-decoration:none;
 }
-
 #banner #dkt_searchBot,#banner #tbt_searchBot {
     background-color:#F4F3F7;
     border:.167em solid #E9E6EE;
@@ -928,18 +934,15 @@ font-family:SerifaStd55Roman;
     padding:0 10px 5px;
     margin:10px;
 }
-
 #banner #dkt_searchBot h2,#banner #tbt_searchBot h2 {
     font-weight:700;
     font-size:20px;
 }
-
 #banner #dkt_searchBot p,#banner #tbt_searchBot p {
     font-weight:700;
     font-size:12px;
     margin:2px 0 5px;
 }
-
 #banner #dkt_searchBot .controls .btn,#banner #tbt_searchBot .controls .btn {
     background-color:#5A3084!important;
     color:#FFF;
@@ -947,11 +950,9 @@ font-family:SerifaStd55Roman;
     font-weight:700;
     padding:6px 10px;
 }
-
 #banner #dkt_searchBot .search_contacts,#banner #tbt_searchBot .search_contacts {
     margin-top:10px;
 }
-
 #banner #dkt_searchBot .help p,.glyphicon-earphone:before,#banner #tbt_searchBot .help p {
     color:#5A3084;
 }
@@ -995,16 +996,14 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     padding:13px 45px;
 }
 #dkt_banner .dropdown-submenu.divider{
-background-color:none !important;
+	background-color:none !important;
 }
 #dkt_banner .dropdown-menu .divider,#mbl_banner .dropdown-menu .divider {
     margin:0;
 }
-
 #dkt_banner .dropdown-submenu,#mbl_banner .dropdown-submenu {
     position:relative;
 }
-
 #dkt_banner .dropdown-submenu>.dropdown-menu,#mbl_banner .dropdown-submenu>.dropdown-menu {
     top:0;
     left:100%;
@@ -1027,7 +1026,6 @@ background-color:none !important;
 #dkt_banner .dropdown-submenu:hover>.dropdown-menu,#mbl_banner .dropdown-submenu:hover>.dropdown-menu {
     display:block;
 }
-
 /* #dkt_banner .dropup .dropdown-submenu>.dropdown-menu,#mbl_banner .dropup .dropdown-submenu>.dropdown-menu {
     top:auto;
     bottom:0;
@@ -1037,7 +1035,6 @@ background-color:none !important;
     -moz-border-radius:5px 5px 5px 0;
     border-radius:5px 5px 5px 0;
 }
-
 #dkt_banner .dropdown-submenu>a:after,#mbl_banner .dropdown-submenu>a:after {
     border-color: #CCCCCC rgba(0, 0, 0, 0) -moz-use-text-color;
     border-style: solid solid dotted;
@@ -1048,59 +1045,54 @@ background-color:none !important;
     margin-left: 5px;
     vertical-align: middle;
     width: 0;
-
 }
-
 #dkt_banner .dropdown-submenu:hover>a:after,#mbl_banner .dropdown-submenu:hover>a:after {
-
     border-color: #ccc rgba(0, 0, 0, 0) -moz-use-text-color;
-}
-*/
+}*/
 #dkt_banner .dropdown-submenu.pull-left,#mbl_banner .dropdown-submenu.pull-left {
     float:none;
 }
-
 #dkt_banner .dropdown .dropdown-menu .nav-header,#mbl_banner .dropdown .dropdown-menu .nav-header {
     padding-left:20px;
     padding-right:20px;
 }
-
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-xs div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
     float:left;
 }
+
 .panel-heading > a{
-font-size:14px;
+	font-size:14px;
 }
 .panel-group {margin-bottom:1px !important;}
-.bread-crumb-location {
-padding: 1.5em 0em 1em 1em;
-margin-left:17px;
-border-bottom: 1px solid rgb(226, 30, 40);
-display: inline-block;
-}
 
+.bread-crumb-location {
+	padding: 1.5em 0em 1em 1em;
+	margin-left:17px;
+	border-bottom: 1px solid rgb(226, 30, 40);
+	display: inline-block;
+}
 .bread-crumb-Links {
-padding-bottom: 1em;
-padding: 0px 0px 0.833em;
-list-style-type: none;
-font-size: 1em;
+	padding-bottom: 1em;
+	padding: 0px 0px 0.833em;
+	list-style-type: none;
+	font-size: 1em;
 }
 .bread-crumb-first-li {
-border-right: 0em solid rgb(0, 0, 0);
-float: left;
-list-style: none outside none;
-margin: 0.083em;
-padding: 0px 0.333em;
-white-space: nowrap;
-padding-left: 20px;
+	border-right: 0em solid rgb(0, 0, 0);
+	float: left;
+	list-style: none outside none;
+	margin: 0.083em;
+	padding: 0px 0.333em;
+	white-space: nowrap;
+	padding-left: 20px;
 }
 .bread-crumb-li {
-border-right: 0.083em solid rgb(0, 0, 0);
-float: left;
-list-style: none outside none;
-margin: 0.083em;
-padding: 0px 0.333em;
-white-space: nowrap;
+	border-right: 0.083em solid rgb(0, 0, 0);
+	float: left;
+	list-style: none outside none;
+	margin: 0.083em;
+	padding: 0px 0.333em;
+	white-space: nowrap;
 }
 a, a:link, .bread-crumb-location {
     color:black;
@@ -1109,41 +1101,33 @@ a, a:link, .bread-crumb-location {
     font-weight: bold;
 }
 .bread-crumb-last-li {
-border-right: 0.083em solid rgb(0, 0, 0);
-float: left;
-list-style: none outside none;
-margin: 0.083em;
-padding: 0px 0.333em;
-white-space: nowrap;
-border: 0px;
+	border-right: 0.083em solid rgb(0, 0, 0);
+	float: left;
+	list-style: none outside none;
+	margin: 0.083em;
+	padding: 0px 0.333em;
+	white-space: nowrap;
+	border: 0px;
 }
 
 .carousel-caption h2 {
-    background-color:#F4F3F7;
-    color:#000;
-    opacity:0.75;
-    max-width:100%;
-    margin:0;
+    color:#FFF;
 	font-family:SerifaStd55Roman;
+	margin:0;
 }
 
 .carousel-caption h3 {
-    background-color:#F4F3F7;
-    color:#000;
-    opacity:0.75!important;
-    max-width:100%;
-    margin:0;
+    color:#FFF;
 	font-family:SerifaStd55Roman;
+	margin:0;
 }
 
 .carousel-caption h5 {
-    background-color:#E21E28;
-    opacity:0.85!important;
-    color:#fff;
-    max-width:100%;
+    color:#FFF;
     font-weight:700;
-    margin:0;
 	font-family:SerifaStd55Roman;
+	margin:0;
+	padding:10px;
 }
 #footPartner{font-size:10px;}
 .thterms{font-size:12px;}
@@ -1164,3 +1148,89 @@ border: 0px;
     padding-top: 13px;   
     z-index: 0;
 }
+/*modified by mohan - 20141023*/
+/*banner and text changes - starts here*/
+.deal_text1 {
+    position: relative;
+    float:right;
+    background-color: rgb(226, 30, 40);
+    color: rgb(255, 255, 255);
+	font-size: 250%;
+    font-family: SerifaStd55Roman;
+    font-weight: normal;
+    display: inline-block;    
+    padding:15px;
+    line-height: 22px;
+    clear: both;
+}
+.deal_text2 {
+    position: relative;
+    float:right;    
+    font-family: SerifaStd55Roman;
+    font-weight: normal;
+	font-size: 200%;
+    display: inline-block;    
+    line-height: 1.3;
+    clear: both;    
+    Background-color:#e21e28;
+    color:#fff;
+    padding:10px 15px 15px 15px;
+}
+/*.deal_text3 {
+    position: relative;
+    float:right;
+    background-color: rgb(244, 243, 247);
+    font-family: SerifaStd55Roman;
+    font-weight: normal;
+    display: inline-block;    
+    line-height: 12px;
+    clear: both;
+    color:#000;
+    padding:15px 20px 5px 20px;
+    Font-size:22px;
+    opacity:0.9;
+    margin-top: 40px;
+}
+.deal_text4 {
+    position: relative;
+    float:right;
+    background-color: rgb(244, 243, 247);
+    color: #000;
+    font-family: SerifaStd55Roman;
+    font-weight: normal;
+    font-size: 16px;
+    display: inline-block;    
+    padding:10px 20px 5px 20px;
+    line-height: 12px;
+    clear: both;
+    opacity: 0.9;
+}*/
+.deal_text5 {
+    position: relative;
+    float:right;
+    background-color: #FCFAFB;
+    font-family: SerifaStd55Roman;
+    font-weight: normal;
+    display: inline-block;    
+    line-height: 12px;
+    clear: both;
+    color:#000;
+    padding:20px;
+	font-size: 200%;
+	margin:10px 0 0 0;
+} 
+.deal_text6{	
+    position: relative;
+    float:right;
+    background-color: #F8F3F0;
+    color: #EF2B2F;
+    font-family: "Trebuchet MS";
+    font-weight: normal;
+	font-size: 170%;
+    display: inline-block;    
+    padding:10px 20px 10px 20px;
+    line-height: 1.2;
+    clear: both;
+	margin:10px 0 0 0;
+}
+/*banner and text changes - ends here*/

@@ -20,10 +20,10 @@
                      <div class="row">
 	                  <div class="">
 	                        <div class="carousel-caption ">
-					<h2>{{ banner['h1'] }}</h2>
-					<h3><span>{{ banner['h2'] }} </h3>
-					<h5>{{ banner['promo'] }}</h5>
-					<h6>{{ banner['terms'] }}</h6>
+					<div class="deal_text1">{{ banner['h1'] }}</div><br/>
+					<div class="deal_text2">{{ banner['h2'] }}</div><br/>
+					{% if banner['promo'] is not empty %} <div class="deal_text5">{{ banner['promo'] }}</div> <br/> {% endif %}
+					<div class="deal_text6">{{ banner['terms'] }}</div><br/>
 	                        </div>
 	                     </div>
                     </div>
