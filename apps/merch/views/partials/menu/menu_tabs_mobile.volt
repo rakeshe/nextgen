@@ -11,7 +11,7 @@
                     <h2 id="myModalLabel" class="modal-title">Find a hotel deal</h2>
                 </div>
                 <div class="modal-body">
-                    <form form"="" name="searchBot role=" method="get" class="form-inline datepicker">
+                    <form form="" name="searchBot role=" method="get" class="form-inline datepicker">
                     <div class=" where">
                         <h5>Where</h5>
                         <input type="text" id="locationText" placeholder="Location.." class="form-control input-md">

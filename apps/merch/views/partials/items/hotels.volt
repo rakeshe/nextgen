@@ -1,3 +1,7 @@
+<script type="text/javascript">
+var deals = JSON.parse('{{ hotelDetailsJson }}'),
+trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}',  'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}'};
+</script>
 {% if city is not defined %}
 {% set city = false %}
 {% endif %}
@@ -13,12 +17,12 @@
                     {% if key != "name" and key != "sort" %}
                         {% if cntFlag == false %}
                             <li class="bread-crumb-first-li{% if city == false %} bread-crumb-li-selected{%endif%}">
-                                <a href="{{ uriBase }}/{{ region }}/{{ country }}">{{ country }}&nbsp;&nbsp;&nbsp;>></a>
+                                <a class="menu-city" href="{{ uriBase }}/{{ region }}/{{ country }}">{{ country }}&nbsp;&nbsp;&nbsp;>></a>
                             </li>
                         {% set cntFlag = true %}
                         {% endif %}      
                             <li class="{% if ddLength == ddCounter %}bread-crumb-last-li{% else %}bread-crumb-li{%endif%}{% if key == city %} bread-crumb-li-selected{%endif%}">
-                                <a href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}">{{ key }}</a>
+                                <a class="menu-city" href="{{ uriBase }}/{{ region }}/{{ country }}/{{ key }}">{{ key }}</a>
                             </li>
                         {% set ddCounter = ddCounter + 1 %}
                     {% endif %}
@@ -39,7 +43,7 @@
             <!--Forloop Starts-->
 
             <!-- TAB 2 -->
-            <div class=" tab-pane" id="tab2">
+            <div class="tab-pane hc-cards" id="tab2">
                 <!--Forloop Starts-->
 
                 <!-- SET OF HOTELS-->
@@ -52,13 +56,12 @@
                             <a>
                                 <div>
                                     <img src="{{ HotelHelper.getClassicHotelImageUri(hls['oneg']) }}"
-                         class="img-responsive" id="image_hotel" alt="Responsive image" width="180" height="120"/>
-                                    <!--<img src="http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_1149971.jpg" class="hotelimg" />-->
+                                    class="img-responsive" id="image_hotel" alt="" width="180" height="120"/>                                    
                                     <div class=" hidden-xs hotel-image-text" style="">
-                                        <div class="location-text">{{hotelDetails[index]['country_name']}}</div>
+                                        <div class="location-text img-location-text">{{hotelDetails[index]['country_name']}}</div>
                                         <div class="ce-star star4">
                                             <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
-                                 class="img-responsive" id="image_hotel" alt="Responsive image" width=""
+                                 class="img-responsive" alt="hotel rank" width=""
                                  height=""/>
                                         </div>
                                     </div>
@@ -70,35 +73,21 @@
                                 <h3>
                                     <!-- HOTEL NAME -->
                                     <a>
-                                        <div class="hidden-sm purple-color" title="{{hotelDetails[index]['hotel_name']}}">
+                                        <div class="purple-color hotel-title" title="{{hotelDetails[index]['hotel_name']}}">
                                             {{substr(hotelDetails[index]['hotel_name'],0,11)}}
                                             {% if hotelDetails[index]['hotel_name']|length >=  11 %}
                                             ...
                                             {% endif %}
 						
-                                        </div>
-                                        <div title="{{hotelDetails[index]['hotel_name']}}" class="visible-sm purple-color">
-                                            {{hotelDetails[index]['hotel_name']}}
-												
-                                        </div>
+                                        </div>                                       
                                     </a>
-                                </h3>
-                                <div class=" clearfix visible-xs hotel-image-text" style="">
-                                    <div class="rating">
-                                        <img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"
-                         class="img-responsive" id="image_hotel" alt="Responsive image" width=""
-                         height=""/>
-                                    </div>
-                                    <div class="hotel-image-text">
-                                        <div class="location-text">{{hotelDetails[index]['country_name']}} </div>
-                                    </div>
-                                </div>
+                                </h3>                               
                                 {% set discount="0" %}
                                 {% for key, offer in hotelDetails[index]['offer'] %}
                                 <div class="hidden-xs campaign-promo-offer">                    
                                     {{ offer['offer_text'] }}
                                     {% set discount=offer['percent_off'] %}
-                                </div>   
+                                </div>
                                 {% endfor %}
 
                                 <div class="members-extras-block">
@@ -124,7 +113,7 @@
 
                         <div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">
                             {{ t._('Save') }}<br> 
-                                <span class="percentage">{{ discount }}%</span>
+                                <span class="percentage hc-percentage">{{ discount }}%</span>
 
                                 <div class="clearfix "></div>
                                 <div class="btn button">
@@ -134,8 +123,7 @@
 
                                     <p class="inclusions">{{hotelDetails[index]['travel_text']}}</p>
                         </div>
-                    </div>
-                    <div class="clearfix "></div>
+                    </div>                    
                 </div>
                 <!-- SET OF HOTELS-->
                 {% endfor %}
