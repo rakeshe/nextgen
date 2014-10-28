@@ -152,6 +152,22 @@ $router->add(
     )
 );
 
+/**
+ * API Routers
+ * api/recommend
+ */
+$router->add(
+    '/api/recommend/:params',
+    array(        
+        'params'       => 1,
+        'controller'   => 'index',
+        'action'       => 'recommend',
+        'module'       => 'api',
+        'namespace'    => 'HC\Api\Controllers\\',
+    )
+);
+
+
 
 /**
  * Set default route
