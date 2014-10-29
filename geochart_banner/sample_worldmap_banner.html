@@ -1,15 +1,37 @@
+<!--
+Developer: Mohan
+Created Date: 27-Oct-2014
+Purpose: To create a static page for displaying geochart banner based on region (Zoom-in & Zoom-out)
+-->
 <html>
   <head>
-	<title>World Map</title>
+	<title>Hotel Club - Geochart Banner</title>
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
+	//Declaring the variable value globally
 	google.load("visualization", "1", {packages:["geochart"]});
 	google.setOnLoadCallback(drawRegionsMapOne);
-	var options = {region: 'world', resolution: 'continents', width: 750, height: 468, zoomLevel:0, backgroundColor: '#FFFFFF', legend: 'none', tooltip: { trigger: 'none'}, colorAxis : {minValue: 0, maxValue : 100, colors: ['#FFFF00','#E21E28']} };
-	var currentRegion;
+	var options = {
+			region: 'world', 
+			resolution: 'continents', 
+			width: 750, 
+			height: 468, 
+			zoomLevel:0, 
+			backgroundColor: '#FFFFFF', 
+			legend: 'none', 
+			tooltip: { trigger: 'none'},
+			backgroundColor : "#f8f8f8", 
+			datalessRegionColor : "#d1d2d4"
+		};
+	//Assigned all the array values based on regions with there country codes
+	africa = Array('DZ', 'EG', 'EH','LY', 'MA', 'SD', 'TN', 'BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG', 'AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD', 'BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW', 'BW', 'LS', 'NA', 'SZ', 'ZA');
+	europe = Array('GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ', 'AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL', 'BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA', 'AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU');
+	americas = Array('BM', 'CA', 'GL', 'PM', 'US', 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI', 'BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE');
+	asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');
+	oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');
 
-	function drawRegionsMapOne(){
+	function drawRegionsMapOne(){		
 		//Continent ids are provided in array
 		var data = google.visualization.arrayToDataTable([
 			['Continent', 'Deals'],
@@ -19,41 +41,65 @@
 			['142', 500],
 			['009', 600]
 		]);
-
+		
 		var view = new google.visualization.DataView(data);
 		view.setColumns([0, 1]);
 		
-		var geochart = new google.visualization.GeoChart( document.getElementById('regions_div'));			
-
-		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {
-			currentRegion = eventData.region;
-			//alert(currentRegion);//Based on region id trigger the menu and display deals in that region
-			// maybe you want to change the data table here...				
-			options['region'] = eventData.region;
-			geochart.draw(data, options);  
+		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		//Creating a geochart based on eventData
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {			
+			var currentCountry = eventData.region;
+			//Condition to check whether triggered event is region or country
+			if(isNaN(currentCountry)!=false){
+				if($.inArray(currentCountry, africa) > -1){ currentRegion = '002'; }
+				else if($.inArray(currentCountry, europe) > -1){  currentRegion = '150';  }
+				else if($.inArray(currentCountry, americas) > -1){  currentRegion = '019';  }
+				else if($.inArray(currentCountry, asia) > -1){  currentRegion = '142';  }
+				else if($.inArray(currentCountry, oceania) > -1){  currentRegion = '009';  }
+				//Condition to check africa code and blocked it
+				if(currentRegion!='002'){
+					options.region = currentRegion;
+					geochart.draw(data, options);
+				}
+			}else{
+				//Condition to check africa code and blocked it
+				if(currentCountry!='002'){
+					options.region = currentCountry;
+					geochart.draw(data, options);				
+				}
+			}
 		});
+		//Display geochart
 		var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		geochart.draw(data, options);
+		options.resolution = 'country';//Reseting the geochart resolution, so that color are displayed
 	}
 
-	$(document).ready(function(){		
-		$(".continents").click(function(){
-			options.region = $(this).data("country-code");
-			//alert(options.region);
-			drawRegionsMapOne();
-		});
-	});
-
+	//Function to reset map
 	function resetMap(){
 		options.region = 'world';
+		options.resolution = 'continents';
 		//alert(options.region);
 		drawRegionsMapOne();
-	}
+	}//resetMap
+
+	//Based on the lable (region) clicked, display the region
+	$(document).ready(function(){		
+		$(".continents").click(function(){
+			var regionCodeVal = $(this).data("region-code");
+			//Condition to check africa code and blocked it
+			if(regionCodeVal!='002'){
+				options.region = regionCodeVal;
+				drawRegionsMapOne();
+			}
+		});
+	});//End of $(document)
     </script>
   </head>
   <body>
     <div id="regions_div" style=""></div>
 	<a href='javascript: resetMap();'/>Reset Map</a><br/>
-	<a href='javascript: void(0);' data-country-code="142" class="continents"/>Asia</a> | <a href='javascript: void(0);' data-country-code="019" class="continents"/>Americas</a> | <a href='javascript: void(0);' data-country-code="002" class="continents"/>Africa</a> | <a href='javascript: void(0);' data-country-code="150" class="continents"/>Europe</a> | <a href='javascript: void(0);' data-country-code="009" class="continents"/>Oceania</a>
+	<a href='javascript: void(0);' data-region-code="142" class="continents"/>Asia</a> | <a href='javascript: void(0);' data-region-code="019" class="continents"/>Americas</a> | <a href='javascript: void(0);' data-region-code="002" class="continents"/>Africa</a> | <a href='javascript: void(0);' data-region-code="150" class="continents"/>Europe</a> | <a href='javascript: void(0);' data-region-code="009" class="continents"/>Oceania</a><br/><br/>
+	<b>Note:</b> We have blocked the africa region for testing purpose.
   </body>
 </html>
