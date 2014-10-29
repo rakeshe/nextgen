@@ -157,6 +157,22 @@ $router->add(
  * api/recommend
  */
 $router->add(
+		'/merch/api/json/:params',
+		array(
+				'params'       => 1,
+				'type'	   	   => 'json',
+				'controller'   => 'index',
+				'action'       => 'api',
+				'module'       => 'merch',
+				'namespace'    => 'HC\Merch\Controllers\\',
+		)
+);
+
+/**
+ * API Routers
+ * api/recommend
+ */
+$router->add(
     '/api/recommend/:params',
     array(        
         'params'       => 1,
