@@ -288,71 +288,80 @@ $(document).ready(
 
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	e.preventDefault();
-	var cacheObj = $(this);
-	var res = nextgen.sendRequest($(this).attr('href'), '');
+	var cacheObj = $(this),
+		url = $(this).attr('href'),
+		x = nextgen.init(),
+		res = x.sendRequest(url, '');
+	
 	res.success(function(data){
-		nextgen.displayHotels(res.responseJSON); // dispaly hotel cards
-		nextgen.selectMenu(cacheObj); // select menu		
+		x.displayHotels(data); // dispaly hotel cards
+		x.selectMenu(cacheObj); // select menu
+		x.setUrlToHistory(url); // Change url on browser		
 	})
-	.error(function(){
-		console.log('*******************AJAX ERROR***********************');
+	.error(function(data){		
+		console.log('Exception: '+ data.responseText);
 	});	
 	return false;
 });
 
 var nextgen = {
-	'sendRequest' : function(url, data) {
-		return $.ajax({
-			type : 'POST',
-			dataType : 'json',
-			url : url,
-			async : false,
-			data : data
-		});
-	},
-	'displayHotels' : function(obj) {		
-		var html = '';
-		$.each(obj['hotels'], function(index, val) {
-			html += '<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">';
-			html += '<div class="row">';
-			html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
-			html += '<a>';
-			html += '<div>';
-			html += '<img src = "'+ nextgen.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
-					
-			html +='<div class=" hidden-xs hotel-image-text" style="">';
-			html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
-			html += '<div class="ce-star star4">';
-			html += '<img src="" alt="'+deals[index]['rank_country']+'" class="img-responsive" />';
-			html += '</div></div></div></a></div>';
-			
-			html += ' <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">';
-							html += ' <div class="hotelInfo">';
-					html += '<h3>';                  
-						html += '<a>';
-						html += '<div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
-							
-						if (deals[index]['hotel_name'].length > 12)
-							html += deals[index]['hotel_name'].substring(0, 11) + '...';
-						else
-							html += deals[index]['hotel_name'];                         
-			
-                        html += '</div></a></h3>';                  
-                        html +='<div class="hidden-xs campaign-promo-offer">';
-                        var discount;
-             			$.each(deals[index]['offer'], function(key, val) {
-             				html += val['offer_text'];
-             				discount = val['percent_off']; 
-             			});
-             			html += '</div>';
-
+		//initialization here..
+		'init' : function(){
+			return this;
+		},
+		//send ajax request
+		'sendRequest' : function(url, data) {
+			return $.ajax({
+				type : 'POST',
+				dataType : 'json',
+				url : url,
+				async : false,
+				data : data
+			});
+		},
+		//Display hotel card
+		'displayHotels' : function(obj) {			
+			var html = '';
+			$.each(obj['hotels'], function(index, val) {
+				html += '<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">';
+				html += '<div class="row">';
+				html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
+				html += '<a>';
+				html += '<div>';
+				html += '<img src = "'+ nextgen.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
+						
+				html +='<div class=" hidden-xs hotel-image-text" style="">';
+				html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
+				html += '<div class="ce-star star4">';
+				html += '<img src="" alt="'+deals[index]['rank_country']+'" class="img-responsive" />';
+				html += '</div></div></div></a></div>';
+				
+				html += ' <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">';
+				html += ' <div class="hotelInfo">';
+				html += '<h3>';                  
+				html += '<a>';
+				html += '<div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
+								
+				if (deals[index]['hotel_name'].length > 12)
+					html += deals[index]['hotel_name'].substring(0, 11) + '...';
+				else
+					html += deals[index]['hotel_name'];                         
+				
+	            html += '</div></a></h3>';                  
+	            html +='<div class="hidden-xs campaign-promo-offer">';
+	            var discount;
+	            $.each(deals[index]['offer'], function(key, val) {
+	            	html += val['offer_text'];
+	             	discount = val['percent_off']; 
+	            });
+	            html += '</div>';	
                 html += '<div class="members-extras-block">';                   
                 html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" />';
                 html += '<div class="font_red member-extras-text">'+trans['mem_extras']+'</div>';
                 html += '</div>';
-                
+	                
                // members-extras-block
-               html += '<div class="sign-in-member-offer offer-for-existing-members font_red">';
+                html += '<div class="sign-in-member-offer offer-for-existing-members font_red">';
     			$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
     				html += mval['offer_moo_text'];				
     			}); 
@@ -376,21 +385,29 @@ var nextgen = {
 		       html += '<br>';
 		       html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
 		       html += '</div></div></div>';
-		});
-		$('.hc-cards').html(html);
-	},
-	'classicHotelImageUri' : function(oneg){
-		return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
-	},
-	'selectMenu' : function($this) {
-		if ($this.hasClass('menu-region')) {
-			$('li').removeClass('levelActive').addClass('level1');
-			$this.parent().addClass('levelActive');
-		} else if ($this.hasClass('menu-country')) {
-			$('li').removeClass('levelActive').addClass('level1');
-			$this.parent().parent().parent().addClass('levelActive');
+			});
+			$('.hc-cards').html(html);
+		},
+		//Image uri builder
+		'classicHotelImageUri' : function(oneg){
+			return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
+		},
+		//select menu which is clicked
+		'selectMenu' : function($this) {
+			if ($this.hasClass('menu-region')) {
+				$('li').removeClass('levelActive').addClass('level1');
+				$this.parent().addClass('levelActive');
+			} else if ($this.hasClass('menu-country')) {
+				$('li').removeClass('levelActive').addClass('level1');
+				$this.parent().parent().parent().addClass('levelActive');
+			}
+		},
+		//Adding url to browser history entries
+		'setUrlToHistory' : function(url) {
+			if (window.location != url)
+				window.history.pushState({path:url}, '', url);
 		}
-	}
+	
 	
 };
 
