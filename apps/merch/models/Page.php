@@ -94,7 +94,7 @@ class Page extends \Phalcon\Mvc\Model {
      * @return bool|array
      */
     public function loadCampaignData() {
-        try {
+        try {        	
             return $this->dealsData['campaign'];
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -181,7 +181,7 @@ class Page extends \Phalcon\Mvc\Model {
             $cntName = false;
             $ctyCnt = 0;
             foreach ($this->dealsData['campaign'][$region][$country] as $key => $val) {
-                if ($key != 'name' && $key != 'sort') {
+                if ($key != 'name' && $key != 'sort' && $key != 'name_en') {
                     //Remove unwanted keys
                     unset($val['sort'], $val['name']);
 
@@ -226,7 +226,7 @@ class Page extends \Phalcon\Mvc\Model {
             $cntName = false;
             $ctyCnt = 0;
             foreach ($this->dealsData['campaign'][$region] as $keyRegion => $value) {
-                if ($keyRegion != 'name' && $keyRegion != 'sort') {
+                if ($keyRegion != 'name' && $keyRegion != 'sort' && $keyRegion != 'name_en') {
                     foreach ($value as $key => $val) {
                         if ($key != 'name' && $key != 'sort') {
                             //Remove unwanted keys
