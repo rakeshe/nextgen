@@ -288,9 +288,11 @@ $(document).ready(
 
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	e.preventDefault();
+	var cacheObj = $(this);
 	var res = nextgen.sendRequest($(this).attr('href'), '');
 	res.success(function(data){
-		nextgen.displayHotels(res.responseJSON);		
+		nextgen.displayHotels(res.responseJSON); // dispaly hotel cards
+		nextgen.selectMenu(cacheObj); // select menu		
 	})
 	.error(function(){
 		console.log('*******************AJAX ERROR***********************');
@@ -316,7 +318,7 @@ var nextgen = {
 			html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
 			html += '<a>';
 			html += '<div>';
-			html += '<img src = "http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + val.oneg + '.jpg" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
+			html += '<img src = "'+ nextgen.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
 					
 			html +='<div class=" hidden-xs hotel-image-text" style="">';
 			html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
@@ -325,19 +327,17 @@ var nextgen = {
 			html += '</div></div></div></a></div>';
 			
 			html += ' <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">';
-				html += ' <div class="hotelInfo">';
-					html += '    <h3>';
-                  
-						html += '        <a>';
-							html += '         <div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
+							html += ' <div class="hotelInfo">';
+					html += '<h3>';                  
+						html += '<a>';
+						html += '<div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
 							
-							if (deals[index]['hotel_name'].length > 12)
-								html += deals[index]['hotel_name'].substring(0, 11) + '...';
-							else
-								html += deals[index]['hotel_name'];                         
+						if (deals[index]['hotel_name'].length > 12)
+							html += deals[index]['hotel_name'].substring(0, 11) + '...';
+						else
+							html += deals[index]['hotel_name'];                         
 			
-                         html += '</div></a></h3>';
-                  
+                        html += '</div></a></h3>';                  
                         html +='<div class="hidden-xs campaign-promo-offer">';
                         var discount;
              			$.each(deals[index]['offer'], function(key, val) {
@@ -378,7 +378,20 @@ var nextgen = {
 		       html += '</div></div></div>';
 		});
 		$('.hc-cards').html(html);
+	},
+	'classicHotelImageUri' : function(oneg){
+		return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
+	},
+	'selectMenu' : function($this) {
+		if ($this.hasClass('menu-region')) {
+			$('li').removeClass('levelActive').addClass('level1');
+			$this.parent().addClass('levelActive');
+		} else if ($this.hasClass('menu-country')) {
+			$('li').removeClass('levelActive').addClass('level1');
+			$this.parent().parent().parent().addClass('levelActive');
+		}
 	}
+	
 };
 
 /* /Region Tabs-Mobile Toggle Event */
