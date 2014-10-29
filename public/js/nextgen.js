@@ -137,51 +137,47 @@ $(document).ready(
 		});
 
 /* Region Tabs-Mobile Toggle Event */
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
+	
+	$("#regions").click(function() {
+		$("#mbl_banner .region_panels").hide();
+		$("#mbl_banner .region_menu").show();
 
-					$("#regions").click(function() {
-						$("#mbl_banner .region_panels").hide();
-						$("#mbl_banner .region_menu").show();
+	});
+	/* hover mobile responsive */
+	$(".menu-icons").hover(function() {
+		$(this).find("b").removeClass("glyphicon-plus");
+		$(this).find("b").addClass("glyphicon-minus");
+	}, function() {
+		$(this).find("b").removeClass("glyphicon-minus");
+		$(this).find("b").addClass("glyphicon-plus");
+	});
+	/* Ontouch mobile responsive */
+	$(".region_menu .dropdown-toggle").click(function() {
+		$(this).find("span").toggleClass(
+				"glyphicon-minus");
+		if ($(".glyphicon").hasClass(
+				"glyphicon-minus") == true) {
+			$(".btn-default").find("span")
+					.removeClass(
+							"glyphicon-minus");
+			$(this).find("span").toggleClass(
+					"glyphicon-minus");
+		}
+		var button_count = $(
+				".region_menu .btn-group-vertical")
+				.find("button").length;
+		var get_id = $(this).attr("id")
+				.replace(/[^0-9]/g, '');
+		get_id = get_id - 1;
+		var setpos = get_id * 1;
+		setpos = -setpos;
+		var getpos = setpos + "px";
+		$(".region_menu .dropdown-menu").css(
+				"top", "" + getpos + "");
 
-					});
-					/* hover mobile responsive */
-					$(".menu-icons").hover(function() {
-						$(this).find("b").removeClass("glyphicon-plus");
-						$(this).find("b").addClass("glyphicon-minus");
-					}, function() {
-						$(this).find("b").removeClass("glyphicon-minus");
-						$(this).find("b").addClass("glyphicon-plus");
-					});
-					/* Ontouch mobile responsive */
-					$(".region_menu .dropdown-toggle")
-							.click(
-									function() {
-										$(this).find("span").toggleClass(
-												"glyphicon-minus");
-										if ($(".glyphicon").hasClass(
-												"glyphicon-minus") == true) {
-											$(".btn-default").find("span")
-													.removeClass(
-															"glyphicon-minus");
-											$(this).find("span").toggleClass(
-													"glyphicon-minus");
-										}
-										var button_count = $(
-												".region_menu .btn-group-vertical")
-												.find("button").length;
-										var get_id = $(this).attr("id")
-												.replace(/[^0-9]/g, '');
-										get_id = get_id - 1;
-										var setpos = get_id * 1;
-										setpos = -setpos;
-										var getpos = setpos + "px";
-										$(".region_menu .dropdown-menu").css(
-												"top", "" + getpos + "");
-
-									});
-				});
+	});
+});
 function validate_searchform() {
 	var flag = false;
 	var errFlag = false;
@@ -218,74 +214,80 @@ function validate_searchform() {
 		return true;
 	return false;
 }
-$("#btnSearch")
-		.click(
-				function() {
-					validate_searchform();
-					var local = $("#locationText").val(), checkIn = $(
-							"#checkin").val(), checkOut = $("#checkout").val(), promo = $(
-							"#couponCode").val(), languageCode = $("#btnSearch")
-							.data('local');
-					window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
-							+ promo
-							+ "&hotel.keyword.key="
-							+ local
-							+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
-							+ checkIn
-							+ "&hotel.chkout="
-							+ checkOut
-							+ "&search=Search&locale="
-							+ languageCode
-							+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
-					console.log(local + checkIn + checkOut + promo);
-				});
+$("#btnSearch").click(function() {
+	validate_searchform();
+	var local = $("#locationText").val(), checkIn = $(
+			"#checkin").val(), checkOut = $("#checkout").val(), promo = $(
+			"#couponCode").val(), languageCode = $("#btnSearch")
+			.data('local');
+	window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+			+ promo
+			+ "&hotel.keyword.key="
+			+ local
+			+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+			+ checkIn
+			+ "&hotel.chkout="
+			+ checkOut
+			+ "&search=Search&locale="
+			+ languageCode
+			+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+	console.log(local + checkIn + checkOut + promo);
+});
 
-$(document).ready(
-		function() {
-			function log(message) {
-				$("<div>").text(message).prependTo("#log");
-				$("#log").scrollTop(0);
-			}
+$(document).ready(function() {
+	function log(message) {
+		$("<div>").text(message).prependTo("#log");
+		$("#log").scrollTop(0);
+	}
 
-			$("#locationText").autocomplete(
-					{
-						source : function(request, response) {
-							$.ajax({
-								url : "/merch/get-location",
-								dataType : "json",
-								data : {
-									q : request.term
-								},
-								success : function(data) {
-									console.log(data.suggestion);
-									var dataArr = [];
-									$.each(data, function(key, val) {
-										dataArr.push(val.suggestion);
-										console
-												.log(key + '--'
-														+ val.suggestion);
-									});
-									response(dataArr);
-								}
-							});
-						},
-						minLength : 1,
-						select : function(event, ui) {
-							log(ui.item ? "Selected: " + ui.item.label
-									: "Nothing selected, input was "
-											+ this.value);
-						},
-						open : function() {
-							$(this).removeClass("ui-corner-all").addClass(
-									"ui-corner-top");
-						},
-						close : function() {
-							$(this).removeClass("ui-corner-top").addClass(
-									"ui-corner-all");
-						}
+	$("#locationText").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : "/merch/get-location",
+				dataType : "json",
+				data : {
+					q : request.term
+				},
+				success : function(data) {					
+					var dataArr = [];
+					$.each(data, function(key, val) {
+						dataArr.push(val.suggestion);
+						console
+								.log(key + '--'
+										+ val.suggestion);
 					});
-		});
+					response(dataArr);
+				}
+			});
+		},
+		minLength : 1,
+		select : function(event, ui) {
+			log(ui.item ? "Selected: " + ui.item.label
+					: "Nothing selected, input was "
+							+ this.value);
+		},
+		open : function() {
+			$(this).removeClass("ui-corner-all").addClass(
+					"ui-corner-top");
+		},
+		close : function() {
+			$(this).removeClass("ui-corner-top").addClass(
+					"ui-corner-all");
+		}
+	});
+});
 
+//hotel book
+$(document).on('click','.ht-book', function(e) {
+	e.preventDefault();
+	book = hotelBook.init();
+	book.onegId = $(this).data('oneg');
+	book.locale = lang;
+	//console.log(book.buildUri());
+	book.bookNow();	
+});
+
+//SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	e.preventDefault();
 	var cacheObj = $(this),
@@ -328,7 +330,7 @@ var nextgen = {
 				html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
 				html += '<a>';
 				html += '<div>';
-				html += '<img src = "'+ nextgen.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
+				html += '<img src = "'+ imageHelper.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
 						
 				html +='<div class=" hidden-xs hotel-image-text" style="">';
 				html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
@@ -380,18 +382,14 @@ var nextgen = {
 		       html += '<span class="percentage hc-percentage">'+discount+'%</span>';
 		       html += '<div class="clearfix "></div>';
 		       html += '<div class="btn button">';
-		       html += '<a>'+trans['book']+'</a>';
+		       html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
 		       html += '</div>';
 		       html += '<br>';
 		       html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
 		       html += '</div></div></div>';
 			});
 			$('.hc-cards').html(html);
-		},
-		//Image uri builder
-		'classicHotelImageUri' : function(oneg){
-			return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
-		},
+		},		
 		//select menu which is clicked
 		'selectMenu' : function($this) {
 			if ($this.hasClass('menu-region')) {
@@ -410,5 +408,33 @@ var nextgen = {
 	
 	
 };
-
-/* /Region Tabs-Mobile Toggle Event */
+// Image healper
+var imageHelper = {
+	//Image uri builder
+	'classicHotelImageUri' : function(oneg){
+		return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
+	}
+}
+//Hotel booking 
+var hotelBook = {	
+	'adult' : '2',
+	'onegId' : '',
+	'checkIn' : '',
+	'checkOut' : '',
+	'coupon' : '',
+	'locale' : '',
+	'type' : 'hotel',
+	
+	'init' : function() {		
+		return this;
+	},
+	'bookNow' : function() {
+		 window.location = this.buildUri();
+	},
+	'buildUri' : function() {
+		var uri = 'http://www.hotelclub.com/psi/?type='+ this.type + '&adults='+ this.adult +'&id='+ this.onegId;
+		uri += '&checkin='+ this.checkIn + '&checkOut=' + this.checkOut +'&coupon=' +this.coupon+'&locale='+this.locale;
+		return uri;
+		
+	}
+}
