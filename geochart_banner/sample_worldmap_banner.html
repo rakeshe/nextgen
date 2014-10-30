@@ -5,33 +5,39 @@ Purpose: To create a static page for displaying geochart banner based on region 
 -->
 <html>
   <head>
-	<title>Hotel Club - Geochart Banner</title>
+	<title>Hotel Club - World Map Banner</title>
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-	//Declaring the variable value globally
+	//Geochart (Google Map Chart) Initialization
 	google.load("visualization", "1", {packages:["geochart"]});
 	google.setOnLoadCallback(drawRegionsMapOne);
+	//Global Variables
 	var options = {
 			region: 'world', 
 			resolution: 'continents', 
 			width: 750, 
-			height: 468, 
-			zoomLevel:0, 
+			height: 468,
 			backgroundColor: '#FFFFFF', 
 			legend: 'none', 
-			tooltip: { trigger: 'none'},
+			/*tooltip: { trigger: 'none'},*/
 			backgroundColor : "#f8f8f8", 
 			datalessRegionColor : "#d1d2d4"
 		};
-	//Assigned all the array values based on regions with there country codes
-	africa = Array('DZ', 'EG', 'EH','LY', 'MA', 'SD', 'TN', 'BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG', 'AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD', 'BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW', 'BW', 'LS', 'NA', 'SZ', 'ZA');
-	europe = Array('GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ', 'AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL', 'BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA', 'AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU');
-	americas = Array('BM', 'CA', 'GL', 'PM', 'US', 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI', 'BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE');
-	asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');
-	oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');
+	regionVal = Array('002', '150' ,'019', '142', '009');//continents
+	subRegionAfricaVal = Array('011', '015' ,'014', '017', '018');//Africa - sub continents
+	subRegionEuropeVal = Array('039', '151' ,'154', '155');//Europe - sub continents
+	subRegionAmericasVal = Array('005', '013' ,'021', '029');//Americas - sub continents
+	subRegionAsiaVal = Array('030', '034' ,'035', '143', '145');//Asia - sub continents
+	subRegionOceaniaVal = Array('053', '054' ,'057', '061');//Pacific - sub continents	
+	
+	africa = Array('DZ', 'EG', 'EH','LY', 'MA', 'SD', 'TN', 'BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG', 'AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD', 'BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW', 'BW', 'LS', 'NA', 'SZ', 'ZA');//Assigned Africa array values with there country codes
+	europe = Array('GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ', 'AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL', 'BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA', 'AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU');//Assigned Europe array values with there country codes
+	americas = Array('BM', 'CA', 'GL', 'PM', 'US', 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI', 'BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE', 'US-AK', 'US-HI');//Assigned Americas array values with there country codes
+	asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');//Assigned Asia array values with there country codes
+	oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');//Assigned Pacific array values with there country codes
 
-	function drawRegionsMapOne(){		
+	function drawRegionsMapOne(){
 		//Continent ids are provided in array
 		var data = google.visualization.arrayToDataTable([
 			['Continent', 'Deals'],
@@ -41,7 +47,7 @@ Purpose: To create a static page for displaying geochart banner based on region 
 			['142', 500],
 			['009', 600]
 		]);
-		
+
 		var view = new google.visualization.DataView(data);
 		view.setColumns([0, 1]);
 		
@@ -49,57 +55,97 @@ Purpose: To create a static page for displaying geochart banner based on region 
 		//Creating a geochart based on eventData
 		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {			
 			var currentCountry = eventData.region;
-			//Condition to check whether triggered event is region or country
-			if(isNaN(currentCountry)!=false){
-				if($.inArray(currentCountry, africa) > -1){ currentRegion = '002'; }
-				else if($.inArray(currentCountry, europe) > -1){  currentRegion = '150';  }
-				else if($.inArray(currentCountry, americas) > -1){  currentRegion = '019';  }
-				else if($.inArray(currentCountry, asia) > -1){  currentRegion = '142';  }
-				else if($.inArray(currentCountry, oceania) > -1){  currentRegion = '009';  }
-				//Condition to check africa code and blocked it
-				if(currentRegion!='002'){
-					options.region = currentRegion;
+			//Condition to block the particular region (Africa Region)
+			if(currentCountry!="002"){
+				//Condition to block the particular country (African country)
+				if(!($.inArray(currentCountry, africa) > -1)){
+					options['region'] = currentCountry;
+					options['resolution'] = 'country';
 					geochart.draw(data, options);
-				}
-			}else{
-				//Condition to check africa code and blocked it
-				if(currentCountry!='002'){
-					options.region = currentCountry;
-					geochart.draw(data, options);				
 				}
 			}
 		});
 		//Display geochart
 		var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		options['country'] = 'country';
 		geochart.draw(data, options);
-		options.resolution = 'country';//Reseting the geochart resolution, so that color are displayed
-	}
+	}//drawRegionsMapOne
 
 	//Function to reset map
 	function resetMap(){
-		options.region = 'world';
+		options.region = 'world'; 
 		options.resolution = 'continents';
-		//alert(options.region);
 		drawRegionsMapOne();
 	}//resetMap
-
+	
 	//Based on the lable (region) clicked, display the region
 	$(document).ready(function(){		
-		$(".continents").click(function(){
-			var regionCodeVal = $(this).data("region-code");
-			//Condition to check africa code and blocked it
-			if(regionCodeVal!='002'){
-				options.region = regionCodeVal;
-				drawRegionsMapOne();
+		$(".continents").click(function(){	
+			currentRegionTemp = $(this).data("country-code");
+			if(currentRegionTemp.length==2){
+				if(!($.inArray(currentRegionTemp, africa) > -1)){
+					options.region = currentRegionTemp;
+					options.resolution = 'country';
+					drawRegionsMapOne();
+				}
+			}
+			else if(currentRegionTemp!='002'){
+				if(!($.inArray(options.region, africa) > -1)){
+					options.region = currentRegionTemp;
+					drawRegionsMapOne();
+				}
 			}
 		});
 	});//End of $(document)
+
+	//Function to zoom-out map from the selected region / country
+	function mapBackBtn() {
+		var optionsRegionTemp = options.region;
+		//Condition to check 'optionsRegionTemp' is region
+		if($.inArray(optionsRegionTemp, regionVal) > -1){ 
+			options.region = 'world'; 
+			options.resolution = 'continents';
+			drawRegionsMapOne();
+		}	
+		//Condition to check 'optionsRegionTemp' is country
+		else if(optionsRegionTemp.length==2){
+			if($.inArray(options.region, africa) > -1){ currentRegion = '002'; }
+			else if($.inArray(optionsRegionTemp, europe) > -1){  currentRegion = '150';  }
+			else if($.inArray(optionsRegionTemp, americas) > -1){  currentRegion = '019';  }
+			else if($.inArray(optionsRegionTemp, asia) > -1){  currentRegion = '142';  }
+			else if($.inArray(optionsRegionTemp, oceania) > -1){  currentRegion = '009';  }
+			//Condition to check if region is not equal to null
+			if(currentRegion!=""){ 
+				options.region = currentRegion;
+				options.resolution = 'country'; 
+				drawRegionsMapOne();
+			}else{
+				drawRegionsMapOne();
+			}
+		}
+	}//mapBackBtn
     </script>
   </head>
   <body>
-    <div id="regions_div" style=""></div>
-	<a href='javascript: resetMap();'/>Reset Map</a><br/>
-	<a href='javascript: void(0);' data-region-code="142" class="continents"/>Asia</a> | <a href='javascript: void(0);' data-region-code="019" class="continents"/>Americas</a> | <a href='javascript: void(0);' data-region-code="002" class="continents"/>Africa</a> | <a href='javascript: void(0);' data-region-code="150" class="continents"/>Europe</a> | <a href='javascript: void(0);' data-region-code="009" class="continents"/>Oceania</a><br/><br/>
-	<b>Note:</b> We have blocked the africa region for testing purpose.
+    <div id="regions_div"></div>
+	<div><a href="javascript: mapBackBtn();">BACK</a></div>
+	<a href='javascript: resetMap();'/>Reset Map</a><br/><br/><br/>
+
+	<a href='javascript: void(0);' data-country-code="009" class="continents"/>Pacific</a> | <a href='javascript: void(0);' data-country-code="AU" class="continents"/>Australia</a> | <a href='javascript: void(0);' data-country-code="NZ" class="continents"/>New Zealand</a> | <a href='javascript: void(0);' data-country-code="FJ" class="continents"/>Fiji</a><br/><br/>
+
+	<a href='javascript: void(0);' data-country-code="142" class="continents"/>South Asia</a> | <a href='javascript: void(0);' data-country-code="ID" class="continents"/>Indonesia</a> | <a href='javascript: void(0);' data-country-code="TH" class="continents"/>Thailand</a> | <a href='javascript: void(0);' data-country-code="VN" class="continents"/>Vietnam</a> | <a href='javascript: void(0);' data-country-code="MY" class="continents"/>Malaysia</a> | <a href='javascript: void(0);' data-country-code="PH" class="continents"/>Philippines</a> | <a href='javascript: void(0);' data-country-code="SG" class="continents"/>Singapore</a><br/><br/>
+
+	<a href='javascript: void(0);' data-country-code="142" class="continents"/>North Asia</a> | <a href='javascript: void(0);' data-country-code="CN" class="continents"/>China</a> | <a href='javascript: void(0);' data-country-code="HK" class="continents"/>Hong Kong</a> | <a href='javascript: void(0);' data-country-code="JP" class="continents"/>Japan</a> | <a href='javascript: void(0);' data-country-code="MO" class="continents"/>Macau</a> | <a href='javascript: void(0);' data-country-code="KR" class="continents"/>South Korea</a> | <a href='javascript: void(0);' data-country-code="TW" class="continents"/>Taiwan</a><br/><br/>
+
+	<a href='javascript: void(0);' data-country-code="150" class="continents"/>Europe & UAE</a> | <a href='javascript: void(0);' data-country-code="NL" class="continents"/>Netherlands</a> | <a href='javascript: void(0);' data-country-code="ES" class="continents"/>Spain</a> | <a href='javascript: void(0);' data-country-code="DE" class="continents"/>Germany</a> | <a href='javascript: void(0);' data-country-code="BE" class="continents"/>Belgium</a> | <a href='javascript: void(0);' data-country-code="AE" class="continents"/>United Arab Emirates</a> | <a href='javascript: void(0);' data-country-code="IE" class="continents"/>Ireland</a> | <a href='javascript: void(0);' data-country-code="GB" class="continents"/>United Kingdom</a> | <a href='javascript: void(0);' data-country-code="FR" class="continents"/>France</a>  | <a href='javascript: void(0);' data-country-code="IT" class="continents"/>Italy</a> | <a href='javascript: void(0);' data-country-code="PT" class="continents"/>Portugal</a><br/><br/>
+
+	<a href='javascript: void(0);' data-country-code="019" class="continents"/>Americas</a> | <a href='javascript: void(0);' data-country-code="MX" class="continents"/>Mexico</a> | <a href='javascript: void(0);' data-country-code="DO" class="continents"/>Dominican Republic</a> | <a href='javascript: void(0);' data-country-code="PA" class="continents"/>Panama</a> | <a href='javascript: void(0);' data-country-code="CO" class="continents"/>Colombia</a> | <a href='javascript: void(0);' data-country-code="CR" class="continents"/>Costa Rica</a><br/><br/>
+
+	<b>Note:</b>
+	<ul>
+		<li>We have blocked the africa region for testing purpose.</li>
+		<li>Menus provided above are static</li>
+	</ul>
+	
   </body>
 </html>
