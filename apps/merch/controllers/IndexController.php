@@ -34,7 +34,9 @@ class IndexController extends ControllerBase {
 	private $viewType;
 	public function initialize() {
 		//set the view type
-		$this->viewType = ($this->request->isPost() == TRUE) ? 'json' : 'html';
+		$this->viewType = ($this->request->isPost() == TRUE && 
+				$this->request->getPost('returnType') == 'json') ? 'json' : 'html';		
+		//if requested data type is json then disable view part 
 		if ($this->viewType == 'json') {			
 			$this->view->disable();			
 		}

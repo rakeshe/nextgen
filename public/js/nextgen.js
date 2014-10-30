@@ -293,7 +293,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	var cacheObj = $(this),
 		url = $(this).attr('href'),
 		x = nextgen.init(),
-		res = x.sendRequest(url, '');
+		res = x.sendRequest(url, 'returnType=json');
 	
 	res.success(function(data){
 		x.displayHotels(data); // dispaly hotel cards
@@ -416,7 +416,7 @@ var imageHelper = {
 	}
 }
 //Hotel booking 
-var hotelBook = {	
+var hotelBook = {
 	'adult' : '2',
 	'onegId' : '',
 	'checkIn' : '',
@@ -425,7 +425,7 @@ var hotelBook = {
 	'locale' : '',
 	'type' : 'hotel',
 	
-	'init' : function() {		
+	'init' : function() {
 		return this;
 	},
 	'bookNow' : function() {
@@ -438,3 +438,131 @@ var hotelBook = {
 		
 	}
 }
+
+var regions  = {'Europe': '150', 'Asia' : '142', 'Oceania':'009', 'North America' : '019', 'Africa':'002','South America':'019','Middle East':'150','Central America':'019','Northeast Asia':'142','Southeast Asia':'142'};
+
+//Geochart (Google Map Chart) Initialization
+google.load("visualization", "1", {packages:["geochart"]});
+google.setOnLoadCallback(drawRegionsMapOne);
+//Global Variables
+var options = {
+		region: 'world', 
+		resolution: 'continents', 
+		width: 928, 
+		height: 400,
+		backgroundColor: '#FFFFFF', 
+		legend: 'none', 
+		/*tooltip: { trigger: 'none'},*/
+		backgroundColor : "#f8f8f8", 
+		datalessRegionColor : "#d1d2d4"
+	};
+regionVal = Array('002', '150' ,'019', '142', '009');//continents
+//subRegionAfricaVal = Array('011', '015' ,'014', '017', '018');//Africa - sub continents
+//subRegionEuropeVal = Array('039', '151' ,'154', '155');//Europe - sub continents
+//subRegionAmericasVal = Array('005', '013' ,'021', '029');//Americas - sub continents
+//subRegionAsiaVal = Array('030', '034' ,'035', '143', '145');//Asia - sub continents
+//subRegionOceaniaVal = Array('053', '054' ,'057', '061');//Pacific - sub continents	
+
+africa = Array('DZ', 'EG', 'EH','LY', 'MA', 'SD', 'TN', 'BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG', 'AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD', 'BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW', 'BW', 'LS', 'NA', 'SZ', 'ZA');//Assigned Africa array values with there country codes
+europe = Array('GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ', 'AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL', 'BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA', 'AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU');//Assigned Europe array values with there country codes
+americas = Array('BM', 'CA', 'GL', 'PM', 'US', 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI', 'BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE', 'US-AK', 'US-HI');//Assigned Americas array values with there country codes
+asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');//Assigned Asia array values with there country codes
+oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');//Assigned Pacific array values with there country codes
+
+function drawRegionsMapOne(){
+	//Continent ids are provided in array
+	var data = google.visualization.arrayToDataTable([
+		['Continent', 'Deals'],
+		['002', 200],
+		['150', 300],
+		['019', 400],
+		['142', 500],
+		['009', 600]
+	]);
+
+	var view = new google.visualization.DataView(data);
+	view.setColumns([0, 1]);
+	
+	var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+	//Creating a geochart based on eventData
+	google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {
+		
+		if (isNaN(eventData.region) == false) {
+			//Checks if regions is not available, not going to dispaly
+			for (var key in regions) {
+				if (regions.hasOwnProperty(key) && key in transRegions && regions[key] == eventData.region) {							
+					options['region'] = eventData.region;
+					options['resolution'] = 'country';
+					geochart.draw(data, options);
+			  	}
+			}
+		} else {
+			//for citys
+			for (var cntKey in availCountry) {
+				if (availCountry.hasOwnProperty(cntKey) && cntKey.toUpperCase() == eventData.region) {				
+					options['region'] = eventData.region;
+					options['resolution'] = 'country';
+					geochart.draw(data, options);						
+			  	}
+			}	
+		}
+	});
+	//Display geochart
+	var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+	options['country'] = 'country';
+	geochart.draw(data, options);
+}//drawRegionsMapOne
+
+//Function to reset map
+function resetMap(){
+	options.region = 'world'; 
+	options.resolution = 'continents';
+	drawRegionsMapOne();
+}//resetMap
+
+//Based on the menu lable (region) clicked, display the region
+$(document).ready(function(){		
+	$(".continents").click(function(){	
+		currentRegionTemp = $(this).data("country-code");
+		if(currentRegionTemp.length==2){
+			if(!($.inArray(currentRegionTemp, africa) > -1)){
+				options.region = currentRegionTemp;
+				options.resolution = 'country';
+				drawRegionsMapOne();
+			}
+		}
+		else if(currentRegionTemp!='002'){
+			if(!($.inArray(options.region, africa) > -1)){
+				options.region = currentRegionTemp;
+				drawRegionsMapOne();
+			}
+		}
+	});
+});//End of $(document)
+
+//Function to zoom-out map from the selected region / country
+function mapBackBtn() {
+	var optionsRegionTemp = options.region;
+	//Condition to check 'optionsRegionTemp' is region
+	if($.inArray(optionsRegionTemp, regionVal) > -1){ 
+		options.region = 'world'; 
+		options.resolution = 'continents';
+		drawRegionsMapOne();
+	}	
+	//Condition to check 'optionsRegionTemp' is country
+	else if(optionsRegionTemp.length==2){
+		if($.inArray(options.region, africa) > -1){ currentRegion = '002'; }
+		else if($.inArray(optionsRegionTemp, europe) > -1){  currentRegion = '150';  }
+		else if($.inArray(optionsRegionTemp, americas) > -1){  currentRegion = '019';  }
+		else if($.inArray(optionsRegionTemp, asia) > -1){  currentRegion = '142';  }
+		else if($.inArray(optionsRegionTemp, oceania) > -1){  currentRegion = '009';  }
+		//Condition to check if region is not equal to null
+		if(currentRegion!=""){ 
+			options.region = currentRegion;
+			options.resolution = 'country'; 
+			drawRegionsMapOne();
+		}else{
+			drawRegionsMapOne();
+		}
+	}
+}//mapBackBtn

@@ -3,10 +3,10 @@
 <!-- START VIEW PARTIAL: banner.phtml -->
 <div id="banner" class="subContainer">
 
-    {{ partial('partials/search/search_desktop') }}
-    {{ partial('partials/search/search_tablet') }}
+   {# {{ partial('partials/search/search_desktop') }}
+    {{ partial('partials/search/search_tablet') }} #}
 
-    {{ partial('partials/carousel/carousel') }}
+    {{ partial('partials/map/map') }}
 
     {{ partial('partials/menu/menu_tabs_desktop') }}
     {{ partial('partials/menu/menu_tabs_tablet') }}

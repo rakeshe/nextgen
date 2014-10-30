@@ -181,9 +181,9 @@ class Page extends \Phalcon\Mvc\Model {
             $cntName = false;
             $ctyCnt = 0;
             foreach ($this->dealsData['campaign'][$region][$country] as $key => $val) {
-                if ($key != 'name' && $key != 'sort' && $key != 'name_en') {
+                if ($key != 'name' && $key != 'sort' && $key != 'name_en' && $key != 'country_code') {
                     //Remove unwanted keys
-                    unset($val['sort'], $val['name']);
+                    unset($val['sort'], $val['name'], $val['country_code']);
 
                     //Sort the data using sork key
                     uasort($val, function($a, $b) {
@@ -228,9 +228,9 @@ class Page extends \Phalcon\Mvc\Model {
             foreach ($this->dealsData['campaign'][$region] as $keyRegion => $value) {
                 if ($keyRegion != 'name' && $keyRegion != 'sort' && $keyRegion != 'name_en') {
                     foreach ($value as $key => $val) {
-                        if ($key != 'name' && $key != 'sort') {
+                        if ($key != 'name' && $key != 'sort' && $key != 'country_code') {
                             //Remove unwanted keys
-                            unset($val['sort'], $val['name']);
+                            unset($val['sort'], $val['name'], $val['country_code']);
                             //Sort the data using sork key
                             uasort($val, function($a, $b) {
                                 if (isset($a['sort']) && isset($b['sort'])) {

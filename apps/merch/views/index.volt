@@ -16,6 +16,7 @@
     </head>
     <body>
         {{ content() }}
+        {{ javascript_include('//google.com/jsapi') }}
         {{ javascript_include('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js') }}   
         {{ javascript_include('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}   
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
