@@ -11,7 +11,7 @@
 	{% for tabSub in tab %}
 	{% if isArray(tabSub) %}
 	<li class="dropdown-submenu" >
-	<a class="menu-country" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }} </a>
+	<a class="menu-country" data-country-code="{{ tabSub['country_code'] }}" tabindex="-1" href="{{ uriBase }}/{{ tab['name'] }}/{{ tabSub['name']  }}">{{ tabSub['name'] }} </a>
 	<script type="text/javascript">availCountry['{{ tabSub["country_code"] }}'] = '{{ tabSub["name"] }}'</script>
 {#	{% if not(tabSub is empty) %}
 		<ul class="dropdown-menu level3">
