@@ -1,6 +1,7 @@
 <script type="text/javascript">
 var deals = JSON.parse('{{ hotelDetailsJson }}'),
-trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}',  'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}'};
+trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}',  'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}'},
+lang = '{{languageCode}}';
 </script>
 {% if city is not defined %}
 {% set city = false %}
@@ -117,7 +118,7 @@ trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_
 
                                 <div class="clearfix "></div>
                                 <div class="btn button">
-                                    <a>{{t._('book')}}</a>
+                                    <a class="ht-book" data-oneg="{{hls['oneg']}}">{{t._('book')}}</a>
                                 </div>
                                 <br>
 
