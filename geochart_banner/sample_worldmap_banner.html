@@ -22,7 +22,8 @@ Purpose: To create a static page for displaying geochart banner based on region 
 			legend: 'none', 
 			/*tooltip: { trigger: 'none'},*/
 			backgroundColor : "#f8f8f8", 
-			datalessRegionColor : "#d1d2d4"
+			datalessRegionColor : "#d1d2d4",
+			enableRegionInteractivity: 'true'
 		};
 	regionVal = Array('002', '150' ,'019', '142', '009');//continents
 	subRegionAfricaVal = Array('011', '015' ,'014', '017', '018');//Africa - sub continents
@@ -39,14 +40,9 @@ Purpose: To create a static page for displaying geochart banner based on region 
 
 	function drawRegionsMapOne(){
 		//Continent ids are provided in array
-		var data = google.visualization.arrayToDataTable([
-			['Continent', 'Deals'],
-			['002', 200],
-			['150', 300],
-			['019', 400],
-			['142', 500],
-			['009', 600]
-		]);
+		var data;
+		//function call based on country highlight the cities
+		data = geoMapData(options.region);
 
 		var view = new google.visualization.DataView(data);
 		view.setColumns([0, 1]);
@@ -55,6 +51,8 @@ Purpose: To create a static page for displaying geochart banner based on region 
 		//Creating a geochart based on eventData
 		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {			
 			var currentCountry = eventData.region;
+			//function call based on country highlight the cities			
+			data = geoMapData(currentCountry);
 			//Condition to block the particular region (Africa Region)
 			if(currentCountry!="002"){
 				//Condition to block the particular country (African country)
@@ -70,6 +68,56 @@ Purpose: To create a static page for displaying geochart banner based on region 
 		options['country'] = 'country';
 		geochart.draw(data, options);
 	}//drawRegionsMapOne
+
+	//function to reterive data based on geochart continent
+	function geoMapData(regionVal){
+		var dataVal;
+		switch(regionVal) {
+			case 'IN':
+				dataVal = google.visualization.arrayToDataTable([
+					['City', 'Deals'],
+					['Bangalore', 200],
+					['Delhi', 200],
+					['Chennai', 200],
+					['Cochin', 200],
+					['??', 200]
+				]);
+				options.displayMode = 'text';
+				break;
+			case 'AU':
+				dataVal = google.visualization.arrayToDataTable([
+					['City', 'Deals'],
+					['Melbourne', 20000],
+					['Perth', 20000],
+					['Adelaide', 20000],
+					['Gold Coast', 20000],
+					['Sydney', 20000]
+				]);
+				options.displayMode = 'text';
+				break;
+			case 'NZ':
+				dataVal = google.visualization.arrayToDataTable([
+					['City', 'Deals'],
+					['Auckland', 200],
+					['Christchurch', 200],
+					['Hamilton', 200]
+				]);
+				options.displayMode = 'text';
+				break;
+			default:
+				dataVal = google.visualization.arrayToDataTable([
+					['Continent', 'Deals'],
+					['002', 200],
+					['150', 300],
+					['019', 400],
+					['142', 500],
+					['009', 600]
+				]);
+				options.displayMode = '';
+				break;
+		}
+		return dataVal;
+	}
 
 	//Function to reset map
 	function resetMap(){
