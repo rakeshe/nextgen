@@ -20,7 +20,7 @@ Purpose: To create a static page for displaying geochart banner based on region 
 			height: 468,
 			backgroundColor: '#FFFFFF', 
 			legend: 'none', 
-			/*tooltip: { trigger: 'none'},*/
+			tooltip: { trigger: 'none'},
 			backgroundColor : "#f8f8f8", 
 			datalessRegionColor : "#d1d2d4",
 			enableRegionInteractivity: 'true'
@@ -45,14 +45,17 @@ Purpose: To create a static page for displaying geochart banner based on region 
 		data = geoMapData(options.region);
 
 		var view = new google.visualization.DataView(data);
-		view.setColumns([0, 1]);
+		view.setColumns([0]);
+		$(document).on('click','text[text-anchor="middle"]',function(){ alert($(this).text());});
 		
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		//Creating a geochart based on eventData
-		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {			
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {	
 			var currentCountry = eventData.region;
+
 			//function call based on country highlight the cities			
 			data = geoMapData(currentCountry);
+
 			//Condition to block the particular region (Africa Region)
 			if(currentCountry!="002"){
 				//Condition to block the particular country (African country)
@@ -75,32 +78,31 @@ Purpose: To create a static page for displaying geochart banner based on region 
 		switch(regionVal) {
 			case 'IN':
 				dataVal = google.visualization.arrayToDataTable([
-					['City', 'Deals'],
-					['Bangalore', 200],
-					['Delhi', 200],
-					['Chennai', 200],
-					['Cochin', 200],
-					['??', 200]
+					['City'],
+					['Bangalore'],
+					['Delhi'],
+					['Chennai'],
+					['Cochin']
 				]);
 				options.displayMode = 'text';
 				break;
 			case 'AU':
 				dataVal = google.visualization.arrayToDataTable([
-					['City', 'Deals'],
-					['Melbourne', 20000],
-					['Perth', 20000],
-					['Adelaide', 20000],
-					['Gold Coast', 20000],
-					['Sydney', 20000]
+					['City'],
+					['Melbourne'],
+					['Perth'],
+					['Adelaide'],
+					['Gold Coast'],
+					['Sydney']
 				]);
 				options.displayMode = 'text';
 				break;
 			case 'NZ':
 				dataVal = google.visualization.arrayToDataTable([
-					['City', 'Deals'],
-					['Auckland', 200],
-					['Christchurch', 200],
-					['Hamilton', 200]
+					['City'],
+					['Auckland'],
+					['Christchurch'],
+					['Hamilton']
 				]);
 				options.displayMode = 'text';
 				break;
