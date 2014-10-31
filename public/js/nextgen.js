@@ -294,17 +294,12 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 		url = $(this).attr('href'),
 		x = nextgen.init(),
 		res = x.sendRequest(url, 'returnType=json');
-	//Country
-	if($(this).data('country-code').length==2){		
-		options.region = $(this).data('country-code').toUpperCase();
-		options.resolution = 'country';
-		drawRegionsMapOne();		
-	}
 	
 	res.success(function(data){
 		x.displayHotels(data); // dispaly hotel cards
 		x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser		
+		x.mapAction(cacheObj);		
 	})
 	.error(function(data){		
 		console.log('Exception: '+ data.responseText);
@@ -315,7 +310,10 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 var nextgen = {
 		//initialization here..
 		'init' : function(){
-			return this;
+			return this;		
+		},
+		'campaign' : function() {
+			return $.parseJSON(camp);
 		},
 		//send ajax request
 		'sendRequest' : function(url, data) {
@@ -329,7 +327,7 @@ var nextgen = {
 		},
 		//Display hotel card
 		'displayHotels' : function(obj) {			
-			var html = '';
+			var html = '';			
 			$.each(obj['hotels'], function(index, val) {
 				html += '<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">';
 				html += '<div class="row">';
@@ -410,8 +408,81 @@ var nextgen = {
 		'setUrlToHistory' : function(url) {
 			if (window.location != url)
 				window.history.pushState({path:url}, '', url);
+		},
+		'mapAction' : function(cacheObj) {
+			if(cacheObj.data('code').length == 2){
+				options.region = cacheObj.data('code').toUpperCase();
+				options.resolution = 'country';
+				options.displayMode = 'text';
+				drawRegionsMapOne('country-code');
+			} else {		
+				if (cacheObj.data('code') in regions) {
+					options.region = regions[cacheObj.data('code')];
+					drawRegionsMapOne();
+				}				
+			}
+		},
+		'mapClickRequest': function(type, data) {
+			var $this = this, region, country, url, city;
+			if (type == 'region') {
+				$.each(regions, function(index, value) {
+					if (data == regions[index]) {
+						$.each($this.campaign(), function(key, val) {
+							if (val['name_en'] == index) {
+								region = val['name'];
+								return;
+							}								
+						});					
+					}
+				});
+				url = '/merch/' + lang + '/' + campName + '/' + region;				
+			} else if (type == 'country') {
+				$.each($this.campaign(), function(key, val) {
+					
+					if (typeof val === 'object') {	
+						$.each(val, function(keyCnt, valCnt) {
+							
+							if (typeof valCnt === 'object') {								
+								if (valCnt['country_code'].toUpperCase() == data) {
+									country = valCnt['name'];
+									region = val['name'];
+								}
+							}							
+						});	
+					}
+				});	
+				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country;
+			} else if (type == 'city') {				
+				$.each($this.campaign(), function(key, val) {					
+					if (typeof val === 'object') {	
+						$.each(val, function(keyCnt, valCnt) {							
+							if (typeof valCnt === 'object') {	
+								$.each(valCnt, function(keyCty, valcty) {
+									if (typeof valcty === 'object') {								
+										if (valcty['name'] == data) {
+											country = valCnt['name'];
+											region = val['name'];
+											city = valcty['name'];											
+										}
+									}
+								});
+								
+							}							
+						});	
+					}
+				});
+				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country + '/' + city;
+			} else {
+				url = '/merch/' + lang + '/' + campName;
+			}			
+			res = $this.sendRequest(url, 'returnType=json');
+			res.success(function(data){
+				$this.displayHotels(data); // dispaly hotel cards
+				//$this.selectMenu(cacheObj); // select menu
+				$this.setUrlToHistory(url); // Change url on browser		
+				
+			});			
 		}
-	
 	
 };
 // Image healper
@@ -460,7 +531,8 @@ var options = {
 		legend: 'none', 
 		/*tooltip: { trigger: 'none'},*/
 		backgroundColor : "#f8f8f8", 
-		datalessRegionColor : "#d1d2d4"
+		datalessRegionColor : "#d1d2d4",
+		enableRegionInteractivity: 'true'
 	};
 regionVal = Array('002', '150' ,'019', '142', '009');//continents
 //subRegionAfricaVal = Array('011', '015' ,'014', '017', '018');//Africa - sub continents
@@ -475,17 +547,32 @@ regionVal = Array('002', '150' ,'019', '142', '009');//continents
 //asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');//Assigned Asia array values with there country codes
 //oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');//Assigned Pacific array values with there country codes
 
-function drawRegionsMapOne(){
+function regionMapConf(type){
+	var data;
+	if (type == 'country-code') {
+		var citys = [];
+		for (var key in availCity) {
+			if (availCity.hasOwnProperty(key)) {
+				citys.push([key,availCity[key]]);
+		  	}
+		}		
+		data = google.visualization.arrayToDataTable(citys);
+	} else {
+		data = google.visualization.arrayToDataTable([
+		      		['Continent', 'Deals'],
+		      		['002', 200],
+		      		['150', 300],
+		      		['019', 400],
+		      		['142', 500],
+		      		['009', 600]
+		       ]);
+	}	 
+	return data;
+}
+function drawRegionsMapOne(type){
 	//Continent ids are provided in array
-	var data = google.visualization.arrayToDataTable([
-		['Continent', 'Deals'],
-		['002', 200],
-		['150', 300],
-		['019', 400],
-		['142', 500],
-		['009', 600]
-	]);
-
+	
+	var data = regionMapConf(type);	
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
 	
@@ -496,19 +583,23 @@ function drawRegionsMapOne(){
 		if (isNaN(eventData.region) == false) {
 			//Checks if regions is not available, not going to dispaly
 			for (var key in regions) {
-				if (regions.hasOwnProperty(key) && key in transRegions && regions[key] == eventData.region) {							
+				if (regions.hasOwnProperty(key) && key in transRegions && regions[key] == eventData.region) {					
 					options['region'] = eventData.region;
-					options['resolution'] = 'country';
+					options['resolution'] = 'Continent';
 					geochart.draw(data, options);
+					nextgen.mapClickRequest('region', eventData.region);
 			  	}
 			}
 		} else {
 			//for citys
 			for (var cntKey in availCountry) {
-				if (availCountry.hasOwnProperty(cntKey) && cntKey.toUpperCase() == eventData.region) {				
+				if (availCountry.hasOwnProperty(cntKey) && cntKey.toUpperCase() == eventData.region) {		
+					data = regionMapConf('country-code');
 					options['region'] = eventData.region;
 					options['resolution'] = 'country';
-					geochart.draw(data, options);						
+					options.displayMode = 'text';
+					geochart.draw(data, options);
+					nextgen.mapClickRequest('country', eventData.region);
 			  	}
 			}	
 		}
@@ -526,6 +617,9 @@ function resetMap(){
 	drawRegionsMapOne();
 }//resetMap
 
+$(document).on('click','text[text-anchor="middle"]',function(){	
+	nextgen.mapClickRequest('city', $.trim($(this).text()));
+});
 //Based on the menu lable (region) clicked, display the region
 $(document).ready(function(){		
 	$(".continents").click(function(){	

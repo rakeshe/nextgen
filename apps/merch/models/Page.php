@@ -166,8 +166,7 @@ class Page extends \Phalcon\Mvc\Model {
         $data = [];
         if (isset($this->dealsData['campaign'][$region][$country][$city])) {
             foreach ($this->dealsData['campaign'][$region][$country][$city] as $key => $val) {
-                if ($key != 'name' && $key != 'sort') {
-
+                if ($key != 'name' && $key != 'sort' && $key != 'city_name_en') {
                     $data[$key] = $val;
                 }
             }
@@ -179,9 +178,9 @@ class Page extends \Phalcon\Mvc\Model {
         $data = [];
         if (isset($this->dealsData['campaign'][$region][$country])) {
             $cntName = false;
-            $ctyCnt = 0;
+            $ctyCnt = 0;            
             foreach ($this->dealsData['campaign'][$region][$country] as $key => $val) {
-                if ($key != 'name' && $key != 'sort' && $key != 'name_en' && $key != 'country_code') {
+                if ($key != 'name' && $key != 'sort' && $key != 'country_code') {                	
                     //Remove unwanted keys
                     unset($val['sort'], $val['name'], $val['country_code']);
 
@@ -195,7 +194,7 @@ class Page extends \Phalcon\Mvc\Model {
                     });
 
                     foreach ($val as $k => $v) {
-                        if ($k != 'name' && $k != 'sort') {
+                        if ($k != 'name' && $k != 'sort' && $k != 'city_name_en') {
                             if ($limit == false) {
                                 $data[$k] = $v;
                             } else {
@@ -241,7 +240,7 @@ class Page extends \Phalcon\Mvc\Model {
                             });
 
                             foreach ($val as $k => $v) {
-                                if ($k != 'name' && $k != 'sort') {
+                                if ($k != 'name' && $k != 'sort' && $k != 'city_name_en') {
                                     if ($limit == false) {
                                         $data[$k] = $v;
                                     } else {
@@ -265,6 +264,7 @@ class Page extends \Phalcon\Mvc\Model {
                 }
             }
         }
+        
         return $data;
     }
 

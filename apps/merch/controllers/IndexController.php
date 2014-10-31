@@ -32,6 +32,7 @@ class IndexController extends ControllerBase {
 	protected $region;
 	private $dataModel;
 	private $viewType;
+	private $campaignData;
 	public function initialize() {
 		//set the view type
 		$this->viewType = ($this->request->isPost() == TRUE && 
@@ -156,6 +157,8 @@ class IndexController extends ControllerBase {
 		$this->menu = $this->dataModel->menuData;
 		// set Drop-down menu
 		$this->DDMenue = $this->dataModel->loadCampaignData ();
+		//campaign data
+		$this->campaignData = $this->dataModel->loadCampaignData ();
 		// set translation obj
 		$this->translation = new \HC\Library\Translation ( $this->languageCode, $this->dataModel->langData );
 		// set site url
@@ -229,7 +232,9 @@ class IndexController extends ControllerBase {
 				'menuItemsAccount' => $this->menu->account,
 				"t" => $this->translation->getTranslation (),
 				'banners' => $this->dataModel->getBanner ( $this->campaignName ),
+				"campaignName" => $this->campaignName,
 				'DDMenue' => $this->DDMenue,
+				'campaignData' => json_encode($this->campaignData),
 				"hotelDetails" => $this->dataModel->loadHotelData (),
 				"hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
 				"region" => $this->region 
