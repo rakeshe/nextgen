@@ -18,7 +18,7 @@ class ErrorController extends ControllerBase
     protected $translation;
    
     public function initialize()
-    {
+    {    	
        $this->response->setHeader(404, 'Not Found');
         \Phalcon\Tag::setTitle('Page Not Found');
         parent::initialize();

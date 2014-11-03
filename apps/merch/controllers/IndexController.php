@@ -33,7 +33,8 @@ class IndexController extends ControllerBase {
 	private $dataModel;
 	private $viewType;
 	private $campaignData;
-	public function initialize() {
+	public function initialize() {	
+		
 		//set the view type
 		$this->viewType = ($this->request->isPost() == TRUE && 
 				$this->request->getPost('returnType') == 'json') ? 'json' : 'html';		
@@ -41,7 +42,7 @@ class IndexController extends ControllerBase {
 		if ($this->viewType == 'json') {			
 			$this->view->disable();			
 		}
-		
+		$this->view->setVar('theme', $this->getPageLayout() );
 		$this->view->setTemplateAfter ( $this->getPageLayout () );
 		\Phalcon\Tag::setTitle ( 'Welcome' );
 		parent::initialize ();
@@ -55,7 +56,7 @@ class IndexController extends ControllerBase {
 		$this->view->setVars ( array_merge ( array (
 				"hotels" => $this->dataModel->getRegionHoteles ( $this->region ) 
 		), $this->buildTemplateVars () ) );
-		$this->view->pick ( 'index/page' );
+		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
 	public function campaignAction() {
 		// Routing if unicode exists on parameter
@@ -95,7 +96,7 @@ class IndexController extends ControllerBase {
 			$this->view->setVars ( array_merge ( array (
 					"hotels" => $this->dataModel->getRegionHoteles ( $this->region ) 
 			), $this->buildTemplateVars () ) );
-			$this->view->pick ( 'index/page' );
+			$this->view->pick ( $this->getPageLayout() .'/index/index' );
 		}
 	}
 	public function regionAction() {
@@ -106,7 +107,7 @@ class IndexController extends ControllerBase {
 			die(json_encode($data));
 		}
 		$this->view->setVars ( array_merge ($data, $this->buildTemplateVars () ) );
-		$this->view->pick ( 'index/page' );
+		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
 	public function countryAction() {
 		$data = array (
@@ -117,7 +118,7 @@ class IndexController extends ControllerBase {
 			die(json_encode($data));
 		}
 		$this->view->setVars ( array_merge ( $data, $this->buildTemplateVars () ) );
-		$this->view->pick ( 'index/page' );
+		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
 	public function cityAction() {
 		$data = array (
@@ -129,7 +130,7 @@ class IndexController extends ControllerBase {
 			die(json_encode($data));
 		}
 		$this->view->setVars ( array_merge ($data, $this->buildTemplateVars ()));		
-		$this->view->pick ( 'index/page' );
+		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
 	public function setLanguageAction() {
 		// Store user selected language to session
@@ -271,10 +272,8 @@ class IndexController extends ControllerBase {
 		die ();
 	}
 	public function show404Action() {
+		//echo ('testing hhere');
 		$this->view->setVars ( $this->buildTemplateVars () );
-		$this->view->pick ( '404/404' );
-	}
-	public function apiAction() {
-		die ( json_encode ( '*************************************************************json output' ) );
-	}
+		$this->view->pick ( $this->getPageLayout() .'/index/404' );
+	}	
 }

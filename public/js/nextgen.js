@@ -553,7 +553,7 @@ function regionMapConf(type){
 		var citys = [];
 		for (var key in availCity) {
 			if (availCity.hasOwnProperty(key)) {
-				citys.push([key,availCity[key]]);
+				citys.push([key,availCity[key]]);				
 		  	}
 		}		
 		data = google.visualization.arrayToDataTable(citys);
@@ -595,6 +595,7 @@ function drawRegionsMapOne(type){
 			for (var cntKey in availCountry) {
 				if (availCountry.hasOwnProperty(cntKey) && cntKey.toUpperCase() == eventData.region) {		
 					data = regionMapConf('country-code');
+					//console.log(data);
 					options['region'] = eventData.region;
 					options['resolution'] = 'country';
 					options.displayMode = 'text';

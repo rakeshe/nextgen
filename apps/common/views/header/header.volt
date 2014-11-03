@@ -14,11 +14,11 @@
         <!-- header links -->
         <div class="col-md-offset-5">
             <ul class="primary">
-                {{ partial('../../common/views/menu/menu_top') }}
+                {{ partial('../../../common/views/menu/menu_top') }}
             </ul>
 
             <ul class="login">
-                {{ partial('../../common/views/menu/menu_account') }}
+                {{ partial('../../../common/views/menu/menu_account') }}
             </ul>
         </div>
 
@@ -44,7 +44,7 @@
                         </tr></table></a>
 
             </li>
-			{{ partial('../../common/views/menu/menu_options-tab') }}
+			{{ partial('../../../common/views/menu/menu_options-tab') }}
         </ul>
     </div>
 </div>
@@ -68,8 +68,8 @@
 	    <a class=" dropdown-toggle head_menu_pad" data-toggle="dropdown" href="#" id="mbl_member_logo"> <strong class="visible-sm" > Welcome </strong>
             </a>
             <ul class="dropdown-menu main_right_menu" role="menu" aria-labelledby="dLabel2">
-                               {{ partial('../../common/views/menu/menu_top') }}
-                           {{ partial('../../common/views/menu/menu_account') }}
+                               {{ partial('../../../common/views/menu/menu_top') }}
+                           {{ partial('../../../common/views/menu/menu_account') }}
             </ul>
         </div>
     </div>
@@ -83,8 +83,8 @@
 <!-- headMenu -->
 <div id="headMenu" class="subContainer visible-md visible-lg">
     <div class="row">
-        {{ partial('../../common/views/menu/menu_site') }}
-		{{ partial('../../common/views/menu/menu_options') }}
+        {{ partial('../../../common/views/menu/menu_site') }}
+		{{ partial('../../../common/views/menu/menu_options') }}
     </div>
 </div>
 <!-- /headMenu -->

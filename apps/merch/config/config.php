@@ -40,7 +40,7 @@ return new \Phalcon\Config(array(
     'application' => array(
         'controllersDir' => 'controllers/',
         'modelsDir' => 'models/',
-        'viewsDir' => 'views/',
+        'viewsDir' => 'views/themes/',
         'helpersDir' => 'helpers/',
         'formsDir' => 'forms/',
         'LanguageDir' => 'merch/language/',
