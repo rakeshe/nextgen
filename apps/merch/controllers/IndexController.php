@@ -33,6 +33,7 @@ class IndexController extends ControllerBase {
 	private $dataModel;
 	private $viewType;
 	private $campaignData;
+	
 	public function initialize() {	
 		
 		//set the view type
@@ -42,12 +43,13 @@ class IndexController extends ControllerBase {
 		if ($this->viewType == 'json') {			
 			$this->view->disable();			
 		}
-		$this->view->setVar('theme', $this->getPageLayout() );
+		$this->setupPage ();
+		//$this->view->setVar('theme', $this->getPageLayout() );
 		$this->view->setTemplateAfter ( $this->getPageLayout () );
 		\Phalcon\Tag::setTitle ( 'Welcome' );
-		parent::initialize ();
-		$this->setupPage ();
+		parent::initialize ();		
 	}
+	
 	public function indexAction() {
 		$this->region = $this->dataModel->getFirstRegion ();
 		if ($this->viewType == 'json') {
@@ -58,9 +60,12 @@ class IndexController extends ControllerBase {
 		), $this->buildTemplateVars () ) );
 		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
+	
 	public function campaignAction() {
 		// Routing if unicode exists on parameter
-		if (! empty ( $this->dispatcher->getParams ()[0] ) && ! empty ( $this->dispatcher->getParams ()[1] ) && ! empty ( $this->dispatcher->getParams ()[2] )) {
+		if (! empty ( $this->dispatcher->getParams ()[0] ) && 
+				! empty ( $this->dispatcher->getParams ()[1] ) && 
+				! empty ( $this->dispatcher->getParams ()[2] )) {
 			
 			$this->region = $this->dispatcher->getParams ()[0];
 			$this->country = $this->dispatcher->getParams ()[1];
@@ -70,7 +75,8 @@ class IndexController extends ControllerBase {
 					'controller' => 'index',
 					'action' => 'city' 
 			) );
-		} elseif (! empty ( $this->dispatcher->getParams ()[0] ) && ! empty ( $this->dispatcher->getParams ()[1] )) {
+		} elseif (! empty ( $this->dispatcher->getParams ()[0] ) &&
+				 ! empty ( $this->dispatcher->getParams ()[1] )) {
 			// die('got country');
 			$this->region = $this->dispatcher->getParams ()[0];
 			$this->country = $this->dispatcher->getParams ()[1];
@@ -99,6 +105,7 @@ class IndexController extends ControllerBase {
 			$this->view->pick ( $this->getPageLayout() .'/index/index' );
 		}
 	}
+	
 	public function regionAction() {
 		$data = array (
 				"hotels" => $this->dataModel->getRegionHoteles ( $this->region ) 
@@ -109,6 +116,7 @@ class IndexController extends ControllerBase {
 		$this->view->setVars ( array_merge ($data, $this->buildTemplateVars () ) );
 		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
+	
 	public function countryAction() {
 		$data = array (
 				"hotels" => $this->dataModel->getCountryHoteles ( $this->region, $this->country ),
@@ -120,6 +128,7 @@ class IndexController extends ControllerBase {
 		$this->view->setVars ( array_merge ( $data, $this->buildTemplateVars () ) );
 		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
+	
 	public function cityAction() {
 		$data = array (
 				"hotels" => $this->dataModel->getCityHoteles ( $this->region, $this->country, $this->city ),
@@ -132,6 +141,7 @@ class IndexController extends ControllerBase {
 		$this->view->setVars ( array_merge ($data, $this->buildTemplateVars ()));		
 		$this->view->pick ($this->getPageLayout() .'/index/index');
 	}
+	
 	public function setLanguageAction() {
 		// Store user selected language to session
 		$this->session->set ( 'languageCode', $this->languageCode );
@@ -146,7 +156,10 @@ class IndexController extends ControllerBase {
 		$this->setInputvars ();
 		// Setup data for the page
 		$this->dataModel = new \HC\Merch\Models\Page ();
-		$this->dataModel->setCampaignName ( $this->campaignName )->setRegion ( $this->region )->setLanguageCode ( $this->languageCode )->init ();
+		$this->dataModel->setCampaignName($this->campaignName )
+						->setRegion($this->region)
+						->setLanguageCode($this->languageCode )
+						->init();
 		
 		// Check campaign
 		$this->validateCampaign ();
@@ -220,9 +233,10 @@ class IndexController extends ControllerBase {
 			}
 		}
 	}
+	
 	private function buildTemplateVars() {
 		return array (
-				'pageLayout' => $this->getPageLayout (),
+				'theme' => $this->getPageLayout (),
 				'uriBase' => $this->uriBase,
 				'uriFull' => $this->uriFull,
 				'languageCode' => $this->languageCode,
@@ -241,15 +255,18 @@ class IndexController extends ControllerBase {
 				"region" => $this->region 
 		);
 	}
-	protected function getPageLayout() {
-		if (empty ( $this->data ['meta'] ['pageLayout'] )) {
-			// use session if avail
-			return \HC\Merch\Models\Page::DEFAULT_PAGE_LAYOUT;
-		}
+	
+	protected function getPageLayout() {		
+		if (isset($this->dataModel->dealsData['meta']['layout']) && !empty($this->dataModel->dealsData['meta']['layout']))
+			return $this->dataModel->dealsData['meta']['layout'];
+		else 
+			return \HC\Merch\Models\Page::DEFAULT_PAGE_LAYOUT;		
 	}
+	
 	protected function getBaseUrl() {
 		return '/merch/' . $this->languageCode . '/' . $this->campaignName;
 	}
+	
 	private function redirectToDefaultPage() {
 		return $this->response->redirect ( 'merch/' . \HC\Merch\Models\Page::DEFAULT_PAGE_LANG . '/' . \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN );
 	}
@@ -271,6 +288,7 @@ class IndexController extends ControllerBase {
 		}
 		die ();
 	}
+	
 	public function show404Action() {
 		//echo ('testing hhere');
 		$this->view->setVars ( $this->buildTemplateVars () );
