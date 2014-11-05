@@ -418,7 +418,9 @@ var nextgen = {
 			} else {		
 				if (cacheObj.data('code') in regions) {
 					options.region = regions[cacheObj.data('code')];
-					drawRegionsMapOne();
+					options.resolution = 'region'; //*ZSL-1(20141105)
+					options.displayMode = ''; //*ZSL-1(20141105)
+					drawRegionsMapOne(); //*ZSL-1(20141105)
 				}				
 			}
 		},
@@ -520,7 +522,7 @@ var regions  = {'Europe': '150', 'Asia' : '142', 'Oceania':'009', 'North America
 
 //Geochart (Google Map Chart) Initialization
 google.load("visualization", "1", {packages:["geochart"]});
-google.setOnLoadCallback(drawRegionsMapOne);
+if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }//*ZSL-1(20141105)
 //Global Variables
 var options = {
 		region: 'world', 
@@ -547,15 +549,29 @@ regionVal = Array('002', '150' ,'019', '142', '009');//continents
 //asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');//Assigned Asia array values with there country codes
 //oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');//Assigned Pacific array values with there country codes
 
-function regionMapConf(type){
+function regionMapConf(type, eventDataTemp){
 	var data;
 	if (type == 'country-code') {
-		var citys = [];
-		for (var key in availCity) {
-			if (availCity.hasOwnProperty(key)) {
-				citys.push([key,availCity[key]]);				
-		  	}
-		}		
+		//var citys = [];
+		citys = [];
+		if(typeof eventDataTemp=="undefined"){ var eventDataTemp = options.region; }
+
+		$.each(nextgen.campaign(), function(key, val) {					
+			if (typeof val === 'object') {	
+				$.each(val, function(keyCnt, valCnt) {							
+					if (typeof valCnt === 'object') {	
+						if(valCnt['country_code'].toUpperCase()==eventDataTemp){
+							citys.push(['lable','City']);
+							$.each(valCnt, function(keyCty, valctytemp) {
+								if(valctytemp['name']==keyCty){
+									citys.push([keyCty,valctytemp['name']]);
+								}
+							});
+						}						
+					}							
+				});
+			}
+		});			
 		data = google.visualization.arrayToDataTable(citys);
 	} else {
 		data = google.visualization.arrayToDataTable([
@@ -570,9 +586,8 @@ function regionMapConf(type){
 	return data;
 }
 function drawRegionsMapOne(type){
-	//Continent ids are provided in array
-	
-	var data = regionMapConf(type);	
+	//Continent ids are provided in array	
+	data = regionMapConf(type);	
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
 	
@@ -594,7 +609,7 @@ function drawRegionsMapOne(type){
 			//for citys
 			for (var cntKey in availCountry) {
 				if (availCountry.hasOwnProperty(cntKey) && cntKey.toUpperCase() == eventData.region) {		
-					data = regionMapConf('country-code');
+					data = regionMapConf('country-code', eventData.region);
 					//console.log(data);
 					options['region'] = eventData.region;
 					options['resolution'] = 'country';
@@ -606,15 +621,50 @@ function drawRegionsMapOne(type){
 		}
 	});
 	//Display geochart
-	var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+	//var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 	options['country'] = 'country';
 	geochart.draw(data, options);
 }//drawRegionsMapOne
 
+var countryCodeValTemp;
+//URL
+$(document).ready(function() {  
+  var data;
+  if(countryName!=""){
+	  $.each(availCountry, function(index, value) {
+		if(countryName==value){ 
+			data = regionMapConf('country-code', index.toUpperCase());
+			options['region'] = index.toUpperCase();
+			options['resolution'] = 'country';
+			options.displayMode = 'text';			
+			countryCodeValTemp = 1;
+			drawRegionsMapOne('country-code');
+		}
+	  });
+  }else if(regionName!=''){
+	  $.each(transRegions, function(index, value) {
+		if(regionName==value){ 
+			//regionMapConf('country-code', index.toUpperCase()); 
+			//drawRegionsMapOne('country-code');
+			if (index in regions) {
+				options.region = regions[index];
+				options.resolution = 'region';
+				options.displayMode = '';			
+				countryCodeValTemp = 1;
+				drawRegionsMapOne(); //modified
+			}
+		}
+	  });
+  }
+});
+
 //Function to reset map
 function resetMap(){
 	options.region = 'world'; 
-	options.resolution = 'continents';
+	options.resolution = 'continents';	
+	options.displayMode = '';
+	countryCodeValTemp = '';
+	data = regionMapConf();
 	drawRegionsMapOne();
 }//resetMap
 
@@ -644,26 +694,33 @@ $(document).ready(function(){
 //Function to zoom-out map from the selected region / country
 function mapBackBtn() {
 	var optionsRegionTemp = options.region;
-	//Condition to check 'optionsRegionTemp' is region
-	if($.inArray(optionsRegionTemp, regionVal) > -1){ 
+	if(optionsRegionTemp.length==2){
+		var regionVal = options.region.toLowerCase();
+		$.each(nextgen.campaign(), function(key, val) {
+			if (typeof val === 'object') {	
+				$.each(val, function(keyCnt, valCnt) {						
+					if (typeof valCnt === 'object') {	
+						if(valCnt['country_code']==options.region.toLowerCase()){
+							regionVal = val.name_en;
+						}						
+					}							
+				});
+			}
+		});
+		$.each(regions, function(index, value) {
+		if(regionVal==index){ 
+			if (index in regions) {
+				options.region = regions[index];
+				options.resolution = 'region';
+				options.displayMode = '';			
+				countryCodeValTemp = 1;
+				drawRegionsMapOne();
+			}
+		}
+	  });
+	}else{
 		options.region = 'world'; 
 		options.resolution = 'continents';
 		drawRegionsMapOne();
-	}	
-	//Condition to check 'optionsRegionTemp' is country
-	else if(optionsRegionTemp.length==2){
-		if($.inArray(options.region, africa) > -1){ currentRegion = '002'; }
-		else if($.inArray(optionsRegionTemp, europe) > -1){  currentRegion = '150';  }
-		else if($.inArray(optionsRegionTemp, americas) > -1){  currentRegion = '019';  }
-		else if($.inArray(optionsRegionTemp, asia) > -1){  currentRegion = '142';  }
-		else if($.inArray(optionsRegionTemp, oceania) > -1){  currentRegion = '009';  }
-		//Condition to check if region is not equal to null
-		if(currentRegion!=""){ 
-			options.region = currentRegion;
-			options.resolution = 'country'; 
-			drawRegionsMapOne();
-		}else{
-			drawRegionsMapOne();
-		}
 	}
 }//mapBackBtn

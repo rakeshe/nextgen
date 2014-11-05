@@ -18,7 +18,8 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
-    const DEFAULT_PAGE_LAYOUT = 'default';
+    //const DEFAULT_PAGE_LAYOUT = 'default';
+	const DEFAULT_PAGE_LAYOUT = 'geo-map';//*ZSL-1(20141105)
 
     protected $languageCode;
     protected $region;

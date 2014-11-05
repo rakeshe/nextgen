@@ -2,6 +2,13 @@
 {% if region is not defined %}
 {% set region = "" %}
 {% endif %}
+{% if country is not defined %}
+{% set country = "" %}
+{% endif %}
+{% if city is not defined %}
+{% set city = "" %}
+{% endif %}
+<script>var regionName = '{{region}}', countryName = '{{country}}', cityName = '{{city}}';</script>
 <!-- desktop banner -->
 <div class="visible-md visible-lg" id="dkt_banner">
     <!-- Desktop region tabs -->
