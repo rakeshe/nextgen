@@ -18,8 +18,7 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
-    //const DEFAULT_PAGE_LAYOUT = 'default';
-	const DEFAULT_PAGE_LAYOUT = 'geo-map';//*ZSL-1(20141105)
+    const DEFAULT_PAGE_LAYOUT = 'default';
 
     protected $languageCode;
     protected $region;
@@ -59,7 +58,9 @@ class Page extends \Phalcon\Mvc\Model {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var = $Couch->get($this->dealsDocName);
             if (!empty($var))
-                $this->dealsData = json_decode($var, TRUE);
+                //$this->dealsData = json_decode($var, TRUE);
+				$var1 = json_decode($var, TRUE); //*ZSL-1(20141105)
+			    $this->dealsData = json_decode($var1['value'], TRUE); //*ZSL-1(20141105)
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
@@ -71,7 +72,9 @@ class Page extends \Phalcon\Mvc\Model {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var = $Couch->get($this->langDocName);
             if (!empty($var))
-                $this->langData = json_decode($var, TRUE);
+                //$this->langData = json_decode($var, TRUE);
+				$var1 = json_decode($var, TRUE); //*ZSL-1(20141105)
+				$this->langData = json_decode($var1['value'], TRUE); //*ZSL-1(20141105)
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
@@ -83,7 +86,9 @@ class Page extends \Phalcon\Mvc\Model {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var = $Couch->get($this->menuDocName);
             if (!empty($var))
-                $this->menuData = json_decode($var);
+                //$this->menuData = json_decode($var);
+				$var1 = json_decode($var, TRUE); //*ZSL-1(20141105)
+				$this->menuData = json_decode($var1['value']); //*ZSL-1(20141105)
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
