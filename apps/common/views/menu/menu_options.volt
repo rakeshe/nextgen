@@ -20,7 +20,23 @@
                 {% endfor %}
             </ul>
         </li>
-	{% endif %}
+	{% endif %}	
+	<li>&nbsp;|</li>
+	{% if not empty(currencies) %}
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                {% for CatName, currencyPkg in currencies %}
+                <div>{{ t._(CatName) }}</div>
+                	{% for currency_code,labelName in currencyPkg %}
+	                    <li lang="{{ language_code }}" class="">
+	                        <a href="/set-currency/{{ currency_code }}" class="link">{{ t._(labelName) }}</a>
+	                    </li>
+	                {% endfor %}
+                {% endfor %}
+            </ul>
+        </li>
+	{% endif %}	
     </ul>
 </div>
 

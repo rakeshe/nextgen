@@ -7,6 +7,7 @@ class IndexController extends ControllerBase {
 	protected $uriFull;
 	protected $pageLayout;
 	protected $languageCode;
+	protected $currencyCode;
 	protected $campaignName;
 	protected $city;
 	protected $country;
@@ -48,6 +49,7 @@ class IndexController extends ControllerBase {
 		$this->view->setTemplateAfter ( $this->getPageLayout () );
 		\Phalcon\Tag::setTitle ( 'Welcome' );
 		parent::initialize ();		
+		//$this->getUserData();
 	}
 	
 	public function indexAction() {
@@ -143,8 +145,15 @@ class IndexController extends ControllerBase {
 	}
 	
 	public function setLanguageAction() {
-		// Store user selected language to session
-		$this->session->set ( 'languageCode', $this->languageCode );
+		// Store user selected language to cookies
+		//setcookie('AustinLocale', $this->languageCode);
+		$this->cookies->set ( 'AustinLocale', $this->languageCode );
+		$this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+	}
+	
+
+	public function setCurrencyAction() {		
+		$this->cookies->set ( 'curr', $this->currencyCode );
 		$this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
 	}
 	
@@ -178,7 +187,8 @@ class IndexController extends ControllerBase {
 		// set site url
 		$this->uriFull = $this->router->getRewriteUri ();
 		// set uri base
-		$this->uriBase = $this->getBaseUrl ();
+		$this->uriBase = $this->getBaseUrl ();	
+		
 	}
 	
 	/**
@@ -187,13 +197,38 @@ class IndexController extends ControllerBase {
 	public function setInputvars() {
 		$this->campaignName = (null == $this->dispatcher->getParam ( "campaignName" )) ? \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam ( "campaignName" );
 		
-		$this->languageCode = (null == $this->dispatcher->getParam ( "languageCode" )) ? (! $this->session->has ( 'languageCode' )) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->session->get ( 'languageCode' ) : $this->dispatcher->getParam ( "languageCode" );
+		$this->languageCode = (null == $this->dispatcher->getParam ( "languageCode" )) ? (! $this->cookies->has ( 'AustinLocale' )) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->cookies->get ( 'AustinLocale' ) : $this->dispatcher->getParam ( "languageCode" );
+		
+		if (!empty($this->dispatcher->getParam ( "curr" )) && $this->isValidCurrency($this->dispatcher->getParam ( "curr" )) == TRUE) {
+			
+			$this->currencyCode = $this->dispatcher->getParam ( "curr" );
+		} elseif (!empty($this->request->getQuery('cr')) && $this->isValidCurrency($this->request->getQuery('cr')) == TRUE) {
+			
+			$this->currencyCode = $this->request->getQuery('cr');
+			$this->cookies->set ( 'curr', $this->request->getQuery('cr') );
+		} elseif ($this->cookies->has ( 'curr' ) == TRUE) {
+			
+			$this->currencyCode = $this->cookies->get ( 'curr' );
+		} else {
+			
+			$this->currencyCode = \HC\Merch\Models\Page::DEFAULT_PAGE_CURRENCY;
+		}
 		
 		$this->region = (null == $this->dispatcher->getParam ( "regionName" )) ? NULL : $this->dispatcher->getParam ( "regionName" );
 		
 		$this->country = (null == $this->dispatcher->getParam ( "countryName" )) ? null : $this->dispatcher->getParam ( "countryName" );
 		
-		$this->city = (null == $this->dispatcher->getParam ( "cityName" )) ? null : $this->dispatcher->getParam ( "cityName" );
+		$this->city = (null == $this->dispatcher->getParam ( "cityName" )) ? null : $this->dispatcher->getParam ( "cityName" );		
+				
+	}
+	
+	private function isValidCurrency($cCode) {
+		foreach($this->config->currencies->toArray() as $label => $curr) {
+			if (array_key_exists($cCode, $curr))
+				return TRUE;
+			else 
+				return FALSE;			
+		}
 	}
 	
 	/**
@@ -211,6 +246,13 @@ class IndexController extends ControllerBase {
 						'action' => 'show404' 
 				) );
 		}
+	}
+	
+	private function isThemeExists($name) {
+		if (array_key_exists($name, $this->config->themes->toArray()))
+			return true;
+		else
+			return false;
 	}
 	
 	/**
@@ -235,14 +277,17 @@ class IndexController extends ControllerBase {
 	}
 	
 	private function buildTemplateVars() {
+		
 		return array (
 				'theme' => $this->getPageLayout (),
 				'uriBase' => $this->uriBase,
 				'uriFull' => $this->uriFull,
 				'languageCode' => $this->languageCode,
+				'currencyCode' => $this->currencyCode,
 				'menuItemsTop' => $this->menu->top,
 				'menuItemsSite' => $this->menu->site,
 				'menuItemsLanguageOptions' => ( array ) $this->menu->languageOptions,
+				'currencies' => $this->config->currencies->toArray(),
 				'menuItemsRightSite' => $this->menu->rightSite,
 				'menuItemsAccount' => $this->menu->account,
 				"t" => $this->translation->getTranslation (),
@@ -252,12 +297,17 @@ class IndexController extends ControllerBase {
 				'campaignData' => json_encode($this->campaignData),
 				"hotelDetails" => $this->dataModel->loadHotelData (),
 				"hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
-				"region" => $this->region 
+				"region" => $this->region
 		);
 	}
 	
-	protected function getPageLayout() {		
-		if (isset($this->dataModel->dealsData['meta']['layout']) && !empty($this->dataModel->dealsData['meta']['layout']))
+	protected function getPageLayout() {
+		
+		if (!empty($this->request->getQuery('thm')) && $this->isThemeExists($this->request->getQuery('thm'))) {
+			
+			return $this->request->getQuery('thm');
+		} elseif (isset($this->dataModel->dealsData['meta']['layout']) && !empty($this->dataModel->dealsData['meta']['layout']))
+		
 			return $this->dataModel->dealsData['meta']['layout'];
 		else 
 			return \HC\Merch\Models\Page::DEFAULT_PAGE_LAYOUT;		
@@ -287,11 +337,50 @@ class IndexController extends ControllerBase {
 			curl_close ( $ch );
 		}
 		die ();
-	}
+	}	
 	
 	public function show404Action() {
 		//echo ('testing hhere');
 		$this->view->setVars ( $this->buildTemplateVars () );
 		$this->view->pick ( $this->getPageLayout() .'/index/404' );
 	}	
+	
+	
+	
+	public function getUserData() {				
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_VERBOSE, 1);
+		curl_setopt($ch, CURLOPT_URL, 'https://www.hotelclub.com/info/cookiePrinter');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/html"));
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 40);		
+		curl_setopt($ch, CURLOPT_POST, 0);
+		$data = curl_exec($ch);	
+		
+		
+		//$html = new \simple_html_dom();
+		//$html->load($html);
+		//$rs = $html->find('a');
+		print_r($data);
+		
+		$html = new \simple_html_dom();
+		$html->load($data);
+		echo "<pre>";
+		$eles = $html->find('*');		//var_dump($eles);
+		foreach($eles as $e) {
+			//echo $e->outertext;
+			print_r($e->innertext);
+			if(strpos($e->innertext, 'Remote address') !== false) {
+				echo '*************************';
+				print_r($e->dump_node());
+				echo '***********************************************';
+				//print_r($e->dump);
+				print_r(get_class_methods($e));
+			}
+		}
+		die();
+	}
 }

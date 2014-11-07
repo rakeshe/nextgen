@@ -13,6 +13,7 @@ define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
 
 //define('RE_SEOPATH_ALPHA', '/^[\\s\\d\\p{L}]+$/u');
 define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
+define('RE_CURRENCY_CODE', '/([A-Z]{3})');
 
 define('DEFAULT_ROUTE_MODULE', 'merch');
 define('DEFAULT_ROUTE_NAMESPACE', 'HC\Merch\Controllers');
@@ -46,6 +47,20 @@ $router->add(
     )
 );
 
+/**
+ * get currency
+ */
+$router->add(
+		'/set-currency' . RE_CURRENCY_CODE,
+		array(
+				"controller"   => 'index',
+				"action"       => 'setCurrency',
+				'module'       => 'merch',
+				'namespace'    => 'HC\Merch\Controllers\\',
+				'curr' 		   => 1
+		)
+);
+
 //**********************************************************//
 //************ Travel Insurance Module Url Routes **********//
 //**********************************************************//
@@ -64,7 +79,7 @@ $router->add(
 );
 
 //**********************************************************//
-//****************** get lang for now ***************//
+//******************   get lang      ***************//
 //**********************************************************//
 /**
  * get location

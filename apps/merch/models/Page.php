@@ -19,6 +19,7 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'default';
+    const DEFAULT_PAGE_CURRENCY = 'AUD';
 
     protected $languageCode;
     protected $region;
@@ -82,7 +83,7 @@ class Page extends \Phalcon\Mvc\Model {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var = $Couch->get($this->menuDocName);
             if (!empty($var))
-                $this->menuData = json_decode($var);				
+                $this->menuData = json_decode($var);
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }

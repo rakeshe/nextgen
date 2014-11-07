@@ -35,8 +35,15 @@ try {
 		$session->start();
 		return $session;
 	});
-        //Register Global configuration
-        $di->set('config', require __DIR__ . '/../config/global.config.php');
+	
+	$di->set('cookies', function() {
+		$cookies = new Phalcon\Http\Response\Cookies();
+		$cookies->useEncryption(false);
+		return $cookies;
+	});
+	
+    //Register Global configuration
+    $di->set('config', require __DIR__ . '/../config/global.config.php');
 
 	//Set the views cache service
 	$di->set('viewCache', function(){

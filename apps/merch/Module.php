@@ -23,6 +23,11 @@ class Module {
             'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir,
             'HC\Merch\Library' => __DIR__ . '/' . static::getConfig()->application->componentDir,
         ));
+        $loader->registerClasses(
+        		array(
+        				"simple_html_dom" => __DIR__ . "/../../vendor/library/simple_html_dom.php"
+        		)
+        );
 
         $loader->register();
     }
