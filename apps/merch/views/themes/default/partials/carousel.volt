@@ -16,7 +16,7 @@
                     {% set item_class = '' %}
                 {% endif %}
                 <div class="item{{ item_class }}">
-                    <img src="{{ banner['img'] }}" alt="Member" />
+                    <img src="/themes/common/{{ banner['img'] }}" alt="Member" />
                      <div class="row">
 	                  <div class="">
 	                        <div class="carousel-caption ">
