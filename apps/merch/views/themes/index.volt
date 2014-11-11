@@ -5,8 +5,8 @@
         <meta charset="utf-8">
         {{ get_title() }}
         {# stylesheet_link('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') #}
-		{{ stylesheet_link('bootstrap3.0/css/bootstrap.min.css') }}
-        {{ stylesheet_link('css/merch.css') }}
+		{{ stylesheet_link('vendor/bootstrap3.0/css/bootstrap.min.css') }}
+        {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css') }}
         {{ stylesheet_link('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css') }}  
 		{{ stylesheet_link(' https://rawgithub.com/scottjehl/Respond/master/cross-domain/respond-proxy.html') }} 		
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,13 +16,12 @@
     </head>
     <body>
         {{ content() }}
-        {{ javascript_include('//google.com/jsapi') }}
+        {#{ javascript_include('//google.com/jsapi') }#}
         {{ javascript_include('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js') }}   
         {{ javascript_include('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}   
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
-		{{ javascript_include('bootstrap3.0/js/bootstrap.min.js') }}		
-        {{ javascript_include('js/utils.js') }}
-        {{ javascript_include('js/nextgen.js') }}   
-		{{ javascript_include('js/respond.src.js') }}		
+		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js') }}
+        {{ javascript_include('themes/' ~ theme ~ '/js/ng.js') }}
+		{{ javascript_include('themes/common/js/respond.src.js') }}
     </body>
 </html>

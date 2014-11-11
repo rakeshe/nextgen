@@ -16,19 +16,19 @@ campName = '{{ campaignName }}';
 	<div id="hotel_card_block">
 		<div id="hotel_card_search">
 			<div class="world_best_deals">World best deals</div>
-			<div class="hotel_all_search"><img src="/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
+			<div class="hotel_all_search"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
 		</div>
 		{% if( isArray(hotels)) %}
 	        {% for index, hls in hotels %} 
 		<div class="hotel_cards">
 			<div class="hotel_cards_heading">
 				<span>
-                                    <a class="hotel_name">
-                                            {{substr(hotelDetails[index]['hotel_name'],0,11)}}
-                                            {% if hotelDetails[index]['hotel_name']|length >=  11 %}
-                                            ...
-                                            {% endif %}                         
-                                    </a>
+                     <a class="hotel_name">
+                             {{substr(hotelDetails[index]['hotel_name'],0,11)}}
+                             {% if hotelDetails[index]['hotel_name']|length >=  11 %}
+                             ...
+                             {% endif %}                         
+                     </a>
 				</span>
 				<span class="hotel_city">{{hotelDetails[index]['country_name']}}</span>
 				<span class="hotel_review"><img src="{{ HotelHelper.getStarUri(hotelDetails[index]['rank_country']) }}"                                class="img-responsive" alt="hotel rank" width="" height=""/></span>
@@ -36,7 +36,7 @@ campName = '{{ campaignName }}';
 			<div>
 				<div id="hotel_image">
 					<img src="{{ HotelHelper.getClassicHotelImageUri(hls['oneg']) }}"
-                                    class="img-responsive" id="image_hotel" alt="" width="180" height="120"/>
+                                    class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>
 				</div>
 				<div id="hotel_content">
 					{% set discount="0" %}
@@ -84,10 +84,10 @@ campName = '{{ campaignName }}';
 <div class="search_footer">
 	<div class="search_footer_head">
 		<span class="search_not_found">Not found what you're looking for?</span>
-		<span class="search_plus"><img src="/img/plus.png"/></span>
+		<span class="search_plus"><img src="/themes/common/img/plus.png"/></span>
 	</div>
 	<input type="text" value="Search all HotelClub" name="search_input_footer" class="search_input_footer"/>
 	<div class="search_hotel_near">
-		<img src="/img/marker.png"/> Nearby tonight <b>></b>
+		<img src="/themes/common/img/marker.png"/> Nearby tonight <b>></b>
 	</div>
 </div><br/>

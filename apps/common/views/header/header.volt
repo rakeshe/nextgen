@@ -7,7 +7,7 @@
         <!-- header logo -->
         <div class="logo">
             <a href="/" title="Hotelclub Logo">
-                <img src="/img/logo-header.png" alt="Hotelclub Logo" />
+                <img src="/themes/common/img/logo-header.png" alt="Hotelclub Logo" />
             </a>
         </div>
 
