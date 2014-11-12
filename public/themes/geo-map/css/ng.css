@@ -603,6 +603,7 @@ ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
     text-align:center;
     float:left;
     padding:0 0 0 20px;
+	width:100px !important;
 }
 .percentage {
     color:#E21E28;
@@ -1166,8 +1167,10 @@ a, a:link, .bread-crumb-location {
 .thterms{font-size:12px;}
 
 .ui-widget-content{
-   background: #EFEDF3 !important;
-   border: 1px solid #4E4E51 !important;
+   /*background: #EFEDF3 !important;
+   border: 1px solid #4E4E51 !important;*/
+   background: #FFFFFF !important;
+   border: none !important;
    box-shadow: 5px 5px 5px #888888;
 }
 
@@ -1267,3 +1270,143 @@ a, a:link, .bread-crumb-location {
 	margin:10px 0 0 0;
 }
 /*banner and text changes - ends here*/
+
+/*popup check rates - starts here*/
+#choseDates {
+    max-height: 80px;
+    width: 360px;
+}
+#choseDatesBox {
+    float: left;
+}
+#choseDatesBoxHotelInfo {
+    border: 1px solid #eee;
+    float: left;
+    padding: 3px;
+}
+#choseDatesBox #choseDatesDates {
+    width: 330px;
+}
+#choseDatesBox input {
+    background: url("/promo/flex/jansale/images/form-bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #666;
+    font-size: 13px;
+    height: 25px;
+    padding: 2px 3px;
+}
+#choseDatesBox .checkin p, #choseDatesBox .checkout p {
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    margin: 0;
+    padding: 2px 0;
+    text-shadow: 1px 1px 1px #fff;
+}
+#choseDatesBox .where input {
+    width: 200px;
+}
+#choseDatesBox .checkin {
+    display: inline;
+    float: left;
+    margin: 5px 15px 0 0;
+    width: 95px;
+}
+#choseDatesBox .checkout {
+    display: inline;
+    float: left;
+    margin: 5px 0 0;
+    width: 90px;
+}
+#choseDatesBox .searchbtn {
+    display: inline;
+    float: right;
+}
+#choseDatesBox .checkout input, #choseDatesBox .checkin input {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #abadb3 #dbdfe6 #e3e9ef #e2e3ea;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    width: 90px;
+}
+#choseDatesBox .bigBtn {
+    background-color: #562d82;
+    background-image: none !important;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    height: 34px;
+    margin: 25px 0 0;
+    padding: 8px 24px;
+}
+#choseDatesBox .hotelimg {
+    background-color: #ccc;
+    float: left;
+    height: 120px;
+    width: 180px;
+}
+#choseDatesBox .hotelInfo {
+    float: left;
+    margin: 8px 0 10px 10px;
+    vertical-align: middle;
+    width: 245px;
+}
+#choseDatesBox .hotelInfo h3 {
+    color: #562d82;
+    font-size: 15px;
+    line-height: 16px;
+    margin: 0 0 5px;
+    padding: 0;
+}
+#choseDatesBox .saveBookInfo {
+    background: url("/promo/flex/jansale/images/dealshadow.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #e21e28;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 100px;
+    line-height: 16px;
+    padding: 20px 0 0 30px;
+    width: 60px;
+}
+#choseDatesBox .percentage {
+    font-size: 30px;
+    letter-spacing: -2px;
+    line-height: 24px;
+}
+#choseDatesBox .button a {
+    background: url("/promo/flex/jansale/images/btn-bg.gif") repeat scroll -5px -5px rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    bottom: -10px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    height: 20px;
+    left: 0;
+    padding: 5px 10px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #bc3001;
+    width: 50px;
+}
+/*popup check rates - ends here*/
+
+/*error message - starts here*/
+.errorMessage {
+    color: #cf2726;
+    display: inline;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+/*error message - ends here*/

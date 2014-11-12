@@ -127,6 +127,46 @@ $(document).ready(
 					});
 			/** /Search Form Mobile date picker */
 
+			/** Search Form Desktop - Geo Maps date picker */
+			var closeText = "Close";
+			var currentText = "Today";
+			var checkRates = "Check Rates";
+			$('#choseDatesStartDate').datepicker(
+					{
+						inline : true,
+						dateFormat : 'dd/mm/yy',
+						maxDate : '+364D',
+						minDate : 0,
+						numberOfMonths : 1,
+						showCurrentAtPos : 0,
+						closeText : closeText,
+						currentText : currentText,
+						showButtonPanel : true,
+						firstDay : 0,
+						dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+						onSelect : function(dateText, inst) {
+							$('#choseDatesEndDate').datepicker("option", "minDate",
+									$('#choseDatesStartDate').val());
+						}
+					});
+			$('#choseDatesEndDate').datepicker(
+					{
+						inline : true,
+						dateFormat : 'dd/mm/yy',
+						maxDate : '+364D',
+						minDate : 0,
+						numberOfMonths : 1,
+						showCurrentAtPos : 0,
+						closeText : closeText,
+						currentText : currentText,
+						showButtonPanel : true,
+						onSelect : function(dateText, inst) {
+							$('#choseDatesStartDate').datepicker("option", "maxDate",
+									$('#choseDatesEndDate').val());
+						}
+					});
+			/** /Search Form Mobile date picker */
+
 			/** Carousel controls * */
 			$('.carousel').carousel({
 				interval : 6000
@@ -284,12 +324,137 @@ $(document).on('click','.ht-book', function(e) {
 	book.onegId = $(this).data('oneg');
 	book.locale = lang;
 	//console.log(book.buildUri());
-	book.bookNow();	
+	//alert('Booking check it details');
+	$("#check_in_dates").css("display", "block");
 });
 
-$(document).ready(function() {	
-	console.log(hotelsD);
-	nextgen.displayHotels(JSON.parse(hotelsD));	
+/**/
+//submit the form
+var errorMessageLOS = "Please reduce the number of days to 28 or less.";
+var calDateFormat = "dd/mm/yy";
+
+function ChoseDates(frm) {
+	var hotel_location = $("#hotel_location").val() ;
+
+	if ($("#choseDatesStartDate").val() == "" || $("#choseDatesStartDate").val() == calDateFormat) {
+		$("#choseDatesStartDate").focus();
+		return false;
+	}
+
+	if ($("#choseDatesEndDate").val() == "" || $("#choseDatesEndDate").val() == calDateFormat) {
+		$("#choseDatesEndDate").focus();
+		return false;
+	}
+
+	if (!validateDatesExt("choseDatesStartDate", "choseDatesEndDate")) {
+		return false;
+	}
+		
+	book.checkIn =  $("#choseDatesStartDate").val().split("/")[2]+'-'+ $("#choseDatesStartDate").val().split("/")[1]+'-'+ $("#choseDatesStartDate").val().split("/")[0];
+	book.checkOut =   $("#choseDatesEndDate").val().split("/")[2]+'-'+ $("#choseDatesEndDate").val().split("/")[1]+'-'+ $("#choseDatesEndDate").val().split("/")[0];
+	book.bookNow();	
+}//ChoseDates
+
+function validateDatesExt(startDateName, endDateName) {
+	if (!ValidateCheckInOutExt(startDateName, endDateName)) {
+		$(".errorMessage").text(errorMessageLOS).show();
+		return false;
+	}
+	else {
+		//$("#dateVldMsg").hide();
+		return true;
+	}
+}
+
+function RedefineDate(DateValue) {
+	if (DateValue == "") return "";
+	var resultDate = DateValue;
+	//alert(DateValue);
+
+	var dateSplits = DateValue.split("/");
+	var ddmmyyyyReg = /\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}/;
+	var yyyymmddReg = /\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}/;
+	var strMonth;
+	var strDay;
+	var strYear;
+
+	if (ddmmyyyyReg.test(DateValue)) {
+		strDay = dateSplits[0];
+		strMonth = dateSplits[1];
+		strYear = dateSplits[2];
+	}
+	else if (yyyymmddReg.test(DateValue)) {
+		strDay = dateSplits[2];
+		strMonth = dateSplits[1];
+		strYear = dateSplits[0];
+	}
+	resultDate = strMonth + "/" + strDay + "/" + strYear;
+	return resultDate;
+}//RedefineDate
+
+function validateDateFormat(Date1, Date2) {
+	var ret = false;
+	var ddmmyyyyReg = /\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}/;
+	var yyyymmddReg = /\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}/;
+
+	if ((ddmmyyyyReg.test(Date1) && ddmmyyyyReg.test(Date2)) || (yyyymmddReg.test(Date1) && yyyymmddReg.test(Date2)))
+	{ ret = true; }
+
+	return ret;
+}//validateDateFormat
+
+function compareDate(date1, date2) {
+	return (date2 > date1) ? true : false;
+}//compareDate
+
+function GetDateDiff(Date1, Date2) {
+	var one_day = 1000 * 60 * 60 * 24;
+
+	var diff = Math.round((Date2.getTime() - Date1.getTime()) / (one_day));
+	return diff;
+}//GetDateDiff
+
+function ValidateCheckInOutExt(startDateName, endDateName) {
+	var startStr = $("#" + startDateName).val();
+	var endStr = $("#" + endDateName).val();
+	var startDate = new Date(RedefineDate(startStr));
+	var endDate = new Date(RedefineDate(endStr));
+
+	var now = new Date();
+	var nowDate = new Date((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear());
+	var ret = true;
+
+	if (!validateDateFormat(startStr, endStr)) {
+		ret = false;
+		//errorMsg = CAM_FMTMATMsg;
+		return ret;
+	}
+	if (!compareDate(startDate, endDate)) {
+		ret = false;
+		//errorMsg = CAM_CKMsg;
+		return ret;
+	}
+	if (startDate < nowDate) {
+		ret = false;
+		//errorMsg = CAM_CICANTBFTODAYMsg;
+		return ret;
+	}
+	if (!compareDate(nowDate, endDate)) {
+		ret = false;
+		//errorMsg = CAM_COCANTBFTODAYMsg;
+		return ret;
+	}
+	if (GetDateDiff(startDate, endDate) > 25) {
+		ret = false;
+		//errorMsg = CAM_NOMORE25;
+		return ret;
+	}
+	return ret;
+}//ValidateCheckInOutExt
+
+$(document).on('click','.close_btn', function(e) {
+	$("#check_in_dates").css("display", "none");
+	return false;
 });
 
 //SPA
@@ -301,7 +466,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 		res = x.sendRequest(url, 'returnType=json');
 	
 	res.success(function(data){
-		x.displayHotels(data['hotels']); // dispaly hotel cards
+		x.displayHotels(data); // dispaly hotel cards
 		x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser		
 		x.mapAction(cacheObj);		
@@ -331,67 +496,73 @@ var nextgen = {
 			});
 		},
 		//Display hotel card
-		'displayHotels' : function(obj) {	
+		'displayHotels' : function(obj) {			
 			var html = '';			
-			$.each(obj, function(index, val) {	
-				html += '<div class="hotel_cards">';
-				html += '<div class="hotel_cards_heading">';
+			$.each(obj['hotels'], function(index, val) {
+				html += '<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">';
+				html += '<div class="row">';
+				html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
+				html += '<a>';
+				html += '<div>';
+				html += '<img src = "'+ imageHelper.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
+						
+				html +='<div class=" hidden-xs hotel-image-text" style="">';
+				html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
+				html += '<div class="ce-star star4">';
+				html += '<img src="" alt="'+deals[index]['rank_country']+'" class="img-responsive" />';
+				html += '</div></div></div></a></div>';
 				
-				html += '<span><a class="hotel_name">';
+				html += ' <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">';
+				html += ' <div class="hotelInfo">';
+				html += '<h3>';                  
+				html += '<a>';
+				html += '<div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
+								
 				if (deals[index]['hotel_name'].length > 12)
 					html += deals[index]['hotel_name'].substring(0, 11) + '...';
 				else
-					html += deals[index]['hotel_name'];					
-				html += '</a></span>';
+					html += deals[index]['hotel_name'];                         
 				
-				html += '<span class="hotel_city">'+ deals[index]["country_name"] +'</span>';
-				html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(deals[index]['rank_country'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
-				html += '</div>';
-				
-				html += '<div>';
-				html += '<div id="hotel_image">';
-				html += '	<img src="'+imageHelper.classicHotelImageUri(val.oneg)+'" alt="'+deals[index]['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
-				html += '</div>';
-				html += '<div id="hotel_content">';
-				
-				
-				var discount;
+	            html += '</div></a></h3>';                  
+	            html +='<div class="hidden-xs campaign-promo-offer">';
+	            var discount;
 	            $.each(deals[index]['offer'], function(key, val) {
-	            	html += '	<div class="hidden-xs campaign-promo-offer">'+ val['offer_text'] + '</div>';
+	            	html += val['offer_text'];
 	             	discount = val['percent_off']; 
 	            });
-				
-	            // members-extras-block              
-				html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
-				html += '<div class="font_red member-extras-text">';
-				 
+	            html += '</div>';	
+                html += '<div class="members-extras-block">';                   
+                html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" />';
+                html += '<div class="font_red member-extras-text">'+trans['mem_extras']+'</div>';
+                html += '</div>';
+	                
+               // members-extras-block
+                html += '<div class="sign-in-member-offer offer-for-existing-members font_red">';
     			$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-    				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+mval['offer_moo_text']+'</div>';				
-    			});
-				
-				html += '<div class="sign-out-member-offer" style="display: none;">';
-				html += '<span>';
-				//Show_JoinHotelClub_Popup()
-				html += '<p>'+trans['mem_inactive_line1']+'</p>';
-				html += '<p>'+trans['mem_inactive_line2']+'&gt;&gt;</p>';
-				html += '</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
-				html += trans['Save']+'<br>';
-				html += '<span class="percentage hc-percentage">'+discount+'%</span>';
-				html += '<div class="clearfix "></div>';
-				html += '<div class="btn button">';
-				html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
-				html += '</div>';
-				html += '<br>';
-				html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>'; //end card				
+    				html += mval['offer_moo_text'];				
+    			}); 
+    		   html += '</div>';                
+                 
+		       html += '<div class="sign-out-member-offer" style="display: none;">';
+		       html += '<span>';                        
+		       html += '<p>'+trans['mem_inactive_line1']+'</p>';
+		       html += '<p>'+trans['mem_inactive_line2']+'&gt;&gt;</p>';
+		       html += '</span>';
+		       html += '</div>';
+		       html += '</div>';
+		       html += '</div>';		
+		       html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
+		       html += trans['Save']+'<br>';
+		       html += '<span class="percentage hc-percentage">'+discount+'%</span>';
+		       html += '<div class="clearfix "></div>';
+		       html += '<div class="btn button">';
+		       html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
+		       html += '</div>';
+		       html += '<br>';
+		       html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
+		       html += '</div></div></div>';
 			});
-			$('.display-cards').html(html);
+			$('.hc-cards').html(html);
 		},		
 		//select menu which is clicked
 		'selectMenu' : function($this) {
@@ -480,23 +651,15 @@ var nextgen = {
 			res.success(function(data){
 				$this.displayHotels(data); // dispaly hotel cards
 				//$this.selectMenu(cacheObj); // select menu
-				$this.setUrlToHistory(url); // Change url on browser		
-				
-			});			
+				$this.setUrlToHistory(url); // Change url on browser				
+			});	
 		}
-	
 };
 // Image healper
 var imageHelper = {
 	//Image uri builder
-	'CLASSIC_HOTEL_CONTENT_URI' : 'http://www.hotelclub.com/ad-unit/promodeals/images/',
-	'ORBITZ_HOTEL_SITE_IMAGES_URI' : 'http://www.tnetnoc.com/siteImages/',
-	
-	'classicHotelImageUri' : function(oneg){		
-		return this.CLASSIC_HOTEL_CONTENT_URI + 'mp_v1_' + oneg + '.jpg';
-	},
-	'getStarUri' : function(star) {
-		return this.ORBITZ_HOTEL_SITE_IMAGES_URI + 'ORB/icons/stars/star' +star+ '/medium/star' +star+ '-1.png';
+	'classicHotelImageUri' : function(oneg){
+		return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
 	}
 }
 //Hotel booking 
@@ -515,11 +678,11 @@ var hotelBook = {
 	'bookNow' : function() {
 		 window.location = this.buildUri();
 	},
-	'buildUri' : function() {
-		var uri = 'http://www.hotelclub.com/psi/?type='+ this.type + '&adults='+ this.adult +'&id='+ this.onegId;
-		uri += '&checkin='+ this.checkIn + '&checkOut=' + this.checkOut +'&coupon=' +this.coupon+'&locale='+this.locale;
-		return uri;
-		
+	'buildUri' : function() {	
+		var uri = 'http://www.hotelclub.com/psi/?type='+ this.type + '&adults='+ this.adult +'&id='+ this.onegId;		
+		uri += '&checkin='+ this.checkIn + '&checkout=' + this.checkOut +'&coupon=' +this.coupon+'&locale='+this.locale;
+		//alert(uri);
+		return uri;		
 	}
 }
 
@@ -531,28 +694,16 @@ if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }//*ZSL
 //Global Variables
 var options = {
 		region: 'world', 
-		resolution: 'continents', 
+		resolution: 'subcontinents', 
 		width: 948, 
 		height: 350,
-		backgroundColor: '#FFFFFF', 
+		backgroundColor: '#3682B6', 
 		legend: 'none', 
 		/*tooltip: { trigger: 'none'},*/
-		backgroundColor : "#f8f8f8", 
 		datalessRegionColor : "#d1d2d4",
 		enableRegionInteractivity: 'true'
 	};
-regionVal = Array('002', '150' ,'019', '142', '009');//continents
-//subRegionAfricaVal = Array('011', '015' ,'014', '017', '018');//Africa - sub continents
-//subRegionEuropeVal = Array('039', '151' ,'154', '155');//Europe - sub continents
-//subRegionAmericasVal = Array('005', '013' ,'021', '029');//Americas - sub continents
-//subRegionAsiaVal = Array('030', '034' ,'035', '143', '145');//Asia - sub continents
-//subRegionOceaniaVal = Array('053', '054' ,'057', '061');//Pacific - sub continents	
-
-//africa = Array('DZ', 'EG', 'EH','LY', 'MA', 'SD', 'TN', 'BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG', 'AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD', 'BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW', 'BW', 'LS', 'NA', 'SZ', 'ZA');//Assigned Africa array values with there country codes
-//europe = Array('GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ', 'AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL', 'BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA', 'AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU');//Assigned Europe array values with there country codes
-//americas = Array('BM', 'CA', 'GL', 'PM', 'US', 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI', 'BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE', 'US-AK', 'US-HI');//Assigned Americas array values with there country codes
-//asia = Array('TM', 'TJ', 'KG', 'KZ', 'UZ', 'CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW', 'AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK', 'BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN', 'AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD');//Assigned Asia array values with there country codes
-//oceania = Array('AU', 'NF', 'NZ', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH', 'MP', 'NR', 'PW', 'AS', 'CK', 'NU', 'PF', 'PN', 'TK', 'TO', 'TV', 'WF', 'WS');//Assigned Pacific array values with there country codes
+regionVal = Array('002', '150' ,'019', '142', '009');
 
 function regionMapConf(type, eventDataTemp){
 	var data;
@@ -605,7 +756,8 @@ function drawRegionsMapOne(type){
 			for (var key in regions) {
 				if (regions.hasOwnProperty(key) && key in transRegions && regions[key] == eventData.region) {					
 					options['region'] = eventData.region;
-					options['resolution'] = 'Continent';
+					options['resolution'] = 'subcontinents';
+					options.displayMode = 'text';
 					geochart.draw(data, options);
 					nextgen.mapClickRequest('region', eventData.region);
 			  	}
