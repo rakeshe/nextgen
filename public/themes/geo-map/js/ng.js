@@ -527,8 +527,8 @@ if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }//*ZSL
 var options = {
 		region: 'world', 
 		resolution: 'continents', 
-		width: 928, 
-		height: 400,
+		width: 948, 
+		height: 350,
 		backgroundColor: '#FFFFFF', 
 		legend: 'none', 
 		/*tooltip: { trigger: 'none'},*/

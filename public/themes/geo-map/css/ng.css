@@ -29,15 +29,16 @@
 	.search_input_footer { background: white; border: 1px double #DDD;border-radius: 5px; box-shadow: 0 0 5px #333; color: #666; outline: none; height:25px; width: 100%;} 
 	.search_plus { float:right; }
 	.search_hotel_near{ padding:10px 10px 10px 0; font-size:10pt; color:#666; }	
+	#banner_world_map {min-height:350px;}
 	
 	@font-face {
     font-family: "SerifaStd55Roman";
-    src: url('../font/SerifaStd-Roman.otf');
+    src: url('../common/font/SerifaStd-Roman.otf');
     url('../font/SerifaStd-Roman.otf') format('opentype');
 }
 @font-face {
     font-family: "SerifaStd55Light";
-    src: url('../font/SerifaStd-Light.otf');
+    src: url('../common/font/SerifaStd-Light.otf');
     url('../font/SerifaStd-Light.otf') format('opentype');
 }
 
