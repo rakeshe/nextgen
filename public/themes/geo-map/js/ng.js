@@ -287,6 +287,11 @@ $(document).on('click','.ht-book', function(e) {
 	book.bookNow();	
 });
 
+$(document).ready(function() {	
+	console.log(hotelsD);
+	nextgen.displayHotels(JSON.parse(hotelsD));	
+});
+
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	e.preventDefault();
@@ -296,7 +301,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 		res = x.sendRequest(url, 'returnType=json');
 	
 	res.success(function(data){
-		x.displayHotels(data); // dispaly hotel cards
+		x.displayHotels(data['hotels']); // dispaly hotel cards
 		x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser		
 		x.mapAction(cacheObj);		
@@ -326,73 +331,67 @@ var nextgen = {
 			});
 		},
 		//Display hotel card
-		'displayHotels' : function(obj) {			
+		'displayHotels' : function(obj) {	
 			var html = '';			
-			$.each(obj['hotels'], function(index, val) {
-				html += '<div class="hotelDeal col-xs-12 col-sm-12 col-md-6 col-lg-6" style="cursor: default;">';
-				html += '<div class="row">';
-				html += '<div class="image_section col-xs-4 col-sm-5 col-md-5" id="image_section">';
-				html += '<a>';
-				html += '<div>';
-				html += '<img src = "'+ imageHelper.classicHotelImageUri(val.oneg) +'" class="img-responsive" id="image_hotel" width="180" height="120 alt="'+deals[index]['hotel_name']+'" />';
-						
-				html +='<div class=" hidden-xs hotel-image-text" style="">';
-				html += '<div class="img-location-text">'+deals[index]['country_name']+'</div>';
-				html += '<div class="ce-star star4">';
-				html += '<img src="" alt="'+deals[index]['rank_country']+'" class="img-responsive" />';
-				html += '</div></div></div></a></div>';
+			$.each(obj, function(index, val) {	
+				html += '<div class="hotel_cards">';
+				html += '<div class="hotel_cards_heading">';
 				
-				html += ' <div class="middle-offer-section col-xs-5 col-sm-5 col-md-4">';
-				html += ' <div class="hotelInfo">';
-				html += '<h3>';                  
-				html += '<a>';
-				html += '<div class="purple-color hotel-title" title="'+deals[index]['hotel_name']+'">';
-								
+				html += '<span><a class="hotel_name">';
 				if (deals[index]['hotel_name'].length > 12)
 					html += deals[index]['hotel_name'].substring(0, 11) + '...';
 				else
-					html += deals[index]['hotel_name'];                         
+					html += deals[index]['hotel_name'];					
+				html += '</a></span>';
 				
-	            html += '</div></a></h3>';                  
-	            html +='<div class="hidden-xs campaign-promo-offer">';
-	            var discount;
+				html += '<span class="hotel_city">'+ deals[index]["country_name"] +'</span>';
+				html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(deals[index]['rank_country'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+				html += '</div>';
+				
+				html += '<div>';
+				html += '<div id="hotel_image">';
+				html += '	<img src="'+imageHelper.classicHotelImageUri(val.oneg)+'" alt="'+deals[index]['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
+				html += '</div>';
+				html += '<div id="hotel_content">';
+				
+				
+				var discount;
 	            $.each(deals[index]['offer'], function(key, val) {
-	            	html += val['offer_text'];
+	            	html += '	<div class="hidden-xs campaign-promo-offer">'+ val['offer_text'] + '</div>';
 	             	discount = val['percent_off']; 
 	            });
-	            html += '</div>';	
-                html += '<div class="members-extras-block">';                   
-                html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" />';
-                html += '<div class="font_red member-extras-text">'+trans['mem_extras']+'</div>';
-                html += '</div>';
-	                
-               // members-extras-block
-                html += '<div class="sign-in-member-offer offer-for-existing-members font_red">';
+				
+	            // members-extras-block              
+				html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
+				html += '<div class="font_red member-extras-text">';
+				 
     			$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-    				html += mval['offer_moo_text'];				
-    			}); 
-    		   html += '</div>';                
-                 
-		       html += '<div class="sign-out-member-offer" style="display: none;">';
-		       html += '<span>';                        
-		       html += '<p>'+trans['mem_inactive_line1']+'</p>';
-		       html += '<p>'+trans['mem_inactive_line2']+'&gt;&gt;</p>';
-		       html += '</span>';
-		       html += '</div>';
-		       html += '</div>';
-		       html += '</div>';		
-		       html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
-		       html += trans['Save']+'<br>';
-		       html += '<span class="percentage hc-percentage">'+discount+'%</span>';
-		       html += '<div class="clearfix "></div>';
-		       html += '<div class="btn button">';
-		       html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
-		       html += '</div>';
-		       html += '<br>';
-		       html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
-		       html += '</div></div></div>';
+    				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+mval['offer_moo_text']+'</div>';				
+    			});
+				
+				html += '<div class="sign-out-member-offer" style="display: none;">';
+				html += '<span>';
+				//Show_JoinHotelClub_Popup()
+				html += '<p>'+trans['mem_inactive_line1']+'</p>';
+				html += '<p>'+trans['mem_inactive_line2']+'&gt;&gt;</p>';
+				html += '</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
+				html += trans['Save']+'<br>';
+				html += '<span class="percentage hc-percentage">'+discount+'%</span>';
+				html += '<div class="clearfix "></div>';
+				html += '<div class="btn button">';
+				html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
+				html += '</div>';
+				html += '<br>';
+				html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>'; //end card				
 			});
-			$('.hc-cards').html(html);
+			$('.display-cards').html(html);
 		},		
 		//select menu which is clicked
 		'selectMenu' : function($this) {
@@ -490,8 +489,14 @@ var nextgen = {
 // Image healper
 var imageHelper = {
 	//Image uri builder
-	'classicHotelImageUri' : function(oneg){
-		return 'http://www.hotelclub.com/ad-unit/promodeals/images/mp_v1_' + oneg + '.jpg';
+	'CLASSIC_HOTEL_CONTENT_URI' : 'http://www.hotelclub.com/ad-unit/promodeals/images/',
+	'ORBITZ_HOTEL_SITE_IMAGES_URI' : 'http://www.tnetnoc.com/siteImages/',
+	
+	'classicHotelImageUri' : function(oneg){		
+		return this.CLASSIC_HOTEL_CONTENT_URI + 'mp_v1_' + oneg + '.jpg';
+	},
+	'getStarUri' : function(star) {
+		return this.ORBITZ_HOTEL_SITE_IMAGES_URI + 'ORB/icons/stars/star' +star+ '/medium/star' +star+ '-1.png';
 	}
 }
 //Hotel booking 
