@@ -1410,3 +1410,6 @@ a, a:link, .bread-crumb-location {
     margin-top: 5px;
 }
 /*error message - ends here*/
+
+/**/
+#hotel_all_search_click{ cursor:pointer; }
