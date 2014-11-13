@@ -295,7 +295,7 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function isValidDefaultCampaign() {
 
-        $this->dealsDocName = "merch:deal:" . md5(strtolower(self::DEFAULT_PAGE_CAMPAIGN)) . ":" . self::DEFAULT_PAGE_LANG;
+        $this->dealsDocName = "merch:deal:" . md5(strtolower(self::DEFAULT_PAGE_CAMPAIGN) . '/') . ":" . self::DEFAULT_PAGE_LANG;
         $this->loadCouchDeals();
         if ($this->dealsData == NULL)
             return FALSE;

@@ -34,6 +34,7 @@ class IndexController extends ControllerBase {
 	private $dataModel;
 	private $viewType;
 	private $campaignData;
+	private $couchData;
 	
 	public function initialize() {	
 		
@@ -46,8 +47,7 @@ class IndexController extends ControllerBase {
 		}
 		$this->setupPage ();
 		//$this->view->setVar('theme', $this->getPageLayout() );
-		$this->view->setTemplateAfter ( $this->getPageLayout () );
-		\Phalcon\Tag::setTitle ( 'Welcome' );
+		$this->view->setTemplateAfter ( $this->getPageLayout () );		
 		parent::initialize ();		
 		//$this->getUserData();
 	}
@@ -179,9 +179,10 @@ class IndexController extends ControllerBase {
 		// set menu data
 		$this->menu = $this->dataModel->menuData;
 		// set Drop-down menu
-		$this->DDMenue = $this->dataModel->loadCampaignData ();
-		//campaign data
-		$this->campaignData = $this->dataModel->loadCampaignData ();
+				
+		$this->couchData = $this->dataModel->dealsData;		
+		\Phalcon\Tag::setTitle ( $this->couchData['meta']['name'] );
+		
 		// set translation obj
 		$this->translation = new \HC\Library\Translation ( $this->languageCode, $this->dataModel->langData );
 		// set site url
@@ -279,6 +280,7 @@ class IndexController extends ControllerBase {
 	private function buildTemplateVars() {
 		
 		return array (
+				'data' => $this->couchData,
 				'theme' => $this->getPageLayout (),
 				'uriBase' => $this->uriBase,
 				'uriFull' => $this->uriFull,
