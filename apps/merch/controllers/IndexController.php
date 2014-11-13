@@ -180,8 +180,8 @@ class IndexController extends ControllerBase {
 		$this->menu = $this->dataModel->menuData;
 		// set Drop-down menu
 				
-		$this->couchData = $this->dataModel->dealsData;		
-		\Phalcon\Tag::setTitle ( $this->couchData['meta']['name'] );
+		$this->couchData = json_encode($this->dataModel->dealsData);		
+		\Phalcon\Tag::setTitle ( $this->dataModel->dealsData['meta']['name'] );
 		
 		// set translation obj
 		$this->translation = new \HC\Library\Translation ( $this->languageCode, $this->dataModel->langData );

@@ -8,7 +8,7 @@
 {% if city is not defined %}
 {% set city = "" %}
 {% endif %}
-<script>var regionName = '{{region}}', countryName = '{{country}}', cityName = '{{city}}';</script>
+<script>var data = '{{data}}', regionName = '{{region}}', countryName = '{{country}}', cityName = '{{city}}';</script>
 <!-- desktop banner -->
 <div class="visible-md visible-lg" id="dkt_banner">
     <!-- Desktop region tabs -->

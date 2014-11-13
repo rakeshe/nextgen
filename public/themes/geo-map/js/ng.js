@@ -457,8 +457,9 @@ $(document).on('click','.close_btn', function(e) {
 	return false;
 });
 
-$(document).ready(function() {
-	console.log(hotelsD);
+$(document).ready(function() {	
+	nextgen.data = JSON.parse(data);	
+	nextgen.drawMenu();
 	nextgen.displayHotels(JSON.parse(hotelsD));
 });
 //SPA
@@ -484,6 +485,7 @@ var nextgen = {
 		'init' : function(){
 			return this;		
 		},
+		'data' : '',
 		'campaign' : function() {
 			return $.parseJSON(camp);
 		},
@@ -552,6 +554,9 @@ var nextgen = {
 				html += '</div>'; //end card
 			});
 			$('.display-cards').html(html);
+		},		
+		'drawMenu' : function() {
+			console.log(this.data);
 		},
 
 			//select menu which is clicked
