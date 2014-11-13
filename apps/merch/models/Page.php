@@ -18,7 +18,7 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
-    const DEFAULT_PAGE_LAYOUT = 'default';
+    const DEFAULT_PAGE_LAYOUT = 'geo-map';
     const DEFAULT_PAGE_CURRENCY = 'AUD';
 
     protected $languageCode;
@@ -49,7 +49,7 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function initDocNames() {
         //initialize couchbase document name
-        $this->dealsDocName = "merch:deal:" . md5(strtolower($this->campaignName)) . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
+        $this->dealsDocName = "merch:deal:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
         $this->menuDocName = "merch:menu:" . md5('site-menu');
     }
@@ -57,7 +57,7 @@ class Page extends \Phalcon\Mvc\Model {
     public function loadCouchDeals() {
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var = $Couch->get($this->dealsDocName);
+            $var = $Couch->get($this->dealsDocName);            
             if (!empty($var))
                 $this->dealsData = json_decode($var, TRUE);				
         } catch (\Exception $ex) {
@@ -96,7 +96,10 @@ class Page extends \Phalcon\Mvc\Model {
      */
     public function loadCampaignData() {
         try {        	
-            return $this->dealsData['campaign'];
+            if (isset($this->dealsData['urls'])) 
+            	return $this->dealsData['urls'];
+            return false;
+            
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
@@ -133,8 +136,11 @@ class Page extends \Phalcon\Mvc\Model {
      * @return bool|array
      */
     public function loadHotelData() {
-        try {
-            return $this->dealsData['deals'];
+        try {           
+            if (isset($this->dealsData['deals']))
+            	return $this->dealsData['deals'];
+            return false;
+            
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
