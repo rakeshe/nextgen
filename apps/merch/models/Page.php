@@ -59,7 +59,7 @@ class Page extends \Phalcon\Mvc\Model {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var = $Couch->get($this->dealsDocName);            
             if (!empty($var))
-                $this->dealsData = json_decode($var, TRUE);				
+                $this->dealsData = json_decode($var, TRUE);		
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
