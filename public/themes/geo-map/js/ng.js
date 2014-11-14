@@ -469,11 +469,18 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	url = $(this).attr('href'),
 	x = nextgen.init(),
 	res = x.sendRequest(url, 'returnType=json');
+	//console.log(x.getLavel);
+	if (cacheObj.data('lavel') == 1) {
+		x.drawCountry(cacheObj.data('code'), cacheObj.data('url'));
+	} else if(cacheObj.data('lavel') == 2) {
+		x.drawCities(x.selRegion, cacheObj.data('url'));
+	}
+	
 	res.success(function(data){
 		x.displayHotels(data['hotels']); // dispaly hotel cards
 		x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
-		x.mapAction(cacheObj);
+		x.mapAction(cacheObj);		
 	})
 	.error(function(data){
 	console.log('Exception: '+ data.responseText);
@@ -485,7 +492,14 @@ var nextgen = {
 		'init' : function(){
 			return this;		
 		},
-		'data' : '',
+		'data' : '', //data,
+		'selRegion' : '',
+		'selCountry' : '',
+		'selCity' : '',
+		'getRegions' : '',
+		'getCountrys' : '',
+		'getCities' : '',
+		'getLavel' : 1,
 		'campaign' : function() {
 			return $.parseJSON(camp);
 		},
@@ -556,9 +570,111 @@ var nextgen = {
 			$('.display-cards').html(html);
 		},		
 		'drawMenu' : function() {
-			console.log(this.data);
+			
+			var html = '',
+				reg  = [];
+			html += '<div id="header">';					
+			html += '<ul id="menu_new">';
+			$.each(this.data['urls'], function(index, value){
+				html += '<li class="dropdown-submenu">';
+				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon visible-xs visible-sm glyphicon glyphicon-plus"></b></a>';
+				html += '</li>';
+				reg[value['name_en']] = value['name'];
+			});			
+			html += '</ul>';					
+			html += '</div>';			
+			this.getRegions = reg;
+			this.getLavel = 1;
+			$('#regionTabs').html(html);			
 		},
-
+		'drawCountry' : function(region, url) {
+			
+			var html = '', flag = false, country = [];			
+			regoinEN = this.data['urls'][region]['name_en'];
+			regoinName = this.data['urls'][region]['name'];
+			
+			$.each(this.data['urls'][region], function(index, value){
+				
+				if (flag == false) {
+					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div class="divider_menu"></div>';
+					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<ul class="country_name">';
+				}
+				flag = true;
+				if (typeof value === 'object') {
+					var name = false,name_en = false, lavel = false;
+					$.each(value, function(key, val){
+						
+						//console.log(key +' ===>'+ val);
+						if (key == 'name') name = val;
+						if (key == 'level') lavel =val; 
+						if (key == 'name_en') name_en = val;
+						
+						if (name != false && lavel != false && name_en != false && lavel == 2) {						
+							html += '<li class="country_name_list">';
+							html += '<a tabindex="-1" class="menu-icons menu-country" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '</li>';
+							html += '<li class="tab_divider"></li>';	
+							country[name_en] = name;
+							name = false,name_en = false, lavel = false;
+						}
+					});				
+				}				
+			});		
+			
+			html += '</ul>';					
+			html += '</div>';
+			nextgen.selRegion = region;
+			this.getCountrys = country;
+			this.getLavel = 2;
+			$('.display_regions').html(html);	
+		},
+		'drawCities' : function(region, countryUrl) {			
+						
+			var html = '', flag = false, cities = [], heading = false, headingEn = false;
+						
+			$.each(this.data['urls'][region][countryUrl], function(index, value){
+				
+				if (index == 'name_en') headingEn = value;
+				if (index == 'name') heading = value;				
+				
+				if (heading != false && headingEn != false && flag == false) {							
+					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div class="divider_menu"></div>';
+					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<ul class="country_name">';
+					flag = true;
+				}
+								
+				if (typeof value === 'object') {					
+					var name = false, name_en = false, lavel = false;
+					$.each(value, function(key, val){					
+						
+						if (key == 'name') name = val;
+						if (key == 'level') lavel = val; 
+						if (key == 'name_en') name_en = val;
+						//console.log(name, lavel, name_en);
+						if (name != false && lavel != false && name_en != false && lavel == 3) {
+							
+							html += '<li class="country_name_list">';
+							html += '<a tabindex="-1" class="menu-icons menu-city" tabindex="-1" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '</li>';
+							html += '<li class="tab_divider"></li>';	
+							cities[name_en] = name;
+							name = false,name_en = false, lavel = false;
+						}
+					});				
+				}				
+			});
+			
+			html += '</ul>';					
+			html += '</div>';
+			this.getCities = cities;
+			this.getLavel = 3;
+			$('.display_regions').html(html);	
+			
+		},		
 			//select menu which is clicked
 		'selectMenu' : function($this) {
 			if ($this.hasClass('menu-region')) {

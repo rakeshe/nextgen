@@ -174,7 +174,7 @@ class IndexController extends ControllerBase {
 		$this->validateCampaign ();
 		
 		// Validate language
-		$this->validateLanguage ();
+		//$this->validateLanguage ();
 		
 		// set menu data
 		$this->menu = $this->dataModel->menuData;

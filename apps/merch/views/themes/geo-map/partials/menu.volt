@@ -8,11 +8,12 @@
 {% if city is not defined %}
 {% set city = "" %}
 {% endif %}
-<script>var data = '{{data}}', regionName = '{{region}}', countryName = '{{country}}', cityName = '{{city}}';</script>
+<script>var data = '{{data}}', uriBase = '{{uriBase}}', regionName = '{{region}}', countryName = '{{country}}', cityName = '{{city}}';</script>
 <!-- desktop banner -->
 <div class="visible-md visible-lg" id="dkt_banner">
     <!-- Desktop region tabs -->
     <div id="regionTabs">
+    {#
         <!-- Tabs -->
 	<div id="header">
 		{% if not(DDMenue is empty) %}
@@ -25,7 +26,11 @@
 		</ul>		
 		{% endif %}
 	</div>
+	#}
 	<!-- /Desktop region tabs -->
      </div>
+     	<div class="display_regions">
+				
+			</div>
 </div>
 <!-- /desktop banner -->
