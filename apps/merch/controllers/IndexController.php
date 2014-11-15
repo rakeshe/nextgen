@@ -35,6 +35,8 @@ class IndexController extends ControllerBase {
 	private $viewType;
 	private $campaignData;
 	private $couchData;
+	private $docmentPageUrl;
+	private $couchPageData;
 	
 	public function initialize() {	
 		
@@ -43,7 +45,11 @@ class IndexController extends ControllerBase {
 				$this->request->getPost('returnType') == 'json') ? 'json' : 'html';		
 		//if requested data type is json then disable view part 
 		if ($this->viewType == 'json') {			
-			$this->view->disable();			
+			$this->view->disable();
+			$this->dataModel = new \HC\Merch\Models\Page ();
+			$this->dataModel->setPageUrl($this->buildDocumentPageUrl());			
+			$this->dataModel->loadCouchPageDeals();
+			die($this->dataModel->pageUrlData);
 		}
 		$this->setupPage ();
 		//$this->view->setVar('theme', $this->getPageLayout() );
@@ -167,8 +173,9 @@ class IndexController extends ControllerBase {
 		$this->dataModel = new \HC\Merch\Models\Page ();
 		$this->dataModel->setCampaignName($this->campaignName )
 						->setRegion($this->region)
-						->setLanguageCode($this->languageCode )
-						->init();
+						->setLanguageCode($this->languageCode );
+						$this->dataModel->setPageUrl($this->buildDocumentPageUrl());
+						$this->dataModel->init();
 		
 		// Check campaign
 		$this->validateCampaign ();
@@ -183,12 +190,14 @@ class IndexController extends ControllerBase {
 		$this->couchData = str_replace("'", "&#154;", json_encode($this->dataModel->dealsData));		
 		\Phalcon\Tag::setTitle ( $this->dataModel->dealsData['meta']['name'] );
 		
+		$this->couchPageData = $this->dataModel->pageUrlData;
 		// set translation obj
 		$this->translation = new \HC\Library\Translation ( $this->languageCode, $this->dataModel->langData );
 		// set site url
 		$this->uriFull = $this->router->getRewriteUri ();
 		// set uri base
 		$this->uriBase = $this->getBaseUrl ();	
+		$var = $this->dispatcher->getParams();		
 		
 	}
 	
@@ -219,8 +228,25 @@ class IndexController extends ControllerBase {
 		
 		$this->country = (null == $this->dispatcher->getParam ( "countryName" )) ? null : $this->dispatcher->getParam ( "countryName" );
 		
-		$this->city = (null == $this->dispatcher->getParam ( "cityName" )) ? null : $this->dispatcher->getParam ( "cityName" );		
-				
+		$this->city = (null == $this->dispatcher->getParam ( "cityName" )) ? null : $this->dispatcher->getParam ( "cityName" );	
+						
+	}
+	
+	private function buildDocumentPageUrl() {
+		$url = '';
+		if (!empty($this->dispatcher->getParams()['campaignName'])) {
+			$url .= $this->dispatcher->getParams()['campaignName'];
+		}
+		if (!empty($this->dispatcher->getParams()['regionName'])) {
+			$url .= '/'.$this->dispatcher->getParams()['regionName'];
+		}
+		if (!empty($this->dispatcher->getParams()['countryName'])) {
+			$url .= '/'.$this->dispatcher->getParams()['countryName'];
+		}
+		if (!empty($this->dispatcher->getParams()['cityName'])) {
+			$url .= '/'.$this->dispatcher->getParams()['cityName'];
+		}		
+		return $url;	
 	}
 	
 	private function isValidCurrency($cCode) {
@@ -281,6 +307,7 @@ class IndexController extends ControllerBase {
 		
 		return array (
 				'data' => $this->couchData,
+				'urlPData' => $this->couchPageData,
 				'theme' => $this->getPageLayout (),
 				'uriBase' => $this->uriBase,
 				'uriFull' => $this->uriFull,

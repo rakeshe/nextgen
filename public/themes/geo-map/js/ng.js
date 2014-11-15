@@ -459,6 +459,7 @@ $(document).on('click','.close_btn', function(e) {
 
 $(document).ready(function() {	
 	nextgen.data = JSON.parse(data);	
+	nextgen.dataP = JSON.parse(dataP);
 	nextgen.drawMenu();
 	nextgen.drawPlatinumCards();
 	//nextgen.displayHotels(JSON.parse(hotelsD));
@@ -477,9 +478,11 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 		x.drawCities(x.selRegion, cacheObj.data('url'));
 	}
 	
-	res.success(function(data){
-		x.displayHotels(data['hotels']); // dispaly hotel cards
-		x.selectMenu(cacheObj); // select menu
+	res.success(function(data){		
+		x.dataP = data;
+		x.drawPlatinumCards();
+		//x.displayHotels(data['hotels']); // dispaly hotel cards
+		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj);		
 	})
@@ -494,6 +497,7 @@ var nextgen = {
 			return this;		
 		},
 		'data' : '', //data,
+		'dataP' : '',
 		'selRegion' : '',
 		'selCountry' : '',
 		'selCity' : '',
@@ -514,16 +518,27 @@ var nextgen = {
 				data : data
 			});
 		},
-		'drawPlatinumCards' : function() {			
+		'drawPlatinumCards' : function() {		
+			$('.display-cards').html('');
+			$.each(this.dataP, function(index, value) {			
+				//if (index == 'tier_1') {
+					//var t = this.datadeals.value;
+					if (typeof(nextgen.data['deals'][value]) != "undefined" && nextgen.data['deals'][value] !== null) {						
+						$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][value]));
+					}										
+				//}				
+			});
+			/*
 			$('.display-cards').html('');			
 			$.each(this.data['deals'], function(index, value){				
 				if (value['tier'] == 1) {
 					$('.display-cards').append(nextgen.displayHotels(value));					
 				}				
-			});
+			});*/
 		},
 		//Display hotel card
 		'displayHotels' : function(obj) {		
+			console.log(obj);
 			//console.log(obj); return;
 			var html = '';	
 			//$.each(obj, function(index, val) {

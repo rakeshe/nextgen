@@ -32,6 +32,9 @@ class Page extends \Phalcon\Mvc\Model {
     protected $dealsDocName;
     protected $langDocName;
     protected $menuDocName;
+    protected $urlDocName;
+    protected $setPageUrl;
+    public $pageUrlData;
 
     public function init() {
 
@@ -43,23 +46,42 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function initBuckets() {
         $this->loadCouchDeals();
+        $this->loadCouchPageDeals();
         $this->loadCouchLanguage();
         $this->loadCouchMenu();
+    }
+    
+    public function setPageUrl($url) {
+    	$this->setPageUrl = $url;
     }
 
     public function initDocNames() {
         //initialize couchbase document name
         $this->dealsDocName = "merch:deal:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
-        $this->menuDocName = "merch:menu:" . md5('site-menu');
+        $this->menuDocName = "merch:menu:" . md5('site-menu');        
+    }
+    
+    public function loadCouchDeals() {
+    	try {
+    		$Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+    		$var = $Couch->get($this->dealsDocName);
+    		if (!empty($var))
+    			$this->dealsData = json_decode($var, TRUE);
+    	} catch (\Exception $ex) {
+    		echo $ex->getMessage();
+    	}
+    	return FALSE;
     }
 
-    public function loadCouchDeals() {
+    public function loadCouchPageDeals() {
+    	
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var = $Couch->get($this->dealsDocName);            
-            if (!empty($var))
-                $this->dealsData = json_decode($var, TRUE);				
+            $this->pageUrlData = $Couch->get("merch:deal:" . md5(trim($this->setPageUrl)));   
+            //echo $this->setPageUrl . '****'. md5('world-is-on-sale-sale/europe--uae') . '****'.md5($this->setPageUrl);
+          // print_r($this->pageUrlData);
+           //exit;            		
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
