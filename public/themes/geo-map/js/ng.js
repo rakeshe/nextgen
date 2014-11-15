@@ -460,7 +460,8 @@ $(document).on('click','.close_btn', function(e) {
 $(document).ready(function() {	
 	nextgen.data = JSON.parse(data);	
 	nextgen.drawMenu();
-	nextgen.displayHotels(JSON.parse(hotelsD));
+	nextgen.drawPlatinumCards();
+	//nextgen.displayHotels(JSON.parse(hotelsD));
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -513,38 +514,47 @@ var nextgen = {
 				data : data
 			});
 		},
+		'drawPlatinumCards' : function() {			
+			$('.display-cards').html('');			
+			$.each(this.data['deals'], function(index, value){				
+				if (value['tier'] == 1) {
+					$('.display-cards').append(nextgen.displayHotels(value));					
+				}				
+			});
+		},
 		//Display hotel card
-		'displayHotels' : function(obj) {			
+		'displayHotels' : function(obj) {		
+			//console.log(obj); return;
 			var html = '';	
-			$.each(obj, function(index, val) {
+			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards">';
 				html += '<div class="hotel_cards_heading">';
 				html += '<span><a class="hotel_name">';
-				if (deals[index]['hotel_name'].length > 12)
-					html += deals[index]['hotel_name'].substring(0, 11) + '...';
+				if (obj['hotel_name'].length > 12)
+					html += obj['hotel_name'].substring(0, 11) + '...';
 				else
-					html += deals[index]['hotel_name'];
+					html += obj['hotel_name'];
 					html += '</a></span>';
-					html += '<span class="hotel_city">'+ deals[index]["country_name"] +'</span>';
-					html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(deals[index]['rank_country'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
+					html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div>';
 					html += '<div id="hotel_image">';
-					html += '	<img src="'+imageHelper.classicHotelImageUri(val.oneg)+'" alt="'+deals[index]['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
+					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
 					html += '</div>';
 					html += '<div id="hotel_content">';
-				var discount;
-				$.each(deals[index]['offer'], function(key, val) {
-					html += '	<div class="hidden-xs campaign-promo-offer">'+ val['offer_text'] + '</div>';
-					discount = val['percent_off'];
-				});
+				//var discount;
+				//$.each(deals[index]['offer'], function(key, val) {
+					html += '	<div class="hidden-xs campaign-promo-offer">'+ obj['offer'] + '</div>';
+					//discount = val['percent_off'];
+				//});
 
 				// members-extras-block
 				html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
 				html += '<div class="font_red member-extras-text">';
-				$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+mval['offer_moo_text']+'</div>';
-				});
+				//$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
+				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+				//});
 				html += '<div class="sign-out-member-offer" style="display: none;">';
 				html += '<span>';
 				//Show_JoinHotelClub_Popup()
@@ -556,18 +566,18 @@ var nextgen = {
 				html += '</div>';
 				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
 				html += trans['Save']+'<br>';
-				html += '<span class="percentage hc-percentage">'+discount+'%</span>';
+				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="btn button">';
-				html += '<a class="ht-book" data-oneg="'+val.oneg+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 				html += '</div>';
 				html += '<br>';
-				html += '<p class="inclusions">'+deals[index]['travel_text']+'</p>';
+				html += '<p class="inclusions">'+obj['travel_text']+'</p>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>'; //end card
-			});
-			$('.display-cards').html(html);
+			//});
+				return html;
 		},		
 		'drawMenu' : function() {
 			
@@ -907,8 +917,10 @@ function drawRegionsMapOne(type){
 
 var countryCodeValTemp;
 //URL
-$(document).ready(function() {  
-  var data;
+$(document).ready(function() {
+	
+	
+ /* var data;
   if(countryName!=""){
 	  $.each(availCountry, function(index, value) {
 		if(countryName==value){ 
@@ -934,8 +946,10 @@ $(document).ready(function() {
 			}
 		}
 	  });
-  }
+  }*/
+  
 });
+
 
 //Function to reset map
 function resetMap(){
