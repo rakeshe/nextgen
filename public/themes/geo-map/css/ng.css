@@ -8,18 +8,22 @@
 	#menu_new li a { color:#FFFFFF; text-decoration:none; font-size:12pt; }
 	#hotel_card_block { width=90%; height:auto; }
 	#hotel_card_search { display:block; }
-	.world_best_deals { float:left; width:470px; padding:15px 10px;font-size:11pt;font-weight:bold; }
-	.hotel_all_search { float:left; text-align:right; width:470px; padding:15px 5px;font-size:11pt;font-weight:bold; }
+	.world_best_deals { float:left;  padding:15px 10px;font-size:11pt;font-weight:bold; margin-left:30px;}
+	.hotel_all_search { float:left; text-align:right; padding:15px 5px;font-size:11pt;font-weight:bold; }
 	.map-back { color:#FFF !important; }
 	.map-reset { color:#FFF !important; }s
 	.hotel_main_block { background-color:#FFF; }
 	#hotel_image { float:left; }
-	#hotel_content { float:left; width:180px; margin:5px; }
+	#hotel_content { float:left;margin:5px; }
 	.hotel_card_heading { color:#FFF;font-size:14pt;  }
 	.hotel_name { color:#E21E28; font-weight:bold; font-size:12pt; }
 	.hotel_city { color:#303030; font-size:10pt;font-weight:bold; }
 	.hotel_review { float:right; }
-	.hotel_cards {float:left;width:460px; border:4px solid #000; margin:3px 0px 15px 10px; }
+	.hotel_cards { border: 4px solid #999;
+    margin-bottom: 20px;
+    margin-left: 12px;
+    /*margin-right: 46px;*/
+	padding:0px !important;}
 	.hotel_cards_heading { padding:5px; }
 	.font_red { font-size:8pt !important; }
 	#footer_new { box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important; margin-bottom:20px; }
@@ -28,7 +32,7 @@
 	.search_footer_head { margin:10px 10px 10px 0; }
 	.search_input_footer { background: white; border: 1px double #DDD;border-radius: 5px; box-shadow: 0 0 5px #333; color: #666; outline: none; height:25px; width: 100%;} 
 	.search_plus { float:right; }
-	.search_hotel_near{ padding:10px 10px 10px 0; font-size:10pt; color:#666; }	
+	.search_hotel_near{ padding:10px 10px 10px 0; font-size:10pt; color:#666; cursor: pointer;}	
 	#banner_world_map {min-height:350px;}
 	
 	@font-face {
@@ -43,15 +47,10 @@
 }
 
 /* reponsive design - starts */
-@media (min-width: 1200px) {
-.container{ width:980px;}
- } /* Large desktop */
-
-@media (min-width:979px) and (max-width:1199px){ .container{ min-width:100%;} } /* desktop */
-
-@media (max-width:978px){
-	.container{ min-width:100%; padding:0; margin:0; }
-}
+/*@media(max-width:767px){.container {width: 1170px;}}*/
+@media(min-width:768px){.container {width: 750px;}}
+@media(min-width:992px){.container {width: 980px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}}
+@media(min-width:1200px){.container {width: 1100px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}}
 
 @media only screen
 and (max-device-width: 480px) {
@@ -603,8 +602,7 @@ ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
     text-align:center;
     float:left;
     padding:0 0 0 20px;
-	width:100px !important;
-}
+	}
 .percentage {
     color:#E21E28;
     font-size:24px;
@@ -1477,4 +1475,7 @@ ul.country_name {
 
   overflow-x: hidden;
   
+}
+.display-cards.row {
+    padding-left: 2%;
 }
