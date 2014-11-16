@@ -47,7 +47,8 @@ function log(message) {
 	});
 	
 	$(".search_hotel_near").click(function() {
-		validate_searchform();
+		if ($.trim($("#locationText").val()) == '') 
+			return false;
 		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
