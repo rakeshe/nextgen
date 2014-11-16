@@ -595,22 +595,22 @@ var nextgen = {
 			//console.log(obj); return;
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards">';
+				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading">';
-				html += '<span><a class="hotel_name">';
+				html += '<span><a class="hotel_name col-xs-5 col-sm-5 col-md-5 col-lg-5">';
 				if (obj['hotel_name'].length > 12)
 					html += obj['hotel_name'].substring(0, 11) + '...';
 				else
 					html += obj['hotel_name'];
 					html += '</a></span>';
-					html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
-					html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += '<span class="hotel_city col-xs-4 col-sm-4 col-md-4 col-lg-4">'+ obj["country_name"] +'</span>';
+					html += '<span class="hotel_review col-xs-3 col-sm-3 col-md-3 col-lg-3"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div>';
-					html += '<div id="hotel_image">';
+					html += '<div id="hotel_image"  class="col-xs-5 col-sm-4 col-md-5 col-lg-5">';
 					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
 					html += '</div>';
-					html += '<div id="hotel_content">';
+					html += '<div id="hotel_content"  class="col-xs-5 col-sm-5 col-md-5 col-lg-4">';
 				//var discount;
 				//$.each(deals[index]['offer'], function(key, val) {
 					html += '	<div class="hidden-xs campaign-promo-offer">'+ obj['offer'] + '</div>';
@@ -632,7 +632,7 @@ var nextgen = {
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
+				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2 col-lg-2">';
 				html += trans['Save']+'<br>';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="clearfix "></div>';
