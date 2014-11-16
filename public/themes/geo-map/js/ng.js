@@ -382,9 +382,7 @@ $(document).on('click','.ht-book', function(e) {
 	e.preventDefault();
 	book = hotelBook.init();
 	book.onegId = $(this).data('oneg');
-	book.locale = lang;
-	//console.log(book.buildUri());
-	//alert('Booking check it details');
+	book.locale = nextgen.local;	
 	$("#check_in_dates").css("display", "block");
 });
 
