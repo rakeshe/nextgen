@@ -458,11 +458,11 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(document).ready(function() {	
-	nextgen.data = JSON.parse(data);	
-	nextgen.dataP = JSON.parse(dataP);
-	nextgen.drawMenu();
-	nextgen.drawPlatinumCards();
-	//nextgen.displayHotels(JSON.parse(hotelsD));
+	x = nextgen.init();
+	x.data = JSON.parse(data);	
+	x.dataP = JSON.parse(dataP);
+	x.drawMenu();
+	x.drawCards();	
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -470,8 +470,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
 	x = nextgen.init(),
-	res = x.sendRequest(url, 'returnType=json');
-	//console.log(x.getLavel);
+	res = x.sendRequest(url, 'returnType=json');	
 	if (cacheObj.data('lavel') == 1) {
 		x.drawCountry(cacheObj.data('code'), cacheObj.data('url'));
 	} else if(cacheObj.data('lavel') == 2) {
@@ -480,7 +479,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	
 	res.success(function(data){		
 		x.dataP = data;
-		x.drawPlatinumCards();
+		x.drawCards();
 		//x.displayHotels(data['hotels']); // dispaly hotel cards
 		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
@@ -497,7 +496,7 @@ var nextgen = {
 			return this;		
 		},
 		'data' : '', //data,
-		'dataP' : '',
+		'dataP' : '',//page data
 		'selRegion' : '',
 		'selCountry' : '',
 		'selCity' : '',
@@ -518,27 +517,20 @@ var nextgen = {
 				data : data
 			});
 		},
-		'drawPlatinumCards' : function() {		
-			$('.display-cards').html('');
-			$.each(this.dataP, function(index, value) {			
-				//if (index == 'tier_1') {
-					//var t = this.datadeals.value;
-					if (typeof(nextgen.data['deals'][value]) != "undefined" && nextgen.data['deals'][value] !== null) {						
-						$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][value]));
-					}										
-				//}				
-			});
-			/*
+		'drawCards' : function() {		
 			$('.display-cards').html('');			
-			$.each(this.data['deals'], function(index, value){				
-				if (value['tier'] == 1) {
-					$('.display-cards').append(nextgen.displayHotels(value));					
-				}				
-			});*/
+			$.each(this.dataP, function(index, value) {				
+				$.each(value.split(','), function(i, v) {
+					//if (index == 'tier_1') {
+					if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+						$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+					}
+					//}
+				});					
+			});			
 		},
 		//Display hotel card
-		'displayHotels' : function(obj) {		
-			console.log(obj);
+		'displayHotels' : function(obj) {					
 			//console.log(obj); return;
 			var html = '';	
 			//$.each(obj, function(index, val) {
