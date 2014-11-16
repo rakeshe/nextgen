@@ -15,7 +15,7 @@ return new \Phalcon\Config(array(
         'dbname' => '115',
     ),
     'couchbase' => array(
-        'host'  => '127.0.1.1',
+        'host'  => '192.9.200.145',
         'port'  => 8091,
         'user'  => '',
         'password' => '',  

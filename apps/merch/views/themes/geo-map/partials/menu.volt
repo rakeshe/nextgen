@@ -8,3 +8,4 @@
     <!-- /Desktop region tabs -->
     <div class="display_regions"></div>
 </div>
+</div>

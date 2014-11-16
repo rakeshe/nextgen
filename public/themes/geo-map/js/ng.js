@@ -515,11 +515,15 @@ var nextgen = {
 			});
 		},
 		'drawPlatinumCards' : function() {			
-			$('.display-cards').html('');			
-			$.each(this.data['deals'], function(index, value){				
-				if (value['tier'] == 1) {
-					$('.display-cards').append(nextgen.displayHotels(value));					
-				}				
+			$('.display-cards').html('');		
+			$.each(this.data['deals'], function(index, value){
+			
+				if (value['tier'] == 4) {
+				
+					$('.display-cards').append(nextgen.displayHotels(value));		
+					
+				}	
+			
 			});
 		},
 		//Display hotel card
@@ -527,7 +531,7 @@ var nextgen = {
 			//console.log(obj); return;
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards">';
+				html += '<div class="hotel_cards col-lg-5">';
 				html += '<div class="hotel_cards_heading">';
 				html += '<span><a class="hotel_name">';
 				if (obj['hotel_name'].length > 12)
@@ -539,10 +543,10 @@ var nextgen = {
 					html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div>';
-					html += '<div id="hotel_image">';
+					html += '<div id="hotel_image"  class="col-lg-4">';
 					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
 					html += '</div>';
-					html += '<div id="hotel_content">';
+					html += '<div id="hotel_content"  class="col-lg-5">';
 				//var discount;
 				//$.each(deals[index]['offer'], function(key, val) {
 					html += '	<div class="hidden-xs campaign-promo-offer">'+ obj['offer'] + '</div>';
@@ -564,7 +568,7 @@ var nextgen = {
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2">';
+				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2 col-lg-2">';
 				html += trans['Save']+'<br>';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="clearfix "></div>';
