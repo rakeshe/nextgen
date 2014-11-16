@@ -4,7 +4,7 @@
 	<div id="hotel_card_block" class="subContainer">
 		<div class="row">
 			<div class="world_best_deals col-lg-4">World best deals</div>
-			<div class="hotel_all_search col-lg-8"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
+			<div class="hotel_all_search col-lg-7"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
 		</div>
 	</div>	
 	<div class="hotel_cards_list subContainer">

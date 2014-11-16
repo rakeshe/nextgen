@@ -458,10 +458,11 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(document).ready(function() {	
-	nextgen.data = JSON.parse(data);	
-	nextgen.drawMenu();
-	nextgen.drawPlatinumCards();
-	//nextgen.displayHotels(JSON.parse(hotelsD));
+	x = nextgen.init();
+	x.data = JSON.parse(data);	
+	x.dataP = JSON.parse(dataP);
+	x.drawMenu();
+	x.drawCards();	
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -469,17 +470,18 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
 	x = nextgen.init(),
-	res = x.sendRequest(url, 'returnType=json');
-	//console.log(x.getLavel);
+	res = x.sendRequest(url, 'returnType=json');	
 	if (cacheObj.data('lavel') == 1) {
 		x.drawCountry(cacheObj.data('code'), cacheObj.data('url'));
 	} else if(cacheObj.data('lavel') == 2) {
 		x.drawCities(x.selRegion, cacheObj.data('url'));
 	}
 	
-	res.success(function(data){
-		x.displayHotels(data['hotels']); // dispaly hotel cards
-		x.selectMenu(cacheObj); // select menu
+	res.success(function(data){		
+		x.dataP = data;
+		x.drawCards();
+		//x.displayHotels(data['hotels']); // dispaly hotel cards
+		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj);		
 	})
@@ -494,6 +496,7 @@ var nextgen = {
 			return this;		
 		},
 		'data' : '', //data,
+		'dataP' : '',//page data
 		'selRegion' : '',
 		'selCountry' : '',
 		'selCity' : '',
@@ -514,39 +517,39 @@ var nextgen = {
 				data : data
 			});
 		},
-		'drawPlatinumCards' : function() {			
-			$('.display-cards').html('');		
-			$.each(this.data['deals'], function(index, value){
-			
-				if (value['tier'] == 4) {
-				
-					$('.display-cards').append(nextgen.displayHotels(value));		
-					
-				}	
-			
-			});
+		'drawCards' : function() {		
+			$('.display-cards').html('');			
+			$.each(this.dataP, function(index, value) {				
+				$.each(value.split(','), function(i, v) {
+					//if (index == 'tier_1') {
+					if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+						$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+					}
+					//}
+				});					
+			});			
 		},
 		//Display hotel card
-		'displayHotels' : function(obj) {		
+		'displayHotels' : function(obj) {					
 			//console.log(obj); return;
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards col-lg-5">';
+				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading">';
-				html += '<span><a class="hotel_name">';
+				html += '<span><a class="hotel_name col-xs-5 col-sm-5 col-md-5 col-lg-5">';
 				if (obj['hotel_name'].length > 12)
 					html += obj['hotel_name'].substring(0, 11) + '...';
 				else
 					html += obj['hotel_name'];
 					html += '</a></span>';
-					html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
-					html += '<span class="hotel_review"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += '<span class="hotel_city col-xs-4 col-sm-4 col-md-4 col-lg-4">'+ obj["country_name"] +'</span>';
+					html += '<span class="hotel_review col-xs-3 col-sm-3 col-md-3 col-lg-3"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div>';
-					html += '<div id="hotel_image"  class="col-lg-4">';
+					html += '<div id="hotel_image"  class="col-xs-5 col-sm-4 col-md-5 col-lg-5">';
 					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
 					html += '</div>';
-					html += '<div id="hotel_content"  class="col-lg-5">';
+					html += '<div id="hotel_content"  class="col-xs-5 col-sm-5 col-md-5 col-lg-4">';
 				//var discount;
 				//$.each(deals[index]['offer'], function(key, val) {
 					html += '	<div class="hidden-xs campaign-promo-offer">'+ obj['offer'] + '</div>';
