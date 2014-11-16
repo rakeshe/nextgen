@@ -14,7 +14,7 @@
 <span class="search_not_found">Not found what you're looking for?</span>
 <span class="search_plus"><img src="/themes/common/img/plus.png"/></span>
 </div>
-<input type="text" value="Search all HotelClub" name="search_input_footer" class="search_input_footer"/>
+<input type="text" placeholder="Search all HotelClub" value="" id="locationText" name="search_input_footer" class="search_input_footer"/>
 <div class="search_hotel_near">
 <img src="/themes/common/img/marker.png"/> Nearby tonight <b>></b>
 </div>

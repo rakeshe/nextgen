@@ -3,178 +3,237 @@
 * @package nextgen
 * @since 26/11/13 7:25 PM
 * @version 1.0
+* 
 */
-$(document).ready(
-		function() {
+function log(message) {
+		$("<div>").text(message).prependTo("#log");
+		$("#log").scrollTop(0);
+	}
 
-			/** Search Form Dektop date picker */
-			var closeText = "Close";
-			var currentText = "Today";
-			var checkRates = "Check Rates";
-			$('#checkin').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 2,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						firstDay : 0,
-						dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
-						onSelect : function(dateText, inst) {
-							$('#checkout').datepicker("option", "minDate",
-									$('#checkin').val());
-						}
+	$("#locationText").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : "/merch/get-location",
+				dataType : "json",
+				data : {
+					q : request.term
+				},
+				success : function(data) {					
+					var dataArr = [];
+					$.each(data, function(key, val) {
+						dataArr.push(val.suggestion);
+						console
+								.log(key + '--'
+										+ val.suggestion);
 					});
-			$('#checkout').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 2,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						onSelect : function(dateText, inst) {
-							$('#checkin').datepicker("option", "maxDate",
-									$('#checkout').val());
-						}
-					});
-			/** /Search Form Tablet date picker */
-
-			/** Search Form Desktop date picker */
-			var closeText = "Close";
-			var currentText = "Today";
-			var checkRates = "Check Rates";
-			$('#tab_checkin').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 2,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						firstDay : 0,
-						dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
-						onSelect : function(dateText, inst) {
-							$('#tab_checkout').datepicker("option", "minDate",
-									$('#tab_checkin').val());
-						}
-					});
-			$('#tab_checkout').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 2,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						onSelect : function(dateText, inst) {
-							$('#tab_checkin').datepicker("option", "maxDate",
-									$('#tab_checkout').val());
-						}
-					});
-			/** /Search Form Tablet date picker */
-
-			/** Search Form Mobile date picker */
-			var closeText = "Close";
-			var currentText = "Today";
-			var checkRates = "Check Rates";
-			$('#mob_checkin').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 1,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						firstDay : 0,
-						dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
-						onSelect : function(dateText, inst) {
-							$('#mob_checkout').datepicker("option", "minDate",
-									$('#mob_checkin').val());
-						}
-					});
-			$('#mob_checkout').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 1,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						onSelect : function(dateText, inst) {
-							$('#mob_checkin').datepicker("option", "maxDate",
-									$('#mob_checkout').val());
-						}
-					});
-			/** /Search Form Mobile date picker */
-
-			/** Search Form Desktop - Geo Maps date picker */
-			var closeText = "Close";
-			var currentText = "Today";
-			var checkRates = "Check Rates";
-			$('#choseDatesStartDate').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 1,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						firstDay : 0,
-						dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
-						onSelect : function(dateText, inst) {
-							$('#choseDatesEndDate').datepicker("option", "minDate",
-									$('#choseDatesStartDate').val());
-						}
-					});
-			$('#choseDatesEndDate').datepicker(
-					{
-						inline : true,
-						dateFormat : 'dd/mm/yy',
-						maxDate : '+364D',
-						minDate : 0,
-						numberOfMonths : 1,
-						showCurrentAtPos : 0,
-						closeText : closeText,
-						currentText : currentText,
-						showButtonPanel : true,
-						onSelect : function(dateText, inst) {
-							$('#choseDatesStartDate').datepicker("option", "maxDate",
-									$('#choseDatesEndDate').val());
-						}
-					});
-			/** /Search Form Mobile date picker */
-
-			/** Carousel controls * */
-			$('.carousel').carousel({
-				interval : 6000
+					response(dataArr);
+				}
 			});
+		},
+		minLength : 1,
+		select : function(event, ui) {
+			log(ui.item ? "Selected: " + ui.item.label
+					: "Nothing selected, input was "
+							+ this.value);
+		},
+		open : function() {
+			$(this).removeClass("ui-corner-all").addClass(
+					"ui-corner-top");
+		},
+		close : function() {
+			$(this).removeClass("ui-corner-top").addClass(
+					"ui-corner-all");
+		}
+	});
+	
+	$(".search_hotel_near").click(function() {
+		validate_searchform();
+		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+				+ promo
+				+ "&hotel.keyword.key="
+				+ local
+				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ checkIn
+				+ "&hotel.chkout="
+				+ checkOut
+				+ "&search=Search&locale="
+				+ languageCode
+				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+		console.log(local + checkIn + checkOut + promo);
+	});
+	
+$(document).ready(
+function() {
 
-			$('.carousel').carousel('next');
+	/** Search Form Dektop date picker */
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#checkin').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#checkout').datepicker("option", "minDate",
+							$('#checkin').val());
+				}
+			});
+	$('#checkout').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#checkin').datepicker("option", "maxDate",
+							$('#checkout').val());
+				}
+			});
+	/** /Search Form Tablet date picker */
 
-		});
+	/** Search Form Desktop date picker */
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#tab_checkin').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#tab_checkout').datepicker("option", "minDate",
+							$('#tab_checkin').val());
+				}
+			});
+	$('#tab_checkout').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#tab_checkin').datepicker("option", "maxDate",
+							$('#tab_checkout').val());
+				}
+			});
+	/** /Search Form Tablet date picker */
+
+	/** Search Form Mobile date picker */
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#mob_checkin').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#mob_checkout').datepicker("option", "minDate",
+							$('#mob_checkin').val());
+				}
+			});
+	$('#mob_checkout').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#mob_checkin').datepicker("option", "maxDate",
+							$('#mob_checkout').val());
+				}
+			});
+	/** /Search Form Mobile date picker */
+
+	/** Search Form Desktop - Geo Maps date picker */
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#choseDatesStartDate').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#choseDatesEndDate').datepicker("option", "minDate",
+							$('#choseDatesStartDate').val());
+				}
+			});
+	$('#choseDatesEndDate').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#choseDatesStartDate').datepicker("option", "maxDate",
+							$('#choseDatesEndDate').val());
+				}
+			});
+	/** /Search Form Mobile date picker */
+
+	/** Carousel controls * */
+	$('.carousel').carousel({
+		interval : 6000
+	});
+
+	$('.carousel').carousel('next');
+
+});
 
 /* Region Tabs-Mobile Toggle Event */
 $(document).ready(function() {
@@ -255,7 +314,7 @@ function validate_searchform() {
 	return false;
 }
 $("#btnSearch").click(function() {
-	validate_searchform();
+	//validate_searchform();
 	var local = $("#locationText").val(), checkIn = $(
 			"#checkin").val(), checkOut = $("#checkout").val(), promo = $(
 			"#couponCode").val(), languageCode = $("#btnSearch")
@@ -459,6 +518,7 @@ $(document).on('click','.close_btn', function(e) {
 
 $(document).ready(function() {	
 	x = nextgen.init();
+	x.local = local;
 	x.data = JSON.parse(data);	
 	x.dataP = JSON.parse(dataP);
 	x.drawMenu();
@@ -470,7 +530,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
 	x = nextgen.init(),
-	res = x.sendRequest(url, 'returnType=json');	
+	res = x.sendRequest(url, 'returnType=json');
 	if (cacheObj.data('lavel') == 1) {
 		x.drawCountry(cacheObj.data('code'), cacheObj.data('url'));
 	} else if(cacheObj.data('lavel') == 2) {
@@ -495,6 +555,7 @@ var nextgen = {
 		'init' : function(){
 			return this;		
 		},
+		'local' : '',
 		'data' : '', //data,
 		'dataP' : '',//page data
 		'selRegion' : '',
