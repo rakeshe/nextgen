@@ -1479,3 +1479,9 @@ ul.country_name {
 .display-cards.row {
     padding-left: 2%;
 }
+
+text{
+	font-family:SerifaStd55Roman !important;
+	font-size:12pt !important;
+	cursor:pointer !important;
+}
