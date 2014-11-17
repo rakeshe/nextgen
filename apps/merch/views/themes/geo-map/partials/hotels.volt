@@ -2,9 +2,9 @@
 <!-- Hotel List -->
 
 	<div id="hotel_card_block" class="subContainer">
-		<div class="row">
-			<div class="world_best_deals col-lg-4">World best deals</div>
-			<div class="hotel_all_search col-lg-7"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
+		<div class="row row_nomargin">
+			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4">World best deals</div>
+			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></div>
 		</div>
 	</div>	
 	

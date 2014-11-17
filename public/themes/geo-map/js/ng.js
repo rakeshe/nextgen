@@ -521,7 +521,10 @@ $(document).ready(function() {
 	x.data = JSON.parse(data);	
 	x.dataP = JSON.parse(dataP);
 	x.drawMenu();
-	x.drawCards();	
+	x.mobileMenu();
+	x.drawCards();		
+	
+	drawRegionsMapOne();
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -595,19 +598,19 @@ var nextgen = {
 			var html = '';	
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
-				html += '<div class="hotel_cards_heading">';
+				html += '<div class="hotel_cards_heading hidden-xs">';
 				html += '<span><a class="hotel_name col-xs-5 col-sm-5 col-md-5 col-lg-5">';
-				if (obj['hotel_name'].length > 12)
-					html += obj['hotel_name'].substring(0, 11) + '...';
+				if (obj['hotel_name'].length > 18)
+					html += obj['hotel_name'].substring(0, 17) + '...';
 				else
 					html += obj['hotel_name'];
 					html += '</a></span>';
 					html += '<span class="hotel_city col-xs-4 col-sm-4 col-md-4 col-lg-4">'+ obj["country_name"] +'</span>';
-					html += '<span class="hotel_review col-xs-3 col-sm-3 col-md-3 col-lg-3"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-3 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
-					html += '<div>';
-					html += '<div id="hotel_image"  class="col-xs-5 col-sm-4 col-md-5 col-lg-5">';
-					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" width="162" height="120"/>';
+					html += '<div class="hotel_details">';
+					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4">';
+					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" />';
 					html += '</div>';
 					html += '<div id="hotel_content"  class="col-xs-5 col-sm-5 col-md-5 col-lg-4">';
 				//var discount;
@@ -615,12 +618,31 @@ var nextgen = {
 					html += '	<div class="hidden-xs campaign-promo-offer">'+ obj['offer'] + '</div>';
 					//discount = val['percent_off'];
 				//});
-
+				//Mobile version
+				html +='<div class="visible-xs">';
+						html += '<div><a class="hotel_name col-xs-7">';
+				if (obj['hotel_name'].length > 18)
+					html += obj['hotel_name'].substring(0, 17) + '...';
+				else
+					html += obj['hotel_name'];
+					html += '</a>'+ obj["country_name"] +'</div>';
+					//html += '<div class="hotel_city col-xs-4 ">'+ obj["country_name"] +'</div>';
+					html += '<div class="clearfix hotel_review col-xs-10"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
+					html +='<div class="col-xs-11 rating"> ';
+					if (obj['user_rating'] == '') 
+					html += 'Rating not available';
+					else
+					html += obj['user_rating']+'/5'; 
+					html += '</div> <br/>';
+					html += '<div class="col-xs-10 member_rewards"> <img class="members-extras-logo col-xs-1 img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png"> <div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
+					html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
+					html +='</div>';
 				// members-extras-block
-				html += '<img class="members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
+				
+				html += '<img class="hidden-xs members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
 				html += '<div class="font_red member-extras-text">';
 				//$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+				html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
 				//});
 				html += '<div class="sign-out-member-offer" style="display: none;">';
 				html += '<span>';
@@ -631,15 +653,15 @@ var nextgen = {
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="saveBookInfo col-xs-3 col-sm-2 col-md-2 col-lg-2">';
+				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2">';
 				html += trans['Save']+'<br>';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="clearfix "></div>';
-				html += '<div class="btn button">';
+				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 				html += '</div>';
-				html += '<br>';
-				html += '<p class="inclusions">'+obj['travel_text']+'</p>';
+				//html += '<br>';
+				html += '<p class="hidden-xs inclusions">'+obj['travel_text']+'</p>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>'; //end card
@@ -654,7 +676,7 @@ var nextgen = {
 			html += '<ul id="menu_new">';
 			$.each(this.data['urls'], function(index, value){
 				html += '<li class="dropdown-submenu">';
-				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon visible-xs visible-sm glyphicon glyphicon-plus"></b></a>';
+				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
 				html += '</li>';
 				reg[value['name_en']] = value['name'];
 			});			
@@ -663,6 +685,25 @@ var nextgen = {
 			this.getRegions = reg;
 			this.getLavel = 1;
 			$('#regionTabs').html(html);			
+		},
+			'mobileMenu' : function() {
+			
+			var html = '',
+				reg  = [];
+			html += '<div id="mobile_menu">';					
+			html += '<ul id="mobile_menu_new">';
+			$.each(this.data['urls'], function(index, value){
+				html += '<li class="mobile_regions">';
+				html += '<a class="mobile-menu-icons mobile-menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="glyphicon glyphicon-chevron-right pull-right"></b> </a>';
+				html += '</li>';
+				html += '<li class="mobile_divider"> </li>';
+				reg[value['name_en']] = value['name'];
+			});			
+			html += '</ul>';					
+			html += '</div>';			
+			this.getRegions = reg;
+			this.getLavel = 1;
+			$('#mobileTabs').html(html);			
 		},
 		'drawCountry' : function(region, url) {
 			
@@ -909,7 +950,7 @@ google.setOnLoadCallback(drawRegionsMapOne);
 var options = {
 		region: 'world', 
 		resolution: 'subcontinents', 
-		width: 960,
+		width: 874,
 		height: 350,
 		backgroundColor: '#3682B6', 
 		legend: 'none', 
