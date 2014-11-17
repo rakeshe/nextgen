@@ -686,7 +686,7 @@ var nextgen = {
 			this.getLavel = 1;
 			$('#regionTabs').html(html);			
 		},
-			'mobileMenu' : function() {
+		'mobileMenu' : function() {
 			
 			var html = '',
 				reg  = [];
@@ -732,7 +732,7 @@ var nextgen = {
 						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
 							console.log(country_code);
 							html += '<li class="country_name_list">';
-							html += '<a tabindex="-1" class="menu-icons menu-country" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '<a tabindex="-1" class="menu-icons menu-country" data-cnt-code="'+country_code+'" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
 							html += '<li class="tab_divider"></li>';
 							country[country_code] = {'url' : index, 'name_en' : name, 'name' : name};
