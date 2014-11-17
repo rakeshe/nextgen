@@ -1,5 +1,5 @@
 <div id="banner_val" class="hidden-xs">
-	<a class="map-reset-to-region" href="javascript:%20resetMap();">< Back to World View</a><br/>	
+	<a class="map-reset-to-region" href="javascript:%20mapBackBtn();">< Back to World View</a><br/>	
 </div>
 
 	
