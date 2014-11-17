@@ -1,13 +1,6 @@
-@font-face {
-    font-family: "SerifaStd55Roman";
-    src: url('../font/SerifaStd-Roman.otf');
-    url('../font/SerifaStd-Roman.otf') format('opentype');
-}
-@font-face {
-    font-family: "SerifaStd55Light";
-    src: url('../font/SerifaStd-Light.otf');
-    url('../font/SerifaStd-Light.otf') format('opentype');
-}
+/* font-face directive defined in each font group css in font folder itself
+   so simply include that css in source
+*/
 
 /* reponsive design - starts */
 @media (min-width: 1200px) {
