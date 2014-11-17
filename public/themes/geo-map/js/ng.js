@@ -680,21 +680,22 @@ var nextgen = {
 				}
 				flag = true;
 				if (typeof value === 'object') {
-					var name = false,name_en = false, lavel = false;
-					$.each(value, function(key, val){
+					var name = false,name_en = false, lavel = false, country_code= false;
+					$.each(value, function(key, val){		
 						
-						//console.log(key +' ===>'+ val);
 						if (key == 'name') name = val;
 						if (key == 'level') lavel =val; 
 						if (key == 'name_en') name_en = val;
+						if (key == 'country_code') country_code = val;
 						
-						if (name != false && lavel != false && name_en != false && lavel == 2) {						
+						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
+							console.log(country_code);
 							html += '<li class="country_name_list">';
 							html += '<a tabindex="-1" class="menu-icons menu-country" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
-							html += '<li class="tab_divider"></li>';	
-							country[name_en] = name;
-							name = false,name_en = false, lavel = false;
+							html += '<li class="tab_divider"></li>';
+							country[country_code] = {'url' : index, 'name_en' : name, 'name' : name};
+							name = false,name_en = false, lavel = false, country_code= false;
 						}
 					});				
 				}				
@@ -738,7 +739,8 @@ var nextgen = {
 							html += '<a tabindex="-1" class="menu-icons menu-city" tabindex="-1" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
 							html += '<li class="tab_divider"></li>';	
-							cities[name_en] = name;
+							//cities[name_en] = name;
+							cities[name] = {'url' : index, 'name_en' : name_en};
 							name = false,name_en = false, lavel = false;
 						}
 					});				
