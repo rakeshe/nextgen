@@ -907,7 +907,7 @@ google.setOnLoadCallback(drawRegionsMapOne);
 var options = {
 		region: 'world', 
 		resolution: 'subcontinents', 
-		width: 1067, 
+		width: 960,
 		height: 350,
 		backgroundColor: '#3682B6', 
 		legend: 'none', 
