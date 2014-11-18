@@ -18,6 +18,14 @@
 			<span class="search_not_found">Not found what you're looking for?</span>
 			<span class="search_plus"><img src="/themes/common/img/plus.png"/></span>
 		</div>
+		<div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+		
+		
 			<input type="text" placeholder="Search all HotelClub" value="" id="locationText" name="search_input_footer" class="search_input_footer"/>
 		<div class="search_hotel_near">
 			<img src="/themes/common/img/marker.png"/> Nearby tonight <b>></b>
