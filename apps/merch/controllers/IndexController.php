@@ -303,8 +303,7 @@ class IndexController extends ControllerBase {
 		}
 	}
 	
-	private function buildTemplateVars() {
-		
+	private function buildTemplateVars() {		
 		return array (
 				'data' => $this->couchData,
 				'urlPData' => $this->couchPageData,
@@ -326,7 +325,9 @@ class IndexController extends ControllerBase {
 				'campaignData' => json_encode($this->campaignData),
 				"hotelDetails" => $this->dataModel->loadHotelData (),
 				"hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
-				"region" => $this->region
+				"region" => $this->region,
+				"country" => $this->country,
+				"city" => $this->city, 
 		);
 	}
 	

@@ -516,13 +516,26 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(document).ready(function() {	
+	
+	var url = '', level = 0;
+	if (region != '')		
+		level = 1;	
+	if (country != '')
+		level = 2;
+	
 	x = nextgen.init();
 	x.local = local;
 	x.data = JSON.parse(data);	
 	x.dataP = JSON.parse(dataP);
 	x.drawMenu();
 	x.mobileMenu();
-	x.drawCards();		
+	
+	if (level == 1)
+		x.drawCountry(region, region);
+	else if(level == 2)
+		x.drawCities(region, region + '/' + country);
+	
+	x.drawCards();
 	
 	drawRegionsMapOne();
 });
