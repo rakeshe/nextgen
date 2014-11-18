@@ -21,10 +21,7 @@ function log(message) {
 				success : function(data) {					
 					var dataArr = [];
 					$.each(data, function(key, val) {
-						dataArr.push(val.suggestion);
-						console
-								.log(key + '--'
-										+ val.suggestion);
+						dataArr.push(val.suggestion);						
 					});
 					response(dataArr);
 				}
@@ -46,10 +43,16 @@ function log(message) {
 		}
 	});
 	
-	$(".search_hotel_near").click(function() {
+	$(".search_hotel_near_go, .search_hotel_near_go_all").click(function() {
 		if ($.trim($("#locationText").val()) == '') 
 			return false;
+		
 		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+		if ($(this).data('code') == 'all') {
+			checkIn  = $('#choseDatesStartDate1').val();
+			checkOut = $('#choseDatesEndDate1').val();
+			promo 	 = $('#proCode').val();
+		}		
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
 				+ "&hotel.keyword.key="
@@ -60,9 +63,13 @@ function log(message) {
 				+ checkOut
 				+ "&search=Search&locale="
 				+ languageCode
-				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
-		console.log(local + checkIn + checkOut + promo);
+				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";		
 	});
+
+$('.search_plus').click(function(){
+	$('.search-toggle').slideToggle('show');
+	$('.search_plus').toggle();
+});
 	
 $(document).ready(
 function() {
@@ -71,7 +78,7 @@ function() {
 	var closeText = "Close";
 	var currentText = "Today";
 	var checkRates = "Check Rates";
-	$('#checkin').datepicker(
+	$('.checkin').datepicker(
 			{
 				inline : true,
 				dateFormat : 'dd/mm/yy',
@@ -223,6 +230,45 @@ function() {
 				onSelect : function(dateText, inst) {
 					$('#choseDatesStartDate').datepicker("option", "maxDate",
 							$('#choseDatesEndDate').val());
+				}
+			});
+	/** /Search Form Mobile date picker */
+	
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#choseDatesStartDate1').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#choseDatesEndDate1').datepicker("option", "minDate",
+							$('#choseDatesStartDate1').val());
+				}
+			});
+	$('#choseDatesEndDate1').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#choseDatesStartDate1').datepicker("option", "maxDate",
+							$('#choseDatesEndDate1').val());
 				}
 			});
 	/** /Search Form Mobile date picker */
@@ -558,6 +604,7 @@ $(document).ready(function() {
 		}
 		x.mapAction(country_code);		
 	}	
+	x.drawCards();	// draw hotel cards
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
