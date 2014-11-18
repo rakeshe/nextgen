@@ -1241,7 +1241,6 @@ function changeResetToRegion(){
 		zoomLevel = 3; 
 		$( "#banner_val" ).empty();
 		var regionName = nextgen.selRegion.replace("-", " ");
-		alert(regionName);
 		$( "#banner_val" ).append( "<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
 	}
 	else{
