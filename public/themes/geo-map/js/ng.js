@@ -848,7 +848,8 @@ var nextgen = {
 				options['region'] = regions[nextgen.selRegion][0];
 				options['resolution'] = 'country';
 				options.displayMode = 'text';
-				backButton = 1;
+				backButton = 1;			
+				changeResetToRegion();
 				drawRegionsMapOne();
 			}else{				
 				if (typeof(country_code) != "undefined" && country_code !== null) {
@@ -856,7 +857,8 @@ var nextgen = {
 					options['region'] = country_code;
 					options['resolution'] = 'country';
 					options.displayMode = 'text';
-					backButton = 1;					
+					backButton = 1;			
+					changeResetToRegion();		
 					drawRegionsMapOne();
 				}
 			}
@@ -970,7 +972,7 @@ var hotelBook = {
     'africa': ["015"]
 };*/
 var regions = { 
-    'europe--uae': ["039","154", "155", "145"],
+    'europe--uae': ["155","154","145","039"],
     'pacific': ["053", "054", "057", "061"],
     'southeast-asia': ['035'],
     'northeast-asia': ['030'],
@@ -1016,6 +1018,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof countries !== 'undefined' && countries.length > 0) {
 			data = google.visualization.arrayToDataTable(countries);
 		}
+		options['colors'] = ['#000000'];
 	}else if (type == 'city-code') {
 		var citys = [];
 		citys.push(['lable','Countries', 'Value']);
@@ -1039,6 +1042,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof citys !== 'undefined' && citys.length > 0) {
 			data = google.visualization.arrayToDataTable(citys);
 		}
+		options['colors'] = ['#000000'];
 	} else {		
 		options.region = 'world';
 		options.resolution = 'subcontinents'; 
@@ -1053,8 +1057,8 @@ function regionMapConf(type, eventDataTemp){
 			});
 		});	
 		data = google.visualization.arrayToDataTable(urls);
+		options['colors'] = ['#E21E28'];
 	}
-	//options['colors'] = ['#E21E28'];
 	return data;
 }
 var backButton=0;
@@ -1083,6 +1087,7 @@ function drawRegionsMapOne(type){
 										options['resolution'] = 'country';
 										options.displayMode = 'text';
 										//alert(data.toSource()+'---'+options.toSource());
+										changeResetToRegion();
 										geochart.draw(data, options);
 									}
 								});
@@ -1098,7 +1103,7 @@ function drawRegionsMapOne(type){
 					options['region'] = eventData.region;
 					options['resolution'] = 'country';
 					options.displayMode = 'text';
-
+					changeResetToRegion();
 					geochart.draw(data, options);
 				}
 			});
@@ -1145,9 +1150,24 @@ function mapBackBtn() {
 		});
 		data = regionMapConf('country-code',eventTempDataVal);
 		options['region'] = eventTempDataVal;
+		changeResetToRegion();
 		backButton=1;drawRegionsMapOne();
 	}else{
 		data = regionMapConf();
+		changeResetToRegion();
 		drawRegionsMapOne();
 	}
 }//mapBackBtn
+
+function changeResetToRegion(){
+	$( "#banner_val" ).empty();
+	if(nextgen.getLavel==2){
+		$( "#banner_val" ).append( 
+			"<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>&laquo; Back to World View</a><div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-3.png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>"); 
+	}
+	else if(nextgen.getLavel==3){
+		$( "#banner_val" ).append( "<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>&laquo; Back to Region View</a><div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-3.png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+	}else{
+		$( "#banner_val" ).append( "<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>&laquo; Back to View</a><div><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-3.png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+	}
+}//changeResetToRegion

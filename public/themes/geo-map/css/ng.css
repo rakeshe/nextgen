@@ -1,7 +1,7 @@
 	.saveBookInfo{ background:none !important; padding:0 !important; }
 	#banner { padding:0 !important;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important;  }
 	#banner_image { margin:0; padding-left:1.3%; }
-	#banner_val { position:relative; margin-bottom:-30px; z-index:999;float:right;text-align:right;margin-right:10px; }
+	#banner_val { position:relative; /*margin-bottom:-30px;*/ z-index:999;float:right;text-align:right;margin-right:10px; margin-top:30px;}
 	#menu_new { margin: 0; padding: 0; }
 	#menu_new li { display: block; float: left; margin: 0; width: 20%; background-color: #E21E28; padding: 10px;border-right:1px solid #FFFFFF;border-bottom:1px solid #FFFFFF; text-align:center; height:48px;padding-top:20px; }
 	#menu_new li:last-child { border-right:0px; } 
@@ -36,7 +36,7 @@
 	.search_input_footer { background: white; border: 1px double #DDD;border-radius: 5px; box-shadow: 0 0 5px #333; color: #666; outline: none; height:25px; width: 100%;} 
 	.search_plus { float:right; }
 	.search_hotel_near{ padding:10px 10px 10px 0; font-size:10pt; color:#666; cursor: pointer;}	
-	.banner_world_map {float:left;}
+	.banner_world_map {float:left;margin-left:-170px !important; z-index:0 !important;}
 	
 	@font-face {
     font-family: "SerifaStd55Roman";
@@ -48,15 +48,48 @@
     src: url('../common/font/SerifaStd-Light.otf');
     url('../font/SerifaStd-Light.otf') format('opentype');
 }
+/*New Font Family*/
+@font-face {
+    font-family: 'museo_sans300';
+    src: url('../../common/font/museosans-300-webfont.eot');
+    src: url('../../common/font/museosans-300-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../common/font/museosans-300-webfont.woff') format('woff'),
+         url('../../common/font/museosans-300-webfont.ttf') format('truetype'),
+         url('../../common/font/museosans-300-webfont.svg#museo_sans300') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_sans500';
+    src: url('../../common/font/museosans_500-webfont.eot');
+    src: url('../../common/font/museosans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../common/font/museosans_500-webfont.woff') format('woff'),
+         url('../../common/font/museosans_500-webfont.ttf') format('truetype'),
+         url('../../common/font/museosans_500-webfont.svg#museo_sans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_slab500';
+    src: url('../../common/font/museo_slab_500-webfont.eot');
+    src: url('../../common/font/museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../common/font/museo_slab_500-webfont.woff') format('woff'),
+         url('../../common/font/museo_slab_500-webfont.ttf') format('truetype'),
+         url('../../common/font/museo_slab_500-webfont.svg#museo_slab500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* reponsive design - starts */
 @media(max-width:767px){.container{ padding:0;}.row{margin:0px !important;} #hotel_content{ margin:0px !important; padding-left: 10px !important;} .hotel_name{font-size:9pt;color:#000;} .hotel_review{float:left;}.hotel_details{padding-top: 0px !important;} .percentage{font-size:18px !important;} .hotel_cards{height:128px !important;}
 #image_hotel{ height:120px !important;} .world_best_deals ,.hotel_all_search{font-size:9pt;} }
 @media(min-width:768px){.container {width: 750px;} #hotel_content{ margin-left:1% !important; } #image_hotel{ height:114px !important;}
-.display_regions{ width:26% !important;}  }
+.display_regions{ width:26% !important; z-index: 999 !important; }  }
 @media(min-width:992px){.container {width: 980px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}}
 @media(min-width:1200px){.container {width: 1100px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}
-.display_regions{ width:17% !important;}
+.display_regions{ width:17% !important; z-index: 999 !important; }
 }
 
 
@@ -1435,6 +1468,7 @@ padding: 1px 1px 0 1px;
 position: relative;
 float:left;
 width: 17%;
+z-index: 999 !important;
 }
 .display_regions h4 {
 color:#e21e28;
@@ -1502,8 +1536,9 @@ li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:
 .row_nomargin {margin:0 !important;}
 
 text{
-	font-family:SerifaStd55Roman !important;
+	font-family:museo_slab500 !important;
 	font-size:12pt !important;
+	font-weight:bold !important;
 	cursor:pointer !important;
 }
 /** Currency selector **/
@@ -1573,3 +1608,13 @@ text{
     .selector .column .section {
         padding: 0 18px 0px;
     }
+
+/*.space_for_button{ margin-top:100px; }*/
+#zoom_level{	
+	margin-top:10px;
+}
+#zoom_menu{
+	display:block;
+	clear:both;
+	margin-top:5px;
+}
