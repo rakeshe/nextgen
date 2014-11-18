@@ -21,10 +21,7 @@ function log(message) {
 				success : function(data) {					
 					var dataArr = [];
 					$.each(data, function(key, val) {
-						dataArr.push(val.suggestion);
-						console
-								.log(key + '--'
-										+ val.suggestion);
+						dataArr.push(val.suggestion);						
 					});
 					response(dataArr);
 				}
@@ -46,10 +43,16 @@ function log(message) {
 		}
 	});
 	
-	$(".search_hotel_near").click(function() {
+	$(".search_hotel_near_go, .search_hotel_near_go_all").click(function() {
 		if ($.trim($("#locationText").val()) == '') 
 			return false;
+		
 		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+		if ($(this).data('code') == 'all') {
+			checkIn  = $('#choseDatesStartDate1').val();
+			checkOut = $('#choseDatesEndDate1').val();
+			promo 	 = $('#proCode').val();
+		}		
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
 				+ "&hotel.keyword.key="
@@ -60,9 +63,13 @@ function log(message) {
 				+ checkOut
 				+ "&search=Search&locale="
 				+ languageCode
-				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
-		console.log(local + checkIn + checkOut + promo);
+				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";		
 	});
+
+$('.search_plus').click(function(){
+	$('.search-toggle').slideToggle('show');
+	$('.search_plus').toggle();
+});
 	
 $(document).ready(
 function() {
@@ -71,7 +78,7 @@ function() {
 	var closeText = "Close";
 	var currentText = "Today";
 	var checkRates = "Check Rates";
-	$('#checkin').datepicker(
+	$('.checkin').datepicker(
 			{
 				inline : true,
 				dateFormat : 'dd/mm/yy',
@@ -226,6 +233,45 @@ function() {
 				}
 			});
 	/** /Search Form Mobile date picker */
+	
+	var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#choseDatesStartDate1').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#choseDatesEndDate1').datepicker("option", "minDate",
+							$('#choseDatesStartDate1').val());
+				}
+			});
+	$('#choseDatesEndDate1').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 1,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#choseDatesStartDate1').datepicker("option", "maxDate",
+							$('#choseDatesEndDate1').val());
+				}
+			});
+	/** /Search Form Mobile date picker */
 
 	/** Carousel controls * */
 	$('.carousel').carousel({
@@ -286,6 +332,13 @@ $(document).ready(function() {
 
 	});
 });
+
+$(".search_input_hotel").click(function() {
+	$('html, body').animate({
+        scrollTop: $("#locationText").offset().top
+    }, 500);
+});
+
 function validate_searchform() {
 	var flag = false;
 	var errFlag = false;
@@ -321,7 +374,8 @@ function validate_searchform() {
 	if (flag == false)
 		return true;
 	return false;
-}
+}//validate_searchform
+
 $("#btnSearch").click(function() {
 	//validate_searchform();
 	var local = $("#locationText").val(), checkIn = $(
@@ -339,7 +393,7 @@ $("#btnSearch").click(function() {
 			+ "&search=Search&locale="
 			+ languageCode
 			+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
-	console.log(local + checkIn + checkOut + promo);
+	
 });
 
 $(document).ready(function() {
@@ -359,10 +413,7 @@ $(document).ready(function() {
 				success : function(data) {					
 					var dataArr = [];
 					$.each(data, function(key, val) {
-						dataArr.push(val.suggestion);
-						console
-								.log(key + '--'
-										+ val.suggestion);
+						dataArr.push(val.suggestion);						
 					});
 					response(dataArr);
 				}
@@ -430,7 +481,7 @@ function validateDatesExt(startDateName, endDateName) {
 		//$("#dateVldMsg").hide();
 		return true;
 	}
-}
+}//validateDatesExt
 
 function RedefineDate(DateValue) {
 	if (DateValue == "") return "";
@@ -524,7 +575,6 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(document).ready(function() {	
-	
 	var url = '', level = 0;
 	if (region != '')		
 		level = 1;	
@@ -533,19 +583,31 @@ $(document).ready(function() {
 	
 	x = nextgen.init();
 	x.local = local;
-	x.data = JSON.parse(data);	
+	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
 	x.drawMenu();
 	x.mobileMenu();
 	
-	if (level == 1)
+	if (level == 1) {
+		x.drawCountry(region, region);	
+		x.mapAction('');
+	} else if(level == 2) {
 		x.drawCountry(region, region);
-	else if(level == 2)
 		x.drawCities(region, region + '/' + country);
-	
-	x.drawCards();
-	
-	drawRegionsMapOne();
+		
+		var country_code, prop = Object.keys(x.getCountrys);
+		if (prop.length > 0 && prop !== 'undefined') {
+			$.each(prop, function(i, v) {			
+				$.each(x.getCountrys[v], function(ii, vv) {				
+					if (ii == 'url' && vv == region + '/' + country) {		
+						country_code = v;
+					}				
+				});
+			});		
+		}
+		x.mapAction(country_code);		
+	}	
+	x.drawCards();	// draw hotel cards
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -562,11 +624,10 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	
 	res.success(function(data){		
 		x.dataP = data;
-		x.drawCards();
-		//x.displayHotels(data['hotels']); // dispaly hotel cards
+		x.drawCards();		
 		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
-		x.mapAction(cacheObj);		
+		x.mapAction(cacheObj.data('cnt-code'));		
 	})
 	.error(function(data){
 	console.log('Exception: '+ data.responseText);
@@ -587,10 +648,7 @@ var nextgen = {
 		'getRegions' : '',
 		'getCountrys' : '',
 		'getCities' : '',
-		'getLavel' : 1,
-		'campaign' : function() {
-			return $.parseJSON(camp);
-		},
+		'getLavel' : 1,		
 		//send ajax request
 		'sendRequest' : function(url, data) {
 			return $.ajax({
@@ -602,20 +660,20 @@ var nextgen = {
 			});
 		},
 		'drawCards' : function() {		
-			$('.display-cards').html('');			
+			$('.display-cards').html('');
 			$.each(this.dataP, function(index, value) {				
 				$.each(value.split(','), function(i, v) {
 					//if (index == 'tier_1') {
-					if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-						$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
-					}
+						if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+							$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+						}
 					//}
 				});					
 			});			
 		},
 		//Display hotel card
 		'displayHotels' : function(obj) {					
-			//console.log(obj); return;
+			
 			var html = '';	
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
@@ -751,7 +809,7 @@ var nextgen = {
 						if (key == 'country_code') country_code = val;
 						
 						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
-							console.log(country_code);
+							
 							html += '<li class="country_name_list">';
 							html += '<a tabindex="-1" class="menu-icons menu-country" data-cnt-code="'+country_code+'" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
@@ -794,7 +852,7 @@ var nextgen = {
 						if (key == 'name') name = val;
 						if (key == 'level') lavel = val; 
 						if (key == 'name_en') name_en = val;
-						//console.log(name, lavel, name_en);
+						
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 							
 							html += '<li class="country_name_list">';
@@ -831,86 +889,29 @@ var nextgen = {
 			if (window.location != url)
 				window.history.pushState({path:url}, '', url);
 		},
-		'mapAction' : function(cacheObj) {
+		'mapAction' : function(country_code) {
 			if(nextgen.getLavel==2){
 				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
 				options['region'] = regions[nextgen.selRegion][0];
 				options['resolution'] = 'country';
 				options.displayMode = 'text';
-				backButton = 1;
+				backButton = 1;			
+				changeResetToRegion();		
+				resetMapSizePos();
 				drawRegionsMapOne();
-			}else{
-				if (typeof(cacheObj.data('cnt-code')) != "undefined" && cacheObj.data('cnt-code') !== null) {
-					data = regionMapConf('city-code', cacheObj.data('cnt-code'));
-					options['region'] = cacheObj.data('cnt-code');
+			}else{				
+				if (typeof(country_code) != "undefined" && country_code !== null) {
+					data = regionMapConf('city-code', country_code);
+					options['region'] = country_code;
 					options['resolution'] = 'country';
 					options.displayMode = 'text';
-					backButton = 1;
-					//alert(options.toSource());
+					backButton = 1;			
+					changeResetToRegion();			
+					resetMapSizePos();
 					drawRegionsMapOne();
 				}
 			}
-		},
-		'mapClickRequest': function(type, data) {
-			var $this = this, region, country, url, city;
-			if (type == 'region') {
-				$.each(regions, function(index, value) {
-					if (data == regions[index]) {
-						$.each($this.campaign(), function(key, val) {
-							if (val['name_en'] == index) {
-								region = val['name'];
-								return;
-							}								
-						});					
-					}
-				});
-				url = '/merch/' + lang + '/' + campName + '/' + region;				
-			} else if (type == 'country') {
-				$.each($this.campaign(), function(key, val) {
-					
-					if (typeof val === 'object') {	
-						$.each(val, function(keyCnt, valCnt) {
-							
-							if (typeof valCnt === 'object') {								
-								if (valCnt['country_code'].toUpperCase() == data) {
-									country = valCnt['name'];
-									region = val['name'];
-								}
-							}							
-						});	
-					}
-				});	
-				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country;
-			} else if (type == 'city') {				
-				$.each($this.campaign(), function(key, val) {					
-					if (typeof val === 'object') {	
-						$.each(val, function(keyCnt, valCnt) {							
-							if (typeof valCnt === 'object') {	
-								$.each(valCnt, function(keyCty, valcty) {
-									if (typeof valcty === 'object') {								
-										if (valcty['name'] == data) {
-											country = valCnt['name'];
-											region = val['name'];
-											city = valcty['name'];											
-										}
-									}
-								});
-								
-							}							
-						});	
-					}
-				});
-				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country + '/' + city;
-			} else {
-				url = '/merch/' + lang + '/' + campName;
-			}			
-			res = $this.sendRequest(url, 'returnType=json');
-			res.success(function(data){
-				$this.displayHotels(data); // dispaly hotel cards
-				//$this.selectMenu(cacheObj); // select menu
-				$this.setUrlToHistory(url); // Change url on browser				
-			});	
-		}
+		},		
 };
 // Image healper
 var imageHelper = {
@@ -960,7 +961,7 @@ var hotelBook = {
     'africa': ["015"]
 };*/
 var regions = { 
-    'europe--uae': ["039","154", "155", "145"],
+    'europe--uae': ["155","154","145","039"],
     'pacific': ["053", "054", "057", "061"],
     'southeast-asia': ['035'],
     'northeast-asia': ['030'],
@@ -973,11 +974,15 @@ google.load("visualization", "1", {packages:["geochart"]});
 //if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }
 google.setOnLoadCallback(drawRegionsMapOne);
 //Global Variables
+var mh = 399;
+var mw = 874;
+var xAxis=0;
+var yAxis = 0;
 var options = {
 		region: 'world', 
 		resolution: 'subcontinents', 
-		width: 874,
-		height: 350,
+		width: mw,
+		height: mh,
 		backgroundColor: '#3682B6', 
 		legend: 'none', 
 		tooltip: { trigger: 'none'},
@@ -1006,6 +1011,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof countries !== 'undefined' && countries.length > 0) {
 			data = google.visualization.arrayToDataTable(countries);
 		}
+		options['colors'] = ['#000000'];
 	}else if (type == 'city-code') {
 		var citys = [];
 		citys.push(['lable','Countries', 'Value']);
@@ -1029,6 +1035,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof citys !== 'undefined' && citys.length > 0) {
 			data = google.visualization.arrayToDataTable(citys);
 		}
+		options['colors'] = ['#000000'];
 	} else {		
 		options.region = 'world';
 		options.resolution = 'subcontinents'; 
@@ -1043,101 +1050,229 @@ function regionMapConf(type, eventDataTemp){
 			});
 		});	
 		data = google.visualization.arrayToDataTable(urls);
+		options['colors'] = ['#E21E28'];
 	}
-	//options['colors'] = ['#E21E28'];
 	return data;
-}
+}//regionMapConf
+
 var backButton=0;
 function drawRegionsMapOne(type){
 	//Continent ids are provided in array	
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
-	
-	var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-	//Creating a geochart based on eventData
-	google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {
-		//if (isNaN(eventData.region) == false) {
-		if ((eventData.region).length == 2) {
-			//Checks if regions is not available, not going to dispaly
-			$.each(nextgen.data['urls'], function(keyRegion, valRegion) {
-				if (typeof(valRegion.name) != "undefined" && valRegion.name !== null) {
-					$.each(valRegion, function(keyCountry, valCountry) {
-						var countryNameTemp = valCountry.name; 
-						if (typeof(countryNameTemp) != "undefined" && countryNameTemp !== null) {
-							if(valCountry.country_code==eventData.region){
-								$.each(valCountry, function(keyCity, valCity) {
-									if (typeof(valCity) != "undefined" && valCity !== null && valCity.name!=null) {
-										data = regionMapConf('city-code', eventData.region);
-										options['region'] = eventData.region;
-										options['resolution'] = 'country';
-										options.displayMode = 'text';
-										//alert(data.toSource()+'---'+options.toSource());
-										geochart.draw(data, options);
-									}
-								});
-							}
-						}						
+	if(mh<500){
+		options.width = mw;	
+		options.height = mh;
+		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		//Creating a geochart based on eventData
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { ///citys
+			//if (isNaN(eventData.region) == false) {
+			if ((eventData.region).length == 2) {
+				//Checks if regions is not available, not going to dispaly			
+			
+			data = regionMapConf('city-code', eventData.region);		
+			options['region'] = eventData.region;
+			options['resolution'] = 'country';
+			options.displayMode = 'text';			
+			changeResetToRegion();
+			resetMapSizePos();
+			geochart.draw(data, options);
+			
+				if (typeof nextgen.getCountrys[eventData.region] === 'object') {			
+					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');	
+					res.success(function(data){		
+						nextgen.dataP = data;
+						nextgen.drawCards();		
+						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
+						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+					})
+					.error(function(data){
+						console.log('Exception: '+ data.responseText);
 					});
-				}
-			});
-		}else if((eventData.region).length == 3) {
-			$.each(regions, function(key, val) {
-				if(val.indexOf(eventData.region)>=0){
-					data = regionMapConf('country-code', eventData.region);
-					options['region'] = eventData.region;
-					options['resolution'] = 'country';
-					options.displayMode = 'text';
-
-					geochart.draw(data, options);
-				}
-			});
-		}
-	});
-	geochart.draw(data, options);
+					
+				}		
+				
+			}else if((eventData.region).length == 3) { //country
+				$.each(regions, function(key, val) {
+					if(val.indexOf(eventData.region)>=0){
+						data = regionMapConf('country-code', eventData.region);
+						options['region'] = eventData.region;
+						options['resolution'] = 'country';
+						var region_name = '';
+						$.each(regions, function(index, value) {							
+							$.each(value, function(i, v){
+								if (v == eventData.region) 
+									region_name = index;
+								return;								
+							});
+						});
+												
+						res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');	
+						res.success(function(data){		
+							nextgen.dataP = data;
+							nextgen.drawCards();		
+							nextgen.drawCountry(region_name, region_name);	
+							nextgen.selRegion = region_name;
+							//x.selectMenu(cacheObj); // select menu							
+							nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+							nextgen.mapAction('');
+						})
+						.error(function(data){
+							console.log('Exception: '+ data.responseText);
+						});						
+						
+						options.displayMode = 'text';
+						changeResetToRegion();
+						resetMapSizePos();
+						geochart.draw(data, options);
+					}
+				});
+			}
+		});
+		//resetMapSizePos();
+		geochart.draw(data, options);
+	}
 }//drawRegionsMapOne
 
 var countryCodeValTemp;
 //URL
 $(document).ready(function() {
-
 });
 
 //Function to reset map
-function resetMap(){
+function resetMap(){	
+	resetMapSizePos();
 	data = regionMapConf();
 	drawRegionsMapOne();
 }//resetMap
-
-$(document).on('click','text[text-anchor="middle"]',function(){	
-	nextgen.mapClickRequest('city', $.trim($(this).text()));
+$(document).on('click','text[text-anchor="middle"]',function(){
+	
+	var sel = $.trim($(this).text()), url='';
+	//nextgen.mapClickRequest('city', $.trim($(this).text()));
+	//console.log(nextgen.data['urls'][nextgen.selRegion]);
+	$.each(nextgen.data['urls'][nextgen.selRegion], function(index, value){
+		if (typeof value === 'object') {			
+			$.each(value, function(i, v){				
+				if (typeof v === 'object') {
+					$.each(v, function(ii, vv){
+						if (ii == 'name' && vv == sel)
+							url = i;
+							return;
+					});
+				}				
+			});
+		}		
+	});	
+	res = nextgen.sendRequest(uriBase + '/' + url, 'returnType=json');	
+	res.success(function(data){		
+		nextgen.dataP = data;
+		nextgen.drawCards();		
+		//x.selectMenu(cacheObj); // select menu
+		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser		
+	})
+	.error(function(data){
+		console.log('Exception: '+ data.responseText);
+	});
+	
+	
 });
 
 //Function to zoom-out map from the selected region / country
 function mapBackBtn() {
-	var optionsRegionTemp = options.region; var eventTempDataVal;
-	if(optionsRegionTemp.length==2){
-		$.each(nextgen.data['urls'], function(keyRegion, valRegion) {
-			if (typeof(valRegion.name) != "undefined" && valRegion.name !== null) {
-				$.each(valRegion, function(keyCountry, valCountry) {
-					var countryNameTemp = valCountry.name; 
-					if (typeof(countryNameTemp) != "undefined" && countryNameTemp !== null) {
-						if(valCountry.country_code==optionsRegionTemp){
-							$.each(valCountry, function(keyCity, valCity) {
-								if (typeof(valCity) != "undefined" && valCity !== null && valCity.name!=null) {
-									eventTempDataVal = regions[keyRegion][0];
-								}
-							});
-						}
-					}						
-				});
-			}						
+	
+	var optionsRegionTemp = options.region; var eventTempDataVal;	
+	if(optionsRegionTemp.length==2){	
+		
+		res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');	
+		res.success(function(data){		
+			nextgen.dataP = data;
+			nextgen.drawCards();		
+			nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);				
+			//x.selectMenu(cacheObj); // select menu							
+			nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
+			nextgen.mapAction('');
+		})
+		.error(function(data){
+			console.log('Exception: '+ data.responseText);
 		});
+		
+		eventTempDataVal = regions[nextgen.selRegion][0];
 		data = regionMapConf('country-code',eventTempDataVal);
 		options['region'] = eventTempDataVal;
-		backButton=1;drawRegionsMapOne();
+		changeResetToRegion();
+		nextgen.getLavel = 2;
+		changeResetToRegion();
+		backButton=1;		
+		resetMapSizePos();
+		drawRegionsMapOne();
 	}else{
+		
+		res = nextgen.sendRequest(uriBase, 'returnType=json');	
+		res.success(function(data){		
+			nextgen.dataP = data;
+			nextgen.drawCards();
+			$('.display_regions').html('');
+			document.getElementById('regions_div').style.top = '-75px';			
+			//x.selectMenu(cacheObj); // select menu							
+			nextgen.setUrlToHistory(uriBase); //
+			nextgen.mapAction('');
+		})
+		.error(function(data){
+			console.log('Exception: '+ data.responseText);
+		});
+		
 		data = regionMapConf();
+		changeResetToRegion();
+		nextgen.getLavel = 1;
+		changeResetToRegion();		
+		resetMapSizePos();
 		drawRegionsMapOne();
 	}
 }//mapBackBtn
+
+function changeResetToRegion(){
+	var zoomLevel = 1;
+	if(nextgen.getLavel==2){
+		zoomLevel = 2; 
+		$( "#banner_val" ).empty();
+		$( "#banner_val" ).append( 
+			"<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to World View</a><div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>"); 		
+	}
+	else if(nextgen.getLavel==3){
+		zoomLevel = 3; 
+		$( "#banner_val" ).empty();
+		var regionName = nextgen.selRegion.replace("-", " ");
+		$( "#banner_val" ).append( "<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+	}
+	else{
+		zoomLevel = 1; 
+		$( "#banner_val" ).empty();
+		$( "#banner_val" ).append( "<div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+	}
+}//changeResetToRegion
+
+function zoomin() {
+	if(mh<=500){
+		mw = mw+50;
+		mh = mh+50;
+		xAxis = xAxis-12;
+		yAxis = yAxis-12;
+		document.getElementById('regions_div').style.top = yAxis+'px';
+		document.getElementById('regions_div').style.left = xAxis+'px';
+		document.getElementById('regions_div').style.bottom = xAxis+'px';
+		drawRegionsMapOne();
+	}
+}//zoomin
+
+function resetMapSizePos(){
+	xAxis = 0;	yAxis = 0;
+	if(nextgen.getLavel==1){
+		document.getElementById('regions_div').style.top = '-75px';
+	}else{		
+		document.getElementById('regions_div').style.top = '0px';
+	}
+    document.getElementById('regions_div').style.left = 0;	
+	mw = 874;
+	mh = 399;
+}//resetMapSizePos
