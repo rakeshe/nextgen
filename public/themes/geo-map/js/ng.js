@@ -525,19 +525,31 @@ $(document).ready(function() {
 	
 	x = nextgen.init();
 	x.local = local;
-	x.data = JSON.parse(data);	
+	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
 	x.drawMenu();
 	x.mobileMenu();
 	
-	if (level == 1)
+	if (level == 1) {
 		x.drawCountry(region, region);
-	else if(level == 2)
+	console.log(nextgen.getLavel + nextgen.selRegion);
+	x.mapAction('');		
+	} else if(level == 2) {
+		x.drawCountry(region, region);
 		x.drawCities(region, region + '/' + country);
-	
-	x.drawCards();
-	
-	drawRegionsMapOne();
+		
+		var country_code, prop = Object.keys(x.getCountrys);
+		if (prop.length > 0 && prop !== 'undefined') {
+			$.each(prop, function(i, v) {			
+				$.each(x.getCountrys[v], function(ii, vv) {				
+					if (ii == 'url' && vv == region + '/' + country) {		
+						country_code = v;
+					}				
+				});
+			});		
+		}
+		x.mapAction(country_code);		
+	}	
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -554,11 +566,10 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	
 	res.success(function(data){		
 		x.dataP = data;
-		x.drawCards();
-		//x.displayHotels(data['hotels']); // dispaly hotel cards
+		x.drawCards();		
 		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
-		x.mapAction(cacheObj);		
+		x.mapAction(cacheObj.data('cnt-code'));		
 	})
 	.error(function(data){
 	console.log('Exception: '+ data.responseText);
@@ -823,7 +834,7 @@ var nextgen = {
 			if (window.location != url)
 				window.history.pushState({path:url}, '', url);
 		},
-		'mapAction' : function(cacheObj) {
+		'mapAction' : function(country_code) {
 			if(nextgen.getLavel==2){
 				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
 				options['region'] = regions[nextgen.selRegion][0];
@@ -831,14 +842,13 @@ var nextgen = {
 				options.displayMode = 'text';
 				backButton = 1;
 				drawRegionsMapOne();
-			}else{
-				if (typeof(cacheObj.data('cnt-code')) != "undefined" && cacheObj.data('cnt-code') !== null) {
-					data = regionMapConf('city-code', cacheObj.data('cnt-code'));
-					options['region'] = cacheObj.data('cnt-code');
+			}else{				
+				if (typeof(country_code) != "undefined" && country_code !== null) {
+					data = regionMapConf('city-code', country_code);
+					options['region'] = country_code;
 					options['resolution'] = 'country';
 					options.displayMode = 'text';
-					backButton = 1;
-					//alert(options.toSource());
+					backButton = 1;					
 					drawRegionsMapOne();
 				}
 			}
