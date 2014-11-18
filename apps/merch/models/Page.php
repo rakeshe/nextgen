@@ -21,14 +21,19 @@ class Page extends \Phalcon\Mvc\Model {
     const DEFAULT_PAGE_LAYOUT = 'geo-map';
     const DEFAULT_PAGE_CURRENCY = 'AUD';
 
-    protected $languageCode;
-    protected $region;
     protected $campaignName;
+    protected $region;
+    protected $languageCode;
+    protected $layout;
+    protected $currency;
+
     public $validLang = FALSE;
+    public $appData = NULL;
     public $dealsData = NULL;
     public $langData = [];
     public $menuData = NULL;
     //document names
+    protected $appDocName;
     protected $dealsDocName;
     protected $langDocName;
     protected $menuDocName;
@@ -45,6 +50,7 @@ class Page extends \Phalcon\Mvc\Model {
     }
 
     public function initBuckets() {
+        $this->loadCouchAppData();
         $this->loadCouchDeals();
         $this->loadCouchPageDeals();
         $this->loadCouchLanguage();
@@ -57,11 +63,24 @@ class Page extends \Phalcon\Mvc\Model {
 
     public function initDocNames() {
         //initialize couchbase document name
+        $this->appDocName = "merch:deals";
         $this->dealsDocName = "merch:deal:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
         $this->menuDocName = "merch:menu:" . md5('site-menu');        
     }
-    
+
+    protected function loadCouchAppData(){
+        try {
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $var = $Couch->get($this->appDocName);
+            if (!empty($var))
+                $this->appData = json_decode($var, TRUE);
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return FALSE;
+    }
+
     public function loadCouchDeals() {
     	try {
     		$Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
@@ -358,13 +377,6 @@ class Page extends \Phalcon\Mvc\Model {
         return $this;
     }
 
-    /**
-     * @param mixed $campaignName
-     */
-    public function setCampaignName($campaignName) {
-        $this->campaignName = $campaignName;
-        return $this;
-    }
 
     /**
      * @param mixed $menuTabMain
@@ -397,5 +409,72 @@ class Page extends \Phalcon\Mvc\Model {
     public function getConnection() {
         
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignName()
+    {
+        return $this->campaignName;
+    }
+
+    /**
+     * @param mixed $campaignName
+     */
+    public function setCampaignName($campaignName)
+    {
+        $this->campaignName = $campaignName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param mixed $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageCode()
+    {
+        return $this->languageCode;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
+    /**
+     * @param mixed $layout
+     */
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+
 
 }
