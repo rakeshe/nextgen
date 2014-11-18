@@ -393,7 +393,7 @@ $("#btnSearch").click(function() {
 			+ "&search=Search&locale="
 			+ languageCode
 			+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
-	console.log(local + checkIn + checkOut + promo);
+	
 });
 
 $(document).ready(function() {
@@ -413,10 +413,7 @@ $(document).ready(function() {
 				success : function(data) {					
 					var dataArr = [];
 					$.each(data, function(key, val) {
-						dataArr.push(val.suggestion);
-						console
-								.log(key + '--'
-										+ val.suggestion);
+						dataArr.push(val.suggestion);						
 					});
 					response(dataArr);
 				}
@@ -676,7 +673,7 @@ var nextgen = {
 		},
 		//Display hotel card
 		'displayHotels' : function(obj) {					
-			//console.log(obj); return;
+			
 			var html = '';	
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
@@ -812,7 +809,7 @@ var nextgen = {
 						if (key == 'country_code') country_code = val;
 						
 						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
-							console.log(country_code);
+							
 							html += '<li class="country_name_list">';
 							html += '<a tabindex="-1" class="menu-icons menu-country" data-cnt-code="'+country_code+'" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
@@ -855,7 +852,7 @@ var nextgen = {
 						if (key == 'name') name = val;
 						if (key == 'level') lavel = val; 
 						if (key == 'name_en') name_en = val;
-						//console.log(name, lavel, name_en);
+						
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 							
 							html += '<li class="country_name_list">';
@@ -1072,8 +1069,7 @@ function drawRegionsMapOne(type){
 		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { ///citys
 			//if (isNaN(eventData.region) == false) {
 			if ((eventData.region).length == 2) {
-				//Checks if regions is not available, not going to dispaly
-			console.log(eventData.region);
+				//Checks if regions is not available, not going to dispaly			
 			
 			data = regionMapConf('city-code', eventData.region);		
 			options['region'] = eventData.region;
@@ -1184,24 +1180,24 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 
 //Function to zoom-out map from the selected region / country
 function mapBackBtn() {
-	var optionsRegionTemp = options.region; var eventTempDataVal;
-	if(optionsRegionTemp.length==2){
-		$.each(nextgen.data['urls'], function(keyRegion, valRegion) {
-			if (typeof(valRegion.name) != "undefined" && valRegion.name !== null) {
-				$.each(valRegion, function(keyCountry, valCountry) {
-					var countryNameTemp = valCountry.name; 
-					if (typeof(countryNameTemp) != "undefined" && countryNameTemp !== null) {
-						if(valCountry.country_code==optionsRegionTemp){
-							$.each(valCountry, function(keyCity, valCity) {
-								if (typeof(valCity) != "undefined" && valCity !== null && valCity.name!=null) {
-									eventTempDataVal = regions[keyRegion][0];
-								}
-							});
-						}
-					}						
-				});
-			}						
+	
+	var optionsRegionTemp = options.region; var eventTempDataVal;	
+	if(optionsRegionTemp.length==2){	
+		
+		res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');	
+		res.success(function(data){		
+			nextgen.dataP = data;
+			nextgen.drawCards();		
+			nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);				
+			//x.selectMenu(cacheObj); // select menu							
+			nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
+			nextgen.mapAction('');
+		})
+		.error(function(data){
+			console.log('Exception: '+ data.responseText);
 		});
+		
+		eventTempDataVal = regions[nextgen.selRegion][0];
 		data = regionMapConf('country-code',eventTempDataVal);
 		options['region'] = eventTempDataVal;
 		changeResetToRegion();
@@ -1211,6 +1207,21 @@ function mapBackBtn() {
 		resetMapSizePos();
 		drawRegionsMapOne();
 	}else{
+		
+		res = nextgen.sendRequest(uriBase, 'returnType=json');	
+		res.success(function(data){		
+			nextgen.dataP = data;
+			nextgen.drawCards();
+			$('.display_regions').html('');
+			document.getElementById('regions_div').style.top = '-75px';			
+			//x.selectMenu(cacheObj); // select menu							
+			nextgen.setUrlToHistory(uriBase); //
+			nextgen.mapAction('');
+		})
+		.error(function(data){
+			console.log('Exception: '+ data.responseText);
+		});
+		
 		data = regionMapConf();
 		changeResetToRegion();
 		nextgen.getLavel = 1;
