@@ -374,8 +374,7 @@ function validate_searchform() {
 	if (flag == false)
 		return true;
 	return false;
-}//validate_searchform
-
+}
 $("#btnSearch").click(function() {
 	//validate_searchform();
 	var local = $("#locationText").val(), checkIn = $(
@@ -481,7 +480,7 @@ function validateDatesExt(startDateName, endDateName) {
 		//$("#dateVldMsg").hide();
 		return true;
 	}
-}//validateDatesExt
+}
 
 function RedefineDate(DateValue) {
 	if (DateValue == "") return "";
@@ -613,7 +612,7 @@ $(document).ready(function() {
 		x.drawCards();	// draw hotel cards
 });
 //SPA
-$(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
+$(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.mobile-menu-region', function(e) {
 	e.preventDefault();
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
@@ -624,7 +623,13 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
 	} else if(cacheObj.data('lavel') == 2) {
 		x.drawCities(x.selRegion, cacheObj.data('url'));
 	}
-	
+	if($.trim($(this).data('device'))=="mobile"){
+	if (cacheObj.data('lavel') == 1) {
+		x.drawMenuCountry(cacheObj.data('code'), cacheObj.data('url'));	}
+else if(cacheObj.data('lavel') == 2) { 
+		x.drawMenuCities(x.selRegion, cacheObj.data('url'));
+	} 		
+}
 	res.success(function(data){		
 		x.dataP = data;
 		x.drawCards();		
@@ -672,7 +677,7 @@ var nextgen = {
 				$('.hotel_gold_cards_list').show();
 				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
 			}
-			var tire_2_key = 0;
+			var tire_2_key = 0, tire_1_key = 0;
 			$.each(this.dataP, function(index, value) {				
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
@@ -681,17 +686,24 @@ var nextgen = {
 								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 							}
 						}
-					} else {
+					} else {						
 						
-							if (index == 'tier_2') {								
-								if (tire_2_key < 2) {
-									if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-										$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
-									}
+						if (index == 'tier_1') {
+							if (tire_1_key < 1) {
+								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+									$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
 								}
-								tire_2_key++;
-							}						
-						
+							}
+							tire_1_key++;
+						}
+						if (index == 'tier_2') {								
+							if (tire_2_key < 2) {
+								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+								}
+							}
+							tire_2_key++;
+						}					
 					
 						if (index == 'tier_3') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
@@ -702,6 +714,49 @@ var nextgen = {
 				});					
 			});			
 		},
+		
+		'PlatinumCard' : function(obj){
+			console.log(obj);
+			var html = '';
+				html += '<div class="Bestdeals">';
+				html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
+				html += '<img id="best_deals" width="64" height="74"class="img-responsive" alt="'+obj['hotel_name']+'" src="/themes/common/img/Bestdeals.png">';
+				html += '</div>';
+				html += '<div id="platinum_image">';
+				html += '<img  width="64" height="74" alt="'+obj['hotel_name']+'" src="'+obj['image_url']+'">';
+				html += '</div>';
+				html += '<div class="col-md-5 col-lg-4" id="hotel_content">';
+				html += '<div class="hotel_gold_cards_heading hidden-xs">';
+				html += '<div class="hotel_name col-md-10 col-lg-10"><a>'+obj['hotel_name']+'</a>';
+				html += '</div>';
+				html += '<div class="hotel_city">Mexico</div>';
+				html += '<div class="campaign-promo-offer">'+ obj['offer'] + '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="platinum_review col-md-2 col-lg-2">';
+				html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
+				html += '<img src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" alt="Member Rewards" class="hidden-xs members-extras-logo img-responsive">';
+				html += '<div class="font_red member-extras-text">';
+				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+				html += '<div style="display: none;" class="sign-out-member-offer">';
+				html += '<span>';
+				html += '<p>Freebies Included</p>';
+				html += '<p>Find out more &gt;&gt;&gt;&gt;</p>';
+				html += '</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="saveBookInfo platinum_offer col-md-2 col-lg-2">Save';
+				html += '<br>';
+				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+				html += '<div class="clearfix "></div>';
+				html += '<div class="hidden-xs btn button">';
+				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+			return html;
+		} ,
 		//Display hotel card
 		'displayHotels' : function(obj) {					
 			
@@ -709,14 +764,25 @@ var nextgen = {
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
-				html += '<span><a class="hotel_name col-xs-5 col-sm-5 col-md-5 col-lg-5">';
-				if (obj['hotel_name'].length > 18)
-					html += obj['hotel_name'].substring(0, 17) + '...';
+				html += '<span class="hotel_name visible-lg col-lg-10"><a>';
+				if (obj['hotel_name'].length > 37)
+					html += obj['hotel_name'].substring(0, 36) + '...';
 				else
-					html += obj['hotel_name'];
-					html += '</a></span>';
-					html += '<span class="hotel_city col-xs-4 col-sm-4 col-md-4 col-lg-4">'+ obj["country_name"] +'</span>';
-					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-3 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += obj['hotel_name']+',';
+					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
+					// Tablet version of Hotel name Landscape view
+					html += '<span class="hotel_name visible-md col-md-10"><a>';
+				if (obj['hotel_name'].length > 27)
+					html += obj['hotel_name'].substring(0, 26) + '...';
+				else
+					html += obj['hotel_name']+',';
+					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
+					// Tablet version of Hotel name Portrait view
+					html += '<span class="hotel_name visible-sm col-sm-10"><a>';
+					html += obj['hotel_name']+',';
+					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
+					//html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
+					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div class="hotel_details">';
 					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4">';
@@ -738,22 +804,21 @@ var nextgen = {
 					html += '</a>'+ obj["country_name"] +'</div>';
 					//html += '<div class="hotel_city col-xs-4 ">'+ obj["country_name"] +'</div>';
 					html += '<div class="clearfix hotel_review col-xs-10"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
-					html +='<div class="col-xs-11 rating"> ';
-					if (obj['user_rating'] == '') 
-					html += 'Rating not available';
-					else
-					html += obj['user_rating']+'/5'; 
-					html += '</div> <br/>';
+					html += '<br/>';
 					html += '<div class="col-xs-10 member_rewards"> <img class="members-extras-logo col-xs-1 img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png"> <div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
-					html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
+					//html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
 					html +='</div>';
 				// members-extras-block
 				
 				html += '<img class="hidden-xs members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
 				html += '<div class="font_red member-extras-text">';
 				//$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-				html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+				html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">';
 				//});
+				if(obj['offer_moo'] !=''&&obj['offer_moo'] != null)
+				html += +obj['offer_moo']+'</div>';
+				else 
+				html += ' </div>';
 				html += '<div class="sign-out-member-offer" style="display: none;">';
 				html += '<span>';
 				//Show_JoinHotelClub_Popup()
@@ -804,7 +869,7 @@ var nextgen = {
 			html += '<ul id="mobile_menu_new">';
 			$.each(this.data['urls'], function(index, value){
 				html += '<li class="mobile_regions">';
-				html += '<a class="mobile-menu-icons mobile-menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="glyphicon glyphicon-chevron-right pull-right"></b> </a>';
+				html += '<a class="mobile-menu-icons mobile-menu-region" tabindex="-1" data-device="mobile" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="glyphicon glyphicon-chevron-right pull-right"></b> </a>';
 				html += '</li>';
 				html += '<li class="mobile_divider"> </li>';
 				reg[value['name_en']] = value['name'];
@@ -886,7 +951,7 @@ var nextgen = {
 						
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 							
-							html += '<li class="country_name_list">';
+							html += '<li class="city_name_list">';
 							html += '<a tabindex="-1" class="menu-icons menu-city" tabindex="-1" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
 							html += '<li class="tab_divider"></li>';	
@@ -904,8 +969,112 @@ var nextgen = {
 			this.getLavel = 3;
 			$('.display_regions').html(html);	
 			
-		},		
-			//select menu which is clicked
+		},
+			'drawMenuCountry' : function(region, url) {
+			
+			var html = '', flag = false, country = [];			
+			regoinEN = this.data['urls'][region]['name_en'];
+			regoinName = this.data['urls'][region]['name'];
+			
+			$.each(this.data['urls'][region], function(index, value){
+				
+				if (flag == false) {
+					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div class="divider_menu"></div>';
+					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div class="dropdown">';
+					html += '<button id="dLabel" class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
+					html += 'Country';
+					html += '<span class="glyphicon glyphicon-chevron-down"></span>';
+					html += '</button>';
+					html += '<ul class="dropdown-menu country_name" role="menu" aria-labelledby="dLabel">';
+					
+				}
+				flag = true;
+				if (typeof value === 'object') {
+					var name = false,name_en = false, lavel = false, country_code= false;
+					$.each(value, function(key, val){		
+						
+						if (key == 'name') name = val;
+						if (key == 'level') lavel =val; 
+						if (key == 'name_en') name_en = val;
+						if (key == 'country_code') country_code = val;
+						
+						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
+							console.log(country_code);
+							html += '<li class="country_name_list">';
+							html += '<a tabindex="-1" class="menu-icons menu-country" data-cnt-code="'+country_code+'" data-device="mobile" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '</li>';
+							html += '<li class="tab_divider"></li>';
+							country[country_code] = {'url' : index, 'name_en' : name, 'name' : name};
+							name = false,name_en = false, lavel = false, country_code= false;
+						}
+					});				
+				}				
+			});		
+			
+			html += '</ul>';					
+			html += '</div>';
+			html += '</div>'
+			nextgen.selRegion = region;
+			this.getCountrys = country;
+			this.getLavel = 2;
+			$('#mobileTabs').hide();
+			$('.display_mobile_regions').html(html);	
+		},
+		'drawMenuCities' : function(region, countryUrl) {			
+						
+			var html = '', flag = false, cities = [], heading = false, headingEn = false;
+						
+			$.each(this.data['urls'][region][countryUrl], function(index, value){
+				
+				if (index == 'name_en') headingEn = value;
+				if (index == 'name') heading = value;				
+				
+				if (heading != false && headingEn != false && flag == false) {							
+					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div class="divider_menu"></div>';
+					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div class="dropdown">';
+					html += '<button id="dLabel"  class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
+					html += 'City';
+					html += '<span class="glyphicon glyphicon-chevron-down"></span>';
+					html += '</button>';
+					html += '<ul class="dropdown-menu country_name" role="menu" aria-labelledby="dLabel">';
+					flag = true;
+				}
+								
+				if (typeof value === 'object') {					
+					var name = false, name_en = false, lavel = false;
+					$.each(value, function(key, val){					
+						
+						if (key == 'name') name = val;
+						if (key == 'level') lavel = val; 
+						if (key == 'name_en') name_en = val;
+						//console.log(name, lavel, name_en);
+						if (name != false && lavel != false && name_en != false && lavel == 3) {
+							
+							html += '<li class="city_name_list">';
+							html += '<a tabindex="-1" class="menu-icons menu-city" tabindex="-1" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '</li>';
+							html += '<li class="tab_divider"></li>';	
+							//cities[name_en] = name;
+							cities[name] = {'url' : index, 'name_en' : name_en};
+							name = false,name_en = false, lavel = false;
+						}
+					});				
+				}				
+			});
+			
+			html += '</ul>';					
+			html += '</div>';
+			this.getCities = cities;
+			this.getLavel = 3;
+			$('#mobileTabs').hide();
+			$('.display_mobile_regions').html(html);	
+			
+		},
+		//select menu which is clicked
 		'selectMenu' : function($this) {
 			if ($this.hasClass('menu-region')) {
 				$('li').removeClass('levelActive').addClass('level1');
@@ -1254,7 +1423,7 @@ function mapBackBtn() {
 			nextgen.dataP = data;
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
-			document.getElementById('regions_div').style.top = '-75px';			
+			//document.getElementById('regions_div').style.top = '-75px';			
 			//x.selectMenu(cacheObj); // select menu							
 			nextgen.setUrlToHistory(uriBase); //
 			nextgen.mapAction('');

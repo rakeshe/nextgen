@@ -58,7 +58,7 @@
 	
 	</div>
 	<br/>
-	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable" id="check_in_dates" style="outline: 0px none; z-index: 1002; height: auto; width: 360px;  top: 711px; left: 452px; display: none;" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" >
+	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable" id="check_in_dates" style="outline: 0px none; z-index: 1002; height: auto; width: 360px;  top: 100px; left: 452px; display: none;position:fixed;" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" >
 		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
 			<span id="ui-id-1" class="ui-dialog-title">{{ t._('check_rates') }}</span>
 			<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button"><span class="ui-icon ui-icon-closethick">close</span></a>
