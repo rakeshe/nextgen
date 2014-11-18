@@ -585,9 +585,8 @@ $(document).ready(function() {
 	x.mobileMenu();
 	
 	if (level == 1) {
-		x.drawCountry(region, region);
-	console.log(nextgen.getLavel + nextgen.selRegion);
-	x.mapAction('');		
+		x.drawCountry(region, region);	
+		x.mapAction('');
 	} else if(level == 2) {
 		x.drawCountry(region, region);
 		x.drawCities(region, region + '/' + country);
@@ -645,10 +644,7 @@ var nextgen = {
 		'getRegions' : '',
 		'getCountrys' : '',
 		'getCities' : '',
-		'getLavel' : 1,
-		'campaign' : function() {
-			return $.parseJSON(camp);
-		},
+		'getLavel' : 1,		
 		//send ajax request
 		'sendRequest' : function(url, data) {
 			return $.ajax({
@@ -915,67 +911,7 @@ var nextgen = {
 					drawRegionsMapOne();
 				}
 			}
-		},
-		'mapClickRequest': function(type, data) {
-			var $this = this, region, country, url, city;
-			if (type == 'region') {
-				$.each(regions, function(index, value) {
-					if (data == regions[index]) {
-						$.each($this.campaign(), function(key, val) {
-							if (val['name_en'] == index) {
-								region = val['name'];
-								return;
-							}								
-						});					
-					}
-				});
-				url = '/merch/' + lang + '/' + campName + '/' + region;				
-			} else if (type == 'country') {
-				$.each($this.campaign(), function(key, val) {
-					
-					if (typeof val === 'object') {	
-						$.each(val, function(keyCnt, valCnt) {
-							
-							if (typeof valCnt === 'object') {								
-								if (valCnt['country_code'].toUpperCase() == data) {
-									country = valCnt['name'];
-									region = val['name'];
-								}
-							}							
-						});	
-					}
-				});	
-				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country;
-			} else if (type == 'city') {				
-				$.each($this.campaign(), function(key, val) {					
-					if (typeof val === 'object') {	
-						$.each(val, function(keyCnt, valCnt) {							
-							if (typeof valCnt === 'object') {	
-								$.each(valCnt, function(keyCty, valcty) {
-									if (typeof valcty === 'object') {								
-										if (valcty['name'] == data) {
-											country = valCnt['name'];
-											region = val['name'];
-											city = valcty['name'];											
-										}
-									}
-								});
-								
-							}							
-						});	
-					}
-				});
-				url = '/merch/' + lang + '/' + campName + '/' + region + '/' + country + '/' + city;
-			} else {
-				url = '/merch/' + lang + '/' + campName;
-			}			
-			res = $this.sendRequest(url, 'returnType=json');
-			res.success(function(data){
-				$this.displayHotels(data); // dispaly hotel cards
-				//$this.selectMenu(cacheObj); // select menu
-				$this.setUrlToHistory(url); // Change url on browser				
-			});	
-		}
+		},		
 };
 // Image healper
 var imageHelper = {
@@ -1129,39 +1065,63 @@ function drawRegionsMapOne(type){
 		options.height = mh;
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		//Creating a geochart based on eventData
-		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { ///citys
 			//if (isNaN(eventData.region) == false) {
 			if ((eventData.region).length == 2) {
 				//Checks if regions is not available, not going to dispaly
-				$.each(nextgen.data['urls'], function(keyRegion, valRegion) {
-					if (typeof(valRegion.name) != "undefined" && valRegion.name !== null) {
-						$.each(valRegion, function(keyCountry, valCountry) {
-							var countryNameTemp = valCountry.name; 
-							if (typeof(countryNameTemp) != "undefined" && countryNameTemp !== null) {
-								if(valCountry.country_code==eventData.region){
-									$.each(valCountry, function(keyCity, valCity) {
-										if (typeof(valCity) != "undefined" && valCity !== null && valCity.name!=null) {
-											data = regionMapConf('city-code', eventData.region);
-											options['region'] = eventData.region;
-											options['resolution'] = 'country';
-											options.displayMode = 'text';
-											//alert(data.toSource()+'---'+options.toSource());
-											changeResetToRegion();
-											resetMapSizePos();
-											geochart.draw(data, options);
-										}
-									});
-								}
-							}						
-						});
-					}
-				});
-			}else if((eventData.region).length == 3) {
+			console.log(eventData.region);
+			
+			data = regionMapConf('city-code', eventData.region);		
+			options['region'] = eventData.region;
+			options['resolution'] = 'country';
+			options.displayMode = 'text';			
+			changeResetToRegion();
+			resetMapSizePos();
+			geochart.draw(data, options);
+			
+				if (typeof nextgen.getCountrys[eventData.region] === 'object') {			
+					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');	
+					res.success(function(data){		
+						nextgen.dataP = data;
+						nextgen.drawCards();		
+						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
+						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+					})
+					.error(function(data){
+						console.log('Exception: '+ data.responseText);
+					});
+					
+				}		
+				
+			}else if((eventData.region).length == 3) { //country
 				$.each(regions, function(key, val) {
 					if(val.indexOf(eventData.region)>=0){
 						data = regionMapConf('country-code', eventData.region);
 						options['region'] = eventData.region;
 						options['resolution'] = 'country';
+						var region_name = '';
+						$.each(regions, function(index, value) {							
+							$.each(value, function(i, v){
+								if (v == eventData.region) 
+									region_name = index;
+								return;								
+							});
+						});
+												
+						res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');	
+						res.success(function(data){		
+							nextgen.dataP = data;
+							nextgen.drawCards();		
+							nextgen.drawCountry(region_name, region_name);	
+							nextgen.selRegion = region_name;
+							//x.selectMenu(cacheObj); // select menu							
+							nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+							nextgen.mapAction('');
+						})
+						.error(function(data){
+							console.log('Exception: '+ data.responseText);
+						});						
+						
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
@@ -1187,8 +1147,36 @@ function resetMap(){
 	data = regionMapConf();
 	drawRegionsMapOne();
 }//resetMap
-$(document).on('click','text[text-anchor="middle"]',function(){	
-	nextgen.mapClickRequest('city', $.trim($(this).text()));
+$(document).on('click','text[text-anchor="middle"]',function(){
+	
+	var sel = $.trim($(this).text()), url='';
+	//nextgen.mapClickRequest('city', $.trim($(this).text()));
+	//console.log(nextgen.data['urls'][nextgen.selRegion]);
+	$.each(nextgen.data['urls'][nextgen.selRegion], function(index, value){
+		if (typeof value === 'object') {			
+			$.each(value, function(i, v){				
+				if (typeof v === 'object') {
+					$.each(v, function(ii, vv){
+						if (ii == 'name' && vv == sel)
+							url = i;
+							return;
+					});
+				}				
+			});
+		}		
+	});	
+	res = nextgen.sendRequest(uriBase + '/' + url, 'returnType=json');	
+	res.success(function(data){		
+		nextgen.dataP = data;
+		nextgen.drawCards();		
+		//x.selectMenu(cacheObj); // select menu
+		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser		
+	})
+	.error(function(data){
+		console.log('Exception: '+ data.responseText);
+	});
+	
+	
 });
 
 //Function to zoom-out map from the selected region / country
