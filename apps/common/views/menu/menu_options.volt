@@ -31,8 +31,8 @@
                     <div class="section {% if not loop.first %}top {% endif %}"><h5>{{ t._(CatName) }}</h5></div>
                     {% for currency_code,labelName in currencyPkg %}
                     <ul>
-                    <li class="currencyItem" data-component="currencySelectorItem" data-currency="{{ currency_code }}">
-                    <a class="link">{{ t._(labelName) }}</a>
+                    <li data-component="currencySelectorItem">
+                    <a class="link currencyItem" data-currency="{{ currency_code }}">{{ t._(labelName) }}</a>
                     </li>
                     </ul>
                     {% endfor %}
