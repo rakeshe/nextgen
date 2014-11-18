@@ -316,6 +316,7 @@ class IndexController extends ControllerBase {
 				'menuItemsSite' => $this->menu->site,
 				'menuItemsLanguageOptions' => ( array ) $this->menu->languageOptions,
 				'currencies' => $this->config->currencies->toArray(),
+				'currencyList' => $this->getCurrencyListByGroup(),
 				'menuItemsRightSite' => $this->menu->rightSite,
 				'menuItemsAccount' => $this->menu->account,
 				"t" => $this->translation->getTranslation (),
@@ -330,6 +331,17 @@ class IndexController extends ControllerBase {
 				"city" => $this->city, 
 		);
 	}
+
+    protected function getCurrencyListByGroup(){
+        $currencyGroup = $this->config->currencyGroup->toArray();
+        $currencies = $this->config->currencies->toArray();
+        foreach($currencyGroup as $index => $group){
+            foreach($group as $currencyCategory ){
+                $currencyList[$index][ucfirst(str_replace('-',' ',$currencyCategory))] = $currencies[$currencyCategory];
+            }
+        }
+        return $currencyList;
+    }
 	
 	protected function getPageLayout() {
 		

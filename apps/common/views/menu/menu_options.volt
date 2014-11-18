@@ -24,17 +24,24 @@
 	<li>&nbsp;|</li>
 	{% if not empty(currencies) %}
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                {% for CatName, currencyPkg in currencies %}
-                <div>{{ t._(CatName) }}</div>
-                	{% for currency_code,labelName in currencyPkg %}
-	                    <li lang="{{ language_code }}" class="">
-	                        <a href="/set-currency/{{ currency_code }}" class="link">{{ t._(labelName) }}</a>
-	                    </li>
-	                {% endfor %}
+            <ul class="dropdown-menu currencySelector selector multiColumn">
+                {% for groupIndex, currencyGroup in currencyList %}
+                <li class="column column3">
+                    {% for CatName, currencyPkg in currencyGroup %}
+                    <div class="section {% if not loop.first %}top {% endif %}"><h5>{{ t._(CatName) }}</h5></div>
+                    {% for currency_code,labelName in currencyPkg %}
+                    <ul>
+                    <li class="currencyItem" data-component="currencySelectorItem" data-currency="{{ currency_code }}">
+                    <a class="link">{{ t._(labelName) }}</a>
+                    </li>
+                    </ul>
+                    {% endfor %}
+                    {% endfor %}
+                </li>
                 {% endfor %}
+
             </ul>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
         </li>
 	{% endif %}	
     </ul>
