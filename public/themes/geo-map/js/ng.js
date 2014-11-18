@@ -234,6 +234,14 @@ function() {
 
 	$('.carousel').carousel('next');
 
+    /** track currency drop-down items - set incomign value to cookie **/
+    $('.currencyItem').click(function() {
+        var cookieCurrency = $.cookie('curr');
+        var selectedCurrency = $(this).attr("data-currency");
+        //$("#currency-selector-menu").html().replace(cookieCurrency, selectedCurrency);
+        $("#currency-selector-menu").html($("#currency-selector-menu").html().replace(cookieCurrency, selectedCurrency));
+        $.cookie('curr', selectedCurrency);
+    });
 });
 
 /* Region Tabs-Mobile Toggle Event */

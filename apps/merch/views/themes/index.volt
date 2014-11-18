@@ -24,6 +24,7 @@
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
 		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js') }}
         {{ javascript_include('themes/' ~ theme ~ '/js/ng.js') }}
+		{{ javascript_include('themes/common/js/jquery.cookie.js') }}
 		{{ javascript_include('themes/common/js/respond.src.js') }}
     </body>
 </html>
