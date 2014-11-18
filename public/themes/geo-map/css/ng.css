@@ -1506,3 +1506,70 @@ text{
 	font-size:12pt !important;
 	cursor:pointer !important;
 }
+/** Currency selector **/
+    .selector .column.column3 {
+        width: 33.33%;
+        border-right: 1px solid #ccc;
+    }
+    .selector .column {
+        float: left;
+        padding: 4px 0px;
+    }
+    .selector.currencySelector {
+        width: 690px;
+        background-color: #f4f4f5;
+    }
+    .section {
+        border-color: #ccc;
+    }
+    .currencySelector ul {
+
+        padding: 0 18px;
+        font-size: 1em;
+        /*line-height: 1.167em;*/
+    }
+    .currencySelector ul li {
+        /*background-color: #f4f4f5;*/
+        margin: 0;
+        font-size: 1em;
+        /*line-height: 1.167em;*/
+    }
+    .currencySelector ul li a:hover {
+        background-color: #DDD;
+        text-decoration: none;
+    }
+
+    .currencySelector ul li a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border: 0;
+        background-image: none;
+        white-space: nowrap;
+    }
+    .selector .section li {
+        display: block!important;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .selector div{
+        padding: 0px;
+    }
+    .selector .section h5 {
+        text-overflow: ellipsis;
+        font-size: 1.083em;
+        font-weight: bold;
+        padding: 15px 0px 0px 10px;
+    }
+    .selector .top h5 {
+        border-top: 1px solid #ccc;
+        -moz-box-shadow: 0 -1px 1px -1px #fff;
+        -webkit-box-shadow: 0 -1px 1px -1px #fff;
+        box-shadow: 0 -1px 1px -1px #fff;
+        overflow: hidden;
+
+    }
+    .selector .column .section {
+        padding: 0 18px 0px;
+    }

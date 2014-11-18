@@ -130,5 +130,10 @@ return new \Phalcon\Config ( array (
 						'AUD' => 'Australian Dollar',
 						'NZD' => 'New Zealand Dollar' 
 				) 
-		) 
+		) ,
+        'currencyGroup' => [
+           0 => ['most-used-currencies','africa', 'americas'],
+           1 => ['asia','middle-east'],
+           2 => ['europe','oceania']
+        ]
 ) );
