@@ -332,6 +332,13 @@ $(document).ready(function() {
 
 	});
 });
+
+$(".search_input_hotel").click(function() {
+	$('html, body').animate({
+        scrollTop: $("#locationText").offset().top
+    }, 500);
+});
+
 function validate_searchform() {
 	var flag = false;
 	var errFlag = false;
@@ -367,7 +374,8 @@ function validate_searchform() {
 	if (flag == false)
 		return true;
 	return false;
-}
+}//validate_searchform
+
 $("#btnSearch").click(function() {
 	//validate_searchform();
 	var local = $("#locationText").val(), checkIn = $(
@@ -476,7 +484,7 @@ function validateDatesExt(startDateName, endDateName) {
 		//$("#dateVldMsg").hide();
 		return true;
 	}
-}
+}//validateDatesExt
 
 function RedefineDate(DateValue) {
 	if (DateValue == "") return "";
@@ -570,7 +578,6 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(document).ready(function() {	
-	
 	var url = '', level = 0;
 	if (region != '')		
 		level = 1;	
@@ -656,18 +663,14 @@ var nextgen = {
 			});
 		},
 		'drawCards' : function() {		
-			$('.display-cards').html('');	
-			var key=0
+			$('.display-cards').html('');
 			$.each(this.dataP, function(index, value) {				
 				$.each(value.split(','), function(i, v) {
 					//if (index == 'tier_1') {
-					if(key<5){
 						if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
 							$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 						}
-					}
 					//}
-					key++;
 				});					
 			});			
 		},
@@ -1053,14 +1056,15 @@ function regionMapConf(type, eventDataTemp){
 		options['colors'] = ['#E21E28'];
 	}
 	return data;
-}
+}//regionMapConf
+
 var backButton=0;
 function drawRegionsMapOne(type){
 	//Continent ids are provided in array	
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
-	if(mh<400&&mw<900){
+	if(mh<500){
 		options.width = mw;	
 		options.height = mh;
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -1138,7 +1142,6 @@ function drawRegionsMapOne(type){
 var countryCodeValTemp;
 //URL
 $(document).ready(function() {
-
 });
 
 //Function to reset map
@@ -1246,11 +1249,12 @@ function zoomin() {
 		yAxis = yAxis-12;
 		document.getElementById('regions_div').style.top = yAxis+'px';
 		document.getElementById('regions_div').style.left = xAxis+'px';
+		document.getElementById('regions_div').style.bottom = xAxis+'px';
 		drawRegionsMapOne();
 	}
-}
+}//zoomin
 
- function resetMapSizePos(){
+function resetMapSizePos(){
 	xAxis = 0;	yAxis = 0;
 	if(nextgen.getLavel==1){
 		document.getElementById('regions_div').style.top = '-75px';
@@ -1260,4 +1264,4 @@ function zoomin() {
     document.getElementById('regions_div').style.left = 0;	
 	mw = 874;
 	mh = 399;
- }
+}//resetMapSizePos
