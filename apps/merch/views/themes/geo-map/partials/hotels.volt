@@ -1,13 +1,16 @@
 <!-- START VIEW PARTIAL: hotel/item list -->
 <!-- Hotel List -->
 
-	<div id="hotel_card_block" class="subContainer">
+	<div id="hotel_gold_card_block" class="hd-main-info subContainer">
 		<div class="row row_nomargin">
 			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4">World best deals</div>
 			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7"><span class="search_input_hotel"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></span>
 		</div>
 	</div>	
-	
+	</div>
+	<div class="hotel_gold_cards_list subContainer">
+		<div class="display-cards-gold row"></div>
+	</div>
 
 	<div class="hotel_cards_list subContainer">
 		<div class="display-cards row"></div>
@@ -55,7 +58,7 @@
 	
 	</div>
 	<br/>
-	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable" id="check_in_dates" style="outline: 0px none; z-index: 1002; height: auto; width: 360px;  top: 711px; left: 452px; display: none;" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" >
+	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable" id="check_in_dates" style="outline: 0px none; z-index: 1002; height: auto; width: 360px;  top: 100px; left: 452px; display: none;position:fixed;" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" >
 		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
 			<span id="ui-id-1" class="ui-dialog-title">{{ t._('check_rates') }}</span>
 			<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button"><span class="ui-icon ui-icon-closethick">close</span></a>
