@@ -897,7 +897,8 @@ var nextgen = {
 				options.displayMode = 'text';
 				backButton = 1;			
 				changeResetToRegion();		
-				resetMapSizePos();
+				resetMapSizePos();				
+				displayRegionName();
 				drawRegionsMapOne();
 			}else{				
 				if (typeof(country_code) != "undefined" && country_code !== null) {
@@ -908,6 +909,7 @@ var nextgen = {
 					backButton = 1;			
 					changeResetToRegion();			
 					resetMapSizePos();
+					hideRegionName();
 					drawRegionsMapOne();
 				}
 			}
@@ -974,7 +976,7 @@ google.load("visualization", "1", {packages:["geochart"]});
 //if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }
 google.setOnLoadCallback(drawRegionsMapOne);
 //Global Variables
-var mh = 399;
+var mh = 430;//var mh = 399;
 var mw = 874;
 var xAxis=0;
 var yAxis = 0;
@@ -1061,7 +1063,7 @@ function drawRegionsMapOne(type){
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
-	if(mh<500){
+	if(mh<=490){
 		options.width = mw;	
 		options.height = mh;
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -1077,6 +1079,7 @@ function drawRegionsMapOne(type){
 			options.displayMode = 'text';			
 			changeResetToRegion();
 			resetMapSizePos();
+			hideRegionName();
 			geochart.draw(data, options);
 			
 				if (typeof nextgen.getCountrys[eventData.region] === 'object') {			
@@ -1125,12 +1128,18 @@ function drawRegionsMapOne(type){
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
+						hideRegionName();
 						geochart.draw(data, options);
 					}
 				});
 			}
 		});
 		//resetMapSizePos();
+		if(nextgen.getLavel==1){
+			displayRegionName();
+		}else{
+			hideRegionName();
+		}
 		geochart.draw(data, options);
 	}
 }//drawRegionsMapOne
@@ -1205,6 +1214,7 @@ function mapBackBtn() {
 		changeResetToRegion();
 		backButton=1;		
 		resetMapSizePos();
+		hideRegionName();
 		drawRegionsMapOne();
 	}else{
 		
@@ -1248,12 +1258,12 @@ function changeResetToRegion(){
 	else{
 		zoomLevel = 1; 
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append( "<div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+		$( "#banner_val" ).append( "<div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
 	}
 }//changeResetToRegion
 
 function zoomin() {
-	if(mh<=500){
+	if(mh<=490){
 		mw = mw+50;
 		mh = mh+50;
 		xAxis = xAxis-12;
@@ -1268,11 +1278,21 @@ function zoomin() {
 function resetMapSizePos(){
 	xAxis = 0;	yAxis = 0;
 	if(nextgen.getLavel==1){
-		document.getElementById('regions_div').style.top = '-75px';
+		document.getElementById('regions_div').style.top = '-90px';
 	}else{		
 		document.getElementById('regions_div').style.top = '0px';
 	}
     document.getElementById('regions_div').style.left = 0;	
 	mw = 874;
-	mh = 399;
+	mh = 430;//mh = 399;
 }//resetMapSizePos
+
+function hideRegionName(){ 
+	$(".text_on_map").hide();
+	//$('.text_on_map').css('display') == 'none';
+}//hideRegionName
+
+function displayRegionName(){ 
+	$(".text_on_map").show();
+	//$('.text_on_map').css('display') == 'block';
+}//displayRegionName
