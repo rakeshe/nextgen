@@ -238,6 +238,8 @@ function() {
     $('.currencyItem').click(function() {
         var cookieCurrency = $.cookie('curr');
         var selectedCurrency = $(this).attr("data-currency");
+        //$("#currency-selector-menu").html().replace(cookieCurrency, selectedCurrency);
+        $("#currency-selector-menu").html($("#currency-selector-menu").html().replace(cookieCurrency, selectedCurrency));
         $.cookie('curr', selectedCurrency);
     });
 });

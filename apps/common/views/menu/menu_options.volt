@@ -11,7 +11,7 @@
 	{% endif %}        
 	{% if not empty(menuItemsLanguageOptions) %}        
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode | trim] }} <b class="caret"></b></a>
+            <a href="#" id="" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode | trim] }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 {% for language_code,label in menuItemsLanguageOptions %}
                     <li lang="{{ language_code }}" class="">
@@ -41,7 +41,7 @@
                 {% endfor %}
 
             </ul>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
+            <a href="#" id="currency-selector-menu" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
         </li>
 	{% endif %}	
     </ul>
