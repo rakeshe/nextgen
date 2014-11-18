@@ -1647,3 +1647,15 @@ border: 4px solid #562d82;
 background-color:#fff;
 height:75px;
 }
+
+#zoom_level{ margin:10px; }
+#zoom_menu{ display:block; clear:both; margin-top:5px;}
+#canvas { width:874px; height:350px; overflow:hidden; }
+#regions_div{ left: 0px; top: -90px; }
+.search_input_hotel{ cursor:pointer; }
+.text_on_map{ float:left; z-index:999; position:absolute; color:#FFF; display: block; font-family:museo_slab500 !important; font-size:11pt !important; }
+.world_america{ float:left; position:relative; white-space: nowrap; padding:2px; background-color:#0E4166; top:120px; left:240px; }
+.world_europe{ float:left; position:relative; top:100px; left:400px; white-space: nowrap; padding:2px; background-color:#0E4166; }
+.world_pacific{ float:left; position:relative; top:250px; left:580px; white-space: nowrap; padding:2px; background-color:#0E4166; }
+.world_north_eastern{ float:left; position:relative; top:133px; left:450px; white-space: nowrap; padding:2px; background-color:#0E4166;}
+.world_south_eastern{ float:left; position:relative; top:200px; left:340px; white-space: nowrap; padding:2px; background-color:#0E4166;}
