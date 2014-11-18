@@ -607,7 +607,10 @@ $(document).ready(function() {
 		}
 		x.mapAction(country_code);		
 	}	
-	x.drawCards();	// draw hotel cards
+	if (region == '')
+		x.drawCards(true);	// draw hotel cards
+	else
+		x.drawCards();	// draw hotel cards
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city', function(e) {
@@ -659,15 +662,43 @@ var nextgen = {
 				data : data
 			});
 		},
-		'drawCards' : function() {		
+		'drawCards' : function(def) {		
 			$('.display-cards').html('');
+			$('.display-cards-gold').html('');
+			if (def == true) {
+				$('.hd-main-info').attr('id', 'hotel_card_block');
+				$('.hotel_gold_cards_list').hide();
+			} else {
+				$('.hotel_gold_cards_list').show();
+				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
+			}
+			var tire_2_key = 0;
 			$.each(this.dataP, function(index, value) {				
 				$.each(value.split(','), function(i, v) {
-					//if (index == 'tier_1') {
-						if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-							$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+					if (def == true) {
+						if (index == 'tier_1') {
+							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+							}
 						}
-					//}
+					} else {
+						
+							if (index == 'tier_2') {								
+								if (tire_2_key < 2) {
+									if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+										$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+									}
+								}
+								tire_2_key++;
+							}						
+						
+					
+						if (index == 'tier_3') {
+							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+							}
+						}
+					}
 				});					
 			});			
 		},
@@ -1211,7 +1242,7 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');	
 		res.success(function(data){		
 			nextgen.dataP = data;
-			nextgen.drawCards();
+			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			document.getElementById('regions_div').style.top = '-75px';			
 			//x.selectMenu(cacheObj); // select menu							

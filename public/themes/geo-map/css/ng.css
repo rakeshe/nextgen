@@ -25,6 +25,7 @@
     margin-bottom: 20px;
     margin-left: 12px;
 	height:152px;
+	background-color: #FFFFFF;
     /*margin-right: 46px;*/
 	padding:0px !important;}
 	.hotel_cards_heading { padding:5px; }
@@ -1629,3 +1630,20 @@ text{
 	top: -75px;
 }
 .search_input_hotel{ cursor:pointer; }
+#hotel_gold_card_block {
+    background-color: #562d82 !important;
+    color: #fff!important;
+    height: auto;
+}
+.hotel_gold_cards_list{
+background-color:#562d82;
+}
+.hotel_gold_cards{
+border: 4px solid #562d82;
+background-color:#fff;
+}
+.hotel_platinum_cards{
+border: 4px solid #562d82;
+background-color:#fff;
+height:75px;
+}
