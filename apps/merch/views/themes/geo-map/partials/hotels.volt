@@ -4,7 +4,7 @@
 	<div id="hotel_gold_card_block" class="hd-main-info subContainer">
 		<div class="row row_nomargin">
 			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4">World best deals</div>
-			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7"><span class="search_input_hotel"><img src="/themes/common/img/search.jpeg" width="15"/>Search all HotelClub<b class="caret"></b></span>
+			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7"><span class="search_input_hotel"><img src="/themes/common/img/search-icon.png" width="18"/>&nbsp;Search all HotelClub<b class="caret"></b></span>
 		</div>
 	</div>	
 	</div>
