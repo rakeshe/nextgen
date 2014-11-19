@@ -18,8 +18,8 @@
     color:#FFF !important;
     width: 20%;}
     #menu_new li a{color:#FFF !important;}
-    #menu_new li:hover{ background-color: #FFF !important; color:#e21e28 !important;}
-    #menu_new li a:hover{color:#e21e28 !important;}
+    /*#menu_new li:hover{ background-color: #FFF !important; color:#e21e28 !important;}
+    #menu_new li a:hover{color:#e21e28 !important;}*/
 	#menu_new li:last-child { border-right:0px; } 
 	/*#menu_new li a {  background-color: #E21E28; color:#FFFFFF; text-decoration:none; font-size:12pt;}*/
 	#hotel_card_block { height:auto; }
