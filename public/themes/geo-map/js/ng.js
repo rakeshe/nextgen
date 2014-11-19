@@ -568,11 +568,15 @@ function ValidateCheckInOutExt(startDateName, endDateName) {
 	return ret;
 }//ValidateCheckInOutExt
 
+function showDeviceWidth() {
+	var thewidth = $(this).width();
+}
+
 $(document).on('click','.close_btn', function(e) {
 	$("#check_in_dates").css("display", "none");
 	return false;
 });
-
+var device = 'desktop';
 $(document).ready(function() {	
 	var url = '', level = 0;
 	if (region != '')		
@@ -606,13 +610,16 @@ $(document).ready(function() {
 		}
 		x.mapAction(country_code);		
 	}	
+	if ($(this).width() < 768)
+		device = 'mobile';
+	
 	if (region == '')
 		x.drawCards(true);	// draw hotel cards
 	else
 		x.drawCards();	// draw hotel cards
 });
 //SPA
-$(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.mobile-menu-region', function(e) {
+$(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.mobile-menu-region,.mobile-city', function(e) {
 	e.preventDefault();
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
@@ -624,12 +631,16 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 		x.drawCities(x.selRegion, cacheObj.data('url'));
 	}
 	if($.trim($(this).data('device'))=="mobile"){
-	if (cacheObj.data('lavel') == 1) {
-		x.drawMenuCountry(cacheObj.data('code'), cacheObj.data('url'));	}
-else if(cacheObj.data('lavel') == 2) { 
-		x.drawMenuCities(x.selRegion, cacheObj.data('url'));
-	} 		
-}
+		device = 'mobile'
+		if (cacheObj.data('lavel') == 1) {
+			x.drawMenuCountry(cacheObj.data('code'), cacheObj.data('url'));	}
+		else if(cacheObj.data('lavel') == 2) { 
+			x.drawMenuCities(x.selRegion, cacheObj.data('url'));
+		} 		
+	}
+	if(($.trim($(this).data("mobcity"))=="mobcity")){
+		$(this).parent().parent().parent().parent().find(".dropdown").removeClass('open');
+	}
 	res.success(function(data){		
 		x.dataP = data;
 		x.drawCards();		
@@ -670,6 +681,7 @@ var nextgen = {
 		'drawCards' : function(def) {		
 			$('.display-cards').html('');
 			$('.display-cards-gold').html('');
+			$('.mobile-platinum-card').html('');
 			if (def == true) {
 				$('.hd-main-info').attr('id', 'hotel_card_block');
 				$('.hotel_gold_cards_list').hide();
@@ -678,7 +690,7 @@ var nextgen = {
 				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
 			}
 			var tire_2_key = 0, tire_1_key = 0;
-			$.each(this.dataP, function(index, value) {				
+			$.each(this.dataP, function(index, value) {
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
 						if (index == 'tier_1') {
@@ -690,11 +702,16 @@ var nextgen = {
 						
 						if (index == 'tier_1') {
 							if (tire_1_key < 1) {
+								
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-									$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
+									if (device == 'mobile') 
+										$('.mobile-platinum-card').append(nextgen.platinumCardMobile(nextgen.data['deals'][v])).show();
+									else
+										$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();									
 								}
+								tire_1_key++;
 							}
-							tire_1_key++;
+							
 						}
 						if (index == 'tier_2') {								
 							if (tire_2_key < 2) {
@@ -715,8 +732,7 @@ var nextgen = {
 			});			
 		},
 		
-		'PlatinumCard' : function(obj){
-			console.log(obj);
+		'PlatinumCard' : function(obj){			
 			var html = '';
 				html += '<div class="Bestdeals">';
 				html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
@@ -757,6 +773,36 @@ var nextgen = {
 				html += '</div>';
 			return html;
 		} ,
+		'platinumCardMobile' : function(obj) {
+			var html = '';
+				html += '<div class="hotel_mobile_platinum_cards col-xs-12  col-sm-12 col-md-11 col-lg-8">';
+				html += '<div class="Bestdeals">';
+				html += '<div class="platinum_card_images" id="hotel_image">';
+				html += '<img height="212" width="400" id="image_gold" class="img-responsive" src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'">';
+				html += '</div>';
+				html += '<div class="deal_card_images" id="deal_images">';
+				html += '<img height="74" width="67" id="image_gold" class="img-responsive" alt="" src="/themes/common/img/Bestdeals.png">';
+				html += '</div>';
+				html += '<div class="clearfix col-xs-12" id="hotel_content">';
+				html += '<div class="hotel_cards_heading hidden-lg hidden-md">';
+				html += '<div class="hotel_platinum_name "><a>'+obj['hotel_name']+'</a>';
+				html += '</div>';
+				html += '<div class="platinum_hotel_city">'+ obj["country_name"] +'</div>';
+				html += '<div class="gold_hotel_review">';
+				html += '<img height="" width="" alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
+				html += '</div>';
+		        html += '</div></div>';
+				html += '<div class="saveBookInfo col-xs-4">' + trans['Save'];
+		        html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+		        html += '<div class="clearfix "></div>';
+		        html += '</div>';
+		        html += '<div class="btn platinum_book">';
+		        html += '<a class="ht-book">'+trans['book']+'</a>';
+		        html += '</div>';
+		        html += '</div>';
+		        html += '</div>';
+	        return html;
+		},
 		//Display hotel card
 		'displayHotels' : function(obj) {					
 			
@@ -979,7 +1025,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 				
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
@@ -1032,7 +1078,7 @@ var nextgen = {
 				if (index == 'name') heading = value;				
 				
 				if (heading != false && headingEn != false && flag == false) {							
-					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
@@ -1055,7 +1101,7 @@ var nextgen = {
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 							
 							html += '<li class="city_name_list">';
-							html += '<a tabindex="-1" class="menu-icons menu-city" tabindex="-1" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
+							html += '<a tabindex="-1" class="menu-icons menu-city mobile-city" tabindex="-1" data-mobcity="mobcity" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
 							html += '<li class="tab_divider"></li>';	
 							//cities[name_en] = name;
