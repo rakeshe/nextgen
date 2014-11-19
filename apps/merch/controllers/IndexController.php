@@ -31,7 +31,10 @@ class IndexController extends ControllerBase {
 	protected $data;
 	protected $DDMenue;
 	protected $region;
-	private $dataModel;
+    /**
+     * @var \HC\Merch\Models\Page
+     */
+    private $dataModel;
 	private $viewType;
 	private $campaignData;
 	private $couchData;
@@ -162,16 +165,137 @@ class IndexController extends ControllerBase {
 		$this->cookies->set ( 'curr', $this->currencyCode );
 		$this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
 	}
-	
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignName()
+    {
+        if(null === $this->campaignName){
+            $this->setCampaignName();
+        }
+        return $this->campaignName;
+    }
+
+    /**
+     * @param mixed $campaignName
+     */
+    public function setCampaignName($campaignName = null)
+    {
+        $campaignName = $this->dispatcher->getParam ( "campaignName" );
+        if(null === $campaignName){
+            $campaignName = $this->dataModel->getCampaignName();
+        }
+        $this->campaignName = $campaignName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountry()
+    {
+        if(null === $this->country){
+            $this->setCountry();
+        }
+        return $this->country;
+    }
+
+    /**
+     * @param mixed $country
+     */
+    public function setCountry($country = null)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrencyCode()
+    {
+        if(null === $this->currencyCode){
+            $this->setCurrencyCode();
+        }
+        return $this->currencyCode;
+    }
+
+    /**
+     * @param mixed $currencyCode
+     */
+    public function setCurrencyCode($currencyCode = null)
+    {
+        $this->currencyCode = $currencyCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        if(null === $this->city){
+            $this->setCity();
+        }
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city = null)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageCode()
+    {
+        if(null === $this->languageCode){
+            $this->setLanguageCode();
+        }
+        return $this->languageCode;
+    }
+
+    /**
+     * @param mixed $languageCode
+     */
+    public function setLanguageCode($languageCode = null)
+    {
+        $this->languageCode = $languageCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        if(null === $this->region){
+            $this->setCountry();
+        }
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion($region = null)
+    {
+        $this->region = $region;
+    }
+
 	/**
 	 * Setting page data
 	 */
 	protected function setupPage() {
+        // Setup data for the page
+        /** @var \HC\Merch\Models\Page dataModel */
+        $this->dataModel = new \HC\Merch\Models\Page();
+
 		// setting class variable
 		$this->setInputvars ();
-		// Setup data for the page
-		$this->dataModel = new \HC\Merch\Models\Page ();
-		$this->dataModel->setCampaignName($this->campaignName )
+
+		$this->dataModel->setCampaignName($this->campaignName)
 						->setRegion($this->region)
 						->setLanguageCode($this->languageCode );
 						$this->dataModel->setPageUrl($this->buildDocumentPageUrl());
@@ -205,8 +329,9 @@ class IndexController extends ControllerBase {
 	 * Set Input data to properties
 	 */
 	public function setInputvars() {
-		$this->campaignName = (null == $this->dispatcher->getParam ( "campaignName" )) ? \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN : $this->dispatcher->getParam ( "campaignName" );
-		
+        $this->setCampaignName();
+
+        // @todo refactor these codes
 		$this->languageCode = (null == $this->dispatcher->getParam ( "languageCode" )) ? (! $this->cookies->has ( 'AustinLocale' )) ? \HC\Merch\Models\Page::DEFAULT_PAGE_LANG : $this->cookies->get ( 'AustinLocale' ) : $this->dispatcher->getParam ( "languageCode" );
 		
 		if (!empty($this->dispatcher->getParam ( "curr" )) && $this->isValidCurrency($this->dispatcher->getParam ( "curr" )) == TRUE) {
