@@ -1478,8 +1478,9 @@ text-decoration:none;
 }
 
 .regions_list{
+font-family: museo_slab500;
+font-size: 16px;
 background-color: #fff;
-font-size: 16pt;
 padding: 10px;
 width: 100%;
 border-bottom:1px solid #C7CFCA;
@@ -1501,6 +1502,7 @@ padding-top:2px ;
 width:90%;
 }
 .country_name_list , .city_name_list{
+font-family: museo_slab500;
 text-align: center;
 padding-top:10px;
 padding-bottom:10px;
