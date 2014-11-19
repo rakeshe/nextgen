@@ -438,6 +438,8 @@ li{ line-height:1.167em; }
 
 #dkt_header a:hover, #footer a:hover{ text-decoration: underline; }
 
+a, a:link, .link{ color: #562d82; }
+
 .link{ cursor: pointer; padding-bottom: 0; }
 
 .logo{ padding-left: 10px; float: left; }
