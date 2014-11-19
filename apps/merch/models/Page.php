@@ -59,6 +59,7 @@ class Page extends \Phalcon\Mvc\Model {
     
     public function setPageUrl($url) {
     	$this->setPageUrl = $url;
+        return $this;
     }
 
     public function initDocNames() {
@@ -402,7 +403,7 @@ class Page extends \Phalcon\Mvc\Model {
         
     }
 
-    public function dumpResult($var, $foo) {
+    public function varDumpResult($var, $foo) {
         
     }
 
@@ -424,6 +425,7 @@ class Page extends \Phalcon\Mvc\Model {
     public function setCampaignName($campaignName)
     {
         $this->campaignName = $campaignName;
+        return $this;
     }
 
     /**
@@ -440,6 +442,7 @@ class Page extends \Phalcon\Mvc\Model {
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+        return $this;
     }
 
     /**
@@ -465,6 +468,7 @@ class Page extends \Phalcon\Mvc\Model {
     public function setLayout($layout)
     {
         $this->layout = $layout;
+        return $this;
     }
 
     /**
