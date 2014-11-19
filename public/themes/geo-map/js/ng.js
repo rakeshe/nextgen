@@ -695,7 +695,7 @@ var nextgen = {
 					if (def == true) {
 						if (index == 'tier_1') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-								//$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 							}
 						}
 					} else {						
@@ -716,7 +716,7 @@ var nextgen = {
 						if (index == 'tier_2') {								
 							if (tire_2_key < 2) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-									//$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 								}
 							}
 							tire_2_key++;
@@ -724,7 +724,7 @@ var nextgen = {
 					
 						if (index == 'tier_3') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-								//$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 							}
 						}
 					}
