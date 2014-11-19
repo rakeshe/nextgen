@@ -14,6 +14,7 @@
     	<div id="mobileTabs"></div>
 		<div class="display_mobile_regions" class="col-xs-11 col-sm-11"></div>
     </div>
+    <div class="mobile-platinum-card"></div>
 	 
     <!-- /Mobile region tabs -->
  

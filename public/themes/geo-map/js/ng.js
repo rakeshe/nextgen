@@ -678,7 +678,7 @@ var nextgen = {
 				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
 			}
 			var tire_2_key = 0, tire_1_key = 0;
-			$.each(this.dataP, function(index, value) {				
+			$.each(this.dataP, function(index, value) {
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
 						if (index == 'tier_1') {
@@ -691,7 +691,9 @@ var nextgen = {
 						if (index == 'tier_1') {
 							if (tire_1_key < 1) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-									$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
+									//$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
+									//$('.mobile-platinum-card').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
+									
 								}
 							}
 							tire_1_key++;
@@ -715,8 +717,7 @@ var nextgen = {
 			});			
 		},
 		
-		'PlatinumCard' : function(obj){
-			console.log(obj);
+		'PlatinumCard' : function(obj){			
 			var html = '';
 				html += '<div class="Bestdeals">';
 				html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
@@ -757,6 +758,36 @@ var nextgen = {
 				html += '</div>';
 			return html;
 		} ,
+		'platinumCardMobile' : function(obj) {
+			var html = '';
+				html += '<div class="hotel_mobile_platinum_cards col-xs-11  col-sm-11 col-md-11 col-lg-8">';
+				html += '<div class="Bestdeals">';
+				html += '<div class="platinum_card_images" id="hotel_image">';
+				html += '<img height="212" width="400" id="image_gold" class="img-responsive" alt="" src="HotelClub   world-is-on-sale-sale_files/best.png">';
+				html += '</div>';
+				html += '<div class="deal_card_images" id="deal_images">';
+				html += '<img height="74" width="67" id="image_gold" class="img-responsive" alt="" src="HotelClub   world-is-on-sale-sale_files/Bestdeals.png">';
+				html += '</div>';
+				html += '<div class="clearfix col-xs-12" id="hotel_content">';
+				html += '<div class="hotel_cards_heading hidden-xs">';
+				html += '<div class="hotel_platinum_name "><a>Secrets The Vine Cancun - Adults Only ...</a>';
+				html += '</div>';
+				html += '<div class="platinum_hotel_city">Mexico</div>';
+				html += '<div class="gold_hotel_review">';
+				html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="http://www.tnetnoc.com/siteImages/ORB/icons/stars/star5/medium/star5-1.png">';
+				html += '</div>';
+		        html += '</div></div>';
+				html += '<div class="saveBookInfo col-xs-4">Save';
+		        html += '<span class="percentage hc-percentage">0%</span>';
+		        html += '<div class="clearfix "></div>';
+		        html += '</div>';
+		        html += '<div class="btn platinum_book">';
+		        html += '<a class="ht-book">Book</a>';
+		        html += '</div>';
+		        html += '</div>';
+		        html += '</div>';
+	        return html;
+		},
 		//Display hotel card
 		'displayHotels' : function(obj) {					
 			
