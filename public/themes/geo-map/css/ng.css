@@ -106,15 +106,14 @@
 @media(max-width:767px){.container{ padding:0;}.row{margin:0px !important;} #hotel_content{ margin:0px !important; padding-left: 10px !important;} .hotel_name{font-size:9pt;color:#000;} .hotel_review{float:left;}.hotel_details{padding-top: 0px !important;} .percentage{font-size:18px !important;} .hotel_cards{height:128px !important;}
 #image_hotel{ height:120px !important;} .world_best_deals ,.hotel_all_search{font-size:9pt;} }
 @media(min-width:768px){.container {width: 750px;} #hotel_content{ margin-left:1% !important; } #image_hotel{ height:114px !important;}
-.display_regions{ width:26% !important; z-index: 999 !important; }  }
+.display_regions{ width:21.4% !important; z-index: 999 !important; } #canvas {width:862px !important;}.tab_divider{width:95% !important;} }
 @media(min-width:992px){.container {width: 980px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;} #vertical-scrollbar-demo {
 	height: 305px;
 	width: 200px;
 }}
 @media(min-width:1200px){.container {width: 1100px;} .col-lg-5{width:47.667%;min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}
 .display_regions{ width:17% !important; z-index: 999 !important;#vertical-scrollbar-demo {
-	height: 305px;
-	width: 200px;}.regions_scroll{ width:1189px;} }
+	height: 305px;width: 200px;}}
 }
 
 
@@ -349,6 +348,9 @@ and (max-device-width : 767px) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
+#canvas {
+width:862px !important;
+}
 	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
 		background-color:red !important;
 		color:#fff;
