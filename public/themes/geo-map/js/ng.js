@@ -797,7 +797,7 @@ var nextgen = {
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
-		        html += '<a class="ht-book">'+trans['book']+'</a>';
+		        html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 		        html += '</div>';
 		        html += '</div>';
 		        html += '</div>';
@@ -1025,7 +1025,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 				
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><a onclick="history.go(-1);"> <h4><span class="glyphicon glyphicon-chevron-left"></span>'+ regoinName +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
@@ -1078,7 +1078,7 @@ var nextgen = {
 				if (index == 'name') heading = value;				
 				
 				if (heading != false && headingEn != false && flag == false) {							
-					html += '<div data-h-name="'+ headingEn +'"><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><a onclick="history.go(-1);" ><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ heading +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
