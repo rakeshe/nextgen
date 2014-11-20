@@ -78,6 +78,7 @@ class Page extends \Phalcon\Mvc\Model
             ) . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName  = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
         $this->menuDocName  = "merch:menu:" . md5('site-menu');
+        $this->urlDocName = "merch:deal:" . md5($this->setPageUrl);
     }
 
     protected function loadCouchAppData()
@@ -114,6 +115,7 @@ class Page extends \Phalcon\Mvc\Model
         try {
             $Couch             = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $this->pageUrlData = $Couch->get("merch:deal:" . md5(trim($this->setPageUrl)));
+//            $this->pageUrlData = $Couch->get($this->urlDocName);
             //echo $this->setPageUrl . '****'. md5('world-is-on-sale-sale/europe--uae') . '****'.md5($this->setPageUrl);
             // print_r($this->pageUrlData);
             //exit;
@@ -477,12 +479,12 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function setCampaignName($campaignName = null)
     {
-        if (null === $campaignName) {
+        $campaignName = null === $campaignName ? $this->campaignName : $campaignName;
+        $this->campaignName = $campaignName;
+        if (null ===  $this->campaignName) {
             // Then get default
             $this->setupDefaultsFromAppDoc();
-            $campaignName = !empty($this->appData['default_campaign']['name']) ? $this->appData['default_campaign']['name'] : self::DEFAULT_PAGE_CAMPAIGN;
         }
-        $this->campaignName = $campaignName;
         return $this;
     }
 
@@ -509,6 +511,9 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getCity()
     {
+        if(null === $this->city){
+            $this->setCity();
+        }
         return $this->city;
     }
 
@@ -516,9 +521,13 @@ class Page extends \Phalcon\Mvc\Model
      * @param $city
      * @return $this
      */
-    public function setCity($city)
+    public function setCity($city = null)
     {
+        $city = null === $city ? $this->city : $city;
         $this->city = $city;
+        if(null === $this->city){
+            $this->setupDefaultsFromAppDoc();
+        }
         return $this;
     }
 
@@ -527,15 +536,22 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getCountry()
     {
+        if(null === $this->country){
+            $this->setCountry();
+        }
         return $this->country;
     }
 
     /**
      * @param mixed $country
      */
-    public function setCountry($country)
+    public function setCountry($country = null)
     {
+        $country = null === $country ? $this->country : $country;
         $this->country = $country;
+        if(null === $this->country){
+            $this->setupDefaultsFromAppDoc();
+        }
         return $this;
     }
 
@@ -544,15 +560,22 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getCountryCode()
     {
+        if(null === $this->countryCode){
+            $this->setCountryCode();
+        }
         return $this->countryCode;
     }
 
     /**
      * @param mixed $countryCode
      */
-    public function setCountryCode($countryCode)
+    public function setCountryCode($countryCode = null)
     {
+        $countryCode = null === $countryCode ? $this->countryCode : $countryCode;
         $this->countryCode = $countryCode;
+        if(null === $this->countryCode){
+            $this->setupDefaultsFromAppDoc();
+        }
         return $this;
     }
 
@@ -563,15 +586,21 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getCurrency()
     {
+        if(null === $this->currency){}
+        $this->setCurrency();
         return $this->currency;
     }
 
     /**
      * @param mixed $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency = null)
     {
+        $currency = null === $currency ? $this->currency : $currency;
         $this->currency = $currency;
+        if(null === $this->currency){
+            $this->setupDefaultsFromAppDoc();
+        }
         return $this;
     }
 
@@ -580,15 +609,22 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getLanguageCode()
     {
+        if(null == $this->languageCode){
+            $this->setLanguageCode();
+        }
         return $this->languageCode;
     }
 
     /**
      * @param mixed $languageCode
      */
-    public function setLanguageCode($languageCode)
+    public function setLanguageCode($languageCode = null)
     {
+        $languageCode = null === $languageCode ? $this->languageCode : $languageCode;
         $this->languageCode = $languageCode;
+        if(null === $this->languageCode){
+            $this->setupDefaultsFromAppDoc();
+        }
         return $this;
     }
 
@@ -614,6 +650,9 @@ class Page extends \Phalcon\Mvc\Model
      */
     public function getRegion()
     {
+        if(null === $this->region){
+            $this->setRegion();
+        }
         return $this->region;
     }
 
@@ -622,9 +661,13 @@ class Page extends \Phalcon\Mvc\Model
      * @param String $region
      * @return \HC\Merch\Models\Page
      */
-    public function setRegion($region)
+    public function setRegion($region = null)
     {
+        $region = null === $region ? $this->region : $region ;
         $this->region = $region;
+//        if(null === $this->region){
+//            $this->setupDefaultsFromAppDoc();
+//        }
         return $this;
     }
 
@@ -668,11 +711,8 @@ class Page extends \Phalcon\Mvc\Model
                     ->setLanguageCode($campaign['locale'])
                     ->setLayout($campaign['layout'])
                     ->setRegion($campaign['region']);
-
             }
         }
-
-
     }
 
 }
