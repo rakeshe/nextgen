@@ -1,3 +1,4 @@
+<div class="container">
 {{ partial('../../../common/views/header/header') }}
 <!-- START VIEW PARTIAL: banner.phtml -->
 <div id="banner" class="subContainer">
@@ -10,3 +11,4 @@
 
 </div>
 {{ partial('../../../common/views/footer/footer') }}
+</div>
