@@ -38,7 +38,7 @@
 	.hotel_city { color:#303030; font-size:10pt;font-weight:bold; /*margin-left:-56px;*/ }
 	.hotel_review { float:right; margin-top:0px;}
 	.platinum_review { float:left; margin-top:0px;}
-	.hotel_cards { border: 4px solid #999;
+	.hotel_cards { border: 2px solid #ddd;
     margin-bottom: 20px;
     margin-left: 12px;
 	height:151px;
