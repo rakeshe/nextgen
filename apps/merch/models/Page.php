@@ -73,12 +73,11 @@ class Page extends \Phalcon\Mvc\Model
     public function initDocNames()
     {
         //initialize couchbase document name
-        $this->dealsDocName = "merch:deal:" . md5(
-                strtolower($this->campaignName) . '/'
-            ) . ":" . $this->languageCode; //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
+        $this->dealsDocName = "merch:deals:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode;
+        //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName  = "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
         $this->menuDocName  = "merch:menu:" . md5('site-menu');
-        $this->urlDocName = "merch:deal:" . md5($this->setPageUrl);
+        $this->urlDocName = "merch:deals:" . md5($this->setPageUrl);
     }
 
     protected function loadCouchAppData()
@@ -114,7 +113,7 @@ class Page extends \Phalcon\Mvc\Model
 
         try {
             $Couch             = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $this->pageUrlData = $Couch->get("merch:deal:" . md5(trim($this->setPageUrl)));
+            $this->pageUrlData = $Couch->get("merch:deals:" . md5(trim($this->setPageUrl)));
 //            $this->pageUrlData = $Couch->get($this->urlDocName);
             //echo $this->setPageUrl . '****'. md5('world-is-on-sale-sale/europe--uae') . '****'.md5($this->setPageUrl);
             // print_r($this->pageUrlData);
@@ -386,7 +385,7 @@ class Page extends \Phalcon\Mvc\Model
     public function isValidDefaultCampaign()
     {
 
-        $this->dealsDocName = "merch:deal:" . md5(
+        $this->dealsDocName = "merch:deals:" . md5(
                 strtolower(self::DEFAULT_PAGE_CAMPAIGN) . '/'
             ) . ":" . self::DEFAULT_PAGE_LANG;
         $this->loadCouchDeals();

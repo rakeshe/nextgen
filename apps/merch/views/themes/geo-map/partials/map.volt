@@ -18,6 +18,7 @@
 		<div class="world_north_eastern">North Eastern Asia</div>
 		<div class="world_south_eastern">South Eastern Asia</div>
 	</div>
+	<div class="banner_default_map"><img src="/themes/common/img/ajax-loader-grey.gif""/></div>
 	{# <div class="hotel_platinum_cards visible-lg visible-md col-md-8  col-lg-8" style="display:none;"></div> #}
 		<div id="canvas">
 		<div id="regions_div" class="col-sm-8  col-lg-8 banner_world_map"></div>

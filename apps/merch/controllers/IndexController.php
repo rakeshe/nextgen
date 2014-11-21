@@ -447,10 +447,8 @@ class IndexController extends ControllerBase {
         }
     }
 
-    private function buildTemplateVars() {
+    private function builTemplateVarsCommon(){
         return array (
-            'data' => $this->couchData,
-            'urlPData' => $this->couchPageData,
             'theme' => $this->getPageLayout (),
             'uriBase' => $this->uriBase,
             'uriFull' => $this->uriFull,
@@ -464,9 +462,23 @@ class IndexController extends ControllerBase {
             'menuItemsRightSite' => $this->menu->rightSite,
             'menuItemsAccount' => $this->menu->account,
             "t" => $this->translation->getTranslation (),
+            'DDMenue' => $this->DDMenue,
+        );
+    }
+
+    private function buildTemplateVars404(){
+        $templateVars = [
+            'data' => $this->dataModel->appData['campaigns']
+        ];
+        return array_merge($this->builTemplateVarsCommon(), $templateVars);
+
+    }
+    private function buildTemplateVars() {
+        $templateVars =  array (
+            'data' => $this->couchData,
+            'urlPData' => $this->couchPageData,
             'banners' => $this->dataModel->getBanner ( $this->campaignName ),
             "campaignName" => $this->campaignName,
-            'DDMenue' => $this->DDMenue,
             'campaignData' => json_encode($this->campaignData),
             "hotelDetails" => $this->dataModel->loadHotelData (),
             "hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
@@ -474,6 +486,7 @@ class IndexController extends ControllerBase {
             "country" => $this->country,
             "city" => $this->city,
         );
+        return array_merge($this->builTemplateVarsCommon(), $templateVars);
     }
 
     protected function getCurrencyListByGroup(){
@@ -527,7 +540,7 @@ class IndexController extends ControllerBase {
 
     public function show404Action() {
         //echo ('testing hhere');
-        $this->view->setVars ( $this->buildTemplateVars () );
+        $this->view->setVars ($this->buildTemplateVars404());
         $this->view->pick ( $this->getPageLayout() .'/index/404' );
     }
 

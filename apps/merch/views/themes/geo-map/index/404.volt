@@ -1,18 +1,16 @@
 {{ partial('../../../common/views/header/header') }}
-<div align="center" id="fourohfour">
-    <div class="sub-content">
-        <strong>ERROR 404</strong>
+    <div class="sub-content subContainer">
+        <h1>Oops. The page you requested is no longer available or our promotion has expired.</h1>
+        <h2>Checkout our current promotions</h2>
+        {%  for campaign in data %}
+            <div>
+
+        <a href="/merch/{{ campaign['locale'] }}/{{ campaign['url'] }}">
+            <img src="{{ campaign['thumbnail'] }}" />
+        </a>
+        </div>
+        {% endfor %}
         <br />
         <br />
-        You have tried to access a page which does not exist or has been moved.
-        <br />
-        <br />
-        Please click the links at the top navigation bar to
-        navigate to other parts of the site, or
-        if you wish to contact us, there is information in the About page.
-        <br />
-        <br />
-        [ERROR]
     </div>
-</div>
 {{ partial('../../../common/views/footer/footer') }}
