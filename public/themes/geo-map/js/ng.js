@@ -1492,19 +1492,18 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2; 
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append( 
-			"<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to World View</a><div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>"); 		
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3; 
 		$( "#banner_val" ).empty();
 		var regionName = nextgen.selRegion.replace("-", " ");
-		$( "#banner_val" ).append( "<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /></a><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1; 
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append( "<div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
+		//$( "#banner_val" ).append( "<div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" ); 
 	}
 }//changeResetToRegion
 
