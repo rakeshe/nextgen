@@ -2,3 +2,4 @@
 workspace.xml
 data/logs
 data/volt
+data/session_store
