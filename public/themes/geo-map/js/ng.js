@@ -691,18 +691,19 @@ var nextgen = {
 			}
 			var tire_2_key = 0, tire_1_key = 0;
 			$.each(this.dataP, function(index, value) {
+                var column = 1;
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
-						if (index == 'tier_1') {
-							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
-							}
-						}
-					} else {						
-						
-						if (index == 'tier_1') {
-							if (tire_1_key < 1) {
-								
+                        if (index == 'tier_1') {
+                            if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                $('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+                            }
+                        }
+                    } else {
+                        nextgen.data['deals'][v]['columnOffset'] = column;
+                        if (index == 'tier_1') {
+                            if (tire_1_key < 1) {
+
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
 									if (device == 'mobile') 
 										$('.mobile-platinum-card').append(nextgen.platinumCardMobile(nextgen.data['deals'][v])).show();
@@ -716,6 +717,7 @@ var nextgen = {
 						if (index == 'tier_2') {								
 							if (tire_2_key < 2) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                    nextgen.data['deals'][v]['tier'] = "2";
 									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 								}
 							}
@@ -727,7 +729,10 @@ var nextgen = {
 								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 							}
 						}
-					}
+                        column++;
+                        column = column > 2 ? 1 : column;
+
+                    }
 				});					
 			});			
 		},
@@ -808,7 +813,7 @@ var nextgen = {
 			
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards col-xs-11  col-sm-11 col-md-11 col-lg-5">';
+				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
 				html += '<span class="hotel_name visible-lg col-lg-10"><a>';
 				if (obj['hotel_name'].length > 37)
