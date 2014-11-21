@@ -1761,4 +1761,23 @@ position: relative;
     right: 73px;
     top: 1px;
 	}
-}
+    h1 {
+        font-family: "museo_slab500";
+        font-size: 25px;
+        letter-spacing: -1px;
+        color: #e21e28 ;
+        font-weight:normal;
+        text-decoration: none;
+        margin: 30px 0px 5px 15px;
+    }
+
+    h2, h3 {
+        font-family: "museo_slab500";
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        color: #e21e28 ;
+        font-variant: normal;
+        text-decoration: none;
+        margin: 20px 0px 5px 15px;
+    }
+
