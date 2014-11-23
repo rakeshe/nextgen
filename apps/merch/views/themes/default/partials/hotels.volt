@@ -96,7 +96,7 @@ campName = '{{ campaignName }}';
                                 <div class="members-extras-block">
                                     <!-- The Big Red Plus Sign -->
                                     <img class="members-extras-logo img-responsive" alt="Member Rewards"
-                         src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">
+                         src="/themes/common/img/icon-member-plus.png">
                                         <div class="font_red member-extras-text">{{ t._('mem_extras')}}</div>
                                 </div>
                                 {% for key, offer in hotelDetails[index]['offer_moo_t'] %}
