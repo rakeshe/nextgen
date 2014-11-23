@@ -821,9 +821,10 @@ var nextgen = {
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
-				html += '<span class="hotel_name visible-lg col-lg-10"><a>';
-				if (obj['hotel_name'].length > 44)
-					html += obj['hotel_name'].substring(0, 43) + '... ';
+                hotelNameClass = obj['hotel_name'].length + obj["country_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
+				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a>';
+				if (obj['hotel_name'].length  > 60)
+					html += obj['hotel_name'].substring(0, 58) + '... ';
 				else
 					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
@@ -854,19 +855,19 @@ var nextgen = {
 				//Mobile version
 				html +='<div class="visible-xs">';
 						html += '<div><a class="hotel_name col-xs-7">';
-				if (obj['hotel_name'].length > 18)
-					html += obj['hotel_name'].substring(0, 17) + '...';
+				if (obj['hotel_name'].length > 28)
+					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
 					html += obj['hotel_name'];
 					html += '</a>'+ obj["country_name"] +'</div>';
 					//html += '<div class="hotel_city col-xs-4 ">'+ obj["country_name"] +'</div>';
 					html += '<div class="clearfix hotel_review col-xs-10"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
 					html += '<br/>';
-					html += '<div class="col-xs-10 member_rewards"> <img class="members-extras-logo col-xs-1 img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png"> <div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
+					html += '<div class="col-xs-10 member_rewards"><div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
 					//html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
 					html +='</div>';
 				// members-extras-block
-                if (obj['offer_moo'] !== null) {
+                if (obj['offer_moo'] !== '') {
                     html += '<div class="hotel_member_extras">' + trans['mem_extras'] + '</div>';
                     html += '<div class="font_red member-extras-text">';
                     //$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
@@ -874,7 +875,7 @@ var nextgen = {
                         html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">';
                         //});
                         if (obj['offer_moo'] != '' && obj['offer_moo'] != null)
-                            html += +obj['offer_moo'] + '</div>';
+                            html += obj['offer_moo'] + '</div>';
                         else
                             html += ' </div>';
                     } else {
@@ -889,9 +890,9 @@ var nextgen = {
                 }
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2">';
+				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2"><div class="discount-block">';
 				html += trans['Save']+'<br>';
-				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
