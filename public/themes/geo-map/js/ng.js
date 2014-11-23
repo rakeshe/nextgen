@@ -667,7 +667,7 @@ var nextgen = {
 		'getRegions' : '',
 		'getCountrys' : '',
 		'getCities' : '',
-		'getLavel' : 1,		
+		'getLavel' : 1,
 		//send ajax request
 		'sendRequest' : function(url, data) {
 			return $.ajax({
@@ -678,7 +678,9 @@ var nextgen = {
 				data : data
 			});
 		},
-		'drawCards' : function(def) {		
+		'drawCards' : function(def) {
+            isLoggedIn = $.cookie('mid') !== undefined ? true: false;
+            mId = $.cookie('mid');
 			$('.display-cards').html('');
 			$('.display-cards-gold').html('');
 			$('.mobile-platinum-card').html('');
@@ -696,6 +698,7 @@ var nextgen = {
 					if (def == true) {
                         if (index == 'tier_1') {
                             if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                nextgen.data['deals'][v].borderStyle = ' platinum-border';
                                 $('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
                             }
                         }
@@ -756,15 +759,18 @@ var nextgen = {
 				html += '</div>';
 				html += '<div class="platinum_review col-md-2 col-lg-2">';
 				html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
-				html += '<img src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png" alt="Member Rewards" class="hidden-xs members-extras-logo img-responsive">';
+				html += '<div class="hotel_member_extras">' + trans['mem_extras'] + '</div>';
 				html += '<div class="font_red member-extras-text">';
-				html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
-				html += '<div style="display: none;" class="sign-out-member-offer">';
-				html += '<span>';
-				html += '<p>Freebies Included</p>';
-				html += '<p>Find out more &gt;&gt;&gt;&gt;</p>';
-				html += '</span>';
-				html += '</div>';
+                if(isLoggedIn){
+                    html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+                } else {
+
+                    html += '<div style="display:;" class="sign-out-member-offer">';
+                    html += '<span>';
+                    html += '<p>' + trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] +'</p>';
+                    html += '</span>';
+                    html += '</div>';
+                }
 				html += '</div>';
 				html += '</div>';
 				html += '<div class="saveBookInfo platinum_offer col-md-2 col-lg-2">Save';
@@ -813,24 +819,24 @@ var nextgen = {
 			
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5">';
+				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
 				html += '<span class="hotel_name visible-lg col-lg-10"><a>';
-				if (obj['hotel_name'].length > 37)
-					html += obj['hotel_name'].substring(0, 36) + '...';
+				if (obj['hotel_name'].length > 44)
+					html += obj['hotel_name'].substring(0, 43) + '... ';
 				else
-					html += obj['hotel_name']+',';
+					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
 					// Tablet version of Hotel name Landscape view
 					html += '<span class="hotel_name visible-md col-md-10"><a>';
 				if (obj['hotel_name'].length > 27)
 					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
-					html += obj['hotel_name']+',';
+					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
 					// Tablet version of Hotel name Portrait view
 					html += '<span class="hotel_name visible-sm col-sm-10"><a>';
-					html += obj['hotel_name']+',';
+					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
 					//html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
 					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
@@ -860,23 +866,27 @@ var nextgen = {
 					//html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
 					html +='</div>';
 				// members-extras-block
-				
-				html += '<img class="hidden-xs members-extras-logo img-responsive" alt="Member Rewards" src="//www.hotelclub.com/Ad-unit/images/member-rewards_20x20.png">';
-				html += '<div class="font_red member-extras-text">';
-				//$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
-				html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">';
-				//});
-				if(obj['offer_moo'] !=''&&obj['offer_moo'] != null)
-				html += +obj['offer_moo']+'</div>';
-				else 
-				html += ' </div>';
-				html += '<div class="sign-out-member-offer" style="display: none;">';
-				html += '<span>';
-				//Show_JoinHotelClub_Popup()
-				html += '<p>'+trans['mem_inactive_line1']+'</p>';
-				html += '<p>'+trans['mem_inactive_line2']+'&gt;&gt;</p>';
-				html += '</span>';
-				html += '</div>';
+                if (obj['offer_moo'] !== null) {
+                    html += '<div class="hotel_member_extras">' + trans['mem_extras'] + '</div>';
+                    html += '<div class="font_red member-extras-text">';
+                    //$.each(deals[index]['offer_moo_t'], function(mkey, mval) {
+                    if (isLoggedIn) {
+                        html += '<div class="hidden-xs sign-in-member-offer offer-for-existing-members font_red">';
+                        //});
+                        if (obj['offer_moo'] != '' && obj['offer_moo'] != null)
+                            html += +obj['offer_moo'] + '</div>';
+                        else
+                            html += ' </div>';
+                    } else {
+
+                        html += '<div class="sign-out-member-offer">';
+                        html += '<span>';
+                        //Show_JoinHotelClub_Popup()
+                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=">' + trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] + '</a></p>';
+                        html += '</span>';
+                        html += '</div>';
+                    }
+                }
 				html += '</div>';
 				html += '</div>';
 				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2">';
@@ -1175,7 +1185,8 @@ var imageHelper = {
 		return this.CLASSIC_HOTEL_CONTENT_URI + 'mp_v1_' + oneg + '.jpg';
 	},
 	'getStarUri' : function(star) {
-		return this.ORBITZ_HOTEL_SITE_IMAGES_URI + 'ORB/icons/stars/star' +star+ '/medium/star' +star+ '-1.png';
+		//return this.ORBITZ_HOTEL_SITE_IMAGES_URI + 'ORB/icons/stars/star' +star+ '/medium/star' +star+ '-1.png';
+		return '/themes/common/img/star' +star+ '-50.png';
 	}
 }
 //Hotel booking
