@@ -1,15 +1,24 @@
 <!-- lang -->
 <div class="col-md-offset-6">
     <ul class="nav navbar-nav navbar-right right_menu">
-	
+
 	{% if not empty(menuItemsRightSite) %}
 		{% for label,link in menuItemsRightSite %}
-                    <li class="dropdown">
-                        <a href="{{ link }}" class="link">{{ t._(label) }}</a>
-                    </li>
+
+		    {% if languageCode != 'en_AU' %}
+                {% if label != 'ascott_specials' %}
+                        <li class="dropdown">
+                            <a href="{{ link }}" class="link">{{ t._(label) }}</a>
+                        </li>
+                {% endif %}
+            {% else %}
+             <li class="dropdown">
+                <a href="{{ link }}" class="link">{{ t._(label) }}</a>
+              </li>
+            {% endif %}
          {% endfor %}
-	{% endif %}        
-	{% if not empty(menuItemsLanguageOptions) %}        
+	{% endif %}
+	{% if not empty(menuItemsLanguageOptions) %}
         <li class="dropdown">
             <a href="#" id="" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode | trim] }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -20,7 +29,7 @@
                 {% endfor %}
             </ul>
         </li>
-	{% endif %}	
+	{% endif %}
 	<li>&nbsp;|</li>
 	{% if not empty(currencies) %}
         <li class="dropdown">
@@ -43,7 +52,7 @@
             </ul>
             <a href="#" id="currency-selector-menu" class="dropdown-toggle" data-toggle="dropdown"> {{ currencyCode }} <b class="caret"></b></a>
         </li>
-	{% endif %}	
+	{% endif %}
     </ul>
 </div>
 
