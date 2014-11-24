@@ -709,7 +709,7 @@ and (max-device-width : 767px)
 }
 /* reponsive design - ends */
 
-body{ font-size:12px; line-height:1.167em; padding:0px; margin:0px; }
+body{ font-size:12px; line-height:1.167em; padding:0px; margin:0px;float:left; }
 /* .container{ width:1024px !important;} */
 
     ul{ list-style:none; margin:0; padding:0; }
@@ -1475,9 +1475,9 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 .ui-widget-content{
    /*background: #EFEDF3 !important;
    border: 1px solid #4E4E51 !important;*/
-   background: #FFFFFF !important;
+   background: transparent !important;
    border: none !important;
-   box-shadow: 5px 5px 5px #888888;
+   /*box-shadow: 5px 5px 5px #888888;*/
 }
 #regionTabs{
 margin-left:15px;
@@ -2081,3 +2081,127 @@ position: absolute;
     .tier-3 .hotel_name, .tier-4.hotel_name{
         padding-top: 4px;
     }
+/* Dialog box */
+.dialogWrapper .dialogTop {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-v.png") repeat-x scroll 0 -8px rgba(0, 0, 0, 0);
+}
+.dialogWrapper .dialogTop, .dialogWrapper .dialogBottom, .dialogWrapper .dialogBottomCompact {
+    height: 8px;
+    margin: 0 8px;
+    position: relative;
+}
+.dialogWrapper .dialogMain {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-h.png") repeat-y scroll 0 0 rgba(0, 0, 0, 0);
+    padding-left: 8px;
+}
+.dialogWrapper .dialogMainRight {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-h.png") repeat-y scroll right center rgba(0, 0, 0, 0);
+    padding-right: 8px;
+}
+.dialogWrapper .dialogMainContent {
+    background-color: #fff;
+    border-color: #999;
+}
+.dialogWrapper .dialogMainContent {
+    border: 2px solid;
+}
+.miniHotelForm .dialogMainContent {
+    width: 29em;
+}
+.dialogWrapper .dialogMainContent a.dialogTopCloseLink, .dialogWrapper .dialogMainContent a.dialogTopCloseLink:hover, .dialogWrapper .dialogMainContent a.dialogTopCloseLink:visited {
+    color: #562d82;
+}
+.dialogWrapper .dialogMainContent a.dialogTopCloseLink {
+    clear: right;
+    float: right;
+    font-size: 0.833em;
+    font-weight: normal;
+    padding: 1em 1em 0;
+}
+.dialogWrapper .dialogMainContent .dialogTitle {
+    background-color: #f4f4f5;
+    color: #000;
+}
+.dialogWrapper .dialogMainContent .dialogTitle {
+    float: none;
+    margin: 0;
+    padding: 1em 4em 1em 1em;
+}
+.dialogWrapper .dialogMainInfo {
+    clear: both;
+    padding: 1em 1.333em;
+}
+
+.dialogWrapper .dialogMainContent a.dialogBottomCloseLink {
+    bottom: 2em;
+    float: right;
+    font-size: 0.833em;
+    font-weight: normal;
+    position: relative;
+    right: 1.333em;
+}
+.dialogWrapper .dialogBottom, .dialogWrapper .dialogBottomCompact {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-v.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+}
+.dialogWrapper .dialogTop, .dialogWrapper .dialogBottom, .dialogWrapper .dialogBottomCompact {
+    height: 8px;
+    margin: 0 8px;
+    position: relative;
+}
+.dialogWrapper .dialogBottomLeft {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-corners.png") no-repeat scroll -8px 0 rgba(0, 0, 0, 0);
+    height: 8px;
+    left: -8px;
+    position: absolute;
+    top: 0;
+    width: 8px;
+}
+
+.dialogWrapper .dialogBottomRight {
+    background-image: url("http://www.tnetnoc.com/static/28.123/image/global/dialog-shadow-corners.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 8px;
+    position: absolute;
+    right: -8px;
+    top: 0;
+    width: 8px;
+}
+.dialogWrapper .dialogTopRight, .dialogWrapper .dialogBottomRight {
+    margin: 0;
+    padding: 0;
+}
+.dialogWrapper.microcontent .microcontentBeakLeft {
+    background-image: url("/themes/common/img/dialog-beak-l.png");
+    margin-left: -2px;
+	 height: 40px;
+    width: 35px;
+	position: absolute;
+}
+.dialogTitle p { color:#000 !important; font-size:14px !important; font-weight:bold;}
+
+
+.searchFormForm .startDate, .searchFormForm .endDate{
+    display: inline-block;
+    margin-bottom: 12px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+.searchFormForm .startDate, .searchFormForm  .endDate {
+    display: inline-block;
+    margin-bottom: 12px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+.searchFormForm .textInput, .searchFormForm .textArea, .searchFormForm .radio, .searchFormForm .checkbox, .searchFormForm .select {
+    font-size: 12px;
+    line-height: 1em;
+    margin-bottom: 12px;
+	}	
+.searchFormForm .searchForm.airSearchForm .departDate.inlineInputGroup .select, .searchFormForm .searchForm .dates .durationLabel {
+    padding-bottom: 12px;
+}
+.searchFormForm .inlineInputGroup .textInput, .searchFormForm .inlineInputGroup .textArea, .searchFormForm .inlineInputGroup .radio, .searchFormForm .inlineInputGroup .checkbox, .searchFormForm .inlineInputGroup .select {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+/* Dialog Box Ends */		
