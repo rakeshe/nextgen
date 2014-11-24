@@ -747,7 +747,7 @@ var nextgen = {
                         if (index == 'tier_1') {
                             if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
                                 nextgen.data['deals'][v].borderStyle = ' platinum-border';
-                                $('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+                                //$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
                             }
                         }
                     } else {
