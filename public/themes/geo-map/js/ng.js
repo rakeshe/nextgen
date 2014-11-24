@@ -720,7 +720,6 @@ var nextgen = {
             });
         },
 		'drawCards' : function(def) {
-		'drawCards' : function(def) {
             isLoggedIn = $.cookie('mid') !== undefined ? true: false;
             mId = $.cookie('mid');
 			$('.display-cards').html('');
@@ -775,6 +774,9 @@ var nextgen = {
 
 							}
 						}*/
+
+                        column++;
+                        column = column > 2 ? 1 : column;
 					}
 				});
 			});
@@ -785,9 +787,7 @@ var nextgen = {
             }
             nextgen.isPagination = true;
             nextgen.displayPaginationCards();
-						}
-                        column++;
-                        column = column > 2 ? 1 : column;
+
 
 		},
 
