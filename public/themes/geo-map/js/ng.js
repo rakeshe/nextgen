@@ -711,9 +711,13 @@ var nextgen = {
                     }
                 });
             });
+
+            // Initialize lazy load,
+            // Remove the class "lazy" for double initialization for loaded images
+
             $("img.lazy").lazyload({
                 effect : "fadeIn"
-            });
+            }).removeClass("lazy");
         },
 		'drawCards' : function(def) {
 			$('.display-cards').html('');
