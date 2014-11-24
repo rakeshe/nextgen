@@ -39,9 +39,14 @@ class Module {
        //set the couch class to di      
        $di->set('Couch', function() use($di){
            $conf = $di->get('config')->couchbase;
-           $obj = new \HC\Library\Couchbase($conf['bucket'], $conf['host'], $conf['port'], $conf['user'], $conf['password']);
-           $obj->connect();
-          return $obj->couchbase;
+               return new \Couchbase(
+                   $conf->host . ':' . $conf->port,
+                   '',//$config->couchbase->user,
+                   $conf->password,
+                   $conf->bucket);
+//           $obj = new \HC\Library\Couchbase($conf['bucket'], $conf['host'], $conf['port'], $conf['user'], $conf['password']);
+//           $obj->connect();
+//          return $obj->couchbase;
        });      
         
     }
