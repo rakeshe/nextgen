@@ -3,7 +3,7 @@
 	#banner_image { margin:0; padding-left:1.4%; z-index:999 !important; line-height: 0; }
 	#banner_val { position:relative; margin-bottom:-250px; z-index:999;float:right;text-align:right;margin-right:10px; margin-top:20px;width:300px;}
 	#menu_new { margin: 0; padding: 0; }
-	#menu_new li {  background-color: #e21e28;
+	/*#menu_new li {  background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
     display: block;
@@ -14,12 +14,24 @@
     margin: 0;
     padding: 20px 10px 10px;
     text-align: center;
-    color:#FFF !important;
-    width: 20%;}
-    #menu_new li a{color:#FFF !important;}
+    width: 20%;} */
+    #menu_new li a{background-color: #e21e28;
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    display: block;
+    float: left;
+    font-family: museo_slab500;
+    font-size: 16px;
+   /* height: 48px;*/
+   color:#FFF;
+    margin: 0;
+    padding: 22px 35px;
+    text-align: center;
+   width: 20%;}
     /*#menu_new li:hover{ background-color: #FFF !important; color:#e21e28 !important;}
     #menu_new li a:hover{color:#e21e28 !important;}*/
 	#menu_new li:last-child { border-right:0px; } 
+	#menu_new li a:hover,#menu_new li a:focus{background-color: #FFF;color:#e21e28;text-decoration:none;font-size: 16px;}
 	/*#menu_new li a {  background-color: #E21E28; color:#FFFFFF; text-decoration:none; font-size:12pt;}*/
 	#hotel_card_block { height:auto; }
 	#hotel_card_search { display:block; }
