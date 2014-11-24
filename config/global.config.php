@@ -16,14 +16,15 @@ return new \Phalcon\Config(array(
     ),
     'couchbase' => array(
 //        'host'  => '127.0.1.1',
-//        'port'  => 8091,
-//        'user'  => '',
-//        'password' => ''
-        'host' => 'cache.qa.orbitz.net',
-        'port' => 8006,
-        'user' => '',
-        'password' => 'hc-cache-qa',
-        'bucket' => 'hc-cache'
+        'host'  => 'hc-rshrestha02.oww.root.lcl',
+        'port'  => 8091,
+        'user'  => '',
+        'password' => ''
+//        'host' => 'cache.qa.orbitz.net',
+//        'port' => 8006,
+//        'user' => '',
+//        'password' => 'hc-cache-qa',
+//        'bucket' => 'hc-cache'
 
     ),
     'menuItems' => array(
