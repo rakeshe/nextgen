@@ -435,13 +435,20 @@ $(document).ready(function() {
 	});
 });
 
-//hotel book
+//hotel book extend this for whole card
 $(document).on('click','.ht-book', function(e) {
 	e.preventDefault();
 	book = hotelBook.init();
 	book.onegId = $(this).data('oneg');
 	book.locale = nextgen.local;	
 	$("#check_in_dates").css("display", "block");
+});
+$(document).on('click','.hotel_cards', function(e) {
+    e.preventDefault();
+    book = hotelBook.init();
+    book.onegId = $(this).data('oneg');
+    book.locale = nextgen.local;
+    $("#check_in_dates").css("display", "block");
 });
 
 /**/
@@ -819,7 +826,7 @@ var nextgen = {
 			
 			var html = '';	
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5">';
+				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5" data-oneg="'+obj['oneg_id']+'">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
                 hotelNameClass = obj['hotel_name'].length + obj["country_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
 				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a>';

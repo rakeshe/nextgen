@@ -122,6 +122,7 @@
             overflow: hidden;
             height: 130px !important;
             width: 98%;
+            cursor: pointer;
         }
         .hotel_cards_heading { margin-left:-20px;}
         #hotel_content {
@@ -242,6 +243,7 @@
             padding:0px !important;
             /*background-image: url("../../common/img/hotel-card-mock.png") */
             overflow: hidden;
+            cursor: pointer;
         }
 
         #hotel_content {
