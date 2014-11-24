@@ -1590,7 +1590,6 @@ function zoomin() {
 	if(mh<510){
 		mw = mw+40;
 		mh = mh+40;
-		alert(mh);
 		if(options.region=='021'){ if(mh==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
