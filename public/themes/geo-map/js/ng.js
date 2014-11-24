@@ -578,9 +578,11 @@ $(document).on('click','.close_btn', function(e) {
 });
 
 $(window).scroll(function() {
-    if($(window).scrollTop() == $(document).height() - $(window).height()) {
-       nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
-       nextgen.displayPaginationCards();
+    if (nextgen.isPagination == true) {
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+            nextgen.displayPaginationCards();
+        }
     }
 });
 
@@ -679,6 +681,7 @@ var nextgen = {
         'pageNumber' : '1',
         'pageLimit' : '6',
         'paginationMode' : 'tier_3',
+        'isPagination' : false,
 		//send ajax request
 		'sendRequest' : function(url, data) {
 			return $.ajax({
@@ -690,28 +693,24 @@ var nextgen = {
 			});
 		},
         'displayPaginationCards' : function() {
-            console.log(nextgen.pageLimit +' <page limit page number>'+ nextgen.pageNumber);
            var k = 1, j = 1;
             $.each(this.dataP, function(index, value) {
-                console.log('santosh');
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
-                        if (k <= nextgen.pageLimit && j >= nextgen.pageNumber) {
-                            //console.log(v)
-                            if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-                                $('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
-                                k++;
+                        if (j >= nextgen.pageNumber) {
+                            if (k <= nextgen.pageLimit) {
+                                if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                    $('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+                                    k++;
+                                }
+                            } else {
+                                return;
                             }
-                        } else {
-
                         }
                         j++;
                     }
                 });
             });
-            console.log('i => ' + k);
-            console.log('j => ' + j);
-
         },
 		'drawCards' : function(def) {
 			$('.display-cards').html('');
@@ -728,11 +727,11 @@ var nextgen = {
 			$.each(this.dataP, function(index, value) {
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
-						if (index == 'tier_1') {
+						/*if (index == 'tier_1') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
 								//$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 							}
-						}
+						}*/
 					} else {
 
 						if (index == 'tier_1') {
@@ -757,20 +756,21 @@ var nextgen = {
 							tire_2_key++;
 						}
 
-						if (index == 'tier_3') {
+						/*if (index == 'tier_3') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
-								//$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 
 							}
-						}
+						}*/
 					}
 				});
 			});
 
-
+            //display through pagination
             if (def == true) {
                 nextgen.paginationMode = 'tier_1';
             }
+            nextgen.isPagination = true;
             nextgen.displayPaginationCards();
 		},
 
