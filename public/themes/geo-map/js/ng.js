@@ -789,7 +789,7 @@ var nextgen = {
 				html += '<div class="hotel_mobile_platinum_cards col-xs-12  col-sm-12 col-md-11 col-lg-8">';
 				html += '<div class="Bestdeals">';
 				html += '<div class="platinum_card_images" id="hotel_image">';
-				html += '<img height="212" width="400" id="image_gold" class="img-responsive" src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'">';
+				html += '<img width="100%" id="image_gold" class="img-responsive" src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'">';
 				html += '</div>';
 				html += '<div class="deal_card_images" id="deal_images">';
 				html += '<img height="74" width="67" id="image_gold" class="img-responsive" alt="" src="/themes/common/img/Bestdeals.png">';
@@ -861,7 +861,7 @@ var nextgen = {
 					html += obj['hotel_name'];
 					html += '</a>'+ obj["country_name"] +'</div>';
 					//html += '<div class="hotel_city col-xs-4 ">'+ obj["country_name"] +'</div>';
-					html += '<div class="clearfix hotel_review col-xs-10"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
+					html += '<div class="clearfix hotel_review col-xs-10 pull-right"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
 					html += '<br/>';
 					html += '<div class="col-xs-10 member_rewards"><div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
 					//html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
@@ -1041,13 +1041,13 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 				
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><a onclick="history.go(-1);"> <h4><span class="glyphicon glyphicon-chevron-left"></span>'+ regoinName +'</h4></a></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><a onclick="window.history.back();return false;"> <h4><span class="glyphicon glyphicon-chevron-left back-button pull-left"></span>'+ regoinName +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
 					html += '<button id="dLabel" class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
-					html += 'Country';
-					html += '<span class="glyphicon glyphicon-chevron-down"></span>';
+					html += '<span class="pull-left">Country</span>';
+					html += '<span class="glyphicon glyphicon-chevron-down button-down pull-right"></span>';
 					html += '</button>';
 					html += '<ul class="dropdown-menu country_name" role="menu" aria-labelledby="dLabel">';
 					
@@ -1094,13 +1094,13 @@ var nextgen = {
 				if (index == 'name') heading = value;				
 				
 				if (heading != false && headingEn != false && flag == false) {							
-					html += '<div data-h-name="'+ headingEn +'"><a onclick="history.go(-1);" ><h4><span class="glyphicon glyphicon-chevron-left"></span>'+ heading +'</h4></a></div>';
+					html += '<div data-h-name="'+ headingEn +'"><a onclick="window.history.back();return false;"><h4><span class="glyphicon glyphicon-chevron-left back-button pull-left"></span>'+ heading +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
 					html += '<div class="dropdown">';
 					html += '<button id="dLabel"  class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
-					html += 'City';
-					html += '<span class="glyphicon glyphicon-chevron-down"></span>';
+					html += '<span class="pull-left">City</span>';
+					html += '<span class="glyphicon glyphicon-chevron-down button-down pull-right"></span>';
 					html += '</button>';
 					html += '<ul class="dropdown-menu country_name" role="menu" aria-labelledby="dLabel">';
 					flag = true;
