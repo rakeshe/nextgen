@@ -711,6 +711,9 @@ var nextgen = {
                     }
                 });
             });
+            $("img.lazy").lazyload({
+                effect : "fadeIn"
+            });
         },
 		'drawCards' : function(def) {
 			$('.display-cards').html('');
@@ -874,7 +877,7 @@ var nextgen = {
 					html += '</div>';
 					html += '<div class="hotel_details">';
 					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4">';
-					html += '	<img src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="img-responsive" id="image_hotel" alt="" />';
+					html += '	<img data-original="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="lazy img-responsive" id="image_hotel" alt="" />';
 					html += '</div>';
 					html += '<div id="hotel_content"  class="col-xs-5 col-sm-5 col-md-5 col-lg-4">';
 				//var discount;
