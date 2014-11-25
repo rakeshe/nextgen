@@ -582,19 +582,27 @@ $(document).on('click','.close_btn', function(e) {
 	$("#check_in_dates").css("display", "none");
 	return false;
 });
-
+/*
 $(window).scroll(function() {
     if (nextgen.isPagination == true) {
         if($(window).scrollTop() == $(document).height() - $(window).height()) {
-            nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
-            nextgen.displayPaginationCards();
+          //  nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+            //nextgen.displayPaginationCards();
         }
     }
+});
+*/
+
+$(document).on('click', '.showmorehotels', function() {
+    $(this).remove();
+    nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+    nextgen.displayPaginationCards();
 });
 
 var device = 'desktop';
 $(document).ready(function() {
 	var url = '', level = 0;
+    nextgen.selRegion = region;
 	if (region != '')
 		level = 1;
 	if (country != '')
@@ -604,7 +612,7 @@ $(document).ready(function() {
 	x.local = local;
 	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
-	x.drawMenu();
+	x.drawMenu(nextgen.selRegion);
 	x.mobileMenu();
 
 	if (level == 1) {
@@ -660,12 +668,12 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 	res.success(function(data){
 		x.dataP = data;
 		x.drawCards();
-		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
+        x.drawMenu(nextgen.selRegion);
 	})
 	.error(function(data){
-	console.log('Exception: '+ data.responseText);
+	    console.log('Exception: '+ data.responseText);
 	});
 	return false;
 });
@@ -685,7 +693,7 @@ var nextgen = {
 		'getCities' : '',
 		'getLavel' : 1,
         'pageNumber' : '1',
-        'pageLimit' : '6',
+        'pageLimit' : '10',
         'paginationMode' : 'tier_3',
         'isPagination' : false,
 		//send ajax request
@@ -699,7 +707,7 @@ var nextgen = {
 			});
 		},
         'displayPaginationCards' : function() {
-           var k = 1, j = 1;
+           var k = 1, j = 1, showMoreHtls = false;
             $.each(this.dataP, function(index, value) {
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
@@ -710,6 +718,8 @@ var nextgen = {
                                     k++;
                                 }
                             } else {
+                                if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null)
+                                    showMoreHtls = true;
                                 return;
                             }
                         }
@@ -717,6 +727,9 @@ var nextgen = {
                     }
                 });
             });
+            console.log('kay value is' + k);
+            if (k > 1 && showMoreHtls == true)
+                $('.display-cards').append('<div class="showmorehotels">Show more hotels</div>');
 
             // Initialize lazy load,
             // Remove the class "lazy" for double initialization for loaded images
@@ -963,16 +976,17 @@ var nextgen = {
 			//});
 				return html;
 		},
-		'drawMenu' : function() {
-
+		'drawMenu' : function(restrictName) {
 			var html = '',
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
 			$.each(this.data['urls'], function(index, value){
-				html += '<li class="dropdown-submenu">';
-				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-				html += '</li>';
+                if (restrictName != index) {
+                    html += '<li class="dropdown-submenu">';
+                    html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+                    html += '</li>';
+                }
 				reg[value['name_en']] = value['name'];
 			});
 			html += '</ul>';
@@ -1456,23 +1470,23 @@ function drawRegionsMapOne(type){
 							data = regionMapConf('country-code', eventData.region);
 							options['region'] = eventData.region;
 							options['resolution'] = 'country';
-							var region_name = '';
+
 							$.each(regions, function(index, value) {
 								$.each(value, function(i, v){
-									if (v == eventData.region)
-										region_name = index;
-									return;
+									if (v == eventData.region) {
+                                        nextgen.selRegion = index;
+                                        return;
+                                    }
 								});
 							});
 
-							res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
+							res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
 							res.success(function(data){
+                                nextgen.drawMenu(nextgen.selRegion);
 								nextgen.dataP = data;
 								nextgen.drawCards();
-								nextgen.drawCountry(region_name, region_name);
-								nextgen.selRegion = region_name;
-								//x.selectMenu(cacheObj); // select menu
-								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+								nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
+								nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
 								nextgen.mapAction('');
 
 								options.displayMode = 'text';
@@ -1576,6 +1590,7 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1667,3 +1682,85 @@ function displayRegionName(){
 	$(".banner_default_map").show();
 	//$('.text_on_map').css('display') == 'block';
 }//displayRegionName
+
+//PopUpblocker
+$(document).ready(function() {
+fn_load();
+/* Date-picker in search form */
+//$('select[name="hotel.rooms[0].chlds"]').val()
+$( "select[name='hotel.rooms[0].chlds']" ).change(function() {
+fn_load();
+});
+function fn_Adob() {
+var  sel;    
+sel = $("select[name='hotel.rooms[0].chlds']" ).val();
+
+if(sel == undefined) sel = 1;
+if (sel == "0") {
+$('.childTravelers').addClass("noneBlock");
+$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");  
+}
+if (sel == "1") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+}
+if (sel == "2") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");   
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+}
+if (sel == "3") {
+$('.childTravelers').removeClass("noneBlock"); 
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");       
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");    
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+}
+if (sel == "4") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");         
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+}
+if (sel == "5") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock"); 
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");      
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5').removeClass("noneInlineBlock").addClass("inlineBlock");  
+}
+}
+
+
+function fn_load()
+{
+$('.childTravelers').addClass("noneBlock");
+$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+
+fn_Adob(); 
+
+}
+ $('.addRoom').on('click', function () {
+    $('Add a room').appendTo('.hotelGuests');
+  });
+ });
+ //PopUpblocker
