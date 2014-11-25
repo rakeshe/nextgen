@@ -1323,7 +1323,8 @@ var options = {
 		legend: 'none',
 		tooltip: { trigger: 'none'},
 		datalessRegionColor : "#FBE580",
-		enableRegionInteractivity: 'true'
+		enableRegionInteractivity: 'true',
+        keepAspectRatio: false
 	};
 regionVal = Array('002', '150' ,'019', '142', '009');
 
