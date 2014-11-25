@@ -492,7 +492,6 @@ function validateDatesExt(startDateName, endDateName) {
 function RedefineDate(DateValue) {
 	if (DateValue == "") return "";
 	var resultDate = DateValue;
-	//alert(DateValue);
 
 	var dateSplits = DateValue.split("/");
 	var ddmmyyyyReg = /\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}/;
@@ -583,19 +582,27 @@ $(document).on('click','.close_btn', function(e) {
 	$("#check_in_dates").css("display", "none");
 	return false;
 });
-
+/*
 $(window).scroll(function() {
     if (nextgen.isPagination == true) {
         if($(window).scrollTop() == $(document).height() - $(window).height()) {
-            nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
-            nextgen.displayPaginationCards();
+          //  nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+            //nextgen.displayPaginationCards();
         }
     }
+});
+*/
+
+$(document).on('click', '.showmorehotels', function() {
+    $(this).remove();
+    nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+    nextgen.displayPaginationCards();
 });
 
 var device = 'desktop';
 $(document).ready(function() {
 	var url = '', level = 0;
+    nextgen.selRegion = region;
 	if (region != '')
 		level = 1;
 	if (country != '')
@@ -605,7 +612,7 @@ $(document).ready(function() {
 	x.local = local;
 	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
-	x.drawMenu();
+	x.drawMenu(nextgen.selRegion);
 	x.mobileMenu();
 
 	if (level == 1) {
@@ -661,12 +668,12 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 	res.success(function(data){
 		x.dataP = data;
 		x.drawCards();
-		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
+        x.drawMenu(nextgen.selRegion);
 	})
 	.error(function(data){
-	console.log('Exception: '+ data.responseText);
+	    console.log('Exception: '+ data.responseText);
 	});
 	return false;
 });
@@ -686,7 +693,7 @@ var nextgen = {
 		'getCities' : '',
 		'getLavel' : 1,
         'pageNumber' : '1',
-        'pageLimit' : '6',
+        'pageLimit' : '10',
         'paginationMode' : 'tier_3',
         'isPagination' : false,
 		//send ajax request
@@ -700,7 +707,7 @@ var nextgen = {
 			});
 		},
         'displayPaginationCards' : function() {
-           var k = 1, j = 1;
+           var k = 1, j = 1, showMoreHtls = false;
             $.each(this.dataP, function(index, value) {
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
@@ -711,6 +718,8 @@ var nextgen = {
                                     k++;
                                 }
                             } else {
+                                if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null)
+                                    showMoreHtls = true;
                                 return;
                             }
                         }
@@ -718,6 +727,9 @@ var nextgen = {
                     }
                 });
             });
+            console.log('kay value is' + k);
+            if (k > 1 && showMoreHtls == true)
+                $('.display-cards').append('<div class="showmorehotels">Show more hotels</div>');
 
             // Initialize lazy load,
             // Remove the class "lazy" for double initialization for loaded images
@@ -792,6 +804,7 @@ var nextgen = {
             if (def == true) {
                 nextgen.paginationMode = 'tier_1';
             }
+            nextgen.pageNumber = 1; // reset page number
             nextgen.isPagination = true;
             nextgen.displayPaginationCards();
 
@@ -963,16 +976,17 @@ var nextgen = {
 			//});
 				return html;
 		},
-		'drawMenu' : function() {
-
+		'drawMenu' : function(restrictName) {
 			var html = '',
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
 			$.each(this.data['urls'], function(index, value){
-				html += '<li class="dropdown-submenu">';
-				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-				html += '</li>';
+                if (restrictName != index) {
+                    html += '<li class="dropdown-submenu">';
+                    html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+                    html += '</li>';
+                }
 				reg[value['name_en']] = value['name'];
 			});
 			html += '</ul>';
@@ -1266,7 +1280,6 @@ var hotelBook = {
 	'buildUri' : function() {
 		var uri = 'http://www.hotelclub.com/psi/?type='+ this.type + '&adults='+ this.adult +'&id='+ this.onegId;
 		uri += '&checkin='+ this.checkIn + '&checkout=' + this.checkOut +'&coupon=' +this.coupon+'&locale='+this.locale;
-		//alert(uri);
 		return uri;
 	}
 }
@@ -1420,32 +1433,26 @@ function drawRegionsMapOne(type){
 					});
 
 				}
-
 			}else if((eventData.region).length == 3) { //country
-				$.each(regions, function(key, val) {
-					if(val.indexOf(eventData.region)>=0){
-						data = regionMapConf('country-code', eventData.region);
-						options['region'] = eventData.region;
-						options['resolution'] = 'country';
-						var region_name = '';
-						$.each(regions, function(index, value) {
-							$.each(value, function(i, v){
-								if (v == eventData.region)
-									region_name = index;
-								return;
-							});
-						});
-
-						res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
+				//console.log(eventData.region);return;
+				if(eventData.region=='054'||eventData.region=='039'||eventData.region=='013'||eventData.region=='154'){
+					switch(eventData.region){
+						case '054': eventData.region = 'FJ';break;
+						case '039': eventData.region = 'IT';break;
+						case '013': eventData.region = 'MX';break;
+						case '154': eventData.region = 'GB';break;
+					}
+					if (typeof nextgen.getCountrys[eventData.region] === 'object') {
+						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
 						res.success(function(data){
 							nextgen.dataP = data;
 							nextgen.drawCards();
-							nextgen.drawCountry(region_name, region_name);
-							nextgen.selRegion = region_name;
-							//x.selectMenu(cacheObj); // select menu
-							nextgen.setUrlToHistory(uriBase + '/' + region_name); //
-							nextgen.mapAction('');
+							nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
+							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+							data = regionMapConf('city-code', eventData.region);
 
+							options['region'] = eventData.region;
+							options['resolution'] = 'country';
 							options.displayMode = 'text';
 							changeResetToRegion();
 							resetMapSizePos();
@@ -1454,9 +1461,46 @@ function drawRegionsMapOne(type){
 						})
 						.error(function(data){
 							console.log('Exception: '+ data.responseText);
-						});						
+						});
+
 					}
-				});
+				}else{
+					$.each(regions, function(key, val) {
+						if(val.indexOf(eventData.region)>=0){
+							data = regionMapConf('country-code', eventData.region);
+							options['region'] = eventData.region;
+							options['resolution'] = 'country';
+
+							$.each(regions, function(index, value) {
+								$.each(value, function(i, v){
+									if (v == eventData.region) {
+                                        nextgen.selRegion = index;
+                                        return;
+                                    }
+								});
+							});
+
+							res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
+							res.success(function(data){
+                                nextgen.drawMenu(nextgen.selRegion);
+								nextgen.dataP = data;
+								nextgen.drawCards();
+								nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
+								nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
+								nextgen.mapAction('');
+
+								options.displayMode = 'text';
+								changeResetToRegion();
+								resetMapSizePos();
+								hideRegionName();
+								geochart.draw(data, options);
+							})
+							.error(function(data){
+								console.log('Exception: '+ data.responseText);
+							});						
+						}
+					});
+				}
 			}
 		});
 		//resetMapSizePos();
@@ -1546,6 +1590,7 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1591,7 +1636,7 @@ function zoomin() {
 		mw = mw+40;
 		mh = mh+40;
 		if(options.region=='021'){ if(mh==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='035'){ if(mh==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='CA'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
@@ -1612,7 +1657,7 @@ function resetMapSizePos(){
 		document.getElementById('regions_div').style.top = '-90px';
 	}else{
 		if(options.region=='021'){ document.getElementById('regions_div').style.top = '-80px'; }
-		else if(options.region=='155'){ document.getElementById('regions_div').style.top = '-50px'; }
+		else if(options.region=='155'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-50px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-35px';  }

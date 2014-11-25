@@ -12,7 +12,8 @@ return new \Phalcon\Config ( array (
 				'dbname' => 'test' 
 		),
 		'couchbase' => array (
-				'bucket' => 'hc-nextgen' 
+				'bucket' => 'hc-nextgen'
+//				'bucket' => 'hc-cache'
 		),
 		'menuItems' => array (
 				'site' => array (

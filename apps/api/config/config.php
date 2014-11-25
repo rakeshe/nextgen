@@ -10,7 +10,8 @@ return new \Phalcon\Config(array(
     ),
     'couchbase' => array(
         'bucket' => 'hc-nextgen'
-    ),    
+//        'bucket' => 'hc-cache'
+    ),
     'application' => array(
         'controllersDir' => 'controllers/',
         'modelsDir' => 'models/'
