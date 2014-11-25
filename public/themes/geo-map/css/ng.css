@@ -413,7 +413,7 @@
         }
 
         #vertical-scrollbar-demo {
-            height: 305px;
+            height: 400px;
         }
 
         .tab_divider {
@@ -1492,10 +1492,6 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
    border: none !important;
    /*box-shadow: 5px 5px 5px #888888;*/
 }
-#regionTabs{
-margin-left:15px;
-margin-right:15px;
-}
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.levelActive a {
     background-color: #e21e28;
     border-radius: 0;
@@ -1837,7 +1833,7 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid #C7CFCA;
 }
 ul.country_name {
-  height: 305px;
+  height: 400px;
   width: 100%;
   overflow: auto;
   margin: 0 auto;overflow-x: hidden;

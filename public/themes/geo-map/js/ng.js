@@ -595,6 +595,7 @@ $(window).scroll(function() {
 var device = 'desktop';
 $(document).ready(function() {
 	var url = '', level = 0;
+    nextgen.selRegion = region;
 	if (region != '')
 		level = 1;
 	if (country != '')
@@ -604,7 +605,7 @@ $(document).ready(function() {
 	x.local = local;
 	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
-	x.drawMenu();
+	x.drawMenu(nextgen.selRegion);
 	x.mobileMenu();
 
 	if (level == 1) {
@@ -660,12 +661,12 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 	res.success(function(data){
 		x.dataP = data;
 		x.drawCards();
-		//x.selectMenu(cacheObj); // select menu
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
+        x.drawMenu(nextgen.selRegion);
 	})
 	.error(function(data){
-	console.log('Exception: '+ data.responseText);
+	    console.log('Exception: '+ data.responseText);
 	});
 	return false;
 });
@@ -963,16 +964,17 @@ var nextgen = {
 			//});
 				return html;
 		},
-		'drawMenu' : function() {
-
+		'drawMenu' : function(restrictName) {
 			var html = '',
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
 			$.each(this.data['urls'], function(index, value){
-				html += '<li class="dropdown-submenu">';
-				html += '<a class="menu-icons menu-region" tabindex="-1" data-url="'+index+'" data-lavel="1" data-code="'+ index +'" href="' + uriBase +'/' + index +'">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-				html += '</li>';
+                if (restrictName != index) {
+                    html += '<li class="dropdown-submenu">';
+                    html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+                    html += '</li>';
+                }
 				reg[value['name_en']] = value['name'];
 			});
 			html += '</ul>';
@@ -1456,23 +1458,23 @@ function drawRegionsMapOne(type){
 							data = regionMapConf('country-code', eventData.region);
 							options['region'] = eventData.region;
 							options['resolution'] = 'country';
-							var region_name = '';
+
 							$.each(regions, function(index, value) {
 								$.each(value, function(i, v){
-									if (v == eventData.region)
-										region_name = index;
-									return;
+									if (v == eventData.region) {
+                                        nextgen.selRegion = index;
+                                        return;
+                                    }
 								});
 							});
 
-							res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
+							res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
 							res.success(function(data){
+                                nextgen.drawMenu(nextgen.selRegion);
 								nextgen.dataP = data;
 								nextgen.drawCards();
-								nextgen.drawCountry(region_name, region_name);
-								nextgen.selRegion = region_name;
-								//x.selectMenu(cacheObj); // select menu
-								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+								nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
+								nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
 								nextgen.mapAction('');
 
 								options.displayMode = 'text';
@@ -1576,6 +1578,7 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
