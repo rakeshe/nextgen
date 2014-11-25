@@ -791,6 +791,7 @@ var nextgen = {
             if (def == true) {
                 nextgen.paginationMode = 'tier_1';
             }
+            nextgen.pageNumber = 1; // reset page number
             nextgen.isPagination = true;
             nextgen.displayPaginationCards();
 
