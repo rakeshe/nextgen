@@ -1638,6 +1638,7 @@ function displayRegionName(){
 	//$('.text_on_map').css('display') == 'block';
 }//displayRegionName
 
+//PopUpblocker
 $(document).ready(function() {
 fn_load();
 /* Date-picker in search form */
@@ -1714,6 +1715,7 @@ fn_Adob();
 
 }
  $('.addRoom').on('click', function () {
-    $('<p>Text</p>').appendTo('.hotelGuests ');
+    $('Add a room').appendTo('.hotelGuests');
   });
  });
+ //PopUpblocker
