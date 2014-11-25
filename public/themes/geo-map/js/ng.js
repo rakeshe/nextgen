@@ -582,14 +582,21 @@ $(document).on('click','.close_btn', function(e) {
 	$("#check_in_dates").css("display", "none");
 	return false;
 });
-
+/*
 $(window).scroll(function() {
     if (nextgen.isPagination == true) {
         if($(window).scrollTop() == $(document).height() - $(window).height()) {
-            nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
-            nextgen.displayPaginationCards();
+          //  nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+            //nextgen.displayPaginationCards();
         }
     }
+});
+*/
+
+$(document).on('click', '.showmorehotels', function() {
+    $(this).remove();
+    nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
+    nextgen.displayPaginationCards();
 });
 
 var device = 'desktop';
@@ -686,7 +693,7 @@ var nextgen = {
 		'getCities' : '',
 		'getLavel' : 1,
         'pageNumber' : '1',
-        'pageLimit' : '6',
+        'pageLimit' : '10',
         'paginationMode' : 'tier_3',
         'isPagination' : false,
 		//send ajax request
@@ -700,7 +707,7 @@ var nextgen = {
 			});
 		},
         'displayPaginationCards' : function() {
-           var k = 1, j = 1;
+           var k = 1, j = 1, showMoreHtls = false;
             $.each(this.dataP, function(index, value) {
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
@@ -711,6 +718,8 @@ var nextgen = {
                                     k++;
                                 }
                             } else {
+                                if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null)
+                                    showMoreHtls = true;
                                 return;
                             }
                         }
@@ -718,6 +727,9 @@ var nextgen = {
                     }
                 });
             });
+            console.log('kay value is' + k);
+            if (k > 1 && showMoreHtls == true)
+                $('.display-cards').append('<div class="showmorehotels">Show more hotels</div>');
 
             // Initialize lazy load,
             // Remove the class "lazy" for double initialization for loaded images
