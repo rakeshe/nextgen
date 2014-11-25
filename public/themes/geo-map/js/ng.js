@@ -492,7 +492,6 @@ function validateDatesExt(startDateName, endDateName) {
 function RedefineDate(DateValue) {
 	if (DateValue == "") return "";
 	var resultDate = DateValue;
-	//alert(DateValue);
 
 	var dateSplits = DateValue.split("/");
 	var ddmmyyyyReg = /\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}/;
@@ -1266,7 +1265,6 @@ var hotelBook = {
 	'buildUri' : function() {
 		var uri = 'http://www.hotelclub.com/psi/?type='+ this.type + '&adults='+ this.adult +'&id='+ this.onegId;
 		uri += '&checkin='+ this.checkIn + '&checkout=' + this.checkOut +'&coupon=' +this.coupon+'&locale='+this.locale;
-		//alert(uri);
 		return uri;
 	}
 }
@@ -1420,32 +1418,26 @@ function drawRegionsMapOne(type){
 					});
 
 				}
-
 			}else if((eventData.region).length == 3) { //country
-				$.each(regions, function(key, val) {
-					if(val.indexOf(eventData.region)>=0){
-						data = regionMapConf('country-code', eventData.region);
-						options['region'] = eventData.region;
-						options['resolution'] = 'country';
-						var region_name = '';
-						$.each(regions, function(index, value) {
-							$.each(value, function(i, v){
-								if (v == eventData.region)
-									region_name = index;
-								return;
-							});
-						});
-
-						res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
+				//console.log(eventData.region);return;
+				if(eventData.region=='054'||eventData.region=='039'||eventData.region=='013'||eventData.region=='154'){
+					switch(eventData.region){
+						case '054': eventData.region = 'FJ';break;
+						case '039': eventData.region = 'IT';break;
+						case '013': eventData.region = 'MX';break;
+						case '154': eventData.region = 'GB';break;
+					}
+					if (typeof nextgen.getCountrys[eventData.region] === 'object') {
+						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
 						res.success(function(data){
 							nextgen.dataP = data;
 							nextgen.drawCards();
-							nextgen.drawCountry(region_name, region_name);
-							nextgen.selRegion = region_name;
-							//x.selectMenu(cacheObj); // select menu
-							nextgen.setUrlToHistory(uriBase + '/' + region_name); //
-							nextgen.mapAction('');
+							nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
+							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+							data = regionMapConf('city-code', eventData.region);
 
+							options['region'] = eventData.region;
+							options['resolution'] = 'country';
 							options.displayMode = 'text';
 							changeResetToRegion();
 							resetMapSizePos();
@@ -1454,9 +1446,46 @@ function drawRegionsMapOne(type){
 						})
 						.error(function(data){
 							console.log('Exception: '+ data.responseText);
-						});						
+						});
+
 					}
-				});
+				}else{
+					$.each(regions, function(key, val) {
+						if(val.indexOf(eventData.region)>=0){
+							data = regionMapConf('country-code', eventData.region);
+							options['region'] = eventData.region;
+							options['resolution'] = 'country';
+							var region_name = '';
+							$.each(regions, function(index, value) {
+								$.each(value, function(i, v){
+									if (v == eventData.region)
+										region_name = index;
+									return;
+								});
+							});
+
+							res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
+							res.success(function(data){
+								nextgen.dataP = data;
+								nextgen.drawCards();
+								nextgen.drawCountry(region_name, region_name);
+								nextgen.selRegion = region_name;
+								//x.selectMenu(cacheObj); // select menu
+								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+								nextgen.mapAction('');
+
+								options.displayMode = 'text';
+								changeResetToRegion();
+								resetMapSizePos();
+								hideRegionName();
+								geochart.draw(data, options);
+							})
+							.error(function(data){
+								console.log('Exception: '+ data.responseText);
+							});						
+						}
+					});
+				}
 			}
 		});
 		//resetMapSizePos();
@@ -1591,7 +1620,7 @@ function zoomin() {
 		mw = mw+40;
 		mh = mh+40;
 		if(options.region=='021'){ if(mh==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='035'){ if(mh==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='CA'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
@@ -1612,7 +1641,7 @@ function resetMapSizePos(){
 		document.getElementById('regions_div').style.top = '-90px';
 	}else{
 		if(options.region=='021'){ document.getElementById('regions_div').style.top = '-80px'; }
-		else if(options.region=='155'){ document.getElementById('regions_div').style.top = '-50px'; }
+		else if(options.region=='155'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-50px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-35px';  }
