@@ -3,10 +3,10 @@
 
 	<div id="hotel_gold_card_block" class="hd-main-info">
 		<div class="row row_nomargin">
-			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4 pull-left">Recommended deals</div>
+			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4 pull-left">{{t._('recommended-deals')}}</div>
 			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7 pull-right">
                 <span class="search_input_hotel">
-                    <img src="/themes/common/img/search-icon.png" width="18"/>&nbsp;Search all HotelClub
+                    <span class="magnifyGls"></span>&nbsp;{{t._('search-all-hotel-club')}}
                     <b class="caret"></b>
                 </span>
 		</div>
@@ -22,13 +22,13 @@
 	
 	<div class="search_footer">
 		<div class="search_footer_head">
-			<span class="search_not_found">Not found what you're looking for?</span>
+			<span class="search_not_found">{{t._("not-found-what-you-are-looking-for")}}</span>
 			<span class="search_plus"><img src="/themes/common/img/plus.png" alt="plus"/></span>
 			<span style="display:none;" class="search_plus"><img src="/themes/common/img/minus-sign.png" alt="plus"/></span>
 		</div>
 		
 		<div class="input-group">
-	      <input type="text" class="form-control" placeholder="Search all HotelClub" id="locationText">
+	      <input type="text" class="form-control" placeholder="{{t._('search-all-hotel-club')}}" id="locationText">
 	      <span class="input-group-btn">
 	      	<a class="btn btn-default search_hotel_near_go" type="button">
 	      		<img src="/themes/common/img/icon-geolocation.png" alt="Use current location" height="18" width="18" data-context="icon-geolocation">
@@ -39,16 +39,16 @@
     	<div class="search-toggle" style="display:none;">    	
 	    	<div class="row" style="padding:1.5%;">
 		    	<div class="col-lg-3 col-sm-4 col-xs-8">		      
-		    		Check-in&nbsp;&nbsp;
+		    		{{t._('check-in')}}&nbsp;&nbsp;
 			        <input type="text" class="input-sm datepicker" name="checkin" id="choseDatesStartDate1" placeholder="dd/mm/yy">
 				</div>
 				<div class="col-lg-3 col-sm-4 col-xs-8">
-					Check-in&nbsp;&nbsp;    
+					{{t._('check-out')}}&nbsp;&nbsp;
 			        <input type="text" class="input-sm datepicker" name="checkout" id="choseDatesEndDate1" placeholder="dd/mm/yy">
 			   </div>
 			   <div class="col-lg-4 col-sm-4 col-xs-8">
-			   		Coupon Code&nbsp;&nbsp;
-		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="CouponCode..">       
+			   		{{t._('coupon-code')}}&nbsp;&nbsp;
+		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="{{t._('coupon-code')}}...">
 		    	</div>
 	    	</div>
 	    	<div class="row">

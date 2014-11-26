@@ -31,7 +31,7 @@ try {
 	 * Start the session the first time some component request the session service
 	 */
 	$di->set('session', function() {
-        ini_set('session.save_path', __DIR__ . '/../data/session_store');
+        ini_set('session.save_path', __DIR__ . '/../data/cache');
 		$session = new \Phalcon\Session\Adapter\Files();
 		$session->start();
 		return $session;
