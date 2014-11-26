@@ -686,6 +686,7 @@ var nextgen = {
 		'data' : '', //data,
 		'dataP' : '',//page data
 		'selRegion' : '',
+        'getRegion' : '',
 		'selCountry' : '',
 		'selCity' : '',
 		'getRegions' : '',
@@ -729,7 +730,7 @@ var nextgen = {
             });
             console.log('kay value is' + k);
             if (k > 1 && showMoreHtls == true)
-                $('.display-cards').append('<div class="showmorehotels">Show more hotels</div>');
+                $('.display-cards').append('<div class="showmorehotels">'+ trans['show-more-deals'] +'</div>');
 
             // Initialize lazy load,
             // Remove the class "lazy" for double initialization for loaded images
