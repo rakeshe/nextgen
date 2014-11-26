@@ -1325,7 +1325,8 @@ var options = {
 		legend: 'none',
 		tooltip: { trigger: 'none'},
 		datalessRegionColor : "#FBE580",
-		enableRegionInteractivity: 'true'
+		enableRegionInteractivity: 'true',
+        keepAspectRatio: false
 	};
 regionVal = Array('002', '150' ,'019', '142', '009');
 
@@ -1684,3 +1685,85 @@ function displayRegionName(){
 	$(".banner_default_map").show();
 	//$('.text_on_map').css('display') == 'block';
 }//displayRegionName
+
+//PopUpblocker
+$(document).ready(function() {
+fn_load();
+/* Date-picker in search form */
+//$('select[name="hotel.rooms[0].chlds"]').val()
+$( "select[name='hotel.rooms[0].chlds']" ).change(function() {
+fn_load();
+});
+function fn_Adob() {
+var  sel;    
+sel = $("select[name='hotel.rooms[0].chlds']" ).val();
+
+if(sel == undefined) sel = 1;
+if (sel == "0") {
+$('.childTravelers').addClass("noneBlock");
+$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");  
+}
+if (sel == "1") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+}
+if (sel == "2") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");   
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+}
+if (sel == "3") {
+$('.childTravelers').removeClass("noneBlock"); 
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");       
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");    
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+}
+if (sel == "4") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");         
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+}
+if (sel == "5") {
+$('.childTravelers').removeClass("noneBlock");
+$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock"); 
+$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");      
+$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5').removeClass("noneInlineBlock").addClass("inlineBlock");  
+}
+}
+
+
+function fn_load()
+{
+$('.childTravelers').addClass("noneBlock");
+$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+
+fn_Adob(); 
+
+}
+ $('.addRoom').on('click', function () {
+    $('Add a room').appendTo('.hotelGuests');
+  });
+ });
+ //PopUpblocker
