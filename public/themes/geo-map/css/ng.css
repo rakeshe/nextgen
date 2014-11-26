@@ -545,6 +545,9 @@ and (max-device-width: 480px) {
 		padding:5px 10px 5px 10px !important;
 		margin:5px 0 0 0 !important;
 	}
+    .showmorehotels {
+        font-size: 11px !important;
+        margin: 0% 25% 0% 25% !important;
 	/*modified by mohan - 20141023*/
 }
 
