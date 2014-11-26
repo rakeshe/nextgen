@@ -803,6 +803,8 @@ var nextgen = {
             //display through pagination
             if (def == true) {
                 nextgen.paginationMode = 'tier_1';
+            } else {
+                nextgen.paginationMode = 'tier_3';
             }
             nextgen.pageNumber = 1; // reset page number
             nextgen.isPagination = true;
