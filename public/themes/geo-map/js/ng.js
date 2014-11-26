@@ -454,6 +454,8 @@ $(document).on('click','.ht-book', function(e) {
 	book.onegId = $(this).data('oneg');
 	book.locale = nextgen.local;
 	$( "#choseDates" ).dialog( "open" );
+	$('.ui-dialog-titlebar-close').html("close");
+	//$(".ui-dialog").find('.ui-dialog-titlebar-close').replaceWith('<span class="ui-dialog-titlebar-close">close</span>');
 });
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
