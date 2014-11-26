@@ -708,7 +708,7 @@ var nextgen = {
 			});
 		},
         'displayPaginationCards' : function() {
-           var k = 1, j = 1, showMoreHtls = false;
+           var k = 1, j = 1, showMoreHtls = false;		
             $.each(this.dataP, function(index, value) {
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
@@ -738,6 +738,11 @@ var nextgen = {
             $("img.lazy").lazyload({
                 effect : "fadeIn"
             }).removeClass("lazy");
+
+			//magnifying glass icon placing based 
+			if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
+			else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
+
         },
 		'drawCards' : function(def) {
             isLoggedIn = $.cookie('mid') !== undefined ? true: false;
@@ -1212,7 +1217,7 @@ var nextgen = {
 
 		},
 		//select menu which is clicked
-		'selectMenu' : function($this) {
+		'selectMenu' : function($this) {			
 			if ($this.hasClass('menu-region')) {
 				$('li').removeClass('levelActive').addClass('level1');
 				$this.parent().addClass('levelActive');
@@ -1691,7 +1696,7 @@ function displayRegionName(){
 }//displayRegionName
 
 //PopUpblocker
-$(document).ready(function() {
+$(document).ready(function() {	
 fn_load();
 /* Date-picker in search form */
 //$('select[name="hotel.rooms[0].chlds"]').val()
