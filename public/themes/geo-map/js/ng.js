@@ -1227,8 +1227,9 @@ var nextgen = {
 		},
 		'mapAction' : function(country_code) {
 			if(nextgen.getLavel==2){
-				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);				
+				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
 				if(regions[nextgen.selRegion][0]=='155'){ eventDataTempVal = '150';  }
+				else if(regions[nextgen.selRegion][0]=='021'){ eventDataTempVal = '019';  }
 				else{ eventDataTempVal = regions[nextgen.selRegion][0]; }
 				options.region = eventDataTempVal;
 				options.resolution = 'country';
@@ -1339,7 +1340,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof countries !== 'undefined' && countries.length > 0) {
 			data = google.visualization.arrayToDataTable(countries);
 		}
-		if(eventDataTemp==021){document.getElementById("regions_div").style.top="-100px"; }		
+		if(eventDataTemp==019){document.getElementById("regions_div").style.top="-100px"; }		
 		options.colors = ['#000000'];
 	}else if (type == 'city-code') {
 		//fetching all the cities within the clicked country
@@ -1414,7 +1415,7 @@ function drawRegionsMapOne(type){
 					var eventDataRegionVal;
 					switch(eventData.region){
 						case '054': eventData.region = 'FJ'; eventDataRegionVal=1; break;//assign the eventData.region to Fiji
-						case '013': eventData.region = 'MX'; eventDataRegionVal=1; break;//assign the eventData.region to Mexico
+						//case '013': eventData.region = 'MX'; eventDataRegionVal=1; break;//assign the eventData.region to Mexico
 						case '154': eventData.region = 'GB'; eventDataRegionVal=1; break;//assign the eventData.region to Great Britain
 					} 
 				}
@@ -1493,7 +1494,6 @@ function resetMap(){
 	drawRegionsMapOne();
 }//resetMap
 $(document).on('click','text[text-anchor="middle"]',function(){
-
 	var sel = $.trim($(this).text()), url='';
 	//nextgen.mapClickRequest('city', $.trim($(this).text()));
 	//console.log(nextgen.data['urls'][nextgen.selRegion]);
@@ -1585,13 +1585,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
-		var regionName = nextgen.selRegion.replace("-", " ");
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		//var regionName = nextgen.selRegion.replace("-", " ");
+		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -1604,7 +1605,7 @@ function zoomin() {
 		mapWidth = mapWidth+40;//zooming map width
 		mapHeight = mapHeight+40;//zooming map height
 		//checking the clicked event and modifying according to top of the regions_div id
-		if(options.region=='021'){ if(mapHeight==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
+		if(options.region=='019'){ if(mapHeight==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='150'){ if(mapHeight==470){ yAxis = yAxis-12-45; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='035'){ if(mapHeight==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
@@ -1634,7 +1635,7 @@ function resetMapSizePos(){
 	if(nextgen.getLavel==1){
 		document.getElementById('regions_div').style.top = '-90px';
 	}else{
-		if(options.region=='021'){ document.getElementById('regions_div').style.top = '-80px'; }
+		if(options.region=='019'){ document.getElementById('regions_div').style.top = '-80px'; }
 		else if(options.region=='150'){ document.getElementById('regions_div').style.top = '-45px'; }
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
