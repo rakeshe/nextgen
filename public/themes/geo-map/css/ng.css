@@ -2197,4 +2197,19 @@ position: absolute;
     .tier-3 .hotel_name, .tier-4.hotel_name{
         padding-top: 4px;
     }
-/* Dialog box */
+
+
+.showmorehotels {
+    clear: both;
+    text-align: center;
+    font-size: 14px;
+    font-family: museo_slab500;
+    background-color:#F2F2F2;
+    color: #000000;
+    cursor: pointer;
+    padding: 1%;
+    margin: 0% 35% 0% 35%;
+}
+.showmorehotels:hover{
+    background-color:#C3C3C3;
+}
