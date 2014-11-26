@@ -1225,9 +1225,11 @@ var nextgen = {
 		},
 		'mapAction' : function(country_code) {
 			if(nextgen.getLavel==2){
-				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
-				options['region'] = regions[nextgen.selRegion][0];
-				options['resolution'] = 'country';
+				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);				
+				if(regions[nextgen.selRegion][0]=='155'){ eventDataTempVal = '150';  }
+				else{ eventDataTempVal = regions[nextgen.selRegion][0]; }
+				options.region = eventDataTempVal;
+				options.resolution = 'country';
 				options.displayMode = 'text';
 				backButton = 1;
 				changeResetToRegion();
@@ -1237,8 +1239,8 @@ var nextgen = {
 			}else{
 				if (typeof(country_code) != "undefined" && country_code !== null) {
 					data = regionMapConf('city-code', country_code);
-					options['region'] = country_code;
-					options['resolution'] = 'country';
+					options.region = country_code;
+					options.resolution = 'country';
 					options.displayMode = 'text';
 					backButton = 1;
 					changeResetToRegion();
@@ -1283,19 +1285,6 @@ var hotelBook = {
 		return uri;
 	}
 }
-//var regions = {'Europe': '150', 'Asia' : '142', 'Oceania':'009', 'North America' : '019', 'Africa':'002','South America':'019','Middle East':'150','Central America':'019','Northeast Asia':'142','Southeast Asia':'142'};
-//var regions = {'Europe': '150', 'Asia' : '142', 'Oceania':'009', 'North America' : '019', 'Africa':'002','South America':'019','Middle East':'150','Central America':'019','Northeast Asia':'142','Southeast Asia':'142'};
-//var regions = {'europe--uae': '150', 'asia' : '142', 'pacific':'009', 'North America' : '019', 'africa':'002','South America':'019','Middle East':'145','americas':'019','northeast-asia':'030','southeast-asia':'035'};
-//var regions = {'europe--uae': {}, 'asia' : '142', 'pacific':'009', 'North America' : '019', 'africa':'002','South America':'019','Middle East':'145','americas':'019','northeast-asia':'030','southeast-asia':'035'};
-//region = ['europe--uae'='europe'=>,'asia'=>'150', ];
-/*var regions = {
-    'europe--uae': ["154", "155", "039"],
-    'pacific': ["053", "054", "057", "061"],
-    'southeast-asia': ['035'],
-    'northeast-asia': ['030'],
-    'americas': ["021","029", "013", "005"],
-    'africa': ["015"]
-};*/
 var regions = {
     'europe--uae': ["155","154","145","039"],
     'pacific': ["053", "054", "057", "061"],
@@ -1307,18 +1296,18 @@ var regions = {
 
 //Geochart (Google Map Chart) Initialization
 google.load("visualization", "1", {packages:["geochart"]});
-//if(countryCodeValTemp==''){ google.setOnLoadCallback(drawRegionsMapOne); }
 google.setOnLoadCallback(drawRegionsMapOne);
+
 //Global Variables
-var mh = 430;//var mh = 399;
-var mw = 874;
-var xAxis=0;
-var yAxis = 0;
+var mapHeight = 430; //map Height
+var mapWidth = 874; //map Width
+var xAxis = 0; //to increase the Map width
+var yAxis = 0; //to increase the Map height
 var options = {
 		region: 'world',
 		resolution: 'subcontinents',
-		width: mw,
-		height: mh,
+		width: mapWidth,
+		height: mapHeight,
 		backgroundColor: '#3682B6',
 		legend: 'none',
 		tooltip: { trigger: 'none'},
@@ -1326,12 +1315,12 @@ var options = {
 		enableRegionInteractivity: 'true',
         keepAspectRatio: false
 	};
-regionVal = Array('002', '150' ,'019', '142', '009');
 
+//data to draw the map
 function regionMapConf(type, eventDataTemp){
 	var data;
 	if (type == 'country-code') {
-		//var citys = [];
+		//fetching all the countries within the clicked region
 		countries = [];
 		if(typeof eventDataTemp=="undefined"){ var eventDataTemp = options.region; }
 		$.each(regions, function(key, val) {
@@ -1349,27 +1338,12 @@ function regionMapConf(type, eventDataTemp){
 			data = google.visualization.arrayToDataTable(countries);
 		}
 		if(eventDataTemp==021){document.getElementById("regions_div").style.top="-100px"; }		
-		options['colors'] = ['#000000'];
+		options.colors = ['#000000'];
 	}else if (type == 'city-code') {
+		//fetching all the cities within the clicked country
 		var citys = [];
 		citys.push(['lable','Countries', 'Value']);
-		if(typeof eventDataTemp=="undefined"){ var eventDataTemp = options.region; }
-		/*$.each(nextgen.data['urls'], function(keyRegion, valRegion) {
-			if (typeof(valRegion.name) != "undefined" && valRegion.name !== null) {
-				$.each(valRegion, function(keyCountry, valCountry) {
-					var countryNameTemp = valCountry.name;
-					if (typeof(countryNameTemp) != "undefined" && countryNameTemp !== null) {
-						if(valCountry.country_code==eventDataTemp){
-							$.each(valCountry, function(keyCity, valCity) {
-								if (typeof(valCity) != "undefined" && valCity !== null && valCity.name!=null) {
-									citys.push([valCity.name_en,valCity.name, 100]);
-								}
-							});
-						}
-					}
-				});
-			}
-		});*/
+		if(typeof eventDataTemp=="undefined"){ var eventDataTemp = options.region; }		
 		for(var cityName in nextgen.getCities){
 			citys.push([nextgen.getCities[cityName].name_en,cityName, 100]);
 		}
@@ -1391,27 +1365,27 @@ function regionMapConf(type, eventDataTemp){
 			});
 		});
 		data = google.visualization.arrayToDataTable(urls);
-		options['colors'] = ['#E21E28'];
+		options.colors = ['#E21E28'];
 	}
 	return data;
 }//regionMapConf
 
-var backButton=0;
+var backButton=0;//var is used to identify the back button activities
+
+//drawing the map
 function drawRegionsMapOne(type){
 	//Continent ids are provided in array
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
 	view.setColumns([0, 1]);
-	if(mh<510){
-		options.width = mw;
-		options.height = mh;
+	if(mapHeight<510){
+		options.width = mapWidth;
+		options.height = mapHeight;
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		//Creating a geochart based on eventData
-		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { ///citys
-			//if (isNaN(eventData.region) == false) {
-			if ((eventData.region).length == 2) {
-				//Checks if regions is not available, not going to dispaly		
-
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { 
+			if ((eventData.region).length == 2) { //country
+				//Checks if regions is not available, not going to dispaly
 				if (typeof nextgen.getCountrys[eventData.region] === 'object') {
 					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
 					res.success(function(data){
@@ -1420,81 +1394,75 @@ function drawRegionsMapOne(type){
 						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
 						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
 						data = regionMapConf('city-code', eventData.region);
+						nextgen.mapAction(eventData.region);
 
-						options['region'] = eventData.region;
-						options['resolution'] = 'country';
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
 						hideRegionName();
-						geochart.draw(data, options);
 					})
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);
 					});
 
 				}
-			}else if((eventData.region).length == 3) { //country
-				//console.log(eventData.region);return;
-				if(eventData.region=='054'||eventData.region=='039'||eventData.region=='013'||eventData.region=='154'){
+			}else if((eventData.region).length == 3){ //region
+				var eventDataRegionVal;
+				if(nextgen.getLavel!=1){
+					var eventDataRegionVal;
 					switch(eventData.region){
-						case '054': eventData.region = 'FJ';break;
-						case '039': eventData.region = 'IT';break;
-						case '013': eventData.region = 'MX';break;
-						case '154': eventData.region = 'GB';break;
-					}
-					if (typeof nextgen.getCountrys[eventData.region] === 'object') {
-						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
-						res.success(function(data){
-							nextgen.dataP = data;
-							nextgen.drawCards();
-							nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
-							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
-							data = regionMapConf('city-code', eventData.region);
+						case '054': eventData.region = 'FJ'; eventDataRegionVal=1; break;//assign the eventData.region to Fiji
+						case '013': eventData.region = 'MX'; eventDataRegionVal=1; break;//assign the eventData.region to Mexico
+						case '154': eventData.region = 'GB'; eventDataRegionVal=1; break;//assign the eventData.region to Great Britain
+					} 
+				}
+				if(eventDataRegionVal==1){//sub region country value is clicked
+					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
+					res.success(function(data){
+						nextgen.dataP = data;
+						nextgen.drawCards();
+						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
+						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+						data = regionMapConf('city-code', eventData.region);
+						nextgen.mapAction(eventData.region);
 
-							options['region'] = eventData.region;
-							options['resolution'] = 'country';
-							options.displayMode = 'text';
-							changeResetToRegion();
-							resetMapSizePos();
-							hideRegionName();
-							geochart.draw(data, options);
-						})
-						.error(function(data){
-							console.log('Exception: '+ data.responseText);
-						});
-
-					}
-				}else{
+						options.displayMode = 'text';
+						changeResetToRegion();
+						resetMapSizePos();
+						hideRegionName();
+					})
+					.error(function(data){
+						console.log('Exception: '+ data.responseText);
+					});
+				}else{//redraw the original map sun region
 					$.each(regions, function(key, val) {
 						if(val.indexOf(eventData.region)>=0){
 							data = regionMapConf('country-code', eventData.region);
-							options['region'] = eventData.region;
-							options['resolution'] = 'country';
-
+							options.region = eventData.region;
+							options.resolution = 'country';
+							var region_name = '';
 							$.each(regions, function(index, value) {
 								$.each(value, function(i, v){
-									if (v == eventData.region) {
-                                        nextgen.selRegion = index;
-                                        return;
-                                    }
+									if (v == eventData.region)
+										region_name = index;
+									return;
 								});
 							});
 
-							res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
+							res = nextgen.sendRequest(uriBase + '/' + region_name, 'returnType=json');
 							res.success(function(data){
-                                nextgen.drawMenu(nextgen.selRegion);
 								nextgen.dataP = data;
 								nextgen.drawCards();
-								nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
-								nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
+								nextgen.drawCountry(region_name, region_name);
+								nextgen.selRegion = region_name;
+								//x.selectMenu(cacheObj); // select menu
+								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
 								nextgen.mapAction('');
 
 								options.displayMode = 'text';
 								changeResetToRegion();
 								resetMapSizePos();
 								hideRegionName();
-								geochart.draw(data, options);
 							})
 							.error(function(data){
 								console.log('Exception: '+ data.responseText);
@@ -1505,11 +1473,8 @@ function drawRegionsMapOne(type){
 			}
 		});
 		//resetMapSizePos();
-		if(nextgen.getLavel==1){
-			displayRegionName();
-		}else{
-			hideRegionName();
-		}
+		if(nextgen.getLavel==1){ displayRegionName(); }
+		else{ hideRegionName(); }
 		geochart.draw(data, options);
 	}
 }//drawRegionsMapOne
@@ -1559,7 +1524,6 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 
 //Function to zoom-out map from the selected region / country
 function mapBackBtn() {
-
 	var optionsRegionTemp = options.region; var eventTempDataVal;
 	if(optionsRegionTemp.length==2){
 
@@ -1570,18 +1534,19 @@ function mapBackBtn() {
 			nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
 			//x.selectMenu(cacheObj); // select menu
 			nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
-			nextgen.mapAction('');		
+			//nextgen.mapAction('');		
 
 			eventTempDataVal = regions[nextgen.selRegion][0];
 			data = regionMapConf('country-code',eventTempDataVal);
-			options['region'] = eventTempDataVal;
+			options.region = eventTempDataVal;
 			changeResetToRegion();
 			nextgen.getLavel = 2;
 			changeResetToRegion();
 			backButton=1;
 			resetMapSizePos();
 			hideRegionName();
-			drawRegionsMapOne();
+			nextgen.mapAction(optionsRegionTemp);
+			//drawRegionsMapOne();
 		})
 		.error(function(data){
 			console.log('Exception: '+ data.responseText);
@@ -1613,7 +1578,8 @@ function mapBackBtn() {
 }//mapBackBtn
 
 function changeResetToRegion(){
-	var zoomLevel = 1;
+	var zoomLevel = 1;//variable to place zoom icons based on levels
+	//variable to place zoom icons based on levels
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
@@ -1627,39 +1593,48 @@ function changeResetToRegion(){
 	}
 	else{
 		zoomLevel = 1;
-		$( "#banner_val" ).empty();
-		//$( "#banner_val" ).append( "<div id='zoom_level'><img id='zoom_level' src='/themes/common/img/plus-sign.png' /><br/><img id='zoom_level' src='/themes/common/img/level-"+zoomLevel+".png' /><br/><a href='javascript:%20mapBackBtn();'><img id='zoom_level' src='/themes/common/img/minus-sign.png' /></a></div>" );
+		$( "#banner_val" ).empty();//clearing back button and zooming icons
 	}
 }//changeResetToRegion
 
 function zoomin() {
-	if(mh<510){
-		mw = mw+40;
-		mh = mh+40;
-		if(options.region=='021'){ if(mh==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='155'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='030'){ if(mh==470){ yAxis = yAxis-12-50; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='035'){ if(mh==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='CA'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
-		else if(options.region=='US'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
-		else if(options.region=='FJ'){ if(mh==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
-		else if(options.region=='VN'){ if(mh==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
-		else{ yAxis = yAxis-12; }		
-		xAxis = xAxis-12;		
+	if(mapHeight<510){
+		mapWidth = mapWidth+40;//zooming map width
+		mapHeight = mapHeight+40;//zooming map height
+		//checking the clicked event and modifying according to top of the regions_div id
+		if(options.region=='021'){ if(mapHeight==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='150'){ if(mapHeight==470){ yAxis = yAxis-12-45; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='030'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='035'){ if(mapHeight==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
+		else if(options.region=='CA'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='US'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='FJ'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='VN'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
+		else{ yAxis = yAxis-12; }	
+		
+		//checking the clicked event and modifying according to left of the regions_div id
+		if(options.region=='MY'){  if(mapHeight==470){ xAxis = xAxis+100; }else{ xAxis = xAxis-12 } }
+		if(options.region=='US'){  if(mapHeight==470){ xAxis = xAxis+80; }else{ xAxis = xAxis-12 } }
+		else{ xAxis = xAxis-12;	}	
+
+		//set the regions_div value based on modified zooming
 		document.getElementById('regions_div').style.top = yAxis+'px';
 		document.getElementById('regions_div').style.left = xAxis+'px';
+		
+		//redrawing the map
 		if(options.region.length==3){ drawRegionsMapOne(); }
 	}
 }//zoomin
 
 function resetMapSizePos(){
-	xAxis = 0;	yAxis = 0;
+	xAxis = 0;	yAxis = 0;//variable declaration for placing the map position
+	//based on map level setting the top and left of regions_div value
 	if(nextgen.getLavel==1){
 		document.getElementById('regions_div').style.top = '-90px';
 	}else{
 		if(options.region=='021'){ document.getElementById('regions_div').style.top = '-80px'; }
-		else if(options.region=='155'){ document.getElementById('regions_div').style.top = '-65px'; }
-		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-50px'; }
+		else if(options.region=='150'){ document.getElementById('regions_div').style.top = '-45px'; }
+		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-35px';  }
 		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }
@@ -1667,9 +1642,15 @@ function resetMapSizePos(){
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
-    document.getElementById('regions_div').style.left = 0;
-	mw = 874;
-	mh = 430;//mh = 399;
+
+	//condition to check whether the clicked map region is malaysia or not
+	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } 
+	else if(options.region=='US'){ document.getElementById('regions_div').style.left = '80px';  } 
+	else { document.getElementById('regions_div').style.left = 0; }
+
+	//setting the map default height and width
+	mapWidth = 874;
+	mapHeight = 430;
 }//resetMapSizePos
 
 function hideRegionName(){
