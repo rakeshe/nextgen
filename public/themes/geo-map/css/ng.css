@@ -2079,11 +2079,11 @@ background-color:#fff;
 .search_input_hotel{ cursor:pointer; }
 .text_on_map{ float:left; z-index:999; position:absolute; color:#FFF; display: block; font-family:museo_slab500 !important; font-size:11pt !important; }
 .banner_default_map{ display: block; float: left; height: 350px !important; padding: 154px 350px; position: absolute;  width: 67%; z-index: 1; margin-left:37px; }
-.world_america{ float:left; position:relative; white-space: nowrap; padding:2px; background-color:#0E4166; top:120px; left:280px; }
-.world_europe{ float:left; position:relative; top:100px; left:420px; white-space: nowrap; padding:2px; background-color:#0E4166; }
-.world_pacific{ float:left; position:relative; top:250px; left:600px; white-space: nowrap; padding:2px; background-color:#0E4166; }
-.world_north_eastern{ float:left; position:relative; top:133px; left:480px; white-space: nowrap; padding:2px; background-color:#0E4166;}
-.world_south_eastern{ float:left; position:relative; top:200px; left:360px; white-space: nowrap; padding:2px; background-color:#0E4166;}
+.world_america{ float:left; position:relative; white-space: nowrap; padding:2px; background-color:#0E4166; top:120px; left:250px; }
+.world_europe{ float:left; position:relative; top:100px; left:450px; white-space: nowrap; padding:2px; background-color:#0E4166; }
+.world_pacific{ float:left; position:relative; top:250px; left:670px; white-space: nowrap; padding:2px; background-color:#0E4166; }
+.world_north_eastern{ float:left; position:relative; top:133px; left:510px; white-space: nowrap; padding:2px; background-color:#0E4166;}
+.world_south_eastern{ float:left; position:relative; top:200px; left:400px; white-space: nowrap; padding:2px; background-color:#0E4166;}
 
 .urlPlusImg { width: 22px; height:22px; display:block; background-image: url('/themes/common/img/plus-sign.png'); margin:15px 0 0 250px; }
 .urlPlusImg:hover { background-image: url('/themes/common/img/plus-sign-hover.png'); }
