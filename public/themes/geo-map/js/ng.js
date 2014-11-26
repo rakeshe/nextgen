@@ -1499,16 +1499,26 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 	//nextgen.mapClickRequest('city', $.trim($(this).text()));
 	//console.log(nextgen.data['urls'][nextgen.selRegion]);
 	$.each(nextgen.data['urls'][nextgen.selRegion], function(index, value){
-		if (typeof value === 'object') {
-			$.each(value, function(i, v){
-				if (typeof v === 'object') {
-					$.each(v, function(ii, vv){
-						if (ii == 'name' && vv == sel)
-							url = i;
-							return;
-					});
+		if(nextgen.getLavel==3){ //while clicking on city label
+			if (typeof value === 'object') {
+				$.each(value, function(i, v){
+					if (typeof v === 'object') {
+						$.each(v, function(ii, vv){
+							if (ii == 'name' && vv == sel)
+								url = i;
+								return;
+						});
+					}
+				});
+			}
+		}else if(nextgen.getLavel==2){ //while clicking on country label
+			if (typeof value === 'object') {
+				if(value.name == sel){
+					countryCodeVal = value.country_code;
+					url = index;
+					return;
 				}
-			});
+			}
 		}
 	});
 	res = nextgen.sendRequest(uriBase + '/' + url, 'returnType=json');
@@ -1517,6 +1527,17 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 		nextgen.drawCards();
 		//x.selectMenu(cacheObj); // select menu
 		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser
+
+		if(nextgen.getLavel==2){//while clicking on country label modify the map
+			nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryCodeVal]['url']);
+			data = regionMapConf('city-code', countryCodeVal);
+			nextgen.mapAction(countryCodeVal);
+
+			options.displayMode = 'text';
+			changeResetToRegion();
+			resetMapSizePos();
+			hideRegionName();
+		}
 	})
 	.error(function(data){
 		console.log('Exception: '+ data.responseText);
