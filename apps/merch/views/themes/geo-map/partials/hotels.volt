@@ -63,13 +63,8 @@
 	</div>
 	<br/>
 	
-	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable" id="check_in_dates" style="outline: 0px none; z-index: 1002;top: 725px; left: 452px; display: none;position:absolute;" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" >
-		<div class="ui-dialog-titlebar  ui-corner-all ui-helper-clearfix">
-			<span id="ui-id-1" class="ui-dialog-title">{{ t._('Choose your dates') }}</span>
-			<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button"><span class="">close</span></a>
-			</div>
-		</div>
-		<div class="ui-dialog-content ui-widget-content" id="choseDates" style="display: block;  min-height: 0px; " scrolltop="0" scrollleft="0">
+	
+			<div id="choseDates" style="">
 							<div class="choosedate" style="width:352px">
 							<div class="check_in" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_in') }}</p>
@@ -85,196 +80,201 @@
 							</div>
 							<div class="clearfix" style="clear:both"></div>
 							<div class="room">
+							{% for i in 1..1 %}
 							<fieldset data-context="hotelGuests" class="hotelGuests first">
-			<div class="legend">      Room 1 </div>
-			<div class="guests">
-				                              <div class="inlineInputGroup">
-					   <span class="adultSelect" data-mbox-update="167,adultsClicked=true">                                                                                                                                                        
-	<label data-agent="{&quot;type&quot;:&quot;Select&quot;}" data-component="selectList" class="control select custom js-select">
-	<span class="primaryLabel"><span class="labelText">Adult
-	<span class="secondaryText supplementaryMessage">
-							  (18+) </span></span></span> <br/>
-	<select name="hotel.rooms[0].adlts" style="">
-		     <option value="1">1</option>
-		       <option selected="selected" value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		 </select>
-<span class="button" style=""><span>2</span><div></div></span></label>
+								<div class="legend">      Room {{ i }} </div>
+								<div class="guests">
+								<div class="inlineInputGroup">
+								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">                                                                                                                                                        
+								<label data-agent="{&quot;type&quot;:&quot;Select&quot;}" data-component="selectList" class="control select custom js-select">
+								<span class="primaryLabel"><span class="labelText">Adult
+								<span class="secondaryText supplementaryMessage">
+								(18+) </span></span></span> <br/>
+								<select name="hotel.rooms[{{ i }}].adlts" style="">
+								<option value="1">1</option>
+								<option selected="selected" value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								</select>
+								<span class="button" style=""><span>2</span><div></div></span></label>
 
-     </span>
+								</span>
 
-					               <span data-mbox-update="167,childrenClicked=true">                                                                                                                                                           <label data-agent="{
-		&quot;type&quot;:&quot;SearchFormChildTravelers&quot;
-		   
-	},{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select custom js-select">
-	<span class="primaryLabel"><span class="labelText">Child <span class="secondaryText supplementaryMessage">
-								  (0-17) </span></span></span> <br/>
-	<select name="hotel.rooms[0].chlds" id="hotel.rooms[0].chlds" style="">
-		       <option selected="selected" value="0">0</option>
-		     <option value="1">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		 </select>
-<span class="button" style=""><span>0</span><div></div></span></label>
+								<span data-mbox-update="167,childrenClicked=true">                                                                                                                                                           <label data-agent="{
+								&quot;type&quot;:&quot;SearchFormChildTravelers&quot;
 
-     </span>
-					    </div>
+								},{
+								&quot;type&quot;:&quot;Select&quot;
 
-				 <div class="childTravelers noneBlock">
-					<div class="childText">Ages of children at time of trip (for pricing, discounts)</div>
-					                                                                                                                                                                                               <label id="ChildLabel1" data-agent="{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select noneInlineBlock custom js-select">
-	<span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
-	<select name="hotel.rooms[0].chldAge[0]" style="">
-		     <option value="">--</option>
-		     <option value="00">&lt; 1</option>
-		     <option value="01">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		     <option value="7">7</option>
-		     <option value="8">8</option>
-		     <option value="9">9</option>
-		     <option value="10">10</option>
-		     <option value="11">11</option>
-		     <option value="12">12</option>
-		     <option value="13">13</option>
-		     <option value="14">14</option>
-		     <option value="15">15</option>
-		     <option value="16">16</option>
-		     <option value="17">17</option>
-		 </select>
-<span class="button" style=""><span>--</span><div></div></span></label>
+								}" data-component="selectList" class="control select custom js-select">
+								<span class="primaryLabel"><span class="labelText">Child <span class="secondaryText supplementaryMessage">
+								(0-17) </span></span></span> <br/>
+								<select name="hotel.rooms[{{ i }}].chlds" id="hotel.rooms[{{ i }}].chlds" style="">
+								<option selected="selected" value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								</select>
+								<span class="button" style=""><span>0</span><div></div></span></label>
 
-                                                                                                                                                                                                    <label id="ChildLabel2" data-agent="{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select noneInlineBlock custom js-select">
-	<span class="primaryLabel offscreen"><span class="labelText">Child 2</span></span>
-	<select name="hotel.rooms[0].chldAge[1]" style="">
-		     <option value="">--</option>
-		     <option value="00">&lt; 1</option>
-		     <option value="01">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		     <option value="7">7</option>
-		     <option value="8">8</option>
-		     <option value="9">9</option>
-		     <option value="10">10</option>
-		     <option value="11">11</option>
-		     <option value="12">12</option>
-		     <option value="13">13</option>
-		     <option value="14">14</option>
-		     <option value="15">15</option>
-		     <option value="16">16</option>
-		     <option value="17">17</option>
-		 </select>
-<span class="button" style=""><span>--</span><div></div></span></label>
+								</span>
+								</div>
 
-                                                                                                                                                                                                    <label id="ChildLabel3" data-agent="{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select noneInlineBlock custom js-select">
-	<span class="primaryLabel offscreen"><span class="labelText">Child 3</span></span>
-	<select name="hotel.rooms[0].chldAge[2]" style="">
-		     <option value="">--</option>
-		     <option value="00">&lt; 1</option>
-		     <option value="01">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		     <option value="7">7</option>
-		     <option value="8">8</option>
-		     <option value="9">9</option>
-		     <option value="10">10</option>
-		     <option value="11">11</option>
-		     <option value="12">12</option>
-		     <option value="13">13</option>
-		     <option value="14">14</option>
-		     <option value="15">15</option>
-		     <option value="16">16</option>
-		     <option value="17">17</option>
-		 </select>
-<span class="button" style=""><span>--</span><div></div></span></label>
+								<div class="childTravelers noneBlock">
+								<div class="childText">Ages of children at time of trip (for pricing, discounts)</div>
+																																												   <label id="ChildLabel1" data-agent="{
+								&quot;type&quot;:&quot;Select&quot;
 
-                                                                                                                                                                                                    <label id="ChildLabel4" data-agent="{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select noneInlineBlock custom js-select">
-	<span class="primaryLabel offscreen"><span class="labelText">Child 4</span></span>
-	<select name="hotel.rooms[0].chldAge[3]" style="">
-		     <option value="">--</option>
-		     <option value="00">&lt; 1</option>
-		     <option value="01">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		     <option value="7">7</option>
-		     <option value="8">8</option>
-		     <option value="9">9</option>
-		     <option value="10">10</option>
-		     <option value="11">11</option>
-		     <option value="12">12</option>
-		     <option value="13">13</option>
-		     <option value="14">14</option>
-		     <option value="15">15</option>
-		     <option value="16">16</option>
-		     <option value="17">17</option>
-		 </select>
-<span class="button" style=""><span>--</span><div></div></span></label>
+								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+								<span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
+								<select name="hotel.rooms[{{ i }}].chldAge[0]" style="">
+								<option value="">--</option>
+								<option value="00">&lt; 1</option>
+								<option value="01">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								</select>
+								<span class="button" style=""><span>--</span><div></div></span></label>
 
-                                                                                                                                                                                                    <label id="ChildLabel5" data-agent="{
-		&quot;type&quot;:&quot;Select&quot;
-		   
-	}" data-component="selectList" class="control select noneInlineBlock custom js-select">
-	<span class="primaryLabel offscreen"><span class="labelText">Child 5</span></span>
-	<select name="hotel.rooms[0].chldAge[4]" style="">
-		     <option value="">--</option>
-		     <option value="00">&lt; 1</option>
-		     <option value="01">1</option>
-		     <option value="2">2</option>
-		     <option value="3">3</option>
-		     <option value="4">4</option>
-		     <option value="5">5</option>
-		     <option value="6">6</option>
-		     <option value="7">7</option>
-		     <option value="8">8</option>
-		     <option value="9">9</option>
-		     <option value="10">10</option>
-		     <option value="11">11</option>
-		     <option value="12">12</option>
-		     <option value="13">13</option>
-		     <option value="14">14</option>
-		     <option value="15">15</option>
-		     <option value="16">16</option>
-		     <option value="17">17</option>
-		 </select>
-<span class="button" style=""><span>--</span><div></div></span></label>
+																																									<label id="ChildLabel2" data-agent="{
+								&quot;type&quot;:&quot;Select&quot;
 
-      </div>
+								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+								<span class="primaryLabel offscreen"><span class="labelText">Child 2</span></span>
+								<select name="hotel.rooms[{{ i }}].chldAge[1]" style="">
+								<option value="">--</option>
+								<option value="00">&lt; 1</option>
+								<option value="01">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								</select>
+								<span class="button" style=""><span>--</span><div></div></span></label>
 
-				     
-				 <ul class="pipedList addRemove"><li><a class="link addRoom" href="#" data-wt-ti="-addRoom" data-wt-mt="">Add a room</a></li></ul></div>
-		</fieldset>
+																																									<label id="ChildLabel3" data-agent="{
+								&quot;type&quot;:&quot;Select&quot;
+
+								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+								<span class="primaryLabel offscreen"><span class="labelText">Child 3</span></span>
+								<select name="hotel.rooms[{{ i }}].chldAge[2]" style="">
+								<option value="">--</option>
+								<option value="00">&lt; 1</option>
+								<option value="01">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								</select>
+								<span class="button" style=""><span>--</span><div></div></span></label>
+
+																																									<label id="ChildLabel4" data-agent="{
+								&quot;type&quot;:&quot;Select&quot;
+
+								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+								<span class="primaryLabel offscreen"><span class="labelText">Child 4</span></span>
+								<select name="hotel.rooms[{{ i }}].chldAge[3]" style="">
+								<option value="">--</option>
+								<option value="00">&lt; 1</option>
+								<option value="01">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								</select>
+								<span class="button" style=""><span>--</span><div></div></span></label>
+
+																																									<label id="ChildLabel5" data-agent="{
+								&quot;type&quot;:&quot;Select&quot;
+
+								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+								<span class="primaryLabel offscreen"><span class="labelText">Child 5</span></span>
+								<select name="hotel.rooms[{{ i }}].chldAge[4]" style="">
+								<option value="">--</option>
+								<option value="00">&lt; 1</option>
+								<option value="01">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								</select>
+								<span class="button" style=""><span>--</span><div></div></span></label>
+
+								</div><ul class="pipedList addRemove">
+								<li><a class="link addRoom">Add a room</a></li>
+								</ul></div>
+							</fieldset>
+							{% endfor %}
+							
+		<div class="hc_room">
+		
+		</div>
 		</div>
 		<div data-component="submit" class="submit button">
 			<a class="hc_find" >Find</a>
@@ -299,6 +299,6 @@
 					<div class="errorMessage">&nbsp;</div>
 				</div>
 			</form>#}
-		</div>
+		</div> {# dialog box ends#}
 		
-	</div>
+	

@@ -1485,7 +1485,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 #footPartner{font-size:10px;}
 .thterms{font-size:12px;}
 
-.ui-widget-content{
+#choseDates{
    /*background: #EFEDF3 !important;
    border: 1px solid #4E4E51 !important;*/
    background: #FFF !important;
@@ -1716,7 +1716,10 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     text-shadow: 1px 1px 1px #bc3001;
     width: 50px;
 }
-.hotelGuests .legend {
+.hc_room {
+margin-top:10px;
+}
+.hotelGuests .legend ,.hc_room .legend {
     float: left;
     font-size: 14px;
     font-weight: bold;
@@ -1724,12 +1727,12 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 	padding-left: 10px;
     padding-right: 10px;
 }
-.hotelGuests .guests {
+.hotelGuests .guests ,.hc_room .guests {
     overflow: hidden;
     padding-left: 12px;
 	line-height: 2em;
 }
-.hotelGuests .inlineInputGroup {
+.hotelGuests .inlineInputGroup ,.hc_room .inlineInputGroup {
     display: inline-block;
     margin-right: 0;
 	margin-bottom: 10px;
@@ -1743,14 +1746,26 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     height: 0;
     visibility: hidden;
 }
+.ui-dialog.success-dialog{
+
+}
 .select .primaryLabel {
     display: inline-block;
     line-height: 12px;
     margin-bottom: 2px;
 }
+.ui-widget-header{
+background:none !important;
+border:none !important;
+color:#000 !important;;
+}
 .ui-dialog-title{
 font-weight:bold;
 font-size:14px;
+}
+.ui-dialog{
+border-color:#999 !important;
+border:2px solid;
 }
 .ui-dialog-titlebar-close{
 width:30px !important;
@@ -1780,7 +1795,7 @@ width:30px !important;
     margin-bottom: 12px;
     padding: 6px 11px 19px 13px !important;}
 	
-.hotelGuests .childText {
+.hotelGuests .childText ,.hc_room .childText {
     padding-bottom: 18px;
     padding-top: 6px;
 }

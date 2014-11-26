@@ -5,6 +5,10 @@
 * @version 1.0
 *
 */
+var linkOffset="";
+var linkWidth="";
+var linkHeight="";
+var scrolltop="";
 function log(message) {
 		$("<div>").text(message).prependTo("#log");
 		$("#log").scrollTop(0);
@@ -434,6 +438,14 @@ $(document).ready(function() {
 		}
 	});
 });
+$( "#choseDates" ).dialog({  autoOpen: false,
+        width: 375,
+        minHeight: 250,
+		title:'Choose your dates',
+		draggable: false,
+		dialogClass:'success-dialog'
+	         });
+	
 
 //hotel book extend this for whole card
 $(document).on('click','.ht-book', function(e) {
@@ -441,14 +453,14 @@ $(document).on('click','.ht-book', function(e) {
 	book = hotelBook.init();
 	book.onegId = $(this).data('oneg');
 	book.locale = nextgen.local;
-	$("#check_in_dates").css("display", "block");
+	$( "#choseDates" ).dialog( "open" );
 });
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
     book = hotelBook.init();
     book.onegId = $(this).data('oneg');
     book.locale = nextgen.local;
-    $("#check_in_dates").css("display", "block");
+    //$("#check_in_dates").css("display", "block");
 });
 
 /**/
@@ -849,7 +861,7 @@ var nextgen = {
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
@@ -879,7 +891,7 @@ var nextgen = {
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
-		        html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+		        html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 		        html += '</div>';
 		        html += '</div>';
 		        html += '</div>';
@@ -966,13 +978,14 @@ var nextgen = {
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 				html += '</div>';
 				//html += '<br>';
 				html += '<p class="hidden-xs inclusions">'+obj['travel_text']+'</p>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>'; //end card
+				
 			//});
 				return html;
 		},
@@ -1688,12 +1701,14 @@ $(document).ready(function() {
 fn_load();
 /* Date-picker in search form */
 //$('select[name="hotel.rooms[0].chlds"]').val()
-$( "select[name='hotel.rooms[0].chlds']" ).change(function() {
+for (var i=1;i<=4;i++){
+$( "select[name='hotel.rooms[1].chlds']" ).change(function() {
 fn_load();
 });
+}
 function fn_Adob() {
 var  sel;    
-sel = $("select[name='hotel.rooms[0].chlds']" ).val();
+sel = $("select[name='hotel.rooms[1].chlds']" ).val();
 
 if(sel == undefined) sel = 1;
 if (sel == "0") {
@@ -1759,8 +1774,28 @@ $('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");
 fn_Adob(); 
 
 }
+var maxAppend = 1;
  $('.addRoom').on('click', function () {
-    $('Add a room').appendTo('.hotelGuests');
-  });
+if (maxAppend >= 4) return;
+ var $htmlcontents = $(".hotelGuests").html();
+ maxAppend++;
+   var htmlroom= $($htmlcontents).appendTo('.hc_room');
+  //var room = $(".hotelGuests").find('.legend').text();
+	for(var i=2;i<=4;i++){
+	 var room = "<div class='legend'>";
+    room += "Room"+i+""; 
+	room += " </div>";
+	
+	//var addroom = '<li><a class="link addRoom">Add a room</a></li>';
+	//var	removeroom = '<ul class="pipedList addRemove" ><li><a class="link addRoom">Add a room</a></li>|<li><a class="link removeRoom">Remove a room</a></li></ul>';
+	if(i == maxAppend){
+	//$(removeroom).appendTo('.pipedList');
+	$(".hc_room").find('.legend').replaceWith(room);	
+	return false;
+	//$(".hc_room").find('.legend').text(room);
+	//alert(this.html());
+	}
+	}
+	});
  });
  //PopUpblocker
