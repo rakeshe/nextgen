@@ -1653,14 +1653,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
