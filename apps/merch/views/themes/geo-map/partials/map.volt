@@ -11,11 +11,11 @@
 
 	<div id="banner_val" class="hidden-xs"></div>
 	<div class="text_on_map">
-		<div class="world_america">Americas</div>
-		<div class="world_europe">Europe & UAE</div>
-		<div class="world_pacific">Pacific</div>
-		<div class="world_north_eastern">Northeast Asia</div>
-		<div class="world_south_eastern">Southeast Asia</div>
+		<div class="world_america"></div>
+		<div class="world_europe"></div>
+		<div class="world_pacific"></div>
+		<div class="world_north_eastern"></div>
+		<div class="world_south_eastern"></div>
 	</div>
 	<div class="banner_default_map"><img src="/themes/common/img/ajax-loader.gif"/></div>
 	{# <div class="hotel_platinum_cards visible-lg visible-md col-md-8  col-lg-8" style="display:none;"></div> #}

@@ -1011,6 +1011,30 @@ var nextgen = {
                     html += '<li class="dropdown-submenu">';
                     html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
                     html += '</li>';
+					
+					//condition to display region labels based on langauge with hyperlink
+					switch(index){
+						case 'pacific':
+							$(".world_pacific").empty(); 
+							$(".world_pacific").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'southeast-asia':
+							$(".world_south_eastern").empty();
+							$(".world_south_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'northeast-asia':
+							$(".world_north_eastern").empty();
+							$(".world_north_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'europe--uae':
+							$(".world_europe").empty();
+							$(".world_europe").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'americas':
+							$(".world_america").empty();
+							$(".world_america").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+					}
                 }
 				reg[value['name_en']] = value['name'];
 			});
@@ -1339,7 +1363,7 @@ var options = {
 		tooltip: { trigger: 'none'},
 		datalessRegionColor : "#FBE580",
 		enableRegionInteractivity: 'true',
-        keepAspectRatio: true
+        keepAspectRatio: false
 	};
 
 //data to draw the map
