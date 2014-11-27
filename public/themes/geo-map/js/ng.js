@@ -494,6 +494,7 @@ $(document).ready(function() {
 		}
 	});
 });
+/*DIALOG BOX WORKS*/
 $( "#choseDates" ).dialog({  autoOpen: false,
         width: 375,
         minHeight: 250,
@@ -511,13 +512,11 @@ $(document).on('click','.ht-book', function(e) {
 	book.locale = nextgen.local;
 	$( "#choseDates" ).dialog( "open" );
 	$('.ui-dialog-titlebar-close').html("close");
-	//$(".ui-dialog").find('.ui-dialog-titlebar-close').replaceWith('<span class="ui-dialog-titlebar-close">close</span>');
-	$("#visible_room1").css("display", "block");
-	//$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div>');
-	//$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button">close</span></a></div>');
-	$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
+$("#visible_room1").css("display", "block");
+$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
 	
 });
+/*DIALOG CLOSE*/
 $(document).on('click','.ui-dialog-titlebar-close', function(e) {
 $('#choseDates').dialog('close'); 
 $(':input').not(":button").val('');
@@ -536,7 +535,7 @@ $(document).on('click','.hotel_cards', function(e) {
     book.locale = nextgen.local;
     //$("#check_in_dates").css("display", "block");
 });
-
+/*DIALOG CLOSE*/
 /**/
 //submit the form
 var errorMessageLOS = "Please reduce the number of days to 28 or less.";
@@ -1783,7 +1782,7 @@ function displayRegionName(){
 }//displayRegionName
 
 //PopUpblocker
-
+/*DIALOG BOX WORKS*/
 $(document).ready(function() {	
 //fn_load();
 /* Date-picker in search form */
