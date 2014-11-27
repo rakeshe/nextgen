@@ -10,7 +10,6 @@
         {{ stylesheet_link('themes/common/font/font_serifa.css') }}
         {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css') }}
         {{ stylesheet_link('/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css') }}
-		{{ stylesheet_link(' https://rawgithub.com/scottjehl/Respond/master/cross-domain/respond-proxy.html') }} 		
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="/favicon.ico" />
