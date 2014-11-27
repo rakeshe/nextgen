@@ -1029,6 +1029,30 @@ var nextgen = {
                     html += '<li class="dropdown-submenu">';
                     html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
                     html += '</li>';
+					
+					//condition to display region labels based on langauge with hyperlink
+					switch(index){
+						case 'pacific':
+							$(".world_pacific").empty(); 
+							$(".world_pacific").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'southeast-asia':
+							$(".world_south_eastern").empty();
+							$(".world_south_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'northeast-asia':
+							$(".world_north_eastern").empty();
+							$(".world_north_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'europe--uae':
+							$(".world_europe").empty();
+							$(".world_europe").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'americas':
+							$(".world_america").empty();
+							$(".world_america").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+					}
                 }
 				reg[value['name_en']] = value['name'];
 			});
@@ -1357,7 +1381,7 @@ var options = {
 		tooltip: { trigger: 'none'},
 		datalessRegionColor : "#FBE580",
 		enableRegionInteractivity: 'true',
-        keepAspectRatio: true
+        keepAspectRatio: false
 	};
 
 //data to draw the map
@@ -1647,14 +1671,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -1675,6 +1699,7 @@ function zoomin() {
 		else if(options.region=='US'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='FJ'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='VN'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='ES'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
 		else{ yAxis = yAxis-12; }	
 		
 		//checking the clicked event and modifying according to left of the regions_div id
@@ -1705,6 +1730,7 @@ function resetMapSizePos(){
 		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
+		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-55px';  }
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
 
