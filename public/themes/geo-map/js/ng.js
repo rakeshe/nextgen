@@ -88,7 +88,7 @@ function log(message) {
 				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
 	});
 
-$('.search_plus').click(function(){
+$('.search_plus, #locationText').click(function(){
 	$('.search-toggle').slideToggle('show');
 	$('.search_plus').toggle();
 });
@@ -844,7 +844,7 @@ var nextgen = {
 			}
 			var tire_2_key = 0, tire_1_key = 0;
 			$.each(this.dataP, function(index, value) {
-                var column = 1;
+                var columnOffset = 1;
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
                         if (index == 'tier_1') {
@@ -854,11 +854,12 @@ var nextgen = {
                             }
                         }
                     } else {
-                        nextgen.data['deals'][v]['columnOffset'] = column;
+
                         if (index == 'tier_1') {
                             if (tire_1_key < 1) {
 
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                    nextgen.data['deals'][v].columnOffset = columnOffset;
 									if (device == 'mobile')
 										$('.mobile-platinum-card').append(nextgen.platinumCardMobile(nextgen.data['deals'][v])).show();
 									else
@@ -871,6 +872,7 @@ var nextgen = {
 						if (index == 'tier_2') {
 							if (tire_2_key < 2) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
+                                    nextgen.data['deals'][v].columnOffset = columnOffset;
                                     nextgen.data['deals'][v]['tier'] = "2";
 									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
 								}
@@ -885,8 +887,8 @@ var nextgen = {
 							}
 						}*/
 
-                        column++;
-                        column = column > 2 ? 1 : column;
+                        columnOffset++;
+                        columnOffset = columnOffset > 2 ? 1 : columnOffset;
 					}
 				});
 			});
@@ -962,7 +964,7 @@ var nextgen = {
 				html += '<div class="hotel_cards_heading hidden-lg hidden-md">';
 				html += '<div class="hotel_platinum_name "><a>'+obj['hotel_name']+'</a>';
 				html += '</div>';
-				html += '<div class="platinum_hotel_city">'+ obj["country_name"] +'</div>';
+				html += '<div class="platinum_hotel_city">'+ obj["city_name"] +'</div>';
 				html += '<div class="gold_hotel_review">';
 				html += '<img height="" width="" alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
 				html += '</div>';
@@ -985,25 +987,25 @@ var nextgen = {
 			//$.each(obj, function(index, val) {
 				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5" data-oneg="'+obj['oneg_id']+'">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
-                hotelNameClass = obj['hotel_name'].length + obj["country_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
+                hotelNameClass = obj['hotel_name'].length + obj["city_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
 				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a>';
 				if (obj['hotel_name'].length  > 60)
 					html += obj['hotel_name'].substring(0, 58) + '... ';
 				else
 					html += obj['hotel_name']+', ';
-					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
+					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
 					// Tablet version of Hotel name Landscape view
 					html += '<span class="hotel_name visible-md col-md-10"><a>';
 				if (obj['hotel_name'].length > 27)
 					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
 					html += obj['hotel_name']+', ';
-					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
+					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
 					// Tablet version of Hotel name Portrait view
 					html += '<span class="hotel_name visible-sm col-sm-10"><a>';
 					html += obj['hotel_name']+', ';
-					html += '</a><span class="hotel_city">'+ obj["country_name"] +'</span></span>';
-					//html += '<span class="hotel_city">'+ obj["country_name"] +'</span>';
+					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
+					//html += '<span class="hotel_city">'+ obj["city_name"] +'</span>';
 					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div class="hotel_details">';
@@ -1023,8 +1025,8 @@ var nextgen = {
 					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
 					html += obj['hotel_name'];
-					html += '</a>'+ obj["country_name"] +'</div>';
-					//html += '<div class="hotel_city col-xs-4 ">'+ obj["country_name"] +'</div>';
+					html += '</a>'+ obj["city_name"] +'</div>';
+					//html += '<div class="hotel_city col-xs-4 ">'+ obj["city_name"] +'</div>';
 					html += '<div class="clearfix hotel_review col-xs-10 pull-right"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
 					html += '<br/>';
 					html += '<div class="col-xs-10 member_rewards"><div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
@@ -1080,6 +1082,30 @@ var nextgen = {
                     html += '<li class="dropdown-submenu">';
                     html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
                     html += '</li>';
+					
+					//condition to display region labels based on langauge with hyperlink
+					switch(index){
+						case 'pacific':
+							$(".world_pacific").empty(); 
+							$(".world_pacific").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'southeast-asia':
+							$(".world_south_eastern").empty();
+							$(".world_south_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							break;
+						case 'northeast-asia':
+							$(".world_north_eastern").empty();
+							$(".world_north_eastern").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'europe--uae':
+							$(".world_europe").empty();
+							$(".world_europe").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+						case 'americas':
+							$(".world_america").empty();
+							$(".world_america").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
+							break;
+					}
                 }
 				reg[value['name_en']] = value['name'];
 			});
@@ -1445,7 +1471,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof citys !== 'undefined' && citys.length > 0) {
 			data = google.visualization.arrayToDataTable(citys);
 		}
-		options['colors'] = ['#000000'];
+		options.colors = ['#000000'];
 	} else {
 		options.region = 'world';
 		options.resolution = 'subcontinents';
@@ -1698,14 +1724,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To World View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back To "+regionName+" View</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -1726,6 +1752,7 @@ function zoomin() {
 		else if(options.region=='US'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='FJ'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='VN'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='ES'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
 		else{ yAxis = yAxis-12; }	
 		
 		//checking the clicked event and modifying according to left of the regions_div id
@@ -1756,6 +1783,7 @@ function resetMapSizePos(){
 		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
+		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-55px';  }
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
 
