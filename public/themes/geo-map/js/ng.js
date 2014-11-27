@@ -1400,7 +1400,7 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof citys !== 'undefined' && citys.length > 0) {
 			data = google.visualization.arrayToDataTable(citys);
 		}
-		options['colors'] = ['#000000'];
+		options.colors = ['#000000'];
 	} else {
 		options.region = 'world';
 		options.resolution = 'subcontinents';

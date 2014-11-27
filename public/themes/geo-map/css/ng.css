@@ -2235,9 +2235,6 @@ position: absolute;
 .showmorehotels:hover{
 	 background-color:#C3C3C3;
  }
- g{
-	cursor:pointer;
- }
 
  /** Footer in progress**/
     .copyright{
@@ -2245,3 +2242,12 @@ position: absolute;
         padding: 10px 20px 10px 20px;
         border-top: 1px solid #e21e28;
     }
+
+.banner_world_map path:not([fill^="#fbe580"]):hover{
+	fill:#0c7813 !important;
+	cursor:pointer;
+}
+
+/*.banner_world_map text:hover{ 
+	fill:#6699cc;  control the fill color of the marker 
+}*/
