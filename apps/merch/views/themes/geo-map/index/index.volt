@@ -9,6 +9,7 @@
     
     {{ partial(theme ~ '/partials/hotels') }}
 
-</div>
+
 {{ partial('../../../common/views/footer/footer') }}
+</div>
 </div>
