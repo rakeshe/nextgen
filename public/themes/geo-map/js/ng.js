@@ -1681,6 +1681,7 @@ function zoomin() {
 		else if(options.region=='US'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='FJ'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='VN'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='ES'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
 		else{ yAxis = yAxis-12; }	
 		
 		//checking the clicked event and modifying according to left of the regions_div id
@@ -1711,6 +1712,7 @@ function resetMapSizePos(){
 		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
+		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-55px';  }
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
 
