@@ -1946,7 +1946,7 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid #C7CFCA;
 }
 ul.country_name {
-  height: 400px;
+  /*height: 400px;*/
   width: 100%;
   overflow: auto;
   margin: 0 auto;overflow-x: hidden;
@@ -2234,3 +2234,10 @@ position: absolute;
  g{
 	cursor:pointer;
  }
+
+ /** Footer in progress**/
+    .copyright{
+        margin: 10px 0px;
+        padding: 10px 20px 10px 20px;
+        border-top: 1px solid #e21e28;
+    }
