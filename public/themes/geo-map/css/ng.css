@@ -1741,6 +1741,9 @@ margin-top:10px;
     margin-right: 0;
 	margin-bottom: 10px;
 }
+.hotelGuests{
+display:none;
+}
 .childTravelers {
     margin-right: -8px;
 }ul.pipedList:after {
@@ -1749,6 +1752,23 @@ margin-top:10px;
     display: block;
     height: 0;
     visibility: hidden;
+}
+ul.pipedList li, dl.pipedList dt, dl.pipedList dd {
+    float: left;
+    min-height: 1.333em;
+}
+
+ul.pipedList li, dl.pipedList dd.keyFree {
+   
+    margin-left: -0.5em;
+    padding-left: 0.417em;
+    padding-right: 0.917em;
+}
+ul.pipedList.addRemove li a.link{
+color: #562d82;
+}
+ul.pipedList.addRemove li.added_room{
+ border-right: 1px solid;
 }
 .ui-dialog.success-dialog{
 
@@ -1797,7 +1817,8 @@ width:30px !important;
 }
 .hc_find{color:#fff !important; float: right;
     margin-bottom: 12px;
-    padding: 6px 11px 19px 13px !important;}
+	margin-top: -20px;
+	 cursor:pointer;}
 	
 .hotelGuests .childText ,.hc_room .childText {
     padding-bottom: 18px;
@@ -1830,7 +1851,35 @@ height: 28px;
     display: inline-block !important;
 }
 /*popup check rates - ends here*/
+/*POPUP datepicker*/
+#ui-datepicker-div{
+border: 1px solid #999 !important;
 
+}
+.microcontentBeakLeft{
+background-image: url('/themes/common/img/dialog-beak-l.png');
+margin-left: -35px;
+margin-top: -8px;
+height: 40px;
+width: 35px;
+background-repeat: no-repeat;
+position: absolute;
+}
+.ui-dialog .ui-dialog-content{
+position:unset !important;
+}
+.ui-dialog  .ui-widget{
+background: url('/themes/common/img/dialog-shadow-v.png') 0 -8px repeat-x;
+height: 8px;
+margin: 0 8px;
+position: relative;
+}
+.ui-datepicker-next{
+background-image: url('/themes/common/img/action-next-md.png');
+}
+.ui-datepicker-prev{
+background-image: url('/themes/common/img/action-prev-md.png');
+}
 /*error message - starts here*/
 .errorMessage {
     color: #cf2726;
@@ -1839,6 +1888,9 @@ height: 28px;
     font-size: 12px;
     font-weight: bold;
     margin-top: 5px;
+}
+.ui-dialog .ui-dialog-titlebar-close{
+color:#000 !important;
 }
 /*error message - ends here*/
 

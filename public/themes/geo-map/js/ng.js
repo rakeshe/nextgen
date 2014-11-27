@@ -69,6 +69,24 @@ function log(message) {
 				+ languageCode
 				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
 	});
+	$(".hc_find").click(function() {
+				if ($(this).data('code') == 'all') {
+			checkIn  = $('#choseDatesStartDate_hc').val();
+			checkOut = $('#choseDatesEndDate_hc').val();
+			promo 	 = $('#proCode').val();
+		}
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+				+ promo
+				+ "&hotel.keyword.key="
+				+ local
+				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ checkIn
+				+ "&hotel.chkout="
+				+ checkOut
+				+ "&search=Search&locale=";
+				//+ languageCode
+				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+	});
 
 $('.search_plus').click(function(){
 	$('.search-toggle').slideToggle('show');
@@ -276,6 +294,44 @@ function() {
 				}
 			});
 	/** /Search Form Mobile date picker */
+var closeText = "Close";
+	var currentText = "Today";
+	var checkRates = "Check Rates";
+	$('#choseDatesStartDate_hc').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#choseDatesEndDate_hc').datepicker("option", "minDate",
+							$('#choseDatesStartDate_hc').val());
+				}
+			});
+	$('#choseDatesEndDate_hc').datepicker(
+			{
+				inline : true,
+				dateFormat : 'dd/mm/yy',
+				maxDate : '+364D',
+				minDate : 0,
+				numberOfMonths : 2,
+				showCurrentAtPos : 0,
+				closeText : closeText,
+				currentText : currentText,
+				showButtonPanel : true,
+				onSelect : function(dateText, inst) {
+					$('#choseDatesStartDate_hc').datepicker("option", "maxDate",
+							$('#choseDatesEndDate_hc').val());
+				}
+			});
+	/** /Search Form POPUP date picker */
 
 	/** Carousel controls * */
 	$('.carousel').carousel({
@@ -456,6 +512,22 @@ $(document).on('click','.ht-book', function(e) {
 	$( "#choseDates" ).dialog( "open" );
 	$('.ui-dialog-titlebar-close').html("close");
 	//$(".ui-dialog").find('.ui-dialog-titlebar-close').replaceWith('<span class="ui-dialog-titlebar-close">close</span>');
+	$("#visible_room1").css("display", "block");
+	//$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div>');
+	//$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close ui-corner-all" onclick role="button">close</span></a></div>');
+	$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
+	
+});
+$(document).on('click','.ui-dialog-titlebar-close', function(e) {
+$('#choseDates').dialog('close'); 
+$(':input').not(":button").val('');
+$("#visible_room1").css("display", "block");
+$('.childTravelers').addClass("noneBlock");
+$('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
 });
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
@@ -1711,105 +1783,96 @@ function displayRegionName(){
 }//displayRegionName
 
 //PopUpblocker
+
 $(document).ready(function() {	
-fn_load();
+//fn_load();
 /* Date-picker in search form */
-//$('select[name="hotel.rooms[0].chlds"]').val()
-for (var i=1;i<=4;i++){
-$( "select[name='hotel.rooms[1].chlds']" ).change(function() {
-fn_load();
-});
-}
-function fn_Adob() {
-var  sel;    
-sel = $("select[name='hotel.rooms[1].chlds']" ).val();
 
-if(sel == undefined) sel = 1;
-if (sel == "0") {
+//$( "select[name='hotel.rooms[1].chlds']" ).change(function() {
+$("select[id*='Childrooms']").change(function() {
+getval = $(this).val();
+var room_val=$(this).attr("id");
+ var room_id= room_val.replace(/[^0-9]/g, '');
+if(getval == undefined) getval = 1;
+if (getval == "0") {
 $('.childTravelers').addClass("noneBlock");
-$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
-$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");  
+$('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");  
 }
-if (sel == "1") {
+if (getval == "1") {
 $('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
 }
-if (sel == "2") {
+if (getval == "2") {
 $('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");   
-$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");           
+$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");   
+$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
 }
-if (sel == "3") {
+if (getval == "3") {
 $('.childTravelers').removeClass("noneBlock"); 
-$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");       
-$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");    
-$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");       
+$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");    
+$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
 }
-if (sel == "4") {
+if (getval == "4") {
 $('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock");
-$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");         
-$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");         
+$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
 }
-if (sel == "5") {
+if (getval == "5") {
 $('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1').removeClass("noneInlineBlock").addClass("inlineBlock"); 
-$('#ChildLabel2').removeClass("noneInlineBlock").addClass("inlineBlock");      
-$('#ChildLabel3').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4').removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel5').removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock"); 
+$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");      
+$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#ChildLabel5Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
 }
-}
+});
 
-
-function fn_load()
-{
-$('.childTravelers').addClass("noneBlock");
-$('#ChildLabel1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
-$('#ChildLabel2').removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4').removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5').removeClass("inlineBlock").addClass("noneInlineBlock"); 
-
-fn_Adob(); 
-
-}
-var maxAppend = 1;
+var maxAppend = "1";
  $('.addRoom').on('click', function () {
-if (maxAppend >= 4) return;
- var $htmlcontents = $(".hotelGuests").html();
+ var id_int= $(this).attr('id');
+ var id_val= id_int.replace(/[^0-9]/g, ''); 
+ if(id_val == maxAppend){
+ var addone="1";
+ var toggleVal=Number(id_val)+Number(addone);
+ if(toggleVal<=4){
+
+ $("#visible_room"+toggleVal).css("display", "block");
+ $("#addRemove"+id_val).css("display", "none");
+ $("#addRemove"+toggleVal).css("display", "block");
+ }
+ }
  maxAppend++;
-   var htmlroom= $($htmlcontents).appendTo('.hc_room');
-  //var room = $(".hotelGuests").find('.legend').text();
-	for(var i=2;i<=4;i++){
-	 var room = "<div class='legend'>";
-    room += "Room"+i+""; 
-	room += " </div>";
-	
-	//var addroom = '<li><a class="link addRoom">Add a room</a></li>';
-	//var	removeroom = '<ul class="pipedList addRemove" ><li><a class="link addRoom">Add a room</a></li>|<li><a class="link removeRoom">Remove a room</a></li></ul>';
-	if(i == maxAppend){
-	//$(removeroom).appendTo('.pipedList');
-	$(".hc_room").find('.legend').replaceWith(room);	
-	return false;
-	//$(".hc_room").find('.legend').text(room);
-	//alert(this.html());
-	}
-	}
-	});
- });
+});
+var maxAppend = "1";
+ $('.removeRoom').on('click', function () {
+ var id_int= $(this).attr('id');
+ var id_val= id_int.replace(/[^0-9]/g, ''); 
+ if(id_val == maxAppend){
+ var addone="1";
+ var toggleVal=Number(id_val)-Number(addone);
+
+ $("#visible_room"+id_val).css("display", "none");
+ $("#addRemove"+id_val).css("display", "none");
+  $("#addRemove"+toggleVal).css("display", "block");
+ }
+ maxAppend--;
+});
  //PopUpblocker
+});
