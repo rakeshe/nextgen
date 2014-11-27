@@ -39,8 +39,8 @@
 	.hotel_all_search { float:left; text-align:right; padding:15px 0px 5px 0px;font-size:16px;font-weight:normal; font-family: museo_sans500; }
 	.map-back { color:#FFF !important; }
 	.map-reset { color:#FFF !important; }
-	.map-reset-to-region { color:#FFF !important; font-family: museo_slab500 ; font-size: 14px; text-decoration: none; padding: 14px; }
-	a.map-reset-to-region:hover { background-color: #E21E28; text-decoration: none }
+	.map-reset-to-region { color:#E21E28 !important; background-color: #FFF; font-family: museo_slab500 ; font-size: 14px; text-decoration: none; padding: 14px; margin-right: 5px; }
+	a.map-reset-to-region:hover { background-color: #E21E28; text-decoration: none; color: #FFF !important; }
 	.hotel_main_block { background-color:#FFF; }
 	#platinum_image{ float:left;height:10px !important;width:64px;}
 	#hotel_content { float:left;margin:5px; margin-left:-52px; }
