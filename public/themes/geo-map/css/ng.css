@@ -2096,7 +2096,7 @@ background-color:#fff;
 #canvas { width:874px; height:350px; overflow:hidden; }
 #regions_div{ left: 0px; top: -90px; z-index:1;  }
 .search_input_hotel{ cursor:pointer; }
-.text_on_map{ float:left; z-index:999; position:absolute; color:#FFF; display: block; font-family:museo_slab500 !important; font-size:11pt !important; }
+.text_on_map{ float:left; z-index:99; position:absolute; color:#FFF; display: block; font-family:museo_slab500 !important; font-size:11pt !important; }
 .banner_default_map{ display: block; float: left; height: 350px !important; padding: 154px 350px; position: absolute;  width: 67%; z-index: 1; margin-left:37px; }
 .world_america{ float:left; position:relative; white-space: nowrap; padding:2px; background-color:#0E4166; top:120px; left:250px; }
 .world_europe{ float:left; position:relative; top:100px; left:450px; white-space: nowrap; padding:2px; background-color:#0E4166; }
@@ -2241,3 +2241,24 @@ position: absolute;
         padding: 10px 20px 10px 20px;
         border-top: 1px solid #e21e28;
     }
+
+/** Coupon styles **/
+#coupon_code{
+    color: #E21E28 !important;
+    background-color: #FFF;
+    font-family: museo_slab500;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 15px;
+    /*margin-right: 5px;*/
+    border: 2px dashed;
+    z-index: 600;
+    /*position: absolute;*/
+    /*top: 35%;*/
+    /*left: 17%;*/
+    text-align: center;
+}
+#coupon_code span{
+    line-height: 35pt;
+    font-size: 130%;
+}

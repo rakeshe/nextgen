@@ -1,9 +1,11 @@
-<div class="row">
-    <div id="coupon_code" class="">
+{% if coupon is defined %}
+    <div id="coupon_code" style="display: none">
         <div class="img-responsive hidden-xs">
-COUPON CODE DESKTOP / TABLE
+            {{ coupon['message'] }}
         </div>
-COUPON CODE MOBILE
-    </div>
-</div>
+        <div class="img-responsive visible-xs">
+            {{ coupon['message'] }}
+        </div>
 
+    </div>
+{% endif %}

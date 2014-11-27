@@ -23,7 +23,8 @@
     </div>
     <div class=" promo-code">
         <p>I have a promotion code</p>
-        <input type="text" name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText" />        
+        <input type="text" name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText"
+               value="{% if coupon is defined %}{{ coupon['code'] }}{% endif %}" />
     </div>
     <div class="search_contacts row">
         <div class="glyphicon glyphicon-earphone col-md-1">

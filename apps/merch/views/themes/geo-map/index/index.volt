@@ -3,8 +3,10 @@
 <!-- START VIEW PARTIAL: banner.phtml -->
 <div id="banner" class="subContainer">
 
+    {{ partial(theme ~ '/partials/coupons') }}
+
     {{ partial(theme ~ '/partials/map') }}
-        
+
     {{ partial(theme ~ '/partials/menu') }}
     
     {{ partial(theme ~ '/partials/hotels') }}

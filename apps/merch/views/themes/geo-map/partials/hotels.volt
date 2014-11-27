@@ -48,7 +48,7 @@
 			   </div>
 			   <div class="col-lg-4 col-sm-4 col-xs-8">
 			   		{{t._('coupon-code')}}&nbsp;&nbsp;
-		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="{{t._('coupon-code')}}...">
+		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="{{t._('coupon-code')}}..." value="{% if coupon is defined %}{{ coupon['code'] }}{% endif %}">
 		    	</div>
 	    	</div>
 	    	<div class="row">

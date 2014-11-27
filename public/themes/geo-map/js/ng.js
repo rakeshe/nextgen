@@ -437,15 +437,33 @@ $(document).ready(function() {
 					"ui-corner-all");
 		}
 	});
-});
-$( "#choseDates" ).dialog({  autoOpen: false,
+
+    $( "#choseDates" ).dialog({  autoOpen: false,
         width: 375,
         minHeight: 250,
-		title:'Choose your dates',
-		draggable: false,
-		dialogClass:'success-dialog'
-	         });
-	
+        title:'Choose your dates',
+        draggable: false,
+        dialogClass:'success-dialog'
+    });
+
+    $( "#coupon_code" ).dialog({  autoOpen: true,
+        modal:true,
+        //minHeight: 180,
+        draggable: false,
+        buttons: {
+            Ok: function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    bannerPosition = $("#banner_image").position();
+    $("#coupon_code").dialog('option', 'position', [bannerPosition.top + 280, bannerPosition.left+150]);
+
+});
+
+
+
 
 //hotel book extend this for whole card
 $(document).on('click','.ht-book', function(e) {

@@ -13,6 +13,7 @@ class IndexController extends ControllerBase {
     protected $country;
     protected $menuTabMain;
     protected $menuTabSub;
+    protected $coupon;
 
     /**
      * @var Users
@@ -25,7 +26,7 @@ class IndexController extends ControllerBase {
     protected $menu;
 
     /**
-     * @var translation
+     * @var \HC\Library\Translation translation
      */
     protected $translation;
     protected $data;
@@ -362,6 +363,8 @@ class IndexController extends ControllerBase {
         $this->uriBase = $this->getBaseUrl ();
         $var = $this->dispatcher->getParams();
 
+        // Apply coupons if any
+        $this->applyCoupon();
     }
 
     /**
@@ -463,6 +466,7 @@ class IndexController extends ControllerBase {
             'menuItemsAccount' => $this->menu->account,
             "t" => $this->translation->getTranslation (),
             'DDMenue' => $this->DDMenue,
+            'coupon' => $this->coupon,
         );
     }
 
@@ -581,5 +585,22 @@ class IndexController extends ControllerBase {
             }
         }
         die();
+    }
+
+
+    protected function applyCoupon(){
+        $couponCode = $this->request->getQuery('coupon');
+        $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_applied_msg');
+        if(!empty($couponCode)){
+            $couponMessageTemplate = str_replace('##coupon_code##', '<span>' . $couponCode . '</span>', $couponMessageTemplate);
+            $this->coupon = [
+                'dateApplied' => date('y-m-d h:i'),
+                'code' => $couponCode,
+                'message' => $couponMessageTemplate,
+                'showDialog' => true
+            ];
+            $this->cookies->set ( 'coupon', $this->coupon );
+
+        }
     }
 }
