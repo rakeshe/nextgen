@@ -2161,15 +2161,15 @@ background-color:#fff;
 .banner_default_map{ display: block; float: left; height: 350px !important; padding: 154px 350px; position: absolute;  width: 67%; z-index: 1; margin-left:37px; }
 .world_region a{ padding:3px 5px;  }
 .world_region a:hover{ background-color:#FFFFFF; color: #E21E28; text-decoration: none; }
-.world_america{ float:left; position:relative; white-space: nowrap; top:120px; left:250px;  }
+.world_america{ float:left; position:relative; top:120px; left:240px; width:200px; line-height:23px; }
 .world_america a{ background-color:#0E4166; color: #fff; text-decoration: none;}
-.world_europe{ float:left; position:relative; top:100px; left:450px; white-space: nowrap; }
+.world_europe{ float:left; position:relative; top:90px; left:340px; width:200px; line-height:23px; }
 .world_europe a{ background-color:#0E4166; color: #fff; text-decoration: none; }
-.world_pacific{ float:left; position:relative; top:250px; left:625px; white-space: nowrap; }
+.world_pacific{ float:left; position:relative; top:250px; left:420px; width:200px; line-height:23px; }
 .world_pacific a{ background-color:#0E4166; color: #fff; text-decoration: none; }
-.world_north_eastern{ float:left; position:relative; top:133px; left:475px; white-space: nowrap; }
+.world_north_eastern{ float:left; position:relative; top:133px; left:120px; width:200px; line-height:23px; }
 .world_north_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
-.world_south_eastern{ float:left; position:relative; top:200px; left:400px; white-space: nowrap; }
+.world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
 .world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
 .urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-sign.png'); margin:15px 0 0 250px; }
