@@ -62,62 +62,48 @@
 	
 	</div>
 	<br/>
-	
+	                {#POPUP DESIGN AND FUNCTIONALITIES #}
 	
 			<div id="choseDates" style="">
+			<div class="microcontentBeakLeft" style="left: 0px; top: 8px;"></div>
 							<div class="choosedate" style="width:352px">
 							<div class="check_in" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_in') }}</p>
-							<input type="text" placeholder="dd/mm/yyyy" id="StartDate" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+							<input type="text" placeholder="dd/mm/yyyy" id="choseDatesStartDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
 							<div class="secondaryDate"></div>
 							</div>
 							<div class="checkout" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_out') }}</p>
-							<input type="text" placeholder="dd/mm/yyyy" id="EndDate" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+							<input type="text" placeholder="dd/mm/yyyy" id="choseDatesEndDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
 							<div class="secondaryDate"></div>
 							</div>
 							<div class="extraSelNights" style="width:20%; float:left;padding-left:8px;"> <label>Nights</label> <p> o </p></div>
 							</div>
 							<div class="clearfix" style="clear:both"></div>
 							<div class="room">
-							{% for i in 1..1 %}
-							<fieldset data-context="hotelGuests" class="hotelGuests first">
+							{% for i in 1..4 %}
+							<fieldset id="visible_room{{ i }}" data-context="hotelGuests" class="hotelGuests first">
 								<div class="legend">      Room {{ i }} </div>
 								<div class="guests">
 								<div class="inlineInputGroup">
 								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">                                                                                                                                                        
-								<label data-agent="{&quot;type&quot;:&quot;Select&quot;}" data-component="selectList" class="control select custom js-select">
+								<label class="control select custom js-select">
 								<span class="primaryLabel"><span class="labelText">Adult
 								<span class="secondaryText supplementaryMessage">
 								(18+) </span></span></span> <br/>
 								<select name="hotel.rooms[{{ i }}].adlts" style="">
-								<option value="1">1</option>
-								<option selected="selected" value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
+								{% for j in 1..6 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
-								<span class="button" style=""><span>2</span><div></div></span></label>
-
-								</span>
-
-								<span data-mbox-update="167,childrenClicked=true">                                                                                                                                                           <label data-agent="{
-								&quot;type&quot;:&quot;SearchFormChildTravelers&quot;
-
-								},{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select custom js-select">
+								<span class="button" style=""><span>2</span><div></div></span></label></span>
+								<span   data-mbox-update="167,childrenClicked=true">                                                                                               <label class="control select custom js-select">
 								<span class="primaryLabel"><span class="labelText">Child <span class="secondaryText supplementaryMessage">
 								(0-17) </span></span></span> <br/>
-								<select name="hotel.rooms[{{ i }}].chlds" id="hotel.rooms[{{ i }}].chlds" style="">
-								<option selected="selected" value="0">0</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
+								<select name="hotel.rooms[{{ i }}].chlds" id="Childrooms{{ i }}" style="">
+									{% for j in 0..5 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>0</span><div></div></span></label>
 
@@ -126,159 +112,80 @@
 
 								<div class="childTravelers noneBlock">
 								<div class="childText">Ages of children at time of trip (for pricing, discounts)</div>
-																																												   <label id="ChildLabel1" data-agent="{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+																																												   <label id="ChildLabel1Room{{ i }}"  class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[0]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<option value="01">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
+									{% for j in 1..17 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>--</span><div></div></span></label>
 
-																																									<label id="ChildLabel2" data-agent="{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+							<label id="ChildLabel2Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 2</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[1]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<option value="01">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
+								{% for j in 1..17 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>--</span><div></div></span></label>
 
-																																									<label id="ChildLabel3" data-agent="{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+																																									
+							<label id="ChildLabel3Room{{ i }}"  class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 3</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[2]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<option value="01">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
+								{% for j in 1..17 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>--</span><div></div></span></label>
 
-																																									<label id="ChildLabel4" data-agent="{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+																																									<label id="ChildLabel4Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 4</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[3]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<option value="01">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
+							{% for j in 1..17 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>--</span><div></div></span></label>
 
-																																									<label id="ChildLabel5" data-agent="{
-								&quot;type&quot;:&quot;Select&quot;
-
-								}" data-component="selectList" class="control select noneInlineBlock custom js-select">
+																																									<label id="ChildLabel5Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 5</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[4]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<option value="01">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
+								{% for j in 1..17 %}
+								<option value="{{ j }}">{{ j }}</option>	
+										{% endfor %}
 								</select>
 								<span class="button" style=""><span>--</span><div></div></span></label>
-
-								</div><ul class="pipedList addRemove">
-								<li><a class="link addRoom">Add a room</a></li>
+{% if  i == "1" %}
+</div><ul id="addRemove{{ i }}" class="pipedList addRemove">
+								<li><a id="add_room{{ i }}" class="link addRoom">Add a room</a></li>
 								</ul></div>
+{% else %}
+								</div><ul id="addRemove{{ i }}" class="pipedList addRemove">
+								<li id="added_room"><a id="add_room{{ i }}" class="link addRoom">Add a room</a></li>
+								<li><a id="remove_room{{ i }}" class="link removeRoom">Remove this room</a></li>
+								</ul></div>
+								  {% endif %}
 							</fieldset>
 							{% endfor %}
 							
 		<div class="hc_room">
 		
 		</div>
+		
 		</div>
-		<div data-component="submit" class="submit button">
-			<a class="hc_find" >Find</a>
-		</div>
+	<button style="background-color: #562d82;color:#FFFFFF;" aria-label="Left Align" data-code="all" class="btn btn-default hc_find" type="button">Find</button>
 			 {#<form method="get" name="searchBot">
 				<div class="datepicker" id="choseDatesBox">
 					<div id="choseDatesBoxHotelInfo"><input type="hidden" value="Cairns" id="hotel_location"></div>
