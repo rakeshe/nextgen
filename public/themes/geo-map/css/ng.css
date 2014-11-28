@@ -1802,7 +1802,10 @@ border-color:#999 !important;
 border:2px solid;
 }
 .ui-dialog-titlebar-close{
-width:30px !important;
+    width: 45px !important;
+    height: 25px;
+    float: right;
+    margin: 4px 4px 0px 0px;
 }
 .submit {
 
@@ -2359,7 +2362,7 @@ position: absolute;
         position: absolute;
         padding: 5px;
         top: 5px;
-        left: 410px;
+        left: 414px;
     }
     .close-btn a{
         text-decoration: none;

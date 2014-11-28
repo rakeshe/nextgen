@@ -494,16 +494,7 @@ $(document).ready(function() {
 					"ui-corner-all");
 		}
 	});
-});
-/*DIALOG BOX WORKS*/
-$( "#choseDates" ).dialog({  autoOpen: false,
-        width: 466,
-        minHeight: 250,
-        title:'Choose your dates',
-        draggable: false,
-        dialogClass:'success-dialog'
 
-    });
 
     $( "#coupon_code" ).dialog({  autoOpen: true,
         modal:true,
@@ -519,7 +510,18 @@ $( "#choseDates" ).dialog({  autoOpen: false,
     bannerPosition = $("#banner_image").position();
     $("#coupon_code").dialog('option', 'position', [bannerPosition.top + 280, bannerPosition.left+150]);
 
+    $(".ui-dialog-titlebar").hide();
 
+});
+/*DIALOG BOX WORKS*/
+$( "#choseDates" ).dialog({  autoOpen: false,
+        width: 466,
+        minHeight: 224,
+        title:'Choose your dates',
+        draggable: false,
+        dialogClass:'success-dialog'
+
+    });
 
 
 
@@ -538,7 +540,7 @@ $(document).on('click','.ht-book', function(e) {
         //at: 'left-10, top + 184',
         of: this
     }).removeClass('ui-corner-all ui-dialog').addClass('hotel_active_dialog');
-
+    $(".ui-dialog-titlebar").show();
     //$("#card-" + book.onegId).addClass('hotel_active_cards').removeClass('platinum-border')
     //$('.ui-dialog-titlebar-close').html("close");
     $("#visible_room1").css("display", "block");
@@ -556,7 +558,8 @@ $('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlo
 $('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
 $('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
 $('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+    $(".ui-dialog-titlebar").hide();
 });
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
