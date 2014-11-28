@@ -52,6 +52,7 @@ function log(message) {
 			return false;
 
 		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+
 		if ($(this).data('code') == 'all') {
 			checkIn  = $('#choseDatesStartDate1').val();
 			checkOut = $('#choseDatesEndDate1').val();
@@ -855,9 +856,7 @@ var nextgen = {
             }).removeClass("lazy");
 
 			//magnifying glass icon placing based 
-			if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
-			else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
-
+			magnifyingGlassIcon();
         },
 		'drawCards' : function(def) {
             isLoggedIn = $.cookie('mid') !== undefined ? true: false;
@@ -1392,6 +1391,7 @@ var nextgen = {
 				options.displayMode = 'text';
 				backButton = 1;
 				changeResetToRegion();
+				magnifyingGlassIcon();
 				resetMapSizePos();
 				displayRegionName();
 				drawRegionsMapOne();
@@ -1403,6 +1403,7 @@ var nextgen = {
 					options.displayMode = 'text';
 					backButton = 1;
 					changeResetToRegion();
+					magnifyingGlassIcon();
 					resetMapSizePos();
 					hideRegionName();
 					drawRegionsMapOne();
@@ -1688,7 +1689,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 		nextgen.drawCards();
 		//x.selectMenu(cacheObj); // select menu
 		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser
-
+		
 		if(nextgen.getLavel==2){//while clicking on country label modify the map
 			nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryCodeVal]['url']);
 			data = regionMapConf('city-code', countryCodeVal);
@@ -1699,6 +1700,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 			resetMapSizePos();
 			hideRegionName();
 		}
+		magnifyingGlassIcon();
 	})
 	.error(function(data){
 		console.log('Exception: '+ data.responseText);
@@ -1947,3 +1949,9 @@ var maxAppend = "1";
 });
  //PopUpblocker
 });
+
+//magnifyingGlassIcon
+function magnifyingGlassIcon(){
+	if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
+	else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
+}//magnifyingGlassIcon
