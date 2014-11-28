@@ -1624,11 +1624,12 @@ function drawRegionsMapOne(type){
 								//x.selectMenu(cacheObj); // select menu
 								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
 								nextgen.mapAction('');
-
+						
 								options.displayMode = 'text';
 								changeResetToRegion();
 								resetMapSizePos();
 								hideRegionName();
+								nextgen.drawMenu(nextgen.selRegion);
 							})
 							.error(function(data){
 								console.log('Exception: '+ data.responseText);
