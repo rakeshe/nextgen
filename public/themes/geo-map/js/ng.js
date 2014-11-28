@@ -1025,8 +1025,8 @@ var nextgen = {
                 }else {
                     html += obj['hotel_name'] + ', ';
                 }
-                if (obj['city_name'].length > 15) {
-                    html += '</a><span class="hotel_city">' + obj["city_name"].substr(0, 13) + '..</span></span>';
+                if (obj['city_name'].length > 10) {
+                    html += '</a><span class="hotel_city">' + obj["city_name"].substr(0, 9) + '..</span></span>';
                     // Tablet version of Hotel name Landscape view
                     html += '<span class="hotel_name visible-md col-md-10"><a>';
                 }else {
