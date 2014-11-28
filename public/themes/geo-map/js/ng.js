@@ -546,17 +546,21 @@ $(document).on('click','.ht-book', function(e) {
 	
 });
 /*DIALOG CLOSE*/
-$(document).on('click','.ui-dialog-titlebar-close', function(e) {
+$(document).on('click','.close_dialog', function(e) {
     e.preventDefault();
 $('#choseDates').dialog('close'); 
 $(':input').not(":button").val('');
 $("#visible_room1").css("display", "block");
+$("#visible_room2").css("display", "none");
+$("#visible_room3").css("display", "none");
+$("#visible_room4").css("display", "none");
 $('.childTravelers').addClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
-$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel1Room1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('#ChildLabel2Room1').removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('#ChildLabel3Room1').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel4Room1').removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#ChildLabel5Room1').removeClass("inlineBlock").addClass("noneInlineBlock"); 
+
 });
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
@@ -722,7 +726,6 @@ $(document).ready(function() {
 		level = 1;
 	if (country != '')
 		level = 2;
-
 	x = nextgen.init();
 	x.local = local;
 	x.data = JSON.parse(data);
@@ -1115,13 +1118,17 @@ var nextgen = {
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
+			var position = 0; //To find the position of menu (Apply CSS)
 			$.each(this.data['urls'], function(index, value){
+			//console.log( position );
                 if (restrictName != index) {
                     html += '<li class="dropdown-submenu">';
+						if(position == 4)
+				 html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+				 else 
                     html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
                     html += '</li>';
-					
-					//condition to display region labels based on langauge with hyperlink
+						//condition to display region labels based on langauge with hyperlink
 					switch(index){
 						case 'pacific':
 							$(".world_pacific").empty(); 
@@ -1146,12 +1153,16 @@ var nextgen = {
 					}
                 }
 				reg[value['name_en']] = value['name'];
+			
+			position++; 
 			});
 			html += '</ul>';
 			html += '</div>';
 			this.getRegions = reg;
 			this.getLavel = 1;
+			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
 			$('#regionTabs').html(html);
+			
 		},
 		'mobileMenu' : function() {
 
@@ -1173,7 +1184,7 @@ var nextgen = {
 			$('#mobileTabs').html(html);
 		},
 		'drawCountry' : function(region, url) {
-
+				$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, country = [];
 			regoinEN = this.data['urls'][region]['name_en'];
 			regoinName = this.data['urls'][region]['name'];
@@ -1215,9 +1226,9 @@ var nextgen = {
 			this.getCountrys = country;
 			this.getLavel = 2;
 			$('.display_regions').html(html);
-		},
+			},
 		'drawCities' : function(region, countryUrl) {
-
+			$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){

@@ -66,7 +66,7 @@
 	
 			<div id="choseDates" style="">
 			<div class="microcontentBeakLeft" style="left: 0px; top: 8px;"></div>
-                <div class="close-btn"><a href="" class="" role="">close</a></div>
+                <div class="close-btn"><a href="" class="close_dialog" role="">close</a></div>
                             <input type="hidden" id="choseDatesOneg_hc" value="" />
 							<div class="choosedate" style="width:352px">
 							<div class="check_in" style="width:36%; float:left;padding-left:8px;">
@@ -113,8 +113,14 @@
 								</div>
 
 								<div class="childTravelers noneBlock">
-								<div class="childText">Ages of children at time of trip (for pricing, discounts)</div>
-																																												   <label id="ChildLabel1Room{{ i }}"  class="control select noneInlineBlock custom js-select">
+								{% if i == '1' %}
+				<div class="childText">Ages of children at time of trip (for pricing, discounts)</div>
+			{% elseif  i == "2" %}
+				<div class="childText">If you are traveling, include yourself in Room 1.</div>
+				{% elseif  i == "4" %}
+				<div class="childText">To book more than 4 rooms, call us at <span data-ismobile="false" data-isrtl="false" data-isfreecall="false" data-numbertocall="+611300854585" onclick="SkypeClick2Call.MenuInjectionHandler.makeCall(this, event)" onmouseout="SkypeClick2Call.MenuInjectionHandler.hideMenu(this, event)" onmouseover="SkypeClick2Call.MenuInjectionHandler.showMenu(this, event)" tabindex="-1" dir="ltr" class="skype_c2c_container notranslate" id="skype_c2c_container"><span skypeaction="skype_dropdown" dir="ltr" class="skype_c2c_highlighting_inactive_common"><span id="non_free_num_ui" class="skype_c2c_textarea_span"><img width="0" height="0" src="resource://skype_ff_extension-at-jetpack/skype_ff_extension/data/call_skype_logo.png" class="skype_c2c_logo_img"><span class="skype_c2c_text_span">1300-85-45-85</span><span class="skype_c2c_free_text_span"></span></span></span></span></div>
+				{% endif %}
+				<label id="ChildLabel1Room{{ i }}"  class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
 								<select name="hotel.rooms[{{ i }}].chldAge[0]" style="">
 								<option value="">--</option>
