@@ -1,6 +1,6 @@
 	.saveBookInfo{ background:none !important; padding:0 !important; }
 	#banner { padding:0 !important;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important;  }
-	#banner_image { margin:0; padding-left:1.4%; z-index:999 !important; line-height: 0; }
+	#banner_image { margin:0px 0px 0px 15px; z-index:999 !important; line-height: 0; overflow: hidden;width: 957px; border-top: 5px solid #e21e28; }
 	#banner_val { position:relative; margin-bottom:-250px; z-index:999;float:right;text-align:right; margin-top:20px;width:300px;}
 	#menu_new { margin: 0; padding: 0; }
 	/*#menu_new li {  background-color: #e21e28;
@@ -18,19 +18,24 @@
     #menu_new li a{background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
-    display: block;
+    display: flex;
+        justify-content:center;
+        align-items: center;
     float: left;
     font-family: museo_slab500;
     font-size: 16px;
     height: 48px;
-   color:#FFF;
-    margin: 0;
-    padding: 22px 35px;
-    text-align: center;
-   width: 20%;}
+        line-height: 18px;
+        color:#FFF;
+        margin: 0;
+        /*padding: 22px 35px;*/
+        padding: 6px 10px 6px;
+        text-align: center;
+        width: 20%;
+    }
     /*#menu_new li:hover{ background-color: #FFF !important; color:#e21e28 !important;}
     #menu_new li a:hover{color:#e21e28 !important;}*/
-	#menu_new li:last-child { border-right:0px; } 
+	#menu_new li:last-child a { border-right:0px; }
 	#menu_new li a:hover,#menu_new li a:focus{background-color: #FFF;color:#e21e28;text-decoration:none;font-size: 16px;}
 	/*#menu_new li a {  background-color: #E21E28; color:#FFFFFF; text-decoration:none; font-size:12pt;}*/
 	#hotel_card_block { height:auto; padding: 8px 0px 0px 2px; }
@@ -56,6 +61,8 @@
 	background-color:#fff;
     /*margin-right: 46px;*/
 	padding:0px !important;}
+    .hotel_active_cards{border: 2px solid #E21E28 !important;}
+    .hotel_active_dialog{border: 2px solid #E21E28 !important; }
 	.hotel_cards_heading { padding:5px; }
 	.font_red { font-size:8pt !important; }
 	#footer_new { box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important; margin-bottom:20px; }
@@ -286,7 +293,7 @@
         }
 
         #canvas {
-            width: 862px !important;
+            width: 896px !important;
         }
 
         .tab_divider {
@@ -664,7 +671,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
 #canvas {
-width:862px !important;
+width:896px !important;
 }
 	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
 		background-color:red !important;
@@ -760,13 +767,13 @@ a, a:link, .link{ color: #562d82; }
 
 .logo{ padding-left: 10px; float: left; }
 
-#headMenu{ font-size: 13px; border-bottom: 5px solid #E21E28; padding-right: 25px; }
+#headMenu{ font-size: 13px;  padding-right: 25px; }
 
 #headMenu ul{ list-style-type: none; margin: 0; }
 
 .left_menu li{ float: left; padding: 5px 0 0; text-align: left; min-width: 134px; margin-right: 10px; }
 
-.left_menu li, .right_menu > li{ border-top: 2px solid #E21E28; }
+.left_menu li, .right_menu > li{ border-top: 1px solid #E21E28; padding-top: 7px; }
 
 .nav > li > a{ display: inline; padding-right: 3px; }
 
@@ -1495,7 +1502,6 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
    /*background: #EFEDF3 !important;
    border: 1px solid #4E4E51 !important;*/
    background: #FFF !important;
-   border-color:#999 !important;
  /*  box-shadow: 5px 5px 5px #888888;*/
 }
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.levelActive a {
@@ -1788,6 +1794,8 @@ color:#000 !important;;
 .ui-dialog-title{
 font-weight:bold;
 font-size:14px;
+    padding: 5px !important;
+    line-height: 30px;
 }
 .ui-dialog{
 border-color:#999 !important;
@@ -1859,9 +1867,9 @@ border: 1px solid #999 !important;
 
 }
 .microcontentBeakLeft{
-background-image: url('/themes/common/img/dialog-beak-l.png');
-margin-left: -35px;
-margin-top: -8px;
+background-image: url('../../common/img/dialog-beak-top.png');
+margin-left: 418px;
+margin-top: -23px;
 height: 40px;
 width: 35px;
 background-repeat: no-repeat;
@@ -1871,16 +1879,16 @@ position: absolute;
 position:unset !important;
 }
 .ui-dialog  .ui-widget{
-background: url('/themes/common/img/dialog-shadow-v.png') 0 -8px repeat-x;
+background: url('../../common/img/dialog-shadow-v.png') 0 -8px repeat-x;
 height: 8px;
 margin: 0 8px;
 position: relative;
 }
 .ui-datepicker-next{
-background-image: url('/themes/common/img/action-next-md.png');
+background-image: url('../../common/img/action-next-md.png');
 }
 .ui-datepicker-prev{
-background-image: url('/themes/common/img/action-prev-md.png');
+background-image: url('../../common/img/action-prev-md.png');
 }
 /*error message - starts here*/
 .errorMessage {
@@ -2122,7 +2130,7 @@ margin-left: 12px
 	margin-top:5px;
 }
 #canvas {
-    width:874px;
+    width:900px;
     height:350px;
     overflow:hidden;
 }
@@ -2146,28 +2154,30 @@ background-color:#fff;
 
 #zoom_level{ margin:20px 10px 10px 10px;text-align:right;  }
 #zoom_menu{ display:block; clear:both; margin-top:5px;}
-#canvas { width:874px; height:350px; overflow:hidden; }
+#canvas { width:896px; height:350px; overflow:hidden; }
 #regions_div{ left: 0px; top: -90px; z-index:1;  }
 .search_input_hotel{ cursor:pointer; }
 .text_on_map{ float:left; z-index:99; position:absolute; color:#FFF; display: block; font-family:museo_slab500 !important; font-size:11pt !important; }
 .banner_default_map{ display: block; float: left; height: 350px !important; padding: 154px 350px; position: absolute;  width: 67%; z-index: 1; margin-left:37px; }
-.world_america{ float:left; position:relative; white-space: nowrap; top:120px; left:250px; }
-.world_america a{ padding:2px; background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_region a{ padding:3px 5px;  }
+.world_region a:hover{ background-color:#FFFFFF; color: #E21E28; text-decoration: none; }
+.world_america{ float:left; position:relative; white-space: nowrap; top:120px; left:250px;  }
+.world_america a{ background-color:#0E4166; color: #fff; text-decoration: none;}
 .world_europe{ float:left; position:relative; top:100px; left:450px; white-space: nowrap; }
-.world_europe a{ padding:2px; background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_europe a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 .world_pacific{ float:left; position:relative; top:250px; left:625px; white-space: nowrap; }
-.world_pacific a{ padding:2px; background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_pacific a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 .world_north_eastern{ float:left; position:relative; top:133px; left:475px; white-space: nowrap; }
-.world_north_eastern a{ padding:2px; background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_north_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 .world_south_eastern{ float:left; position:relative; top:200px; left:400px; white-space: nowrap; }
-.world_south_eastern a{ padding:2px; background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
-.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('/themes/common/img/plus-sign.png'); margin:15px 0 0 250px; }
-.urlPlusImg:hover { background-image: url('/themes/common/img/plus-sign-hover.png'); }
-.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('/themes/common/img/minus-sign.png'); margin:15px 0 0 250px; }
-.urlMinusImg:hover { background-image: url('/themes/common/img/minus-sign-hover.png'); }
-.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('/themes/common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding-right:8px; }
-.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('/themes/common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding:34px 8px 0 0; }
+.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-sign.png'); margin:15px 0 0 250px; }
+.urlPlusImg:hover { background-image: url('../../common/img/plus-sign-hover.png'); }
+.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin:15px 0 0 250px; }
+.urlMinusImg:hover { background-image: url('../../common/img/minus-sign-hover.png'); }
+.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding-right:8px; }
+.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding:34px 8px 0 0; }
 
 #hotel_gold_card_block {
     background-color: #562d82 !important;
@@ -2291,7 +2301,7 @@ position: absolute;
 .showmorehotels:hover{
 	 background-color:#fff;
     color: #e21e28;
-    border: 2px solid #e21e28;
+    border: 2px dashed #e21e28;
  }
 
  g{
@@ -2305,15 +2315,16 @@ position: absolute;
         border-top: 1px solid #e21e28;
     }
 
-.banner_world_map path:not([fill^="#fbe580"]):hover{
-	fill:#0c7813 !important;
+.banner_world_map path:not([fill^="#FBE580"]):hover{
+	fill:#FBE580 !important;
+    /*stroke-width: 0px!important;*/
 	cursor:pointer;
 }
 
 /*.banner_world_map text:hover{ 
 	fill:#6699cc;  control the fill color of the marker 
 }*/
-    }
+
 
 /** Coupon styles **/
 #coupon_code{
@@ -2335,3 +2346,26 @@ position: absolute;
     line-height: 35pt;
     font-size: 130%;
 }
+    .ui-corner-flat {
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+
+    .close-btn{
+        height: 30px;
+        width: 45px;
+        position: absolute;
+        padding: 5px;
+        top: 5px;
+        left: 410px;
+    }
+    .close-btn a{
+        text-decoration: none;
+
+    }
+    .close-btn a:hover{
+        text-decoration: none;
+        color: #e21e28;
+    }

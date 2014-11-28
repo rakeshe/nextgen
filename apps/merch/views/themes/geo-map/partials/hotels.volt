@@ -66,6 +66,8 @@
 	
 			<div id="choseDates" style="">
 			<div class="microcontentBeakLeft" style="left: 0px; top: 8px;"></div>
+                <div class="close-btn"><a href="" class="" role="">close</a></div>
+                            <input type="hidden" id="choseDatesOneg_hc" value="" />
 							<div class="choosedate" style="width:352px">
 							<div class="check_in" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_in') }}</p>

@@ -73,12 +73,13 @@ function log(message) {
 				if ($(this).data('code') == 'all') {
 			checkIn  = $('#choseDatesStartDate_hc').val();
 			checkOut = $('#choseDatesEndDate_hc').val();
+			oneg 	 = $('#choseDatesOneg_hc').val();
 			promo 	 = $('#proCode').val();
 		}
-		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hsv.showDetails=true&hotel.couponCode="
 				+ promo
-				+ "&hotel.keyword.key="
-				+ local
+				+ "&hotel.hid="
+				+ oneg
 				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
@@ -223,7 +224,7 @@ function() {
 	$('#choseDatesStartDate').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+                dateFormat : 'dd/mm/yy',
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -496,11 +497,12 @@ $(document).ready(function() {
 });
 /*DIALOG BOX WORKS*/
 $( "#choseDates" ).dialog({  autoOpen: false,
-        width: 375,
+        width: 466,
         minHeight: 250,
         title:'Choose your dates',
         draggable: false,
         dialogClass:'success-dialog'
+
     });
 
     $( "#coupon_code" ).dialog({  autoOpen: true,
@@ -517,7 +519,7 @@ $( "#choseDates" ).dialog({  autoOpen: false,
     bannerPosition = $("#banner_image").position();
     $("#coupon_code").dialog('option', 'position', [bannerPosition.top + 280, bannerPosition.left+150]);
 
-});
+
 
 
 
@@ -528,14 +530,24 @@ $(document).on('click','.ht-book', function(e) {
 	book = hotelBook.init();
 	book.onegId = $(this).data('oneg');
 	book.locale = nextgen.local;
-	$( "#choseDates" ).dialog( "open" );
-	$('.ui-dialog-titlebar-close').html("close");
-$("#visible_room1").css("display", "block");
-$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
+    $("#choseDatesOneg_hc").val(book.onegId);
+    $( "#choseDates" ).dialog( "open" );
+    $("#choseDates").dialog("widget").position({
+        my: 'right',
+        at: 'right+14, top+152',
+        //at: 'left-10, top + 184',
+        of: this
+    }).removeClass('ui-corner-all ui-dialog').addClass('hotel_active_dialog');
+
+    //$("#card-" + book.onegId).addClass('hotel_active_cards').removeClass('platinum-border')
+    //$('.ui-dialog-titlebar-close').html("close");
+    $("#visible_room1").css("display", "block");
+    //$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
 	
 });
 /*DIALOG CLOSE*/
 $(document).on('click','.ui-dialog-titlebar-close', function(e) {
+    e.preventDefault();
 $('#choseDates').dialog('close'); 
 $(':input').not(":button").val('');
 $("#visible_room1").css("display", "block");
@@ -1003,17 +1015,25 @@ var nextgen = {
 
 			var html = '';
 			//$.each(obj, function(index, val) {
-				html += '<div class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5" data-oneg="'+obj['oneg_id']+'">';
+				html += '<div id="card-' + obj['oneg_id'] + '" class="hotel_cards tier-' + obj['tier'] + ' card-column-' + obj['columnOffset'] + obj['borderStyle'] + ' col-xs-11  col-sm-11 col-md-11 col-lg-5" data-oneg="'+obj['oneg_id']+'">';
 				html += '<div class="hotel_cards_heading hidden-xs">';
-                hotelNameClass = obj['hotel_name'].length + obj["city_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
+                //hotelNameClass = obj['hotel_name'].length + obj["city_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
+                hotelNameClass = 'hotel_name';
 				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a>';
-				if (obj['hotel_name'].length  > 60)
-					html += obj['hotel_name'].substring(0, 58) + '... ';
-				else
-					html += obj['hotel_name']+', ';
-					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
-					// Tablet version of Hotel name Landscape view
-					html += '<span class="hotel_name visible-md col-md-10"><a>';
+				if (obj['hotel_name'].length > 37) {
+                    html += obj['hotel_name'].substring(0, 35) + '.. ';
+                }else {
+                    html += obj['hotel_name'] + ', ';
+                }
+                if (obj['city_name'].length > 15) {
+                    html += '</a><span class="hotel_city">' + obj["city_name"].substr(0, 13) + '..</span></span>';
+                    // Tablet version of Hotel name Landscape view
+                    html += '<span class="hotel_name visible-md col-md-10"><a>';
+                }else {
+                    html += '</a><span class="hotel_city">' + obj["city_name"] + '</span></span>';
+                    // Tablet version of Hotel name Landscape view
+                    html += '<span class="hotel_name visible-md col-md-10"><a>';
+                }
 				if (obj['hotel_name'].length > 27)
 					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
@@ -1388,7 +1408,7 @@ var nextgen = {
 					drawRegionsMapOne();
 				}
 			}
-		},
+		}
 };
 // Image healper
 var imageHelper = {
@@ -1424,6 +1444,8 @@ var hotelBook = {
 		return uri;
 	}
 }
+
+/** World map specific **/
 var regions = {
     'europe--uae': ["155","154","145","039"],
     'pacific': ["053", "054", "057", "061"],
@@ -1439,7 +1461,7 @@ google.setOnLoadCallback(drawRegionsMapOne);
 
 //Global Variables
 var mapHeight = 430; //map Height
-var mapWidth = 874; //map Width
+var mapWidth = 900; //map Width
 var xAxis = 0; //to increase the Map width
 var yAxis = 0; //to increase the Map height
 var options = {
@@ -1447,10 +1469,11 @@ var options = {
 		resolution: 'subcontinents',
 		width: mapWidth,
 		height: mapHeight,
-		backgroundColor: '#3682B6',
+		backgroundColor: '#3682B6',  // blue Ocean colour
+		//backgroundColor: {stroke : '#ff9900'},  // blue Ocean colour
 		legend: 'none',
 		tooltip: { trigger: 'none'},
-		datalessRegionColor : "#FBE580",
+		datalessRegionColor : "#FBE580",  //diabled region color
 		enableRegionInteractivity: 'true',
         keepAspectRatio: false
 	};
@@ -1476,8 +1499,11 @@ function regionMapConf(type, eventDataTemp){
 		if (typeof countries !== 'undefined' && countries.length > 0) {
 			data = google.visualization.arrayToDataTable(countries);
 		}
-		if(eventDataTemp==019){document.getElementById("regions_div").style.top="-100px"; }		
+		/* Apply position fix for Americas */
+        if(eventDataTemp==019){ $("#regions_div").css('top', '-500'); }
 		options.colors = ['#000000'];
+        //options.resolution = 'countries';
+        //options.datalessRegionColor = "#559dce";
 	}else if (type == 'city-code') {
 		//fetching all the cities within the clicked country
 		var citys = [];
@@ -1494,7 +1520,7 @@ function regionMapConf(type, eventDataTemp){
 		options.region = 'world';
 		options.resolution = 'subcontinents';
 		options.backgroundColor = '#3682B6';
-		options.datalessRegionColor = "#FBE580";
+		options.datalessRegionColor = "#FBE580";  //disabled countries
 		options.displayMode = 'none';
 		urls = [];
 		urls.push(['Regions','Name', 'Value']);
@@ -1522,7 +1548,7 @@ function drawRegionsMapOne(type){
 		options.height = mapHeight;
 		var geochart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		//Creating a geochart based on eventData
-		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) { 
+		google.visualization.events.addListener(geochart, 'regionClick', function(eventData) {
 			if ((eventData.region).length == 2) { //country
 				//Checks if regions is not available, not going to dispaly
 				if (typeof nextgen.getCountrys[eventData.region] === 'object') {
@@ -1762,7 +1788,7 @@ function zoomin() {
 		mapWidth = mapWidth+40;//zooming map width
 		mapHeight = mapHeight+40;//zooming map height
 		//checking the clicked event and modifying according to top of the regions_div id
-		if(options.region=='019'){ if(mapHeight==470){ yAxis = yAxis-12-80; }else{ yAxis = yAxis-12; } }
+		if(options.region=='019'){ if(mapHeight==470){ yAxis = yAxis-12-80;}else{ yAxis = yAxis-12; } }
 		else if(options.region=='150'){ if(mapHeight==470){ yAxis = yAxis-12-45; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='035'){ if(mapHeight==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
@@ -1811,7 +1837,7 @@ function resetMapSizePos(){
 	else { document.getElementById('regions_div').style.left = 0; }
 
 	//setting the map default height and width
-	mapWidth = 874;
+	mapWidth = 900;
 	mapHeight = 430;
 }//resetMapSizePos
 
