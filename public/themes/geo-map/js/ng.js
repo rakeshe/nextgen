@@ -535,6 +535,16 @@ $(document).on('click','.ht-book', function(e) {
 	book.locale = nextgen.local;
     $("#choseDatesOneg_hc").val(book.onegId);
     $( "#choseDates" ).dialog( "open" );
+
+    dialogOffset = $(this).offset().top  -  $(window).scrollTop() + 265;
+    windowHeight = $(window ).height();
+
+    if(dialogOffset > windowHeight){
+        $(".microcontentBeakLeft").removeClass('microcontentBeakLeft').addClass('microcontentBeakBottom');
+    } else {
+        $(".microcontentBeakBottom").removeClass('microcontentBeakBottom').addClass('microcontentBeakLeft');
+    }
+
     $("#choseDates").dialog("widget").position({
         my: 'right',
         at: 'right+14, top+152',
@@ -1546,7 +1556,7 @@ function regionMapConf(type, eventDataTemp){
 			});
 		});
 		data = google.visualization.arrayToDataTable(urls);
-		options.colors = ['#E21E28'];
+		options.colors = ['#FBE580'];  // make all regions the same yellowish color
 	}
 	return data;
 }//regionMapConf
@@ -1842,7 +1852,7 @@ function resetMapSizePos(){
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-35px';  }
-		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }
+		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
 		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-55px';  }

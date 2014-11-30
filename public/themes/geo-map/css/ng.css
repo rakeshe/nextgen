@@ -1878,7 +1878,17 @@ width: 35px;
 background-repeat: no-repeat;
 position: absolute;
 }
-.ui-dialog .ui-dialog-content{
+    .microcontentBeakBottom{
+        background-image: url('../../common/img/dialog-beak-bottom.png');
+        margin-left: 418px;
+        margin-top: 211px;
+        height: 40px;
+        width: 35px;
+        background-repeat: no-repeat;
+        position: absolute;
+    }
+
+    .ui-dialog .ui-dialog-content{
 position:unset !important;
 }
 .ui-dialog  .ui-widget{
@@ -2042,8 +2052,8 @@ li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:
 
 text{
 	font-family:museo_slab500 !important;
-	font-size:12pt !important;
-	font-weight:bold !important;
+	font-size:13px !important;
+	font-weight:normal !important;
 	cursor:pointer !important;
 }
 .hotel_gold_cards_list{
