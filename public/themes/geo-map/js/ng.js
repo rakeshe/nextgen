@@ -52,6 +52,7 @@ function log(message) {
 			return false;
 
 		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+
 		if ($(this).data('code') == 'all') {
 			checkIn  = $('#choseDatesStartDate1').val();
 			checkOut = $('#choseDatesEndDate1').val();
@@ -548,11 +549,14 @@ $(document).on('click','.ht-book', function(e) {
 	
 });
 /*DIALOG CLOSE*/
-$(document).on('click','.ui-dialog-titlebar-close', function(e) {
+$(document).on('click','.close_dialog', function(e) {
     e.preventDefault();
 $('#choseDates').dialog('close'); 
 $(':input').not(":button").val('');
 $("#visible_room1").css("display", "block");
+$("#visible_room2").css("display", "none");
+$("#visible_room3").css("display", "none");
+$("#visible_room4").css("display", "none");
 $('.childTravelers').addClass("noneBlock");
 $('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
 $('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
@@ -858,9 +862,7 @@ var nextgen = {
             }).removeClass("lazy");
 
 			//magnifying glass icon placing based 
-			if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
-			else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
-
+			magnifyingGlassIcon();
         },
 		'drawCards' : function(def) {
             isLoggedIn = $.cookie('mid') !== undefined ? true: false;
@@ -1118,9 +1120,14 @@ var nextgen = {
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
+			var position = 0; //To find the position of menu (Apply CSS)
 			$.each(this.data['urls'], function(index, value){
+			//console.log( position );
                 if (restrictName != index) {
                     html += '<li class="dropdown-submenu">';
+						if(position == 4)
+				 html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+				 else 
                     html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
                     html += '</li>';
 					
@@ -1149,12 +1156,16 @@ var nextgen = {
 					}
                 }
 				reg[value['name_en']] = value['name'];
+			
+			position++; 
 			});
 			html += '</ul>';
 			html += '</div>';
 			this.getRegions = reg;
 			this.getLavel = 1;
+			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
 			$('#regionTabs').html(html);
+			
 		},
 		'mobileMenu' : function() {
 
@@ -1176,7 +1187,7 @@ var nextgen = {
 			$('#mobileTabs').html(html);
 		},
 		'drawCountry' : function(region, url) {
-
+				$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, country = [];
 			regoinEN = this.data['urls'][region]['name_en'];
 			regoinName = this.data['urls'][region]['name'];
@@ -1218,9 +1229,9 @@ var nextgen = {
 			this.getCountrys = country;
 			this.getLavel = 2;
 			$('.display_regions').html(html);
-		},
+			},
 		'drawCities' : function(region, countryUrl) {
-
+			$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
@@ -1395,6 +1406,7 @@ var nextgen = {
 				options.displayMode = 'text';
 				backButton = 1;
 				changeResetToRegion();
+				magnifyingGlassIcon();
 				resetMapSizePos();
 				displayRegionName();
 				drawRegionsMapOne();
@@ -1406,6 +1418,7 @@ var nextgen = {
 					options.displayMode = 'text';
 					backButton = 1;
 					changeResetToRegion();
+					magnifyingGlassIcon();
 					resetMapSizePos();
 					hideRegionName();
 					drawRegionsMapOne();
@@ -1626,11 +1639,12 @@ function drawRegionsMapOne(type){
 								//x.selectMenu(cacheObj); // select menu
 								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
 								nextgen.mapAction('');
-
+						
 								options.displayMode = 'text';
 								changeResetToRegion();
 								resetMapSizePos();
 								hideRegionName();
+								nextgen.drawMenu(nextgen.selRegion);
 							})
 							.error(function(data){
 								console.log('Exception: '+ data.responseText);
@@ -1691,7 +1705,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 		nextgen.drawCards();
 		//x.selectMenu(cacheObj); // select menu
 		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser
-
+		
 		if(nextgen.getLavel==2){//while clicking on country label modify the map
 			nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryCodeVal]['url']);
 			data = regionMapConf('city-code', countryCodeVal);
@@ -1702,6 +1716,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 			resetMapSizePos();
 			hideRegionName();
 		}
+		magnifyingGlassIcon();
 	})
 	.error(function(data){
 		console.log('Exception: '+ data.responseText);
@@ -1950,3 +1965,9 @@ var maxAppend = "1";
 });
  //PopUpblocker
 });
+
+//magnifyingGlassIcon
+function magnifyingGlassIcon(){
+	if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
+	else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
+}//magnifyingGlassIcon
