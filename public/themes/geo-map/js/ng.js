@@ -1261,7 +1261,7 @@ var nextgen = {
 			$('.display_regions').html(html);
 			},
 		'drawCities' : function(region, countryUrl) {
-			$('.display_regions').css('background-color', 'whitedisplayPlatinumCard');	
+			$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
