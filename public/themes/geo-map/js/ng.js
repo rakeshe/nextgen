@@ -934,16 +934,17 @@ var nextgen = {
 
 						}
 						if (index == 'tier_2') {
-							if (tire_2_key < 2) {
+							if (tire_2_key <= 2) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
                                     nextgen.data['deals'][v].columnOffset = columnOffset;
                                     nextgen.data['deals'][v]['tier'] = "2";
 									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+									tire_2_key++;
 								}
 							}
-							tire_2_key++;
 						}
-
+						if(tire_2_key==0){ $('.hotel_gold_cards_list').hide(); }
+						else{ $('.hotel_gold_cards_list').show(); }
 						/*if (index == 'tier_3') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
 								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
@@ -1193,7 +1194,7 @@ var nextgen = {
 			html += '</ul>';
 			html += '</div>';
 			this.getRegions = reg;
-			this.getLavel = 1;
+			//this.getLavel = 1;
 			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
 			$('#regionTabs').html(html);
 			
@@ -1611,7 +1612,8 @@ function drawRegionsMapOne(type){
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
-						hideRegionName();
+						hideRegionName();						
+						nextgen.getLavel=3;
 					})
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);
@@ -1676,6 +1678,7 @@ function drawRegionsMapOne(type){
 								resetMapSizePos();
 								hideRegionName();
 								nextgen.drawMenu(nextgen.selRegion);
+								nextgen.getLavel=2;
 							})
 							.error(function(data){
 								console.log('Exception: '+ data.responseText);
@@ -1817,14 +1820,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;

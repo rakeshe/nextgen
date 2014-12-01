@@ -2227,8 +2227,7 @@ background-color:#fff;
 .world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
 .world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
-.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-sign.png'); margin:15px 0 0 250px; }
-.urlPlusImg:hover { background-image: url('../../common/img/plus-sign-hover.png'); }
+.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin:15px 0 0 250px; }
 .urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin:15px 0 0 250px; }
 .urlMinusImg:hover { background-image: url('../../common/img/minus-sign-hover.png'); }
 .zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding-right:8px; }
