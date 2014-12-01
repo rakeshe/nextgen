@@ -12,3 +12,4 @@
 <!-- END VIEW PARTIAL: banner.phtml -->
 {{ partial(theme ~ '/partials/hotels') }}
 {{ partial('../../../common/views/footer/footer') }}
+{{ partial('../../../common/views/tracking/tracking') }}

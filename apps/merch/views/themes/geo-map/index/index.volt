@@ -15,3 +15,4 @@
 {{ partial('../../../common/views/footer/footer') }}
 </div>
 </div>
+{{ partial('../../../common/views/tracking/tracking') }}
