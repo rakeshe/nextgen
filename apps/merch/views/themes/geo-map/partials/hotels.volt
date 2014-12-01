@@ -23,7 +23,7 @@
 	<div class="search_footer">
 		<div class="search_footer_head">
 			<span class="search_not_found">{{t._("not-found-what-you-are-looking-for")}}</span>
-			<span class="search_plus"><img src="/themes/common/img/plus.png" alt="plus"/></span>
+			<span class="search_plus hidden"><img src="/themes/common/img/plus.png" alt="plus"/></span>
 			<span style="display:none;" class="search_plus"><img src="/themes/common/img/minus-sign.png" alt="plus"/></span>
 		</div>
 		
@@ -36,7 +36,8 @@
 	      </span>
     	</div>
     	
-    	<div class="search-toggle" style="display:none;">    	
+    	<div class="search-toggle" >
+    	<div class="search-toggle" >
 	    	<div class="row" style="padding:1.5%;">
 		    	<div class="col-lg-3 col-sm-4 col-xs-8">		      
 		    		{{t._('check-in')}}&nbsp;&nbsp;
