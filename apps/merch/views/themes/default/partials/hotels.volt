@@ -1,7 +1,8 @@
 <script type="text/javascript">
 var deals = JSON.parse('{{ hotelDetailsJson }}'),
 camp = '{{ campaignData }}',
-trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}',  'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}'},
+{#trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}',  'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}'},#}
+trans = {{ tCard }},
 lang = '{{languageCode}}',
 campName = '{{ campaignName }}';
 </script>

@@ -1,4 +1,4 @@
-<script>var data = '{{data}}', dataP = '{{urlPData}}', uriBase = '{{uriBase}}', local= '{{languageCode}}', region= '{{region}}', country = '{{country}}', city = '{{city}}', trans = {'mem_extras':'{{t._("mem_extras")}}', 'mem_inactive_line1':'{{t._("mem_inactive_line1")}}', 'mem_inactive_line2':'{{t._("mem_inactive_line2")}}', 'Save':'{{t._("Save")}}', 'book':'{{t._("book")}}', 'select_hotel':'{{t._("select_hotel")}}', 'show-more-deals':'{{t._("show-more-deals")}}'};</script>
+<script>var data = '{{data}}', dataP = '{{urlPData}}', uriBase = '{{uriBase}}', local= '{{languageCode}}', region= '{{region}}', country = '{{country}}', city = '{{city}}', trans = {{ tCard }};</script>
 {#
 <div class="visible-md visible-lg row" id="dkt_banner">
     <!-- Desktop region tabs -->

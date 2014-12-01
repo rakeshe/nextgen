@@ -465,6 +465,7 @@ class IndexController extends ControllerBase {
             'menuItemsRightSite' => $this->menu->rightSite,
             'menuItemsAccount' => $this->menu->account,
             "t" => $this->translation->getTranslation (),
+            "tCard" => $this->translation->getCardTranslation(),
             'DDMenue' => $this->DDMenue,
             'coupon' => $this->coupon,
         );
