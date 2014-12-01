@@ -1008,7 +1008,8 @@ var nextgen = {
 				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">Save';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				//html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select_hotel']+'</a>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
@@ -1039,7 +1040,8 @@ var nextgen = {
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
-		        html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+		        //html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select_hotel']+'</a>';
 		        html += '</div>';
 		        html += '</div>';
 		        html += '</div>';
@@ -1134,7 +1136,8 @@ var nextgen = {
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				//html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select_hotel']+'</a>';
 				html += '</div>';
 				//html += '<br>';
 				html += '<p class="hidden-xs inclusions">'+obj['travel_text']+'</p>';
@@ -1261,7 +1264,7 @@ var nextgen = {
 			$('.display_regions').html(html);
 			},
 		'drawCities' : function(region, countryUrl) {
-			$('.display_regions').css('background-color', 'white');	
+			$('.display_regions').css('background-color', 'whitedisplayPlatinumCard');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
@@ -1818,14 +1821,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><a href='javascript:%20zoomin();' class='urlPlusImg' ></a><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
