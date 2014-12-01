@@ -1191,7 +1191,7 @@ var nextgen = {
 			html += '</ul>';
 			html += '</div>';
 			this.getRegions = reg;
-			this.getLavel = 1;
+			//this.getLavel = 1;
 			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
 			$('#regionTabs').html(html);
 			
@@ -1609,7 +1609,8 @@ function drawRegionsMapOne(type){
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
-						hideRegionName();
+						hideRegionName();						
+						nextgen.getLavel=3;
 					})
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);
@@ -1667,13 +1668,17 @@ function drawRegionsMapOne(type){
 								nextgen.selRegion = region_name;
 								//x.selectMenu(cacheObj); // select menu
 								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+								
+								nextgen.getLavel = 2;
 								nextgen.mapAction('');
 						
 								options.displayMode = 'text';
 								changeResetToRegion();
 								resetMapSizePos();
 								hideRegionName();
+								console.log(nextgen.selRegion+'----'+nextgen.getLavel);
 								nextgen.drawMenu(nextgen.selRegion);
+								nextgen.getLavel=2;
 							})
 							.error(function(data){
 								console.log('Exception: '+ data.responseText);
