@@ -3,7 +3,7 @@
         <div class="img-responsive hidden-xs">
             <iframe src="//html5.host.bannerflow.com/ad_631424_178.html?clicktag=" style="border:0;width:100%;height:82px;" scrolling="no" frameborder="0" ></iframe>
         </div>
-		<img class="img-responsive visible-xs" src="/themes/common/img/mobile-banner.png" width="650"/>
+		<img class="img-responsive visible-xs" src="/themes/common/img/mobile-banner.png" />
 	</div>
 </div>
 <div class="row row_nomargin_banner visible-md visible-lg">
@@ -18,7 +18,7 @@
 		<div class="world_south_eastern world_region"></div>
 	</div>
 	<div class="banner_default_map"><img src="/themes/common/img/ajax-loader.gif"/></div>
-	{# <div class="hotel_platinum_cards visible-lg visible-md col-md-8  col-lg-8" style="display:none;"></div> #}
+	 <div class="hotel_platinum_cards platinum-expanded visible-lg visible-md col-md-8  col-lg-8" style="display:none;"></div>
 		<div id="canvas">
 		<div id="regions_div" class="col-sm-8  col-lg-8 banner_world_map"></div>
 	</div>

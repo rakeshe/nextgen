@@ -47,7 +47,7 @@
 	.map-reset-to-region { color:#E21E28 !important; background-color: #FFF; font-family: museo_slab500 ; font-size: 14px; text-decoration: none; padding: 14px; margin-right: 5px; }
 	a.map-reset-to-region:hover { background-color: #E21E28; text-decoration: none; color: #FFF !important; }
 	.hotel_main_block { background-color:#FFF; }
-	#platinum_image{ float:left;height:10px !important;width:64px;}
+
 	#hotel_content { float:left;margin:5px; margin-left:-52px; }
 	.hotel_card_heading { color:#FFF;font-size:14pt;  }
 	.hotel_name a, .hotel_name_small a { color:#E21E28; padding-bottom:10px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
@@ -181,14 +181,7 @@
         }
 
         .member_rewards{margin-top:-2px;}
-        .hotel_member_extras {
-            color: #E21E28;
-            background-image: url("../../common/img/icon-member-plus.png");
-            background-repeat: no-repeat;
-            padding: 4px 0px 0px 23px;
-            margin-top: 26px;
-            font-weight: normal;
-        }
+
         .hotel_details {
             padding-top: 0px !important;
         }
@@ -267,6 +260,23 @@
         .platinum-border{
             border: 2px solid #333 !important;
         }
+        .hotel_platinum_cards{
+            width: 757px;
+            left: 212px;
+            position: absolute;
+            border: 0px;
+            z-index: 300;
+            overflow: hidden;
+            padding: 0px;
+        }
+        .platinum-expanded{
+            height: 76px;
+            top: 475px;
+        }
+        .platinum-collapsed{
+            height: 38px;
+            top: 513px;
+        }
         .hotel_cards { border: 2px solid #ddd;
             margin-bottom: 6px;
             /*height:151px;*/
@@ -310,6 +320,9 @@
         .hotel_all_search {
             margin-left: 74px;
         }
+        .platinum-collapsed .hotel_name{
+            margin-bottom: 10px;
+        }
         .hotel_name {
             font-size: 16px;
             font-weight:bold;
@@ -332,6 +345,14 @@
             height: 20px;
             font-weight: bold;
         }
+        .hotel_member_extras_icon {
+            background-image: url("../../common/img/icon-member-plus.png");
+            background-repeat: no-repeat;
+            float: left;
+            margin-left: 10px;
+            padding-left: 25px;
+        }
+
         .campaign-promo-offer {
             font-size:12px;
             font-weight:normal;
@@ -343,6 +364,11 @@
 
         .hotel_city {
             font-size: 15px;
+        }
+        .platinum-collapsed .hotel_city{
+            position: absolute;
+            top: 12px;
+            left: 300px;
         }
         .hotel_cards{
             margin-left: 12px;
@@ -371,6 +397,27 @@
             float:right;
             padding:0 0 0 20px;
         }
+        .saveBookInfo-platinum {
+            color: #E21E28;
+            font-size: 12px;
+            font-weight: 700;
+            height: auto;
+            max-width: auto;
+            line-height: 16px;
+            position: absolute;
+            text-align: center;
+            /* float: right; */
+            padding: 10px 0 0 20px;
+            right: 10px;
+            width: 100px;
+        }
+        .platinum-collapsed .saveBookInfo-platinum{
+            width: 190px;
+        }
+        .platinum-collapsed .hidden-xs{
+            display: inline-block !important;
+        }
+        
         .percentage {
             color:#E21E28;
             font-size:24px;
@@ -2158,12 +2205,7 @@ background-color:#fff;
 }
 .hotel_platinum_cards{
  background-color: #fff;
- height: 75px;
- left: 24%;
- position: relative;
- top: 82%;
-    border: 4px solid #562d82;
-}
+ }
 
 #zoom_level{ margin:20px 10px 10px 10px;text-align:right;  }
 #zoom_menu{ display:block; clear:both; margin-top:5px;}
@@ -2382,3 +2424,27 @@ position: absolute;
         text-decoration: none;
         color: #e21e28;
     }
+#best_deals{
+    width: 69px;
+    height: 76px;
+    float: left;
+    background-image: url("../../common/img/best-deal-label.png");
+    background-repeat: no-repeat;
+}
+.platinum-collapsed #best_deals{
+    background-position: 0px -80px;
+}
+.platinum-expanded #best_deals{
+        background-position: 0px 0px;
+    }
+    .platinum-collapsed #platinum_image {display: none;}
+/** platinum stuff **/
+    #platinum_image{ float:left;height:76px;width:111px; overflow: hidden}
+    #hotel_content-platinum{width: 470px; padding: 12px 5px 5px 12px; line-height: 18px;}
+    #platinum-toggle {float:right; z-index: 110; width: 10px; height: 10px;background-repeat: no-repeat; margin: 3px;background-image: url("../../common/img/sprite-zoom.png");
+        background-color: #999;
+        cursor: pointer; }
+    #platinum-toggle:hover {background-color: #E21E28;}
+
+    .platinum-expanded #platinum-toggle {background-position: 0px 0px;}
+    .platinum-collapsed #platinum-toggle {background-position: 0px -10px;}

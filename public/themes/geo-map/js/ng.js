@@ -47,6 +47,7 @@ function log(message) {
 		}
 	});
 
+
 	$(".search_hotel_near_go, .search_hotel_near_go_all").click(function() {
 		if ($.trim($("#locationText").val()) == '')
 			return false;
@@ -90,10 +91,12 @@ function log(message) {
 				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
 	});
 
+/*
 $('.search_plus, #locationText').click(function(){
 	$('.search-toggle').slideToggle('show');
 	$('.search_plus').toggle();
 });
+*/
 
 $(document).ready(
 function() {
@@ -350,6 +353,8 @@ var closeText = "Close";
         $("#currency-selector-menu").html($("#currency-selector-menu").html().replace(cookieCurrency, selectedCurrency));
         $.cookie('curr', selectedCurrency);
     });
+
+
 });
 
 /* Region Tabs-Mobile Toggle Event */
@@ -513,6 +518,7 @@ $(document).ready(function() {
 
     $(".ui-dialog-titlebar").hide();
 
+
 });
 /*DIALOG BOX WORKS*/
 $( "#choseDates" ).dialog({  autoOpen: false,
@@ -526,7 +532,15 @@ $( "#choseDates" ).dialog({  autoOpen: false,
 
 
 
+// Platinum card Toggle Control
+$(document).on('click','#platinum-toggle', function(e) {
+    e.preventDefault();
+    var toggleState = $(".hotel_platinum_cards").hasClass("platinum-collapsed") ? 'collapsed' : 'expanded';
+    toggleState == 'collapsed' ?
+        $(".hotel_platinum_cards").removeClass("platinum-collapsed").addClass("platinum-expanded"):
+        $(".hotel_platinum_cards").removeClass("platinum-expanded").addClass("platinum-collapsed");
 
+});
 //hotel book extend this for whole card
 $(document).on('click','.ht-book', function(e) {
 	e.preventDefault();
@@ -558,6 +572,7 @@ $(document).on('click','.ht-book', function(e) {
     //$('.ui-dialog-titlebar-close').replaceWith('<div class="close_btn"><a href="" class="ui-dialog-titlebar-close" href="#" role="button">close</a></div>');
 	
 });
+
 /*DIALOG CLOSE*/
 $(document).on('click','.close_dialog', function(e) {
     e.preventDefault();
@@ -901,7 +916,7 @@ var nextgen = {
                     } else {
 
                         if (index == 'tier_1') {
-                            if (tire_1_key < 1) {
+                            if (tire_1_key == 0) {
 
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
                                     nextgen.data['deals'][v].columnOffset = columnOffset;
@@ -953,46 +968,48 @@ var nextgen = {
 
 		'PlatinumCard' : function(obj){
 			var html = '';
-				html += '<div class="Bestdeals">';
-				html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
-				html += '<img id="best_deals" width="64" height="74"class="img-responsive" alt="'+obj['hotel_name']+'" src="/themes/common/img/Bestdeals.png">';
-				html += '</div>';
-				html += '<div id="platinum_image">';
-				html += '<img  width="64" height="74" alt="'+obj['hotel_name']+'" src="'+obj['image_url']+'">';
-				html += '</div>';
-				html += '<div class="col-md-5 col-lg-4" id="hotel_content">';
-				html += '<div class="hotel_gold_cards_heading hidden-xs">';
-				html += '<div class="hotel_name col-md-10 col-lg-10"><a>'+obj['hotel_name']+'</a>';
-				html += '</div>';
-				html += '<div class="hotel_city">Mexico</div>';
-				html += '<div class="campaign-promo-offer">'+ obj['offer'] + '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="platinum_review col-md-2 col-lg-2">';
-				html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
-				html += '<div class="hotel_member_extras">' + trans['mem_extras'] + '</div>';
-				html += '<div class="font_red member-extras-text">';
-                if(isLoggedIn){
-                    html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+                html += '<div id="platinum-toggle"></div>';
+                html += '<div class="Bestdeals">';
+                //html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
+                html += '<div id="best_deals"></div>';
+                //html += '</div>';
+                html += '<div id="platinum_image">';
+                html += '<img  width="111" height="76" alt="'+obj['hotel_name']+'" src="'+obj['image_url']+'">';
+                html += '</div>';
+                html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
+                html += '<div class="hotel_gold_cards_heading hidden-xs">';
+                html += '<div class="hotel_name col-md-10 col-lg-10"><a>'+obj['hotel_name']+'</a></div>';
+                html += '<div class="platinum_review col-md-2 col-lg-2">';
+                html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
+                html += '</div>';
+
+                html += '<div class="clearfix "></div>';
+                html += '<div class="hotel_city">' + obj['city_name'] + '</div>';
+                html += '<div class="campaign-promo-offer pull-left">'+ obj['offer'] + '</div>';
+                html += '<div class="font_red member-extras-text hotel_member_extras_icon">';
+                    if(isLoggedIn){
+                    //html += '<div class="sign-in-member-offer offer-for-existing-members font_red">'+obj['offer_moo']+'</div>';
+                    html += obj['offer_moo'];
                 } else {
 
-                    html += '<div style="display:;" class="sign-out-member-offer">';
-                    html += '<span>';
-                    html += '<p>' + trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] +'</p>';
-                    html += '</span>';
-                    html += '</div>';
+                    //html += '<div style="display:;" class="sign-out-member-offer">';
+                    //html += '<span>';
+                    html += trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] ;
+                    //html += '</span>';
+                    //html += '</div>';
                 }
+                html += '</div>';
+                html += '</div>';
+
 				html += '</div>';
-				html += '</div>';
-				html += '<div class="saveBookInfo platinum_offer col-md-2 col-lg-2">Save';
-				html += '<br>';
+				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">Save';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
-				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
+
 			return html;
 		} ,
 		'platinumCardMobile' : function(obj) {
