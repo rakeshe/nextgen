@@ -1229,7 +1229,7 @@ var nextgen = {
 				if (flag == false) {
 					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
-					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
 				}
 				flag = true;
@@ -1274,7 +1274,7 @@ var nextgen = {
 				if (heading != false && headingEn != false && flag == false) {
 					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
-					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
 					flag = true;
 				}
@@ -1319,7 +1319,7 @@ var nextgen = {
 				if (flag == false) {
 					html += '<div data-h-name="'+ regoinEN +'"><a onclick="window.history.back();return false;"> <h4><span class="glyphicon glyphicon-chevron-left back-button pull-left"></span>'+ regoinName +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
-					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div id="vertical-scrollbar">';
 					html += '<div class="dropdown">';
 					html += '<button id="dLabel" class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
 					html += '<span class="pull-left">Country</span>';
@@ -1372,7 +1372,7 @@ var nextgen = {
 				if (heading != false && headingEn != false && flag == false) {							
 					html += '<div data-h-name="'+ headingEn +'"><a onclick="window.history.back();return false;"><h4><span class="glyphicon glyphicon-chevron-left back-button pull-left"></span>'+ heading +'</h4></a></div>';
 					html += '<div class="divider_menu"></div>';
-					html += '<div id="vertical-scrollbar-demo" class="gray-skin demo">';
+					html += '<div id="vertical-scrollbar">';
 					html += '<div class="dropdown">';
 					html += '<button id="dLabel"  class="regions_list" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">';
 					html += '<span class="pull-left">City</span>';
