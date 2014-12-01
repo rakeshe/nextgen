@@ -923,7 +923,7 @@ var nextgen = {
 									if (device == 'mobile')
 										$('.mobile-platinum-card').append(nextgen.platinumCardMobile(nextgen.data['deals'][v])).show();
 									else
-										$('.hotel_platinum_cards').append(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
+										$('.hotel_platinum_cards').html(nextgen.PlatinumCard(nextgen.data['deals'][v])).show();
 								}
 								tire_1_key++;
 							}
