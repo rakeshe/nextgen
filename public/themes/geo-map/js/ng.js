@@ -932,16 +932,17 @@ var nextgen = {
 
 						}
 						if (index == 'tier_2') {
-							if (tire_2_key < 2) {
+							if (tire_2_key <= 2) {
 								if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
                                     nextgen.data['deals'][v].columnOffset = columnOffset;
                                     nextgen.data['deals'][v]['tier'] = "2";
 									$('.display-cards-gold').append(nextgen.displayHotels(nextgen.data['deals'][v]));
+									tire_2_key++;
 								}
 							}
-							tire_2_key++;
 						}
-
+						if(tire_2_key==0){ $('.hotel_gold_cards_list').hide(); }
+						else{ $('.hotel_gold_cards_list').show(); }
 						/*if (index == 'tier_3') {
 							if (typeof(nextgen.data['deals'][v]) != "undefined" && nextgen.data['deals'][v] !== null) {
 								$('.display-cards').append(nextgen.displayHotels(nextgen.data['deals'][v]));
@@ -1260,7 +1261,7 @@ var nextgen = {
 			$('.display_regions').html(html);
 			},
 		'drawCities' : function(region, countryUrl) {
-			$('.display_regions').css('background-color', 'white');	
+			$('.display_regions').css('background-color', 'whitedisplayPlatinumCard');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
@@ -1674,7 +1675,6 @@ function drawRegionsMapOne(type){
 								changeResetToRegion();
 								resetMapSizePos();
 								hideRegionName();
-								console.log(nextgen.selRegion+'----'+nextgen.getLavel);
 								nextgen.drawMenu(nextgen.selRegion);
 								nextgen.getLavel=2;
 							})
