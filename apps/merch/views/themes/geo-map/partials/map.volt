@@ -18,7 +18,7 @@
 		<div class="world_south_eastern world_region"></div>
 	</div>
 	<div class="banner_default_map"><img src="/themes/common/img/ajax-loader.gif"/></div>
-	 <div class="hotel_platinum_cards platinum-expanded visible-lg visible-md col-md-8  col-lg-8" style="display:none;"></div>
+	 <div class="hotel_platinum_cards hidden platinum-expanded visible-lg visible-md col-md-8  col-lg-8" ></div>
 		<div id="canvas">
 		<div id="regions_div" class="col-sm-8  col-lg-8 banner_world_map"></div>
 	</div>

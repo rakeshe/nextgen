@@ -895,9 +895,11 @@ var nextgen = {
 			$('.display-cards').html('');
 			$('.display-cards-gold').html('');
 			$('.mobile-platinum-card').html('');
+            $('.hotel_platinum_cards').removeClass("hidden");
 			if (def == true) {
 				$('.hd-main-info').attr('id', 'hotel_card_block');
 				$('.hotel_gold_cards_list').hide();
+                $('.hotel_platinum_cards').addClass("hidden");
 			} else {
 				$('.hotel_gold_cards_list').show();
 				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
