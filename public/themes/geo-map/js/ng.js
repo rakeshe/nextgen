@@ -1668,8 +1668,6 @@ function drawRegionsMapOne(type){
 								nextgen.selRegion = region_name;
 								//x.selectMenu(cacheObj); // select menu
 								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
-								
-								nextgen.getLavel = 2;
 								nextgen.mapAction('');
 						
 								options.displayMode = 'text';
