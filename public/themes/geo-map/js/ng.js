@@ -17,7 +17,7 @@ function log(message) {
 	$("#locationText").autocomplete({
 		source : function(request, response) {
 			$.ajax({
-				url : "/merch/get-location",
+				url : "/n/merch/get-location",
 				dataType : "json",
 				data : {
 					q : request.term
@@ -471,7 +471,7 @@ $(document).ready(function() {
 	$("#locationText").autocomplete({
 		source : function(request, response) {
 			$.ajax({
-				url : "/merch/get-location",
+				url : "/n/merch/get-location",
 				dataType : "json",
 				data : {
 					q : request.term

@@ -37,7 +37,7 @@ $router->notFound(
  * Set language route
  */
 $router->add(
-    "/set-language" . RE_LANGUAGE_CODE,
+    "/n/set-language" . RE_LANGUAGE_CODE,
     array(
         'controller' => DEFAULT_ROUTE_CONTROLLER,
         'action'     => 'setLanguage',
@@ -51,7 +51,7 @@ $router->add(
  * get currency
  */
 $router->add(
-		'/set-currency' . RE_CURRENCY_CODE,
+		'/n/set-currency' . RE_CURRENCY_CODE,
 		array(
 				"controller"   => 'index',
 				"action"       => 'setCurrency',
@@ -68,7 +68,7 @@ $router->add(
  * matches: /travel-insurance
  */
 $router->add(
-    '/travel-insurance',
+    '/n/travel-insurance',
     array(
         'module'     => 'ti',
         'namespace'  => 'HC\TI\Controllers\\',
@@ -85,7 +85,7 @@ $router->add(
  * get location
  */
 $router->add(
-    '/merch/get-location/:params',
+    '/n/merch/get-location/:params',
     array(       
         "controller"   => 'index',
         "action"       => 'getLocation',
@@ -101,7 +101,7 @@ $router->add(
  * matches: /merch/ja_JP/Summer-Escape/
  */
 $router->add(
-    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . '/:params',
+    '/n/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . '/:params',
     array(
         "languageCode" => 1,
         "campaignName" => 2,
@@ -117,7 +117,7 @@ $router->add(
  * matches: merch/ja_JP/Summer-Escape/Asia/
  */
 $router->add(
-    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . '/:params',
+    '/n/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . '/:params',
     array(
         'languageCode' => 1,
         'campaignName' => 2,
@@ -134,7 +134,7 @@ $router->add(
  * matches: merch/ja_JP/Summer-Escape/Asia/India/
  */
 $router->add(
-    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
+    '/n/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
     array(
         'languageCode' => 1,
         'campaignName' => 2,
@@ -152,7 +152,7 @@ $router->add(
  * matches: /merch/ja_JP/Summer-Escape/Asia/India/Bangalore/
  */
 $router->add(
-    '/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
+    '/n/merch' . RE_LANGUAGE_CODE . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHA . '/:params',
     array(
         'languageCode' => 1,
         'campaignName' => 2,
@@ -173,7 +173,7 @@ $router->add(
  * api/recommend
  */
 $router->add(
-    '/api/recommend/:params',
+    '/n/api/recommend/:params',
     array(        
         'params'       => 1,
         'controller'   => 'index',

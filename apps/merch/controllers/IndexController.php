@@ -518,11 +518,12 @@ class IndexController extends ControllerBase {
     }
 
     protected function getBaseUrl() {
-        return '/merch/' . $this->languageCode . '/' . $this->campaignName;
+        $baseUrl = $this->url->getBaseUri();
+        return $baseUrl . 'merch/' . $this->languageCode . '/' . $this->campaignName;
     }
 
     private function redirectToDefaultPage() {
-        return $this->response->redirect ( 'merch/' . \HC\Merch\Models\Page::DEFAULT_PAGE_LANG . '/' . \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN );
+        return $this->response->redirect (  $this->url->getBaseUri() . 'merch/' . \HC\Merch\Models\Page::DEFAULT_PAGE_LANG . '/' . \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN );
     }
 
     /**
