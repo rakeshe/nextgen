@@ -590,6 +590,7 @@ $('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlo
 $('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
     $(".ui-dialog-titlebar").hide();
 });
+/*
 $(document).on('click','.hotel_cards', function(e) {
     e.preventDefault();
     book = hotelBook.init();
@@ -597,6 +598,7 @@ $(document).on('click','.hotel_cards', function(e) {
     book.locale = nextgen.local;
     //$("#check_in_dates").css("display", "block");
 });
+*/
 /*DIALOG CLOSE*/
 /**/
 //submit the form
@@ -980,7 +982,7 @@ var nextgen = {
                 html += '</div>';
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
-                html += '<div class="hotel_name col-md-10 col-lg-10"><a>'+obj['hotel_name']+'</a></div>';
+                html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
                 html += '<div class="platinum_review col-md-2 col-lg-2">';
                 html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
@@ -1007,7 +1009,7 @@ var nextgen = {
 				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">Save';
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['search_button']+'</a>';
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
@@ -1026,7 +1028,7 @@ var nextgen = {
 				html += '</div>';
 				html += '<div class="clearfix col-xs-12" id="hotel_content">';
 				html += '<div class="hotel_cards_heading hidden-lg hidden-md">';
-				html += '<div class="hotel_platinum_name "><a>'+obj['hotel_name']+'</a>';
+				html += '<div class="hotel_platinum_name "><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a>';
 				html += '</div>';
 				html += '<div class="platinum_hotel_city">'+ obj["city_name"] +'</div>';
 				html += '<div class="gold_hotel_review">';
@@ -1038,7 +1040,7 @@ var nextgen = {
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
-		        html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+		        html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['search_button']+'</a>';
 		        html += '</div>';
 		        html += '</div>';
 		        html += '</div>';
@@ -1053,7 +1055,7 @@ var nextgen = {
 				html += '<div class="hotel_cards_heading hidden-xs">';
                 //hotelNameClass = obj['hotel_name'].length + obj["city_name"].length > 49 ? 'hotel_name_small' : 'hotel_name';
                 hotelNameClass = 'hotel_name';
-				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a>';
+				html += '<span class="' + hotelNameClass + ' visible-lg col-lg-10"><a href="' + obj['psi_url'] +'">';
 				if (obj['hotel_name'].length > 37) {
                     html += obj['hotel_name'].substring(0, 35) + '.. ';
                 }else {
@@ -1062,11 +1064,11 @@ var nextgen = {
                 if (obj['city_name'].length > 10) {
                     html += '</a><span class="hotel_city">' + obj["city_name"].substr(0, 9) + '..</span></span>';
                     // Tablet version of Hotel name Landscape view
-                    html += '<span class="hotel_name visible-md col-md-10"><a>';
+                    html += '<span class="hotel_name visible-md col-md-10"><a href="' + obj['psi_url'] +'">';
                 }else {
                     html += '</a><span class="hotel_city">' + obj["city_name"] + '</span></span>';
                     // Tablet version of Hotel name Landscape view
-                    html += '<span class="hotel_name visible-md col-md-10"><a>';
+                    html += '<span class="hotel_name visible-md col-md-10"><a href="' + obj['psi_url'] +'"  >';
                 }
 				if (obj['hotel_name'].length > 27)
 					html += obj['hotel_name'].substring(0, 26) + '...';
@@ -1074,16 +1076,16 @@ var nextgen = {
 					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
 					// Tablet version of Hotel name Portrait view
-					html += '<span class="hotel_name visible-sm col-sm-10"><a>';
+					html += '<span class="hotel_name visible-sm col-sm-10"><a href="' + obj['psi_url'] +'">';
 					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
 					//html += '<span class="hotel_city">'+ obj["city_name"] +'</span>';
 					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
 					html += '</div>';
 					html += '<div class="hotel_details">';
-					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4">';
+					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4"><a href="'+ obj['psi_url'] + '">';
 					html += '	<img data-original="'+obj['image_url']+'" alt="'+obj['hotel_name']+'" class="lazy img-responsive" id="image_hotel" alt="" />';
-					html += '</div>';
+					html += '</a></div>';
 					html += '<div id="hotel_content"  class="col-xs-5 col-sm-5 col-md-5 col-lg-4">';
 				//var discount;
 				//$.each(deals[index]['offer'], function(key, val) {
@@ -1092,7 +1094,7 @@ var nextgen = {
 				//});
 				//Mobile version
 				html +='<div class="visible-xs">';
-						html += '<div><a class="hotel_name col-xs-7">';
+						html += '<div><a class="hotel_name col-xs-7" href="' + obj['psi_url'] + '">';
 				if (obj['hotel_name'].length > 28)
 					html += obj['hotel_name'].substring(0, 26) + '...';
 				else
@@ -1121,7 +1123,7 @@ var nextgen = {
                         html += '<div class="sign-out-member-offer">';
                         html += '<span>';
                         //Show_JoinHotelClub_Popup()
-                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=">' + trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] + '</a></p>';
+                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
                         html += '</span>';
                         html += '</div>';
                     }
@@ -1133,7 +1135,7 @@ var nextgen = {
 				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['book']+'</a>';
+				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['search_button']+'</a>';
 				html += '</div>';
 				//html += '<br>';
 				html += '<p class="hidden-xs inclusions">'+obj['travel_text']+'</p>';

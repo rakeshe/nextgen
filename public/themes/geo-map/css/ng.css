@@ -50,7 +50,7 @@
 
 	#hotel_content { float:left;margin:5px; margin-left:-52px; }
 	.hotel_card_heading { color:#FFF;font-size:14pt;  }
-	.hotel_name a, .hotel_name_small a { color:#E21E28; padding-bottom:10px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+	.hotel_name a, .hotel_name_small a { color:#E21E28 !important; padding-bottom:10px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 	.hotel_city { color:#303030; font-weight:normal; }
 	.hotel_review { float:right; margin-top:0px;}
 	.platinum_review { float:left; margin-top:0px;}
@@ -1273,7 +1273,7 @@ display:none;
     background-color:#EEEAF3;
 }
 .sign-out-member-offer p{
-    padding: 0px;
+    padding: 0px 0px 0px 22px;
     color: #E21E28 ;
 }
 .sign-out-member-offer a{
