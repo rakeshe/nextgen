@@ -44,7 +44,7 @@ class Translation
                 'month_names'           => $this->getTranslation()->offsetGet('month_names'),
                 'promo_pc_off_template' => $this->getTranslation()->offsetGet('promo_pc_off_template'),
                 'search'                => $this->getTranslation()->offsetGet('search'),
-                'select'                => $this->getTranslation()->offsetGet('select'),
+                'select'                => $this->getTranslation()->offsetGet('Select'),
                 'today'                 => $this->getTranslation()->offsetGet('today'),
                 'mem_extras'            => $this->getTranslation()->offsetGet('mem_extras'),
                 'mem_inactive_line1'    => $this->getTranslation()->offsetGet('mem_inactive_line1'),

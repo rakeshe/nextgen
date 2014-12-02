@@ -836,7 +836,13 @@ a, a:link, .link{ color: #562d82; }
 
 .left_menu li{ float: left; padding: 5px 0 0; text-align: left; min-width: 134px; margin-right: 10px; }
 
+.right_menu_link li{ float: left; padding: 5px 0 0; text-align: left; min-width: 134px; margin-left: 10px; }
+
 .left_menu li, .right_menu > li{ border-top: 1px solid #E21E28; padding-top: 7px; }
+
+.right_menu li a{ color:#000000;}
+.left_menu li a{ color:#000000;}
+.right_menu_divider {border-left: 1px solid #000000; padding-bottom: 18px; margin-top: 1px; margin-left: 6px; height: 2px; }
 
 .nav > li > a{ display: inline; padding-right: 3px; }
 
@@ -2472,7 +2478,7 @@ position: absolute;
 	top:-22px;
 	}
 	.search_addRoom,.addRoom,.search_removeRoom,.removeRoom{ text-decoration:underline;}
-	.labelText{
+	.label_Text{
 color: #444;
     font-size: 16px;
     font-weight: bold;

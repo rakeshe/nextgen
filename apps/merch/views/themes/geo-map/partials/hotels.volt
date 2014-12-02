@@ -39,15 +39,15 @@
     	<div class="search-toggle" >
 	    	<div class="row" style="padding:1.5%;">
 		    	<div class="col-lg-3 col-sm-4 col-xs-8">
-		    		<span class="labelText">{{t._('check-in')}}&nbsp;&nbsp;</span>
+		    		<span class="label_Text">{{t._('check-in')}}&nbsp;&nbsp;</span>
 			        <input type="text" class="input-sm datepicker" name="checkin" id="choseDatesStartDate1" placeholder="dd/mm/yy">
 				</div>
 				<div class="col-lg-3 col-sm-4 col-xs-8">
-					<span class="labelText">{{t._('check-out')}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span class="label_Text">{{t._('check-out')}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			        <input type="text" class="input-sm datepicker" name="checkout" id="choseDatesEndDate1" placeholder="dd/mm/yy">
 			   </div>
 			   <div class="col-lg-3 col-sm-4 col-xs-8">
-			   		<span class="labelText">{{t._('coupon-code')}}&nbsp;&nbsp;</span>
+			   		<span class="label_Text">{{t._('coupon-code')}}&nbsp;&nbsp;</span>
 		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="{{t._('coupon-code')}}..." value="{% if coupon is defined %}{{ coupon['code'] }}{% endif %}">
 		    	</div>
 
@@ -318,5 +318,3 @@
 	<button style="background-color: #562d82;color:#FFFFFF;" aria-label="Left Align" data-code="all" class="btn btn-default hc_find" type="button">Find</button>
 			
 		</div> {# dialog box ends#}
-
-

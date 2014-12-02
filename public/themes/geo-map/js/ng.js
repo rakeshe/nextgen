@@ -1154,16 +1154,15 @@ var nextgen = {
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
-			var position = 0; //To find the position of menu (Apply CSS)
+			var position = (nextgen.selRegion === 'undefined' || nextgen.selRegion == '') ? 0 : 1; //To find the position of menu (Apply CSS)
 			$.each(this.data['urls'], function(index, value){
-			//console.log( position );
                 if (restrictName != index) {
                     html += '<li class="dropdown-submenu">';
-						if(position == 4)
-				 html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-				 else 
-                    html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-                    html += '</li>';
+					if(position == 4)
+				            html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+				    else
+                        html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+                        html += '</li>';
 					
 					//condition to display region labels based on langauge with hyperlink
 					switch(index){
@@ -1188,10 +1187,11 @@ var nextgen = {
 							$(".world_america").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
 							break;
 					}
+                    position++;
                 }
 				reg[value['name_en']] = value['name'];
 			
-			position++; 
+
 			});
 			html += '</ul>';
 			html += '</div>';
@@ -1457,7 +1457,7 @@ var nextgen = {
 					hideRegionName();
 					drawRegionsMapOne();
 				}
-			}
+			}	
 		}
 };
 // Image healper
@@ -1546,6 +1546,7 @@ function regionMapConf(type, eventDataTemp){
 					});
 				}
 			});
+			
 		if (typeof countries !== 'undefined' && countries.length > 0) {
 			data = google.visualization.arrayToDataTable(countries);
 		}
@@ -1614,7 +1615,7 @@ function drawRegionsMapOne(type){
 						options.displayMode = 'text';
 						changeResetToRegion();
 						resetMapSizePos();
-						hideRegionName();						
+						hideRegionName();
 						nextgen.getLavel=3;
 					})
 					.error(function(data){
@@ -1628,7 +1629,6 @@ function drawRegionsMapOne(type){
 					var eventDataRegionVal;
 					switch(eventData.region){
 						case '054': eventData.region = 'FJ'; eventDataRegionVal=1; break;//assign the eventData.region to Fiji
-						//case '013': eventData.region = 'MX'; eventDataRegionVal=1; break;//assign the eventData.region to Mexico
 						case '154': eventData.region = 'GB'; eventDataRegionVal=1; break;//assign the eventData.region to Great Britain
 					} 
 				}
@@ -1694,12 +1694,14 @@ function drawRegionsMapOne(type){
 		if(nextgen.getLavel==1){ displayRegionName(); }
 		else{ hideRegionName(); }
 		geochart.draw(data, options);
+		myTimer = setInterval(function(){ setCordinateVal(); clearTimerVal(); }, 2500);			
 	}
 }//drawRegionsMapOne
 
 var countryCodeValTemp;
 //URL
 $(document).ready(function() {
+	var myTimer;
 });
 
 //Function to reset map
@@ -1795,7 +1797,10 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            nextgen.drawMenu('');
+            console.log('coming in');
+            nextgen.getLavel = 1;
+            nextgen.selRegion = '';
+            //nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1809,7 +1814,7 @@ function mapBackBtn() {
 
 		data = regionMapConf();
 		changeResetToRegion();
-		nextgen.getLavel = 1;
+
 		changeResetToRegion();
 		resetMapSizePos();
 		drawRegionsMapOne();
@@ -1846,7 +1851,7 @@ function zoomin() {
 		else if(options.region=='150'){ if(mapHeight==470){ yAxis = yAxis-12-45; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='030'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; } }
 		else if(options.region=='035'){ if(mapHeight==470){ yAxis = yAxis-12-60; }else{ yAxis = yAxis-12; } }
-		else if(options.region=='CA'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
+		else if(options.region=='CA'){ if(mapHeight==470){ yAxis = yAxis-12-85; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='US'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='FJ'){ if(mapHeight==470){ yAxis = yAxis-12-65; }else{ yAxis = yAxis-12; }  }
 		else if(options.region=='VN'){ if(mapHeight==470){ yAxis = yAxis-12-55; }else{ yAxis = yAxis-12; }  }
@@ -1878,23 +1883,27 @@ function resetMapSizePos(){
 		else if(options.region=='150'){ document.getElementById('regions_div').style.top = '-45px'; }
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
-		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-35px';  }
-		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }
-		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }
-		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }
-		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-55px';  }
-		else if(options.region=='DE'){ document.getElementById('regions_div').style.top = '-85px';  }
+		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-85px';  }//Canada
+		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }//USA
+		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }//Fiji
+		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }//Vietnam
+		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-50px';  }//Spain
+		else if(options.region=='DE'){ document.getElementById('regions_div').style.top = '-85px';  }//Germany
+		else if(options.region=='GB'){ document.getElementById('regions_div').style.top = '-75px';  }//United Kingdom
+		else if(options.region=='TH'){ document.getElementById('regions_div').style.top = '-45px';  }//Thailand
+		else if(options.region=='ID'){ document.getElementById('regions_div').style.top = '-35px';  }//Indonesia
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
 
 	//condition to check whether the clicked map region is malaysia or not
-	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } 
-	else if(options.region=='US'){ document.getElementById('regions_div').style.left = '80px';  } 
+	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } //Malaysia
+	else if(options.region=='US'){ document.getElementById('regions_div').style.left = '80px';  } //USA
+	else if(options.region=='ES'){ document.getElementById('regions_div').style.left = '-50px';  } //Spain
 	else { document.getElementById('regions_div').style.left = 0; }
 
 	//setting the map default height and width
 	mapWidth = 900;
-	mapHeight = 430;
+	mapHeight = 430;		
 }//resetMapSizePos
 
 function hideRegionName(){
@@ -2097,3 +2106,19 @@ function magnifyingGlassIcon(){
 	if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
 	else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
 }//magnifyingGlassIcon
+
+//set the cordinate value for overlapping cities cities
+function setCordinateVal(){
+	$('text[y="150.13434695893721"]').attr('y','142');//Sunshine Coast	
+	$('text[y="156.4683643212726"]').attr('y','154');//Brisbane
+	$('text[y="160.7397236658385"]').attr('y','170');//Gold Coast
+	$('text[y="198.19348283715038"]').attr('y','195');//Port Stephens
+	$('text[y="191.64050088533318"]').attr('y','189');//Atlantic City, NJ
+	$('text[y="197.79237327011035"]').attr('y','205');//Sunshine Coast
+	$('text[y="368.1003383731635"]').attr('y','350');//Toronto	
+}//setCordinateVal
+
+//stop the timer value
+function clearTimerVal(){
+	clearInterval(myTimer);	
+}//clearTimerVal
