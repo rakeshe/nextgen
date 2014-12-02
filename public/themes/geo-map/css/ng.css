@@ -466,7 +466,7 @@
         #vertical-scrollbar {
             height: 353px;
             overflow-x: hidden;
-            overflow-y: scroll;
+            overflow-y: auto;
         }
 
         #vertical-scrollbar::-webkit-scrollbar-track
