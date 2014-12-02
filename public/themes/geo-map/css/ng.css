@@ -1899,6 +1899,9 @@ border:2px solid;
     padding-bottom: 18px;
     padding-top: 6px;
 }
+.search_childText{
+padding-top: 6px;
+}
 input, select[multiple], textarea {
    /* background-image: none;*/
     border: 1px solid;
@@ -2463,3 +2466,16 @@ position: absolute;
 
     .platinum-expanded #platinum-toggle {background-position: 0px 0px;}
     .platinum-collapsed #platinum-toggle {background-position: 0px -10px;}
+	.search_hotel_near_go_all{
+	float:right;
+	position:relative;
+	top:-22px;
+	}
+	.search_addRoom,.addRoom,.search_removeRoom,.removeRoom{ text-decoration:underline;}
+	.labelText{
+color: #444;
+    font-size: 16px;
+    font-weight: bold;
+	text-transform: capitalize;
+}
+	

@@ -517,7 +517,7 @@ $(document).ready(function() {
     $("#coupon_code").dialog('option', 'position', [bannerPosition.top + 280, bannerPosition.left+150]);
 
     $(".ui-dialog-titlebar").hide();
-
+$("#search_visible_room1").css("display", "block");
 
 });
 /*DIALOG BOX WORKS*/
@@ -579,17 +579,18 @@ $(document).on('click','.close_dialog', function(e) {
     e.preventDefault();
 $('#choseDates').dialog('close'); 
 $(':input').not(":button").val('');
-$("#visible_room1").css("display", "block");
+/*$("#visible_room1").css("display", "block");
 $("#visible_room2").css("display", "none");
 $("#visible_room3").css("display", "none");
 $("#visible_room4").css("display", "none");
 $('.childTravelers').addClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
-$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+$('.ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('.ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('.ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");*/
     $(".ui-dialog-titlebar").hide();
+	
 });
 /*
 $(document).on('click','.hotel_cards', function(e) {
@@ -1921,52 +1922,52 @@ var room_val=$(this).attr("id");
  var room_id= room_val.replace(/[^0-9]/g, '');
 if(getval == undefined) getval = 1;
 if (getval == "0") {
-$('.childTravelers').addClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
-$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");  
+$('#child_travellers'+room_id).addClass("noneBlock");
+$('.ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock"); 
+$('.ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('.ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");  
 }
 if (getval == "1") {
-$('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
-$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
+$('#child_travellers'+room_id).removeClass("noneBlock");
+$('.ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");       
+$('.ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
 }
 if (getval == "2") {
-$('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");   
-$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
+$('#child_travellers'+room_id).removeClass("noneBlock");
+$('.ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");   
+$('.ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");           
 }
 if (getval == "3") {
-$('.childTravelers').removeClass("noneBlock"); 
-$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");       
-$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");    
-$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#child_travellers'+room_id).removeClass("noneBlock"); 
+$('.ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");       
+$('.ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");    
+$('.ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
 }
 if (getval == "4") {
-$('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
-$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");         
-$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
+$('#child_travellers'+room_id).removeClass("noneBlock");
+$('.ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+$('.ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");         
+$('.ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");   
 }
 if (getval == "5") {
-$('.childTravelers').removeClass("noneBlock");
-$('#ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock"); 
-$('#ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");      
-$('#ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
-$('#ChildLabel5Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('#child_travellers'+room_id).removeClass("noneBlock");
+$('.ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock"); 
+$('.ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");      
+$('.ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
+$('.ChildLabel5Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");  
 }
 });
 
@@ -2000,6 +2001,94 @@ var maxAppend = "1";
  }
  maxAppend--;
 });
+   $("select[id*='search_Childrooms']").change(function() {
+        getval = $(this).val();
+        var room_val=$(this).attr("id");
+        var room_id= room_val.replace(/[^0-9]/g, '');
+        if(getval == undefined) getval = 1;
+        if (getval == "0") {
+            $('.search_childTravelers').addClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+        }
+        if (getval == "1") {
+            $('.search_childTravelers').removeClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+        }
+        if (getval == "2") {
+            $('.search_childTravelers').removeClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+        }
+        if (getval == "3") {
+            $('.search_childTravelers').removeClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+        }
+        if (getval == "4") {
+            $('.search_childTravelers').removeClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("inlineBlock").addClass("noneInlineBlock");
+        }
+        if (getval == "5") {
+            $('.search_childTravelers').removeClass("noneBlock");
+            $('#search_ChildLabel1Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel2Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel3Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel4Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+            $('#search_ChildLabel5Room'+room_id).removeClass("noneInlineBlock").addClass("inlineBlock");
+        }
+    });
+
+    var maxAppend = "1";
+    $('.search_addRoom').on('click', function () {
+        var id_int= $(this).attr('id');
+        var id_val= id_int.replace(/[^0-9]/g, '');
+        if(id_val == maxAppend){
+            var addone="1";
+            var toggleVal=Number(id_val)+Number(addone);
+            if(toggleVal<=4){
+                //console.log('add ' + toggleVal);
+                $("#search_visible_room"+toggleVal).css("display", "block");
+                $("#search_addRemove"+id_val).css("display", "none");
+                $("#search_addRemove"+toggleVal).css("display", "block");
+            }
+        }
+        maxAppend++;
+    });
+    var maxAppend = "1";
+    $('.search_removeRoom').on('click', function () {
+        console.log('remove ' +  $(this).attr('id'));
+        var id_int = $(this).attr('id');
+        var id_val = id_int.replace(/[^0-9]/g, '');
+        if (id_val == maxAppend) {
+            var addone = "1";
+            var toggleVal = Number(id_val) - Number(addone);
+            //console.log('remove ' + toggleVal);
+            $("#search_visible_room" + id_val).css("display", "none");
+            $("#search_addRemove" + id_val).css("display", "none");
+            $("#search_addRemove" + toggleVal).css("display", "block");
+        }
+        maxAppend--;
+    });
+
+
  //PopUpblocker
 });
 
