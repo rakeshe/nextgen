@@ -980,9 +980,9 @@ var nextgen = {
                 //html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
                 html += '<div id="best_deals"></div>';
                 //html += '</div>';
-                html += '<div id="platinum_image">';
+                html += '<div id="platinum_image"><a href="' + obj['psi_url'] +'">';
                 html += '<img  width="111" height="76" alt="'+obj['hotel_name']+'" src="'+obj['image_url']+'">';
-                html += '</div>';
+                html += '</a></div>';
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
                 html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
@@ -1001,7 +1001,9 @@ var nextgen = {
 
                     //html += '<div style="display:;" class="sign-out-member-offer">';
                     //html += '<span>';
+                        html += '<a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">'
                     html += trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] ;
+                        html += '</a>';
                     //html += '</span>';
                     //html += '</div>';
                 }
@@ -1126,7 +1128,7 @@ var nextgen = {
                         html += '<div class="sign-out-member-offer">';
                         html += '<span>';
                         //Show_JoinHotelClub_Popup()
-                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
+                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
                         html += '</span>';
                         html += '</div>';
                     }
@@ -1588,8 +1590,16 @@ function regionMapConf(type, eventDataTemp){
 
 var backButton=0;//var is used to identify the back button activities
 
+/**
+ * toggle platinum card
+ *
+ */
+function expandPlatinumCard(){
+        $(".hotel_platinum_cards").removeClass("platinum-collapsed").addClass("platinum-expanded");
+}
 //drawing the map
 function drawRegionsMapOne(type){
+
 	//Continent ids are provided in array
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
@@ -1696,6 +1706,7 @@ function drawRegionsMapOne(type){
 		geochart.draw(data, options);
 		myTimer = setInterval(function(){ setCordinateVal(); clearTimerVal(); }, 2500);			
 	}
+    expandPlatinumCard();
 }//drawRegionsMapOne
 
 var countryCodeValTemp;
