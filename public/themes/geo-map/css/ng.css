@@ -265,7 +265,7 @@
             left: 212px;
             position: absolute;
             border: 0px;
-            z-index: 300;
+            z-index: 80;
             overflow: hidden;
             padding: 0px;
         }
@@ -1892,8 +1892,7 @@ border:2px solid;
     position: absolute;
 }
 .hc_find{color:#fff !important; float: right;
-    margin-bottom: 12px;
-	margin-top: -20px;
+    margin: 0px 5px 5px 0px;
 	 cursor:pointer;}
 	
 .hotelGuests .childText ,.hc_room .childText {
@@ -1992,7 +1991,7 @@ font-size: 15px;
 padding: 1px 1px 0 1px;
 position: relative;
 float:left;
-z-index: 999 !important;
+z-index: 90 !important;
 }
 .display_regions h4 {
 color:#e21e28;

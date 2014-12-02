@@ -526,6 +526,7 @@ $( "#choseDates" ).dialog({  autoOpen: false,
         minHeight: 224,
         title:'Choose your dates',
         draggable: false,
+        //resizable: false,
         dialogClass:'success-dialog'
 
     });
