@@ -1,23 +1,27 @@
 <!-- lang -->
-<div class="col-md-offset-6">
-    <ul class="nav navbar-nav navbar-right right_menu">
+<div class="col-md-offset-2 pull-left">
+    <ul class="nav navbar-nav navbar-right right_menu right_menu_link">
+    {% if not empty(menuItemsRightSite) %}
+        {% for label,link in menuItemsRightSite %}
 
-	{% if not empty(menuItemsRightSite) %}
-		{% for label,link in menuItemsRightSite %}
-
-		    {% if languageCode != 'en_AU' %}
-                {% if label != 'ascott_specials' %}
-                        <li class="dropdown">
-                            <a href="{{ link }}" class="link">{{ t._(label) }}</a>
-                        </li>
+            {% if languageCode != 'en_AU' %}
+                {% if label != 'USA' %}
+                    <li class="dropdown">
+                        <a href="{{ link }}" class="link">{{ t._(label) }}</a>
+                    </li>
                 {% endif %}
             {% else %}
-             <li class="dropdown">
-                <a href="{{ link }}" class="link">{{ t._(label) }}</a>
-              </li>
+                <li class="dropdown">
+                    <a href="{{ link }}" class="link">{{ t._(label) }}</a>
+                </li>
             {% endif %}
-         {% endfor %}
-	{% endif %}
+        {% endfor %}
+    {% endif %}
+    </ul>
+    </div>
+    <div class="col-md-offset-2">
+    <ul class="nav navbar-nav navbar-right right_menu">
+
 	{% if not empty(menuItemsLanguageOptions) %}
         <li class="dropdown">
             <a href="#" id="" class="dropdown-toggle" data-toggle="dropdown"> {{ menuItemsLanguageOptions[languageCode | trim] }} <b class="caret"></b></a>
@@ -30,7 +34,7 @@
             </ul>
         </li>
 	{% endif %}
-	<li>&nbsp;|</li>
+	<li><div class="right_menu_divider"></div> </li>
 	{% if not empty(currencies) %}
         <li class="dropdown">
             <ul class="dropdown-menu currencySelector selector multiColumn">
