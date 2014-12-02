@@ -1153,16 +1153,15 @@ var nextgen = {
 				reg  = [];
 			html += '<div id="header">';
 			html += '<ul id="menu_new">';
-			var position = 0; //To find the position of menu (Apply CSS)
+			var position = (nextgen.selRegion === 'undefined' || nextgen.selRegion == '') ? 0 : 1; //To find the position of menu (Apply CSS)
 			$.each(this.data['urls'], function(index, value){
-			//console.log( position );
                 if (restrictName != index) {
                     html += '<li class="dropdown-submenu">';
-						if(position == 4)
-				 html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-				 else 
-                    html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
-                    html += '</li>';
+					if(position == 4)
+				            html += '<a class="menu-icons menu-region" tabindex="-1" style="border-right:none !important" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+				    else
+                        html += '<a class="menu-icons menu-region" tabindex="-1" data-url="' + index + '" data-lavel="1" data-code="' + index + '" href="' + uriBase + '/' + index + '">' + value['name'] + '<b class="menu-glyphicon"></b></a>';
+                        html += '</li>';
 					
 					//condition to display region labels based on langauge with hyperlink
 					switch(index){
@@ -1187,10 +1186,11 @@ var nextgen = {
 							$(".world_america").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>');
 							break;
 					}
+                    position++;
                 }
 				reg[value['name_en']] = value['name'];
 			
-			position++; 
+
 			});
 			html += '</ul>';
 			html += '</div>';
@@ -1794,7 +1794,10 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            nextgen.drawMenu('');
+            console.log('coming in');
+            nextgen.getLavel = 1;
+            nextgen.selRegion = '';
+            //nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1808,7 +1811,7 @@ function mapBackBtn() {
 
 		data = regionMapConf();
 		changeResetToRegion();
-		nextgen.getLavel = 1;
+
 		changeResetToRegion();
 		resetMapSizePos();
 		drawRegionsMapOne();
