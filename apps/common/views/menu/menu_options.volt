@@ -5,7 +5,7 @@
         {% for label,link in menuItemsRightSite %}
 
             {% if languageCode != 'en_AU' %}
-                {% if label != 'ascott_specials' %}
+                {% if label != 'USA' %}
                     <li class="dropdown">
                         <a href="{{ link }}" class="link">{{ t._(label) }}</a>
                     </li>
