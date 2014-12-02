@@ -2220,7 +2220,8 @@ border: 4px solid #562d82;
 background-color:#fff;
 }
 .hotel_platinum_cards{
- background-color: #fff;
+    background-color: #fff;
+    background: rgba(255,255,255,0.75);
  }
 
 #zoom_level{ margin:20px 10px 10px 10px;text-align:right;  }
