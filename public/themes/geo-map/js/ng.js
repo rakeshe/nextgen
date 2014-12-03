@@ -52,43 +52,72 @@ function log(message) {
 		if ($.trim($("#locationText").val()) == '')
 			return false;
 
-		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#search_visible_room"+ i ).css('display')) == 'block') {
+                room += '&hotel.rooms['+k+'].adlts=' + $('select[name="search_hotel.rooms['+i+'].adlts"] option:selected').val();
+                chlen = $('select[name="search_hotel.rooms['+i+'].chlds"] option:selected').val();
+                room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                if (chlen > 0) {
+                    for(var j=0; j< chlen; j++) {
+                        room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="search_hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                    }
+                }
+                k++;
+            }
+        }
 
-		if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate1').val();
-			checkOut = $('#choseDatesEndDate1').val();
-			promo 	 = $('#proCode').val();
-		}
+		var localText = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+
+        checkIn  = $('#choseDatesStartDate1').val();
+        checkOut = $('#choseDatesEndDate1').val();
+        promo 	 = $('#proCode').val();
+
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
 				+ "&hotel.keyword.key="
-				+ local
-				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ localText
+				+ "&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search&locale="
-				+ languageCode
-				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ local
+				+ "&lpid=hotelGpSearch"
+                + room;
 	});
 	$(".hc_find").click(function() {
-				if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate_hc').val();
-			checkOut = $('#choseDatesEndDate_hc').val();
-			oneg 	 = $('#choseDatesOneg_hc').val();
-			promo 	 = $('#proCode').val();
-		}
-		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hsv.showDetails=true&hotel.couponCode="
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#visible_room"+ i ).css('display')) == 'block') {
+                    room += '&hotel.rooms['+k+'].adlts=' + $('select[name="hotel.rooms['+i+'].adlts"] option:selected').val();
+                    chlen = $('select[name="hotel.rooms['+i+'].chlds"] option:selected').val();
+                    room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                    if (chlen > 0) {
+                        for(var j=0; j< chlen; j++) {
+                            room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                        }
+                    }
+                k++;
+            }
+        }
+        checkIn  = $('#choseDatesStartDate_hc').val();
+        checkOut = $('#choseDatesEndDate_hc').val();
+        oneg 	 = $('#choseDatesOneg_hc').val();
+        promo 	 = $('#pp-promo').val();
+
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
+                + "&locale="
+                + local
 				+ "&hotel.hid="
 				+ oneg
 				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
-				+ "&search=Search&locale=";
-				//+ languageCode
-				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ "&search=Search"
+                + room;
 	});
 
 /*
@@ -980,13 +1009,13 @@ var nextgen = {
                 //html += '<div class="col-md-4 col-lg-2" id="Bestdeals">';
                 html += '<div id="best_deals"></div>';
                 //html += '</div>';
-                html += '<div id="platinum_image">';
+                html += '<div id="platinum_image"><a href="' + obj['psi_url'] +'">';
                 html += '<img  width="111" height="76" alt="'+obj['hotel_name']+'" src="'+obj['image_url']+'">';
-                html += '</div>';
+                html += '</a></div>';
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
                 html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
-                html += '<div class="platinum_review col-md-2 col-lg-2">';
+                html += '<div class="platinum_review">';
                 html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
 
@@ -1001,7 +1030,9 @@ var nextgen = {
 
                     //html += '<div style="display:;" class="sign-out-member-offer">';
                     //html += '<span>';
+                        html += '<a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">'
                     html += trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] ;
+                        html += '</a>';
                     //html += '</span>';
                     //html += '</div>';
                 }
@@ -1009,8 +1040,14 @@ var nextgen = {
                 html += '</div>';
 
 				html += '</div>';
-				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">Save';
-				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">';
+            /** check for different type of deals **/
+                if(obj['is_moo'] == '1'){
+                    html += trans['members_only'];
+                } else{
+                    var offerText = trans['promo_pc_off_template'];
+                    html += offerText.replace('<pc_off>', obj['discount_amount']);
+                }
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
 				html += '</div>';
@@ -1038,8 +1075,13 @@ var nextgen = {
 				html += '<img height="" width="" alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
 				html += '</div>';
 		        html += '</div></div>';
-				html += '<div class="saveBookInfo col-xs-4">' + trans['save'];
-		        html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+                html += '<div class="saveBookInfo col-xs-4">';
+                if(obj['is_moo'] == '1'){
+                    html += trans['members_only'];
+                } else{
+                    var offerText = trans['promo_pc_off_template'];
+                    html += offerText.replace('<pc_off>', obj['discount_amount']);
+                }
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
@@ -1126,7 +1168,7 @@ var nextgen = {
                         html += '<div class="sign-out-member-offer">';
                         html += '<span>';
                         //Show_JoinHotelClub_Popup()
-                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
+                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
                         html += '</span>';
                         html += '</div>';
                     }
@@ -1134,8 +1176,13 @@ var nextgen = {
 				html += '</div>';
 				html += '</div>';
 				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2"><div class="discount-block">';
-				html += trans['save']+'<br>';
-				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
+            if(obj['is_moo'] == '1'){
+                html += trans['members_only'];
+            } else{
+                var offerText = trans['promo_pc_off_template'];
+                html += offerText.replace('<pc_off>', obj['discount_amount']);
+            }
+				html += '</div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
@@ -1229,7 +1276,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1274,7 +1321,7 @@ var nextgen = {
 				if (index == 'name') heading = value;
 
 				if (heading != false && headingEn != false && flag == false) {
-					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1588,8 +1635,16 @@ function regionMapConf(type, eventDataTemp){
 
 var backButton=0;//var is used to identify the back button activities
 
+/**
+ * toggle platinum card
+ *
+ */
+function expandPlatinumCard(){
+        $(".hotel_platinum_cards").removeClass("platinum-collapsed").addClass("platinum-expanded");
+}
 //drawing the map
 function drawRegionsMapOne(type){
+
 	//Continent ids are provided in array
 	if(backButton!=1){ data = regionMapConf(type);	}
 	var view = new google.visualization.DataView(data);
@@ -1696,6 +1751,7 @@ function drawRegionsMapOne(type){
 		geochart.draw(data, options);
 		myTimer = setInterval(function(){ setCordinateVal(); clearTimerVal(); }, 2500);			
 	}
+    expandPlatinumCard();
 }//drawRegionsMapOne
 
 var countryCodeValTemp;
@@ -1797,10 +1853,9 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            console.log('coming in');
             nextgen.getLavel = 1;
             nextgen.selRegion = '';
-            //nextgen.drawMenu('');
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1884,7 +1939,7 @@ function resetMapSizePos(){
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-85px';  }//Canada
-		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }//USA
+		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }//USA
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }//Fiji
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }//Vietnam
 		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-50px';  }//Spain
@@ -1894,6 +1949,10 @@ function resetMapSizePos(){
 		else if(options.region=='ID'){ document.getElementById('regions_div').style.top = '-35px';  }//Indonesia
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
+
+	//change the aspectratio to true only in usa else false
+	if(options.region=='US'){ options.keepAspectRatio=true; }
+	else{ options.keepAspectRatio=false; }
 
 	//condition to check whether the clicked map region is malaysia or not
 	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } //Malaysia

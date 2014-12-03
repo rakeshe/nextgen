@@ -87,13 +87,13 @@
 
                         <div class="row search_childTravelers noneBlock">
                             {% if i == '1' %}
-                                <div class="search_childText" style="padding:5px 0px 0px 15px;">Ages of children at time of trip (for pricing, discounts)</div>
+                                <div class="search_childText">Ages of children at time of trip (for pricing, discounts)</div>
                             {% elseif  i == "2" %}
                                 <div class="search_childText">If you are traveling, include yourself in Room 1.</div>
                             {% elseif  i == "4" %}
                                 <div class="search_childText">To book more than 4 rooms, call us at <span data-ismobile="false" data-isrtl="false" data-isfreecall="false" data-numbertocall="+611300854585" onclick="SkypeClick2Call.MenuInjectionHandler.makeCall(this, event)" onmouseout="SkypeClick2Call.MenuInjectionHandler.hideMenu(this, event)" onmouseover="SkypeClick2Call.MenuInjectionHandler.showMenu(this, event)" tabindex="-1" dir="ltr" class="skype_c2c_container notranslate" id="skype_c2c_container"><span skypeaction="skype_dropdown" dir="ltr" class="skype_c2c_highlighting_inactive_common"><span id="non_free_num_ui" class="skype_c2c_textarea_span"><img width="0" height="0" src="resource://skype_ff_extension-at-jetpack/skype_ff_extension/data/call_skype_logo.png" class="skype_c2c_logo_img"><span class="skype_c2c_text_span">1300-85-45-85</span><span class="skype_c2c_free_text_span"></span></span></span></span></div>
                             {% endif %}
-                            <div id="search_ChildLabel1Room{{ i }}" style="padding:5px 0px 0px 5px;" class="col-lg-1 control select noneInlineBlock custom js-select">
+                            <div id="search_ChildLabel1Room{{ i }}" style="padding:5px 0px 0px 5px; margin-left: 10px" class="col-lg-1 control select noneInlineBlock custom js-select">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
                                 <select name="search_hotel.rooms[{{ i }}].chldAge[0]" class="btn btn-default">
                                     <option value="">--</option>
@@ -169,7 +169,7 @@
     	</div>
 		<div class="row">
 	    		<div class="col-lg-12 col-sm-12 col-xs-12">		      
-		    		<button type="button" class="btn btn-default search_hotel_near_go_all" data-code="all" aria-label="Left Align" style="background-color: #562d82;color:#FFFFFF;">
+		    		<button type="button" class="btn btn-default search_hotel_near_go_all" data-code="all" aria-label="Left Align" >
 					Search
 					</button>
 				</div>
@@ -315,6 +315,13 @@
 		</div>
 
 		</div>
-	<button style="background-color: #562d82;color:#FFFFFF;" aria-label="Left Align" data-code="all" class="btn btn-default hc_find" type="button">Find</button>
+<div class="row">
+<div class="pull-left col-md-offset-1" style="margin-left: 5%;">
+    <p style="font-size:14px;font-weight:bold;">{{t._('coupon-code')}}</p>
+    <input type="text" placeholder="{{t._('coupon-code')}}..." id="pp-promo" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+</div>
+<div style="padding:20px 40px 0px 0px"><button aria-label="Left Align" data-code="all" class="btn btn-default button hc_find" type="button">Find</button></div>
+    </div>
+
 			
 		</div> {# dialog box ends#}
