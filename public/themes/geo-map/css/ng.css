@@ -1,7 +1,7 @@
 	.saveBookInfo{ background:none !important; padding:0 !important; }
 	#banner { padding:0 !important;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important;  }
 	#banner_image { margin:0px 0px 0px 15px; z-index:999 !important; line-height: 0; overflow: hidden;width: 957px; border-top: 5px solid #e21e28; }
-	#banner_val { position:relative; margin-bottom:-250px; z-index:999;float:right;text-align:right; margin-top:20px;width:300px;}
+	#banner_val { position:relative; margin-bottom:-250px; z-index:92   ;float:right;text-align:right; margin-top:20px;width:300px;}
 	#menu_new { margin: 0; padding: 0; }
 	/*#menu_new li {  background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
