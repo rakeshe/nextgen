@@ -4,6 +4,7 @@
 * @since 26/11/13 7:25 PM
 * @version 1.0
 *
+*
 */
 var linkOffset="";
 var linkWidth="";
@@ -792,6 +793,8 @@ $(document).ready(function() {
 	x.local = local;
 	x.data = JSON.parse(data);
 	x.dataP = JSON.parse(dataP);
+    console.log('URL =>' + x.dataP['info']['url']);
+    console.log('DocNam =>'+  x.dataP['info']['docName']);
 	x.drawMenu(nextgen.selRegion);
 	x.mobileMenu();
 
@@ -847,6 +850,8 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 	}
 	res.success(function(data){
 		x.dataP = data;
+        console.log('URL =>' + x.dataP['info']['url']);
+        console.log('DocNam =>'+  x.dataP['info']['docName']);
 		x.drawCards();
 		x.setUrlToHistory(url); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
@@ -889,7 +894,7 @@ var nextgen = {
 		},
         'displayPaginationCards' : function() {
            var k = 1, j = 1, showMoreHtls = false;		
-            $.each(this.dataP, function(index, value) {
+            $.each(this.dataP['data'], function(index, value) {
                 $.each(value.split(','), function(i, v) {
                     if (index == nextgen.paginationMode) {
                         if (j >= nextgen.pageNumber) {
@@ -908,7 +913,6 @@ var nextgen = {
                     }
                 });
             });
-            console.log('kay value is' + k);
             if (k > 1 && showMoreHtls == true)
                 $('.display-cards').append('<div class="showmorehotels">'+ trans['show-more-deals'] +'</div>');
 
@@ -938,7 +942,7 @@ var nextgen = {
 				$('.hd-main-info').attr('id', 'hotel_gold_card_block');
 			}
 			var tire_2_key = 0, tire_1_key = 0;
-			$.each(this.dataP, function(index, value) {
+			$.each(this.dataP['data'], function(index, value) {
                 var columnOffset = 1;
 				$.each(value.split(','), function(i, v) {
 					if (def == true) {
@@ -1388,7 +1392,6 @@ var nextgen = {
 						if (key == 'country_code') country_code = val;
 
 						if (name != false && lavel != false && name_en != false && country_code != false && lavel == 2) {
-							console.log(country_code);
 							html += '<li class="country_name_list">';
 							html += '<a tabindex="-1" class="menu-icons menu-country" data-cnt-code="'+country_code+'" data-device="mobile" tabindex="-1" data-url="'+index+'" data-lavel="'+lavel+'" data-code="'+name_en+'" href="'+ uriBase+'/'+ index+'"> '+ name+' </a>';
 							html += '</li>';
@@ -1438,7 +1441,6 @@ var nextgen = {
 						if (key == 'name') name = val;
 						if (key == 'level') lavel = val;
 						if (key == 'name_en') name_en = val;
-						//console.log(name, lavel, name_en);
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 
 							html += '<li class="city_name_list">';
@@ -2142,7 +2144,6 @@ var maxAppend = "1";
     });
     var maxAppend = "1";
     $('.search_removeRoom').on('click', function () {
-        console.log('remove ' +  $(this).attr('id'));
         var id_int = $(this).attr('id');
         var id_val = id_int.replace(/[^0-9]/g, '');
         if (id_val == maxAppend) {

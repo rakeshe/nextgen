@@ -39,10 +39,10 @@ class Page extends \Phalcon\Mvc\Model
     public $langData = [];
     public $menuData = null;
     //document names
-    protected $dealsDocName;
+    public $dealsDocName;
     protected $langDocName;
     protected $menuDocName;
-    protected $urlDocName;
+    public $urlDocName;
     protected $setPageUrl;
     public $pageUrlData;
 
@@ -112,8 +112,14 @@ class Page extends \Phalcon\Mvc\Model
     {
 
         try {
-            $Couch             = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $this->pageUrlData = $Couch->get("merch:deals:" . md5(trim($this->setPageUrl)));
+            $Couch          = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $docName        = "merch:deals:" . md5(trim($this->setPageUrl));
+            $pageUrlData    = $Couch->get($docName);
+            $this->pageUrlData = json_encode(['data' => json_decode($pageUrlData, TRUE),
+                'info' => ['url' => $this->setPageUrl, 'docName' => $docName]
+            ]);
+            //print_r($this->pageUrlData);
+            //`exit;
 //            $this->pageUrlData = $Couch->get($this->urlDocName);
             //echo $this->setPageUrl . '****'. md5('world-is-on-sale-sale/europe--uae') . '****'.md5($this->setPageUrl);
             // print_r($this->pageUrlData);
