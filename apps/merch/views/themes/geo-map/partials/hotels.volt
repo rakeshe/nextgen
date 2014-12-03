@@ -169,7 +169,7 @@
     	</div>
 		<div class="row">
 	    		<div class="col-lg-12 col-sm-12 col-xs-12">		      
-		    		<button type="button" class="btn btn-default search_hotel_near_go_all" data-code="all" aria-label="Left Align" style="background-color: #562d82;color:#FFFFFF;">
+		    		<button type="button" class="btn btn-default search_hotel_near_go_all" data-code="all" aria-label="Left Align" >
 					Search
 					</button>
 				</div>
@@ -315,6 +315,6 @@
 		</div>
 
 		</div>
-	<button style="background-color: #562d82;color:#FFFFFF;" aria-label="Left Align" data-code="all" class="btn btn-default hc_find" type="button">Find</button>
+	<button aria-label="Left Align" data-code="all" class="btn btn-default button hc_find" type="button">Find</button>
 			
 		</div> {# dialog box ends#}

@@ -986,7 +986,7 @@ var nextgen = {
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
                 html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
-                html += '<div class="platinum_review col-md-2 col-lg-2">';
+                html += '<div class="platinum_review">';
                 html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
 

@@ -53,7 +53,7 @@
 	.hotel_name a, .hotel_name_small a { color:#E21E28 !important; padding-bottom:10px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 	.hotel_city { color:#303030; font-weight:normal; }
 	.hotel_review { float:right; margin-top:0px;}
-	.platinum_review { float:left; margin-top:0px;}
+	.platinum_review { margin-top: 4px; margin-left: 400px;}
 	.hotel_gold_cards { border: 4px solid #999;
     margin-bottom: 20px;
     margin-left: 12px;
@@ -412,7 +412,7 @@
             width: 100px;
         }
         .platinum-collapsed .saveBookInfo-platinum{
-            width: 190px;
+            width: 240px;
         }
         .platinum-collapsed .hidden-xs{
             display: inline-block !important;
@@ -1897,16 +1897,25 @@ border:2px solid;
    
     position: absolute;
 }
-.hc_find{color:#fff !important; float: right;
-    margin: 0px 5px 5px 0px;
-	 cursor:pointer;}
-	
+
+    .hc_find {
+        color: #fff !important;
+        float: right;
+        margin: 0px 5px 5px 0px;
+        cursor: pointer;
+        background-color: #562d82;
+    }
+
+    .hc_find:hover{
+        background-color: #703baa;
+    }
 .hotelGuests .childText ,.hc_room .childText {
     padding-bottom: 18px;
     padding-top: 6px;
 }
 .search_childText{
-padding-top: 6px;
+    padding-top: 6px;
+    margin-left: 15px;
 }
 input, select[multiple], textarea {
    /* background-image: none;*/
@@ -2476,7 +2485,13 @@ position: absolute;
 	float:right;
 	position:relative;
 	top:-22px;
+        background-color: #562d82;
+        color: #fff;
 	}
+    .search_hotel_near_go_all:hover{
+        background-color: #703baa;
+        color: #fff;
+    }
 	.search_addRoom,.addRoom,.search_removeRoom,.removeRoom{ text-decoration:underline;}
 	.label_Text{
 color: #444;
@@ -2484,4 +2499,15 @@ color: #444;
     font-weight: bold;
 	text-transform: capitalize;
 }
-	
+
+.platinum-collapsed .ht-book{
+    position: absolute;
+    margin-left: 180px;
+    margin-top: -18px;
+    height: 24px;
+}
+
+.button a:hover, .button a:active{
+    background-color: #703baa;
+    font-variant: normal;
+}
