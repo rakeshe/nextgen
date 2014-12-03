@@ -315,6 +315,13 @@
 		</div>
 
 		</div>
-	<button aria-label="Left Align" data-code="all" class="btn btn-default button hc_find" type="button">Find</button>
+<div class="row">
+<div class="pull-left col-md-offset-1" style="margin-left: 5%;">
+    <p style="font-size:14px;font-weight:bold;">{{t._('coupon-code')}}</p>
+    <input type="text" placeholder="{{t._('coupon-code')}}..." id="pp-promo" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+</div>
+<div style="padding:20px 40px 0px 0px"><button aria-label="Left Align" data-code="all" class="btn btn-default button hc_find" type="button">Find</button></div>
+    </div>
+
 			
 		</div> {# dialog box ends#}

@@ -68,27 +68,27 @@ function log(message) {
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search&locale="
-				+ languageCode
+				+ local
 				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
 	});
 	$(".hc_find").click(function() {
-				if ($(this).data('code') == 'all') {
+		if ($(this).data('code') == 'all') {
 			checkIn  = $('#choseDatesStartDate_hc').val();
 			checkOut = $('#choseDatesEndDate_hc').val();
 			oneg 	 = $('#choseDatesOneg_hc').val();
-			promo 	 = $('#proCode').val();
+			promo 	 = $('#pp-promo').val();
 		}
-		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hsv.showDetails=true&hotel.couponCode="
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
+                + "&locale="
+                + local
 				+ "&hotel.hid="
 				+ oneg
 				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
-				+ "&search=Search&locale=";
-				//+ languageCode
-				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ "&search=Search";
 	});
 
 /*
@@ -1824,10 +1824,9 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            console.log('coming in');
             nextgen.getLavel = 1;
             nextgen.selRegion = '';
-            //nextgen.drawMenu('');
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
