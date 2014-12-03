@@ -1247,7 +1247,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1292,7 +1292,7 @@ var nextgen = {
 				if (index == 'name') heading = value;
 
 				if (heading != false && headingEn != false && flag == false) {
-					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
