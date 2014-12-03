@@ -50,7 +50,8 @@ class Translation
                 'mem_inactive_line1'    => $this->getTranslation()->offsetGet('mem_inactive_line1'),
                 'mem_inactive_line2'    => $this->getTranslation()->offsetGet('mem_inactive_line2'),
                 'save'                  => $this->getTranslation()->offsetGet('save'),
-                'show-more-deals'       => 'Show more deals'
+                'show-more-deals'       => 'Show more deals',
+                'members_only'          => $this->getTranslation()->offsetGet('members_only'),
             ]
         );
 

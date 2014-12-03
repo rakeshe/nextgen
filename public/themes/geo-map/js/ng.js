@@ -1011,8 +1011,14 @@ var nextgen = {
                 html += '</div>';
 
 				html += '</div>';
-				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">Save';
-				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+				html += '<div class="saveBookInfo-platinum platinum_offer col-md-2 col-lg-2">';
+            /** check for different type of deals **/
+                if(obj['is_moo'] == '1'){
+                    html += trans['members_only'];
+                } else{
+                    var offerText = trans['promo_pc_off_template'];
+                    html += offerText.replace('<pc_off>', obj['discount_amount']);
+                }
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
 				html += '</div>';
@@ -1040,8 +1046,13 @@ var nextgen = {
 				html += '<img height="" width="" alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
 				html += '</div>';
 		        html += '</div></div>';
-				html += '<div class="saveBookInfo col-xs-4">' + trans['save'];
-		        html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span>';
+                html += '<div class="saveBookInfo col-xs-4">';
+                if(obj['is_moo'] == '1'){
+                    html += trans['members_only'];
+                } else{
+                    var offerText = trans['promo_pc_off_template'];
+                    html += offerText.replace('<pc_off>', obj['discount_amount']);
+                }
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
@@ -1136,8 +1147,13 @@ var nextgen = {
 				html += '</div>';
 				html += '</div>';
 				html += '<div class="saveBookInfo col-xs-2 col-sm-2 col-md-2 col-lg-2"><div class="discount-block">';
-				html += trans['save']+'<br>';
-				html += '<span class="percentage hc-percentage">'+obj['discount_amount']+'%</span></div>';
+            if(obj['is_moo'] == '1'){
+                html += trans['members_only'];
+            } else{
+                var offerText = trans['promo_pc_off_template'];
+                html += offerText.replace('<pc_off>', obj['discount_amount']);
+            }
+				html += '</div>';
 				html += '<div class="clearfix "></div>';
 				html += '<div class="hidden-xs btn button">';
 				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
