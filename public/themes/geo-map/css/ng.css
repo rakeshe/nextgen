@@ -40,8 +40,8 @@
 	/*#menu_new li a {  background-color: #E21E28; color:#FFFFFF; text-decoration:none; font-size:12pt;}*/
 	#hotel_card_block { height:auto; padding: 8px 0px 0px 2px; }
 	#hotel_card_search { display:block; }
-	.world_best_deals { float:left;  padding:16px 15px;font-size:16px;font-weight:normal; font-family: museo_sans500}
-	.hotel_all_search { float:left; text-align:right; padding:15px 0px 5px 0px;font-size:16px;font-weight:normal; font-family: museo_sans500; }
+	.world_best_deals { float:left;  padding:16px 15px;font-size:16px;font-weight:normal; font-family: museo_sans500;text-transform:capitalize;}
+	.hotel_all_search { float:left; text-align:right; padding:15px 0px 5px 0px;font-size:16px;font-weight:normal; font-family: museo_sans500; text-transform:capitalize;}
 	.map-back { color:#FFF !important; }
 	.map-reset { color:#FFF !important; }
 	.map-reset-to-region { color:#E21E28 !important; background-color: #FFF; font-family: museo_slab500 ; font-size: 14px; text-decoration: none; padding: 14px; margin-right: 5px; }
@@ -121,9 +121,12 @@
     /* reponsive design - starts */
     /** mobile phones **/
     @media (max-width: 767px) {
+	body{ float:none !important;}
         .container {
-            padding: 0;
-        }
+            padding: 0;	
+            max-width: 640px !important;
+ }
+ #banner_image {  max-width: 640px !important;margin:0!important;}
         .subContainer{ padding:10px; }
         .row {
             margin: 0px !important;
@@ -248,10 +251,10 @@
 
     /** table landscape + desktop **/
     @media (min-width: 768px) {
-        .container {
-            width: 750px !important;
-        }
-        .subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
+		 .container {
+				width: 750px !important;
+			}
+		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
         .country_name_list , .city_name_list{
             font-size: 14px;
             text-align: left;
@@ -287,7 +290,9 @@
             overflow: hidden;
             cursor: pointer;
         }
-
+		.display-cards.row, .display-cards-gold{
+		padding-left:4% !important;
+		}
         #hotel_content {
             margin-left: 1% !important;
             width: 200px;
@@ -422,10 +427,15 @@
             color:#E21E28;
             font-size:24px;
             letter-spacing:-2px;
-            line-height:24px;
+            line-height:36px;
             text-align:center;
         }
-
+		div.mobile-platinum-card div.hotel_mobile_platinum_cards div.Bestdeals div#hotel_content{
+		width: 384px !important;
+		}
+		#mob_banner > div.mobile-platinum-card > div > div > div.saveBookInfo.col-xs-4{
+		margin-top:1%;
+		}
     }
 
     /** normal desktop/ notebooks **/
@@ -499,8 +509,13 @@
 
 @media only screen
 and (max-device-width: 480px) {
+body{ float:none !important;}
 	.container {
 		padding:0;
+		 max-width: 480px !important;
+	}
+	#banner_image{
+	width:100% !important;
 	}
 	.subContainer{
 		padding:0 !important;
@@ -734,6 +749,11 @@ and (max-device-width : 767px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
+body{ float:none !important;}
+ .container {
+            max-width: 750px;
+        }
+		#banner_image {  width: 100% !important;}
 #canvas {
 width:896px !important;
 }
@@ -2068,12 +2088,13 @@ width:100%;
 .country_name_list , .city_name_list{
  font-family: museo_sans300;
 }
-    .country_name_list a, .city_name_list a,
-    .country_name_list a:active, .city_name_list a:active{
+.country_name_list a, .city_name_list a,
+.country_name_list a:active, .city_name_list a:active{
         color:#636a69;
         display: block;
         padding: 10px;
         text-decoration: none;
+		line-height: 1em;
     }
     .country_name_list a:hover, .city_name_list a:hover {
         color: #e21e28;
@@ -2283,8 +2304,8 @@ width:100%;
     margin-bottom: 30px;
 }
 .platinum_card_images{
-    width:112%;
-    margin-left: -6%;
+    width:100%;
+    /*margin-left: -6%;*/
 }
 .platinum_card_images img{
 max-width:100%;
@@ -2361,7 +2382,9 @@ position: absolute;
         text-decoration: none;
         margin: 20px 0px 5px 15px;
     }
-
+.mobile-platinum-card{
+width: 717px;
+}
 /** Tier based style **/
     /** Tier based style **/
     .tier-2 {
