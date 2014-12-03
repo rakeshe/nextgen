@@ -1824,10 +1824,9 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            console.log('coming in');
             nextgen.getLavel = 1;
             nextgen.selRegion = '';
-            //nextgen.drawMenu('');
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
