@@ -491,7 +491,8 @@
         }
 
         .hotel_gold_cards_list {
-            height: 160px;
+            height: auto;
+			min-height:160px;
             margin-bottom: 5px;
         }
     }
