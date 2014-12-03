@@ -15,12 +15,12 @@
 class builder
 {
     const APP_PATH               = 'src/main/webapp';
-    const APP_CACHE_PATH         = '#runtime';
-    const BOOTSTRAP_FILE         = '~runtime.php';
-    const APP_CONFIG_PATH        = 'src/main/webapp/lmz/Conf';
+    const APP_CACHE_PATH         = 'data/volt';
+    const BOOTSTRAP_FILE         = null;
+    const APP_CONFIG_PATH        = 'src/main/webapp/config';
     const GRADLE_PROPERTIES_FILE = 'gradle.properties';
-    const LMZ_PROPERTIES_FILE    = 'version.ini';
-    const CONFIG_FILE            = 'config.php';
+    const APP_PROPERTIES_FILE    = 'version.ini';
+//    const CONFIG_FILE            = 'global.config.php';
     const GRADLE_GROUP           = 'com.orbitz.host';
 
     const BIN_PATH               = 'src/main/bin';
@@ -185,7 +185,7 @@ class builder
 
     protected function updateLmzVersion()
     {
-        $lmzVersionFile = self::APP_CONFIG_PATH . '/' . self::LMZ_PROPERTIES_FILE;
+        $lmzVersionFile = self::APP_CONFIG_PATH . '/' . self::APP_PROPERTIES_FILE;
         if (file_exists($lmzVersionFile)) {
             $fp = fopen($lmzVersionFile, 'w+');
             foreach ($this->getGradleProperty() as $k => $v) {
@@ -206,13 +206,15 @@ class builder
     {
         $cachePath = self::APP_PATH . '/' . self::APP_CACHE_PATH;
         // Remove cached bootstrap
-        $bootstrapFile = $cachePath . '/' . self::BOOTSTRAP_FILE;
-        if (file_exists($bootstrapFile)) {
-            unlink($bootstrapFile);
+        if(null !== self::BOOTSTRAP_FILE) {
+            $bootstrapFile = $cachePath . '/' . self::BOOTSTRAP_FILE;
+            if (file_exists($bootstrapFile)) {
+                unlink($bootstrapFile);
+            }
         }
 
         // Remove Cached temlate files
-        $cachedFilePath = $cachePath . '/Cache';
+        $cachedFilePath = $cachePath ;
         $cachedFiles    = scandir($cachedFilePath);
         foreach ($cachedFiles as $file) {
             if ($file != "." && $file != "..") {

@@ -1,0 +1,36 @@
+apply plugin: 'orbitz-host'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        maven { url = "http://repository.orbitz.net/repo" }
+    }
+    dependencies {
+        classpath group: 'com.orbitz.gradle', name: 'orbitz-ci', version: '3.0'
+    }
+}
+
+repositories {
+    maven { url = "http://repository.orbitz.net/repo" }
+}
+
+def binDir = "src/main/bin"
+
+orbitzHost {
+    symlinkRootWar = true
+    def binDest = "${shortName}/version-${project.version.split('\\.')[0]}/${project.version}/bin"
+    addlCopySpecs << project.copySpec {
+        from   project.file(binDir)
+        into   binDest
+    }
+}
+
+artifacts {
+    archives (tar)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+    distributionUrl = "http://repository.orbitz.net/gradle/gradle-${gradleVersion}-bin.zip"
+}
