@@ -72,12 +72,25 @@ function log(message) {
 				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
 	});
 	$(".hc_find").click(function() {
-		if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate_hc').val();
-			checkOut = $('#choseDatesEndDate_hc').val();
-			oneg 	 = $('#choseDatesOneg_hc').val();
-			promo 	 = $('#pp-promo').val();
-		}
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#visible_room"+ i ).css('display')) == 'block') {
+                    room += '&hotel.rooms['+k+'].adlts=' + $('select[name="hotel.rooms['+i+'].adlts"] option:selected').val();
+                    chlen = $('select[name="hotel.rooms['+i+'].chlds"] option:selected').val();
+                    room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                    if (chlen > 0) {
+                        for(var j=0; j< chlen; j++) {
+                            room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                        }
+                    }
+                k++;
+            }
+        }
+        checkIn  = $('#choseDatesStartDate_hc').val();
+        checkOut = $('#choseDatesEndDate_hc').val();
+        oneg 	 = $('#choseDatesOneg_hc').val();
+        promo 	 = $('#pp-promo').val();
+
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
                 + "&locale="
@@ -88,7 +101,8 @@ function log(message) {
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
-				+ "&search=Search";
+				+ "&search=Search"
+                + room;
 	});
 
 /*
