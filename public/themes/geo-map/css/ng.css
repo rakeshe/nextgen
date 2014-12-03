@@ -1,7 +1,7 @@
 	.saveBookInfo{ background:none !important; padding:0 !important; }
 	#banner { padding:0 !important;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important;  }
 	#banner_image { margin:0px 0px 0px 15px; z-index:999 !important; line-height: 0; overflow: hidden;width: 957px; border-top: 5px solid #e21e28; }
-	#banner_val { position:relative; margin-bottom:-250px; z-index:999;float:right;text-align:right; margin-top:20px;width:300px;}
+	#banner_val { float: right; left: 674px; margin-bottom: -250px; margin-top: 20px; position: absolute; text-align: right; width: 300px; z-index:999;}
 	#menu_new { margin: 0; padding: 0; }
 	/*#menu_new li {  background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
@@ -2241,7 +2241,7 @@ background-color:#fff;
     background: rgba(255,255,255,0.85);
  }
 
-#zoom_level{ margin:20px 10px 10px 10px;text-align:right;  }
+#zoom_level{ left: 264px; position: absolute; text-align: right; top: 20px; }
 #zoom_menu{ display:block; clear:both; margin-top:5px;}
 #canvas { width:896px; height:350px; overflow:hidden; }
 #regions_div{ left: 0px; top: -90px; z-index:1;  }
@@ -2261,12 +2261,12 @@ background-color:#fff;
 .world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
 .world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
-.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin:15px 0 0 250px; }
-.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin:15px 0 0 250px; }
-.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; }
+.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin-top:15px; }
+.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin-top:15px; }
+.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; float:left !important; }
 .urlMinusImg:hover { background-image: url('../../common/img/minus-sign-hover.png'); }
-.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding-right:8px; }
-.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding:34px 8px 0 0; }
+.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding-right:8px; }
+.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding:34px 8px 0 0; }
 
 #hotel_gold_card_block {
     background-color: #562d82 !important;
