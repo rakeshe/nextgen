@@ -1276,7 +1276,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1321,7 +1321,7 @@ var nextgen = {
 				if (index == 'name') heading = value;
 
 				if (heading != false && headingEn != false && flag == false) {
-					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1939,7 +1939,7 @@ function resetMapSizePos(){
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-85px';  }//Canada
-		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }//USA
+		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }//USA
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }//Fiji
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }//Vietnam
 		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-50px';  }//Spain
@@ -1949,6 +1949,10 @@ function resetMapSizePos(){
 		else if(options.region=='ID'){ document.getElementById('regions_div').style.top = '-35px';  }//Indonesia
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
+
+	//change the aspectratio to true only in usa else false
+	if(options.region=='US'){ options.keepAspectRatio=true; }
+	else{ options.keepAspectRatio=false; }
 
 	//condition to check whether the clicked map region is malaysia or not
 	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } //Malaysia
