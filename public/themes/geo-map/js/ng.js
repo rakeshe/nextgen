@@ -52,24 +52,39 @@ function log(message) {
 		if ($.trim($("#locationText").val()) == '')
 			return false;
 
-		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#search_visible_room"+ i ).css('display')) == 'block') {
+                room += '&hotel.rooms['+k+'].adlts=' + $('select[name="search_hotel.rooms['+i+'].adlts"] option:selected').val();
+                chlen = $('select[name="search_hotel.rooms['+i+'].chlds"] option:selected').val();
+                room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                if (chlen > 0) {
+                    for(var j=0; j< chlen; j++) {
+                        room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="search_hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                    }
+                }
+                k++;
+            }
+        }
 
-		if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate1').val();
-			checkOut = $('#choseDatesEndDate1').val();
-			promo 	 = $('#proCode').val();
-		}
+		var localText = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+
+        checkIn  = $('#choseDatesStartDate1').val();
+        checkOut = $('#choseDatesEndDate1').val();
+        promo 	 = $('#proCode').val();
+
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
 				+ "&hotel.keyword.key="
-				+ local
-				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ localText
+				+ "&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search&locale="
 				+ local
-				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ "&lpid=hotelGpSearch"
+                + room;
 	});
 	$(".hc_find").click(function() {
         var room = '', k = 0, chlen=0;
