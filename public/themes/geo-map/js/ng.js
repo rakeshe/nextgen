@@ -52,43 +52,72 @@ function log(message) {
 		if ($.trim($("#locationText").val()) == '')
 			return false;
 
-		var local = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#search_visible_room"+ i ).css('display')) == 'block') {
+                room += '&hotel.rooms['+k+'].adlts=' + $('select[name="search_hotel.rooms['+i+'].adlts"] option:selected').val();
+                chlen = $('select[name="search_hotel.rooms['+i+'].chlds"] option:selected').val();
+                room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                if (chlen > 0) {
+                    for(var j=0; j< chlen; j++) {
+                        room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="search_hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                    }
+                }
+                k++;
+            }
+        }
 
-		if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate1').val();
-			checkOut = $('#choseDatesEndDate1').val();
-			promo 	 = $('#proCode').val();
-		}
+		var localText = $("#locationText").val(), checkIn = '', checkOut = '', promo = '', languageCode = nextgen.local;
+
+        checkIn  = $('#choseDatesStartDate1').val();
+        checkOut = $('#choseDatesEndDate1').val();
+        promo 	 = $('#proCode').val();
+
 		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
 				+ "&hotel.keyword.key="
-				+ local
-				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ localText
+				+ "&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search&locale="
-				+ languageCode
-				+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ local
+				+ "&lpid=hotelGpSearch"
+                + room;
 	});
 	$(".hc_find").click(function() {
-				if ($(this).data('code') == 'all') {
-			checkIn  = $('#choseDatesStartDate_hc').val();
-			checkOut = $('#choseDatesEndDate_hc').val();
-			oneg 	 = $('#choseDatesOneg_hc').val();
-			promo 	 = $('#proCode').val();
-		}
-		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hsv.showDetails=true&hotel.couponCode="
+        var room = '', k = 0, chlen=0;
+        for(var i = 1; i < 5; i++) {
+            if ($.trim($("#visible_room"+ i ).css('display')) == 'block') {
+                    room += '&hotel.rooms['+k+'].adlts=' + $('select[name="hotel.rooms['+i+'].adlts"] option:selected').val();
+                    chlen = $('select[name="hotel.rooms['+i+'].chlds"] option:selected').val();
+                    room += '&hotel.rooms['+k+'].chlds=' + chlen;
+                    if (chlen > 0) {
+                        for(var j=0; j< chlen; j++) {
+                            room += '&hotel.rooms['+k+'].chldAge['+j+']=' + $('select[name="hotel.rooms['+i+'].chldAge['+j+']"] option:selected').val();
+                        }
+                    }
+                k++;
+            }
+        }
+        checkIn  = $('#choseDatesStartDate_hc').val();
+        checkOut = $('#choseDatesEndDate_hc').val();
+        oneg 	 = $('#choseDatesOneg_hc').val();
+        promo 	 = $('#pp-promo').val();
+
+		window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
 				+ promo
+                + "&locale="
+                + local
 				+ "&hotel.hid="
 				+ oneg
 				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
-				+ "&search=Search&locale=";
-				//+ languageCode
-				//+ "&lpid.category=hot-mkt-dated&lpid.priority=1200.0&lpid=hotelGpSearch";
+				+ "&search=Search"
+                + room;
 	});
 
 /*
@@ -1247,7 +1276,7 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1292,7 +1321,7 @@ var nextgen = {
 				if (index == 'name') heading = value;
 
 				if (heading != false && headingEn != false && flag == false) {
-					html += '<div data-h-name="'+ headingEn +'"><h4>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1824,10 +1853,9 @@ function mapBackBtn() {
 		res = nextgen.sendRequest(uriBase, 'returnType=json');
 		res.success(function(data){
 			nextgen.dataP = data;
-            console.log('coming in');
             nextgen.getLavel = 1;
             nextgen.selRegion = '';
-            //nextgen.drawMenu('');
+            nextgen.drawMenu('');
 			nextgen.drawCards(true);
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
@@ -1911,7 +1939,7 @@ function resetMapSizePos(){
 		else if(options.region=='030'){ document.getElementById('regions_div').style.top = '-65px'; }
 		else if(options.region=='035'){ document.getElementById('regions_div').style.top = '-60px'; }
 		else if(options.region=='CA'){ document.getElementById('regions_div').style.top = '-85px';  }//Canada
-		else if(options.region=='US'){options.keepAspectRatio=true; document.getElementById('regions_div').style.top = '-45px';  }//USA
+		else if(options.region=='US'){ document.getElementById('regions_div').style.top = '-45px';  }//USA
 		else if(options.region=='FJ'){ document.getElementById('regions_div').style.top = '-65px';  }//Fiji
 		else if(options.region=='VN'){ document.getElementById('regions_div').style.top = '-55px';  }//Vietnam
 		else if(options.region=='ES'){ document.getElementById('regions_div').style.top = '-50px';  }//Spain
@@ -1921,6 +1949,10 @@ function resetMapSizePos(){
 		else if(options.region=='ID'){ document.getElementById('regions_div').style.top = '-35px';  }//Indonesia
 		else{ document.getElementById('regions_div').style.top = '0px';  }	
 	}
+
+	//change the aspectratio to true only in usa else false
+	if(options.region=='US'){ options.keepAspectRatio=true; }
+	else{ options.keepAspectRatio=false; }
 
 	//condition to check whether the clicked map region is malaysia or not
 	if(options.region=='MY'){ document.getElementById('regions_div').style.left = '100px';  } //Malaysia
