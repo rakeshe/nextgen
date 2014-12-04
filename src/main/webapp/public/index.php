@@ -25,6 +25,7 @@ try {
 		$url = new \Phalcon\Mvc\Url();
 
 		$url->setBaseUri('/n/'); // If the project is in the Document Root folder, setBaseUri to '/'
+
 		return $url;
 	});
 
