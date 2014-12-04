@@ -23,15 +23,15 @@
 	<div class="search_footer">
 		<div class="search_footer_head">
 			<span class="search_not_found">{{t._("not-found-what-you-are-looking-for")}}</span>
-			<span class="search_plus hidden"><img src="/n/themes/common/img/plus.png" alt="plus"/></span>
-			<span style="display:none;" class="search_plus"><img src="/n/themes/common/img/minus-sign.png" alt="plus"/></span>
+			<span class="search_plus hidden"><img src="/themes/common/img/plus.png" alt="plus"/></span>
+			<span style="display:none;" class="search_plus"><img src="/themes/common/img/minus-sign.png" alt="plus"/></span>
 		</div>
 
 		<div class="input-group">
 	      <input type="text" class="form-control" placeholder="{{t._('search-all-hotel-club')}}" id="locationText">
 	      <span class="input-group-btn">
 	      	<a class="btn btn-default search_hotel_near_go" type="button">
-	      		<img src="/n/themes/common/img/icon-geolocation.png" alt="Use current location" height="18" width="18" data-context="icon-geolocation">
+	      		<img src="/themes/common/img/icon-geolocation.png" alt="Use current location" height="18" width="18" data-context="icon-geolocation">
 	      	</a>
 	      </span>
     	</div>

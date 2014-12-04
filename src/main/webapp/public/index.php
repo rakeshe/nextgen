@@ -23,7 +23,7 @@ try {
 	 */
 	$di->set('url', function() {
 		$url = new \Phalcon\Mvc\Url();
-		$url->setBaseUri('/n/'); // If the project is in the Document Root folder, setBaseUri to '/'
+		$url->setBaseUri('http://www.hotelclub.com/'); // If the project is in the Document Root folder, setBaseUri to '/'
 		return $url;
 	});
 
