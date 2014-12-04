@@ -1938,6 +1938,7 @@ ul.pipedList.addRemove li.added_room{
     display: inline-block;
     line-height: 12px;
     margin-bottom: 2px;
+	margin-right: 5px;
 }
 .ui-widget-header{
 background:none !important;
