@@ -777,7 +777,8 @@ $(window).scroll(function() {
 //The popstate event is fired when the active history entry changes
 //event is only triggered by doing a browser action such as a click on the back button (or calling history.back() in JavaScript).
 window.addEventListener('popstate', function(event) {
-    window.location.reload();
+    //window.location.reload();
+    return;
 });
 
 $(document).on('click', '.showmorehotels', function() {

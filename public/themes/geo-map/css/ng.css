@@ -276,6 +276,30 @@
             text-align: left;
 
         }
+        #vertical-scrollbar {
+            height: 353px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        #menu_new li a:hover,#menu_new li a:focus{
+            background-color: #e21e28;
+            border-bottom: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            float: left;
+            font-family: museo_slab500;
+            font-size: 16px;
+            height: 48px;
+            line-height: 18px;
+            color:#FFF;
+            margin: 0;
+            /*padding: 22px 35px;*/
+            padding: 6px 10px 6px;
+            text-align: center;
+            width: 20%;
+        }
         .platinum-border{
             border: 2px solid #333 !important;
         }
