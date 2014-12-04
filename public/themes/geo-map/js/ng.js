@@ -774,6 +774,28 @@ $(window).scroll(function() {
 });
 */
 
+//Using setTimeout only isn't a correct solution because you have no idea how long it will take for the content to be loaded so it's possible the popstate event is emitted after the timeout.
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        window.addEventListener('popstate', function() {
+            window.location.reload();
+        });
+    }, 0);
+});
+
+//The popstate event is fired when the active history entry changes
+//event is only triggered by doing a browser action such as a click on the back button (or calling history.back() in JavaScript).
+/*var popped = ('state' in window.history && window.history.state !== null), initialURL = location.href;
+
+window.addEventListener('popstate', function(event) {
+    var initialPop = !popped && location.href == initialURL
+    if ( initialPop ) return
+    alert('inside' + popped);
+    //window.location.reload();
+    return;
+});
+alert('outside' + popped);*/
+
 $(document).on('click', '.showmorehotels', function() {
     $(this).remove();
     nextgen.pageNumber = +nextgen.pageNumber + +nextgen.pageLimit;
@@ -1049,7 +1071,7 @@ var nextgen = {
                 if(obj['is_moo'] == '1'){
                     html += trans['members_only'];
                 } else{
-                    var offerText = trans['promo_pc_off_template'];
+                    var offerText = trans['promo_pc_off_template'].replace('<br>','');
                     html += offerText.replace('<pc_off>', obj['discount_amount']);
                 }
 				html += '<div class="hidden-xs btn button">';
