@@ -52,11 +52,11 @@
 		    	</div>
 
                 </div><div class="row" style="padding:1.5%">
-            <div class="col-lg-12 col-sm-4 col-xs-11">
+            <div class="col-lg-12 col-sm-11 col-md-11 col-xs-11">
                 {% for i in 1..4 %}
                 <div id="search_visible_room{{ i }}" data-context="hotelGuests" class="hotelGuests first">
-				<div class="legend col-lg-1 col-sm-1 col-md-1 col-xs-3"> Room {{ i }} </div>
-                    <div class="guests col-lg-11 col-md-11 col-xs-9 col-sm-11">
+				<div class="legend col-lg-1 col-sm-3 col-md-1 col-xs-3"> Room {{ i }} </div>
+                    <div class="guests col-lg-11 col-md-11 col-xs-9 col-sm-8">
                         <div class="row" >
                             <div class="col-xs-3 col-lg-1">
 								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">

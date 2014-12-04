@@ -1211,8 +1211,8 @@ var nextgen = {
             }
 				html += '</div>';
 				html += '<div class="clearfix "></div>';
-				html += '<div class="hidden-xs btn button">';
-				html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
+				html += '<div class=" btn button">';
+				html += '<a class="col-xs-10 col-sm-12 col-md-12 col-lg-12 ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
 				html += '</div>';
 				//html += '<br>';
 				html += '<p class="hidden-xs inclusions">'+obj['travel_text']+'</p>';
@@ -2205,3 +2205,9 @@ function setCordinateVal(){
 function clearTimerVal(){
 	clearInterval(myTimer);	
 }//clearTimerVal
+//multi-languages
+$(document).on('click', '#open_languages', function(e) {
+
+$(".multi_languages").addClass("open");
+	//$("#mbl_menu_logo").removeAttr("data-toggle");
+	});

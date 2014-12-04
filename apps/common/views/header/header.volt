@@ -32,7 +32,7 @@
    {#@todo - convert to volt#}
 <!-- mobile header -->
 <div id="mbl_menu">
-    <div class="dropdown">
+    <div class="dropdown multi_languages">
         <a class="dropdown-toggle head_menu_pad" id="mbl_menu_logo" data-toggle="dropdown" href="#">
 		<img src="/themes/common/img/mobile_menu.png" width="76" class="img-responsive" />
 		<span class="offscreen">Main Menu</span></a>
@@ -48,7 +48,7 @@
             </li>
 			{{ partial('../../../common/views/menu/menu_options-tab') }}
         </ul>
-    </div>
+		</div>
 </div>
 
 <div id="mbl_logo">
