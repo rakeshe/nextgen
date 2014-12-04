@@ -3,7 +3,7 @@
         <div class="img-responsive hidden-xs hidden-sm">
             <iframe src="//html5.host.bannerflow.com/ad_631424_178.html?clicktag=" style="border:0;width:100%;height:82px;" scrolling="no" frameborder="0" ></iframe>
         </div>
-		<img class="img-responsive visible-xs visible-sm" src="/themes/common/img/mobile-banner.png" />
+		<img class="img-responsive visible-xs visible-sm" src="/n/themes/common/img/mobile-banner.png" />
 	</div>
 </div>
 <div class="row row_nomargin_banner visible-md visible-lg">

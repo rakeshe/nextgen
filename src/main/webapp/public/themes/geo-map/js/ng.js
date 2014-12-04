@@ -1091,7 +1091,7 @@ var nextgen = {
 				html += '<img width="100%" id="image_gold" class="img-responsive" src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'">';
 				html += '</div>';
 				html += '<div class="deal_card_images" id="deal_images">';
-				html += '<img height="74" width="67" id="image_gold" class="img-responsive" alt="" src="/themes/common/img/Bestdeals.png">';
+				html += '<img height="74" width="67" id="image_gold" class="img-responsive" alt="" src="/n/themes/common/img/Bestdeals.png">';
 				html += '</div>';
 				html += '<div class="clearfix col-xs-12" id="hotel_content">';
 				html += '<div class="hotel_cards_heading hidden-lg hidden-md">';
@@ -1542,7 +1542,7 @@ var imageHelper = {
 	},
 	'getStarUri' : function(star) {
 		//return this.ORBITZ_HOTEL_SITE_IMAGES_URI + 'ORB/icons/stars/star' +star+ '/medium/star' +star+ '-1.png';
-		return '/themes/common/img/star' +star+ '-50.png';
+		return '/n/themes/common/img/star' +star+ '-50.png';
 	}
 }
 //Hotel booking
@@ -1907,14 +1907,14 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -2186,8 +2186,8 @@ var maxAppend = "1";
 
 //magnifyingGlassIcon
 function magnifyingGlassIcon(){
-	if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/themes/common/img/search-icon.png" width="18"/>'); }
-	else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/themes/common/img/search-icon-white.png" width="18"/>'); }
+	if(nextgen.getLavel==1){ $('.magnifyGls').empty();$('.magnifyGls').append('<img src="/n/themes/common/img/search-icon.png" width="18"/>'); }
+	else{ $('.magnifyGls').empty(); $('.magnifyGls').append('<img src="/n/themes/common/img/search-icon-white.png" width="18"/>'); }
 }//magnifyingGlassIcon
 
 //set the cordinate value for overlapping cities cities
