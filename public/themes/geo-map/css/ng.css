@@ -135,9 +135,11 @@
         .display_regions{
             width: 17%;
         }
-        .country_name_list , .city_name_list{
+        .country_name_list a, .city_name_list a,.country_name_list a:hover, .city_name_list a:focus{
             font-size: 18px;
             text-align: center;
+			background:none !important;
+			color:#636a69!important;
 
         }
         .hotel_all_search{
@@ -271,9 +273,11 @@
 				width: 750px !important;
 			}
 		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
-        .country_name_list , .city_name_list{
-            font-size: 14px;
-            text-align: left;
+        .country_name_list , .city_name_list,.country_name_list a:hover, .city_name_list a:focus{
+            font-size: 16px;
+            text-align: center;
+			color: #333 !important;
+			background:none !important;
 
         }
         #vertical-scrollbar {
@@ -700,9 +704,17 @@ body{ float:none !important;}
         height: 50px;
         padding-top: 14px !important;
     }
-	.search_ChildLabelRoom{
-	
+	.child_rooms{
+	width:28px;
+	padding: 4px 0px !important;
 	}
+.search_addRemove{
+font-size:11px;
+}
+.search_buttons{
+position: relative; top: 12px;}
+.search_not_found{ font-size:10pt !important;}
+.label_Text{ font-size:15px !important;}
 	/*modified by mohan - 20141023*/
 }
 
@@ -2597,3 +2609,4 @@ color: #444;
 .hotel_mobile_platinum_cards #hotel_content{
     margin: 0px 10px !important;
 }
+.search_ChildLabelRoom{padding: 5px 0px 0px 5px; }

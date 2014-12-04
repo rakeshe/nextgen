@@ -51,20 +51,20 @@
 		        	<input type="text" class="input-sm" name="" id="proCode" placeholder="{{t._('coupon-code')}}..." value="{% if coupon is defined %}{{ coupon['code'] }}{% endif %}">
 		    	</div>
 
-                </div><div class="row">
+                </div><div class="row" style="padding:1.5%">
             <div class="col-lg-12 col-sm-4 col-xs-11">
                 {% for i in 1..4 %}
                 <div id="search_visible_room{{ i }}" data-context="hotelGuests" class="hotelGuests first">
-				<div class="legend"> Room {{ i }} </div>
-                    <div class="guests col-lg-12 col-md-12 col-xs-12 col-sm-12">
+				<div class="legend col-lg-1 col-sm-1 col-md-1 col-xs-3"> Room {{ i }} </div>
+                    <div class="guests col-lg-11 col-md-11 col-xs-9 col-sm-11">
                         <div class="row" >
-                            <div class="col-xs-2 col-lg-1">
+                            <div class="col-xs-3 col-lg-1">
 								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">
 
 								<span class="primaryLabel"><span class="">Adult
 								<span class="secondaryText supplementaryMessage">
 								(18+) </span></span></span>
-                                    <select name="search_hotel.rooms[{{ i }}].adlts" class="btn btn-default">
+                                    <select name="search_hotel.rooms[{{ i }}].adlts" class="btn btn-default child_rooms">
                                         {% for j in 1..6 %}
                                             <option value="{{ j }}">{{ j }}</option>
                                         {% endfor %}
@@ -75,7 +75,7 @@
 								<span   data-mbox-update="167,childrenClicked=true">
 								<span class="primaryLabel">Child <span class="secondaryText supplementaryMessage">
 								(0-17)</span></span>
-                                        <select name="search_hotel.rooms[{{ i }}].chlds" id="search_Childrooms{{ i }}" class="btn btn-default">
+                                        <select name="search_hotel.rooms[{{ i }}].chlds" id="search_Childrooms{{ i }}" class="btn btn-default child_rooms">
                                             {% for j in 0..5 %}
                                                 <option value="{{ j }}">{{ j }}</option>
                                             {% endfor %}
@@ -93,10 +93,12 @@
                                 <div class="search_childText">If you are traveling, include yourself in Room 1.</div>
                             {% elseif  i == "4" %}
                                 <div class="search_childText">To book more than 4 rooms, call us at <span data-ismobile="false" data-isrtl="false" data-isfreecall="false" data-numbertocall="+611300854585" onclick="SkypeClick2Call.MenuInjectionHandler.makeCall(this, event)" onmouseout="SkypeClick2Call.MenuInjectionHandler.hideMenu(this, event)" onmouseover="SkypeClick2Call.MenuInjectionHandler.showMenu(this, event)" tabindex="-1" dir="ltr" class="skype_c2c_container notranslate" id="skype_c2c_container"><span skypeaction="skype_dropdown" dir="ltr" class="skype_c2c_highlighting_inactive_common"><span id="non_free_num_ui" class="skype_c2c_textarea_span"><img width="0" height="0" src="resource://skype_ff_extension-at-jetpack/skype_ff_extension/data/call_skype_logo.png" class="skype_c2c_logo_img"><span class="skype_c2c_text_span">1300-85-45-85</span><span class="skype_c2c_free_text_span"></span></span></span></span></div>
+								{% else %}
+								<div class="search_childText"></div>
                             {% endif %}
-                            <div id="search_ChildLabel1Room{{ i }}" style="padding:5px 0px 0px 5px; margin-left: 10px" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom">
+                            <div id="search_ChildLabel1Room{{ i }}" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom ">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 1</span></span>
-                                <select name="search_hotel.rooms[{{ i }}].chldAge[0]" class="btn btn-default">
+                                <select name="search_hotel.rooms[{{ i }}].chldAge[0]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
                                     {% for j in 1..17 %}
@@ -105,9 +107,9 @@
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
-                            <div id="search_ChildLabel2Room{{ i }}" style="padding:5px 0px 0px 5px;" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom">
+                            <div id="search_ChildLabel2Room{{ i }}" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom ">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 2</span></span>
-                                <select name="search_hotel.rooms[{{ i }}].chldAge[1]" class="btn btn-default">
+                                <select name="search_hotel.rooms[{{ i }}].chldAge[1]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
                                     {% for j in 1..17 %}
@@ -117,9 +119,9 @@
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
 
-                            <div id="search_ChildLabel3Room{{ i }}"  style="padding:5px 0px 0px 5px;" class="search_ChildLabel3Roomcol-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom">
+                            <div id="search_ChildLabel3Room{{ i }}" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom ">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 3</span></span>
-                                <select name="search_hotel.rooms[{{ i }}].chldAge[2]" class="btn btn-default">
+                                <select name="search_hotel.rooms[{{ i }}].chldAge[2]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
                                     {% for j in 1..17 %}
@@ -128,9 +130,9 @@
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
-                            <div id="search_ChildLabel4Room{{ i }}" style="padding:5px 0px 0px 5px;" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom">
+                            <div id="search_ChildLabel4Room{{ i }}" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom ">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 4</span></span>
-                                <select name="search_hotel.rooms[{{ i }}].chldAge[3]" class="btn btn-default">
+                                <select name="search_hotel.rooms[{{ i }}].chldAge[3]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
                                     {% for j in 1..17 %}
@@ -139,9 +141,9 @@
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
-                            <div id="search_ChildLabel5Room{{ i }}" style="padding:5px 0px 0px 5px;" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom">
+                            <div id="search_ChildLabel5Room{{ i }}" class="col-xs-2 col-lg-1 control select noneInlineBlock custom js-select search_ChildLabelRoom ">
                                 <span class="primaryLabel offscreen"><span class="labelText">Child 5</span></span>
-                                <select name="search_hotel.rooms[{{ i }}].chldAge[4]" class="btn btn-default">
+                                <select name="search_hotel.rooms[{{ i }}].chldAge[4]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
                                     {% for j in 1..17 %}
@@ -150,15 +152,15 @@
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
                             {% if  i == "1" %}
-                        </div><div class="row" style="padding:28px 0px 0px 22px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove">
+                        </div><div class="row" style="padding:28px 0px 0px 0px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove search_addRemove ">
                             <li><a id="search_add_room{{ i }}" class="link search_addRoom">Add a room</a></li>
                         </ul></div></div>
 						{% elseif  i == "4" %}
-                        </div><div class="row" style="padding:28px 0px 0px 22px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove">
+                        </div><div class="row" style="padding:28px 0px 0px 0px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove search_addRemove ">
                              <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">Remove this room</a></li>
                         </ul></div></div>
                     {% else %}
-            </div><div class="row" style="padding:28px 0px 0px 22px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove">
+            </div><div class="row" style="padding:28px 0px 0px 0px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove search_addRemove ">
                 <li id="search_added_room"><a id="search_add_room{{ i }}" class="link search_addRoom">Add a room</a></li>
                 <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">Remove this room</a></li>
             </ul></div></div>
@@ -168,16 +170,15 @@
             {% endfor %}
 
     	</div>
-		<div class="row">
+		</div><br/>
+		<div class="row search_buttons">
 	    		<div class="col-lg-12 col-sm-12 col-xs-12">		      
 		    		<button type="button" class="btn btn-default search_hotel_near_go_all" data-code="all" aria-label="Left Align" >
 					Search
 					</button>
 				</div>
 	    	</div>
-        </div>
-
-	<br/>
+			<br/>
 	                {#POPUP DESIGN AND FUNCTIONALITIES #}
 
 			<div id="choseDates" style="">
