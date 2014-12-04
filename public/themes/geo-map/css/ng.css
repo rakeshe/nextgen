@@ -276,6 +276,33 @@
             text-align: left;
 
         }
+        #vertical-scrollbar {
+            height: 353px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        ul.pipedList {
+            margin-top:15px !important;
+        }
+        #menu_new li a:hover,#menu_new li a:focus{
+            background-color: #e21e28;
+            border-bottom: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            float: left;
+            font-family: museo_slab500;
+            font-size: 16px;
+            height: 48px;
+            line-height: 18px;
+            color:#FFF;
+            margin: 0;
+            /*padding: 22px 35px;*/
+            padding: 6px 10px 6px;
+            text-align: center;
+            width: 20%;
+        }
         .platinum-border{
             border: 2px solid #333 !important;
         }
@@ -1879,9 +1906,10 @@ margin-top:10px;
 }
 .hotelGuests{
 display:none;
+    margin-top: 2%;
 }
 .childTravelers {
-    margin-right: -8px;
+    margin-right: -8px;margin-top: 2%;
 }ul.pipedList:after {
     clear: both;
     content: "";
@@ -1905,7 +1933,9 @@ color: #562d82;
 }
 ul.pipedList.addRemove li.added_room{
  border-right: 1px solid;
-}
+}ul.pipedList {
+        margin-top: 2%;
+    }
 .ui-dialog.success-dialog{
 
 }

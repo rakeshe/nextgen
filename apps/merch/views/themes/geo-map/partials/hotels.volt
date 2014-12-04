@@ -216,7 +216,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>2</span><div></div></span></label></span>
+								<span class="button" style=""><div></div></span></label></span>
 								<span   data-mbox-update="167,childrenClicked=true">                                                                                               <label class="control select custom js-select">
 								<span class="primaryLabel"><span class="labelText">Child <span class="secondaryText supplementaryMessage">
 								(0-17) </span></span></span> <br/>
@@ -225,7 +225,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>0</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 
 								</span>
 								</div>
@@ -247,7 +247,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>--</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 
 							<label class="ChildLabel2Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 2</span></span>
@@ -258,7 +258,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>--</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 
 
 							<label class="ChildLabel3Room{{ i }}"  class="control select noneInlineBlock custom js-select">
@@ -270,7 +270,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>--</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 
 																																									<label class="ChildLabel4Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 4</span></span>
@@ -281,7 +281,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>--</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 
 																																									<label class="ChildLabel5Room{{ i }}" class="control select noneInlineBlock custom js-select">
 								<span class="primaryLabel offscreen"><span class="labelText">Child 5</span></span>
@@ -292,7 +292,7 @@
 								<option value="{{ j }}">{{ j }}</option>
 										{% endfor %}
 								</select>
-								<span class="button" style=""><span>--</span><div></div></span></label>
+								<span class="button" style=""><div></div></span></label>
 {% if  i == "1" %}
 </div><ul id="addRemove{{ i }}" class="pipedList addRemove">
 								<li><a id="add_room{{ i }}" class="link addRoom">Add a room</a></li>
