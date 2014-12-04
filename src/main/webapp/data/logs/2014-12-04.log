@@ -16,3 +16,9 @@
 [Thu, 04 Dec 14 14:48:22 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Thu, 04 Dec 14 14:48:22 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Thu, 04 Dec 14 14:48:22 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Thu, 04 Dec 14 18:39:06 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Thu, 04 Dec 14 18:39:06 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Thu, 04 Dec 14 18:39:06 +0100][ERROR] Invalid argument supplied for foreach() C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_geo-map_index_404.volt.php:5
+[Thu, 04 Dec 14 18:39:49 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Thu, 04 Dec 14 18:39:49 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Thu, 04 Dec 14 18:39:49 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
