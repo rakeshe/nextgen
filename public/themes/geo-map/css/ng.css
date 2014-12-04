@@ -306,9 +306,12 @@
             overflow: hidden;
             cursor: pointer;
         }
-		.display-cards.row, .display-cards-gold{
-		padding-left:1% !important;
+		.display-cards.row{
+		padding-left:4% !important;
 		}
+		 .display-cards-gold{
+		 padding-left:4% !important;
+		 }
         #hotel_content {
             margin-left: 1% !important;
             width: 200px;
@@ -670,6 +673,9 @@ body{ float:none !important;}
         height: 50px;
         padding-top: 14px !important;
     }
+	.search_ChildLabelRoom{
+	
+	}
 	/*modified by mohan - 20141023*/
 }
 
@@ -1863,7 +1869,6 @@ margin-top:10px;
     padding-right: 10px;
 }
 .hotelGuests .guests ,.hc_room .guests {
-    overflow: hidden;
     padding-left: 12px;
 	line-height: 2em;
 }
@@ -2092,6 +2097,7 @@ font-family: museo_slab500;
  font-size: 24px;
  font-weight: normal;
 text-decoration:none;
+cursor:pointer;
 }
 
 .regions_list{
