@@ -1071,7 +1071,7 @@ var nextgen = {
                 if(obj['is_moo'] == '1'){
                     html += trans['members_only'];
                 } else{
-                    var offerText = trans['promo_pc_off_template'];
+                    var offerText = trans['promo_pc_off_template'].replace('<br>','');
                     html += offerText.replace('<pc_off>', obj['discount_amount']);
                 }
 				html += '<div class="hidden-xs btn button">';
