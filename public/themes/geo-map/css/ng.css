@@ -1,7 +1,8 @@
 	.saveBookInfo{ background:none !important; padding:0 !important; }
 	#banner { padding:0 !important;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1) !important;  }
 	#banner_image { margin:0px 0px 0px 15px; z-index:999 !important; line-height: 0; overflow: hidden;width: 957px; border-top: 5px solid #e21e28; }
-	#banner_val { position:relative; margin-bottom:-250px; z-index:999;float:right;text-align:right; margin-top:20px;width:300px;}
+	/*#banner_val { float: right; left: 674px; margin-bottom: -250px; margin-top: 20px; position: absolute; text-align: right; width: 300px; z-index:999;}*/
+	#banner_val { position:relative; margin-bottom:-250px; z-index:92   ;float:right;text-align:right; margin-top:20px;width:300px;}
 	#menu_new { margin: 0; padding: 0; }
 	/*#menu_new li {  background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
@@ -40,8 +41,8 @@
 	/*#menu_new li a {  background-color: #E21E28; color:#FFFFFF; text-decoration:none; font-size:12pt;}*/
 	#hotel_card_block { height:auto; padding: 8px 0px 0px 2px; }
 	#hotel_card_search { display:block; }
-	.world_best_deals { float:left;  padding:16px 15px;font-size:16px;font-weight:normal; font-family: museo_sans500}
-	.hotel_all_search { float:left; text-align:right; padding:15px 0px 5px 0px;font-size:16px;font-weight:normal; font-family: museo_sans500; }
+	.world_best_deals { float:left;  padding:16px 15px;font-size:16px;font-weight:normal; font-family: museo_sans500;text-transform:capitalize;}
+	.hotel_all_search { float:left; text-align:right; padding:15px 0px 5px 0px;font-size:16px;font-weight:normal; font-family: museo_sans500; text-transform:capitalize;}
 	.map-back { color:#FFF !important; }
 	.map-reset { color:#FFF !important; }
 	.map-reset-to-region { color:#E21E28 !important; background-color: #FFF; font-family: museo_slab500 ; font-size: 14px; text-decoration: none; padding: 14px; margin-right: 5px; }
@@ -121,9 +122,12 @@
     /* reponsive design - starts */
     /** mobile phones **/
     @media (max-width: 767px) {
+	body{ float:none !important;}
         .container {
-            padding: 0;
-        }
+            padding: 0;	
+            max-width: 640px !important;
+ }
+ #banner_image {  max-width: 640px !important;margin:0!important;}
         .subContainer{ padding:10px; }
         .row {
             margin: 0px !important;
@@ -244,14 +248,29 @@
         .regions_list .button-down{
             padding-right: 10px;
         }
+
+        .platinum_book{
+            background-color: #562d82;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            height: 44px;
+            padding: 1px 10px;
+            position: relative;
+            text-decoration: none;
+            top: 20px;
+            width: 95%;
+            margin-left: 2%;
+        }
     }
 
     /** table landscape + desktop **/
     @media (min-width: 768px) {
-        .container {
-            width: 750px !important;
-        }
-        .subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
+		 .container {
+				width: 750px !important;
+			}
+		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
         .country_name_list , .city_name_list{
             font-size: 14px;
             text-align: left;
@@ -287,7 +306,9 @@
             overflow: hidden;
             cursor: pointer;
         }
-
+		.display-cards.row, .display-cards-gold{
+		padding-left:1% !important;
+		}
         #hotel_content {
             margin-left: 1% !important;
             width: 200px;
@@ -422,8 +443,30 @@
             color:#E21E28;
             font-size:24px;
             letter-spacing:-2px;
-            line-height:24px;
+            line-height:36px;
             text-align:center;
+        }
+		div.mobile-platinum-card div.hotel_mobile_platinum_cards div.Bestdeals div#hotel_content{
+		width: 384px !important;
+		}
+		#mob_banner > div.mobile-platinum-card > div > div > div.saveBookInfo.col-xs-4{
+		margin-top:1%;
+            line-height: 30px;
+		}
+
+        .platinum_book{
+            background-color: #562d82;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            height: 44px;
+            /*left: 31px;*/
+            padding: 1px 10px;
+            position: relative;
+            text-decoration: none;
+            top: 20px;
+            width: 100%;
         }
 
     }
@@ -491,15 +534,21 @@
         }
 
         .hotel_gold_cards_list {
-            height: 160px;
+            height: auto;
+			min-height:160px;
             margin-bottom: 5px;
         }
     }
 
 @media only screen
 and (max-device-width: 480px) {
+body{ float:none !important;}
 	.container {
 		padding:0;
+		 max-width: 480px !important;
+	}
+	#banner_image{
+	width:100% !important;
 	}
 	.subContainer{
 		padding:0 !important;
@@ -733,6 +782,11 @@ and (max-device-width : 767px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
+body{ float:none !important;}
+ .container {
+            max-width: 750px;
+        }
+		#banner_image {  width: 100% !important;}
 #canvas {
 width:896px !important;
 }
@@ -2067,12 +2121,13 @@ width:100%;
 .country_name_list , .city_name_list{
  font-family: museo_sans300;
 }
-    .country_name_list a, .city_name_list a,
-    .country_name_list a:active, .city_name_list a:active{
+.country_name_list a, .city_name_list a,
+.country_name_list a:active, .city_name_list a:active{
         color:#636a69;
         display: block;
         padding: 10px;
         text-decoration: none;
+		line-height: 1em;
     }
     .country_name_list a:hover, .city_name_list a:hover {
         color: #e21e28;
@@ -2241,7 +2296,7 @@ background-color:#fff;
     background: rgba(255,255,255,0.85);
  }
 
-#zoom_level{ margin:20px 10px 10px 10px;text-align:right;  }
+#zoom_level{ left: 264px; position: absolute; text-align: right; top: 20px; }
 #zoom_menu{ display:block; clear:both; margin-top:5px;}
 #canvas { width:896px; height:350px; overflow:hidden; }
 #regions_div{ left: 0px; top: -90px; z-index:1;  }
@@ -2261,12 +2316,12 @@ background-color:#fff;
 .world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
 .world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
-.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin:15px 0 0 250px; }
-.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin:15px 0 0 250px; }
-.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; }
+.urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin-top:15px; }
+.urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin-top:15px; }
+.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; float:left !important; }
 .urlMinusImg:hover { background-image: url('../../common/img/minus-sign-hover.png'); }
-.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding-right:8px; }
-.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin:16px 0 0 250px; padding:34px 8px 0 0; }
+.zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding-right:8px; }
+.zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding:34px 8px 0 0; }
 
 #hotel_gold_card_block {
     background-color: #562d82 !important;
@@ -2282,8 +2337,8 @@ width:100%;
     margin-bottom: 30px;
 }
 .platinum_card_images{
-    width:112%;
-    margin-left: -6%;
+    width:100%;
+    /*margin-left: -6%;*/
 }
 .platinum_card_images img{
 max-width:100%;
@@ -2314,26 +2369,13 @@ float:left;
         font-size: 20px;
         font-weight: normal;
         margin-right: 4%;
+        line-height: 30px;
     }
    .Bestdeals .saveBookInfo .percentage{
         font-size: 30pt !important;
        font-weight: bold;
        padding-left: 5px;
     }
-.platinum_book{
-    background-color: #562d82;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 28px;
-    font-weight: 700;
-    height: 44px;
-    /*left: 31px;*/
-    padding: 1px 10px;
-    position: relative;
-    text-decoration: none;
-    top: 20px;
-    width: 100%;
-}
 a.ht-book{
 color:#fff;
 }
@@ -2360,7 +2402,9 @@ position: absolute;
         text-decoration: none;
         margin: 20px 0px 5px 15px;
     }
+.mobile-platinum-card{
 
+}
 /** Tier based style **/
     /** Tier based style **/
     .tier-2 {
@@ -2511,4 +2555,9 @@ color: #444;
 .button a:hover, .button a:active{
     background-color: #703baa;
     font-variant: normal;
+}
+
+
+.hotel_mobile_platinum_cards #hotel_content{
+    margin: 0px 10px !important;
 }

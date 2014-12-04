@@ -4,6 +4,7 @@
 * @since 26/11/13 7:25 PM
 * @version 1.0
 *
+*
 */
 var linkOffset="";
 var linkWidth="";
@@ -1067,7 +1068,8 @@ var nextgen = {
 		} ,
 		'platinumCardMobile' : function(obj) {
 			var html = '';
-				html += '<div class="hotel_mobile_platinum_cards col-xs-12  col-sm-12 col-md-11 col-lg-8">';
+				html += '<div class="hotel_mobile_platinum_cards">';
+				//html += '<div class="hotel_mobile_platinum_cards col-xs-12  col-sm-12 col-md-11 col-lg-8">';
 				html += '<div class="Bestdeals">';
 				html += '<div class="platinum_card_images" id="hotel_image">';
 				html += '<img width="100%" id="image_gold" class="img-responsive" src="'+obj['image_url']+'" alt="'+obj['hotel_name']+'">';

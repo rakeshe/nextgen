@@ -4,7 +4,7 @@
 	<div id="hotel_gold_card_block" class="hd-main-info">
 		<div class="row row_nomargin">
 			<div class="world_best_deals  col-xs-4 col-sm-4  col-md-4 col-lg-4 pull-left">{{t._('recommended-deals')}}</div>
-			<div class="hotel_all_search  col-xs-6 col-sm-7  col-md-7 col-lg-7 pull-right">
+			<div class="hotel_all_search  col-xs-6 col-sm-6  col-md-7 col-lg-7 pull-right">
                 <span class="search_input_hotel">
                     <span class="magnifyGls"></span>&nbsp;{{t._('search-all-hotel-club')}}
                     <b class="caret"></b>
