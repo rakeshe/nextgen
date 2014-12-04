@@ -274,13 +274,7 @@
 				width: 750px !important;
 			}
 		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
-        .country_name_list , .city_name_list,.country_name_list a:hover, .city_name_list a:focus{
-            font-size: 16px;
-            text-align: center;
-			color: #333 !important;
-			background:none !important;
-
-        }
+        
         #vertical-scrollbar {
             height: 353px;
             overflow-x: hidden;
@@ -837,9 +831,24 @@ body{ float:none !important;}
 #canvas {
 width:896px !important;
 }
-    #vertical-scrollbar {
-            height: auto;
+.country_name_list , .city_name_list,.country_name_list a:hover, .city_name_list a:hover{
+            font-size: 16px;
+            text-align: center;
+			color: #333 !important;
+			background:none !important;
+
         }
+    #vertical-scrollbar {
+           overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 80;
+        }
+		.mobile-platinum-card {
+    position: relative;
+    top: 50px;
+}
 	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
 		background-color:red !important;
 		color:#fff;
