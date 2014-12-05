@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'serifa_std55_roman';
+    src: url('serifastd-roman.eot');
+    src: url('serifastd-roman.eot?#iefix') format('embedded-opentype'),
+         url('serifastd-roman.woff') format('woff'),
+         url('serifastd-roman.ttf') format('truetype'),
+         url('serifastd-roman.svg#serifa_std55_roman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
