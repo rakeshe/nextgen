@@ -42,7 +42,7 @@ class IndexController extends ControllerBase {
     private $docmentPageUrl;
     private $couchPageData;
 
-    private $fontCSS = "normal";
+    private $fontCSS = "normal-font";
 
     public function initialize() {
 
@@ -370,9 +370,9 @@ class IndexController extends ControllerBase {
 
         //get css file name based on the language
         if (in_array( $this->languageCode, (array) $this->config->fontStyles->large)) {
-            $this->fontCSS = large;
+            $this->fontCSS = 'large-font';
         } elseif (in_array( $this->languageCode, (array) $this->config->fontStyles->small)) {
-            $this->fontCSS = small;
+            $this->fontCSS = 'small-font';
         }
     }
 
