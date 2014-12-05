@@ -14,7 +14,7 @@
             ,navigationtag: "div,span"
             ,FPCConfig: {
                 enabled: true,
-                domain: fpcdom,
+                domain: fpcdom
             }
             ,plugins:{
                 LinkTrack: { src: "scripts/linkTrack.js", DivList: ".*" }
