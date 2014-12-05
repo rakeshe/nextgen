@@ -312,9 +312,7 @@
 							</fieldset>
 							{% endfor %}
 
-		<div class="hc_room">
-
-		</div>
+		<div class="hc_room"></div>
 
 		</div>
 <div class="row">

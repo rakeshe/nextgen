@@ -4,18 +4,6 @@
 	/*#banner_val { float: right; left: 674px; margin-bottom: -250px; margin-top: 20px; position: absolute; text-align: right; width: 300px; z-index:999;}*/
 	#banner_val { position:relative; margin-bottom:-250px; z-index:92   ;float:right;text-align:right; margin-top:20px;width:300px;}
 	#menu_new { margin: 0; padding: 0; }
-	/*#menu_new li {  background-color: #e21e28;
-    border-bottom: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
-    display: block;
-    float: left;
-    font-family: museo_slab500;
-    font-size: 16px;
-    height: 48px;
-    margin: 0;
-    padding: 20px 10px 10px;
-    text-align: center;
-    width: 20%;} */
     #menu_new li a{background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
@@ -330,7 +318,7 @@
             cursor: pointer;
         }
 		.display-cards-gold .hotel_cards {
-            height:190px;
+            height:151px;
           }
 		.display-cards.row{
 		padding-left:1%;
