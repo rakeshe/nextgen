@@ -324,7 +324,7 @@
         }
         .hotel_cards { border: 2px solid #ddd;
             margin-bottom: 6px;
-            /*height:151px;*/
+            height:151px;
             background-color:#fff;
             /*margin-right: 46px;*/
             padding:0px !important;
@@ -332,11 +332,14 @@
             overflow: hidden;
             cursor: pointer;
         }
+		.display-cards-gold .hotel_cards {
+            height:190px;
+          }
 		.display-cards.row{
-		padding-left:1% !important;
+		padding-left:1%;
 		}
     	 .display-cards-gold{
-		 padding-left:1% !important;
+		 padding-left:1%;
 		 }
         #hotel_content {
             margin-left: 1% !important;
@@ -613,31 +616,7 @@ body{ float:none !important;}
 	.btn-group > .btn, .btn-group-vertical > .btn {
 		font-weight:bold;
 	}
-	.carousel-caption {
-		text-shadow: none !important;
-		padding:0 !important;
-		top: 16px !important;
-		right: 16px !important;
-	}
 
-	.carousel-caption h2 {
-		font-size:20px !important;
-	}
-
-	.carousel-caption h3 {
-		font-size:11px !important;
-	}
-
-	.carousel-caption h5 {
-		font-size:14px !important;
-	}
-	div.carousel-caption h3 span {
-		font-size:15px !important;
-	}
-	.carousel-caption h6{
-		font-size:14px !important;
-		font-family:SerifaStd55Roman;
-	}
 	#mbl_member_logo{
 		width:70px !important;
 	}
@@ -666,13 +645,7 @@ body{ float:none !important;}
 	}
 	.btn.btn-default.dropdown-toggle{ min-width:100%}
 	/*modified by mohan - 20141023*/
-	.carousel-caption {
-		 text-shadow: none !important;
-		 top: 16px !important;
-		 right: 16px !important;
-		 left:32% !important;
-		 padding:0 !important;
-	}
+
 	.deal_text1{
 		font-size:125%!important;
 		line-height:12px !important;
@@ -769,32 +742,10 @@ and (max-device-width : 767px) {
 		color:#fff;
 		font-weight:bold;
 	}
-	.carousel-caption h2 {
-		font-size:20px !important;
-	}
 
-	.carousel-caption h3 {
-		font-size:11px !important;
-	}
 
-	.carousel-caption h5 {
-		font-size:14px !important;
-	}
-	div.carousel-caption h3 span {
-		font-size:15px !important;
-	}
-	.carousel-caption h6{
-		font-size:14px !important;
-		font-family:SerifaStd55Roman;
-	}
 	/*modified by mohan - 20141023*/
-	.carousel-caption {
-		 text-shadow: none !important;
-		 top: 29px !important;
-		 right: 29px !important;
-		 left:32% !important;
-		 padding:0 !important;
-	}
+
 	.deal_text1{
 		font-size:125%!important;
 		line-height:12px !important;
@@ -866,7 +817,10 @@ width:896px !important;
 		min-width: 99% !important;
 	}
 	.hotelDeal .row #image_section.image_section a .hotel-image-text {width:68%!important;}
-	.btn.btn-default.dropdown-toggle{ min-width:100%}
+	.btn.btn-default.dropdown-toggle{ min-width:100%;}
+	.display-cards.row ,.display-cards-gold{
+    padding-left: 4%;
+}
 }
 
 @media only screen
@@ -886,28 +840,7 @@ and (max-device-width : 767px)
 	.region_menu .dropdown-menu {
 		min-width: 99% !important;
 	}
-	.carousel-caption {
-		text-shadow: none !important;
-		top: 36px !important;
-		right: 36px !important;
-		left:40% !important;
-		padding:0 !important;
-	}
-	.carousel-caption h2 {
-		font-size:30px !important;
-	}
-	.carousel-caption h3 {
-		font-size:25px !important;
-	}
-	.carousel-caption h5 {
-		font-size:14px !important;
-	}
-	div.carousel-caption h3 span {
-		font-size:25px !important;
-	}
-	.carousel-caption h6{
-		font-size:14px !important;
-	}
+
 }
 /* reponsive design - ends */
 
@@ -997,6 +930,10 @@ a, a:link, .link{ color: #562d82; }
     width:40px;
     margin-left:12px;
 }
+ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
+	width:100%;
+}
+/*
 #dkt_banner .deal-tabs {
     left:10px;
     position:relative;
@@ -1009,12 +946,8 @@ a, a:link, .link{ color: #562d82; }
     border:none;
     border-color:none;
 }
-ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
-	width:100%;
-}
 #dkt_banner div#regionTabs div#deal-tabs.tabbable div.dropdown ul.level2 li.dropdown-submenu a{
-    /*background-color:#f4f4f5 !important;*/
-	color:#333!important;
+    color:#333!important;
     z-index:0;
     border-radius:0 0 0 0;
     font-size:12px!important;
@@ -1050,6 +983,7 @@ ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
     margin:0 4px 0 0;
     padding:13px 13px;
 }
+*/
 /*.dropdown-submenu.pull-left>.dropdown-menu {
     left:-100%;
     margin-left:10px;
@@ -1057,7 +991,7 @@ ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
-/* #dkt_banner .dropdown-menu{ background-color:#ffffff !important; } */
+/* #dkt_banner .dropdown-menu{ background-color:#ffffff !important; } 
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu {
     min-width:auto;
     top:-17px;
@@ -1085,6 +1019,7 @@ ul.level2 li.dropdown-submenu,ul.level3 li.dropdown-submenu {
 	background-color:#f4f4f5 !important;
 	border:1px solid #e21e28;
 }
+*/
 .red-line {
     border-top:5px solid #E21E28;
     height:5px;
@@ -1466,47 +1401,7 @@ display:none;
 }
 /*********************/
 /* tablet version - ends */
-
-.carousel-caption {
-	text-shadow: none !important;
-    display: inline-block;
-    float: right;
-    margin: 0 !important;
-    opacity: 1;
-    padding: 10px;
-    position: absolute;
-    right: 50px;
-    text-align: right;
-    top: 50px;
-    z-index: 1;
-	font-family:SerifaStd55Roman !important;
-}
-.carousel-caption h2 {
-	background-color:#E21E28;
-	padding: 10px;
-    color:#FFF !important;
-	font-family:SerifaStd55Roman !important;
-	font-size:32px;
-}
-.carousel-caption h3 {
-	padding: 10px;
-    color:#FFF !important;
-	font-family:SerifaStd55Roman !important;
-}
-.carousel-caption h3 span{
-	background-color:#E21E28;
-}
-.carousel-caption h5 {
-	background-color:#E21E28;
-    color:#FFF;
-    font-weight:700;
-	font-family:SerifaStd55Roman !important;
-}
-.carousel-caption h6{
-	font-family:SerifaStd55Roman !important;
-	background-color:#E21E28;
-	padding:10px;
-}
+/* 
 #dkt_carousel .carousel-indicators {
     margin-bottom:3%;
 }
@@ -1618,7 +1513,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 #dkt_banner .dropdown-submenu:hover>.dropdown-menu,#mbl_banner .dropdown-submenu:hover>.dropdown-menu {
     display:block;
 }
-/* #dkt_banner .dropup .dropdown-submenu>.dropdown-menu,#mbl_banner .dropup .dropdown-submenu>.dropdown-menu {
+#dkt_banner .dropup .dropdown-submenu>.dropdown-menu,#mbl_banner .dropup .dropdown-submenu>.dropdown-menu {
     top:auto;
     bottom:0;
     margin-top:0;
@@ -1640,7 +1535,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 }
 #dkt_banner .dropdown-submenu:hover>a:after,#mbl_banner .dropdown-submenu:hover>a:after {
     border-color: #ccc rgba(0, 0, 0, 0) -moz-use-text-color;
-}*/
+}
 #dkt_banner .dropdown-submenu.pull-left,#mbl_banner .dropdown-submenu.pull-left {
     float:none;
 }
@@ -1651,32 +1546,12 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 #dkt_banner #regionTabs .dropdown ul.dropdown-menu li.dropdown-submenu,#mbl_menu,#mbl_logo,#mbl_banner.visible-xs div#Regions.modal div.modal-dialog div.modal-body div.dropdown ul.dropdown-menu {
     float:left;
 }
-
+*/
 .panel-heading > a{
 	font-size:14px;
 }
 .panel-group {margin-bottom:1px !important;}
 
-
-.carousel-caption h2 {
-    color:#FFF;
-	font-family:SerifaStd55Roman;
-	margin:0;
-}
-
-.carousel-caption h3 {
-    color:#FFF;
-	font-family:SerifaStd55Roman;
-	margin:0;
-}
-
-.carousel-caption h5 {
-    color:#FFF;
-    font-weight:700;
-	font-family:SerifaStd55Roman;
-	margin:0;
-	padding:10px;
-}
 #footPartner{font-size:10px;}
 .thterms{font-size:12px;}
 
@@ -1697,92 +1572,6 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
     z-index: 0;
 }
 /*modified by mohan - 20141023*/
-/*banner and text changes - starts here*/
-.deal_text1 {
-    position: relative;
-    float:right;
-    background-color: rgb(226, 30, 40);
-    color: rgb(255, 255, 255);
-	font-size: 250%;
-    font-family: SerifaStd55Roman;
-    font-weight: normal;
-    display: inline-block;
-    padding:15px;
-    line-height: 22px;
-    clear: both;
-}
-.deal_text2 {
-    position: relative;
-    float:right;
-    font-family: SerifaStd55Roman;
-    font-weight: normal;
-	font-size: 200%;
-    display: inline-block;
-    line-height: 1.3;
-    clear: both;
-    Background-color:#e21e28;
-    color:#fff;
-    padding:10px 15px 15px 15px;
-}
-/*.deal_text3 {
-    position: relative;
-    float:right;
-    background-color: rgb(244, 243, 247);
-    font-family: SerifaStd55Roman;
-    font-weight: normal;
-    display: inline-block;    
-    line-height: 12px;
-    clear: both;
-    color:#000;
-    padding:15px 20px 5px 20px;
-    Font-size:22px;
-    opacity:0.9;
-    margin-top: 40px;
-}
-.deal_text4 {
-    position: relative;
-    float:right;
-    background-color: rgb(244, 243, 247);
-    color: #000;
-    font-family: SerifaStd55Roman;
-    font-weight: normal;
-    font-size: 16px;
-    display: inline-block;    
-    padding:10px 20px 5px 20px;
-    line-height: 12px;
-    clear: both;
-    opacity: 0.9;
-}*/
-.deal_text5 {
-    position: relative;
-    float:right;
-    background-color: #FCFAFB;
-    font-family: SerifaStd55Roman;
-    font-weight: normal;
-    display: inline-block;
-    line-height: 12px;
-    clear: both;
-    color:#000;
-    padding:20px;
-	font-size: 200%;
-	margin:10px 0 0 0;
-}
-.deal_text6{
-    position: relative;
-    float:right;
-    background-color: #F8F3F0;
-    color: #EF2B2F;
-    font-family: "Trebuchet MS";
-    font-weight: normal;
-	font-size: 170%;
-    display: inline-block;
-    padding:10px 20px 10px 20px;
-    line-height: 1.2;
-    clear: both;
-	margin:10px 0 0 0;
-}
-/*banner and text changes - ends here*/
-
 /*popup check rates - starts here*/
 #choseDates {
    /* max-height: 80px;
@@ -2225,9 +2014,7 @@ ul.country_name {
   margin: 0 auto;overflow-x: hidden;
 
 }
-.display-cards.row ,.display-cards-gold{
-    padding-left: 1%;
-}
+
 a.ht-book {margin-left:10px;}
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11{padding:0 !important;}
 .hotel_details{padding-top: 19px;}
