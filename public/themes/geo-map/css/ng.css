@@ -276,7 +276,7 @@
 		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
         
         #vertical-scrollbar {
-            height: 353px;
+            height: 352px;
             overflow-x: hidden;
             overflow-y: auto;
         }
@@ -536,7 +536,7 @@
         }
 
         #vertical-scrollbar {
-            height: 353px;
+            height: 352px;
             overflow-x: hidden;
             overflow-y: auto;
         }
