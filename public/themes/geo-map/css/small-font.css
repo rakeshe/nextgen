@@ -1,102 +1,49 @@
+#dkt_header ul.primary li{line-height: 8px;}
 /*menu higlights - starts here */
-#menu_new li a{background-color: #e21e28;
-    border-bottom: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
-    display: flex;
-     justify-content:center;
-     align-items: center;
-    float: left;
-    font-family: museo_slab500;
+#menu_new li a{
     font-size: 16px;
     height: 48px;
     line-height: 18px;
-    color:#FFF;
-    margin: 0;
-        /*padding: 22px 35px;*/
-    padding: 6px 10px 6px;
-    text-align: center;
     width: 20%;
     }
 .display_regions {
-color: #000;
-display: block;
 font-size: 15px;
-padding: 1px 1px 0 1px;
-position: relative;
-float:left;
-z-index: 90 !important;
 }
 .display_regions h4 {
-color:#e21e28;
-text-align: center;
-font-family: museo_slab500;
 font-size: 18px;
-font-weight: normal;
-padding-bottom: 10px;
-margin-bottom: 0px;
-border-bottom: 1px solid #ccc;
 height:70px;
 }
 .display_mobile_regions{
-background-color: #fff;
-color: #000;
-display: block;
 font-size: 15px;
-padding: 1px 1px 0 1px;
-position: relative;
-z-index: 999 !important;
 }
 .display_mobile_regions h4{
-color:#e21e28;
-text-align: center;
-font-family: museo_slab500;
  font-size: 24px;
- font-weight: normal;
-text-decoration:none;
-cursor:pointer;
 }
-
 .regions_list{
-font-family: museo_sans300;
 font-size: 24px;
-background-color: #fff;
-padding: 10px;
-width: 100%;
-border-bottom:1px solid #C7CFCA;
-	}
+}
 .hotel_platinum_name a {
-        color: #e21e28;
         font-size: 20px;
-        font-weight: bold;
-        text-overflow: ellipsis;
-        line-height: 1em;
-        width: 96%;
-        text-decoration: none;
     }
 .platinum_hotel_city {
-    color: #303030;
     font-size: 12pt;
     font-weight: bold;
-    padding-top: 10px;
 }
 	.label_Text{
-	color: #444;
     font-size: 16px;
     font-weight: bold;
-	text-transform: capitalize;
 }
 .mobile_regions{  background-color: #e21e28;
     font-family: museo_slab500;
     font-size: 24px;
     font-weight: normal;
     height: 60px;
-    padding: 25px 25px 25px 0px;
-    width: 100%;}
+}
 .mobile_regions .mobile-menu-icons .glyphicon{
     line-height: 0px;
     top: 0px !important;
 }
-li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:center;font-size:14pt; padding-left: 25px}
+li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ font-size:14pt;}
 .hotelGuests .legend {
     float: left;
     font-size: 14px;
@@ -116,7 +63,18 @@ li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:
 }
 p.inclusions {
 font-size:9px;
-}
+}/** Mobile Phones **/
+    @media (max-width: 767px) {
+	 .hotel_cards {
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+            height: 150px !important;}
+		.percentage{
+    letter-spacing: 1px;
+    line-height: 25px;
+		}
+		.sign-out-member-offer p{padding:0 !important;}
+	}
 /** table landscape + desktop **/
     @media (min-width: 768px) {
 		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
@@ -127,53 +85,18 @@ font-size:9px;
             overflow-y: auto;
         }
         #menu_new li a:hover,#menu_new li a:focus{
-            background-color: #e21e28;
-            border-bottom: 1px solid #ffffff;
-            border-right: 1px solid #ffffff;
-            display: flex;
-            justify-content:center;
-            align-items: center;
-            float: left;
-            font-family: museo_slab500;
-            font-size: 16px;
+               font-size: 16px;
             height: 48px;
             line-height: 18px;
-            color:#FFF;
-            margin: 0;
-            /*padding: 22px 35px;*/
             padding: 6px 10px 6px;
-            text-align: center;
-            width: 20%;
-        }
+            }
         .platinum-border{
             border: 2px solid #333 !important;
         }
-        .hotel_platinum_cards{
-            width: 757px;
-            left: 212px;
-            position: absolute;
-            border: 0px;
-            z-index: 80;
-            overflow: hidden;
-            padding: 0px;
-        }
-        .platinum-expanded{
-            height: 76px;
-            top: 475px;
-        }
-        .platinum-collapsed{
-            height: 38px;
-            top: 513px;
-        }
-        .hotel_cards { border: 2px solid #ddd;
-            margin-bottom: 6px;
+   
+        .hotel_cards {
             height:170px;
-            background-color:#fff;
-            /*margin-right: 46px;*/
-            padding:0px !important;
-            /*background-image: url("../../common/img/hotel-card-mock.png") */
-            overflow: hidden;
-            cursor: pointer;
+			overflow: hidden;
         }
 		.display-cards-gold .hotel_cards {
             height:170px;
@@ -233,51 +156,9 @@ font-size:9px;
         }
         .hotel_review img {padding-left: 20px;}
         .member_rewards{margin-top:4px;}
-        .hotel_member_extras {
-            color: #E21E28;
-            background-image: url("../../common/img/icon-member-plus.png");
-            background-repeat: no-repeat;
-            padding: 4px 0px 0px 23px;
-            margin: 4px 0px;
-            height: 20px;
-            font-weight: bold;
-        }
-        .hotel_member_extras_icon {
-            background-image: url("../../common/img/icon-member-plus.png");
-            background-repeat: no-repeat;
-            float: left;
-            margin-left: 10px;
-            padding-left: 25px;
-        }
-
-        .campaign-promo-offer {
-            font-size:12px;
-            font-weight:normal;
-            line-height:1.1em!important;
-            word-wrap:break-word;
-            margin:0;
-            padding:3px 0;
-        }
-
-        .hotel_city {
-            font-size: 15px;
-        }
-        .platinum-collapsed .hotel_city{
-            position: absolute;
-            top: 12px;
-            left: 300px;
-        }
+  
         .hotel_cards{
             margin-left: 12px;
-        }
-        .tier-2 .hotel_cards_heading .hotel_name {
-            padding-top: 0px;
-        }
-
-        .tier-4 .hotel_cards_heading .hotel_name,
-        .tier-4 .hotel_cards_heading .hotel_name_small,
-        .tier-4 .hotel_cards_heading .hotel_review img {
-            padding-top: 3px;
         }
         .sign-out-member-offer a{
             font-size: 12px;
@@ -322,30 +203,7 @@ font-size:9px;
             line-height:27px;
             text-align:center;
         }
-		div.mobile-platinum-card div.hotel_mobile_platinum_cards div.Bestdeals div#hotel_content{
-		width: 384px !important;
-		}
-		#mob_banner > div.mobile-platinum-card > div > div > div.saveBookInfo.col-xs-4{
-		margin-top:1%;
-            line-height: 30px;
-		}
-
-        .platinum_book{
-            background-color: #562d82;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 28px;
-            font-weight: 700;
-            height: 44px;
-            /*left: 31px;*/
-            padding: 1px 10px;
-            position: relative;
-            text-decoration: none;
-            top: 20px;
-            width: 100%;
-        }
-
-    }
+}
 	@media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
@@ -359,35 +217,17 @@ body{ float:none !important;}
 
         }
 #vertical-scrollbar {
-           overflow-x: hidden;
+    overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
     width: 100%;
     z-index: 80;
 }
-		.mobile-platinum-card {
+.mobile-platinum-card {
     position: relative;
     top: 50px;
 }
-	.btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
-		background-color:red !important;
-		color:#fff;
-		font-weight:bold;
-	}
-	.btn-group > .btn, .btn-group-vertical > .btn {
-		font-weight:bold;
-	}
-	.region_menu .dropdown-menu {
-		min-width:50% !important;
-	}
-	.red-line{ top:0px !important;}
-	.btn-group, .btn-group-vertical { min-width:50% !important;}
-	.region_menu .dropdown-menu {
-		min-width: 99% !important;
-	}
-	.hotelDeal .row #image_section.image_section a .hotel-image-text {width:68%!important;}
-	.btn.btn-default.dropdown-toggle{ min-width:100%;}
-	.display-cards.row ,.display-cards-gold{
+.display-cards.row ,.display-cards-gold{
     padding-left: 4%;
 }
 }
