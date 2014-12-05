@@ -136,5 +136,9 @@ return new \Phalcon\Config ( array (
            0 => ['most-used-currencies','africa', 'americas'],
            1 => ['asia','middle-east'],
            2 => ['europe','oceania']
+        ],
+        'fontStyles' => [
+            'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL'],
+            'large' => ['zh_CN','zh_HK','th_TH', 'ko_KR']
         ]
 ) );

@@ -42,6 +42,8 @@ class IndexController extends ControllerBase {
     private $docmentPageUrl;
     private $couchPageData;
 
+    private $fontCSS = "normal";
+
     public function initialize() {
 
         //set the view type
@@ -365,6 +367,13 @@ class IndexController extends ControllerBase {
 
         // Apply coupons if any
         $this->applyCoupon();
+
+        //get css file name based on the language
+        if (in_array( $this->languageCode, (array) $this->config->fontStyles->large)) {
+            $this->fontCSS = large;
+        } elseif (in_array( $this->languageCode, (array) $this->config->fontStyles->small)) {
+            $this->fontCSS = small;
+        }
     }
 
     /**
@@ -468,6 +477,7 @@ class IndexController extends ControllerBase {
             "tCard" => $this->translation->getCardTranslation(),
             'DDMenue' => $this->DDMenue,
             'coupon' => $this->coupon,
+            'fontCSS' => $this->fontCSS,
         );
     }
 
