@@ -270,9 +270,6 @@
 
     /** table landscape + desktop **/
     @media (min-width: 768px) {
-		 .container {
-				width: 750px !important;
-			}
 		.subContainer{ border-left:1px solid #CCC; border-right:2px solid #CCC; padding:10px; }
         
         #vertical-scrollbar {
@@ -789,13 +786,13 @@ width:896px !important;
 			background:none !important;
 
         }
-    #vertical-scrollbar {
+#vertical-scrollbar {
            overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
     width: 100%;
     z-index: 80;
-        }
+}
 		.mobile-platinum-card {
     position: relative;
     top: 50px;
@@ -1702,7 +1699,7 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 .hc_room {
 margin-top:10px;
 }
-.hotelGuests .legend ,.hc_room .legend {
+.hotelGuests .legend {
     float: left;
     font-size: 14px;
     font-weight: bold;
@@ -1710,11 +1707,11 @@ margin-top:10px;
 	padding-left: 10px;
     padding-right: 10px;
 }
-.hotelGuests .guests ,.hc_room .guests {
+.hotelGuests .guests {
     padding-left: 12px;
 	line-height: 2em;
 }
-.hotelGuests .inlineInputGroup ,.hc_room .inlineInputGroup {
+.hotelGuests .inlineInputGroup{
     display: inline-block;
     margin-right: 0;
 	margin-bottom: 10px;
@@ -1882,12 +1879,6 @@ height: 8px;
 margin: 0 8px;
 position: relative;
 }
-/*.ui-datepicker-next{
-background-image: url('../../common/img/action-next-md.png');
-}
-.ui-datepicker-prev{
-background-image: url('../../common/img/action-prev-md.png');
-}*/
 /*error message - starts here*/
 .errorMessage {
     color: #cf2726;
@@ -1907,7 +1898,6 @@ color:#000 !important;
 
 /*menu higlights - starts here */
 .display_regions {
-
 color: #000;
 display: block;
 font-size: 15px;
@@ -1919,13 +1909,12 @@ z-index: 90 !important;
 .display_regions h4 {
 color:#e21e28;
 text-align: center;
- font-family: museo_slab500;
- font-size: 18px;
- font-weight: normal;
-    padding-bottom: 10px;
-    margin-bottom: 0px;
-    border-bottom: 1px solid #ccc;
-
+font-family: museo_slab500;
+font-size: 18px;
+font-weight: normal;
+padding-bottom: 10px;
+margin-bottom: 0px;
+border-bottom: 1px solid #ccc;
 }
 .display_mobile_regions{
 background-color: #fff;
@@ -2196,7 +2185,7 @@ max-width:100%;
 .hotel_platinum_name{
     margin-top: 5px;
 }
-    .hotel_platinum_name a {
+.hotel_platinum_name a {
         color: #e21e28;
         font-size: 20px;
         font-weight: bold;
@@ -2215,7 +2204,7 @@ max-width:100%;
 padding-top:10px;
 float:left;
 }
-    #mob_banner > div.mobile-platinum-card > div > div > div.saveBookInfo.col-xs-4{
+#mob_banner > div.mobile-platinum-card > div > div > div.saveBookInfo.col-xs-4{
         font-size: 20px;
         font-weight: normal;
         margin-right: 4%;
