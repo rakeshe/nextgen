@@ -333,10 +333,10 @@
             cursor: pointer;
         }
 		.display-cards.row{
-		padding-left:4% !important;
+		/*padding-left:4% !important;*/
 		}
 		 .display-cards-gold{
-		 padding-left:4% !important;
+		 /*padding-left:4% !important;*/
 		 }
         #hotel_content {
             margin-left: 1% !important;

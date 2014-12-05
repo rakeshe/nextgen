@@ -166,6 +166,7 @@ class builder
             case 'minor':
             default:
                 $minor++;
+                $mini = 0;
                 break;
 
         }
