@@ -2211,3 +2211,21 @@ $(document).on('click', '#open_languages', function(e) {
 $(".multi_languages").addClass("open");
 	//$("#mbl_menu_logo").removeAttr("data-toggle");
 	});
+
+// Load iframe without blocking  the load event
+function createIframe(){
+    var i = document.createElement("iframe");
+    i.src = "//html5.host.bannerflow.com/ad_631424_178.html";
+    i.scrolling = "auto";
+    i.frameborder = "0";
+    i.width = "100%";
+    i.height = "82px";
+    document.getElementById("bannerFlow").appendChild(i);
+};
+
+// Check for browser support of event handling capability
+if (window.addEventListener)
+    window.addEventListener("load", createIframe, false);
+else if (window.attachEvent)
+    window.attachEvent("onload", createIframe);
+else window.onload = createIframe;
