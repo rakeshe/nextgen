@@ -40,8 +40,8 @@
             <ul class="dropdown-menu currencySelector selector multiColumn">
                 <?php foreach ($currencyList as $groupIndex => $currencyGroup) { ?>
                 <li class="column column3">
-                    <?php $v2466138002iterator = $currencyGroup; $v2466138002incr = 0; $v2466138002loop = new stdClass(); $v2466138002loop->length = count($v2466138002iterator); $v2466138002loop->index = 1; $v2466138002loop->index0 = 1; $v2466138002loop->revindex = $v2466138002loop->length; $v2466138002loop->revindex0 = $v2466138002loop->length - 1; ?><?php foreach ($v2466138002iterator as $CatName => $currencyPkg) { ?><?php $v2466138002loop->first = ($v2466138002incr == 0); $v2466138002loop->index = $v2466138002incr + 1; $v2466138002loop->index0 = $v2466138002incr; $v2466138002loop->revindex = $v2466138002loop->length - $v2466138002incr; $v2466138002loop->revindex0 = $v2466138002loop->length - ($v2466138002incr + 1); $v2466138002loop->last = ($v2466138002incr == ($v2466138002loop->length - 1)); ?>
-                    <div class="section <?php if (!$v2466138002loop->first) { ?>top <?php } ?>"><h5><?php echo $t->_($CatName); ?></h5></div>
+                    <?php $v7983890262iterator = $currencyGroup; $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $CatName => $currencyPkg) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                    <div class="section <?php if (!$v7983890262loop->first) { ?>top <?php } ?>"><h5><?php echo $t->_($CatName); ?></h5></div>
                     <?php foreach ($currencyPkg as $currency_code => $labelName) { ?>
                     <ul>
                     <li data-component="currencySelectorItem">
@@ -49,7 +49,7 @@
                     </li>
                     </ul>
                     <?php } ?>
-                    <?php $v2466138002incr++; } ?>
+                    <?php $v7983890262incr++; } ?>
                 </li>
                 <?php } ?>
 
