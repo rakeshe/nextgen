@@ -23,15 +23,15 @@
 	<div class="search_footer">
 		<div class="search_footer_head">
 			<span class="search_not_found"><?php echo $t->_('not-found-what-you-are-looking-for'); ?></span>
-			<span class="search_plus hidden"><img src="/themes/common/img/plus.png" alt="plus"/></span>
-			<span style="display:none;" class="search_plus"><img src="/themes/common/img/minus-sign.png" alt="plus"/></span>
+			<span class="search_plus hidden"><img src="/n/themes/common/img/plus.png" alt="plus"/></span>
+			<span style="display:none;" class="search_plus"><img src="/n/themes/common/img/minus-sign.png" alt="plus"/></span>
 		</div>
 
 		<div class="input-group">
 	      <input type="text" class="form-control" placeholder="<?php echo $t->_('search-all-hotel-club'); ?>" id="locationText">
 	      <span class="input-group-btn">
 	      	<a class="btn btn-default search_hotel_near_go" type="button">
-	      		<img src="/themes/common/img/icon-geolocation.png" alt="Use current location" height="18" width="18" data-context="icon-geolocation">
+	      		<img src="/n/themes/common/img/icon-geolocation.png" alt="Use current location" height="18" width="18" data-context="icon-geolocation">
 	      	</a>
 	      </span>
     	</div>
@@ -65,9 +65,9 @@
 								<span class="secondaryText supplementaryMessage">
 								(18+) </span></span></span>
                                     <select name="search_hotel.rooms[<?php echo $i; ?>].adlts" class="btn btn-default child_rooms">
-                                        <?php $v7983890262iterator = range(1, 6); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                        <?php foreach (range(1, 6) as $j) { ?>
                                             <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                        <?php $v7983890262incr++; } ?>
+                                        <?php } ?>
                                     </select>
                                     <span class="button" style=""><span></span><div></div></span></span>
                                 </div>
@@ -76,9 +76,9 @@
 								<span class="primaryLabel">Child <span class="secondaryText supplementaryMessage">
 								(0-17)</span></span>
                                         <select name="search_hotel.rooms[<?php echo $i; ?>].chlds" id="search_Childrooms<?php echo $i; ?>" class="btn btn-default child_rooms">
-                                            <?php $v7983890262iterator = range(0, 5); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                            <?php foreach (range(0, 5) as $j) { ?>
                                                 <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                            <?php $v7983890262incr++; } ?>
+                                            <?php } ?>
                                         </select>
                                         <span class="button" style=""><span></span><div></div></span>
 
@@ -101,9 +101,9 @@
                                 <select name="search_hotel.rooms[<?php echo $i; ?>].chldAge[0]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
-                                    <?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                    <?php foreach (range(1, 17) as $j) { ?>
                                         <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                    <?php $v7983890262incr++; } ?>
+                                    <?php } ?>
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
@@ -112,9 +112,9 @@
                                 <select name="search_hotel.rooms[<?php echo $i; ?>].chldAge[1]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
-                                    <?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                    <?php foreach (range(1, 17) as $j) { ?>
                                         <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                    <?php $v7983890262incr++; } ?>
+                                    <?php } ?>
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
@@ -124,9 +124,9 @@
                                 <select name="search_hotel.rooms[<?php echo $i; ?>].chldAge[2]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
-                                    <?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                    <?php foreach (range(1, 17) as $j) { ?>
                                         <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                    <?php $v7983890262incr++; } ?>
+                                    <?php } ?>
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
@@ -135,9 +135,9 @@
                                 <select name="search_hotel.rooms[<?php echo $i; ?>].chldAge[3]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
-                                    <?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                    <?php foreach (range(1, 17) as $j) { ?>
                                         <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                    <?php $v7983890262incr++; } ?>
+                                    <?php } ?>
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
 
@@ -146,9 +146,9 @@
                                 <select name="search_hotel.rooms[<?php echo $i; ?>].chldAge[4]" class="btn btn-default child_rooms">
                                     <option value="">--</option>
                                     <option value="00">&lt; 1</option>
-                                    <?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+                                    <?php foreach (range(1, 17) as $j) { ?>
                                         <option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-                                    <?php $v7983890262incr++; } ?>
+                                    <?php } ?>
                                 </select>
                                 <span class="button" style=""><span>--</span><div></div></span></div>
                             <?php if ($i == '1') { ?>
@@ -213,18 +213,18 @@
 								<span class="secondaryText supplementaryMessage">
 								(18+) </span></span></span> <br/>
 								<select name="hotel.rooms[<?php echo $i; ?>].adlts" style="">
-								<?php $v7983890262iterator = range(1, 6); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+								<?php foreach (range(1, 6) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label></span>
 								<span   data-mbox-update="167,childrenClicked=true">                                                                                               <label class="control select custom js-select">
 								<span class="primaryLabel"><span class="labelText">Child <span class="secondaryText supplementaryMessage">
 								(0-17) </span></span></span> <br/>
 								<select name="hotel.rooms[<?php echo $i; ?>].chlds" id="Childrooms<?php echo $i; ?>" style="">
-									<?php $v7983890262iterator = range(0, 5); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+									<?php foreach (range(0, 5) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 
@@ -244,9 +244,9 @@
 								<select name="hotel.rooms[<?php echo $i; ?>].chldAge[0]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-									<?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+									<?php foreach (range(1, 17) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 
@@ -255,9 +255,9 @@
 								<select name="hotel.rooms[<?php echo $i; ?>].chldAge[1]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+								<?php foreach (range(1, 17) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 
@@ -267,9 +267,9 @@
 								<select name="hotel.rooms[<?php echo $i; ?>].chldAge[2]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+								<?php foreach (range(1, 17) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 
@@ -278,9 +278,9 @@
 								<select name="hotel.rooms[<?php echo $i; ?>].chldAge[3]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-							<?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+							<?php foreach (range(1, 17) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 
@@ -289,9 +289,9 @@
 								<select name="hotel.rooms[<?php echo $i; ?>].chldAge[4]" style="">
 								<option value="">--</option>
 								<option value="00">&lt; 1</option>
-								<?php $v7983890262iterator = range(1, 17); $v7983890262incr = 0; $v7983890262loop = new stdClass(); $v7983890262loop->length = count($v7983890262iterator); $v7983890262loop->index = 1; $v7983890262loop->index0 = 1; $v7983890262loop->revindex = $v7983890262loop->length; $v7983890262loop->revindex0 = $v7983890262loop->length - 1; ?><?php foreach ($v7983890262iterator as $j) { ?><?php $v7983890262loop->first = ($v7983890262incr == 0); $v7983890262loop->index = $v7983890262incr + 1; $v7983890262loop->index0 = $v7983890262incr; $v7983890262loop->revindex = $v7983890262loop->length - $v7983890262incr; $v7983890262loop->revindex0 = $v7983890262loop->length - ($v7983890262incr + 1); $v7983890262loop->last = ($v7983890262incr == ($v7983890262loop->length - 1)); ?>
+								<?php foreach (range(1, 17) as $j) { ?>
 								<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
-										<?php $v7983890262incr++; } ?>
+										<?php } ?>
 								</select>
 								<span class="button" style=""><div></div></span></label>
 <?php if ($i == '1') { ?>

@@ -16,3 +16,28 @@
 [Fri, 05 Dec 14 03:18:24 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Fri, 05 Dec 14 03:18:24 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Fri, 05 Dec 14 03:18:24 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:44:03 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:44:03 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:44:03 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:46:49 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:46:49 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:46:49 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:47:40 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:47:40 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:47:40 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:48:04 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Fri, 05 Dec 14 03:48:04 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:26
+[Fri, 05 Dec 14 03:48:04 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:04 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:04 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:48:15 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:15 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:15 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:48:26 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Fri, 05 Dec 14 03:48:26 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:26
+[Fri, 05 Dec 14 03:48:26 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:26 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:26 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 03:48:29 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:29 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 03:48:29 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
