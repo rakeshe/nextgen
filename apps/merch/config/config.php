@@ -141,7 +141,7 @@ return new \Phalcon\Config ( array (
            2 => ['europe','oceania']
         ],
         'fontStyles' => [
-            'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL'],
+            'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL', 'sv_SE'],
             'large' => ['zh_CN','zh_HK','th_TH', 'ko_KR']
         ]
 ) );
