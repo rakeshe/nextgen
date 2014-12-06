@@ -157,12 +157,12 @@
                         </ul></div></div>
 						{% elseif  i == "4" %}
                         </div><div class="row" style="padding:28px 0px 0px 0px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove search_addRemove ">
-                             <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">Remove this room</a></li>
+                             <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">{{ t._('remove') }}</a></li>
                         </ul></div></div>
                     {% else %}
             </div><div class="row" style="padding:28px 0px 0px 0px;"><ul id="search_addRemove{{ i }}" class="pipedList addRemove search_addRemove ">
                 <li id="search_added_room"><a id="search_add_room{{ i }}" class="link search_addRoom">{{ t._('add_a_room') }}</a></li>
-                <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">Remove this room</a></li>
+                <li><a id="search_remove_room{{ i }}" class="link search_removeRoom">{{ t._('remove') }}</a></li>
             </ul></div></div>
 
             {% endif %}
@@ -209,7 +209,7 @@
 								<div class="inlineInputGroup">
 								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">
 								<label class="control select custom js-select">
-								<span class="primaryLabel"><span class="labelText">Adult
+								<span class="primaryLabel"><span class="labelText">{{ t._('adult') }}
 								<span class="secondaryText supplementaryMessage">
 								(18+) </span></span></span> <br/>
 								<select name="hotel.rooms[{{ i }}].adlts" style="">
@@ -300,13 +300,13 @@
 								</ul></div>
 								{% elseif  i == "4" %}
 </div><ul id="addRemove{{ i }}" class="pipedList addRemove">
-								<li><a id="remove_room{{ i }}" class="link removeRoom">Remove this room</a></li>
+								<li><a id="remove_room{{ i }}" class="link removeRoom">{{ t._('remove') }}</a></li>
 								</ul></div>
 								
 {% else %}
 								</div><ul id="addRemove{{ i }}" class="pipedList addRemove">
 								<li id="added_room"><a id="add_room{{ i }}" class="link addRoom">{{ t._('add_a_room') }}</a></li>
-								<li><a id="remove_room{{ i }}" class="link removeRoom">{{ t._('add_a_room') }}</a></li>
+								<li><a id="remove_room{{ i }}" class="link removeRoom">{{ t._('remove') }}</a></li>
 								</ul></div>
 								  {% endif %}
 							</fieldset>

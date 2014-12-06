@@ -60,6 +60,7 @@ class Translation
                 'southeast_asia_view' => $this->getTranslation()->offsetGet('back_to_southeast_asia_view'),
                 'world_view'          => $this->getTranslation()->offsetGet('back_to_world_view'),
                 'choose_your_dates'           => $this->getTranslation()->offsetGet('choose_your_dates'),
+                'remove'           => $this->getTranslation()->offsetGet('remove'),
             ]
         );
 
