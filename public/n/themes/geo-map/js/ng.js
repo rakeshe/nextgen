@@ -1040,7 +1040,13 @@ var nextgen = {
                 html += '</a></div>';
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
-                html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
+                html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">';
+            if (obj['hotel_name'].length > 44) {
+                html += obj['hotel_name'].substring(0, 41) + '.. ';
+            } else {
+                html += obj['hotel_name'];
+            }
+                html += '</a></div>';
                 html += '<div class="platinum_review">';
                 html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
@@ -2216,7 +2222,7 @@ $(".multi_languages").addClass("open");
 function createIframe(){
     var i = document.createElement("iframe");
     var m = document.createElement("iframe");
-    var locale = nextgen.local;
+    var locale = local;
     // Load banners based on locale
     if( bannerFlowId !== 'undefined'){
         var bannerMobileId = bannerFlowId[0];
@@ -2246,3 +2252,36 @@ if (window.addEventListener)
 else if (window.attachEvent)
     window.attachEvent("onload", createIframe);
 else window.onload = createIframe;
+
+function loginParser() {
+    /* Requesting the url to get members value */
+    //alert('Parser');
+    var hclUrl = "//www.hotelclub.com/?locale=" + local;
+    var request = $.ajax(hclUrl);
+
+    request.done(function (msg) {
+        // alert(msg);
+        var cookieset =  $.cookie('mid') // get cookie tmid value
+        if (cookieset != '' && cookieset != null) {
+            var Mydata = $.trim(msg);
+            /* filter the members value from Requested data*/
+            var htmlObject = $($.parseHTML(Mydata));
+            var welcomeText = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+            var loyaltyTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+            var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+            /* if Cookies tmid value is set then displays the data */
+
+
+            // alert(welcomeText);
+            if (welcomeText != '' && loyaltyTier != '' && typeof loyaltyTier != 'undefined' && loyaltyInfo != '' && typeof loyaltyInfo != 'undefined') {
+                $('.sign_in-link').hide();
+                $('.register-link').hide();
+                $('ul.login li.welcomeText').html(welcomeText);
+                $("ul.login").append('<li class="loyaltyTier">' + loyaltyTier + '</li>');
+                $("ul.login").append('<li class="loyaltyInfo">' + loyaltyInfo + '</li>');
+                $("ul.login").append('<li class="signOutLink"><a href="https://www.hotelclub.com/account/logout" class="link" rel="nofollow">' + msgSignOut + '</a></li>');
+            }
+        }
+    });
+}
+loginParser();
