@@ -5573,3 +5573,44 @@
 [Sat, 06 Dec 14 22:47:19 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
 [Sat, 06 Dec 14 22:47:19 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
 [Sat, 06 Dec 14 22:47:19 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:09:56 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:09:56 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:09:56 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] Undefined variable: fontCSS C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:27
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:08 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:25 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:25 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:25 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] Undefined variable: fontCSS C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:27
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:36 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] Undefined variable: fontCSS C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:27
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:39 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] Undefined variable: fontCSS C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:27
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:43 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:11
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined variable: fontCSS C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:12
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined variable: theme C:\www\nextgen\src\main\webapp\data\volt\c__www_nextgen_src_main_webapp_apps_merch_views_themes_index.volt.php:27
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:10:47 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
