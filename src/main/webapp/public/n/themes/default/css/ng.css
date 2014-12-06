@@ -81,6 +81,7 @@ and (max-device-width: 480px) {
 	}
 	.btn.button > a{
 		margin-left: 12px ;
+        display: none;
 	}
 	p.inclusions{
 		margin:2px 0 0 10px !important;
@@ -179,6 +180,7 @@ and (max-device-width : 767px) {
 	.red-line{ top:0px !important;}
 	.btn.button > a{
 		margin-left: 12px ;
+        display: none;
 	}
 	p.inclusions{
 		margin:2px 0 0 10px !important;
