@@ -1043,12 +1043,12 @@ p.inclusions {
 
 #mbl_menu_logo, #mbl_member_logo, #mbl_brief_logo{ position:relative; cursor:pointer; display:block; background-repeat:no-repeat; }
 
-#mbl_menu_logo{ background-position:0px 0px; border-right:1px solid #CCC; }
+#mbl_menu_logo{ background-position:0px 0px;}
 
 #mbl_main_logo{ height:60px; display:block; }
 #mbl_main_logo > img{ padding:14px; }
 
-#mbl_member_logo{ background-position:0px -175px; border-left:1px solid #CCC; text-align:right;/* width:120px; padding:25px 2px 0;*/ text-decoration:none; font-size:14px; }
+#mbl_member_logo{ background-position:0px -175px; text-align:right;/* width:120px; padding:25px 2px 0;*/ text-decoration:none; font-size:14px; }
 
 #mbl_menu_logo:active, #mbl_menu .open > a, #mbl_member_logo:active, #mbl_member .open > a { background-color: #B4B4B4; color:#FFF !important; text-shadow:2px 2px 1px rgba(0,0,0,0.4); box-shadow:0 3px 3px #555 inset; }
 
@@ -1058,7 +1058,9 @@ p.inclusions {
 
 #mbl_brief_logo{ background-position:0px -55px; border-left:1px solid #CCC; }
 
-#mbl_logo img{ width:175px; }
+#mbl_logo img{ width: 170px;
+    padding: 10px;
+    margin-top: 8px; }
 
 #mbl_menu, #mbl_logo{ float: left; }
 
@@ -1740,10 +1742,10 @@ a.ht-book {margin-left:10px;}
     padding: 25px 25px 25px 0px;
     width: 100%;}
 .mobile_regions .mobile-menu-icons .glyphicon{
-    line-height: 0px;
+    line-height: 1px;
     top: 0px !important;
 }
-li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:center;font-size:14pt; padding-left: 25px}
+li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;font-size:14pt; display:block; padding: 0px 0px 0px 10px}
 .mobile_divider{border-bottom:1px solid #f18f94}
 .rating{border:1px solid #000;}
 .row_nomargin_banner {margin:0 !important;  background-color: rgb(54, 130, 182);}
