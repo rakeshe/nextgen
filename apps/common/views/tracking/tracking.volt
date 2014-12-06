@@ -5,6 +5,15 @@
     // Copyright (c) 2012 Webtrends Inc.  All rights reserved.
     // Tag Builder Version: 4.0.170.0
     // Created: 5/8/2012 4:28:58 PM
+    var hostName = window.location.hostname;
+    var indexOfDot = hostName.indexOf('.');
+    var lengthOfHostName = hostName.length;
+    var fpcdom;
+    if (indexOfDot == -1) {
+        fpcdom = hostName;
+    } else {
+        fpcdom = hostName.slice(indexOfDot,lengthOfHostName);
+    }
     window.webtrendsAsyncInit=function(){
         var dcs=new Webtrends.dcs().init({
             dcsid:"dcscfchfzvz5bdrpz13vsgjna_9r8u"
@@ -14,7 +23,7 @@
             ,navigationtag: "div,span"
             ,FPCConfig: {
                 enabled: true,
-                domain: fpcdom,
+                domain: fpcdom
             }
             ,plugins:{
                 LinkTrack: { src: "scripts/linkTrack.js", DivList: ".*" }
@@ -32,12 +41,12 @@
         });
     };
     (function(){
-        var s=document.createElement("script"); s.async=true; s.src="/themes/common/js/webtrends.min.js";
+        var s=document.createElement("script"); s.async=true; s.src="/n/themes/common/js/webtrends.min.js";
         var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
     }());
 
 
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+{#<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>#}
 <noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//ctix8.cheaptickets.com/dcscfchfzvz5bdrpz13vsgjna_9r8u/dcs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.2.0&amp;WT.dl=0"/></noscript>
 <!-- END OF SmartSource Data Collector TAG v10.2.0 -->
