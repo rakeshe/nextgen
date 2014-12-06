@@ -533,12 +533,12 @@ $(document).ready(function() {
 
 
     $( "#coupon_code" ).dialog({  autoOpen: true,
-        modal:true,
+        modal:false,
         //minHeight: 180,
         draggable: false,
         buttons: {
             Ok: function () {
-                $(this).dialog(trans['close']);
+                $(this).dialog("close");
             }
         }
     });
@@ -661,7 +661,7 @@ function ChoseDates(frm) {
 
 function validateDatesExt(startDateName, endDateName) {
 	if (!ValidateCheckInOutExt(startDateName, endDateName)) {
-		$(".errorMessage").text(errorMessageLOS).show();
+		//$(".errorMessage").text(errorMessageLOS).show();
 		return false;
 	}
 	else {

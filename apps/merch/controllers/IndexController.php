@@ -604,16 +604,21 @@ class IndexController extends ControllerBase {
 
     protected function applyCoupon(){
         $couponCode = $this->request->getQuery('coupon');
-        $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_applied_msg');
+        if(empty($couponCode)){
+            // retrive from cookie
+//            $couponCode = $this->cookies->get('coupon')->getValue();
+
+        }
+        $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_code_msg');
         if(!empty($couponCode)){
             $couponMessageTemplate = str_replace('##coupon_code##', '<span>' . $couponCode . '</span>', $couponMessageTemplate);
             $this->coupon = [
-                'dateApplied' => date('y-m-d h:i'),
+                'dateApplied' => date('y-m-d'),
                 'code' => $couponCode,
                 'message' => $couponMessageTemplate,
-                'showDialog' => true
+                'showDialog' => false
             ];
-            $this->cookies->set ( 'coupon', $this->coupon );
+            $this->cookies->set ( 'coupon', $couponCode );
 
         }
     }

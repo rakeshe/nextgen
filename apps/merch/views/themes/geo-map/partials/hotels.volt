@@ -300,7 +300,7 @@
 								</ul></div>
 								{% elseif  i == "4" %}
 </div><ul id="addRemove{{ i }}" class="pipedList addRemove">
-								<li><a id="remove_room{{ i }}" class="link removeRoom">{{ t._('remove') }}</a></li>
+								<li><a id="remove_room{{ i }}" class="link removeRoom"></a></li>
 								</ul></div>
 								
 {% else %}
@@ -318,7 +318,7 @@
 <div class="row">
 <div class="pull-left col-md-offset-1" style="margin-left: 5%;">
     <p style="font-size:14px;font-weight:bold;">{{t._('coupon_code')}}</p>
-    <input type="text" placeholder="{{t._('coupon_code')}}..." id="pp-promo" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+    <input type="text" placeholder="{{t._('coupon_code')}}..." id="pp-promo" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="{% if coupon['code'] is defined %}{{ coupon['code'] }}{% endif %}" class="">
 </div>
 <div style="padding:20px 40px 0px 0px"><button aria-label="Left Align" data-code="all" class="btn btn-default button hc_find" type="button">{{ t._('find') }}</button></div>
     </div>
