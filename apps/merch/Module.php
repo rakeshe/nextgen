@@ -36,6 +36,16 @@ class Module {
 
         $di->set('view', function() {
 
+            // Folder health checks
+            if (!file_exists(__DIR__.'/../../data/volt/')) {
+                mkdir(__DIR__.'/../../data/volt/', 0777, true);
+            }
+            if (!file_exists(__DIR__.'/../../data/cache/')) {
+                mkdir(__DIR__.'/../../data/cache/', 0777, true);
+            }
+            if (!file_exists(__DIR__.'/../../data/logs/')) {
+                mkdir(__DIR__.'/../../data/logs/', 0777, true);
+            }
             $view = new \Phalcon\Mvc\View();
 
             $view->setViewsDir(__DIR__.'/'.static::getConfig()->application->viewsDir);
