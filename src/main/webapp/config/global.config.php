@@ -15,16 +15,16 @@ return new \Phalcon\Config(array(
         'dbname' => '115',
     ),
     'couchbase' => array(
-//        'host'  => '127.0.1.1',
+        'host'  => '127.0.1.1',
 //        'host'  => 'hc-rshrestha02.oww.root.lcl',
-//        'port'  => 8091,
-//        'user'  => '',
-//        'password' => ''
-        'host' => 'cache.qa.orbitz.net',
-        'port' => 8006,
-        'user' => '',
-        'password' => 'hc-cache-qa',
-        'bucket' => 'hc-cache'
+        'port'  => 8091,
+        'user'  => '',
+        'password' => ''
+//        'host' => 'cache.qa.orbitz.net',
+//        'port' => 8006,
+//        'user' => '',
+//        'password' => 'hc-cache-qa',
+//        'bucket' => 'hc-cache'
 
     ),
     'menuItems' => array(
@@ -44,9 +44,9 @@ return new \Phalcon\Config(array(
             
         ),
         'account' => array(
-            'sign_in' => "https://www.hotelclub.com/account/login?destinationUrl=%2F",
+            'sign_in' => "https://www.hotelclub.com/account/login",
             //'sign_out' => "https://www.hotelclub.com/account/logout",
-            'register' => "https://www.hotelclub.com/account/registration?destinationUrl=%2F"
+            'register' => "https://www.hotelclub.com/account/registration"
         ),
         'deviceLeft' => array(
             'menu_home' => 'http://www.hotelclub.com/',
@@ -58,8 +58,8 @@ return new \Phalcon\Config(array(
             'menu_my_bookings' => 'https://www.hotelclub.com/trips/current',
             'menu_my_club' => 'https://www.hotelclub.com/account/myclub',
             'menu_my_account' => 'https://www.hotelclub.com/account/myprofile',
-            'sign_in' => "https://www.hotelclub.com/account/login?destinationUrl=%2F",
-            'register' => "https://www.hotelclub.com/account/registration?destinationUrl=%2F"
+            'sign_in' => "https://www.hotelclub.com/account/login",
+            'register' => "https://www.hotelclub.com/account/registration"
         )
     )
 ));
