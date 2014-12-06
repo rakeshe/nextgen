@@ -1062,7 +1062,7 @@ var nextgen = {
 
                     //html += '<div style="display:;" class="sign-out-member-offer">';
                     //html += '<span>';
-                        html += '<a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">'
+                        html += '<a href="https://www.hotelclub.com/account/login">'
                     html += trans['mem_inactive_line1'] + '&nbsp;' + trans['mem_inactive_line2'] ;
                         html += '</a>';
                     //html += '</span>';
@@ -1201,7 +1201,7 @@ var nextgen = {
                         html += '<div class="sign-out-member-offer">';
                         html += '<span>';
                         //Show_JoinHotelClub_Popup()
-                        html += '<p><a href="https://www.hotelclub.com/account/login?destinationUrl=' + $(location).attr('href') +'">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
+                        html += '<p><a href="https://www.hotelclub.com/account/login">' + trans['mem_inactive_line1'] + '<br />' + trans['mem_inactive_line2'] + '</a></p>';
                         html += '</span>';
                         html += '</div>';
                     }
