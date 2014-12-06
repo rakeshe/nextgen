@@ -668,7 +668,7 @@ body{ float:none !important;}
         padding-top: 14px !important;
     }
 	.child_rooms{
-	width:28px;
+	width:40px;
 	padding: 4px 0px !important;
 	}
 .search_addRemove{
@@ -2131,7 +2131,7 @@ position: absolute;
 .hotel_mobile_platinum_cards #hotel_content{
     margin: 0px 10px !important;
 }
-.search_ChildLabelRoom{padding: 5px 0px 0px 5px; }
+.search_ChildLabelRoom{padding: 5px 0px 0px 5px; width: 28%; }
 #lang_style{ background-color:#b4b4b4;}
 .member-extras-text a, .member-extras-text a:link{
     /*color: #e21e28;*/

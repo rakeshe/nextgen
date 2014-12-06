@@ -71,7 +71,7 @@
                                     </select>
                                     <span class="button" style=""><span></span><div></div></span></span>
                                 </div>
-                            <div class="col-xs-2 col-lg-1">
+                            <div class="col-xs-2 col-lg-1" style="width: 30%">
 								<span   data-mbox-update="167,childrenClicked=true">
 								<span class="primaryLabel">{{ t._('child') }} <span class="secondaryText supplementaryMessage">
 								(0-17)</span></span>
