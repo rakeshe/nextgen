@@ -1,0 +1,18 @@
+[Fri, 05 Dec 14 07:37:33 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:37:33 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:37:33 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 07:37:38 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:37:38 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:37:38 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 07:42:10 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:42:10 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:42:10 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 07:44:30 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:44:30 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:44:30 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 07:44:36 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:44:36 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:44:36 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
+[Fri, 05 Dec 14 07:53:52 +0100][ERROR] Undefined index: banner C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:53:52 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:232
+[Fri, 05 Dec 14 07:53:52 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\apps\merch\models\Page.php:235
