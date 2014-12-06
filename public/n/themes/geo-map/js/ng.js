@@ -538,7 +538,7 @@ $(document).ready(function() {
         draggable: false,
         buttons: {
             Ok: function () {
-                $(this).dialog("close");
+                $(this).dialog(trans['close']);
             }
         }
     });
@@ -554,7 +554,7 @@ $("#search_visible_room1").css("display", "block");
 $( "#choseDates" ).dialog({  autoOpen: false,
         width: 466,
         minHeight: 224,
-        title:'Choose your dates',
+        title: trans['choose_your_dates'],
         draggable: false,
         //resizable: false,
         dialogClass:'success-dialog'
@@ -1913,7 +1913,7 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< " + trans['back_to_world_view'] + "</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;

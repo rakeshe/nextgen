@@ -1506,7 +1506,7 @@ border-color:#999 !important;
 border:2px solid;
 }
 .ui-dialog-titlebar-close{
-    width: 45px !important;
+    width: 65px !important;
     height: 25px;
     float: right;
     margin: 4px 4px 0px 0px;
@@ -1890,7 +1890,7 @@ background-color:#fff;
 
 .urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin-top:15px; }
 .urlMinusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/minus-sign.png'); margin-top:15px; }
-.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; float:left !important; }
+.back_icon{ color:#E21E28 !important; margin-right:5px !important; text-decoration:none !important; float:left !important; left: 10px }
 .urlMinusImg:hover { background-image: url('../../common/img/minus-sign-hover.png'); }
 .zoom-indicator-medium{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding-right:8px; }
 .zoom-indicator-high{ width: 22px; height:85px; display:block; background-image: url('../../common/img/zoom-indicator.png');background-repeat: no-repeat;margin-top:15px; padding:34px 8px 0 0; }
@@ -2064,7 +2064,7 @@ position: absolute;
         position: absolute;
         padding: 5px;
         top: 5px;
-        left: 414px;
+        left: 404px;
     }
     .close-btn a{
         text-decoration: none;

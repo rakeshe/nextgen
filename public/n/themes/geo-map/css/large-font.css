@@ -195,3 +195,11 @@ body{ float:none !important;}
     padding-left: 4%;
 }
 }
+.close-btn {
+    height: 30px;
+    width: 45px;
+    position: absolute;
+    padding: 5px;
+    top: 5px;
+    left: 392px;
+}
