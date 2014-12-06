@@ -2211,3 +2211,38 @@ $(document).on('click', '#open_languages', function(e) {
 $(".multi_languages").addClass("open");
 	//$("#mbl_menu_logo").removeAttr("data-toggle");
 	});
+
+// Load iframe without blocking  the load event
+function createIframe(){
+    var i = document.createElement("iframe");
+    var m = document.createElement("iframe");
+    var locale = nextgen.local;
+    // Load banners based on locale
+    if( bannerFlowId !== 'undefined'){
+        var bannerMobileId = bannerFlowId[0];
+        var bannerId = bannerFlowId[1];
+    } else {
+        var bannerMobileId = '642721';
+        var bannerId = '642722';
+    }
+    i.src = "//html5.host.bannerflow.com/ad_" + bannerId + "_178.html?clicktag=";
+    i.scrolling = "no";
+    i.frameborder = "0";
+    i.width = "100%";
+    i.height = "82px";
+    document.getElementById("bannerFlow").appendChild(i);
+
+    m.src = "//html5.host.bannerflow.com/ad_" + bannerMobileId + "_178.html?clicktag=";
+    m.scrolling = "no";
+    m.frameborder = "0";
+    m.width = "100%";
+    m.height = "121px";
+    document.getElementById("bannerFlowMobile").appendChild(m);
+};
+
+// Check for browser support of event handling capability
+if (window.addEventListener)
+    window.addEventListener("load", createIframe, false);
+else if (window.attachEvent)
+    window.attachEvent("onload", createIframe);
+else window.onload = createIframe;

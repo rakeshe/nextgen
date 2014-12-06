@@ -478,6 +478,8 @@ class IndexController extends ControllerBase {
             'DDMenue' => $this->DDMenue,
             'coupon' => $this->coupon,
             'fontCSS' => $this->fontCSS,
+            'bannerFlowId' => $this->getBannerFlowId(),
+            'requestScheme' => $this->getScheme()  // And use this class in DI as a default request service.
         );
     }
 
@@ -614,5 +616,40 @@ class IndexController extends ControllerBase {
             $this->cookies->set ( 'coupon', $this->coupon );
 
         }
+    }
+    protected function getBannerFlowId(){
+        $bannerId = [
+            'zh_CN' => ['642742','642743'],
+            'zh_HK' => ['642739','642740'],
+            'zh_TW' => ['642736','642737'],
+            'nl_NL' => ['642730','642731'],
+            'en_AU' => ['642721','642722'],
+            'fr_FR' => ['637949','632802'],
+            'de_DE' => ['639848','639849'],
+            'id_ID' => ['642745','642746'],
+            'it_IT' => ['642748','642749'],
+            'ja_JP' => ['642751','642752'],
+            'ko_KR' => ['642754','642755'],
+            'ms_MY' => ['642757','642758'],
+            'pl_PL' => ['642760','642761'],
+            'pt_PT' => ['642763','642764'],
+            'ru_RU' => ['642766','642767'],
+            'es_ES' => ['642769','642770'],
+            'sv_SE' => ['642772','642773'],
+            'th_TH' => ['642775','642776']
+        ];
+        return !empty($bannerId[$this->languageCode]) ? json_encode($bannerId[$this->languageCode]) : json_encode([]) ;
+    }
+
+    public function getScheme()
+    {
+        $isSecure = false;
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+            $isSecure = true;
+        }
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+            $isSecure = true;
+        }
+        return $isSecure ? 'https' : 'http';
     }
 }
