@@ -89,6 +89,9 @@ font-size:9px;
             height: 48px;
             line-height: 18px;
             padding: 6px 10px 6px;
+            background-color: #FFF;
+            color:#e21e28;
+            text-decoration:none;
             }
         .platinum-border{
             border: 2px solid #333 !important;

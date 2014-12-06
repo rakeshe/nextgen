@@ -53,6 +53,9 @@ li.mobile_regions a.mobile-menu-icons.mobile-menu-region{ color:#fff;text-align:
             font-size: 16px;
             height: 48px;
             line-height: 18px;
+            background-color: #FFF;
+            color:#e21e28;
+            text-decoration:none;
          }
         .platinum-border{
             border: 2px solid #333 !important;
