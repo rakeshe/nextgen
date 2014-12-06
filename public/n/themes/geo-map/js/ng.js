@@ -1917,14 +1917,16 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< " + trans['back_to_world_view'] + "</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< " + trans['world_view'] + "</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
+
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+        var regionNameTrans = regionName.replace(/\s+/g, '_').toLowerCase() + '_view';
+        $( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< "+ trans[regionNameTrans] +"</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -2167,7 +2169,6 @@ var maxAppend = "1";
             var addone="1";
             var toggleVal=Number(id_val)+Number(addone);
             if(toggleVal<=4){
-                //console.log('add ' + toggleVal);
                 $("#search_visible_room"+toggleVal).css("display", "block");
                 $("#search_addRemove"+id_val).css("display", "none");
                 $("#search_addRemove"+toggleVal).css("display", "block");
@@ -2182,7 +2183,6 @@ var maxAppend = "1";
         if (id_val == maxAppend) {
             var addone = "1";
             var toggleVal = Number(id_val) - Number(addone);
-            //console.log('remove ' + toggleVal);
             $("#search_visible_room" + id_val).css("display", "none");
             $("#search_addRemove" + id_val).css("display", "none");
             $("#search_addRemove" + toggleVal).css("display", "block");

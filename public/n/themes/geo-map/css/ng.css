@@ -1441,7 +1441,7 @@ margin-top:10px;
     padding-right: 10px;
 }
 .hotelGuests .guests {
-    padding-left: 12px;
+    padding-left: 20px !important;
 	line-height: 2em;
 }
 .hotelGuests .inlineInputGroup{

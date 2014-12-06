@@ -53,12 +53,12 @@ class Translation
                 'save'                        => $this->getTranslation()->offsetGet('save'),
                 'show-more-deals'             => $this->getTranslation()->offsetGet('show_more_deals'),
                 'members_only'                => $this->getTranslation()->offsetGet('members_only'),
-                'back_to_americas_view'       => $this->getTranslation()->offsetGet('back_to_americas_view'),
-                'back_to_europe__uae_view'    => $this->getTranslation()->offsetGet('back_to_europe__uae_view'),
-                'back_to_northeast_asia_view' => $this->getTranslation()->offsetGet('back_to_northeast_asia_view'),
-                'back_to_pacfic_view'         => $this->getTranslation()->offsetGet('back_to_pacfic_view'),
-                'back_to_southeast_asia_view' => $this->getTranslation()->offsetGet('back_to_southeast_asia_view'),
-                'back_to_world_view'          => $this->getTranslation()->offsetGet('back_to_world_view'),
+                'americas_view'       => $this->getTranslation()->offsetGet('back_to_americas_view'),
+                'europe_&_uae_view'    => $this->getTranslation()->offsetGet('back_to_europe__uae_view'),
+                'northeast_asia_view' => $this->getTranslation()->offsetGet('back_to_northeast_asia_view'),
+                'pacfic_view'         => $this->getTranslation()->offsetGet('back_to_pacfic_view'),
+                'southeast_asia_view' => $this->getTranslation()->offsetGet('back_to_southeast_asia_view'),
+                'world_view'          => $this->getTranslation()->offsetGet('back_to_world_view'),
                 'choose_your_dates'           => $this->getTranslation()->offsetGet('choose_your_dates'),
             ]
         );

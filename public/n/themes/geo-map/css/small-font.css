@@ -167,16 +167,18 @@ font-size:9px;
             font-size: 12px;
         }
         .saveBookInfo {
-            color:#E21E28;
-            font-size:11px;
-            font-weight:700;
-            height:auto;
-            max-width:auto;
-            line-height:15px;
-            position:relative;
-            text-align:center;
-            float:right;
-            padding:0 0 0 20px;
+            color: #E21E28;
+            font-size: 11px;
+            font-weight: 700;
+            height: auto;
+            max-width: auto;
+            line-height: 15px;
+            position: absolute;
+            text-align: center;
+            padding: 0 0 0 20px;
+            min-width: 105px;
+            display: block;
+            right: 5px;
         }
         .saveBookInfo-platinum {
             color: #E21E28;
@@ -200,11 +202,12 @@ font-size:9px;
         }
         
         .percentage {
-            color:#E21E28;
-            font-size:22px;
-            letter-spacing:-2px;
-            line-height:27px;
-            text-align:center;
+            color: #E21E28;
+            font-size: 22px;
+            letter-spacing: -2px;
+            line-height: 27px;
+            text-align: center;
+            display: block;
         }
 }
 	@media only screen
