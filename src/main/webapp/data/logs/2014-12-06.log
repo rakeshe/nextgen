@@ -5614,3 +5614,6 @@
 [Sat, 06 Dec 14 23:10:47 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Sat, 06 Dec 14 23:10:47 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
 [Sat, 06 Dec 14 23:10:47 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
+[Sat, 06 Dec 14 23:49:50 +0100][ERROR] Undefined index: banner C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:49:50 +0100][ERROR] key_exists() expects parameter 2 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:232
+[Sat, 06 Dec 14 23:49:50 +0100][ERROR] array_shift() expects parameter 1 to be array, null given C:\www\nextgen\src\main\webapp\apps\merch\models\Page.php:235
