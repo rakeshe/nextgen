@@ -24,7 +24,7 @@
     <div class=" promo-code">
         <p>I have a promotion code</p>
         <input type="text" name="couponCode" id="couponCode" class="form-control input-md" placeholder="CouponCode.." id="locationText"
-               value="{% if coupon is defined %}{{ coupon['code'] }}{% endif %}" />
+               value="{% if coupon['code'] is defined %}{{ coupon['code'] }}{% endif %}" />
     </div>
     <div class="search_contacts row">
         <div class="glyphicon glyphicon-earphone col-md-1">
@@ -50,11 +50,11 @@
         <input type="text"  class="form-control input-md" placeholder="Location.." id="locationText">
     </div>
     <div class="form-group ">
-        <p>Check-in</p>
+        <p>{{  t._('check_in') }}</p>
         <input type="text" class="form-control input-sm datepicker "  id="tab_checkin" placeholder="dd/mm/yy">
     </div>
     <div class="form-group ">
-        <p>Check-out</p>
+        <p>{{  t._('check_out') }}</p>
 	 <input type="text" class="form-control input-sm datepicker "  id="tab_checkout" placeholder="dd/mm/yy">
      </div>
     <div class="controls">

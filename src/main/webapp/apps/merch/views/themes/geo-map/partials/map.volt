@@ -1,9 +1,11 @@
  <div class="row">
 	<div id="banner_image" class="">
         <div class="img-responsive hidden-xs hidden-sm">
-            <div id="bannerFlow-"></div>
+            <div id="bannerFlow"></div>
         </div>
-		<img class="img-responsive visible-xs visible-sm" src="/n/themes/common/img/mobile-banner.png" />
+        <div class="img-responsive visible-xs visible-sm">
+            <div id="bannerFlowMobile"></div>
+        </div>
 	</div>
 </div>
 <div class="row row_nomargin_banner visible-md visible-lg">

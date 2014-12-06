@@ -15,8 +15,8 @@ return new \Phalcon\Config(array(
         'dbname' => '115',
     ),
     'couchbase' => array(
-//        'host'  => 'hc-rshrestha02.oww.root.lcl',
 //        'host'  => '127.0.1.1',
+//        'host'  => 'hc-rshrestha02.oww.root.lcl',
 //        'port'  => 8091,
 //        'user'  => '',
 //        'password' => ''

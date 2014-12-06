@@ -34,13 +34,13 @@
 <div id="mbl_menu">
     <div class="dropdown multi_languages">
         <a class="dropdown-toggle head_menu_pad" id="mbl_menu_logo" data-toggle="dropdown" href="#">
-		<img src="/n/themes/common/img/mobile_menu.png" width="76" class="img-responsive" />
+		<img src="/n/themes/common/img/mobile_menu.png" class="img-responsive" />
 		<span class="offscreen">Main Menu</span></a>
         <ul class="dropdown-menu main_left_menu" role="menu" aria-labelledby="dLabel">
-            <li><a href="#" alt="Hotel">Hotel</a></li>
-            <li class="horiz_border"><a href="#" alt="Club Benefits" class="no_horiz_border">Club Benefits</a></li>
+            <li><a href="http://www.hotelclub.com" alt="Home">Home</a></li>
+            <li class="horiz_border"><a href="http://www.hotelclub.com/hotels/club-benefits" alt="Club Benefits" class="no_horiz_border">Club Benefits</a></li>
             <li>
-                <a href="#" alt="Customer Service"><table width="100%"><tr>
+                <a href="https://faq.hotelclub.com/" alt="Customer Service"><table width="100%"><tr>
                             <td width="20%"><div class="customer_menu_icon">&nbsp;</div></td>
                             <td>Customer Service</td>
                         </tr></table></a>

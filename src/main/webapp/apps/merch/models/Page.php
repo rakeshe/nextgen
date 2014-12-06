@@ -17,7 +17,7 @@ class Page extends \Phalcon\Mvc\Model
 {
 
     const APP_DOC_NAME = "merch:deals";
-    const DEFAULT_PAGE_CAMPAIGN = 'Summer-Escape';
+    const DEFAULT_PAGE_CAMPAIGN = 'worldonsale';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'geo-map';

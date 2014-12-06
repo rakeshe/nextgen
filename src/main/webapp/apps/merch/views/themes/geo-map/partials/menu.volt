@@ -1,14 +1,4 @@
-<script>var data = '{{data}}', dataP = '{{urlPData}}', uriBase = '{{uriBase}}', local= '{{languageCode}}', region= '{{region}}', country = '{{country}}', city = '{{city}}', trans = {{ tCard }};</script>
-{#
-<div class="visible-md visible-lg row" id="dkt_banner">
-    <!-- Desktop region tabs -->
-    <div class="">
-    	<div id="regionTabs"></div>
-    </div>
-    <!-- /Desktop region tabs -->
-
-</div>
-#}
+<script>var data = '{{data}}', dataP = '{{urlPData}}', uriBase = '{{uriBase}}', local= '{{languageCode}}', region= '{{region}}', country = '{{country}}', city = '{{city}}', trans = {{ tCard }}, bannerFlowId = {{ bannerFlowId }};</script>
 <div class="hidden-md hidden-lg" id="mob_banner">
     <!-- Mobile region tabs -->
     <div class="mobile_regions_menu">

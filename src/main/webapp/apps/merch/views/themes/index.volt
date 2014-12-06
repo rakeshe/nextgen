@@ -9,6 +9,7 @@
         {{ stylesheet_link('themes/common/font/font_museo.css') }}
         {{ stylesheet_link('themes/common/font/font_serifa.css') }}
         {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css') }}
+        {{ stylesheet_link('themes/' ~ theme ~ '/css/'~ fontCSS ~'.css') }}
         {{ stylesheet_link("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css", false) }}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">

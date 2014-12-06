@@ -34,11 +34,13 @@ return new \Phalcon\Config ( array (
 						'ja_JP' => '日本語',
 						'ko_KR' => '한국어',
 						'ms_MY' => 'Bahasa Melayu',
+                        'id_ID' => 'Bahasa Indonesia',
 						'nl_NL' => 'Nederlands',
 						'pt_PT' => 'Português',
 						'ru_RU' => 'Русский',
 						'sv_SE' => 'Svenska',
-						'th_TH' => 'ไทย' 
+						'th_TH' => 'ไทย',
+
 				) 
 		),
 		'application' => array (
@@ -72,7 +74,8 @@ return new \Phalcon\Config ( array (
 				'PT' => 'pt_PT',
 				'RU' => 'ru_RU',
 				'SV' => 'sv_SE',
-				'TH' => 'th_TH' 
+				'TH' => 'th_TH' ,
+                'ID' => 'id_ID'
 		),
 		'currencies' => array (
 				'most-used-currencies' => array (
@@ -136,5 +139,9 @@ return new \Phalcon\Config ( array (
            0 => ['most-used-currencies','africa', 'americas'],
            1 => ['asia','middle-east'],
            2 => ['europe','oceania']
+        ],
+        'fontStyles' => [
+            'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL', 'sv_SE'],
+            'large' => ['zh_CN','zh_HK','th_TH', 'ko_KR']
         ]
 ) );

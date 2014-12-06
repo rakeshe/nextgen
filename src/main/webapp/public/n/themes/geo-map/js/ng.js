@@ -533,7 +533,7 @@ $(document).ready(function() {
 
 
     $( "#coupon_code" ).dialog({  autoOpen: true,
-        modal:true,
+        modal:false,
         //minHeight: 180,
         draggable: false,
         buttons: {
@@ -554,7 +554,7 @@ $("#search_visible_room1").css("display", "block");
 $( "#choseDates" ).dialog({  autoOpen: false,
         width: 466,
         minHeight: 224,
-        title:'Choose your dates',
+        title: trans['choose_your_dates'],
         draggable: false,
         //resizable: false,
         dialogClass:'success-dialog'
@@ -661,7 +661,7 @@ function ChoseDates(frm) {
 
 function validateDatesExt(startDateName, endDateName) {
 	if (!ValidateCheckInOutExt(startDateName, endDateName)) {
-		$(".errorMessage").text(errorMessageLOS).show();
+		//$(".errorMessage").text(errorMessageLOS).show();
 		return false;
 	}
 	else {
@@ -1040,7 +1040,13 @@ var nextgen = {
                 html += '</a></div>';
                 html += '<div class="col-md-5 col-lg-4" id="hotel_content-platinum">';
                 html += '<div class="hotel_gold_cards_heading hidden-xs">';
-                html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">'+obj['hotel_name']+'</a></div>';
+                html += '<div class="hotel_name col-md-10 col-lg-10"><a href="' + obj['psi_url'] +'">';
+            if (obj['hotel_name'].length > 44) {
+                html += obj['hotel_name'].substring(0, 41) + '.. ';
+            } else {
+                html += obj['hotel_name'];
+            }
+                html += '</a></div>';
                 html += '<div class="platinum_review">';
                 html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
@@ -1502,7 +1508,10 @@ var nextgen = {
 				window.history.pushState({path:url}, '', url);
 		},
 		'mapAction' : function(country_code) {
-			if(nextgen.getLavel==2){
+            menuBg = nextgen.getLavel > 1 ? 'white' : '';
+            $('.display_regions').css('background-color', menuBg);
+
+            if(nextgen.getLavel==2){
 				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
 				if(regions[nextgen.selRegion][0]=='155'){ eventDataTempVal = '150';  }
 				else if(regions[nextgen.selRegion][0]=='021'){ eventDataTempVal = '019';  }
@@ -1516,6 +1525,7 @@ var nextgen = {
 				resetMapSizePos();
 				displayRegionName();
 				drawRegionsMapOne();
+
 			}else{
 				if (typeof(country_code) != "undefined" && country_code !== null) {
 					data = regionMapConf('city-code', country_code);
@@ -1907,14 +1917,16 @@ function changeResetToRegion(){
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
 		$( "#banner_val" ).empty();
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to world view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< " + trans['world_view'] + "</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
 		$( "#banner_val" ).empty();
+
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
-		$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< Back to "+regionName+" view</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
+        var regionNameTrans = regionName.replace(/\s+/g, '_').toLowerCase() + '_view';
+        $( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< "+ trans[regionNameTrans] +"</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-medium'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else{
 		zoomLevel = 1;
@@ -2157,7 +2169,6 @@ var maxAppend = "1";
             var addone="1";
             var toggleVal=Number(id_val)+Number(addone);
             if(toggleVal<=4){
-                //console.log('add ' + toggleVal);
                 $("#search_visible_room"+toggleVal).css("display", "block");
                 $("#search_addRemove"+id_val).css("display", "none");
                 $("#search_addRemove"+toggleVal).css("display", "block");
@@ -2172,7 +2183,6 @@ var maxAppend = "1";
         if (id_val == maxAppend) {
             var addone = "1";
             var toggleVal = Number(id_val) - Number(addone);
-            //console.log('remove ' + toggleVal);
             $("#search_visible_room" + id_val).css("display", "none");
             $("#search_addRemove" + id_val).css("display", "none");
             $("#search_addRemove" + toggleVal).css("display", "block");
@@ -2215,12 +2225,29 @@ $(".multi_languages").addClass("open");
 // Load iframe without blocking  the load event
 function createIframe(){
     var i = document.createElement("iframe");
-    i.src = "//html5.host.bannerflow.com/ad_631424_178.html";
-    i.scrolling = "auto";
+    var m = document.createElement("iframe");
+    var locale = local;
+    // Load banners based on locale
+    if( bannerFlowId !== 'undefined'){
+        var bannerMobileId = bannerFlowId[0];
+        var bannerId = bannerFlowId[1];
+    } else {
+        var bannerMobileId = '642721';
+        var bannerId = '642722';
+    }
+    i.src = "//html5.host.bannerflow.com/ad_" + bannerId + "_178.html?clicktag=";
+    i.scrolling = "no";
     i.frameborder = "0";
     i.width = "100%";
     i.height = "82px";
     document.getElementById("bannerFlow").appendChild(i);
+
+    m.src = "//html5.host.bannerflow.com/ad_" + bannerMobileId + "_178.html?clicktag=";
+    m.scrolling = "no";
+    m.frameborder = "0";
+    m.width = "100%";
+    m.height = "121px";
+    document.getElementById("bannerFlowMobile").appendChild(m);
 };
 
 // Check for browser support of event handling capability
@@ -2229,3 +2256,36 @@ if (window.addEventListener)
 else if (window.attachEvent)
     window.attachEvent("onload", createIframe);
 else window.onload = createIframe;
+
+function loginParser() {
+    /* Requesting the url to get members value */
+    //alert('Parser');
+    var hclUrl = "//www.hotelclub.com/?locale=" + local;
+    var request = $.ajax(hclUrl);
+
+    request.done(function (msg) {
+        // alert(msg);
+        var cookieset =  $.cookie('mid') // get cookie tmid value
+        if (cookieset != '' && cookieset != null) {
+            var Mydata = $.trim(msg);
+            /* filter the members value from Requested data*/
+            var htmlObject = $($.parseHTML(Mydata));
+            var welcomeText = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+            var loyaltyTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+            var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+            /* if Cookies tmid value is set then displays the data */
+
+
+            // alert(welcomeText);
+            if (welcomeText != '' && loyaltyTier != '' && typeof loyaltyTier != 'undefined' && loyaltyInfo != '' && typeof loyaltyInfo != 'undefined') {
+                $('.sign_in-link').hide();
+                $('.register-link').hide();
+                $('ul.login li.welcomeText').html(welcomeText);
+                $("ul.login").append('<li class="loyaltyTier">' + loyaltyTier + '</li>');
+                $("ul.login").append('<li class="loyaltyInfo">' + loyaltyInfo + '</li>');
+                $("ul.login").append('<li class="signOutLink"><a href="https://www.hotelclub.com/account/logout" class="link" rel="nofollow">' + msgSignOut + '</a></li>');
+            }
+        }
+    });
+}
+loginParser();

@@ -46,7 +46,6 @@ class Module {
             if (!file_exists(__DIR__.'/../../data/logs/')) {
                 mkdir(__DIR__.'/../../data/logs/', 0777, true);
             }
-
             $view = new \Phalcon\Mvc\View();
 
             $view->setViewsDir(__DIR__.'/'.static::getConfig()->application->viewsDir);
