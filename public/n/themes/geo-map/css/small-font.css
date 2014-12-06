@@ -98,7 +98,7 @@ font-size:9px;
         }
    
         .hotel_cards {
-            height:170px;
+            height:145px;
 			overflow: hidden;
         }
 		.display-cards-gold .hotel_cards {
@@ -209,6 +209,10 @@ font-size:9px;
             text-align: center;
             display: block;
         }
+        .platinum-collapsed .percentage{
+            display: inline;
+        }
+
 }
 	@media only screen
 and (min-device-width : 768px)
@@ -243,5 +247,5 @@ body{ float:none !important;}
     position: absolute;
     padding: 5px;
     top: 5px;
-    left: 414px !important;
+    left: 392px !important;
 }
