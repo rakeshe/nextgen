@@ -1,7 +1,7 @@
 {% if currentUser is empty %}
  {% if not empty(menuItemsAccount) %}
     {% for label,uri in menuItemsAccount %}
-        <li><a class="acc-link" href="{{ uri }}">{{ t._(label) }}</a></li>
+        <li><a class="{{ label }}-link" href="{{ uri }}">{{ t._(label) }}</a></li>
     {% endfor %}
  {% endif %}
 {% else %}
