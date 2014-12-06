@@ -1508,7 +1508,10 @@ var nextgen = {
 				window.history.pushState({path:url}, '', url);
 		},
 		'mapAction' : function(country_code) {
-			if(nextgen.getLavel==2){
+            menuBg = nextgen.getLavel > 1 ? 'white' : '';
+            $('.display_regions').css('background-color', menuBg);
+
+            if(nextgen.getLavel==2){
 				data = regionMapConf('country-code', regions[nextgen.selRegion][0]);
 				if(regions[nextgen.selRegion][0]=='155'){ eventDataTempVal = '150';  }
 				else if(regions[nextgen.selRegion][0]=='021'){ eventDataTempVal = '019';  }
@@ -1522,6 +1525,7 @@ var nextgen = {
 				resetMapSizePos();
 				displayRegionName();
 				drawRegionsMapOne();
+
 			}else{
 				if (typeof(country_code) != "undefined" && country_code !== null) {
 					data = regionMapConf('city-code', country_code);
