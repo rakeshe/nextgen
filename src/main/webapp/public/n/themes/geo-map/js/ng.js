@@ -783,8 +783,6 @@ window.addEventListener('load', function() {
     }, 0);
 });
 
-//The popstate event is fired when the active history entry changes
-//event is only triggered by doing a browser action such as a click on the back button (or calling history.back() in JavaScript).
 /*var popped = ('state' in window.history && window.history.state !== null), initialURL = location.href;
 
 window.addEventListener('popstate', function(event) {
@@ -803,8 +801,11 @@ $(document).on('click', '.showmorehotels', function() {
 });
 
 var device = 'desktop';
+//The popstate event is fired when the active history entry changes
+//event is only triggered by doing a browser action such as a click on the back button (or calling history.back() in JavaScript).
+
 $(document).ready(function() {
-	var url = '', level = 0;
+    var url = '', level = 0;
     nextgen.selRegion = region;
 	if (region != '')
 		level = 1;
@@ -813,8 +814,12 @@ $(document).ready(function() {
 
 	x = nextgen.init();
 	x.local = local;
+    console.log(data);
 	x.data = JSON.parse(data);
+    console.log('x-data all good');
 	x.dataP = JSON.parse(dataP);
+    console.log('dataP all good');
+
     console.log('URL =>' + x.dataP['info']['url']);
     console.log('DocNam =>'+  x.dataP['info']['docName']);
 	x.drawMenu(nextgen.selRegion);
@@ -1118,7 +1123,7 @@ var nextgen = {
 		        html += '<div class="clearfix "></div>';
 		        html += '</div>';
 		        html += '<div class="btn platinum_book">';
-		        html += '<a class="ht-book" id="'+obj['oneg_id']+'" data-oneg="'+obj['oneg_id']+'">'+trans['select']+'</a>';
+		        html += '<a class="mobile-book button" href="' + obj['psi_url'] +'" >'+trans['select']+'</a>';
 		        html += '</div>';
 		        html += '</div>';
 		        html += '</div>';

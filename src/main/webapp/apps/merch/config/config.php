@@ -20,7 +20,7 @@ return new \Phalcon\Config ( array (
 						'menu_travel_insurance' => 'http://www.hotelclub.com/travel-insurance' 
 				),
 				'rightSite' => array (
-						'ascott_specials' => 'http://pubads.g.doubleclick.net/gampad/clk?id=196562329&iu=/51621329/hcl/click_tracker'
+						'ascott_specials' => 'http://www.hotelclub.com/p/brand-usa/'
 				),
 				'languageOptions' => array (
 						'en_AU' => 'English',
