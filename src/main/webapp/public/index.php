@@ -7,7 +7,7 @@
  * @version    1.0
  */
 try {
-
+    date_default_timezone_set('America/Chicago');
 	/**
 	 * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
 	 */
