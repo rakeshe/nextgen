@@ -733,7 +733,7 @@ class Page extends \Phalcon\Mvc\Model
     }
 
     protected function storeToFile($fileName, $fileData){
-        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
+        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). '.json';
         $storeFile = true;
         if(file_exists($filePath)){
             $interval = strtotime('-24 hours');
@@ -753,7 +753,7 @@ class Page extends \Phalcon\Mvc\Model
 
     protected function getFileData($fileName){
 
-        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
+        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). '.json';
         if(file_exists($filePath)) {
             $stream = fopen($filePath, "r");
             $return = stream_get_contents($stream);
