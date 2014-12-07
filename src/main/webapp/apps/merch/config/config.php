@@ -58,7 +58,7 @@ return new \Phalcon\Config ( array (
 				'lifetime' => 86400 
 		),
 		'locales' => array (
-				'MS' => 'ms_MY',
+				'MY' => 'ms_MY',
 				'CN' => 'zh_TW',
 				'CS' => 'zh_CN',
 				'HK' => 'zh_HK',
