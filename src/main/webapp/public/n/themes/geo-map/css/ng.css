@@ -46,7 +46,7 @@
 	.hotel_gold_cards { border: 4px solid #999;
     margin-bottom: 20px;
     margin-left: 12px;
-	height:151px;
+	height:147px;
 	background-color:#fff;
     /*margin-right: 46px;*/
 	padding:0px !important;}
@@ -225,6 +225,7 @@
             position:relative;
             text-align:center;
             float:right;
+
             /*margin-top: 40px !important;*/
         }
         .discount-block{
@@ -324,7 +325,7 @@
         }
         .hotel_cards { border: 2px solid #ddd;
             margin-bottom: 6px;
-            height:151px;
+            height:147px;
             background-color:#fff;
             /*margin-right: 46px;*/
             padding:0px !important;
@@ -449,6 +450,7 @@
             text-align:center;
             float:right;
             padding:0 0 0 20px;
+            width: 90px;
         }
         .saveBookInfo-platinum {
             color: #E21E28;
