@@ -22,6 +22,7 @@ class Page extends \Phalcon\Mvc\Model
     const DEFAULT_PAGE_LANG = 'en_AU';
     const DEFAULT_PAGE_LAYOUT = 'geo-map';
     const DEFAULT_PAGE_CURRENCY = 'AUD';
+    const FILE_CACHE_PATH = '/../../../data/';
 
     protected $campaignName;
     protected $campaignThumbnail;
@@ -85,8 +86,10 @@ class Page extends \Phalcon\Mvc\Model
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var   = $Couch->get(self::APP_DOC_NAME);
+            $var = empty($var) ? $this->getFileData(self::APP_DOC_NAME) : $var;
             if (!empty($var)) {
                 $this->appData = json_decode($var, true);
+                $this->storeToFile(self::APP_DOC_NAME, $this->appData);
             }
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -99,8 +102,10 @@ class Page extends \Phalcon\Mvc\Model
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var   = $Couch->get($this->dealsDocName);
+            $var = empty($var) ? $this->getFileData($this->dealsDocName) : $var;
             if (!empty($var)) {
                 $this->dealsData = json_decode($var, true);
+                $this->storeToFile($this->dealsDocName, $this->dealsData);
             }
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -115,9 +120,12 @@ class Page extends \Phalcon\Mvc\Model
             $Couch          = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $docName        = "merch:deals:" . md5(trim($this->setPageUrl));
             $pageUrlData    = $Couch->get($docName);
+            $pageUrlData = empty($pageUrlData) ? $this->getFileData($docName) : $pageUrlData;
+
             $this->pageUrlData = json_encode(['data' => json_decode($pageUrlData, TRUE),
                 'info' => ['url' => $this->setPageUrl, 'docName' => $docName]
             ]);
+            $this->storeToFile($docName, $this->pageUrlData);
             //print_r($this->pageUrlData);
             //`exit;
 //            $this->pageUrlData = $Couch->get($this->urlDocName);
@@ -135,8 +143,10 @@ class Page extends \Phalcon\Mvc\Model
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var   = $Couch->get($this->langDocName);
+            $var = empty($var) ? $this->getFileData($this->langDocName) : $var;
             if (!empty($var)) {
                 $this->langData = json_decode($var, true);
+                $this->storeToFile($this->langDocName, $this->langData);
             }
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -149,8 +159,10 @@ class Page extends \Phalcon\Mvc\Model
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $var   = $Couch->get($this->menuDocName);
+            $var = empty($var) ? $this->getFileData($this->menuDocName) : $var;
             if (!empty($var)) {
                 $this->menuData = json_decode($var);
+                $this->storeToFile($this->menuDocName, $this->menuData);
             }
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -718,6 +730,27 @@ class Page extends \Phalcon\Mvc\Model
                     ->setRegion($campaign['region']);
             }
         }
+    }
+
+    protected function storeToFile($fileName, $fileData){
+        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
+        $interval = strtotime('-24 hours');
+        if (filemtime($filePath) <= $interval ){
+            $file = fopen($filePath, 'w');
+            fputs($file, json_encode($fileData));
+            fclose($file);
+        }
+
+
+    }
+
+    protected function getFileData($fileName){
+
+        $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
+        $stream = fopen($filePath,"r");
+        $return = stream_get_contents($stream);
+        fclose($stream);
+        return $return;
     }
 
 }
