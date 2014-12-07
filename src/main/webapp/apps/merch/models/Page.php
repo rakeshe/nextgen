@@ -734,23 +734,32 @@ class Page extends \Phalcon\Mvc\Model
 
     protected function storeToFile($fileName, $fileData){
         $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
-        $interval = strtotime('-24 hours');
-        if (filemtime($filePath) <= $interval ){
+        $storeFile = true;
+        if(file_exists($filePath)){
+            $interval = strtotime('-24 hours');
+            if (filemtime($filePath) <= $interval ){
+              $storeFile = true;
+            } else{
+                $storeFile = false;
+            }
+        }
+        if($storeFile){
             $file = fopen($filePath, 'w');
             fputs($file, json_encode($fileData));
             fclose($file);
         }
-
 
     }
 
     protected function getFileData($fileName){
 
         $filePath = __DIR__ . self::FILE_CACHE_PATH . str_replace(':','_', $fileName ). ' .json';
-        $stream = fopen($filePath,"r");
-        $return = stream_get_contents($stream);
-        fclose($stream);
-        return $return;
+        if(file_exists($filePath)) {
+            $stream = fopen($filePath, "r");
+            $return = stream_get_contents($stream);
+            fclose($stream);
+            return $return;
+        }
     }
 
 }
