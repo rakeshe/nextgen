@@ -814,11 +814,13 @@ $(document).ready(function() {
 
 	x = nextgen.init();
 	x.local = local;
-    console.log(data);
-	x.data = JSON.parse(data);
-    console.log('x-data all good');
-	x.dataP = JSON.parse(dataP);
-    console.log('dataP all good');
+    // Unable to JSON parse / Document failing to load for PT, IT, RU because of json control chars in string
+    xData = data.replace("\n","").replace("\r","").replace("\t","").replace("\x08","").replace("\x0c","").replace("\f","").replace("\b","").replace("\u00e9","").replace("/","\/");
+    pData = dataP.replace("\n","").replace("\r","").replace("\t","").replace("\x08","").replace("\x0c","").replace("\f","").replace("\b","").replace("\u00e9","").replace("/","\/")
+    x.data = JSON.parse(xData);
+    x.dataP = JSON.parse(pData);
+    //x.data = JSON.parse(data);
+    //x.dataP = JSON.parse(dataP);
 
     console.log('URL =>' + x.dataP['info']['url']);
     console.log('DocNam =>'+  x.dataP['info']['docName']);
