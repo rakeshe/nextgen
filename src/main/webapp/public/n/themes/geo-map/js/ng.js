@@ -607,8 +607,12 @@ $(document).on('click','.ht-book', function(e) {
 /*DIALOG CLOSE*/
 $(document).on('click','.close_dialog', function(e) {
     e.preventDefault();
-$('#choseDates').dialog('close'); 
-$(':input').not(":button").val('');
+$('#choseDates').dialog('close');
+    var couponCode = $('#pp-promo').val();
+    $(':input').not(":button").val('');
+    $('#pp-promo').val(couponCode);
+    $('#proCode').val(couponCode);
+
 /*$("#visible_room1").css("display", "block");
 $("#visible_room2").css("display", "none");
 $("#visible_room3").css("display", "none");
@@ -853,13 +857,23 @@ $(document).ready(function() {
 		x.drawCards(true);	// draw hotel cards
 	else
 		x.drawCards();	// draw hotel cards
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.mobile-menu-region,.mobile-city', function(e) {
 	e.preventDefault();
 	var cacheObj = $(this),
 	url = $(this).attr('href'),
-	x = nextgen.init(),
+    x = nextgen.init(),
 	res = x.sendRequest(url, 'returnType=json');
 	if (cacheObj.data('lavel') == 1) {
 		x.drawCountry(cacheObj.data('code'), cacheObj.data('url'));
@@ -882,7 +896,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
         console.log('URL =>' + x.dataP['info']['url']);
         console.log('DocNam =>'+  x.dataP['info']['docName']);
 		x.drawCards();
-		x.setUrlToHistory(url); // Change url on browser
+		x.setUrlToHistory(url+ $(location).attr('search')); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
         x.drawMenu(nextgen.selRegion);
 	})
@@ -1702,7 +1716,7 @@ function drawRegionsMapOne(type){
 			if ((eventData.region).length == 2) { //country
 				//Checks if regions is not available, not going to dispaly
 				if (typeof nextgen.getCountrys[eventData.region] === 'object') {
-					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'], 'returnType=json');
+					res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'] , 'returnType=json');
 					res.success(function(data){
 						nextgen.dataP = data;
 						nextgen.drawCards();
@@ -2218,6 +2232,11 @@ function setCordinateVal(){
 	$('text[y="191.64050088533318"]').attr('y','189');//Atlantic City, NJ
 	$('text[y="197.79237327011035"]').attr('y','205');//Sunshine Coast
 	$('text[y="368.1003383731635"]').attr('y','350');//Toronto	
+	$('text[y="191.64050088533324"]').attr('y','210');//Washington DC
+	$('text[y="349.6690915387225"]').attr('y','330');//Montreal - QC
+	$('text[y="296.38658555269444"]').attr('y','280');//Rio
+	$('text[y="358.8571563865426"]').attr('y','340');//HongKong
+
 }//setCordinateVal
 
 //stop the timer value

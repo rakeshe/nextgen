@@ -604,21 +604,25 @@ class IndexController extends ControllerBase {
 
     protected function applyCoupon(){
         $couponCode = $this->request->getQuery('coupon');
-        if(empty($couponCode)){
-            // retrive from cookie
-//            $couponCode = $this->cookies->get('coupon')->getValue();
 
-        }
-        $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_code_msg');
         if(!empty($couponCode)){
-            $couponMessageTemplate = str_replace('##coupon_code##', '<span>' . $couponCode . '</span>', $couponMessageTemplate);
-            $this->coupon = [
-                'dateApplied' => date('y-m-d'),
-                'code' => $couponCode,
-                'message' => $couponMessageTemplate,
-                'showDialog' => false
-            ];
-            $this->cookies->set ( 'coupon', $couponCode );
+            if(null === $this->session->get('coupon')){
+                $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_code_msg');
+                $couponMessageTemplate = str_replace('##coupon_code##', '<span>' . $couponCode . '</span>', $couponMessageTemplate);
+                $this->coupon = [
+                    'dateApplied' => date('y-m-d'),
+                    'code' => $couponCode,
+                    'message' => $couponMessageTemplate,
+                    'showDialog' => true
+                ];
+                $this->session->set('coupon', $this->coupon);
+            }else {
+                $this->coupon = $this->session->get('coupon');
+                $this->coupon['showDialog'] = false;
+            }
+            } else {
+            $this->coupon = $this->session->get('coupon');
+            $this->coupon['showDialog'] = false;
 
         }
     }

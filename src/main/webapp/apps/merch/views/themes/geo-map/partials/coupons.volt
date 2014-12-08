@@ -1,4 +1,4 @@
-{% if coupon is defined %}
+{% if coupon['showDialog']  %}
     <div id="coupon_code" style="display: none">
         <div class="img-responsive hidden-xs">
             {{ coupon['message'] }}
