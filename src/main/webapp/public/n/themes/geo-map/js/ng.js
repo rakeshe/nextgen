@@ -889,6 +889,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 	.error(function(data){
 	    console.log('Exception: '+ data.responseText);
 	});
+    expandPlatinumCard();
 	return false;
 });
 var nextgen = {
@@ -961,6 +962,7 @@ var nextgen = {
 			$('.display-cards').html('');
 			$('.display-cards-gold').html('');
 			$('.mobile-platinum-card').html('');
+            $('.hotel_platinum_cards').html('');
             $('.hotel_platinum_cards').removeClass("hidden");
 			if (def == true) {
 				$('.hd-main-info').attr('id', 'hotel_card_block');
@@ -1857,7 +1859,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 	.error(function(data){
 		console.log('Exception: '+ data.responseText);
 	});
-
+expandPlatinumCard();
 
 });
 

@@ -185,7 +185,7 @@
         .hotel_details {
             padding-top: 0px !important;
         }
-
+        .platinum_review { margin-top: 4px; margin-left: 440px;}
         .percentage {
             font-size: 18px !important;
         }
@@ -1159,7 +1159,9 @@ p.inclusions {
     /*padding:1px;*/
 }
 .nav .caret {
-    border-top-color:red;
+    border-top-color: red;
+    float: right;
+    margin-top: 7px;
 }
 .right-caret {
     border-bottom:4px solid transparent;
@@ -1271,12 +1273,12 @@ display:none;
 }
 .sign-out-member-offer a{
     padding: 0px;
-    color: #562D82 ;
+    color:#E21E28 !important; ;
     text-decoration: none;
     }
 .sign-out-member-offer a:hover{
         padding: 0px;
-        color: #E21E28 ;
+        color:  #562D82 !important; ;
         text-decoration: none;
     }
 /************mobile2*************/
@@ -1897,7 +1899,7 @@ background-color:#fff;
 .world_europe{ float:left; position:relative; top:90px; left:340px; width:200px; line-height:23px; }
 .world_europe a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 .world_pacific{ float:left; position:relative; top:250px; left:420px; width:200px; line-height:23px; }
-.world_pacific a{ background-color:#0E4166; color: #fff; text-decoration: none; }
+.world_pacific a{ background-color:#0E4166; color: #fff; text-decoration: none;margin-right: 60px; }
 .world_north_eastern{ float:left; position:relative; top:133px; left:120px; width:200px; line-height:23px; }
 .world_north_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 .world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
@@ -2104,7 +2106,7 @@ position: absolute;
     .platinum-collapsed #platinum_image {display: none;}
 /** platinum stuff **/
     #platinum_image{ float:left;height:76px;width:111px; overflow: hidden}
-    #hotel_content-platinum{width: 470px; padding: 12px 5px 5px 12px; line-height: 18px;}
+    #hotel_content-platinum{width: 510px; padding: 12px 5px 5px 12px; line-height: 18px;}
     #platinum-toggle {float:right; z-index: 110; width: 10px; height: 10px;background-repeat: no-repeat; margin: 3px;background-image: url("../../common/img/sprite-zoom.png");
         background-color: #999;
         cursor: pointer; }
@@ -2152,6 +2154,10 @@ position: absolute;
     text-decoration: none;
 }
 .member-extras-text a:hover{
-    color: #e21e28;
+    color: #703baa;
     text-decoration: none;
 }
+    .member-extras-text a:link, .member-extras-text a{
+        color: #E21E28;
+        text-decoration: none;
+    }
