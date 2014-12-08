@@ -332,6 +332,7 @@
             /*background-image: url("../../common/img/hotel-card-mock.png") */
             overflow: hidden;
             cursor: pointer;
+            margin-top: 4px;
         }
 		.display-cards-gold .hotel_cards {
             height:151px;
@@ -1902,7 +1903,7 @@ background-color:#fff;
 .world_pacific a{ background-color:#0E4166; color: #fff; text-decoration: none;margin-right: 60px; }
 .world_north_eastern{ float:left; position:relative; top:133px; left:120px; width:200px; line-height:23px; }
 .world_north_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
-.world_south_eastern{ float:left; position:relative; top:200px; left:-20px; width:200px; line-height:23px; }
+    .world_south_eastern {float: left;position: relative;top: 200px;right: 20px;line-height: 1px;}
 .world_south_eastern a{ background-color:#0E4166; color: #fff; text-decoration: none; }
 
 .urlPlusImg { width: 22px; height:22px; display:block; background-image: url('../../common/img/plus-block.png'); margin-top:15px; }
