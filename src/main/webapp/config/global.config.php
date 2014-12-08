@@ -20,12 +20,18 @@ return new \Phalcon\Config(array(
 //        'port'  => 8091,
 //        'user'  => '',
 //        'password' => ''
+/**
+ * ENSURE THIS IS ENABLED BEFORE COMMITING RELEASE X.Y.Z TO GIT AS FINAL RELEASE
+ * IE REMOVE COUCH SETTING ABOVE AND UNCOMMENT SETTINGS BELOW
+ */
         'host' => 'cache.qa.orbitz.net',
         'port' => 8006,
         'user' => '',
         'password' => 'hc-cache-qa',
         'bucket' => 'hc-cache'
-
+/**
+ * END OF FQA SETTINGS
+ */
     ),
     'menuItems' => array(
         'top' => array(
