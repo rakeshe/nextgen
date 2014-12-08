@@ -113,11 +113,12 @@ function log(message) {
                 + local
 				+ "&hotel.hid="
 				+ oneg
-				+ "&hotel.rooms[0].adlts=2&hotel.type=keyword&hotel.chkin="
+				+ "&hotel.type=keyword&hotel.chkin="
 				+ checkIn
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search"
+                + "&hsv.showDetails=true"
                 + room;
 	});
 
