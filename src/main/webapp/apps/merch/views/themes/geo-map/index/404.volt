@@ -5,7 +5,8 @@
         {%  for campaign in data %}
             <div>
 
-        <a href="/n/merch/{{ campaign['locale'] }}/{{ campaign['url'] }}">
+        {#<a href="/n/merch/{{ campaign['locale'] }}/{{ campaign['url'] }}">#}
+        <a href="/">
             <img src="{{ campaign['thumbnail'] }}" />
         </a>
         </div>
