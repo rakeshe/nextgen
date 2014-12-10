@@ -886,7 +886,6 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 		if (cacheObj.data('lavel') == 1) {
 			x.drawMenuCountry(cacheObj.data('code'), cacheObj.data('url'));	}
 		else if(cacheObj.data('lavel') == 2) {
-			console.log(x.selRegion+'---'+cacheObj.data('url'));
 			x.drawMenuCities(x.selRegion, cacheObj.data('url'));
 		}
 	}
@@ -1307,7 +1306,6 @@ var nextgen = {
 			
 		},
 		'mobileMenu' : function() {
-		console.log(nextgen.getLavel);
 			var html = '',
 				reg  = [];
 		if(nextgen.getLavel==2){
@@ -1320,7 +1318,6 @@ var nextgen = {
 				break;
 			}
 			urlTempVal = urlTemp.split("/");
-			console.log(urlTempVal);
 			nextgen.drawMenuCities(nextgen.selRegion, urlTempVal[0]+'/'+urlTempVal[1]);
 		}
 		else{
