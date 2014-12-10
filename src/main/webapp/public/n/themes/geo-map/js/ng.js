@@ -830,7 +830,6 @@ $(document).ready(function() {
     console.log('URL =>' + x.dataP['info']['url']);
     console.log('DocNam =>'+  x.dataP['info']['docName']);
 	x.drawMenu(nextgen.selRegion);
-	x.mobileMenu();
 
 	if (level == 1) {
 		x.drawCountry(region, region);
@@ -867,7 +866,8 @@ $(document).ready(function() {
         else{
             return results[1] || 0;
         }
-    }
+    }	
+	x.mobileMenu();
 });
 //SPA
 $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.mobile-menu-region,.mobile-city', function(e) {
@@ -886,6 +886,7 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 		if (cacheObj.data('lavel') == 1) {
 			x.drawMenuCountry(cacheObj.data('code'), cacheObj.data('url'));	}
 		else if(cacheObj.data('lavel') == 2) {
+			console.log(x.selRegion+'---'+cacheObj.data('url'));
 			x.drawMenuCities(x.selRegion, cacheObj.data('url'));
 		}
 	}
@@ -1306,9 +1307,23 @@ var nextgen = {
 			
 		},
 		'mobileMenu' : function() {
-
+		console.log(nextgen.getLavel);
 			var html = '',
 				reg  = [];
+		if(nextgen.getLavel==2){
+			nextgen.drawMenuCountry(nextgen.selRegion, nextgen.selRegion);
+		}
+		else if(nextgen.getLavel==3){
+			var urlTemp, urlTempVal;
+			for (var key in nextgen.getCities) {				
+				urlTemp = nextgen.getCities[key]['url'];
+				break;
+			}
+			urlTempVal = urlTemp.split("/");
+			console.log(urlTempVal);
+			nextgen.drawMenuCities(nextgen.selRegion, urlTempVal[0]+'/'+urlTempVal[1]);
+		}
+		else{
 			html += '<div id="mobile_menu">';
 			html += '<ul id="mobile_menu_new">';
 			$.each(this.data['urls'], function(index, value){
@@ -1321,7 +1336,8 @@ var nextgen = {
 			html += '</ul>';
 			html += '</div>';
 			this.getRegions = reg;
-			this.getLavel = 1;
+			//this.getLavel = 1;
+		}
 			$('#mobileTabs').html(html);
 		},
 		'drawCountry' : function(region, url) {
