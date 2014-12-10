@@ -241,7 +241,7 @@ class IndexController extends ControllerBase {
 
             $currencyCode = null !== $dispatcherValue ? $dispatcherValue : null;
             $currencyCode = null === $currencyCode ? $cookieValue : $currencyCode;
-            $currencyCode = null === $currencyCode ? $this->dataModel->getCurrency() : $currencyCode;
+            $currencyCode = null === $currencyCode ? \HC\Merch\Models\Page::DEFAULT_PAGE_CURRENCY :  $currencyCode;
             $this->cookies->set('curr', $currencyCode);
             $this->currencyCode = $currencyCode;
 
