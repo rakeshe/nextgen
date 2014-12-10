@@ -2158,7 +2158,10 @@ position: absolute;
     color: #703baa;
     text-decoration: none;
 }
-    .member-extras-text a:link, .member-extras-text a{
-        color: #E21E28;
-        text-decoration: none;
-    }
+.member-extras-text a:link, .member-extras-text a{
+	color: #E21E28;
+	text-decoration: none;
+}
+.member-extras-text a:hover{
+	color: #703baa;
+}
