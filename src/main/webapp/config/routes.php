@@ -107,7 +107,7 @@ $router->add(
         "campaignName" => 2,
         "params"       => 3,
         "controller"   => 'index',
-        "action"       => 'campaign',
+        "action"       => 'index',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
@@ -124,7 +124,7 @@ $router->add(
         'regionName'   => 3,
         'params'       => 4,
         'controller'   => 'index',
-        'action'       => 'region',
+        'action'       => 'index',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
@@ -142,7 +142,7 @@ $router->add(
         'countryName'  => 4,
         'params'       => 5,
         'controller'   => 'index',
-        'action'       => 'country',
+        'action'       => 'index',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )
@@ -161,7 +161,7 @@ $router->add(
         'cityName'     => 5,
         'params'       => 6,
         'controller'   => 'index',
-        'action'       => 'city',
+        'action'       => 'index',
         'module'       => 'merch',
         'namespace'    => 'HC\Merch\Controllers\\',
     )

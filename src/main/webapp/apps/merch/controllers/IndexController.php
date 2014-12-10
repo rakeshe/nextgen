@@ -65,17 +65,20 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        $this->region = $this->dataModel->getFirstRegion ();
+
+        /*$this->region = $this->dataModel->getFirstRegion ();
         if ($this->viewType == 'json') {
             die(json_encode($this->dataModel->getRegionHoteles ( $this->region )));
         }
         $this->view->setVars ( array_merge ( array (
                     "hotels" => $this->dataModel->getRegionHoteles ( $this->region )
-                ), $this->buildTemplateVars () ) );
+                ), $this->buildTemplateVars () ) );*/
+
+        $this->view->setVars ($this->buildTemplateVars ());
         $this->view->pick ($this->getPageLayout() .'/index/index');
     }
 
-    public function campaignAction() {
+    /*public function campaignAction() {
         // Routing if unicode exists on parameter
         if (! empty ( $this->dispatcher->getParams ()[0] ) &&
             ! empty ( $this->dispatcher->getParams ()[1] ) &&
@@ -154,7 +157,7 @@ class IndexController extends ControllerBase {
         }
         $this->view->setVars ( array_merge ($data, $this->buildTemplateVars ()));
         $this->view->pick ($this->getPageLayout() .'/index/index');
-    }
+    }*/
 
     public function setLanguageAction() {
         // Store user selected language to cookies
@@ -494,11 +497,11 @@ class IndexController extends ControllerBase {
         $templateVars =  array (
             'data' => $this->couchData,
             'urlPData' => $this->couchPageData,
-            'banners' => $this->dataModel->getBanner ( $this->campaignName ),
-            "campaignName" => $this->campaignName,
-            'campaignData' => json_encode($this->campaignData),
-            "hotelDetails" => $this->dataModel->loadHotelData (),
-            "hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
+            //'banners' => $this->dataModel->getBanner ( $this->campaignName ),
+            //"campaignName" => $this->campaignName,
+            //'campaignData' => json_encode($this->campaignData),
+            //"hotelDetails" => $this->dataModel->loadHotelData (),
+            //"hotelDetailsJson" => json_encode($this->dataModel->loadHotelData ()),
             "region" => $this->region,
             "country" => $this->country,
             "city" => $this->city,
