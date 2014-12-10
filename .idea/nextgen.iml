@@ -7,10 +7,12 @@
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../phalcon-devtools" />
+          <root url="file://$MODULE_DIR$/../../phalcon/phalcon-devtools/ide/phpstorm" />
+          <root url="file:///usr/share/php" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../phalcon-devtools" />
+          <root url="file://$MODULE_DIR$/../../phalcon/phalcon-devtools/ide/phpstorm" />
+          <root url="file:///usr/share/php" />
         </SOURCES>
       </library>
     </orderEntry>
