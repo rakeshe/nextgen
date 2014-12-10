@@ -423,14 +423,10 @@ class IndexController extends ControllerBase {
      */
     private function validateCampaign() {
         if ($this->dataModel->dealsData == NULL) {
-
-            if ($this->dataModel->isValidDefaultCampaign ())
-                $this->response->redirect ( 'merch/' . \HC\Merch\Models\Page::DEFAULT_PAGE_LANG . '/' . \HC\Merch\Models\Page::DEFAULT_PAGE_CAMPAIGN );
-            else
-                $this->dispatcher->forward ( array (
-                        'controller' => 'index',
-                        'action' => 'show404'
-                    ) );
+            $this->dispatcher->forward(array(
+                'controller' => 'index',
+                'action' => 'show404'
+            ));
         }
     }
 
@@ -560,7 +556,6 @@ class IndexController extends ControllerBase {
     }
 
     public function show404Action() {
-        //echo ('testing hhere');
         $this->view->setVars ($this->buildTemplateVars404());
         $this->view->pick ( $this->getPageLayout() .'/index/404' );
     }

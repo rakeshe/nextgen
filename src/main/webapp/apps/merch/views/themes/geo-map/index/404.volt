@@ -6,7 +6,7 @@
             <div>
 
         {#<a href="/n/merch/{{ campaign['locale'] }}/{{ campaign['url'] }}">#}
-        <a href="/">
+        <a href="/n/merch/{{ campaign['locale'] }}/{{ campaign['url'] }}">
             <img src="{{ campaign['thumbnail'] }}" />
         </a>
         </div>

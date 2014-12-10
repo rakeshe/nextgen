@@ -83,7 +83,7 @@ class Page extends \Phalcon\Mvc\Model
     {
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var   = $Couch->get(ORBITZ_ENV .':' . self::APP_DOC_NAME);
+            $var   = $Couch->get(ORBITZ_ENV . self::APP_DOC_NAME);
             $var = empty($var) ? $this->getFileData(ORBITZ_ENV .':' . self::APP_DOC_NAME) : $var;
             if (!empty($var)) {
                 $this->appData = json_decode($var, true);
