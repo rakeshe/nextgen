@@ -72,11 +72,11 @@ class Page extends \Phalcon\Mvc\Model
     public function initDocNames()
     {
         //initialize couchbase document name
-        $this->dealsDocName = ORBITZ_ENV . ":merch:deals:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode;
+        $this->dealsDocName = ORBITZ_ENV . "merch:deals:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode;
         //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
-        $this->langDocName  = ORBITZ_ENV . ":merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
-        $this->menuDocName  = ORBITZ_ENV . ":merch:menu:" . md5('site-menu');
-        $this->urlDocName = ORBITZ_ENV . ":merch:deals:" . md5($this->setPageUrl);
+        $this->langDocName  = ORBITZ_ENV . "merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;
+        $this->menuDocName  = ORBITZ_ENV . "merch:menu:" . md5('site-menu');
+        $this->urlDocName = ORBITZ_ENV . "merch:deals:" . md5($this->setPageUrl);
     }
 
     protected function loadCouchAppData()
@@ -116,7 +116,7 @@ class Page extends \Phalcon\Mvc\Model
 
         try {
             $Couch          = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $docName        = ORBITZ_ENV . ":merch:deals:" . md5(trim($this->setPageUrl));
+            $docName        = ORBITZ_ENV . "merch:deals:" . md5(trim($this->setPageUrl));
             $pageUrlData    = $Couch->get($docName);
             $pageUrlData = empty($pageUrlData) ? $this->getFileData($docName) : $pageUrlData;
 
