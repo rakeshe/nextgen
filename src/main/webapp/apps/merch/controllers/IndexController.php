@@ -603,10 +603,13 @@ class IndexController extends ControllerBase {
 
 
     protected function applyCoupon(){
-        $couponCode = $this->request->getQuery('coupon');
 
+        $couponCode = $this->request->getQuery('coupon');
         if(!empty($couponCode)){
-            if(null === $this->session->get('coupon')){
+            if($couponCode == $this->cookies->get('coupon')){
+                $this->coupon['code'] = $this->cookies->get('coupon');
+                $this->coupon['showDialog'] = false;
+            }else {
                 $couponMessageTemplate = $this->translation->getTranslation()->offsetGet('coupon_code_msg');
                 $couponMessageTemplate = str_replace('##coupon_code##', '<span>' . $couponCode . '</span>', $couponMessageTemplate);
                 $this->coupon = [
@@ -615,13 +618,10 @@ class IndexController extends ControllerBase {
                     'message' => $couponMessageTemplate,
                     'showDialog' => true
                 ];
-                $this->session->set('coupon', $this->coupon);
-            }else {
-                $this->coupon = $this->session->get('coupon');
-                $this->coupon['showDialog'] = false;
+                $this->cookies->set('coupon', $couponCode);
             }
-            } else {
-            $this->coupon = $this->session->get('coupon');
+        } else {
+            $this->coupon['code'] = $this->cookies->get('coupon');
             $this->coupon['showDialog'] = false;
 
         }

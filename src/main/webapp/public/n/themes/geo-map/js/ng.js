@@ -1544,6 +1544,12 @@ var nextgen = {
 			if (window.location != url)
 				window.history.pushState({path:url}, '', url);
 		},
+        'getUrlParams' : function() {
+            var url = '';
+            if (coupon != '')
+                url += '?coupon=' + coupon;
+            return url;
+        },
 		'mapAction' : function(country_code) {
             menuBg = nextgen.getLavel > 1 ? 'white' : '';
             $('.display_regions').css('background-color', menuBg);
@@ -1735,7 +1741,8 @@ function drawRegionsMapOne(type){
 						nextgen.dataP = data;
 						nextgen.drawCards();
 						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
-						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+                        var url = uriBase + '/' + nextgen.getCountrys[eventData.region]['url'] + nextgen.getUrlParams();
+						nextgen.setUrlToHistory(url); //
 						data = regionMapConf('city-code', eventData.region);
 						nextgen.mapAction(eventData.region);
 
@@ -1765,7 +1772,7 @@ function drawRegionsMapOne(type){
 						nextgen.dataP = data;
 						nextgen.drawCards();
 						nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[eventData.region]['url']);
-						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url']); //
+						nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[eventData.region]['url'] + nextgen.getUrlParams()); //
 						data = regionMapConf('city-code', eventData.region);
 						nextgen.mapAction(eventData.region);
 
@@ -1799,7 +1806,7 @@ function drawRegionsMapOne(type){
 								nextgen.drawCountry(region_name, region_name);
 								nextgen.selRegion = region_name;
 								//x.selectMenu(cacheObj); // select menu
-								nextgen.setUrlToHistory(uriBase + '/' + region_name); //
+								nextgen.setUrlToHistory(uriBase + '/' + region_name + nextgen.getUrlParams()); //
 								nextgen.mapAction('');
 						
 								options.displayMode = 'text';
@@ -1870,7 +1877,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 		nextgen.dataP = data;
 		nextgen.drawCards();
 		//x.selectMenu(cacheObj); // select menu
-		nextgen.setUrlToHistory(uriBase + '/' + url); // Change url on browser
+		nextgen.setUrlToHistory(uriBase + '/' + url + nextgen.getUrlParams()); // Change url on browser
 		
 		if(nextgen.getLavel==2){//while clicking on country label modify the map
 			nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryCodeVal]['url']);
@@ -1902,7 +1909,7 @@ function mapBackBtn() {
 			nextgen.drawCards();
 			nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
 			//x.selectMenu(cacheObj); // select menu
-			nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion); //
+			nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion + nextgen.getUrlParams()); //
 			//nextgen.mapAction('');		
 
 			eventTempDataVal = regions[nextgen.selRegion][0];
@@ -1932,7 +1939,7 @@ function mapBackBtn() {
 			$('.display_regions').html('');
 			//document.getElementById('regions_div').style.top = '-75px';
 			//x.selectMenu(cacheObj); // select menu
-			nextgen.setUrlToHistory(uriBase); //
+			nextgen.setUrlToHistory(uriBase + nextgen.getUrlParams()); //
 			nextgen.mapAction('');
 		})
 		.error(function(data){
