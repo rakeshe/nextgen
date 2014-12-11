@@ -2148,7 +2148,7 @@ position: absolute;
 .hotel_mobile_platinum_cards #hotel_content{
     margin: 0px 10px !important;
 }
-.search_ChildLabelRoom{padding: 5px 0px 0px 5px; width: 28%; }
+.search_ChildLabelRoom{padding: 5px 0px 0px 5px; width: 28%; margin-top: 10px; }
 #lang_style{ background-color:#b4b4b4;}
 .member-extras-text a, .member-extras-text a:link{
     /*color: #e21e28;*/
