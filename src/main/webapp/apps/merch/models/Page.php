@@ -71,7 +71,7 @@ class Page extends \Phalcon\Mvc\Model
 
     public function initDocNames()
     {
-        //initialize couchbase document name
+        //initialize couchbase document name..
         $this->dealsDocName = ORBITZ_ENV . ":merch:deals:" . md5(strtolower($this->campaignName) . '/') . ":" . $this->languageCode;
         //'merch:deal:89d921405d671b155f4a5eaa595bf1ed:de_DE';
         $this->langDocName  = ORBITZ_ENV . ":merch:lang:" . md5('lang-' . $this->languageCode) . ":" . $this->languageCode;

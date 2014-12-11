@@ -8,8 +8,7 @@
  */
 try {
     date_default_timezone_set('America/Chicago');
-    //define('ORBITZ_ENV', apache_getenv("ORBITZ_ENV"));
-    define('ORBITZ_ENV', '');
+    define('ORBITZ_ENV', apache_getenv("ORBITZ_ENV"));
 	/**
 	 * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
 	 */
