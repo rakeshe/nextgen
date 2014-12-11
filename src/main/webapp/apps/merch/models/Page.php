@@ -88,7 +88,7 @@ class Page extends \Phalcon\Mvc\Model
             $var = empty($var) ? $this->getFileData(ORBITZ_ENV .':' . self::APP_DOC_NAME) : $var;
             if (!empty($var)) {
                 $this->appData = json_decode($var, true);
-                $this->storeToFile(ORBITZ_ENV . ':' . self::APP_DOC_NAME, $this->appData);
+                $this->storeToFile(ORBITZ_ENV . self::APP_DOC_NAME, $this->appData);
             }
         } catch (\Exception $ex) {
             echo $ex->getMessage();
@@ -240,7 +240,7 @@ class Page extends \Phalcon\Mvc\Model
     public function getBanner($campaign)
     {
         try {
-            if (key_exists($campaign, $this->dealsData['banner'])) {
+            if (!empty($this->dealsData['banner']) && key_exists($campaign, $this->dealsData['banner'])) {
                 return $this->dealsData['banner'][$campaign];
             } else {
                 return array_shift($this->dealsData['banner']);
