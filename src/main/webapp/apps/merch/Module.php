@@ -9,6 +9,8 @@
 
 namespace HC\Merch;
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 class Module {
 
     public function registerAutoloaders() {
@@ -25,7 +27,7 @@ class Module {
         ));
         $loader->registerClasses(
         		array(
-        				"simple_html_dom" => __DIR__ . "/../../vendor/library/simple_html_dom.php"
+        				"simple_html_dom" => __DIR__ . "/../../vendor/library/simple_html_dom.php",
         		)
         );
 
@@ -102,8 +104,20 @@ class Module {
                );
                $couch->setTimeout(20 * 10000000);
                return $couch;
-       });      
-        
+       });
+
+
+        //set geo-ip object to di
+       $di->set('geoIP',function(){
+           try {
+               return new \GeoIp2\Database\Reader(__DIR__ . '/../../data/DB/GeoLite2-Country.mmdb');
+           } catch (\Exception $e) {
+               echo $e->getMessage();
+           }
+       });
+
+
+
     }
     
     public static function getConfig() {

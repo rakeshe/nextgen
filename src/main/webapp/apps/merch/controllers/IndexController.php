@@ -332,6 +332,7 @@ class IndexController extends ControllerBase {
      * Setting page data
      */
     protected function setupPage() {
+
         // Setup data for the page
         /** @var \HC\Merch\Models\Page dataModel */
         $this->dataModel = new \HC\Merch\Models\Page();
@@ -347,10 +348,10 @@ class IndexController extends ControllerBase {
         $this->dataModel->init();
 
         // Check campaign
-        $this->validateCampaign ();
+        $this->validateCampaign();
 
         // Validate language
-        //$this->validateLanguage ();
+        $this->validateLocale();
 
         // set menu data
         $this->menu = $this->dataModel->menuData;
@@ -376,6 +377,48 @@ class IndexController extends ControllerBase {
             $this->fontCSS = 'large-font';
         } elseif (in_array( $this->languageCode, (array) $this->config->fontStyles->small)) {
             $this->fontCSS = 'small-font';
+        }
+    }
+
+    protected function validateLocale() {
+
+        //get cookie object from di
+        $cookie = \Phalcon\DI\FactoryDefault::getDefault()['cookies'];
+
+        //if cookie is not set, take the country code from api
+        //if country code is exists in local (config/config.php)
+        //load that language or load default language
+        if (trim($cookie->get('AustinLocale')->__toString()) == '') {
+
+            try {
+                $reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
+
+                //128.101.101.101 -- US
+                //1.0.16.0 -- jp
+                //37.49.128.0 --dk
+                //5.10.160.0 --de
+                //$record = $reader->country('27.98.192.0');
+
+                //get user ip
+                $record = $reader->country($this->request->getClientAddress());
+                //assign default lang
+                $loc = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;
+
+                foreach($this->config->locales as $locale) {
+                    if (substr($locale, 3, 2) == $record->country->isoCode) {
+                        $loc = $locale;
+                    }
+                }
+                //set cookie
+                $this->cookies->set ( 'AustinLocale', $loc );
+
+                if ($this->languageCode != $loc) {
+                    $this->response->redirect ( 'merch/' . $loc. '/' . $this->campaignName );
+                }
+
+            } catch(\Exception $e) {
+                //echo $e->getMessage(); die();
+            }
         }
     }
 
