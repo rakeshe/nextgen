@@ -58,7 +58,7 @@
 				<div class="legend col-lg-1 col-sm-3 col-md-1 col-xs-3"> {{ t._('room') }} {{ i }} </div>
                     <div class="guests col-lg-11 col-md-11 col-xs-9 col-sm-8">
                         <div class="row" >
-                            <div class="col-xs-3 col-lg-1">
+                            <div class="col-xs-3 col-lg-2">
 								<span class="adultSelect" data-mbox-update="167,adultsClicked=true">
 
 								<span class="primaryLabel"><span class="">{{ t._('adult') }}
@@ -71,7 +71,7 @@
                                     </select>
                                     <span class="button" style=""><span></span><div></div></span></span>
                                 </div>
-                            <div class="col-xs-2 col-lg-1" style="width: 30%">
+                            <div class="col-xs-2 col-lg-1 select_child_room">
 								<span   data-mbox-update="167,childrenClicked=true">
 								<span class="primaryLabel">{{ t._('child') }} <span class="secondaryText supplementaryMessage">
 								(0-17)</span></span>
