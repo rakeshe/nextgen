@@ -5,18 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="PHP">
-        <CLASSES>
-          <root url="file://C:/phalcon/phalcon-devtools/ide/phpstorm" />
-          <root url="file:///usr/share/php" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://C:/phalcon/phalcon-devtools/ide/phpstorm" />
-          <root url="file:///usr/share/php" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/src/main/webapp/composer.phar" />

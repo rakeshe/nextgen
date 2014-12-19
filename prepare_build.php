@@ -15,9 +15,9 @@
 class builder
 {
     const APP_PATH               = 'src/main/webapp';
-    const APP_CACHE_PATH         = 'data/volt';
+    const APP_CACHE_PATH         = 'data';
     const BOOTSTRAP_FILE         = null;
-    const APP_CONFIG_PATH        = 'src/main/webapp/config';
+    const APP_CONFIG_PATH        = 'src/main/webapp/public';
     const GRADLE_PROPERTIES_FILE = 'gradle.properties';
     const APP_PROPERTIES_FILE    = 'version.ini';
 //    const CONFIG_FILE            = 'global.config.php';
@@ -33,7 +33,7 @@ class builder
     protected $cliParams;
     protected $buildType;
 
-    public $cacheContainer = ['Cache', 'Data', 'Logs', 'Temp'];
+    public $cacheContainer = ['','/cache', '/volt'];
 
     public function __construct($cliParams = null)
     {
@@ -144,7 +144,7 @@ class builder
         $this->setGradleProperty();
         $this->updateVersion();
         $this->updateGradlePropertyFile();
-        $this->updateLmzVersion();
+        $this->updateAppVersion();
         $this->removeCachedFile();
     }
 
@@ -184,7 +184,7 @@ class builder
         echo 'Application Version = ' . $this->getApplicationVersion();
     }
 
-    protected function updateLmzVersion()
+    protected function updateAppVersion()
     {
         $lmzVersionFile = self::APP_CONFIG_PATH . '/' . self::APP_PROPERTIES_FILE;
         if (file_exists($lmzVersionFile)) {
@@ -215,14 +215,18 @@ class builder
         }
 
         // Remove Cached temlate files
-        $cachedFilePath = $cachePath ;
-        $cachedFiles    = scandir($cachedFilePath);
-        foreach ($cachedFiles as $file) {
-            if ($file != "." && $file != "..") {
+        foreach ($this->cacheContainer as $cacheDir) {
+            $cachedFilePath = self::APP_PATH . '/' . self::APP_CACHE_PATH . $cacheDir ;
+            $cachedFiles    = scandir($cachedFilePath);
+            foreach ($cachedFiles as $file) {
+                if ($file != "." && $file != ".." && !(is_dir($cachedFilePath . '/' . $file))) {
 
-                unlink($cachedFilePath . "/" . $file);
+                    unlink($cachedFilePath . "/" . $file);
+                }
             }
         }
+
+
 
     }
 }

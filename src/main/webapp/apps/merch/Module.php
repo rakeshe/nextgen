@@ -102,7 +102,7 @@ class Module {
                    $conf->password,
                    $conf->bucket
                );
-               $couch->setTimeout(20 * 10000000);
+               $couch->setTimeout(60 * 10000000);
                return $couch;
        });
 
