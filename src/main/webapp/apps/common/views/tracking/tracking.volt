@@ -20,3 +20,18 @@
 </script>
 <noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//statse.webtrendslive.com/dcscfchfzvz5bdrpz13vsgjna_9r8u/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.4.1&amp;dcssip=www.ctix8.cheaptickets.com"/></noscript>
 <!-- END OF SmartSource Data Collector TAG v10.4.1 -->
+
+
+<!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: Summer Sale 2013
+-->
+<script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="http://4147732.fls.doubleclick.net/activityi;src=4147732;type=sprin024;cat=summe289;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+    <iframe src="http://4147732.fls.doubleclick.net/activityi;src=4147732;type=sprin024;cat=summe289;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+<!-- E
