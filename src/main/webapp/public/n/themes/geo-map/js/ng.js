@@ -118,7 +118,7 @@ function log(message) {
 				+ "&hotel.chkout="
 				+ checkOut
 				+ "&search=Search"
-                //+ "&hsv.showDetails=true"
+                + "&hsv.showDetails=true"
                 + room;
 	});
 
