@@ -159,7 +159,7 @@ class IndexController extends ControllerBase {
         $this->view->pick ($this->getPageLayout() .'/index/index');
     }*/
 
-    public function setLanguageAction() {
+    public function     setLanguageAction() {
         // Store user selected language to cookies
         //setcookie('AustinLocale', $this->languageCode);
         $this->cookies->set ( 'AustinLocale', $this->languageCode );
@@ -384,11 +384,13 @@ class IndexController extends ControllerBase {
 
         //get cookie object from di
         $cookie = \Phalcon\DI\FactoryDefault::getDefault()['cookies'];
+        $locales = $this->getDI()->getShared('config')->locales->toArray();
 
         //if cookie is not set, take the country code from api
         //if country code is exists in local (config/config.php)
         //load that language or load default language
-        if (trim($cookie->get('AustinLocale')->__toString()) == '') {
+        $cookieLocale = trim($cookie->get('AustinLocale')->__toString());
+        if ($cookieLocale == '') {
 
             try {
                 $reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
@@ -400,7 +402,9 @@ class IndexController extends ControllerBase {
                 //$record = $reader->country('27.98.192.0');
 
                 //get user ip
-                $record = $reader->country($this->request->getClientAddress());
+                $clientIp = $this->request->getClientAddress();
+                if($clientIp == "127.0.0.1") return;
+                $record = $reader->country($clientIp);
                 //assign default lang
                 $loc = \HC\Merch\Models\Page::DEFAULT_PAGE_LANG;
 
@@ -419,6 +423,15 @@ class IndexController extends ControllerBase {
             } catch(\Exception $e) {
                 //echo $e->getMessage(); die();
             }
+        } else {
+            //Only override if current action is not set-laguage
+            $actionName =  $this->getDI()->getShared('dispatcher')->getActionName();
+           if(in_array($cookieLocale, $locales) && $this->languageCode !== $cookieLocale && $actionName !== 'setLanguage'){
+               $this->setLanguageCode($cookieLocale);
+               $this->setLanguageAction();
+           }
+
+
         }
     }
 
