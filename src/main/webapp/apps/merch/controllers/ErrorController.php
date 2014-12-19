@@ -27,7 +27,9 @@ class ErrorController extends ControllerBase
     
     public function show404Action()
     {
-        $this->view->setVars(
+        // redorect back to campaign LP
+        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+        /*$this->view->setVars(
             array(               
                 'uriBase'                  => $this->uriBase,
                 'uriFull'                  => $this->uriFull,
@@ -43,7 +45,7 @@ class ErrorController extends ControllerBase
             )
         );
         
-        $this->view->pick('404/404');
+        $this->view->pick('404/404');*/
     }
     
     protected function setupPage()
