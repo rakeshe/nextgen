@@ -45,7 +45,7 @@ class Module {
                    $conf->password,
                    $conf->bucket);
 
-               $couch->setTimeout(6 * 10000000);
+               $couch->setTimeout(60 * 10000000);
                return $couch;
 //           $obj = new \HC\Library\Couchbase($conf['bucket'], $conf['host'], $conf['port'], $conf['user'], $conf['password']);
 //           $obj->connect();
