@@ -25,6 +25,8 @@
 <!--
 Start of DoubleClick Floodlight Tag: Please do not remove
 Activity name of this tag: Summer Sale 2013
+URL of the webpage where the tag is expected to be placed: http://www.hotelclub.com/Summer-Sale
+Creation Date: 12/18/2014
 -->
 <script type="text/javascript">
     var axel = Math.random() + "";
@@ -34,4 +36,4 @@ Activity name of this tag: Summer Sale 2013
 <noscript>
     <iframe src="http://4147732.fls.doubleclick.net/activityi;src=4147732;type=sprin024;cat=summe289;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
 </noscript>
-<!-- E
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
