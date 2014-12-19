@@ -2314,7 +2314,7 @@ function loginParser() {
 
     request.done(function (msg) {
         // alert(msg);
-        var cookieset =  $.cookie('mid') // get cookie tmid value
+        var cookieset =  $.cookie('mid'); // get cookie tmid value
         if (cookieset != '' && cookieset != null) {
             var Mydata = $.trim(msg);
             /* filter the members value from Requested data*/
