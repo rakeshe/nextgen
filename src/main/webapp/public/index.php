@@ -9,6 +9,9 @@
 try {
     date_default_timezone_set('America/Chicago');
     define('ORBITZ_ENV', apache_getenv("ORBITZ_ENV"));
+
+    $appVersion = str_replace('.','-', file_get_contents("version.ini"));
+    define('APPLICATION_VERSION', $appVersion);
 	/**
 	 * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
 	 */

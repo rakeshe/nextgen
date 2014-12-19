@@ -5,11 +5,11 @@
         <meta charset="utf-8">
         {{ get_title() }}
         {# stylesheet_link('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') #}
-		{{ stylesheet_link('vendor/bootstrap3.0/css/bootstrap.min.css') }}
-        {{ stylesheet_link('themes/common/font/font_museo.css') }}
-        {{ stylesheet_link('themes/common/font/font_serifa.css') }}
-        {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css') }}
-        {{ stylesheet_link('themes/' ~ theme ~ '/css/'~ fontCSS ~'.css') }}
+		{{ stylesheet_link('vendor/bootstrap3.0/css/bootstrap.min.css?' ~ appVersion ) }}
+        {{ stylesheet_link('themes/common/font/font_museo.css?' ~ appVersion ) }}
+        {{ stylesheet_link('themes/common/font/font_serifa.css?' ~ appVersion ) }}
+        {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css?' ~ appVersion ) }}
+        {{ stylesheet_link('themes/' ~ theme ~ '/css/'~ fontCSS ~'.css?' ~ appVersion ) }}
         {{ stylesheet_link("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css", false) }}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,10 +24,10 @@
         {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js", false) }}
         {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", false) }}
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
-		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js') }}
-        {{ javascript_include('themes/' ~ theme ~ '/js/ng.js') }}
-        {{ javascript_include('vendor/lazy-load/jquery.lazyload.js') }}
-        {{ javascript_include('themes/common/js/jquery.cookie.js') }}
-		{{ javascript_include('themes/common/js/respond.src.js') }}
+		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js?' ~ appVersion ) }}
+        {{ javascript_include('themes/' ~ theme ~ '/js/ng.js?' ~ appVersion ) }}
+        {{ javascript_include('vendor/lazy-load/jquery.lazyload.js?' ~ appVersion ) }}
+        {{ javascript_include('themes/common/js/jquery.cookie.js?' ~ appVersion ) }}
+		{{ javascript_include('themes/common/js/respond.src.js?' ~ appVersion ) }}
     </body>
 </html>

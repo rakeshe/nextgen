@@ -516,6 +516,7 @@ class IndexController extends ControllerBase {
 
     private function builTemplateVarsCommon(){
         return array (
+            'appVersion' => APPLICATION_VERSION,
             'theme' => $this->getPageLayout (),
             'uriBase' => $this->uriBase,
             'uriFull' => $this->uriFull,
@@ -612,8 +613,11 @@ class IndexController extends ControllerBase {
     }
 
     public function show404Action() {
-        $this->view->setVars ($this->buildTemplateVars404());
-        $this->view->pick ( $this->getPageLayout() .'/index/404' );
+        // redorect back to campaign lp
+        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+
+//        $this->view->setVars ($this->buildTemplateVars404());
+//        $this->view->pick ( $this->getPageLayout() .'/index/404' );
     }
 
 
