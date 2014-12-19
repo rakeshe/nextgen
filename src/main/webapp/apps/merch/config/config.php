@@ -143,5 +143,21 @@ return new \Phalcon\Config ( array (
         'fontStyles' => [
             'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL', 'sv_SE'],
             'large' => ['zh_CN','zh_HK','th_TH', 'ko_KR']
+        ],
+        'dateFormat' => [
+            'default' => [
+                'value' => 'dd/mm/y',
+                'placeholder' => 'dd/mm/yy'
+            ],
+            'locale' => [
+                'zh_HK' => [
+                    'value' => 'y/mm/dd',
+                    'placeholder' => 'yy/mm/dd',
+                    ],
+                'zh_CN' => [
+                    'value' => 'yy-mm-dd',
+                    'placeholder' => 'yyyy-mm-dd'
+                ]
+            ]
         ]
 ) );

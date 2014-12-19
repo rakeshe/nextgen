@@ -139,7 +139,7 @@ function() {
 	$('.checkin').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,
@@ -157,7 +157,7 @@ function() {
 	$('#checkout').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,
@@ -179,7 +179,7 @@ function() {
 	$('#tab_checkin').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,
@@ -197,7 +197,7 @@ function() {
 	$('#tab_checkout').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,
@@ -219,7 +219,7 @@ function() {
 	$('#mob_checkin').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -237,7 +237,7 @@ function() {
 	$('#mob_checkout').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -259,7 +259,7 @@ function() {
 	$('#choseDatesStartDate').datepicker(
 			{
 				inline : true,
-                dateFormat : 'dd/mm/yy',
+                dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -277,7 +277,7 @@ function() {
 	$('#choseDatesEndDate').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -298,7 +298,7 @@ function() {
 	$('#choseDatesStartDate1').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -316,7 +316,7 @@ function() {
 	$('#choseDatesEndDate1').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 1,
@@ -336,7 +336,7 @@ function() {
 	$('#choseDatesStartDate_hc').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,
@@ -354,7 +354,7 @@ function() {
 	$('#choseDatesEndDate_hc').datepicker(
 			{
 				inline : true,
-				dateFormat : 'dd/mm/yy',
+				dateFormat : dateFormat,
 				maxDate : '+364D',
 				minDate : 0,
 				numberOfMonths : 2,

@@ -40,11 +40,11 @@
 	    	<div class="row" style="padding:1.5%;">
 		    	<div class="col-lg-3 col-sm-4 col-xs-8">
 		    		<span class="label_Text">{{t._('check_in')}}&nbsp;&nbsp;</span>
-			        <input type="text" class="input-sm datepicker" name="checkin" id="choseDatesStartDate1" placeholder="dd/mm/yy">
+			        <input type="text" class="input-sm datepicker" name="checkin" id="choseDatesStartDate1" placeholder="{{ datePlaceHolder }}">
 				</div>
 				<div class="col-lg-3 col-sm-4 col-xs-8">
 					<span class="label_Text">{{t._('check_out')}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			        <input type="text" class="input-sm datepicker" name="checkout" id="choseDatesEndDate1" placeholder="dd/mm/yy">
+                <input type="text" class="input-sm datepicker" name="checkout" id="choseDatesEndDate1" placeholder="{{ datePlaceHolder }}">
 			   </div>
 			   <div class="col-lg-3 col-sm-4 col-xs-8">
 			   		<span class="label_Text">{{t._('coupon_code')}}&nbsp;&nbsp;</span>
@@ -190,12 +190,12 @@
 							<div class="choosedate" style="width:352px">
 							<div class="check_in" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_in') }}</p>
-							<input type="text" placeholder="dd/mm/yyyy" id="choseDatesStartDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+							<input type="text" placeholder="{{ datePlaceHolder }}" id="choseDatesStartDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
 							<div class="secondaryDate"></div>
 							</div>
 							<div class="checkout" style="width:36%; float:left;padding-left:8px;">
 							<p style="font-size:14px;font-weight:bold;">{{ t._('check_out') }}</p>
-							<input type="text" placeholder="dd/mm/yyyy" id="choseDatesEndDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
+							<input type="text" placeholder="{{ datePlaceHolder }}" id="choseDatesEndDate_hc" style=" margin-bottom: 12px;margin-right:8px;width:100%" value="" class="">
 							<div class="secondaryDate"></div>
 							</div>
 							<div class="extraSelNights" style="width:20%; float:left;padding-left:8px;"> <label>Nights</label> <p> o </p></div>

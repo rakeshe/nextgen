@@ -14,6 +14,8 @@ class IndexController extends ControllerBase {
     protected $menuTabMain;
     protected $menuTabSub;
     protected $coupon;
+    protected $dateFormat;
+    protected $datePlaceHolder;
 
     /**
      * @var Users
@@ -159,7 +161,7 @@ class IndexController extends ControllerBase {
         $this->view->pick ($this->getPageLayout() .'/index/index');
     }*/
 
-    public function     setLanguageAction() {
+    public function setLanguageAction() {
         // Store user selected language to cookies
         //setcookie('AustinLocale', $this->languageCode);
         $this->cookies->set ( 'AustinLocale', $this->languageCode );
@@ -353,6 +355,8 @@ class IndexController extends ControllerBase {
         // Validate language
         $this->validateLocale();
 
+        $this->setDateFormat();
+
         // set menu data
         $this->menu = $this->dataModel->menuData;
         // set Drop-down menu
@@ -377,6 +381,17 @@ class IndexController extends ControllerBase {
             $this->fontCSS = 'large-font';
         } elseif (in_array( $this->languageCode, (array) $this->config->fontStyles->small)) {
             $this->fontCSS = 'small-font';
+        }
+    }
+
+    public function setDateFormat() {
+        $this->dateFormat = $this->config->dateFormat->default['value'];
+        $this->datePlaceHolder = $this->config->dateFormat->default['placeholder'];
+        foreach($this->config->dateFormat->locale as $key => $val) {
+            if ($this->languageCode == $key) {
+                $this->dateFormat = $val['value'];
+                $this->datePlaceHolder = $val['placeholder'];
+            }
         }
     }
 
@@ -430,7 +445,6 @@ class IndexController extends ControllerBase {
                $this->setLanguageCode($cookieLocale);
                $this->setLanguageAction();
            }
-
 
         }
     }
@@ -535,7 +549,9 @@ class IndexController extends ControllerBase {
             'coupon' => $this->coupon,
             'fontCSS' => $this->fontCSS,
             'bannerFlowId' => $this->getBannerFlowId(),
-            'requestScheme' => $this->getScheme()  // And use this class in DI as a default request service.
+            'requestScheme' => $this->getScheme(),  // And use this class in DI as a default request service.
+            'dateFormat' => $this->dateFormat,
+            'datePlaceHolder' => $this->datePlaceHolder
         );
     }
 
