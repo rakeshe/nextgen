@@ -421,9 +421,10 @@
             font-size: 15px;
         }
         .platinum-collapsed .hotel_city{
-            position: absolute;
-            top: 12px;
-            left: 300px;
+            /*position: absolute;*/
+            /*top: 12px;*/
+            /*left: 300px;*/
+            display: none;
         }
         .hotel_cards{
             margin-left: 12px;
@@ -2142,8 +2143,8 @@ position: absolute;
 
 .platinum-collapsed .ht-book{
     position: absolute;
-    margin-left: 180px;
-    margin-top: -12px;
+    margin-left: 190px;
+    margin-top: -16px;
     height: 24px;
 }
 
