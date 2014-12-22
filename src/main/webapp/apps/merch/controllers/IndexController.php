@@ -405,7 +405,7 @@ class IndexController extends ControllerBase {
         //if country code is exists in local (config/config.php)
         //load that language or load default language
         $cookieLocale = trim($cookie->get('AustinLocale')->__toString());
-        if ($cookieLocale == '') {
+       /* if ($cookieLocale == '') {
 
             try {
                 $reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
@@ -446,7 +446,18 @@ class IndexController extends ControllerBase {
                $this->setLanguageAction();
            }
 
+        }*/
+
+        if ($cookieLocale != '') {
+            //Only override if current action is not set-laguage
+            $actionName =  $this->getDI()->getShared('dispatcher')->getActionName();
+            if(in_array($cookieLocale, $locales) && $this->languageCode !== $cookieLocale && $actionName !== 'setLanguage'){
+                $this->setLanguageCode($cookieLocale);
+                $this->setLanguageAction();
+            }
+
         }
+
     }
 
     /**

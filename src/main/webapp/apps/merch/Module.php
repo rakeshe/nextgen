@@ -9,7 +9,8 @@
 
 namespace HC\Merch;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+// ip-detection-add-later
+//require_once __DIR__ . '/../../vendor/autoload.php';
 
 class Module {
 
@@ -108,13 +109,13 @@ class Module {
 
 
         //set geo-ip object to di
-       $di->set('geoIP',function(){
+/*       $di->set('geoIP',function(){
            try {
                return new \GeoIp2\Database\Reader(__DIR__ . '/../../data/DB/GeoLite2-Country.mmdb');
            } catch (\Exception $e) {
                echo $e->getMessage();
            }
-       });
+       });*/
 
 
 
