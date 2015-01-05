@@ -165,7 +165,9 @@ class IndexController extends ControllerBase {
         // Store user selected language to cookies
         //setcookie('AustinLocale', $this->languageCode);
         $this->cookies->set ( 'AustinLocale', $this->languageCode );
-        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+        //$this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+        $url =  'merch/' . $this->languageCode . '/' . $this->buildDocumentPageUrl();
+        $this->response->redirect($url);
     }
 
 
