@@ -11,7 +11,7 @@ return new \Phalcon\Config(array(
     'application' => array(
         'controllersDir' => 'controllers/',
         'modelsDir' => 'models/',
-        'viewsDir' => 'views/',
+        'viewsDir' => 'views/themes/',
         'formsDir' => 'forms/',
         'LanguageDir' => 'ti/language/'
     ),

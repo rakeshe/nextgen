@@ -355,7 +355,7 @@
       return $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/travel-insurance',
+        url: '/n/travel-insurance',
         async: false,
         data: $('form[name="find-hotel"]').serialize()
       }

@@ -72,7 +72,8 @@ class IndexController extends ControllerBase {
             'menuItemsTop'          => $this->config->menuItems->top,
             'menuItemsSite'         => $this->config->menuItems->site,            
             'menuItemsAccount'      => $this->config->menuItems->account,
-            'destination'           => json_encode($this->config->destination)
+            'destination'           => json_encode($this->config->destination),
+            'languageCode'          => ''
         ));
     }
 
