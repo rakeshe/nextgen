@@ -5,6 +5,16 @@
     // Copyright (c) 2012 Webtrends Inc.  All rights reserved.
     // Tag Builder Version: 4.0.170.0
     // Created: 5/8/2012 4:28:58 PM
+    var hostName = window.location.hostname;
+    var indexOfDot = hostName.indexOf('.');
+    var lengthOfHostName = hostName.length;
+    var fpcdom;
+    if (indexOfDot == -1) {
+        fpcdom = hostName;
+    } else {
+        fpcdom = hostName.slice(indexOfDot,lengthOfHostName);
+    }
+
     window.webtrendsAsyncInit=function(){
         var dcs=new Webtrends.dcs().init({
             dcsid:"dcscfchfzvz5bdrpz13vsgjna_9r8u"
@@ -14,7 +24,7 @@
             ,navigationtag: "div,span"
             ,FPCConfig: {
                 enabled: true,
-                domain: fpcdom,
+                domain: fpcdom
             }
             ,plugins:{
                 LinkTrack: { src: "/n/themes/common/js/linkTrack.js", DivList: ".*" }
