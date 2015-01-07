@@ -1072,7 +1072,7 @@ var nextgen = {
             }
                 html += '</a></div>';
                 html += '<div class="platinum_review">';
-                html += '<img height="" width="" alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
+                html += '<img alt="hotel rank" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
                 html += '</div>';
 
                 html += '<div class="clearfix "></div>';
@@ -1129,7 +1129,7 @@ var nextgen = {
 				html += '</div>';
 				html += '<div class="platinum_hotel_city">'+ obj["city_name"] +'</div>';
 				html += '<div class="gold_hotel_review">';
-				html += '<img height="" width="" alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
+				html += '<img alt="'+obj['star_rating']+'" class="img-responsive" src="'+imageHelper.getStarUri(obj['star_rating'])+'">';
 				html += '</div>';
 		        html += '</div></div>';
                 html += '<div class="saveBookInfo col-xs-4">';
@@ -1182,7 +1182,7 @@ var nextgen = {
 					html += obj['hotel_name']+', ';
 					html += '</a><span class="hotel_city">'+ obj["city_name"] +'</span></span>';
 					//html += '<span class="hotel_city">'+ obj["city_name"] +'</span>';
-					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></span>';
+					html += '<span class="hotel_review col-xs-3 col-sm-2 col-md-2 col-lg-2"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank"/></span>';
 					html += '</div>';
 					html += '<div class="hotel_details">';
 					html += '<div id="hotel_image"  class="col-xs-5 col-sm-3 col-md-4 col-lg-4"><a href="'+ obj['psi_url'] + '">';
@@ -1203,7 +1203,7 @@ var nextgen = {
 					html += obj['hotel_name'];
 					html += '</a>'+ obj["city_name"] +'</div>';
 					//html += '<div class="hotel_city col-xs-4 ">'+ obj["city_name"] +'</div>';
-					html += '<div class="clearfix hotel_review col-xs-10 pull-right"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank" width="" height=""/></div>';
+					html += '<div class="clearfix hotel_review col-xs-10 pull-right"><img src="'+imageHelper.getStarUri(obj['star_rating'])+'" class="img-responsive" alt="hotel rank"/></div>';
 					html += '<br/>';
 					html += '<div class="col-xs-10 member_rewards"><div class="campaign-promo-offer">'+ obj['offer'] + '</div> </div>';
 					//html +='<div class="earn  col-xs-10"> Earn <span> $90.98</span></div>';
