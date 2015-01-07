@@ -1,0 +1,8 @@
+includes: 
+  - queue.js
+  - UL.manager.no_req.js
+  - main.js
+requires:
+  - console_fix
+excludes:
+  - UL
