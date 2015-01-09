@@ -1,0 +1,277 @@
+#part2{
+    display: block;
+    position: relative;
+    .wrapppy{
+        .map_wrap{
+            position: relative;
+            width:940px;
+            height:635px;
+            .legend{
+                font-size: 16px;
+                position: absolute;
+                width:300px;
+                text-align:left;
+                top:32px;
+                left:50px;
+                span{
+                    color:#23384b;
+                }
+                div{
+                    margin-top:10px;
+                    display: block;
+                    img{
+                        margin-right:10px;
+                    }
+                }
+            }
+            .cities_banner{
+                img{
+                    position: absolute;
+                    display: block;
+                }
+                #paris_blue_tip{
+                   left: 332px;
+                    top: 192px; 
+                }
+                #paris_red_tip{
+                    left:228px;
+                    top:192px;
+                }
+                #bangkok_tip{
+                    top: 311px;
+                    right: 41px;
+                }
+                #barca_tip{
+                    left:290px;
+                    top:242px;
+                }
+                #bath_tip{
+                    top: 168px;
+                    left: 282px;
+                }
+                #cairo_tip{
+                    top:266px;
+                    left:420px;
+                }
+                #davos_tip{
+                   top: 161px;
+                    left: 485px;
+                }
+                #dubai_tip{
+                    top:289px;
+                    left:461px;
+                }
+                #hk_tip{
+                    top:268px;
+                    right:20px;
+                }
+                #istanbul_tip{
+                    top:208px;
+                    left:528px;
+                }
+                #kl_tip{
+                    top:331px;
+                    right:206px;
+                }
+                #london_tip{
+                    top:145px;
+                    left:346px;
+                }
+                #niagra_tip{
+                    top:200px;
+                    left:42px;
+                }
+                #nice_tip{
+                    left:332px;
+                    top:217px;
+                }
+                #nyc_tip{
+                    top: 226px;
+                    left: 73px;
+
+                }
+                #oslo_tip{
+                    top: 134px;
+                    left: 463px;
+                }
+                #rome_tip{
+                    top: 184px;
+                    right: 361px;
+                }
+                #shang_tip{
+                    top: 223px;
+                    right: 10px;
+                }
+                #singa_tip{
+                    top: 360px;
+                    right: 10px;
+                }
+                #holy_land_tip{
+                    top: 233px;
+                    right: 263px;
+                }
+            }
+        }
+        .marker_wrap {
+            position: relative;
+            img{
+                position: absolute;
+            }
+            #bangkok{
+                top: 318px;
+                right: 189px;
+            }
+            #london{
+                top: 179px;
+                right: 498px;
+
+            }
+            #paris2{
+                top: 198px;
+                left: 434px;
+            }
+            #singapore{
+               top: 347px;
+                right: 181px;
+            }
+            #nyc{
+                top: 219px;
+                right: 703px;
+            }
+            #istanbul{
+                top: 215px;
+                right: 415px;
+            }
+            #dubai{
+                top: 276px;
+                right: 337px;
+            }
+            #kl{
+                top: 338px;
+                right: 193px;
+            }
+            #hk{
+                top: 275px;
+                right: 162px;
+            }
+            #barcelona{
+                top: 220px;
+                right: 500px;
+            }
+        }
+        .flag_wrap{
+            position: relative;
+            img{
+                position: absolute;
+            }
+            #cairo{
+                top: 265px;
+                left: 521px;
+
+            }
+            #paris{
+                top: 198px;
+                left: 434px;
+            }
+            #davos{
+                top: 195px;
+                left: 463px;
+            }
+            #jerusalem{
+                top: 241px;
+                left: 537px;
+            }
+            #niagara{
+                left: 211px;
+                top: 206px;
+            }
+            #nice{
+               top: 213px;
+                left: 441px; 
+            }
+            #rome{
+                top: 217px;
+                left: 470px;
+            }
+            #oslo{
+                top: 158px;
+                left: 462px;
+            }
+            #bath{
+                top: 179px;
+                left: 426px;
+            }
+            #shanghai{
+                top: 230px;
+                right: 141px; 
+            }
+        }
+    }
+    #list_wrap{
+        margin:-50px 0 57px;
+        padding-left:29px;
+        padding-right:29px;
+        .span4{
+            vertical-align: top;
+            width:357px;
+            display: inline-block;
+            img{
+                display: inline-block;
+            }
+            h5{
+                display: inline-block;
+                margin:0;
+                font-size: 22px;
+            }
+            hr{
+
+            }
+            .list{
+                width: 360px;
+                display: inline-block;
+                counter-reset: item;
+                list-style-type: none;
+                h5{
+                    font-size: 22px;
+                    position: absolute;
+                    top: 29px;
+                }
+                #then_destination{
+                    left:59px;
+                }
+                li{
+                    font-size: 16px;
+                    margin:10px 0;
+                    padding:0;
+                    &:before {
+                        content: counter(item) ". ";
+                        counter-increment: item;
+                        color: white; 
+                    }
+                    a{
+                        color:black;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .blank{
+          width:180px;  
+        }
+        #then_destination{
+            margin-left:-37px;
+        }
+        #right-list{
+
+        }
+    }
+    #eifle_tower{
+        width: 434px;
+        display: block;
+        margin: 0 auto;
+        position:relative;
+    }
+    img#map{
+                width:940px;
+            }
+}

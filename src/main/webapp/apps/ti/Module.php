@@ -49,7 +49,14 @@ class Module {
                 'compiledSeparator' => '_',
             ));
 
-            return $volt;
+            $compiler = $volt->getCompiler();
+            //This binds the function php function to volt function
+            $compiler->addFunction('print_r', 'print_r');
+            $compiler->addFunction('empty', 'empty');
+            $compiler->addFunction('isArray', 'is_array');
+            $compiler->addFunction('substr', 'substr');
+
+                    return $volt;
         },
                 '.phtml' => 'Phalcon\Mvc\View\Engine\Php' // Generate Template files uses PHP itself as the template engine
             ));

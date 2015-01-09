@@ -363,7 +363,7 @@ class IndexController extends ControllerBase {
         $this->menu = $this->dataModel->menuData;
         // set Drop-down menu
 
-        $this->couchData = str_replace("'", "&#154;", json_encode($this->dataModel->dealsData));
+        $this->couchData = str_replace("'", "&#39;", json_encode($this->dataModel->dealsData));
         \Phalcon\Tag::setTitle ( $this->dataModel->dealsData['meta']['name'] );
 
         $this->couchPageData = $this->dataModel->pageUrlData;
