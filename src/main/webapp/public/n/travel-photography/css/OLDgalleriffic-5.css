@@ -1,0 +1,261 @@
+#SliderWrap #container {
+	overflow: hidden;
+}
+#SliderWrap .content {
+	width:960;
+	height:1200px;
+	display: none;
+	clear: both;
+}
+
+#SliderWrap .content a, #SliderWrap .navigation a {
+	text-decoration: none;
+}
+#SliderWrap .content a:hover, #SliderWrap .content a:active {
+	text-decoration: underline;
+}
+
+#SliderWrap .navigation a.pageLink {
+	height: 77px;
+	line-height: 77px;
+}
+
+#SliderWrap .controls {
+	margin-top: 5px;
+	height: 27px;
+}
+#SliderWrap .controls a {
+	padding: 2px;
+	font-size:1.75em;	
+}
+
+#SliderWrap .ss-controls {
+	float: left;
+}
+#SliderWrap .nav-controls {
+	position:relative;
+	top:-20px;
+	left:0;
+	width:250px;
+	float:right;
+}
+
+
+#SliderWrap .prev{float:left;
+margin-left:15px;
+font-family:"SerifaStd55Roman", Helvetica;
+color:#231d14;}
+#SliderWrap .next{float:right;
+font-family:"SerifaStd55Roman", Helvetica;
+margin-right:10px;
+color:#231d14;}
+
+#SliderWrap .slideshow-container,
+#SliderWrap .loader,
+#SliderWrap .slideshow a.advance-link {
+	width: 250px; /* This should be set to be at least the width of the largest image in the slideshow with padding */
+}
+
+#SliderWrap .loader,
+#SliderWrap .slideshow a.advance-link,
+#SliderWrap .caption-container {
+	height: 1300px; /* This should be set to be at least the height of the largest image in the slideshow with padding */	
+}
+
+#SliderWrap .slideshow-container {
+	position: relative;
+	clear: both;
+	float: left;
+	height:250px;
+}
+
+#SliderWrap .loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('images/loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#SliderWrap .slideshow span.image-wrapper {
+	height:0px;
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+#SliderWrap .slideshow a.advance-link {
+	display: block;
+	line-height: 220px; /* This should be set to be at least the height of the largest image in the slideshow with padding */
+	text-align: center;
+}
+
+div.slideshow a.advance-link:hover,
+div.slideshow a.advance-link:active,
+div.slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+div.slideshow a.advance-link:focus {
+	outline: none;
+}
+
+div.slideshow img {
+	border-style: solid;
+	border-width: 1px;
+}
+div.caption-container {
+	float: right;
+	position: relative;
+	left:-20px;
+	margin-top: 30px;
+	padding-top:30px;
+}
+span.image-caption {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+div.caption-container, span.image-caption {
+	width: 640px;
+}
+
+
+div.image-title {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+div.image-desc {
+	line-height: 1.3em;
+	padding-top: 12px;
+}
+div.social {
+	padding:0;
+	width:220px;
+	height:70px;
+	position:absolute;
+	top:255px;
+	left:-244px;
+}
+
+div.social ul{
+	position:relative;
+	top:-10px;
+	left:0;
+	margin-left:0;
+	list-style-type:none;
+	height:30px;
+	padding-left:0;}
+	
+div.social ul li{
+	margin-left:0;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	margin-right:5px;
+}
+	
+div.social ul li a{
+	margin-left:0;
+	display:inline-block;
+	width:30px;
+	height:30px;}
+	
+div.social p{
+	position:relative;
+	top:0;
+	float:left;
+	padding-top:0;
+	margin-top:0;
+	}
+		
+
+div.photo-index {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 12px;
+}
+div.navigation-container {
+	float: left;
+	position: relative;
+	padding-top:0px;
+}
+#SliderWrap .navigation {
+	float: left;
+	position: relative;
+	/*left: -50%;*/
+}
+div.navigation a.pageLink {
+	display: block;
+	position: relative;
+	float: left;
+	margin: 2px;
+	width: 16px;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+div.navigation a.pageLink:focus {
+	outline: none;
+}
+
+ul.thumbs {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin: 2px;
+	list-style: none;
+}
+a.thumb {
+	padding: 1px;
+	display: block;
+}
+a.thumb:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+	display: block;
+}
+div.pagination {
+	clear: both;
+	position: relative;
+	left: -50%;
+}
+div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+	position: relative;
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+div.pagination a:hover {
+	text-decoration: none;
+}
+div.pagination span.current {
+	font-weight: bold;
+}
+div.pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+
+div.gallery-gutter {
+	clear: both;
+	padding-bottom: 20px;
+}
+
+.bigphoto{
+	padding:0;
+	margin:0;
+	width:600px;
+	height:400px;
+	position:relative;
+	top:-12px;}

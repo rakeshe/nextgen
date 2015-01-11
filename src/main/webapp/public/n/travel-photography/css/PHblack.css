@@ -1,0 +1,77 @@
+/*body{
+	background-color: #FFF;
+	color: #bbb;
+}*/
+#SliderWrap a{
+	color: #562d82;
+	text-decoration:underline;
+}
+#SliderWrap h2 {
+	color: #ccc;
+}
+div#pageslider {
+	background-color: #ffffff;
+	border-color: #222;
+}
+#SliderWrap #footer {
+	color: #888;
+}
+div.caption-container {
+	color: #231d14;
+}
+div.image-title {
+	position:relative;
+	top:-1px;
+	font-family:Helvetica;
+	font-size: 1.75em;
+	margin-top:21px;
+	border-top:1px solid #e21e28;
+	line-height:3em;
+	margin-bottom:10px;
+}
+.border{
+border-bottom:1px solid #e21e28;
+padding-bottom:25px;
+}
+div.linebreak {
+border-top:1px solid #e21e28;
+width:900px;
+margin-top: -20px;
+margin-bottom: 20px;
+}
+div.image-desc {
+	position:relative;
+	top:-25px;
+	line-height: 1.3em;
+	/*padding-top:30px;*/
+}
+
+div.photo-index {
+	color: #888;
+}
+div.navigation a.prev {
+	background-image:url(prevPageArrow.gif);
+}
+div.navigation a.next {
+	background-image:url(nextPageArrow.gif);
+}
+div.loader {
+	background-image: url(loaderWhite.gif);
+}
+div.slideshow img {
+	position:relative;
+	top:-15px;
+	border-color: #f4f4f5;
+	margin-left: -50px;
+}
+ul.thumbs li.selected a.thumb {
+	background: #fff;
+}
+div.pagination a:hover {
+	background-color: #111;
+}
+div.pagination span.current {
+	background-color: #fff;
+	border-color: #fff;
+	color: #000;
+}
