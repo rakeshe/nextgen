@@ -61,14 +61,14 @@
 		  
 		  <div id="src-elmt">			
 			{{ form('class': 'form-search','id' : 'form-search','name' : 'find-hotel') }}
-			<div class="row row-padding">
+			<div class="row row-padding text-right">
 			  <div class="col-xs-6 col-sm-3 col-md-3 Search_head1">
 				<strong>
 				  {{t._('select_travellers')}}
 				</strong>
 			  </div>
 			</div>
-			<div class="row row-padding">
+			<div class="row row-padding text-right">
 			  <div class="col-xs-6 col-sm-3 col-md-3 search_content1">
 				{{t._('country_of_residence')}}
 			  </div>
@@ -76,7 +76,7 @@
 				{{form.render('ddlcountry')}}
 			  </div>
 			</div>
-			<div class="row row-padding">
+			<div class="row row-padding text-right">
 			  <div class="col-xs-6 col-sm-3  col-md-3 col-lg-3 search_content1">
 				{{t._('adult')}}
 			  </div>
@@ -97,7 +97,7 @@
 			  </div>
 			  <div class="clearfix visible-xs"></div>
 			</div>
-			<div class="row row-padding date_search">
+			<div class="row row-padding date_search text-right">
 				  <div class="col-xs-6 col-sm-3 col-md-3 col-11p search_content1">
 					{{t._('dob')}}
 					<div style="clear:both;">&nbsp;</div>
@@ -214,12 +214,17 @@
 		</form>
 	  </div>
   <!-- /Travel Insurance -->
-  <div id='loading'>
+{#  <div id='loading'>
      <div class="row row-padding">
       <div> <img src="img/loading.gif" /> Working...</div>
 	  <div style="font-size:10px">Please wait as we work on your request</div>
     </div>
   </div>
+ #}
+<div id='loading'>
+    <div class="contener_general"> <div class="contener_mixte"><div class="ballcolor ball_1">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_2">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_3">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_4">&nbsp;</div></div> </div>
+</div>
+
   <div id="display-frame">
   </div>
   <div id="search-result-box">
