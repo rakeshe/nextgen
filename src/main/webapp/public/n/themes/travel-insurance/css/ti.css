@@ -329,7 +329,7 @@ p.inclusions {
 }
 
 .hotelDeal .row #image_section.image_section a .hotel-image-text {
-    background-image:url(../img/ce_location_background.png);
+    /* background-image:url(../img/ce_location_background.png); */
     height:20px;
     left:0;
     position:relative;
@@ -1444,7 +1444,7 @@ div.main-search-box div.row  div.col-xs-11 h5.visible-xs{
     margin-left: 6px;width: 245px;
 }
 
-@media max-width:978px{
+@media (max-width: 978px) {
     .container {
         min-width:100%;
         margin:0;
