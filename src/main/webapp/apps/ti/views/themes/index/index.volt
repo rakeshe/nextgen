@@ -2,7 +2,7 @@
 
 {{ partial('../../../common/views/header/header') }}
 <!-- START VIEW PARTIAL: searchform -->
-<div id="searchform" class="clearfix subContainer">
+<div id="searchform" class="clearfix">
     {{ partial('partials/search/search_form') }}
 </div>
 <!-- END VIEW PARTIAL: searchform -->
