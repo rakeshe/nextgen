@@ -7,10 +7,7 @@
     {{ stylesheet_link('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css') }}
     {{ stylesheet_link('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') }}
     {{ stylesheet_link('themes/travel-insurance/css/ti.css') }}
-    {{ javascript_include('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}
-    {{ javascript_include('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
-    {{ javascript_include('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
-    {{ javascript_include('themes/travel-insurance/js/ti.js') }}
+
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -20,5 +17,9 @@
 </head>
 <body>
 {{ content() }}
+{{ javascript_include('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}
+{{ javascript_include('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
+{{ javascript_include('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
+{{ javascript_include('themes/travel-insurance/js/ti.js') }}
 </body>
 </html>
