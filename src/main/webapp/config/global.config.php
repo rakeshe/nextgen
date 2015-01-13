@@ -26,10 +26,10 @@ return new \Phalcon\Config(array(
  * IE REMOVE COUCH SETTING ABOVE AND UNCOMMENT SETTINGS BELOW
  *
  */
-        'host' => 'cache.qa.orbitz.net',
-        'port' => 8006,
+        'host' => 'localhost',
+        'port' => 8091,
         'user' => '',
-        'password' => 'hc-cache-qa',
+        'password' => '',
         'bucket' => 'hc-cache'
 /**
  * END OF FQA SETTINGS
