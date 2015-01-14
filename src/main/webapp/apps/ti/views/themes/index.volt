@@ -21,5 +21,7 @@
 {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", false) }}
 {{ javascript_include("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js", false) }}
 {{ javascript_include('themes/travel-insurance/js/ti.js') }}
+
+{{ partial('partials/footer/tracking') }}
 </body>
 </html>
