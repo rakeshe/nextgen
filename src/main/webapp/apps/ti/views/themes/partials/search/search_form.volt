@@ -151,7 +151,7 @@
 			  <div class="row-padding">
 			   <div class="col-xs-11 col-sm-12 col-md-12 search_content3">
 				<div class="date_form">
-				  <div style="float:left" class="col-11p">
+				  <div style="float:left; margin-top: 5px;" class="col-11p">
 					{{t._('start_date')}} <div style="clear:both;">&nbsp;</div>
 				  </div>
 				  <div class="dStartDate_data">
@@ -163,7 +163,7 @@
 				<div class="clearfix row-padding visible-xs">
 				</div>
 				<div class="date_form_2 ">
-				  <div style="float:left" class="col-11p">
+				  <div style="float:left; margin-top: 5px;" class="col-11p">
 					{{t._('end_date')}} <div style="clear:both;">&nbsp;</div>
 				  </div>
 				  
@@ -179,7 +179,7 @@
 				<div class="clearfix"></div>
 				
 				<div class="col-xs-11 col-sm-5 col-md-6 col-lg-5 promocode_form">
-				  <div style="float:left" class="col-11p">
+				  <div style="float:left; margin-top: 5px;" class="col-11p">
 					{{t._('promocode')}} <div style="clear:both;">&nbsp;</div>
 				  </div>
 				
