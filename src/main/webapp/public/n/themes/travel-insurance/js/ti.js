@@ -243,7 +243,10 @@ var SearchBox = {
         ,
         'getResultSummary': function() {
             var html = '';
-            html += '<h4>Results for ' + $('#ddlAdult').val() + ' adults for travel on ' + $('#dStartDate').val() + ' to ' + $('#dEndDate').val() + ' from '+ $( "#ddlcountry option:selected" ).text() +' to:</h4>';
+            var txtChild = $('#ddlChild').val() > 1 ? ' dependents' : ' dependent';
+            txtChild = $('#ddlChild').val() < 1 ? '' : ' and ' + $('#ddlChild').val() + txtChild;
+            var txtAdult = $('#ddlAdult').val() > 1 ? ' adults' : ' adult';
+            html += '<h4>Results for ' + $('#ddlAdult').val() + txtAdult + txtChild + ' for travel on ' + $('#dStartDate').val() + ' to ' + $('#dEndDate').val() + ' from '+ $( "#ddlcountry option:selected" ).text() +' to:</h4>';
             $('.checkBoxDestinations:checked').each(function() {
                     html += '<div class="row regions leftpadding row-padding">-&nbsp;&nbsp;&nbsp;<p class="region_left">' + $(this).closest('div').next().text() + '</p></div>';
                 }
@@ -282,7 +285,7 @@ var SearchBox = {
             html += '<input type="hidden" name="numberOfSenior3" value="' + benefits['numberOfSenior3'] + '">';
             html += '</form>';
             html += '<div class="row-fluid">';
-            html += '<iframe name="purchase_iframe" id="purchase_iframe" class="well well-small span10" style="height: 1000px; width:100%;" name="purchase_iframe"></iframe>';
+            html += '<iframe name="purchase_iframe" id="purchase_iframe" class="well well-small span10" style="height: 1000px; width:665px;" name="purchase_iframe"></iframe>';
             html += '</div>';
             $('#search-result-box').hide();
             $('#display-frame').html(html);
@@ -355,7 +358,7 @@ var SearchBox = {
                     var planA = result['productsAvailable']['0']['premiumProduct'],
                         planB = result['productsAvailable']['1']['premiumProduct'];
                     var row = '';
-                    row += ' <tr><td style=" padding-top: 5%;text-align: left;">' + data.trans.single_journey + '</td><td><div class="rowNP"><span class="priceLabel">from</span><span class="buyprice">' + planA + '</span></div><div class="rowNP"><button type="submit" data-plan="A" title="Get Quotes" class="buy-plan btn btn-default">' + data.trans.buy_now + '</button></div></td><td><div class="rowNP"><span class="priceLabel">from</span><span class="buyprice">' + planB + '</span></div><div class="rowNP"><button type="submit" data-plan="B" title="Get Quotes" class="buy-plan btn btn-default">' + data.trans.buy_now + '</button></div></td></tr>';
+                    row += ' <tr><td style=" padding-top: 5%;text-align: left;">' + data.trans.single_journey + '</td><td><div class="rowNP"><span class="priceLabel">from</span><span class="buyprice">$' + planA + '</span></div><div class="rowNP"><button type="submit" data-plan="A" title="Get Quotes" class="buy-plan btn btn-default">' + data.trans.buy_now + '</button></div></td><td><div class="rowNP"><span class="priceLabel">from</span><span class="buyprice">$' + planB + '</span></div><div class="rowNP"><button type="submit" data-plan="B" title="Get Quotes" class="buy-plan btn btn-default">' + data.trans.buy_now + '</button></div></td></tr>';
                     $('#sngl_jury').html(row);
                     var ht = '';
                     $.each(result['json_benefits'], function(index, val) {

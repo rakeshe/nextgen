@@ -1,7 +1,7 @@
 <?php
 
 $messages = [
-    'set-title'                   => 'Tarvel Insurance',
+    'set-title'                   => 'Travel Insurance',
     'head_welcome_to_hc'          => 'Welcome to HotelClub',
     'menu_home'                   => 'Home',
     'menu_club_benefits'          => 'Club Benefits',
@@ -198,7 +198,7 @@ $messages = [
     index_left	<b>Have questions?</b> Check out our <a href="#">FAQs</a> or call us on 1234 567 890
     index_right	* See full <a href="#" title="Membership Terms and Conditions">Membership Terms and Conditions</a> for Member Money details.<br/>** For full details see our <a href="#" title="Booking Terms and Conditions">Booking Terms and Conditions</a>
     index_main_content	<p>Looking for the best hotel rewards program? Look no further than HotelClub. No complicated reward points calculations, no need to
-    carry a hotel rewards card, and no restrictions on when and where y ou can redeem your tarvel rewards. The HotelClub customer loyality program rewards
+    carry a hotel rewards card, and no restrictions on when and where you can redeem your travel rewards. The HotelClub customer loyality program rewards
     members everyday simply for booking with us. And bet of all you can use your membership rewards as Member Money at any hotel, on any day.</p>
     index_my_bookings	My Bookings
     index_my_club	My Club
