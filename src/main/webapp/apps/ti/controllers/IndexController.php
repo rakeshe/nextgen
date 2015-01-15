@@ -73,7 +73,8 @@ class IndexController extends ControllerBase {
             'menuItemsSite'         => $this->config->menuItems->site,            
             'menuItemsAccount'      => $this->config->menuItems->account,
             'destination'           => json_encode($this->config->destination),
-            'languageCode'          => ''
+            'languageCode'          => '',
+            'appVersion' => APPLICATION_VERSION
         ));
     }
 
