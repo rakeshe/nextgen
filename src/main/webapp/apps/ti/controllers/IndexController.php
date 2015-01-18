@@ -118,6 +118,7 @@ class IndexController extends ControllerBase {
         $priceModel->originLocation = $this->request->getPost('ddlcountry', 'string');
         $priceModel->destLocation = $this->request->getPost('DES');
         $priceModel->numDependent = $this->request->getPost('ddlChild', 'int');
+        $priceModel->numChild = $this->request->getPost('ddlChild', 'int');
         $priceModel->dob = array_filter($this->request->getPost('AdobOne', 'string'));
         $priceModel->couponCode = $this->request->getPost('couponCode', array('alphanum', 'trim'));
         $priceModel->setAgeCats(); //count the travelers        

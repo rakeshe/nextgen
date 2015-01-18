@@ -6,6 +6,39 @@
  * @since      28/7/2014
  * @version    1.0
  */
+function getCouchConfigs()
+{
+    switch (apache_getenv("ORBITZ_ENV")) {
+        case 'dev':
+            $couchConfig = [
+                'host'     => '127.0.1.1',
+                'port'     => 8091,
+                'user'     => '',
+                'password' => '',
+                'bucket' => 'hc-cache'
+            ];
+            break;
+        case 'fqa1':
+            $couchConfig = [
+                'host' => 'cache.qa.orbitz.net',
+                'port' => 8006,
+                'user' => '',
+                'password' => 'hc-cache-qa',
+                'bucket' => 'hc-cache'
+            ];
+            break;
+        case 'production':
+            $couchConfig = [
+                'host' => 'cache.qa.orbitz.net',
+                'port' => 8006,
+                'user' => '',
+                'password' => 'hc-cache-qa',
+                'bucket' => 'hc-cache'
+            ];
+            break;
+    }
+    return $couchConfig;
+}
 return new \Phalcon\Config(array(
     'ORBITZ_ENV' => apache_getenv("ORBITZ_ENV"),
     'database' => array(
@@ -15,26 +48,8 @@ return new \Phalcon\Config(array(
         'password' => '115',
         'dbname' => '115',
     ),
-    'couchbase' => array(
-//        'host'  => 'hc-rshrestha02.oww.root.lcl',
-//        'host'  => '127.0.1.1',
-//        'port'  => 8091,
-//        'user'  => '',
-//        'password' => ''
-/**
- * ENSURE THIS IS ENABLED BEFORE COMMITING RELEASE X.Y.Z TO GIT AS FINAL RELEASE
- * IE REMOVE COUCH SETTING ABOVE AND UNCOMMENT SETTINGS BELOW
- *
- */
-        'host' => 'cache.qa.orbitz.net',
-        'port' => 8006,
-        'user' => '',
-        'password' => 'hc-cache-qa',
-        'bucket' => 'hc-cache'
-/**
- * END OF FQA SETTINGS
- */
-    ),
+    'couchbase' => getCouchConfigs(),
+
     'menuItems' => array(
         'top' => array(
             'menu_my_bookings' => 'https://www.hotelclub.com/trips/current',
