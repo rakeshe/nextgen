@@ -284,8 +284,8 @@ var SearchBox = {
             html += '<input type="hidden" name="numberOfSenior2" value="' + benefits['numberOfSenior2'] + '">';
             html += '<input type="hidden" name="numberOfSenior3" value="' + benefits['numberOfSenior3'] + '">';
             html += '</form>';
-            html += '<div class="row-fluid">';
-            html += '<iframe name="purchase_iframe" id="purchase_iframe" class="well well-small span10" style="height: 1000px; width:665px;" name="purchase_iframe"></iframe>';
+            html += '<div id="iframe-container">';
+            html += '<iframe name="purchase_iframe" id="purchase_iframe"  width="100%" height="100%" frameborder="0"></iframe>';
             html += '</div>';
             $('#search-result-box').hide();
             $('#display-frame').html(html);
