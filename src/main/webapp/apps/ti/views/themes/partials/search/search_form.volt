@@ -214,16 +214,18 @@
 		</form>
 	  </div>
   <!-- /Travel Insurance -->
-{#  <div id='loading'>
+ <div id='loading'>
      <div class="row row-padding">
-      <div> <img src="img/loading.gif" /> Working...</div>
+      <div> <img src="/n/themes/common/img/loading.gif" /> Working ...</div>
 	  <div style="font-size:10px">Please wait as we work on your request</div>
     </div>
   </div>
- #}
-<div id='loading'>
-    <div class="contener_general"> <div class="contener_mixte"><div class="ballcolor ball_1">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_2">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_3">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_4">&nbsp;</div></div> </div>
-</div>
+
+{#<div id='loading'>#}
+    {#<div class="contener_general">#}
+        {##}
+        {#<div class="contener_mixte"><div class="ballcolor ball_1">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_2">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_3">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_4">&nbsp;</div></div> </div>#}
+{#</div>#}
 
   <div id="display-frame">
   </div>

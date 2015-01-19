@@ -1185,18 +1185,10 @@ div#regionTabs div#deal-tabs.tabbable div.dropdown ul.dropdown-menu li.active ul
 #loading {
     font-size:22px;
     font-weight:700;
-    text-align:center;
     display:none;
-    margin:10%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -100px;
-    background-color:transparent;
-    width:207px;
     opacity:1;
     color:#000;
+    height: 200px;
 }
 
 .col-10p {
@@ -1705,8 +1697,17 @@ and (max-device-width : 767px)
     display:block;
 }
 #purchase_iframe{
-    padding:0px;
+    min-height: 1000px;
+    min-width: 690px;
 }
+#iframe-container{
+
+
+}
+div#content {
+    border: 0px !important;
+}
+
 .dob_search{
     float:left;
 }
