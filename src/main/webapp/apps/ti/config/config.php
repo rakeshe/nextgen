@@ -161,7 +161,7 @@ return new \Phalcon\Config(array(
         ),
         'APIData' => array(
 //settng the environment type : live or staging
-            'environment' => 'staging',
+            'environment' => 'live',
             'securityKey' => 'MJHANOB13551qiekhq',
             'partnerName' => 'HTC',
             'saleOrigin' => 'www.hotelclub.com',
