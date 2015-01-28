@@ -71,6 +71,7 @@ class PricingModel extends \Phalcon\Mvc\Model {
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_URL, $this->pricingGatewayUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/xml"));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -79,10 +80,14 @@ class PricingModel extends \Phalcon\Mvc\Model {
         curl_setopt($ch, CURLOPT_POST, 1);
         $data = curl_exec($ch);
 
-        if (curl_errno($ch))
+        if (curl_errno($ch)) {
             $result = false;
-        else
+            $this->getDI()->getShared('logger')->log("Curl Error: " . curl_errno($ch) .": ".
+                    curl_error($ch));
+
+        } else {
             $result = $data;
+            }
 
         curl_close($ch);
         return $result;
