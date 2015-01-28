@@ -26,7 +26,8 @@ class HotelHelper extends \Phalcon\Tag
     /**
      * Define uri for cache content at HotelClub
      */
-    const CLASSIC_HOTEL_CONTENT_URI = 'http://www.hotelclub.com/ad-unit/promodeals/images/';
+//    const CLASSIC_HOTEL_CONTENT_URI = 'http://www.hotelclub.com/ad-unit/promodeals/images/';
+    const CLASSIC_HOTEL_CONTENT_URI = 'http://www.tnetnoc.com/public/ANS/HCL/Ad-unit/promodeals/images/';
     /**
      * Define unique content folder used in image uri
      */

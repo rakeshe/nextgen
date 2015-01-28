@@ -1588,7 +1588,7 @@ var nextgen = {
 // Image healper
 var imageHelper = {
 	//Image uri builder
-	'CLASSIC_HOTEL_CONTENT_URI' : 'http://www.hotelclub.com/ad-unit/promodeals/images/',
+	'CLASSIC_HOTEL_CONTENT_URI' : 'http://www.tnetnoc.com/public/ANS/HCL/Ad-unit/promodeals/images/',
 	'ORBITZ_HOTEL_SITE_IMAGES_URI' : 'http://www.tnetnoc.com/siteImages/',
 	'classicHotelImageUri' : function(oneg){
 		return this.CLASSIC_HOTEL_CONTENT_URI + 'mp_v1_' + oneg + '.jpg';

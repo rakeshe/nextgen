@@ -636,6 +636,10 @@ class IndexController extends ControllerBase {
             curl_setopt ( $ch, CURLOPT_POST, 1 );
             curl_setopt ( $ch, CURLOPT_POSTFIELDS, 'searchedText=' . trim ( $this->request->get ( "q" ) ) );
             $var = curl_exec ( $ch );
+            if (curl_errno($ch)) {
+                $this->getDI()->getShared('logger')->log("Curl Error: " . curl_errno($ch) .": ".
+                    curl_error($ch));
+            }
             curl_close ( $ch );
         }
         die ();
