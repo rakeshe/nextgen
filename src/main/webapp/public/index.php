@@ -69,9 +69,15 @@ try {
 	/**
 	 * Main logger file
 	 */
-	$di->set('logger', function() {
-		return new \Phalcon\Logger\Adapter\File(__DIR__.'/../data/logs/'.date('Y-m-d').'.log');
-	}, true);
+    $di->set(
+        'logger',
+        function () {
+            return ORBITZ_ENV == 'dev' ?
+                new \Phalcon\Logger\Adapter\Firephp("") :
+                new \Phalcon\Logger\Adapter\File(__DIR__ . '/../data/logs/' . date('Y-m-d') . '.log');
+        },
+        true
+    );
 
 	/**
 	 * Error handler
