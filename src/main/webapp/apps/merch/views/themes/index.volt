@@ -1,3 +1,12 @@
+{% if theme is not defined %}
+    {% set theme = 'geo-map' %}
+{% endif %}
+{% if appVersion is not defined %}
+    {% set appVersion = '1.12.0' %}
+{% endif %}
+{% if fontCSS is not defined %}
+    {% set fontCSS = 'normal-font' %}
+{% endif %}
 <!DOCTYPE html>
 <html>
     <head>
