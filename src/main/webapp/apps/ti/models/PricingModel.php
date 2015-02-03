@@ -68,11 +68,10 @@ class PricingModel extends \Phalcon\Mvc\Model {
     public function doRequest() {
 
 
-        $verbose = fopen(dirname(__FILE__) .'/../../../data/curl_verbose.log', 'a+');
+        $verbose = fopen(dirname(__FILE__) .'/../../../data/logs/curl_verbose.log', 'a+');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_STDERR, $verbose);
-        curl_setopt($ch, CURLOPT_PORT, 8585);
         curl_setopt($ch, CURLOPT_URL, $this->pricingGatewayUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/xml"));
