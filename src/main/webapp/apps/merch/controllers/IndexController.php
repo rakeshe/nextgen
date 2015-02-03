@@ -564,7 +564,8 @@ class IndexController extends ControllerBase {
             'bannerFlowId' => $this->getBannerFlowId(),
             'requestScheme' => $this->getScheme(),  // And use this class in DI as a default request service.
             'dateFormat' => $this->dateFormat,
-            'datePlaceHolder' => $this->datePlaceHolder
+            'datePlaceHolder' => $this->datePlaceHolder,
+            'wtMetaData' => $this->getWtMetaData()
         );
     }
 
@@ -746,6 +747,15 @@ class IndexController extends ControllerBase {
         return !empty($bannerId[$this->languageCode]) ? json_encode($bannerId[$this->languageCode]) : json_encode([]) ;
     }
 
+    protected function getWtMetaData(){
+        return [
+            'DCSext.LNG' => $this->languageCode,
+            'DCSext.pos' => 'HCL',
+            'DCSext.hostname' => 'www.hotelclub.com',
+            'DCSext.owwPage' =>  $this->router->getRewriteUri()
+        ];
+
+    }
     public function getScheme()
     {
         $isSecure = false;
