@@ -62,10 +62,10 @@ $router->add(
 );
 /**
  * Hongkong Calendar : Backbone.js app
- * matches: /hong-kong-interactive-calendar
+ * matches: /hong-kong-interactive
  */
 $router->add(
-    '/n/hong-kong-interactive-calendar',
+    '/n/hong-kong-interactive',
     array(
         'module'     => 'hk-calendar',
         'namespace'  => 'HC\HkCalendar\Controllers\\',
