@@ -106,7 +106,7 @@ class Module {
                $couch->setTimeout(60 * 10000000);
                return $couch;
        });
-
+	
 
         //set geo-ip object to di
 /*       $di->set('geoIP',function(){

@@ -2,7 +2,8 @@
 return new \Phalcon\Config ( array (
 		'themes' => array (
 				'default' => 'default theme',
-				'geo-map' => 'GEO Map',	
+				'geo-map' => 'GEO Map',
+				'google-map' => 'Google Map',	
 		),
 		'database' => array (
 				'adapter' => 'Mysql',
@@ -12,8 +13,8 @@ return new \Phalcon\Config ( array (
 				'dbname' => 'test' 
 		),
 		'couchbase' => array (
-//				'bucket' => 'hc-nextgen'
-				'bucket' => 'hc-cache'
+				'bucket' => 'hc-nextgen'
+//				'bucket' => 'hc-cache'
 		),
 		'menuItems' => array (
 				'site' => array (
@@ -24,22 +25,22 @@ return new \Phalcon\Config ( array (
 				),
 				'languageOptions' => array (
 						'en_AU' => 'English',
-						'zh_TW' => '繁體中文 (台灣)',
-						'zh_CN' => '简体中文',
-                        'zh_HK' => '繁體中文 (香港)',
+						'zh_TW' => '???? (??)',
+						'zh_CN' => '????',
+                        'zh_HK' => '???? (??)',
                         'ms_MY' => 'Bahasa Melayu',
                         'de_DE' => 'Deutsch',
                         'es_ES' => 'Español',
                         'fr_FR' => 'Français',
                         'it_IT' => 'Italiano',
-                        'ja_JP' => '日本語',
-                        'ko_KR' => '한국어',
+                        'ja_JP' => '???',
+                        'ko_KR' => '???',
 //                        'id_ID' => 'Bahasa Indonesia',
 						'nl_NL' => 'Nederlands',
 						'pt_PT' => 'Português',
-						'ru_RU' => 'Русский',
+						'ru_RU' => '???????',
 						'sv_SE' => 'Svenska',
-						'th_TH' => 'ไทย',
+						'th_TH' => '???',
 
 				) 
 		),
@@ -81,7 +82,7 @@ return new \Phalcon\Config ( array (
 				'most-used-currencies' => array (
 						'AUD' => 'Australian Dollar',
 						'CNY' => 'Chinese Yuan',
-						'EUR' => 'Euro体中文',
+						'EUR' => 'Euro???',
 						'GBP' => 'British Pound Sterling',
 						'INR' => 'Indian Rupee',
 						'NZD' => 'New Zealand Dollar',

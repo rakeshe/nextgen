@@ -36,6 +36,15 @@ function getCouchConfigs()
                 'bucket' => 'hc-cache'
             ];
             break;
+		/*default:
+			$couchConfig = [
+                'host'     => '127.0.0.1',
+                'port'     => 8091,
+                'user'     => '',
+                'password' => '',
+                'bucket' => 'hc-nextgen'
+            ];
+            break;*/
     }
     return $couchConfig;
 }

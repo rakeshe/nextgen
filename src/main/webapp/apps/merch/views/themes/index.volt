@@ -34,9 +34,11 @@
     </head>
     <body>
         {{ content() }}
+	{{ javascript_include("https://maps.googleapis.com/maps/api/js", false) }}
         {{ javascript_include("http://google.com/jsapi", false) }}
         {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js", false) }}
         {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", false) }}
+
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
 		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js?' ~ appVersion ) }}
         {{ javascript_include('themes/' ~ theme ~ '/js/ng.js?' ~ appVersion ) }}

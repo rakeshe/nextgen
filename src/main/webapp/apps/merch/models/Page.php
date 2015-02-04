@@ -20,7 +20,7 @@ class Page extends \Phalcon\Mvc\Model
     const DEFAULT_PAGE_CAMPAIGN = 'worldonsale';
     const DEFAULT_PAGE_REGION = 'Pacific';
     const DEFAULT_PAGE_LANG = 'en_AU';
-    const DEFAULT_PAGE_LAYOUT = 'geo-map';
+    const DEFAULT_PAGE_LAYOUT = 'google-map';
     const DEFAULT_PAGE_CURRENCY = 'AUD';
     const FILE_CACHE_PATH = '/../../../data/';
 
