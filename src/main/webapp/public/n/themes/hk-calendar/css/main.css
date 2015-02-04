@@ -499,7 +499,7 @@ nav#menu ul a {
   background: #fff;
   padding: 18px;
   font-family: 'MuseoSlab-500';
-  width: 196px;
+  /*width: 196px;*/
 }
 .month div.tip h5 {
   font-size: 1em;
