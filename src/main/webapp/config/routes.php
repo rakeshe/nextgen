@@ -60,6 +60,20 @@ $router->add(
 				'curr' 		   => 1
 		)
 );
+/**
+ * Hongkong Calendar : Backbone.js app
+ * matches: /hong-kong-interactive-calendar
+ */
+$router->add(
+    '/n/hong-kong-interactive-calendar',
+    array(
+        'module'     => 'hk-calendar',
+        'namespace'  => 'HC\HkCalendar\Controllers\\',
+        'controller' => 'index',
+        'action'     => 'index',
+        "params"     => 4,
+    )
+);
 
 //**********************************************************//
 //************ Travel Insurance Module Url Routes **********//
