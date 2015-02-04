@@ -13,4 +13,8 @@ return array(
         'className' => 'HC\Api\Module',
         'path' => '../apps/api/Module.php'
     ),
+    'hk-calendar' => array(
+        'className' => 'HC\HkCalendar\Module',
+        'path' => '../apps/hk-calendar/Module.php'
+    ),
 );
