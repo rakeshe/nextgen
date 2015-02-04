@@ -29,10 +29,10 @@ function getCouchConfigs()
             break;
         case 'production':
             $couchConfig = [
-                'host' => 'cache.qa.orbitz.net',
+                'host' => 'cache-wm.prod.orbitz.net',
                 'port' => 8006,
                 'user' => '',
-                'password' => 'hc-cache-qa',
+                'password' => 'hc-cache-prod2',
                 'bucket' => 'hc-cache'
             ];
             break;
