@@ -12,9 +12,9 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Experience Hong Kong | The Unmissable Events">
     <meta property="og:description" content="From a Bruce Lee exhibition to the birthday of Confucius, discover Hong Kong's unmissable events with this interactive calendar.">
-    <meta property="og:url" content="http://www.hotelclub.com/hong-kong-interactive">
+    <meta property="og:url" content="http://www.hotelclub.com/n/hong-kong-interactive">
     <meta property="og:site_name" content="Hotelclub.com">
-    <meta property="og:image" content="http://www.hotelclub.com/hong-kong-interactive/img/month/aug1new.jpg">
+    <meta property="og:image" content="http://www.hotelclub.com/n/hong-kong-interactive/img/month/aug1new.jpg">
     <meta property="article:published_time" content="2015-01-31">
     <meta property="article:author" content="https://www.facebook.com/HotelClub">
     <meta name="twitter:card" content="summary">

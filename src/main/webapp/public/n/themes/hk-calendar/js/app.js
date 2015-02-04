@@ -33,7 +33,7 @@ function sh() {
 		titleTwitter: name+' via @HotelClub',
 		titlePinterest: name,
 		selector: '.socialbar-title',
-		thisUrl: 'http://www.hotelclub.com/hong-kong-interactive'
+		thisUrl: 'http://www.hotelclub.com/n/hong-kong-interactive'
 	}
 		
 	var share = new sharecow(opt);
