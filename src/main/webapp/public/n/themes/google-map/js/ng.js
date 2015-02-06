@@ -2365,9 +2365,19 @@ function initialize(){
 	google.maps.event.addListener(map, "click", function(event)
 	{
 		//alert(event.latLng.lat()+'----'+event.latLng.lng());
+		map.setZoom(map.getZoom()+1);
+		placeMarker(event.latLng);
+
 		var zoomLevel = map.getZoom();
 		console.log(zoomLevel);
-
 	});
+	function placeMarker(location) {
+	  var marker = new google.maps.Marker({
+		  position: location
+	  });
+	  map.setCenter(location);
+	}
 }
+
+
 google.maps.event.addDomListener(window, 'load', initialize);
