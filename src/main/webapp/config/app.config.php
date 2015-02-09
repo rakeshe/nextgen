@@ -17,4 +17,8 @@ return array(
         'className' => 'HC\HkCalendar\Module',
         'path' => '../apps/hk-calendar/Module.php'
     ),
+    'mixandmatch' => array(
+        'className' => 'HC\MixAndMatch\Module',
+        'path' => '../apps/mixandmatch/Module.php'
+    )
 );
