@@ -184,6 +184,19 @@ $router->add(
 
 /**
  * API Routers
+ */
+$router->add(
+    '/n/api/:controller/:action/:params',
+    array(
+        'controller'   => 1,
+        'action'       => 2,
+        'params'       => 3,
+        'module'       => 'api',
+        'namespace'    => 'HC\Api\Controllers\\',
+    )
+);
+
+/**
  * api/recommend
  */
 $router->add(
