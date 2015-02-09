@@ -20,6 +20,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@hotelclub">
     <meta name="twitter:domain" content="Hotelclub.com">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="publisher" href="https://plus.google.com/+hotelclub">
     {{ get_title() }}
     {{ stylesheet_link("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",false) }}
