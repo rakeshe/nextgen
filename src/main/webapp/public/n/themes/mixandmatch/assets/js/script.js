@@ -871,9 +871,9 @@ $(function() {
                         
                         $.ajax({
                            ///added php mailer as asp mailer is not working on server
-                          url: "mailer.asp",
+                          url: "mixandmatch",
                           type: "POST",
-                          data: $(form).serialize(),
+                          data: $(form).serialize() + '&isMail=true',
                           complete: function(response) {
                             //for callimg third party script
                             var email     = $('#hidden-email').val();

@@ -15,6 +15,10 @@ class IndexController extends Controller {
 
     public function initialize() {
 
+        if ($this->request->isAjax() && $this->request->getPost('isMail') == 'true') {
+
+        }
+
     }
     
     /**
