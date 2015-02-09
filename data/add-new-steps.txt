@@ -1,0 +1,29 @@
+Steps to integrate new static "application"  amce to nextgen
+See hk-calendar as example
+
+create new app folders:
+/apps/acme
+/apps/controllers
+/apps/views/themes
+/public/n/themes/acme
+
+add new files:
+/apps/acme/controllers/IndexConteoller.php
+create new namespace
+create default action "indexAction" and can be empty
+
+
+/apps/acme/views/themes/index.volt  
+basically rename index.html to index.volt and use global nextgen template scope variable if needed, like appVersion , etc
+
+
+/apps/acme/Module.php
+
+function registerAutoloaders()
+for MVC or just C if only controller
+
+public function registerServices($di)
+this adds various service to di
+
+copy static includes into public folders
+/public/n/themes/acme
