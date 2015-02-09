@@ -39,6 +39,10 @@ class Module {
                     'compiledPath' => __DIR__.'/../../data/volt/',
                     'compiledSeparator' => '_',
                 ));
+                //This binds the function php function to volt function
+                $compiler = $volt->getCompiler();
+                $compiler->addFunction('ucfirst', 'ucfirst');
+                $compiler->addFunction('print_r', 'print_r');
                 return $volt;
             },
                 '.phtml' => 'Phalcon\Mvc\View\Engine\Php' // Generate Template files uses PHP itself as the template engine

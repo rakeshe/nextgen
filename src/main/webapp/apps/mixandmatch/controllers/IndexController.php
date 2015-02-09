@@ -12,11 +12,13 @@ use \Phalcon\Mvc\Controller;
 class IndexController extends Controller {
 
     const THEME_PATH = "themes/mixandmatch/";
+    const TEMPLATE_SERVER_PATH = "http://exauric.com.au/hc_menulog/";
+    const EMAIL_TEMPLATE_DIR = "email-templates";
 
     public function initialize() {
 
         if ($this->request->isAjax() && $this->request->getPost('isMail') == 'true') {
-
+            $this->sendMessage();
         }
 
     }
@@ -49,6 +51,25 @@ class IndexController extends Controller {
             'appVersion' => APPLICATION_VERSION,
             'theme'      => self::THEME_PATH
         ));
+    }
+
+    public function getTemplate($name, $params) {
+
+        $this->view->setVars($params);
+        $view = clone $this->view;
+        $view->start();
+        $view->setRenderLevel($view::LEVEL_ACTION_VIEW);
+        $view->render(self::EMAIL_TEMPLATE_DIR, $name);
+        $view->finish();
+        return $view->getContent();
+    }
+
+    public function sendMessage() {
+
+       $html = $this->getTemplate('offer', [
+            'serverPath' => self::TEMPLATE_SERVER_PATH,
+            'firstName'  => 'Santosh Hegde'
+        ]);
     }
 
 }
