@@ -15,19 +15,30 @@ class IndexController extends Controller {
     const TEMPLATE_SERVER_PATH = "http://exauric.com.au/hc_menulog/";
     const EMAIL_TEMPLATE_DIR = "email-templates";
 
+    private $email;
+    private $place;
+    private $food;
+    private $ans;
+    private $fName;
+    private $lName;
+    private $suburb;
+    private $state;
+
     public function initialize() {
 
         if ($this->request->isAjax() && $this->request->getPost('isMail') == 'true') {
+            $this->setInputVars();
             $this->sendMessage();
         }
-
     }
     
     /**
      * Loading first time
      */
     public function init() {
-        \Phalcon\Tag::setTitle('Foodcation');
+        \Phalcon\Tag::setTitle(
+            $this->di->get('config')['site']['title']
+        );
     }
 
     /**
@@ -64,12 +75,99 @@ class IndexController extends Controller {
         return $view->getContent();
     }
 
+    private function setInputVars() {
+
+        $this->email  = $this->request->getPost('hidden-email', 'email');
+        $this->place  = $this->request->getPost('hidden-selected-place', 'string');
+        $this->food   = $this->request->getPost('hidden-selected-food', 'string');
+        $this->ans    = $this->request->getPost('answer', 'striptags');
+        $this->fName  = $this->request->getPost('first_name', 'string');
+        $this->lName  = $this->request->getPost('last_name', 'string');
+        $this->suburb = $this->request->getPost('suburb', 'string');
+        $this->state  = $this->request->getPost('state', 'string');
+    }
+
     public function sendMessage() {
 
-       $html = $this->getTemplate('offer', [
+        if ($this->email === null)
+            return;
+
+
+        //get user mail body
+       $userMailBody = $this->getTemplate('offer', [
             'serverPath' => self::TEMPLATE_SERVER_PATH,
-            'firstName'  => 'Santosh Hegde'
+            'firstName'  => $this->fName
         ]);
+
+        // send mail to user
+        $this->mail(
+            //to
+            [
+                $this->email => $this->fName .' ' . $this->lName
+            ],
+            //from
+            [
+                $this->di->get('config')['mail']['admin']['email'] => $this->di->get('config')['mail']['admin']['name']
+            ],
+            //subject
+            $this->di->get('config')['mail']['admin']['subject'],
+            //body
+            $userMailBody
+        );
+
+        //get admin body
+        $adminBody = $this->getTemplate('admin', [
+            'subject'   => $this->di->get('config')['mail']['admin']['subject'],
+            'email'     => $this->email,
+            'firstName' => $this->fName,
+            'lastName'  => $this->lName,
+            'answer'    => $this->ans,
+            'state'     => $this->state,
+            'suburb'    => $this->suburb,
+            'place'     => $this->place,
+            'food'      => $this->food,
+            'userIP'    => $this->request->getClientAddress()
+        ]);
+
+        //mail to admin
+        $this->mail(
+            //to
+            [
+                $this->di->get('config')['mail']['admin']['email'] => $this->di->get('config')['mail']['admin']['name']
+            ],
+            //from
+            [
+                $this->email => $this->fName .' ' . $this->lName
+            ],
+            //subject
+            $this->di->get('config')['mail']['admin']['subject'],
+            //body
+            $adminBody
+          );
+        $this->view->disable();
+        return;
+    }
+
+    /**
+     * @param $to array
+     * @param $from array
+     * @param $body text/html
+     */
+    private function mail($to, $from, $subject, $body, $bodyType = 'text/html') {
+
+        $transport = \Swift_MailTransport::newInstance();
+        // Create the message
+        $message = \Swift_Message::newInstance();
+        $message->setTo($to);
+        //set the subject
+        $message->setSubject($subject);
+        //set body
+        $message->setBody($body, $bodyType);
+        //set from address with name
+        $message->setFrom($from);
+        // Send the email
+        $mailer = \Swift_Mailer::newInstance($transport);
+        return $mailer->send($message);
     }
 
 }

@@ -77,9 +77,9 @@
                 <td align="left" style="font-size:15px; font-family:Arial, Helvetica, sans-serif; line-height:22px; text-align:justify;">
                     <br>
                     Dear {{ ucfirst(firstName) }}, <br/><br/>
-                    Thanks for your entry, we\'re really looking forward to reviewing your fantasy foodcation. You\'re now in the running to win a HotelClub $2500 trip including flights and accommodation and $2500 in Menulog vouchers. The winner will be announced on Monday 22 December 2014.
+                    Thanks for your entry, we're really looking forward to reviewing your fantasy foodcation. You're now in the running to win a HotelClub $2500 trip including flights and accommodation and $2500 in Menulog vouchers. The winner will be announced on Monday 22 December 2014.
                     <br><br>
-                    As a thank you for entering, here are your promo codes. And don\'t forget to download the HotelClub and Menulog apps.
+                    As a thank you for entering, here are your promo codes. And don't forget to download the HotelClub and Menulog apps.
                 </td>
             </tr>
 
@@ -91,7 +91,7 @@
             <tr>
                 <td align="left" style="font-size:22px; color:#533580; font-family:Arial, Helvetica, sans-serif; line-height:22px; text-align:center;"><br>
                     <br>
-                    Why not tell your friends about your foodcation. What\'s theirs? Share and find out<br>
+                    Why not tell your friends about your foodcation. What's theirs? Share and find out<br>
                     <br></td>
             </tr>
         </table>

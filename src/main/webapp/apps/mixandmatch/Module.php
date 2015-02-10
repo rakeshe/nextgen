@@ -9,6 +9,9 @@
 
 namespace HC\MixAndMatch;
 
+//load swift message
+require __DIR__.'/../../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+
 class Module {
 
     public function registerAutoloaders() {
@@ -50,7 +53,17 @@ class Module {
 
             return $view;
         }, true);
+
+        //To override Global configuration with module config..
+        //Get global config, override with module config and set to DI
+        $globalConfig = $di->get('config');
+        $globalConfig->merge(static::getConfig());
+        $di->set('config', $globalConfig);
         
+    }
+
+    public static function getConfig() {
+        return include __DIR__.'/config/config.php';
     }
     
 }
