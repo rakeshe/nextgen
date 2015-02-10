@@ -2340,8 +2340,21 @@ function loginParser() {
 loginParser();
 
 /*Google Map*/
-var lat = '17.5403', lang = '-1.5463';
+var map;
+var markersArray = [];
+var lat = 15.5403, lang = 10.5463;
+var zoomLevel;
 
+/** World map specific **/
+var goggleRegions = {
+    'pacific': ["AU", "FJ", "NZ"] 
+	/*'europe--uae': ["155","154","145","039"],
+    'southeast-asia': ['035'],
+    'northeast-asia': ['030'],
+    'americas': ["021","029", "013", "005"]*/
+};
+
+geocoder = new google.maps.Geocoder();
 function initialize(){
 	var mapCanvas = document.getElementById('map-canvas');
 	var mapOptions = {
@@ -2364,20 +2377,67 @@ function initialize(){
 	// add a click event handler to the map object
 	google.maps.event.addListener(map, "click", function(event)
 	{
-		//alert(event.latLng.lat()+'----'+event.latLng.lng());
 		map.setZoom(map.getZoom()+1);
 		placeMarker(event.latLng);
-
-		var zoomLevel = map.getZoom();
-		console.log(zoomLevel);
+		zoomLevel = map.getZoom();
 	});
+
 	function placeMarker(location) {
 	  var marker = new google.maps.Marker({
 		  position: location
 	  });
 	  map.setCenter(location);
+	  geocoder.geocode( {'latLng': location},	function(results, status) {
+		var tempRegionName;
+		console.log(results);
+		$.each(goggleRegions, function(key, val){
+			if(zoomLevel==3){ 
+				
+			tempRegionName = val.indexOf(results[1].address_components[2].short_name);
+				if(tempRegionName<=0){ 
+				nextgen.selRegion = key;
+					console.log(uriBase + '/' + key);
+					res = nextgen.sendRequest(uriBase + '/' + key, 'returnType=json');
+					res.success(function(data){
+						nextgen.dataP = data;
+						nextgen.drawCards();
+						nextgen.drawCountry(key, key);
+						nextgen.selRegion = key;
+						//x.selectMenu(cacheObj); // select menu
+						nextgen.setUrlToHistory(uriBase + '/' + key + nextgen.getUrlParams()); //
+						//nextgen.mapAction('');
+				
+						//changeResetToRegion();
+						//resetMapSizePos();
+						hideRegionName();
+						nextgen.drawMenu(nextgen.selRegion);
+					})
+					.error(function(data){
+						console.log('Exception: '+ data.responseText);
+					});
+					$("#map-canvas").css("width", "80%");							
+				}
+			}else if(zoomLevel==4||zoomLevel==5||zoomLevel==6){ 
+				console.log(zoomLevel);
+					for (var i=0; i<results[0].address_components.length; i++) {
+						for (var b=0;b<results[0].address_components[i].types.length;b++) {
+							//there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+							if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+								//this is the object you are looking for
+								city= results[0].address_components[i];
+								break;
+							}
+						}
+					}
+					//city data
+					console.log(city.short_name + " " + city.long_name);
+					$("#map-canvas").css("width", "80%");//resize the map
+				}else{
+					$("#map-canvas").css("width", "100%");//resize the map
+				}			
+			});
+		});
 	}
 }
-
 
 google.maps.event.addDomListener(window, 'load', initialize);
