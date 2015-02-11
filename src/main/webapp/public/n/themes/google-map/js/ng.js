@@ -2352,7 +2352,6 @@ var goggleRegions = {
 	'europe--uae': ["AT","BE","CZ","FR","DE","GR","IE","IT","NL","PT","ES","SE","TR","AE","GB"],
 	'southeast-asia': ["ID","MY","PH","SG","TH","VN"],
 	'northeast-asia': ["CN","HK","JP","MO","KR","TW"]
-    /*'northeast-asia': ['030'],*/
 };
 
 geocoder = new google.maps.Geocoder();
@@ -2393,21 +2392,21 @@ function initialize(){
 		$.each(goggleRegions, function(key, val){
 			if(zoomLevel==3){ 
 				
-			//fetch country
-			for (var j=0; j<results[0].address_components.length; j++) {
-				for (var c=0;c<results[0].address_components[j].types.length;c++) {
-					//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-					if (results[0].address_components[j].types[0] == "country") {
-						//this is the object you are looking for
-						var country= results[0].address_components[j];
-						countryShortName = country.short_name;
+				//fetch country
+				for (var j=0; j<results[0].address_components.length; j++) {
+					for (var c=0;c<results[0].address_components[j].types.length;c++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (results[0].address_components[j].types[0] == "country") {
+							//this is the object you are looking for
+							var country= results[0].address_components[j];
+							countryShortName = country.short_name;
+							break;
+						}
 					}
 				}
-			}
-			tempRegionName = val.indexOf(countryShortName);
-			alert(tempRegionName);
+				tempRegionName = val.indexOf(countryShortName);
 				if(tempRegionName>=0){ 
-				nextgen.selRegion = key;
+					nextgen.selRegion = key;
 					console.log(uriBase + '/' + key);
 					res = nextgen.sendRequest(uriBase + '/' + key, 'returnType=json');
 					res.success(function(data){
@@ -2418,7 +2417,6 @@ function initialize(){
 						//x.selectMenu(cacheObj); // select menu
 						nextgen.setUrlToHistory(uriBase + '/' + key + nextgen.getUrlParams()); //
 						//nextgen.mapAction('');
-				
 						//changeResetToRegion();
 						//resetMapSizePos();
 						hideRegionName();
@@ -2428,29 +2426,43 @@ function initialize(){
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);
 					});
-					$("#map-canvas").css("width", "80%");							
+					$("#map-canvas").css("width", "80%");
 				}
-			}else if(zoomLevel==4||zoomLevel==5||zoomLevel==6){ 
-				console.log(zoomLevel);
-					for (var i=0; i<results[0].address_components.length; i++) {
-						for (var b=0;b<results[0].address_components[i].types.length;b++) {
-							//there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-							if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-								//this is the object you are looking for
-								city= results[0].address_components[i];
-								break;
-							}
+			}else if(zoomLevel==4){
+				//fetch country
+				for (var k=0; k<results[0].address_components.length; k++) {
+					for (var d=0;d<results[0].address_components[k].types.length;d++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (results[0].address_components[k].types[0] == "country") {
+							//this is the object you are looking for
+							var country= results[0].address_components[k];
+							countryLongsName = country.long_name.toLowerCase();
+							console.log(countryLongsName);
+							break;
 						}
 					}
-					//city data
-					console.log(city.short_name + " " + city.long_name);
-					$("#map-canvas").css("width", "80%");//resize the map
-				}else{
-					$("#map-canvas").css("width", "100%");//resize the map
-				}			
+				}
+				tempRegionName = val.indexOf(countryShortName);
+			}else if(zoomLevel==5||zoomLevel==6){ 
+			console.log(zoomLevel);
+			for (var i=0; i<results[0].address_components.length; i++) {
+				for (var b=0;b<results[0].address_components[i].types.length;b++) {
+					//there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+					if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+						//this is the object you are looking for
+						city= results[0].address_components[i];
+						break;
+					}
+				}
+			}
+			//city data
+			console.log(city.short_name + " " + city.long_name);
+			$("#map-canvas").css("width", "80%");//resize the map
+		}else{
+			$("#map-canvas").css("width", "100%");//resize the map
+		}			
 			});
 		});
 	}
 }
-
 google.maps.event.addDomListener(window, 'load', initialize);
