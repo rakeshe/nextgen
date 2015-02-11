@@ -896,6 +896,7 @@ $(function() {
                                 CITY_: suburb
                               },
                                function(data) {} );
+                              /*
                            //added data to database
                             $.ajax({
                                 url: "add_database.php",
@@ -903,6 +904,7 @@ $(function() {
                                 data: $(form).serialize(),
                               });
                       //end
+                      */
                             //slide to 4th screen
                             $('.logo').fadeOut();
                             gotoPage(4);

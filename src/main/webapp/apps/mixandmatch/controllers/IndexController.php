@@ -29,6 +29,9 @@ class IndexController extends Controller {
         if ($this->request->isAjax() && $this->request->getPost('isMail') == 'true') {
             $this->setInputVars();
             $this->sendMessage();
+            $this->view->disable();
+            $this->response->setHeader("Content-Type", "x-www-form-urlencoded");
+            die();
         }
     }
     
@@ -144,14 +147,16 @@ class IndexController extends Controller {
             //body
             $adminBody
           );
-        $this->view->disable();
         return;
     }
 
     /**
      * @param $to array
      * @param $from array
+     * @param $subject string
      * @param $body text/html
+     * @param string sting
+     * @return bool
      */
     private function mail($to, $from, $subject, $body, $bodyType = 'text/html') {
 
