@@ -60,6 +60,7 @@ $router->add(
 				'curr' 		   => 1
 		)
 );
+
 /**
  * Hongkong Calendar : Backbone.js app
  * matches: /hong-kong-interactive
@@ -69,6 +70,21 @@ $router->add(
     array(
         'module'     => 'hk-calendar',
         'namespace'  => 'HC\HkCalendar\Controllers\\',
+        'controller' => 'index',
+        'action'     => 'index',
+        "params"     => 4,
+    )
+);
+
+/**
+ * Hongkong Calendar : Backbone.js app
+ * matches: /hong-kong-interactive
+ */
+$router->add(
+    '/n/mixandmatch',
+    array(
+        'module'     => 'mixandmatch',
+        'namespace'  => 'HC\MixAndMatch\Controllers\\',
         'controller' => 'index',
         'action'     => 'index',
         "params"     => 4,

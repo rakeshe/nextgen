@@ -1,0 +1,21 @@
+// Core imports
+@import "compass";
+
+// Default project mixins
+@import "mixins";
+
+/* ------- BASE SETTINGS -------
+------------------------------*/
+
+body {
+    font-family: $font-family_sans_300;
+    font-size: 16px;
+}
+
+*, *:before, *:after {
+    @include box-sizing(border-box);
+}
+
+.clear {
+    @include clearfix;
+}

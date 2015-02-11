@@ -17,7 +17,7 @@ class Module {
         $loader->registerNamespaces(array(
             'HC\Api\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
             'HC\Api\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
-            'HC\Library' => __DIR__ . "/../../vendor/library"
+            'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
         ));
         $loader->register();
     }
