@@ -31,6 +31,10 @@ class MapController extends ControllerBase
     const DEFAULT_ZOOM_LEVEL = 15;
     const DEFAULT_RESPONSE_TYPE = 'html';
 
+    const SERVICE_URI_LOCATION = '//teakettle.qa1.o.com/location/';
+    const SERVICE_URI_HOTEL_CONTENT = 'http://teakettle.qa1.o.com/content/hotel/partial/en/AU';
+
+
     protected $apiModel;
     protected $apiUrl;
 
@@ -51,11 +55,17 @@ class MapController extends ControllerBase
     protected $provider;
 
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->init();
     }
 
+    /**
+     *
+     */
     public function init()
     {
         $this->view->disable();
@@ -77,7 +87,7 @@ class MapController extends ControllerBase
      */
     public function getApiModel()
     {
-        if(null === $this->apiModel){
+        if (null === $this->apiModel) {
             $this->setApiModel();
         }
         return $this->apiModel;
@@ -88,7 +98,7 @@ class MapController extends ControllerBase
      */
     public function setApiModel()
     {
-        $refererHost = $this->getHttpRefererHost();
+        $refererHost    = $this->getHttpRefererHost();
         $this->apiModel = $refererHost == 'hotelclub.cn' ? 'ditu' : self::DEFAULT_API_MODEL;
 
         $apiUrl = $this->apiModel === self::DEFAULT_API_MODEL ? self::GOOGLE_MAP_URI : self::DITU_MAP_URI;
@@ -102,7 +112,7 @@ class MapController extends ControllerBase
      */
     public function getApiUrl()
     {
-        if(null === $this->apiUrl){
+        if (null === $this->apiUrl) {
             $this->setApiUrl();
         }
         return $this->apiUrl;
@@ -112,7 +122,7 @@ class MapController extends ControllerBase
      * @param string $apiUrl
      * @return $this
      */
-    public function setApiUrl($apiUrl = self::GOOGLE_MAP_URI )
+    public function setApiUrl($apiUrl = self::GOOGLE_MAP_URI)
     {
         $this->apiUrl = $apiUrl;
         return $this;
@@ -129,6 +139,9 @@ class MapController extends ControllerBase
         return $this->params;
     }
 
+    /**
+     * @return $this
+     */
     public function setParams()
     {
         $this->params = $this->dispatcher->getParams();
@@ -140,7 +153,7 @@ class MapController extends ControllerBase
      */
     public function getMapHeight()
     {
-        if(null === $this->mapHeight){
+        if (null === $this->mapHeight) {
             $this->setMapHeight();
         }
         return $this->mapHeight;
@@ -148,6 +161,7 @@ class MapController extends ControllerBase
 
     /**
      * @param mixed $mapHeight
+     * @return $this
      */
     public function setMapHeight($mapHeight = self::DEFAULT_MAP_HEIGHT)
     {
@@ -160,7 +174,7 @@ class MapController extends ControllerBase
      */
     public function getMapTypeId()
     {
-        if(null === $this->mapTypeId){
+        if (null === $this->mapTypeId) {
             $this->setMapTypeId();
         }
         return $this->mapTypeId;
@@ -168,6 +182,7 @@ class MapController extends ControllerBase
 
     /**
      * @param mixed $mapTypeId
+     * @return $this
      */
     public function setMapTypeId($mapTypeId = self::DEFAULT_TYPEID)
     {
@@ -180,7 +195,7 @@ class MapController extends ControllerBase
      */
     public function getMapWidth()
     {
-        if(null === $this->mapWidth){
+        if (null === $this->mapWidth) {
             $this->setMapWidth();
         }
         return $this->mapWidth;
@@ -188,6 +203,7 @@ class MapController extends ControllerBase
 
     /**
      * @param mixed $mapWidth
+     * @return $this
      */
     public function setMapWidth($mapWidth = self::DEFAULT_MAP_WIDTH)
     {
@@ -200,7 +216,7 @@ class MapController extends ControllerBase
      */
     public function getMapZoomLevel()
     {
-        if(null === $this->mapZoomLevel){
+        if (null === $this->mapZoomLevel) {
             $this->setMapZoomLevel();
         }
         return $this->mapZoomLevel;
@@ -221,7 +237,7 @@ class MapController extends ControllerBase
      */
     public function getMapLanguage()
     {
-        if(null=== $this->mapLanguage){
+        if (null === $this->mapLanguage) {
             $this->setMapLanguage();
         }
 
@@ -239,7 +255,6 @@ class MapController extends ControllerBase
     }
 
 
-
     /**
      * @return mixed
      */
@@ -250,6 +265,7 @@ class MapController extends ControllerBase
 
     /**
      * @param mixed $latitude
+     * @return $this
      */
     public function setLatitude($latitude)
     {
@@ -267,6 +283,7 @@ class MapController extends ControllerBase
 
     /**
      * @param mixed $locationId
+     * @return $this
      */
     public function setLocationId($locationId)
     {
@@ -283,7 +300,8 @@ class MapController extends ControllerBase
     }
 
     /**
-     * @param mixed $longitute
+     * @param $longitute
+     * @return $this
      */
     public function setLongitute($longitute)
     {
@@ -300,7 +318,8 @@ class MapController extends ControllerBase
     }
 
     /**
-     * @param mixed $onegId
+     * @param $onegId
+     * @return $this
      */
     public function setOnegId($onegId)
     {
@@ -345,7 +364,7 @@ class MapController extends ControllerBase
      */
     public function getResponse()
     {
-        if(null == $this->response){
+        if (null == $this->response) {
             $this->setResponse();
         }
         return $this->response;
@@ -361,12 +380,19 @@ class MapController extends ControllerBase
     }
 
 
-
-    protected function getGoogleLanguageByLocale($locale = self::DEFAULT_LOCALE ){
+    /**
+     * @param string $locale
+     */
+    protected function getGoogleLanguageByLocale($locale = self::DEFAULT_LOCALE)
+    {
 
     }
 
-    protected function getHttpRefererHost(){
+    /**
+     * @return null
+     */
+    protected function getHttpRefererHost()
+    {
         $request = new \Phalcon\Http\Request();
         $referer = parse_url($request->getHTTPReferer());
         return !empty($referer['host']) ? $referer['host'] : null;
@@ -374,6 +400,9 @@ class MapController extends ControllerBase
     }
 
 
+    /**
+     * @param $body
+     */
     protected function sendResponse($body)
     {
         $this->getResponse()
@@ -384,6 +413,9 @@ class MapController extends ControllerBase
             ->send();
     }
 
+    /**
+     * @param string $context
+     */
     protected function send404Response($context = 'location')
     {
         $this->getResponse()
@@ -394,23 +426,31 @@ class MapController extends ControllerBase
     }
 
 
-    protected function dumpResponse($response){
+    /**
+     * @param $response
+     */
+    protected function dumpResponse($response)
+    {
         echo $response->header->get('Content-Type') . PHP_EOL;
-        echo $response->header->statusCode  . PHP_EOL;
+        echo $response->header->statusCode . PHP_EOL;
         echo $response->body;
 
     }
 
+    /**
+     * @todo this method is messy use interface or something
+     * @return $this
+     */
     protected function setMapData()
     {
         switch ($this->dispatcher->getActionName()) {
             // matches: api/map/hotel/[oneg id]
             case 'hotel':
-                $this->onegId = $this->params[0];
-                $this->mapWidth     = empty($this->params[1]) ? self::DEFAULT_MAP_WIDTH : $this->params[1];
-                $this->mapHeight    = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
+                $this->onegId      = $this->params[0];
+                $this->mapWidth    = empty($this->params[1]) ? self::DEFAULT_MAP_WIDTH : $this->params[1];
+                $this->mapHeight   = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
                 $this->mapLanguage = empty($this->params[3]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[3];
-                $this->mapTypeId = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
+                $this->mapTypeId   = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
                 // use lapsang api
                 // http://teakettle.qa1.o.com/content/hotel/13902/en/HCL/BASIC
 
@@ -418,11 +458,11 @@ class MapController extends ControllerBase
 
             // matches: api/map/location/[location id]
             case 'location':
-                $this->locationId = $this->params[0];
-                $this->mapWidth     = empty($this->params[1]) ? self::DEFAULT_MAP_WIDTH : $this->params[1];
-                $this->mapHeight    = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
+                $this->locationId  = $this->params[0];
+                $this->mapWidth    = empty($this->params[1]) ? self::DEFAULT_MAP_WIDTH : $this->params[1];
+                $this->mapHeight   = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
                 $this->mapLanguage = empty($this->params[3]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[3];
-                $this->mapTypeId = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
+                $this->mapTypeId   = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
                 // use lapsang api
                 // http://teakettle.qa1.o.com/location/509/en_AU
                 break;
@@ -430,18 +470,70 @@ class MapController extends ControllerBase
             // matches api/map/get/[long]/[lat]/[width]/[height]/MAP_TYPE_ID
             case 'get':
             default:
-                $this->longitute = $this->params[0];
-                $this->latitude  = $this->params[1];
-                $this->mapWidth     = empty($this->params[2]) ? self::DEFAULT_MAP_WIDTH : $this->params[2];
-                $this->mapHeight    = empty($this->params[3]) ? self::DEFAULT_MAP_HEIGHT : $this->params[3];
+                $this->longitute   = $this->params[0];
+                $this->latitude    = $this->params[1];
+                $this->mapWidth    = empty($this->params[2]) ? self::DEFAULT_MAP_WIDTH : $this->params[2];
+                $this->mapHeight   = empty($this->params[3]) ? self::DEFAULT_MAP_HEIGHT : $this->params[3];
                 $this->mapLanguage = empty($this->params[4]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[4];
-                $this->mapTypeId = empty($this->params[5]) ? self::DEFAULT_TYPEID : $this->params[5];
+                $this->mapTypeId   = empty($this->params[5]) ? self::DEFAULT_TYPEID : $this->params[5];
                 break;
         }
         return $this;
     }
 
+    /**
+     * @param        $requestUri
+     * @param        $requestParams
+     * @param string $context
+     */
+    protected function provideResponse($requestUri, $requestParams, $context = 'location')
+    {
+        $response = $this->getProviderResponse($requestUri, $requestParams);
+        $responseBody = json_decode($response->body);
 
+        $responseBody = $context == 'hotel' && !empty($responseBody->content_partials[0]) ? $responseBody->content_partials[0] : $responseBody;
+
+        if ($this->parseCoordinates($responseBody)) {
+            $this->sendResponse($this->getMapHtml());
+        } else {
+            $this->send404Response($context);
+        }
+
+    }
+
+    /**
+     * @param $responseBody
+     * @return bool
+     */
+    protected function parseCoordinates($responseBody)
+    {
+        if (!empty($responseBody->coordinate)) {
+            $this->longitute = $responseBody->coordinate->longitude;
+            $this->latitude  = $responseBody->coordinate->latitude;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $requestUri
+     * @param $requestParams
+     * @return \Phalcon\Http\Client\Response
+     * @throws \Phalcon\Http\Client\Provider\Exception
+     */
+    protected function getProviderResponse($requestUri, $requestParams)
+    {
+        $provider = Request::getProvider();
+        $provider->setBaseUri(self::BASE_URL);
+        $provider->header->set('Accept', 'application/json');
+        return $provider->get($requestUri, $requestParams);
+    }
+
+    /**
+     * @param bool $wrapHtml
+     * @return string
+     */
     protected function getMapHtml($wrapHtml = true)
     {
         $htmlHead = '
@@ -485,47 +577,51 @@ class MapController extends ControllerBase
             $htmlHead . $htmlBody;
     }
 
+    /**
+     *
+     */
     public function indexAction()
     {
 
     }
 
 
+    /**
+     * default method, Render map based on co-ordinates
+     */
     public function getAction()
     {
-
         $this->sendResponse($this->getMapHtml());
 
     }
 
+    /**
+     * Render map based on location id
+     */
     public function locationAction()
     {
-        $requestUri = '//teakettle.qa1.o.com/location/' . $this->locationId . '/en_AU';
+        $requestUri    = self::SERVICE_URI_LOCATION . $this->locationId . '/en_AU';
         $requestParams = [];
-        $response        = $this->getProviderResponse($requestUri, $requestParams, false);
-        $locationInfo    = json_decode($response->body);
-        if(!empty($locationInfo->coordinate)){
-            $this->longitute = $locationInfo->coordinate->longitude;
-            $this->latitude  = $locationInfo->coordinate->latitude;
-            $this->sendResponse($this->getMapHtml());
-        } else {
-            $this->send404Response();
-        }
 
-
-
+        $this->provideResponse($requestUri, $requestParams);
     }
 
+    /**
+     * Render map based on hotel oneg id
+     */
     public function hotelAction()
     {
+        $requestUri    = self::SERVICE_URI_HOTEL_CONTENT;
+        $requestParams = [
+            'hid'     => $this->onegId,
+            'posCode' => 'hcl',
+            'part'    => 'coreInfo'
+        ];
+
+        $this->provideResponse($requestUri, $requestParams, 'hotel');
 
     }
 
-    protected function getProviderResponse($requestUri, $requestParams){
-        $provider = Request::getProvider();
-        $provider->setBaseUri(self::BASE_URL);
-        $provider->header->set('Accept', 'application/json');
-        return $provider->get($requestUri, $requestParams);
-    }
+
 
 }
