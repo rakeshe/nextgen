@@ -2347,11 +2347,12 @@ var zoomLevel;
 
 /** World map specific **/
 var goggleRegions = {
-    'pacific': ["AU", "FJ", "NZ"] 
-	/*'europe--uae': ["155","154","145","039"],
-    'southeast-asia': ['035'],
-    'northeast-asia': ['030'],
-    'americas': ["021","029", "013", "005"]*/
+    'pacific': ["AU", "FJ", "NZ"],
+    'americas': ["AR","BR", "CA", "MX", "US"],
+	'europe--uae': ["AT","BE","CZ","FR","DE","GR","IE","IT","NL","PT","ES","SE","TR","AE","GB"],
+	'southeast-asia': ["ID","MY","PH","SG","TH","VN"],
+	'northeast-asia': ["CN","HK","JP","MO","KR","TW"]
+    /*'northeast-asia': ['030'],*/
 };
 
 geocoder = new google.maps.Geocoder();
@@ -2386,15 +2387,26 @@ function initialize(){
 	  var marker = new google.maps.Marker({
 		  position: location
 	  });
-	  map.setCenter(location);
 	  geocoder.geocode( {'latLng': location},	function(results, status) {
-		var tempRegionName;
+		var tempRegionName, countryShortName;
 		console.log(results);
 		$.each(goggleRegions, function(key, val){
 			if(zoomLevel==3){ 
 				
-			tempRegionName = val.indexOf(results[1].address_components[2].short_name);
-				if(tempRegionName<=0){ 
+			//fetch country
+			for (var j=0; j<results[0].address_components.length; j++) {
+				for (var c=0;c<results[0].address_components[j].types.length;c++) {
+					//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+					if (results[0].address_components[j].types[0] == "country") {
+						//this is the object you are looking for
+						var country= results[0].address_components[j];
+						countryShortName = country.short_name;
+					}
+				}
+			}
+			tempRegionName = val.indexOf(countryShortName);
+			alert(tempRegionName);
+				if(tempRegionName>=0){ 
 				nextgen.selRegion = key;
 					console.log(uriBase + '/' + key);
 					res = nextgen.sendRequest(uriBase + '/' + key, 'returnType=json');
@@ -2411,6 +2423,7 @@ function initialize(){
 						//resetMapSizePos();
 						hideRegionName();
 						nextgen.drawMenu(nextgen.selRegion);
+						map.setCenter(location);
 					})
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);

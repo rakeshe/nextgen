@@ -1887,7 +1887,7 @@ margin-left: 12px
 }
 #map-canvas{
 	overflow: hidden !important;
-	z-index: 1 !important;
+	z-index: 0 !important;
 }
 .search_input_hotel{ cursor:pointer; }
 .hotel_gold_cards{
