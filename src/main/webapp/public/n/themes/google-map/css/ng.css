@@ -3,7 +3,7 @@
 	#banner_image { margin:0px 0px 0px 15px; z-index:999 !important; line-height: 0; overflow: hidden;width: 957px; border-top: 5px solid #e21e28; }
 	/*#banner_val { float: right; left: 674px; margin-bottom: -250px; margin-top: 20px; position: absolute; text-align: right; width: 300px; z-index:999;}*/
 	#banner_val { position:relative; margin-bottom:-250px; z-index:92   ;float:right;text-align:right; margin-top:20px;width:300px;}
-	#menu_new { margin: 0; padding: 0; }
+	#menu_new { margin: 0; padding: 0; z-index:3 !important; }
     #menu_new li a{background-color: #e21e28;
     border-bottom: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
@@ -19,8 +19,10 @@
     margin: 0;
         /*padding: 22px 35px;*/
     padding: 6px 10px 6px;
+	position: relative;
     text-align: center;
     width: 20%;
+	z-index: 99 !important;
     }
     /*#menu_new li:hover{ background-color: #FFF !important; color:#e21e28 !important;}
     #menu_new li a:hover{color:#e21e28 !important;}*/
@@ -2180,4 +2182,4 @@ position: absolute;
 width:30%;
 }
 /**Google Map CSS*/
-#map-canvas { width: 100%; height: 400px; }
+#map-canvas { left: 0px; top: 0px; width: 957px; height: 400px; z-index:0 !important; }

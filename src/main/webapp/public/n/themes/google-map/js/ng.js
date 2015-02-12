@@ -2386,13 +2386,15 @@ function initialize(){
 	  var marker = new google.maps.Marker({
 		  position: location
 	  });
+	  map.setCenter(location);
 	  geocoder.geocode( {'latLng': location},	function(results, status) {
 		var tempRegionName, countryShortName;
 		console.log(results);
 		$.each(goggleRegions, function(key, val){
-			if(zoomLevel==3){ 
-				
-				//fetch country
+			if(zoomLevel==3){
+				$("#map-canvas").css("top", "-400px");//Adjusting map position
+				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+				//fetch region
 				for (var j=0; j<results[0].address_components.length; j++) {
 					for (var c=0;c<results[0].address_components[j].types.length;c++) {
 						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
@@ -2414,21 +2416,17 @@ function initialize(){
 						nextgen.drawCards();
 						nextgen.drawCountry(key, key);
 						nextgen.selRegion = key;
-						//x.selectMenu(cacheObj); // select menu
 						nextgen.setUrlToHistory(uriBase + '/' + key + nextgen.getUrlParams()); //
-						//nextgen.mapAction('');
-						//changeResetToRegion();
-						//resetMapSizePos();
 						hideRegionName();
 						nextgen.drawMenu(nextgen.selRegion);
-						map.setCenter(location);
 					})
 					.error(function(data){
 						console.log('Exception: '+ data.responseText);
 					});
-					$("#map-canvas").css("width", "80%");
 				}
-			}else if(zoomLevel==4){
+			}else if(zoomLevel==4){				
+				$("#map-canvas").css("top", "-400px");//Adjusting map position
+				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
 				//fetch country
 				for (var k=0; k<results[0].address_components.length; k++) {
 					for (var d=0;d<results[0].address_components[k].types.length;d++) {
@@ -2436,31 +2434,46 @@ function initialize(){
 						if (results[0].address_components[k].types[0] == "country") {
 							//this is the object you are looking for
 							var country= results[0].address_components[k];
-							countryLongsName = country.long_name.toLowerCase();
-							console.log(countryLongsName);
+							countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
+							countryShortName = country.short_name.toUpperCase();//country short name
 							break;
 						}
 					}
 				}
-				tempRegionName = val.indexOf(countryShortName);
-			}else if(zoomLevel==5||zoomLevel==6){ 
-			console.log(zoomLevel);
-			for (var i=0; i<results[0].address_components.length; i++) {
-				for (var b=0;b<results[0].address_components[i].types.length;b++) {
-					//there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-					if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-						//this is the object you are looking for
-						city= results[0].address_components[i];
-						break;
+				res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
+				res.success(function(data){
+					nextgen.dataP = data;
+					nextgen.drawCards();
+					nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
+					nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
+					data = regionMapConf('city-code', nextgen.selRegion);
+					nextgen.mapAction(nextgen.selRegion);
+					hideRegionName();
+				})
+				.error(function(data){
+					console.log('Exception: '+ data.responseText);
+				});
+			}else if(zoomLevel==5||zoomLevel==6){
+				$("#map-canvas").css("top", "-400px");//Adjusting map position
+				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position				
+				//fetch city
+				for (var i=0; i<results[0].address_components.length; i++) {
+					for (var b=0;b<results[0].address_components[i].types.length;b++) {
+						//there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+						if (results[0].address_components[i].types[b] == "locality") {
+							//this is the object you are looking for
+							city= results[0].address_components[i];
+							break;
+						}
 					}
 				}
+				//city data
+				console.log(city.short_name + " " + city.long_name);
+			}else{
+				//Reseting all the values
+				$("#map-canvas").css("top", "0px");//Reseting map position
+				$("#menu_new").css("margin-top", "0px");//Reseting menu position
 			}
-			//city data
-			console.log(city.short_name + " " + city.long_name);
-			$("#map-canvas").css("width", "80%");//resize the map
-		}else{
-			$("#map-canvas").css("width", "100%");//resize the map
-		}			
 			});
 		});
 	}
