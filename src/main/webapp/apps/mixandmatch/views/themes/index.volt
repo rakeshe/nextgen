@@ -40,32 +40,32 @@
 
 <body>
 <div class="mobile-lands" style="display:none;">
-    <img src="{{ theme }}assets/img/or.png" width="128" height="128">
+    <img src="{{ url(theme ~ 'assets/img/or.png')}}" width="128" height="128">
     <p>Best viewed in portrait mode. Please switch back to portrait orientation.</p>
 </div>
 
 <div class="logo">
-    <img src="{{ theme }}assets/img/logo.png" alt="">
+    <img src="{{ url(theme ~ 'assets/img/logo.png')}}" alt="">
 </div>
 
 <div id="container" class="clear">
     <!-- LOGIN SCREEN -->
     <div id="screen-1" role="main" class="active-page section clear screen-1">
         <div class="logo mobile">
-            <img src="{{ theme }}assets/img/logo.png" alt="">
+            <img src="{{ url(theme ~ 'assets/img/logo.png')}}" alt="">
         </div>
         <div class="col-left">
             <div class="bg-image">
-                <div class="img b-lazy" data-src="{{ theme }}assets/img/login-bg-1.jpg" data-src-small="{{ theme }}assets/img/login-bg-1-mobile.jpg"></div>
+                <div class="img b-lazy" data-src="{{ url(theme ~'assets/img/login-bg-1.jpg')}}" data-src-small="{{ url(theme ~'assets/img/login-bg-1-mobile.jpg')}}"></div>
             </div>
         </div>
         <div class="col-right">
             <div class="bg-image">
-                <div class="img b-lazy" data-src="{{ theme }}assets/img/login-bg-sg.jpg" data-src-small="{{ theme }}assets/img/login-bg-sg-mobile.jpg"></div>
+                <div class="img b-lazy" data-src="{{ url(theme~ 'assets/img/login-bg-sg.jpg')}}" data-src-small="{{ url(theme ~ 'assets/img/login-bg-sg-mobile.jpg')}}"></div>
             </div>
         </div>
         <div class="login-box clear">
-            <img src="{{ theme }}assets/img/login-head.png" alt="" class="head">
+            <img src="{{ url(theme ~ 'assets/img/login-head.png')}}" alt="" class="head">
             <p>Mix &amp; match your foodcation for a chance to win a $2500 HotelClub vacation + $2500 in Menulog takeaway vouchers.</p>
             <span class="enter">Enter now</span>
             <a href="#" class="btn fb-btn facebook-login"><span>Enter with facebook</span></a>
@@ -172,7 +172,7 @@
         <div class="col-left">
             <h4>Success! Your entry has been received,<br> thank you.</h4>
             <div class="final-shot clear">
-                <img src="{{ theme }}assets/img/final-shot.jpg" class="final-shot-img"alt="">
+                <img src="{{ url(theme ~ 'assets/img/final-shot.jpg')}}" class="final-shot-img"alt="">
                 <span class="f-tip"></span>
             </div>
             <p class="s-txt s-txt-ipad">Why not tell your friends about your foodcation. <br>
@@ -187,7 +187,7 @@
         </div>
         <div class="col-right">
             <div class="coupon cp-1 zol">
-                <div class="coupon-inner" style="background-image: url('{{ theme }}assets/img/cp-1.png')">
+                <div class="coupon-inner" style="background-image: url('{{ url(theme ~ 'assets/img/cp-1.png')}}">
                     <a href="https://play.google.com/store/apps/details?id=com.menulog.m&hl=en" class="google-play"></a>
                     <a href="https://itunes.apple.com/au/app/menulog-order-takeaway-food/id327982905?mt=8" class="app-store"></a>
                     <div class="clear"></div>
@@ -196,7 +196,7 @@
                 </div>
             </div>
             <div class="coupon cp-2 hoc">
-                <div class="coupon-inner" style="background-image: url('{{ theme }}assets/img/cp-2.png')">
+                <div class="coupon-inner" style="background-image: url('{{ url(theme ~ 'assets/img/cp-2.png')}}">
                     <a href="https://play.google.com/store/apps/details?id=com.hotelclub" class="google-play"></a>
                     <a href="https://itunes.apple.com/au/app/hotelclub-hotel-booking-hotel/id580254072" class="app-store"></a>
                     <div class="clear"></div>
