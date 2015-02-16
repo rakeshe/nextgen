@@ -32,7 +32,7 @@ class MapController extends ControllerBase
     const DEFAULT_RESPONSE_TYPE = 'html';
 
     const SERVICE_URI_LOCATION = '//teakettle.qa1.o.com/location/';
-    const SERVICE_URI_HOTEL_CONTENT = 'http://teakettle.qa1.o.com/content/hotel/partial/en/AU';
+    const SERVICE_URI_HOTEL_CONTENT = '//teakettle.qa1.o.com/content/hotel/partial/en/AU';
 
 
     protected $apiModel;
