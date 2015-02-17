@@ -2353,6 +2353,12 @@ var goggleRegions = {
 	'southeast-asia': ["ID","MY","PH","SG","TH","VN"],
 	'northeast-asia': ["CN","HK","JP","MO","KR","TW"]
 };
+
+/** Zoom Level for each region inside map specific **/
+var googleRegionZoomLevel = {
+	'pacific': 3, 'americas': 3, 'europe--uae': 4,'southeast-asia': 4, 'northeast-asia': 6
+}
+
 /** Zoom Level for each country inside map specific **/
 var googleCountryZoomLevel = {
 	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
@@ -2415,7 +2421,8 @@ function initialize(){
 				$.each(goggleRegions, function(regionName, regionValue){
 					tempRegionName = regionValue.indexOf(countryShortName);
 					if(tempRegionName>=0){ 
-						map.setZoom(map.getZoom()+1);
+						if(countryShortName!='MO'){ map.setZoom(googleRegionZoomLevel[regionName]); }
+						else{ map.setZoom(7); }
 						map.setCenter(location);
 						nextgen.selRegion = regionName;
 						res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
@@ -2441,9 +2448,52 @@ function initialize(){
 					}
 				});
 				if(regionVal == 0) { alert('Please select the valid region');return false; }
+			}else if(zoomLevel==3){
+				//fetch country
+				for (var k=0; k<results[0].address_components.length; k++) {
+					for (var d=0;d<results[0].address_components[k].types.length;d++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (results[0].address_components[k].types[0] == "country") {
+							//this is the object you are looking for
+							var country= results[0].address_components[k];
+							countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
+							countryShortName = country.short_name.toUpperCase();//country short name
+							break;
+						}
+					}
+				}
+				console.log(countryShortName, countryLongName);
+				$.each(goggleRegions, function(regionName, regionValue){
+					tempRegionName = regionValue.indexOf(countryShortName);
+					//console.log(regionName, tempRegionName);
+					if(tempRegionName>=0){
+						map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]);
+						map.setCenter(location);
+						zoomLevel = map.getZoom();
+						console.log(zoomLevel);
+						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
+						res.success(function(data){
+							nextgen.dataP = data;
+							nextgen.drawCards();
+							nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
+							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
+							data = regionMapConf('city-code', nextgen.selRegion);
+							nextgen.mapAction(nextgen.selRegion);
+							hideRegionName();
+						})
+						.error(function(data){
+							console.log('Exception: '+ data.responseText);
+						});
+						
+						$("#map-canvas").css("top", "-400px");//Adjusting map position
+						$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+					}
+				});
+			}else{
+				$("#map-canvas").css("top", "0px");//Reseting map position
+				$("#menu_new").css("margin-top", "0px");//Reseting menu position
 			}
 		});
 	}
 }
-
 google.maps.event.addDomListener(window, 'load', initialize);
