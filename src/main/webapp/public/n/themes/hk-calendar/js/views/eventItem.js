@@ -29,6 +29,8 @@ app.EventItemView = Backbone.View.extend({
 
 	showLightbox: function(){
 		var height = window.innerHeight;
+		var properHeight = height > 480 ? height : 480;
+
 		$(this.el).show(100);
 		
 		var self = $(this.el);
@@ -38,7 +40,7 @@ app.EventItemView = Backbone.View.extend({
 
 		if(window.innerWidth < 800) {
 			$('html, body').animate({
-				scrollTop : height*2-120
+				scrollTop : properHeight+height-120
 			}, 300);
 			$('.events').css({
 				'height': 200,

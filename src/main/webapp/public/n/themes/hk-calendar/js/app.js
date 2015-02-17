@@ -43,15 +43,17 @@ function sh() {
 $(document).ready(function(){
 	loop();
 	var height = window.innerHeight;
+
 	var docs = [0, height, height *2, height *3+60, height*4];
 
 	function checkMobile() {
 		//console.log('hello');
 		if(window.innerWidth< 800){
-			$('.month-container').css('height', height > 480 ? height : 480);
+				var properHeight = height > 480 ? height : 480;
+			$('.month-container').css('height', properHeight);
 			$('.events').css('min-height', height);
 			$('#lightbox').css({
-				'top' : height
+				'top' : properHeight
 			});
 			var evLength = Math.floor($('.events .container').width()/155);
 			
@@ -64,7 +66,6 @@ $(document).ready(function(){
 	$('section.main').css('height', height);
 	
 	checkMobile();
-
 	$('.arrow-white').css('top', height-40);
 
 	$('.arrow').click(function(){
@@ -75,9 +76,10 @@ $(document).ready(function(){
 				loop = true;
 			}
 		})
-    $('body').animate({
+    $('body, html').animate({
         scrollTop: curr+'px'
     }, 2000);
+
 	})
 
 

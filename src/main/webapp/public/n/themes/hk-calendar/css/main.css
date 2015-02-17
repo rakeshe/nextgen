@@ -217,12 +217,15 @@ h3 {
 /* HEADER */
 header {
   position: fixed;
-  z-index: 4;
+  z-index: 100;
   width: 100%;
 }
 header img {
   position: absolute;
-  z-index: 2;
+  z-index: 100;
+}
+header .link-anchor {
+  border: none;
 }
 header img#logo {
   left: 20px;
@@ -317,6 +320,7 @@ nav#menu ul a {
     left: 0;
     background: none;
     height: 700px;
+      z-index: 5;
   }
   nav#menu ul {
     margin-top: 150px;
@@ -333,6 +337,12 @@ nav#menu ul a {
 .main {
   position: relative;
 }
+@media screen and (max-width: 320px) {
+    header img#logo {
+        height: 70px !important;
+    }
+
+}
 @media screen and (max-width: 640px) {
   .main {
     background: url('../img/mobile-cover.jpg') no-repeat;
@@ -346,6 +356,7 @@ nav#menu ul a {
     background-size: auto 100%;
     background-size: cover;
   }
+
 }
 .main img#logo {
   width: 100%;
@@ -499,7 +510,7 @@ nav#menu ul a {
   background: #fff;
   padding: 18px;
   font-family: 'MuseoSlab-500';
-  /*width: 196px;*/
+  width: 196px;
 }
 .month div.tip h5 {
   font-size: 1em;
@@ -516,7 +527,7 @@ nav#menu ul a {
     right: 0;
     top: 250px;
     padding: 20px;
-    width: 300px;
+    width: 260px;
   }
   .month div.tip h5 {
     font-size: 1.3125em;
@@ -769,6 +780,9 @@ article.detail .link {
   font-family: 'MuseoSans-500';
   font-size: 0.875em;
 }
+article.detail .link {
+  word-break: break-all;
+}
 article.detail .event-text {
   width: calc(60%);
   display: inline-block;
@@ -811,7 +825,9 @@ article.detail .event-gallery-item img {
     left: 5%;
     top: 0;
     position: relative;
-    margin-bottom: 40px;
+  }
+ article.detail .event-map {
+    margin-top: 20px;
   }
 }
 .month-arrow {
@@ -909,4 +925,61 @@ article.detail .event-gallery-item img {
 }
 .social.googleplus a {
   background-position: -64px 0;
+}
+@media only screen and (min-width: 800px) and (max-height: 800px) {
+  .month div.weather {
+    top: 80px;
+  }
+  .month div.tip {
+    top: 150px;
+  }
+  .month div.tip p {
+    font-size: 0.87em;
+  }
+  nav#menu {
+    height: 600px;
+  }
+  nav#menu ul {
+    margin-top: 100px;
+  }
+  nav#menu ul li {
+    margin-bottom: 5px;
+  }
+}
+#search-hotels{
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    text-align: right;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.search-btn {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: 'MuseoSans-500';
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: lighter;
+    background: #55337e;
+    padding: 10px 10px 10px 20px;
+    text-decoration: none;
+    box-shadow: none;
+    border: 0px;
+}
+.search-btn span{
+    background: url('../img/h2arrows.png');
+    background-position: -14px 4px;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    margin: 10px -10px 0px 15px;
+    padding: 4px 15px;
+
+}
+
+.search-btn:hover {
+    background: #775b97;
+    text-decoration: none;
 }
