@@ -1882,32 +1882,32 @@ eventData[2].events.push(specialEvents[14]);
 eventData[2].events.push(specialEvents[15]);
 
 //April 2015
-eventData[3].events.push(specialEvents[0]);
+
 eventData[3].events.push(specialEvents[13]);
 eventData[3].events.push(specialEvents[15]);
 
-eventData[4].events.push(specialEvents[0]);
+//May 2015
 eventData[4].events.push(specialEvents[13]);
 
-eventData[5].events.push(specialEvents[0]);
+//June 2015
 eventData[5].events.push(specialEvents[13]);
 
-eventData[6].events.push(specialEvents[0]);
+//July 2015
 eventData[6].events.push(specialEvents[13]);
 
-eventData[7].events.push(specialEvents[0]);
+//August 2015
 eventData[7].events.push(specialEvents[13]);
 
-eventData[8].events.push(specialEvents[0]);
+//September 2015
 eventData[8].events.push(specialEvents[13]);
 
-eventData[9].events.push(specialEvents[0]);
+//October 2015
 eventData[9].events.push(specialEvents[13]);
 
-eventData[10].events.push(specialEvents[0]);
+//November 2015
 eventData[10].events.push(specialEvents[13]);
 eventData[10].events.push(specialEvents[17]);
 
-eventData[11].events.push(specialEvents[0]);
+//December 2015
 eventData[11].events.push(specialEvents[13]);
 eventData[11].events.push(specialEvents[17]);
