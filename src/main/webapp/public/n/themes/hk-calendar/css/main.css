@@ -558,7 +558,7 @@ nav#menu ul a {
 }
 .events h6 {
   background: rgba(255, 0, 0, 0.7);
-  width: calc(100%);
+  width: calc(100% -  15px);
   /*height: 32px;*/
   white-space: nowrap;
   overflow: hidden;
