@@ -23,18 +23,18 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="publisher" href="https://plus.google.com/+hotelclub">
     {{ get_title() }}
-    {{ stylesheet_link("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",false) }}
+    {#{{ stylesheet_link("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",false) }}#}
     {{ stylesheet_link(theme ~ 'css/main.css?' ~ appVersion ) }}
     {{ stylesheet_link(theme ~ 'css/slick.css?' ~ appVersion ) }}
     <link rel="shortcut icon" href="/favicon.ico" />
-    {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js", false) }}
+    {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", false) }}
     {{ javascript_include(theme ~ 'js/libs/modernizr.min.js?' ~ appVersion ) }}
     {{ javascript_include("https://maps.googleapis.com/maps/api/js?v=3.exp",false) }}
 </head>
 <body>
 <div id="wrapper">
     <header id="header">
-        <img id="logo" src="{{ theme }}img/new_logo.png" width="60" height="70" alt="Hotel Club logo">
+        <a href="http://www.hotelclub.com" target="_blank"><img id="logo" src="{{ theme }}img/new_logo.png" width="80" alt="Hotel Club logo"></a>
         <div class="menu-button">
             <img src="{{ theme }}img/manuburger2.png" width="23" height="15" alt="Menu button">
         </div>
@@ -154,10 +154,13 @@
         <%})%>
         <% }%>
     </div>
+    <div id="search-hotels" class="group" >
+        <a href="http://www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank" class="search-btn" style="opacity: 1;">Search hotels <span></span></a>
+        </div>
 </script>
 
 
-{{ javascript_include(theme ~ 'js/libs/modernizr.min.js?' ~ appVersion ) }}
+{#{{ javascript_include(theme ~ 'js/libs/modernizr.min.js?' ~ appVersion ) }}#}
 {{ javascript_include(theme ~ 'js/libs/jquery.js?' ~ appVersion ) }}
 {{ javascript_include(theme ~ 'js/libs/slick.min.js?' ~ appVersion ) }}
 {{ javascript_include(theme ~ 'js/libs/underscore.js?' ~ appVersion ) }}
