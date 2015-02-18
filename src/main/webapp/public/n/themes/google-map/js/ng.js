@@ -2420,9 +2420,8 @@ function initialize(){
 				}
 				$.each(goggleRegions, function(regionName, regionValue){
 					tempRegionName = regionValue.indexOf(countryShortName);
-					if(tempRegionName>=0){ 
-						if(countryShortName!='MO'){ map.setZoom(googleRegionZoomLevel[regionName]); }
-						else{ map.setZoom(7); }
+					if(tempRegionName>=0){
+						map.setZoom(googleRegionZoomLevel[regionName]);
 						map.setCenter(location);
 						nextgen.selRegion = regionName;
 						res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
@@ -2467,7 +2466,8 @@ function initialize(){
 					tempRegionName = regionValue.indexOf(countryShortName);
 					//console.log(regionName, tempRegionName);
 					if(tempRegionName>=0){
-						map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]);
+						if(countryShortName!='MO'){ map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]); }
+						else{ map.setZoom(7); }
 						map.setCenter(location);
 						zoomLevel = map.getZoom();
 						console.log(zoomLevel);
@@ -2489,6 +2489,50 @@ function initialize(){
 						$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
 					}
 				});
+			}else if(zoomLevel>=6){
+				console.log(nextgen.getCities);
+				//console.log(results);
+				for (var k=0; k<results[0].address_components.length; k++) {
+					for (var d=0;d<results[0].address_components[k].types.length;d++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (results[0].address_components[k].types[0] == "locality") {
+							//this is the object you are looking for
+							var country= results[0].address_components[k];
+							countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
+							countryShortName = country.short_name.toUpperCase();//country short name
+							break;
+						}
+					}
+				}
+				//console.log(results[2].formatted_address);
+				for (var key in nextgen.getCities) {
+					var cityNameExists1 = results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
+					var cityNameExists2 = results[1].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
+					var cityNameExists3 = results[2].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
+					var cityNameExists4 = results[3].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
+					if((cityNameExists1>=0)||(cityNameExists2>=0)||(cityNameExists3>=0)||(cityNameExists4>=0))
+					{
+						console.log(nextgen.getCities[key]['name_en'], nextgen.getCities[key]['url']);
+						map.setZoom(map.getZoom()+7);
+						map.setCenter(location);
+						zoomLevel = map.getZoom();
+						console.log(zoomLevel);
+						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
+						res.success(function(data){
+							console.log(uriBase ,nextgen.getCities[key]['url']);
+							nextgen.dataP = data;
+							nextgen.drawCards();
+							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
+							hideRegionName();
+						})
+						.error(function(data){
+							console.log('failed');
+							console.log('Exception: '+ data.responseText);
+						});
+					}
+				}
+				$("#map-canvas").css("top", "-400px");//Adjusting map position
+				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
 			}else{
 				$("#map-canvas").css("top", "0px");//Reseting map position
 				$("#menu_new").css("margin-top", "0px");//Reseting menu position
