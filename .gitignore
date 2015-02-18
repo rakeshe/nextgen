@@ -1,4 +1,4 @@
-.idea/*
+.idea
 workspace.xml
 src/main/webapp/data/logs
 src/main/webapp/data/volt

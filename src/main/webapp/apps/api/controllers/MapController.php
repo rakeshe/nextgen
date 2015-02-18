@@ -451,6 +451,8 @@ class MapController extends ControllerBase
                 $this->mapHeight   = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
                 $this->mapLanguage = empty($this->params[3]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[3];
                 $this->mapTypeId   = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
+                $this->mapZoomLevel   = empty($this->params[5]) ? self::DEFAULT_ZOOM_LEVEL : $this->params[5];
+
                 // use lapsang api
                 // http://teakettle.qa1.o.com/content/hotel/13902/en/HCL/BASIC
 
@@ -463,6 +465,7 @@ class MapController extends ControllerBase
                 $this->mapHeight   = empty($this->params[2]) ? self::DEFAULT_MAP_HEIGHT : $this->params[2];
                 $this->mapLanguage = empty($this->params[3]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[3];
                 $this->mapTypeId   = empty($this->params[4]) ? self::DEFAULT_TYPEID : $this->params[4];
+                $this->mapZoomLevel   = empty($this->params[5]) ? self::DEFAULT_ZOOM_LEVEL : $this->params[5];
                 // use lapsang api
                 // http://teakettle.qa1.o.com/location/509/en_AU
                 break;
@@ -476,6 +479,7 @@ class MapController extends ControllerBase
                 $this->mapHeight   = empty($this->params[3]) ? self::DEFAULT_MAP_HEIGHT : $this->params[3];
                 $this->mapLanguage = empty($this->params[4]) ? self::DEFAULT_MAP_LANGUAGE : $this->params[4];
                 $this->mapTypeId   = empty($this->params[5]) ? self::DEFAULT_TYPEID : $this->params[5];
+                $this->mapZoomLevel   = empty($this->params[6]) ? self::DEFAULT_ZOOM_LEVEL : $this->params[6];
                 break;
         }
         return $this;
@@ -547,7 +551,7 @@ class MapController extends ControllerBase
             var map = new google.maps.Map(
             document.getElementById(\'map-canvas\'), {
             center: new google.maps.LatLng(' . $this->latitude . ',' . $this->longitute . '),
-            zoom: 15,
+            zoom: '. $this->getMapZoomLevel() .',
             mapTypeId: google.maps.MapTypeId.' . $this->getMapTypeId() . '
             });
 
@@ -568,7 +572,9 @@ class MapController extends ControllerBase
         return $wrapHtml ?
             '<!DOCTYPE html>
             <html>
-            <head>' .
+            <head>
+            <meta charset="utf-8">
+            ' .
             $htmlHead . '
             </head>
             <body>' .
