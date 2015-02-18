@@ -10,6 +10,8 @@ use \Phalcon\Mvc\Controller;
 
 class IndexController extends Controller {
 
+    const PAGE_TITLE = "Experience Hong Kong | The Unmissable Events | HotelClub";
+
     public function initialize() {
 
     }
@@ -39,7 +41,8 @@ class IndexController extends Controller {
         $this->init(); 
         //set variable for view
         $this->view->setVars(array(
-            'appVersion' => APPLICATION_VERSION
+            'appVersion' => APPLICATION_VERSION,
+            'title'      => self::PAGE_TITLE
         ));
     }
 

@@ -25,7 +25,7 @@ app.Router = Backbone.Router.extend({
 	month: function(name, year) {
 		this.checkMonth();
 		var result = collect.findWhere({'name': name+' '+year});
-
+        //console.log(result);
 		if(this.once === false) {
 
 		}
@@ -57,6 +57,8 @@ app.Router = Backbone.Router.extend({
 
 		$('#outbox').removeClass('open');
 		$('#lightbox').removeClass('open');
+        $('meta[name="description"]').attr('content', result.attributes.tip);
+        document.title = result.attributes.name + ' ' + title;
 
 	},
 
@@ -104,6 +106,9 @@ app.Router = Backbone.Router.extend({
 			var eventView = new app.EventItemView({
 				model: event
 			})
+
+            $('meta[name="description"]').attr('content', event.attributes.text);
+            document.title = event.attributes.date + ', ' +event.attributes.name + ' ' + title;
 
 			//console.log('bd view');
 			eventView.render();
