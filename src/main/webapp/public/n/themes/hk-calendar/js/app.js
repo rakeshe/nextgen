@@ -2,10 +2,7 @@ var header = new app.MenuView();
 var collect = new app.monthCollection();
 
 var route = new app.Router();
-Backbone.history.start();
-
 var app = app || {};
-
 
 function loop() {
     $('.main .arrow').animate({'bottom': 33}, {
@@ -39,8 +36,21 @@ function sh() {
 	var share = new sharecow(opt);
 }
 
+$(document).on('click', 'a', function() {
+    route.navigate($(this).attr('href'), true);
+    return false;
+});
 
 $(document).ready(function(){
+
+    //remove # from the url
+    Backbone.history.start({
+        pushState: true, // use html5 pushState with hashChange set to false
+        hashChange: false,  // to handle navigation of hash anchors
+        root : "n/hong-kong-interactive",
+        silent: false
+    });
+
 	loop();
 	var height = window.innerHeight;
 	var docs = [0, height, height *2, height *3+60, height*4];

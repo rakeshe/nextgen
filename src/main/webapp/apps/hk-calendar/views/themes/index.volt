@@ -34,9 +34,9 @@
 <body>
 <div id="wrapper">
     <header id="header">
-        <img id="logo" src="{{ theme }}img/new_logo.png" width="60" height="70" alt="Hotel Club logo">
+        <img id="logo" src="/n/{{ theme }}img/new_logo.png" width="60" height="70" alt="Hotel Club logo">
         <div class="menu-button">
-            <img src="{{ theme }}img/manuburger2.png" width="23" height="15" alt="Menu button">
+            <img src="/n/{{ theme }}img/manuburger2.png" width="23" height="15" alt="Menu button">
         </div>
     </header>
     <section class="main one">
@@ -47,7 +47,7 @@
         </div>
 
         <div class="arrow">
-            <img src="{{ theme }}img/arrow2.png" height="44" width="44" alt="Go down">
+            <img src="/n/{{ theme }}img/arrow2.png" height="44" width="44" alt="Go down">
         </div>
     </section>
     <section class="back month one">
@@ -73,7 +73,7 @@
             </article>
         </div>
         <div class="arrow arrow-white">
-            <img src="{{ theme }}img/arrow-white2.png" height="16" width="27" alt="Go down">
+            <img src="/n/{{ theme }}img/arrow-white2.png" height="16" width="27" alt="Go down">
         </div>
         <div class="events">
             <div class="container group">
@@ -84,7 +84,7 @@
         <div id="outbox"></div>
         <div id="lightbox">
 				<span class="close">
-					<img src="{{ theme }}img/close.png" height="20" width="19" alt="">
+					<img src="/n/{{ theme }}img/close.png" height="20" width="19" alt="">
 				</span>
             <article class="detail">
 
@@ -109,7 +109,7 @@
     </div>
     <div class="weather group">
         <div class="icon">
-            <img src="{{ theme }}img/<%= weather.icon %>.png" height="35" width="36" alt="<%= weather.icon %>">
+            <img src="/n/{{ theme }}img/<%= weather.icon %>.png" height="35" width="36" alt="<%= weather.icon %>">
         </div>
         <div class="info">
             <div class="degree"><%= weather.temp %>&deg;<sup>C</sup></div>
@@ -125,7 +125,7 @@
 <script id="tplEvent" type="text/template">
     <div class="item" data-event="<%= id%>">
         <a href="#<%= history %>/event/<%= id%>">
-            <img src="{{ theme }}<%= photos[0].min %>" alt="">
+            <img src="/n/{{ theme }}<%= photos[0].min %>" alt="">
         </a>
         <h6><%= name +'<br/><span>'+date+'</span>'%></h6>
     </div>
@@ -149,7 +149,7 @@
         <% if (typeof(photos) != "undefined") { %>
         <% _.map(photos, function(num){ %>
         <div class="event-gallery-item" data-big="<%= num.full %>">
-            <img src="{{ theme }}<%= num.min %>">
+            <img src="/n/{{ theme }}<%= num.min %>">
         </div>
         <%})%>
         <% }%>

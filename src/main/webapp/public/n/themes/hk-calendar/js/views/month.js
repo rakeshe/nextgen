@@ -5,9 +5,9 @@ app.evCollect = '';
 app.MonthView = Backbone.View.extend({
 
     el: 'section.month article',
-    
+
     template: _.template($('#tplMonth').html()),
-    
+
     render: function () {
     	var itemModel = this.model.toJSON();
         var index = collect.indexOf(this.model);
@@ -23,7 +23,7 @@ app.MonthView = Backbone.View.extend({
         );
 
         var events = this.model.get('events');
-        var image = 'themes/hk-calendar/' + this.model.get('image');
+        var image = location.origin + '/n/themes/hk-calendar/' + this.model.get('image');
 
 
         //console.log(itemModel);
@@ -44,10 +44,10 @@ app.MonthView = Backbone.View.extend({
 
         $('.month').animate({opacity: 0.5},300, function(){
           $('.month').css('background-image', 'url('+image+')');
-          $('.month').animate({opacity: 1},200) 
+          $('.month').animate({opacity: 1},200)
         })
-        
-        
+
+
 
         $(this.el).html(html);
     }

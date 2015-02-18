@@ -66,13 +66,13 @@ $router->add(
  * matches: /hong-kong-interactive
  */
 $router->add(
-    '/n/hong-kong-interactive',
+    '/n/hong-kong-interactive/:params',
     array(
         'module'     => 'hk-calendar',
         'namespace'  => 'HC\HkCalendar\Controllers\\',
         'controller' => 'index',
         'action'     => 'index',
-        "params"     => 4,
+        "params"     => 3,
     )
 );
 

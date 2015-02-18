@@ -12,6 +12,10 @@ app.Router = Backbone.Router.extend({
 		"month/:name/:year/event/:id": "event"
 	},
 
+    // load views
+    initialize: function() {
+
+    },
 	//Default route - September 2014
 	start: function(){
 		route.navigate(this.initUrl, {trigger: true})
@@ -23,9 +27,9 @@ app.Router = Backbone.Router.extend({
 		var result = collect.findWhere({'name': name+' '+year});
 
 		if(this.once === false) {
-			
+
 		}
-		
+
 		if(window.innerWidth > 800){
 			$('.slick-initialized').unslick();
 
@@ -39,7 +43,7 @@ app.Router = Backbone.Router.extend({
 				}, 10);
 			}
 		}
-		
+
 		if(result === undefined){
 			this.resetUrl();
 			return

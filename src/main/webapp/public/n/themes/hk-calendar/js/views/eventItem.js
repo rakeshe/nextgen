@@ -94,7 +94,7 @@ app.EventItemView = Backbone.View.extend({
 	},
 
 	createGallery: function(img){
-        var themePath = 'themes/hk-calendar/';
+        var themePath = '/n/themes/hk-calendar/';
 		var $galleryOutbox = $('<div class="galleryOutbox"></div>')
 		$(this.el).append($galleryOutbox);
 		var $gallery = $('<div class="gallery"><img src="'+ themePath + img+'"></div>')
