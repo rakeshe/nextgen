@@ -2366,6 +2366,7 @@ var googleCountryZoomLevel = {
 
 /** Declartion of google maps variables **/
 var map, zoomLevel;
+//var bounds = new google.maps.LatLngBounds();
 geocoder = new google.maps.Geocoder();
 
 function initialize(){
@@ -2524,6 +2525,42 @@ function initialize(){
 							nextgen.drawCards();
 							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
 							hideRegionName();
+							var markers  = [];
+							//fetched all the deal hotel details
+							$.each(nextgen.data['deals'], function(hotelId, hotelDetails){
+								markers .push(hotelDetails['hotel_name'], nextgen.getCities[key]['name_en']);
+								return;
+							});
+							// Info Window Content
+							var infoWindowContent = [
+								['Content goes here...']
+							];
+								
+							// Display multiple markers on a map
+							var infoWindow = new google.maps.InfoWindow(), marker, i;
+							
+							// Loop through our array of markers & place each one on the map  
+							for( i = 0; i < markers.length; i++ ) {
+								//var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+								//bounds.extend(position);
+								marker = new google.maps.Marker({
+									//position: position,
+									map: map,
+									title: markers[i][0]
+								});
+								
+								// Allow each marker to have an info window    
+								google.maps.event.addListener(marker, 'click', (function(marker, i) {
+									return function() {
+										infoWindow.setContent(infoWindowContent[i][0]);
+										infoWindow.open(map, marker);
+									}
+								})(marker, i));
+
+								// Automatically center the map fitting all markers on the screen
+								//map.fitBounds(bounds);
+								console.log('Success');
+							}
 						})
 						.error(function(data){
 							console.log('failed');
