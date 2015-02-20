@@ -1565,9 +1565,9 @@ var nextgen = {
 				backButton = 1;
 				changeResetToRegion();
 				magnifyingGlassIcon();
-				resetMapSizePos();
-				displayRegionName();
-				drawRegionsMapOne();
+				//resetMapSizePos();
+				//displayRegionName();
+				//drawRegionsMapOne();
 
 			}else{
 				if (typeof(country_code) != "undefined" && country_code !== null) {
@@ -1578,9 +1578,9 @@ var nextgen = {
 					backButton = 1;
 					changeResetToRegion();
 					magnifyingGlassIcon();
-					resetMapSizePos();
+					//resetMapSizePos();
 					hideRegionName();
-					drawRegionsMapOne();
+					//drawRegionsMapOne();
 				}
 			}	
 		}
@@ -1632,7 +1632,7 @@ var regions = {
 
 //Geochart (Google Map Chart) Initialization
 google.load("visualization", "1", {packages:["geochart"]});
-google.setOnLoadCallback(drawRegionsMapOne);
+//google.setOnLoadCallback(drawRegionsMapOne);
 
 //Global Variables
 var mapHeight = 430; //map Height
@@ -1748,7 +1748,7 @@ function drawRegionsMapOne(type){
 
 						options.displayMode = 'text';
 						changeResetToRegion();
-						resetMapSizePos();
+						//resetMapSizePos();
 						hideRegionName();
 						nextgen.getLavel=3;
 					})
@@ -1778,7 +1778,7 @@ function drawRegionsMapOne(type){
 
 						options.displayMode = 'text';
 						changeResetToRegion();
-						resetMapSizePos();
+						//resetMapSizePos();
 						hideRegionName();
 					})
 					.error(function(data){
@@ -1811,7 +1811,7 @@ function drawRegionsMapOne(type){
 						
 								options.displayMode = 'text';
 								changeResetToRegion();
-								resetMapSizePos();
+								//resetMapSizePos();
 								hideRegionName();
 								nextgen.drawMenu(nextgen.selRegion);
 								nextgen.getLavel=2;
@@ -1841,7 +1841,7 @@ $(document).ready(function() {
 
 //Function to reset map
 function resetMap(){
-	resetMapSizePos();
+	//resetMapSizePos();
 	data = regionMapConf();
 	drawRegionsMapOne();
 }//resetMap
@@ -1886,7 +1886,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 
 			options.displayMode = 'text';
 			changeResetToRegion();
-			resetMapSizePos();
+			//resetMapSizePos();
 			hideRegionName();
 		}
 		magnifyingGlassIcon();
@@ -1894,8 +1894,7 @@ $(document).on('click','text[text-anchor="middle"]',function(){
 	.error(function(data){
 		console.log('Exception: '+ data.responseText);
 	});
-expandPlatinumCard();
-
+	expandPlatinumCard();
 });
 
 //Function to zoom-out map from the selected region / country
@@ -1919,7 +1918,7 @@ function mapBackBtn() {
 			nextgen.getLavel = 2;
 			changeResetToRegion();
 			backButton=1;
-			resetMapSizePos();
+			//resetMapSizePos();
 			hideRegionName();
 			nextgen.mapAction(optionsRegionTemp);
 			//drawRegionsMapOne();
@@ -1950,8 +1949,8 @@ function mapBackBtn() {
 		changeResetToRegion();
 
 		changeResetToRegion();
-		resetMapSizePos();
-		drawRegionsMapOne();
+		//resetMapSizePos();
+		//drawRegionsMapOne();
 	}
 }//mapBackBtn
 
@@ -1960,13 +1959,12 @@ function changeResetToRegion(){
 	//variable to place zoom icons based on levels
 	if(nextgen.getLavel==2){
 		zoomLevel = 2;
-		$( "#banner_val" ).empty();
+		//$( "#banner_val" ).empty();
 		//$( "#banner_val" ).append("<a class='map-reset-to-region' href='javascript:%20mapBackBtn();'>< " + trans['world_view'] + "</a><div id='zoom_level'><span class='urlPlusImg' ></span><div class='zoom-indicator-high'><img src='/n/themes/common/img/red-dot.png'/></div><a href='javascript:%20mapBackBtn();' class='urlMinusImg' ></a></div>");
 	}
 	else if(nextgen.getLavel==3){
 		zoomLevel = 3;
-		$( "#banner_val" ).empty();
-
+		//$( "#banner_val" ).empty();
 		//var regionName = nextgen.selRegion.replace("-", " ");
 		var regionName = nextgen.data['urls'][nextgen.selRegion]['name_en'];
         var regionNameTrans = regionName.replace(/\s+/g, '_').toLowerCase() + '_view';
@@ -1974,7 +1972,7 @@ function changeResetToRegion(){
 	}
 	else{
 		zoomLevel = 1;
-		$( "#banner_val" ).empty();//clearing back button and zooming icons
+		//$( "#banner_val" ).empty();//clearing back button and zooming icons
 	}
 }//changeResetToRegion
 
@@ -2005,7 +2003,7 @@ function zoomin() {
 		document.getElementById('regions_div').style.left = xAxis+'px';
 		
 		//redrawing the map
-		if(options.region.length==3){ drawRegionsMapOne(); }
+		//if(options.region.length==3){ drawRegionsMapOne(); }
 	}
 }//zoomin
 
@@ -2343,7 +2341,7 @@ loginParser();
 var map;
 var markersArray = [];
 var lat = 15.5403, lang = 10.5463;
-var zoomLevel;
+var zoomLevel, zoomVal = 2;
 
 /** World map specific **/
 var goggleRegions = {
@@ -2356,7 +2354,12 @@ var goggleRegions = {
 
 /** Zoom Level for each region inside map specific **/
 var googleRegionZoomLevel = {
-	'pacific': 3, 'americas': 3, 'europe--uae': 4,'southeast-asia': 4, 'northeast-asia': 6
+	//'pacific': 3, 'americas': 3, 'europe--uae': 4,'southeast-asia': 4, 'northeast-asia': 6
+	'pacific': [3, -34.88593094075315, 149.4140625], 
+	'americas': [3,  33.43144133557529, -96.328125], 
+	'europe--uae': [4, 42.81152174509788, 13.359375],
+	'southeast-asia': [4, -5.615985819155327, 115.6640625], 
+	'northeast-asia': [6, 36.03133177633187, 117.421875]
 }
 
 /** Zoom Level for each country inside map specific **/
@@ -2364,16 +2367,30 @@ var googleCountryZoomLevel = {
 	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
 }
 
+/** initializate function for google maps **/
+function initialize(){	
 /** Declartion of google maps variables **/
 var map, zoomLevel;
-//var bounds = new google.maps.LatLngBounds();
 geocoder = new google.maps.Geocoder();
-
-function initialize(){
 	var mapCanvas = document.getElementById('map-canvas');
+	
+	switch(nextgen.getLavel){
+		case 2: 
+			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
+			lat = googleRegionZoomLevel[nextgen.selRegion][1];
+			lang = googleRegionZoomLevel[nextgen.selRegion][2];
+			$("#map-canvas").css("top", "-400px");//Adjusting map position
+			$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+			break;
+		case 3: 
+			//zoomVal = googleCountryZoomLevel[];
+			$("#map-canvas").css("top", "-400px");//Adjusting map position
+			$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+			break;
+	}
 	var mapOptions = {
 		center: new google.maps.LatLng(lat, lang),
-		zoom: 2,
+		zoom: zoomVal,
 		minZoom: 2,
 		panControl: true,
 		disableDoubleClickZoom: true,
@@ -2388,7 +2405,6 @@ function initialize(){
 	}
 	var map = new google.maps.Map(mapCanvas, mapOptions);
 	zoomLevel = map.getZoom();
-	console.log(zoomLevel);
 	// add a click event handler to the map object
 	google.maps.event.addListener(map, "click", function(event)
 	{
@@ -2403,8 +2419,8 @@ function initialize(){
 		  position: location
 		});*/
 		var tempRegionName, countryShortName, countryLongName;
-		
 		geocoder.geocode( {'latLng': location},	function(results, status) {
+			console.log(zoomLevel);
 			if(zoomLevel==2){
 				var regionVal;
 				//fetch region
@@ -2422,7 +2438,7 @@ function initialize(){
 				$.each(goggleRegions, function(regionName, regionValue){
 					tempRegionName = regionValue.indexOf(countryShortName);
 					if(tempRegionName>=0){
-						map.setZoom(googleRegionZoomLevel[regionName]);
+						map.setZoom(googleRegionZoomLevel[regionName][0]);
 						map.setCenter(location);
 						nextgen.selRegion = regionName;
 						res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
@@ -2471,7 +2487,6 @@ function initialize(){
 						else{ map.setZoom(7); }
 						map.setCenter(location);
 						zoomLevel = map.getZoom();
-						console.log(zoomLevel);
 						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
 						res.success(function(data){
 							nextgen.dataP = data;
@@ -2570,9 +2585,6 @@ function initialize(){
 				}
 				$("#map-canvas").css("top", "-400px");//Adjusting map position
 				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
-			}else{
-				$("#map-canvas").css("top", "0px");//Reseting map position
-				$("#menu_new").css("margin-top", "0px");//Reseting menu position
 			}
 		});
 	}
