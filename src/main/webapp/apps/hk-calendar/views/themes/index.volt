@@ -45,7 +45,7 @@
 <body>
 <div id="wrapper">
     <header id="header">
-        <a href="http://www.hotelclub.com" target="_blank"><img id="logo" src="{{ theme }}img/new_logo.png" width="80" alt="Hotel Club logo"></a>
+        <a href="http://www.hotelclub.com" target="_blank"><img id="logo" src="{{ theme }}img/new_logo_80.png" alt="Hotel Club logo"></a>
         <div class="menu-button">
             <img src="{{ theme }}img/manuburger2.png" width="23" height="15" alt="Menu button">
         </div>

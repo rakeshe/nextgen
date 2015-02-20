@@ -338,9 +338,7 @@ nav#menu ul a {
   position: relative;
 }
 @media screen and (max-width: 320px) {
-    header img#logo {
-        height: 70px !important;
-    }
+
 
 }
 @media screen and (max-width: 640px) {
@@ -428,6 +426,10 @@ nav#menu ul a {
     background-size: auto 100%;
     background-size: cover;
   }
+    header img#logo {
+        height: 70px !important;
+        width: 60px !important;
+    }
 }
 .month article.month-info {
   position: relative;
