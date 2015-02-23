@@ -1273,6 +1273,7 @@ var nextgen = {
 						case 'pacific':
 							$(".world_pacific").empty(); 
 							$(".world_pacific").append('<a href="'+ uriBase +'/'+ index +'">'+ value["name"] +'</a>'); 
+							
 							break;
 						case 'southeast-asia':
 							$(".world_south_eastern").empty();
@@ -1303,6 +1304,8 @@ var nextgen = {
 			//this.getLavel = 1;
 			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
 			$('#regionTabs').html(html);
+			if(nextgen.getLavel==1){ resetGoogleMapPosition(); }
+			else{ resetGoogleMapPosition(1); }
 			
 		},
 		'mobileMenu' : function() {
@@ -2367,6 +2370,55 @@ var googleCountryZoomLevel = {
 	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
 }
 
+/*var googleCountryZoomLevel = {
+	'AU': [6, -34.88593094075315, 149.4140625],
+	'NZ': [8, -34.88593094075315, 149.4140625],
+	'FJ': [8, -34.88593094075315, 149.4140625],
+	'AR': [8, -34.88593094075315, 149.4140625],
+	'BR': [8, -34.88593094075315, 149.4140625],
+	'CA': [8, -34.88593094075315, 149.4140625],
+	'MX': [8, -34.88593094075315, 149.4140625],
+	'US': [7, -34.88593094075315, 149.4140625],
+	'AT': [8, -34.88593094075315, 149.4140625],
+	'BE': [8, -34.88593094075315, 149.4140625],
+	'CZ': [8, -34.88593094075315, 149.4140625],
+	'FR': [8, -34.88593094075315, 149.4140625],
+	'DE': [8, -34.88593094075315, 149.4140625],
+	'GR': [8, -34.88593094075315, 149.4140625],
+	'IE': [8, -34.88593094075315, 149.4140625], 
+	'NL': [8, -34.88593094075315, 149.4140625], 
+	'PT': [8, -34.88593094075315, 149.4140625], 
+	'ES': [8, -34.88593094075315, 149.4140625], 
+	'SE': [7, -34.88593094075315, 149.4140625], 
+	'TR': [8, -34.88593094075315, 149.4140625],
+	'AE': [8, -34.88593094075315, 149.4140625],
+	'GB': [8, -34.88593094075315, 149.4140625],
+	'ID': [8, -34.88593094075315, 149.4140625],
+	'MY': [7, -34.88593094075315, 149.4140625],
+	'PH': [8, -34.88593094075315, 149.4140625],
+	'SG': [8, -34.88593094075315, 149.4140625],
+	'TH': [8, -34.88593094075315, 149.4140625],
+	'VN': [8, -34.88593094075315, 149.4140625],
+	'CN': [8, -34.88593094075315, 149.4140625],
+	'HK': [8, -34.88593094075315, 149.4140625],
+	'JP': [8, -34.88593094075315, 149.4140625],
+	'MO': [8, -34.88593094075315, 149.4140625],
+	'KR': [8, -34.88593094075315, 149.4140625],
+	'TW': [8, -34.88593094075315, 149.4140625]
+}*/
+
+//function to fetch Countries Latitude and Longitude
+function fetchCountryLatLang(countryName){
+	$geocode_stats = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?address="+countryName+"india&sensor=false");
+
+	$output_deals = json_decode($geocode_stats);
+
+	//$latLng = $output_deals->results[0]->geometry->location;
+
+	//$lat = $latLng->lat;
+	//$lng = $latLng->lng;
+}
+
 /** initializate function for google maps **/
 function initialize(){	
 /** Declartion of google maps variables **/
@@ -2379,13 +2431,13 @@ geocoder = new google.maps.Geocoder();
 			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
 			lat = googleRegionZoomLevel[nextgen.selRegion][1];
 			lang = googleRegionZoomLevel[nextgen.selRegion][2];
-			$("#map-canvas").css("top", "-400px");//Adjusting map position
-			$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+			resetGoogleMapPosition(1);
 			break;
 		case 3: 
 			//zoomVal = googleCountryZoomLevel[];
-			$("#map-canvas").css("top", "-400px");//Adjusting map position
-			$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+			//$("#map-canvas").css("top", "-400px");//Adjusting map position
+			//$("#menu_new").css("margin-top", "-450px");//Adjusting menu position						
+			resetGoogleMapPosition(1);
 			break;
 	}
 	var mapOptions = {
@@ -2450,8 +2502,9 @@ geocoder = new google.maps.Geocoder();
 							nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
 							hideRegionName();
 							nextgen.drawMenu(nextgen.selRegion);
-							$("#map-canvas").css("top", "-400px");//Adjusting map position
-							$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+							//$("#map-canvas").css("top", "-400px");//Adjusting map position
+							//$("#menu_new").css("margin-top", "-450px");//Adjusting menu position						
+							resetGoogleMapPosition(1);
 						})
 						.error(function(data){
 							console.log('Exception: '+ data.responseText);
@@ -2501,8 +2554,9 @@ geocoder = new google.maps.Geocoder();
 							console.log('Exception: '+ data.responseText);
 						});
 						
-						$("#map-canvas").css("top", "-400px");//Adjusting map position
-						$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+						//$("#map-canvas").css("top", "-400px");//Adjusting map position
+						//$("#menu_new").css("margin-top", "-450px");//Adjusting menu position						
+						resetGoogleMapPosition(1);
 					}
 				});
 			}else if(zoomLevel>=6){
@@ -2583,10 +2637,21 @@ geocoder = new google.maps.Geocoder();
 						});
 					}
 				}
-				$("#map-canvas").css("top", "-400px");//Adjusting map position
-				$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+				resetGoogleMapPosition(1);
 			}
 		});
 	}
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function resetGoogleMapPosition(regionGoogleMapPosVal){
+	if(regionGoogleMapPosVal==1){
+		$("#map-canvas").css("top", "-400px");//Adjusting map position
+		$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
+	}else{
+		$("#map-canvas").css("top", "0px");//Adjusting map position
+		$("#menu_new").css("margin-top", "0px");//Adjusting menu position	
+	}
+	
+	
+}
