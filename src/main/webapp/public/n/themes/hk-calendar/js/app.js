@@ -36,7 +36,7 @@ function sh() {
 	var share = new sharecow(opt);
 }
 
-$(document).on('click', 'a', function() {
+$(document).on('click', '.month-arrow,.mth,.arrow', function() {
     route.navigate($(this).attr('href'), true);
     return false;
 });
