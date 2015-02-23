@@ -37,7 +37,6 @@ function sh() {
 }
 
 $(document).on('click', 'a', function() {
-    var thisUrl = $(this).attr('href');
     route.navigate($(this).attr('href'), true);
     return false;
 });
@@ -54,7 +53,6 @@ $(document).ready(function(){
 
 	loop();
 	var height = window.innerHeight;
-
 	var docs = [0, height, height *2, height *3+60, height*4];
 
 	function checkMobile() {

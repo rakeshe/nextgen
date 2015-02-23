@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Experience Hong Kong | The Unmissable Events | HotelClub</title>
+    <title> {{ title }} </title>
     <meta name="description" content="From a Bruce Lee exhibition to the birthday of Confucius, discover Hong Kong's unmissable events with this interactive calendar.">
     <link rel="canonical" href="http://www.hotelclub.com/hong-kong-interactive">
     <meta property="og:locale" content="en_US">
@@ -31,6 +31,7 @@
     {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", false) }}
     {{ javascript_include(theme ~ 'js/libs/modernizr.min.js?' ~ appVersion ) }}
     {{ javascript_include("https://maps.googleapis.com/maps/api/js?v=3.exp",false) }}
+    <script>var title = '{{ title }}';</script>
 
     <!-- Google Analytics -->
     <script>
