@@ -1,4 +1,5 @@
 {% set theme = 'themes/hk-calendar/' %}
+{% set themePath = '/n/themes/hk-calendar/' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,13 +42,14 @@
         ga('create', 'UA-11728193-3', 'auto');
         ga('send', 'pageview');
     </script>
+    <script>var title = '{{ title }}';</script>
 </head>
 <body>
 <div id="wrapper">
     <header id="header">
-        <a href="http://www.hotelclub.com" target="_blank"><img id="logo" src="{{ theme }}img/new_logo_80.png" alt="Hotel Club logo"></a>
+        <a href="http://www.hotelclub.com" target="_blank"><img id="logo" src="{{ themePath }}img/new_logo_80.png" alt="Hotel Club logo"></a>
         <div class="menu-button">
-            <img src="{{ theme }}img/manuburger2.png" width="23" height="15" alt="Menu button">
+            <img src="{{ themePath }}img/manuburger2.png" width="23" height="15" alt="Menu button">
         </div>
     </header>
     <section class="main one">
@@ -58,7 +60,7 @@
         </div>
 
         <div class="arrow">
-            <img src="{{ theme }}img/arrow2.png" height="44" width="44" alt="Go down">
+            <a href="#month/january/2015"><img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down"></a>
         </div>
     </section>
     <section class="back month one">
@@ -84,7 +86,7 @@
             </article>
         </div>
         <div class="arrow arrow-white">
-            <img src="{{ theme }}img/arrow-white2.png" height="16" width="27" alt="Go down">
+            <img src="{{ themePath }}img/arrow-white2.png" height="16" width="27" alt="Go down">
         </div>
         <div class="events">
             <div class="container group">
@@ -95,7 +97,7 @@
         <div id="outbox"></div>
         <div id="lightbox">
 				<span class="close">
-					<img src="{{ theme }}img/close.png" height="20" width="19" alt="">
+					<img src="{{ themePath }}img/close.png" height="20" width="19" alt="">
 				</span>
             <article class="detail">
 
@@ -120,7 +122,7 @@
     </div>
     <div class="weather group">
         <div class="icon">
-            <img src="{{ theme }}img/<%= weather.icon %>.png" height="35" width="36" alt="<%= weather.icon %>">
+            <img src="{{ themePath }}img/<%= weather.icon %>.png" height="35" width="36" alt="<%= weather.icon %>">
         </div>
         <div class="info">
             <div class="degree"><%= weather.temp %>&deg;<sup>C</sup></div>
@@ -136,7 +138,7 @@
 <script id="tplEvent" type="text/template">
     <div class="item" data-event="<%= id%>">
         <a href="#<%= history %>/event/<%= id%>">
-            <img src="{{ theme }}<%= photos[0].min %>" alt="">
+            <img src="{{ themePath }}<%= photos[0].min %>" alt="">
         </a>
         <h6><%= name +'<br/><span>'+date+'</span>'%></h6>
     </div>
@@ -160,13 +162,13 @@
         <% if (typeof(photos) != "undefined") { %>
         <% _.map(photos, function(num){ %>
         <div class="event-gallery-item" data-big="<%= num.full %>">
-            <img src="{{ theme }}<%= num.min %>">
+            <img src="{{ themePath }}<%= num.min %>">
         </div>
         <%})%>
         <% }%>
     </div>
     <div id="search-hotels" class="group" >
-        <a href="http://www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank" class="search-btn" style="opacity: 1;">Search hotels <span></span></a>
+        <a href="//www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank" class="search-btn" style="opacity: 1;">Search hotels <span></span></a>
         </div>
 </script>
 

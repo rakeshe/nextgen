@@ -4,7 +4,8 @@ app.Router = Backbone.Router.extend({
 
 	once: false,
 
-	initUrl: '#month/january/2015',
+	//initUrl: '#month/january/2015',
+	initUrl: '',
 
 	routes: {
 		"": "start",
@@ -12,6 +13,10 @@ app.Router = Backbone.Router.extend({
 		"month/:name/:year/event/:id": "event"
 	},
 
+    // load views
+    initialize: function() {
+
+    },
 	//Default route - September 2014
 	start: function(){
 		route.navigate(this.initUrl, {trigger: true})
@@ -21,11 +26,11 @@ app.Router = Backbone.Router.extend({
 	month: function(name, year) {
 		this.checkMonth();
 		var result = collect.findWhere({'name': name+' '+year});
-
+        //console.log(result);
 		if(this.once === false) {
-			
+
 		}
-		
+
 		if(window.innerWidth > 800){
 			$('.slick-initialized').unslick();
 
@@ -39,7 +44,7 @@ app.Router = Backbone.Router.extend({
 				}, 10);
 			}
 		}
-		
+
 		if(result === undefined){
 			this.resetUrl();
 			return
@@ -53,6 +58,8 @@ app.Router = Backbone.Router.extend({
 
 		$('#outbox').removeClass('open');
 		$('#lightbox').removeClass('open');
+        $('meta[name="description"]').attr('content', result.attributes.tip);
+        document.title = result.attributes.name + ' ' + title;
 
 	},
 
@@ -100,6 +107,9 @@ app.Router = Backbone.Router.extend({
 			var eventView = new app.EventItemView({
 				model: event
 			})
+
+            $('meta[name="description"]').attr('content', event.attributes.text);
+            document.title = event.attributes.date + ', ' +event.attributes.name + ' ' + title;
 
 			//console.log('bd view');
 			eventView.render();
