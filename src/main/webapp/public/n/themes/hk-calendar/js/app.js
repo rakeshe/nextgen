@@ -36,20 +36,26 @@ function sh() {
 	var share = new sharecow(opt);
 }
 
-$(document).on('click', 'a', function() {
+$(document).on('click', '.month-arrow,.mth,.arrow', function() {
     route.navigate($(this).attr('href'), true);
     return false;
 });
 
 $(document).ready(function(){
 
-    //remove # from the url
-    Backbone.history.start({
-        pushState: true, // use html5 pushState with hashChange set to false
-        hashChange: false,  // to handle navigation of hash anchors
-        root : "n/hong-kong-interactive",
-        silent: false
-    });
+    //if browser supports pushState, remove # from the url
+    if (history.pushState) {
+
+        Backbone.history.start({
+            pushState: true, // use html5 pushState with hashChange set to false
+            hashChange: true,  // to handle navigation of hash anchors
+            root : "n/hong-kong-interactive",
+            silent: false
+        });
+    } else {
+        Backbone.history.start({pushState:false});
+    }
+
 
 	loop();
 	var height = window.innerHeight;
