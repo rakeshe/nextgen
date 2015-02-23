@@ -61,7 +61,7 @@
         </div>
 
         <div class="arrow">
-            <a href="#month/january/2015"><img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down"></a>
+            <img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down">
         </div>
     </section>
     <section class="back month one">
@@ -142,6 +142,7 @@
             <img src="{{ themePath }}<%= photos[0].min %>" alt="">
         </a>
         <h6><%= name +'<br/><span>'+date+'</span>'%></h6>
+        <p><%= text %></p>
     </div>
 </script>
 
