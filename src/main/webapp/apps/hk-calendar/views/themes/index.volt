@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title> {{ title }} </title>
+    {{ get_title() }}
     <meta name="description" content="From a Bruce Lee exhibition to the birthday of Confucius, discover Hong Kong's unmissable events with this interactive calendar.">
-    <link rel="canonical" href="http://www.hotelclub.com/hong-kong-interactive">
+    <link rel="canonical" href="{{ canonicalUri }}">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Experience Hong Kong | The Unmissable Events">
@@ -23,7 +23,7 @@
     <meta name="twitter:domain" content="Hotelclub.com">
     <meta name="robots" content="noindex, nofollow">
     <link rel="publisher" href="https://plus.google.com/+hotelclub">
-    {{ get_title() }}
+
     {#{{ stylesheet_link("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",false) }}#}
     {{ stylesheet_link(theme ~ 'css/main.css?' ~ appVersion ) }}
     {{ stylesheet_link(theme ~ 'css/slick.css?' ~ appVersion ) }}
@@ -62,7 +62,7 @@
         </div>
 
         <div class="arrow">
-            <img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down">
+            <a class="mth" href="month/january/2015"><img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down"></a>
         </div>
     </section>
     <section class="back month one">
@@ -171,7 +171,7 @@
         <% }%>
     </div>
     <div id="search-hotels" class="group" >
-        <a href="//www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank" class="search-btn" style="opacity: 1;">Search hotels <span></span></a>
+        <a href="//www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank" class="search-btn" style="opacity: 1;" rel="nofollow">Search hotels <span></span></a>
         </div>
 </script>
 
