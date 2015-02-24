@@ -44,6 +44,7 @@
         ga('send', 'pageview');
     </script>
     <script>var title = '{{ title }}';</script>
+    {{ partial('../../../common/views/tracking/web_trends_meta') }}
 </head>
 <body>
 <div id="wrapper">
@@ -67,18 +68,18 @@
     <section class="back month one">
         <nav id="menu">
             <ul>
-                <li class="active"><a class="mth" href="#month/january/2015">Jan / 15</a></li>
-                <li><a class="mth" href="#month/february/2015">Feb / 15</a></li>
-                <li><a class="mth" href="#month/march/2015">Mar / 15</a></li>
-                <li><a class="mth" href="#month/april/2015">Apr / 15</a></li>
-                <li><a class="mth" href="#month/may/2015">May / 15</a></li>
-                <li><a class="mth" href="#month/june/2015">Jun / 15</a></li>
-                <li><a class="mth" href="#month/july/2015">Jul / 15</a></li>
-                <li><a class="mth" href="#month/august/2015">Aug / 15</a></li>
-                <li><a class="mth" href="#month/september/2015">Sep / 15</a></li>
-                <li><a class="mth" href="#month/october/2015">Oct / 15</a></li>
-                <li><a class="mth" href="#month/november/2015">Nov / 15</a></li>
-                <li><a class="mth" href="#month/december/2015">Dec / 15</a></li>
+                <li class="active"><a class="mth" href="month/january/2015">Jan / 15</a></li>
+                <li><a class="mth" href="month/february/2015">Feb / 15</a></li>
+                <li><a class="mth" href="month/march/2015">Mar / 15</a></li>
+                <li><a class="mth" href="month/april/2015">Apr / 15</a></li>
+                <li><a class="mth" href="month/may/2015">May / 15</a></li>
+                <li><a class="mth" href="month/june/2015">Jun / 15</a></li>
+                <li><a class="mth" href="month/july/2015">Jul / 15</a></li>
+                <li><a class="mth" href="month/august/2015">Aug / 15</a></li>
+                <li><a class="mth" href="month/september/2015">Sep / 15</a></li>
+                <li><a class="mth" href="month/october/2015">Oct / 15</a></li>
+                <li><a class="mth" href="month/november/2015">Nov / 15</a></li>
+                <li><a class="mth" href="month/december/2015">Dec / 15</a></li>
             </ul>
         </nav>
         <div class="month-container">
@@ -190,5 +191,6 @@
 {{ javascript_include(theme ~ 'js/collections/monthcollection.js?' ~ appVersion ) }}
 {{ javascript_include(theme ~ 'js/routes/route.js?' ~ appVersion ) }}
 {{ javascript_include(theme ~ 'js/app.js?' ~ appVersion ) }}
+{{ partial('../../../common/views/tracking/web_trends_data_collector') }}
 </body>
 </html>

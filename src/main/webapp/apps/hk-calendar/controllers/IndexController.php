@@ -6,44 +6,57 @@
  */
 
 namespace HC\HkCalendar\Controllers;
+
 use \Phalcon\Mvc\Controller;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
 
     const PAGE_TITLE = "Experience Hong Kong | The Unmissable Events | HotelClub";
 
-    public function initialize() {
+    public function initialize()
+    {
 
     }
-    
+
     /**
      * Loading first time
      */
-    public function init() {
+    public function init()
+    {
         \Phalcon\Tag::setTitle('Hong Kong Interactive Calendar');
     }
 
     /**
      * Get user language
+     *
      * @return string
      */
-    public function getLang() {
+    public function getLang()
+    {
         return 'en';
     }
 
     /**
-     * 
+     *
      * Default action
      */
-    public function indexAction() {
-
+    public function indexAction()
+    {
         // load classes
-        $this->init(); 
+        $this->init();
+        $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
         //set variable for view
-        $this->view->setVars(array(
-            'appVersion' => APPLICATION_VERSION,
-            'title'      => self::PAGE_TITLE
-        ));
+        $this->view->setVars(
+            array(
+                'appVersion' => APPLICATION_VERSION,
+                'title'      => self::PAGE_TITLE,
+                'wtMetaData' => $webTrends
+                    ->setOwwPage($this->router->getRewriteUri())
+                    ->getWtMetaData(),
+                'wtDataCollectorData' => $webTrends->getWtDataCollectorData()
+            )
+        );
     }
 
 }
