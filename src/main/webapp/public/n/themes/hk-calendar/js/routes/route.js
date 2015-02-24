@@ -61,7 +61,8 @@ app.Router = Backbone.Router.extend({
         $('meta[name="description"]').attr('content', result.attributes.tip);
         document.title = result.attributes.name + ' ' + title;
 
-        this.scrollPage();
+        //this.scrollPage();
+        setTimeout(_.bind(this.scrollPage, this), 500);
 	},
 
 	event: function(name, year, id){
