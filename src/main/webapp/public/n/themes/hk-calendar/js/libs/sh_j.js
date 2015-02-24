@@ -65,7 +65,7 @@ sharecow.prototype = {
         /* Feel free to add to these as you wish */
         
         var shareUrl = document.location.href;
-        var shareHashUrl =  shareUrl.replace("interactive/month", "interactive#month");
+        var shareHashUrl =  shareUrl.replace("2015/event", "2015#event");
         var site = site;
 
         var shareTitle = this.options.title;
@@ -79,19 +79,19 @@ sharecow.prototype = {
         var socialSites = {
             "facebook": {
                 "url": 'http://www.facebook.com/sharer/sharer.php?s=100u=' + encUrl + '&t=' + encTitle,
-                "spec": 'toolbar=0, status=0, width=900, height=500',
+                "spec": 'toolbar=0, status=0, width=900, height=500'
             },
             "twitter": {
                 "url": 'https://twitter.com/intent/tweet?text=' + encTitleTw + '&url=' + encUrl,
-                "spec": 'toolbar=0, status=0, width=650, height=360',
+                "spec": 'toolbar=0, status=0, width=650, height=360'
             },
             "googleplus": {
                 "url": 'https://plus.google.com/share?url=' + encUrl,
-                "spec": 'toolbar=0, status=0, width=900, height=500',
+                "spec": 'toolbar=0, status=0, width=900, height=500'
             },
             "linkedin": {
                 "url": 'https://www.linkedin.com/cws/share?url=' + shareUrl + '&token=&isFramed=true',
-                "spec": 'toolbar=no, width=550, height=550',
+                "spec": 'toolbar=no, width=550, height=550'
             }
             // "pinterest": {
             //     "url": 'http://pinterest.com/pin/create/button/?url=&' + shareUrl + '&description=' + shareTitlePin + '&media=' + pinterestImg + '&token=&isFramed=true',
