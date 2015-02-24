@@ -53,7 +53,6 @@
 
 
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <noscript><img alt="dcsimg" id="dcsimg" width="1" height="1"
                src="//{{ wtDataCollectorData['domain'] }}/{{ wtDataCollectorData['dcsid'] }}/dcs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.2.0&amp;WT.dl=0"/>
 </noscript>
