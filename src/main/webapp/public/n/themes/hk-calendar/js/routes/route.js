@@ -4,7 +4,8 @@ app.Router = Backbone.Router.extend({
 
 	once: false,
 
-	initUrl: '#month/january/2015',
+	//initUrl: '#month/january/2015',
+	initUrl: '',
 
 	routes: {
 		"": "start",
