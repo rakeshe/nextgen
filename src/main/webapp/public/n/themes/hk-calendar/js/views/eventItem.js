@@ -117,9 +117,8 @@ app.EventItemView = Backbone.View.extend({
 
 	createSocial: function(name){
 		$('#lightbox .detail').append('<div id="socialbar"></div>');
-
-
-		var name = name+' -> ';
+		//var name = name+' -> ';
+        var name = 'Experience Hong Kong | The Unmissable Events';
 
 		var opt = {
 			domains: ['hotelclub.com'],
@@ -131,9 +130,9 @@ app.EventItemView = Backbone.View.extend({
 			    Pinterest: false
 			},
 			title: name,
-			titleTwitter: name,
+            titleTwitter: name+' via @HotelClub',
 			titlePinterest: name,
-			selector: '#socialbar',
+			selector: '#socialbar'
 		}
 			
 		var share = new sharecow(opt);
