@@ -14,6 +14,7 @@ class IndexController extends Controller
 
     const PAGE_TITLE = "Experience Hong Kong | The Unmissable Events | HotelClub";
 
+
     public function initialize()
     {
 
@@ -54,9 +55,16 @@ class IndexController extends Controller
                 'wtMetaData' => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())
                     ->getWtMetaData(),
-                'wtDataCollectorData' => $webTrends->getWtDataCollectorData()
+                'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
+                'canonicalUri' => $this->getCanonicalUri()
             )
         );
+    }
+
+    protected function getCanonicalUri(){
+        $currentUri = explode('/', $this->router->getRewriteUri());
+        $canonicalUri = array_slice($currentUri,0, 6);
+        return  'http://www.hotelclub.com' . implode('/' , $canonicalUri);
     }
 
 }
