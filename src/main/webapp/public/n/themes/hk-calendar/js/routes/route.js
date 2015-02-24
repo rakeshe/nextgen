@@ -178,7 +178,7 @@ app.Router = Backbone.Router.extend({
             complete: function() {
                 $('.main .arrow').animate({bottom: 13}, {
                     duration: 1000,
-                    complete: loop
+                    complete: this.loop
                 });
         }});
     }
