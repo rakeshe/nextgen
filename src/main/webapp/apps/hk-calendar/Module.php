@@ -17,7 +17,8 @@ class Module {
 
         $loader->registerNamespaces(array(
             'HC\HkCalendar\Controllers' => __DIR__ . '/controllers/',
-            'HC\HkCalendar\Models' => __DIR__ . '/models/'
+            'HC\HkCalendar\Models' => __DIR__ . '/models/',
+            'HC\Common\Helpers' => __DIR__ . '/../common/helpers/'
         ));
         $loader->register();
     }
