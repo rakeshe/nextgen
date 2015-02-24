@@ -830,7 +830,7 @@ $(document).ready(function() {
     console.log('URL =>' + x.dataP['info']['url']);
     console.log('DocNam =>'+  x.dataP['info']['docName']);
 	x.drawMenu(nextgen.selRegion);
-
+	initialize();
 	if (level == 1) {
 		x.drawCountry(region, region);
 		x.mapAction('');
@@ -899,7 +899,8 @@ $(document).on('click', '.menu-region,.menu-country,.menu-city,.mobile_regions,.
 		x.drawCards();
 		x.setUrlToHistory(url+ $(location).attr('search')); // Change url on browser
 		x.mapAction(cacheObj.data('cnt-code'));
-        x.drawMenu(nextgen.selRegion);
+        x.drawMenu(nextgen.selRegion);		
+		initialize();
 	})
 	.error(function(data){
 	    console.log('Exception: '+ data.responseText);
@@ -1048,8 +1049,7 @@ var nextgen = {
             nextgen.pageNumber = 1; // reset page number
             nextgen.isPagination = true;
             nextgen.displayPaginationCards();
-
-
+			resetGoogleMapPosition();
 		},
 
 		'PlatinumCard' : function(obj){
@@ -1303,10 +1303,8 @@ var nextgen = {
 			this.getRegions = reg;
 			//this.getLavel = 1;
 			$("ul#menu_new > li:nth-child(5)").children().css( "border-right", "3px double #e21e28" );
-			$('#regionTabs').html(html);
-			if(nextgen.getLavel==1){ resetGoogleMapPosition(); }
-			else{ resetGoogleMapPosition(1); }
-			
+			$('#regionTabs').html(html); 
+			resetGoogleMapPosition();			
 		},
 		'mobileMenu' : function() {
 			var html = '',
@@ -2325,7 +2323,6 @@ function loginParser() {
             var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
             /* if Cookies tmid value is set then displays the data */
 
-
             // alert(welcomeText);
             if (welcomeText != '' && loyaltyTier != '' && typeof loyaltyTier != 'undefined' && loyaltyInfo != '' && typeof loyaltyInfo != 'undefined') {
                 $('.sign_in-link').hide();
@@ -2369,12 +2366,12 @@ var googleRegionZoomLevel = {
 var googleCountryZoomLevel = {
 	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
 }
-
+	
 /** initializate function for google maps **/
-function initialize(){	
-/** Declartion of google maps variables **/
-var map, zoomLevel;
-geocoder = new google.maps.Geocoder();
+function initialize(){
+	/** Declartion of google maps variables **/
+	var map, zoomLevel;
+	geocoder = new google.maps.Geocoder();
 	var mapCanvas = document.getElementById('map-canvas');
 	
 	switch(nextgen.getLavel){
@@ -2382,11 +2379,11 @@ geocoder = new google.maps.Geocoder();
 			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
 			lat = googleRegionZoomLevel[nextgen.selRegion][1];
 			lang = googleRegionZoomLevel[nextgen.selRegion][2];
-			resetGoogleMapPosition(1);
+			resetGoogleMapPosition();
 			break;
 		case 3: 
 			//zoomVal = googleCountryZoomLevel[];					
-			resetGoogleMapPosition(1);
+			resetGoogleMapPosition();
 			break;
 	}
 	var mapOptions = {
@@ -2405,7 +2402,7 @@ geocoder = new google.maps.Geocoder();
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	var map = new google.maps.Map(mapCanvas, mapOptions);
-	zoomLevel = map.getZoom();
+	zoomLevel = map.getZoom();	
 	// add a click event handler to the map object
 	google.maps.event.addListener(map, "click", function(event)
 	{
@@ -2451,7 +2448,7 @@ geocoder = new google.maps.Geocoder();
 							nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
 							hideRegionName();
 							nextgen.drawMenu(nextgen.selRegion);					
-							resetGoogleMapPosition(1);
+							resetGoogleMapPosition();
 						})
 						.error(function(data){
 							console.log('Exception: '+ data.responseText);
@@ -2500,7 +2497,7 @@ geocoder = new google.maps.Geocoder();
 						.error(function(data){
 							console.log('Exception: '+ data.responseText);
 						});				
-						resetGoogleMapPosition(1);
+						resetGoogleMapPosition();
 					}
 				});
 			}else if(zoomLevel>=6){
@@ -2581,21 +2578,20 @@ geocoder = new google.maps.Geocoder();
 						});
 					}
 				}
-				resetGoogleMapPosition(1);
+				resetGoogleMapPosition();
 			}
 		});
 	}
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-function resetGoogleMapPosition(regionGoogleMapPosVal){
-	if(regionGoogleMapPosVal==1){
+/** reseting google map position based on level**/
+function resetGoogleMapPosition(){
+	if(nextgen.getLavel==1){
+		$("#map-canvas").css("top", "0px");//Adjusting map position
+		$("#menu_new").css("margin-top", "0px");//Adjusting menu position
+	}else{
 		$("#map-canvas").css("top", "-400px");//Adjusting map position
 		$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
-	}else{
-		$("#map-canvas").css("top", "0px");//Adjusting map position
-		$("#menu_new").css("margin-top", "0px");//Adjusting menu position	
 	}
-	
-	
 }
