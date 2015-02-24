@@ -61,6 +61,7 @@ app.Router = Backbone.Router.extend({
         $('meta[name="description"]').attr('content', result.attributes.tip);
         document.title = result.attributes.name + ' ' + title;
 
+        this.scrollPage();
 	},
 
 	event: function(name, year, id){
@@ -133,6 +134,53 @@ app.Router = Backbone.Router.extend({
 
 
   	return match[0];
-  }
+  },
+
+    height  : window.innerHeight,
+
+    docs : function() {
+        return [0, this.height, this.height *2, this.height *3+60, this.height*4];
+    },
+
+    checkMobile : function() {
+
+        if(window.innerWidth< 800){
+            var properHeight = this.height > 480 ? this.height : 480;
+            $('.month-container').css('height', properHeight);
+            $('.events').css('min-height', this.height);
+            $('#lightbox').css({
+                'top' : properHeight
+            });
+            var evLength = Math.floor($('.events .container').width()/155);
+
+            $('.events .container').css('width', evLength*155)
+        } else {
+            $('section.month').css('height', this.height);
+        }
+    },
+
+    scrollPage : function() {
+        var curr, loop = false;
+        this.docs().forEach(function(el, index){
+            if($(document).scrollTop() < el-1 && loop === false){
+                curr = el;
+                loop = true;
+            }
+        });
+        $('body, html').animate({
+            scrollTop: curr+'px'
+        }, 2000);
+    },
+
+    loop : function() {
+        $('.main .arrow').animate({'bottom': 33}, {
+            duration: 1000,
+            complete: function() {
+                $('.main .arrow').animate({bottom: 13}, {
+                    duration: 1000,
+                    complete: loop
+                });
+        }});
+    }
 
 })
