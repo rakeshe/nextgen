@@ -2338,7 +2338,7 @@ function loginParser() {
 loginParser();
 
 /*Google Map*/
-var map;
+var map, levelRegion, tempResultVal, countryShortName, countryLongName;
 var markersArray = [];
 var lat = 15.5403, lang = 10.5463;
 var zoomLevel, zoomVal = 2;
@@ -2366,26 +2366,59 @@ var googleRegionZoomLevel = {
 var googleCountryZoomLevel = {
 	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
 }
-	
-/** initializate function for google maps **/
-function initialize(){
-	/** Declartion of google maps variables **/
-	var map, zoomLevel;
-	geocoder = new google.maps.Geocoder();
-	var mapCanvas = document.getElementById('map-canvas');
-	
-	switch(nextgen.getLavel){
-		case 2: 
+
+//load the map details and modify according to the data
+function loadMap(){
+	/** Declartion of google maps variables **/	
+	levelRegion = nextgen.dataP['info']['url'].split("/");
+	console.log(levelRegion.length);
+	switch(levelRegion.length){
+		case 4:
+		console.log('City');
+			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
+				//console.log("Data: " + data.results + "\nStatus: " + status);
+				console.log(data.results);
+			});			
+			resetGoogleMapPosition();
+			break;
+		case 3:
+			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[2], function(data, status){
+				//console.log("Data: " + data.results[0].address_components + "\nStatus: " + );
+				lat = data.results[0].geometry.location.lat;
+				lang = data.results[0].geometry.location.lng;
+				for (var j=0; j<data.results[0].address_components.length; j++) {
+					for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (data.results[0].address_components[j].types[0] == "country") {
+							//this is the object you are looking for
+							var country = data.results[0].address_components[j];
+							countryShortName = country.short_name;
+							break;
+						}
+					}
+				}
+			});	
+			console.log(countryShortName, 'Coming out');
+			console.log(googleCountryZoomLevel[countryShortName]);	
+			zoomVal = googleCountryZoomLevel[countryShortName];				
+			resetGoogleMapPosition();
+			break;
+		case 2:
+		console.log('Region');
 			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
 			lat = googleRegionZoomLevel[nextgen.selRegion][1];
 			lang = googleRegionZoomLevel[nextgen.selRegion][2];
 			resetGoogleMapPosition();
 			break;
-		case 3: 
-			//zoomVal = googleCountryZoomLevel[];					
-			resetGoogleMapPosition();
-			break;
-	}
+	}	
+}
+
+/** initializate function for google maps **/
+function initialize(){
+	loadMap();//this function is to modify the map with direct url and menu click
+	geocoder = new google.maps.Geocoder();
+	var mapCanvas = document.getElementById('map-canvas');
+	console.log(lat, lang);
 	var mapOptions = {
 		center: new google.maps.LatLng(lat, lang),
 		zoom: zoomVal,
@@ -2402,13 +2435,13 @@ function initialize(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	var map = new google.maps.Map(mapCanvas, mapOptions);
-	zoomLevel = map.getZoom();	
+	zoomLevel = map.getZoom();
 	// add a click event handler to the map object
 	google.maps.event.addListener(map, "click", function(event)
 	{
 		//map.setZoom(map.getZoom()+1);
 		placeMarker(event.latLng);
-		//console.log(event);
+		console.log('coming here..');
 		console.log(event.latLng.lat(),event.latLng.lng());
 	});
 
@@ -2416,7 +2449,7 @@ function initialize(){
 		/*var marker = new google.maps.Marker({
 		  position: location
 		});*/
-		var tempRegionName, countryShortName, countryLongName;
+		var tempRegionName;
 		geocoder.geocode( {'latLng': location},	function(results, status) {
 			console.log(zoomLevel);
 			if(zoomLevel==2){
