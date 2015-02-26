@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="fragment" content="!">
     {{ get_title() }}
     <meta name="description" content="From a Bruce Lee exhibition to the birthday of Confucius, discover Hong Kong's unmissable events with this interactive calendar.">
     <link rel="canonical" href="{{ canonicalUri }}">
