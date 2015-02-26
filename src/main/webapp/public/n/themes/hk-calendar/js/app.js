@@ -34,7 +34,7 @@ $(document).on('click', '.month-arrow,.mth,.arrow', function() {
 $(document).ready(function(){
 
     //if browser supports pushState, remove # from the url
-    if (history.pushState) {
+    if (typeof history.pushState != 'undefined') {
 
         Backbone.history.start({
             pushState: true, // use html5 pushState with hashChange set to false

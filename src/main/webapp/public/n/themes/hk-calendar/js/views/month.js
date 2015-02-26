@@ -23,7 +23,7 @@ app.MonthView = Backbone.View.extend({
         );
 
         var events = this.model.get('events');
-        var image = location.origin + '/n/themes/hk-calendar/' + this.model.get('image');
+        var image = location.protocol + '//' + location.hostname + '/n/themes/hk-calendar/' + this.model.get('image');
 
 
         //console.log(itemModel);
