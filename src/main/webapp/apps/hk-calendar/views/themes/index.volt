@@ -59,6 +59,9 @@
         <div class="title">
             <h1><span>Experience</span><br>Hong Kong</h1>
             <h3>The Unmissable Events</h3>
+            <div id="seo-location">
+                <h5>Brought to you by <a href="http://www.hotelclub.com/hotels/Hong_Kong/Hong_Kong.hd29244/" target="_blank">HotelClub Hong Kong</a></h5>
+            </div>
             <div class="socialbar-title"></div>
         </div>
 

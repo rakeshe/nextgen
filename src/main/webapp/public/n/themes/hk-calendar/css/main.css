@@ -985,3 +985,13 @@ article.detail .event-gallery-item img {
     background: #775b97;
     text-decoration: none;
 }
+/*brought to you uri*/
+#seo-location h5{
+    font-style: italic;
+    font-size:0.7em;
+    padding-top:3px
+}
+
+#seo-location a {
+    color: #fff;
+}
