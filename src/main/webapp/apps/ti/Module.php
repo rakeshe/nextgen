@@ -19,7 +19,8 @@ class Module {
             'HC\TI\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
             'HC\TI\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,            
             'HC\Library' => __DIR__ . "/../../vendor/library",
-            'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir
+            'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir,
+            'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
         ));
 
         $loader->registerClasses(

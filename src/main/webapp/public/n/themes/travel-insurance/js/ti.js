@@ -230,7 +230,6 @@ var SearchBox = {
         ,
         'getPriceDetails': function() {
             this.startLoadin();
-            console.log('testing');
             return $.ajax({
                     type: 'POST',
                     dataType: 'json',

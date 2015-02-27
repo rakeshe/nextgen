@@ -8,6 +8,9 @@
  * @version    1.0
  */
 namespace HC\TI\Models;
+
+use Phalcon\Http\Client\Request;
+
 class PricingModel extends \Phalcon\Mvc\Model {
 
     public $securityKey;
@@ -59,6 +62,23 @@ class PricingModel extends \Phalcon\Mvc\Model {
             elseif ($years >= 80 && $years <= 85)   //Age of Senior between 80 and 85
                 $this->numSenior3++;
         }
+    }
+
+    /**
+     * make request using phalcon incubator
+     *
+     */
+    public function makeRequest() {
+
+        $provider  = Request::getProvider();
+        //set pricing gateway url path
+        $provider->setBaseUri($this->pricingGatewayUrl);
+        //set header
+        $provider->header->set('Accept', 'Content-Type: application/xml');
+        //send xml post data
+        $response = $provider->post('', $this->xmlPostFildes);
+        //get response
+        return $response->body;
     }
 
     /**
