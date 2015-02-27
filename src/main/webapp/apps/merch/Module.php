@@ -25,6 +25,7 @@ class Module {
             'HC\Library' => __DIR__ . "/../../vendor/library",
             'HC\Forms' => __DIR__ . '/' . static::getConfig()->application->formsDir,
             'HC\Merch\Library' => __DIR__ . '/' . static::getConfig()->application->componentDir,
+            'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
         ));
         $loader->registerClasses(
         		array(

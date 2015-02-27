@@ -2,6 +2,9 @@
 
 namespace HC\Merch\Controllers;
 
+use Phalcon\Http\Client\Request;
+use Phalcon\Http\Response;
+
 class IndexController extends ControllerBase {
     protected $uriBase;
     protected $uriFull;
@@ -629,8 +632,23 @@ class IndexController extends ControllerBase {
      * passing value to 'searchedText'
      */
     public function getLocationAction() {
-        ob_start ( null, 0, false );
+        //ob_start ( null, 0, false );
         if ($this->request->get ( "q" ) != NULL) {
+
+            $provider  = Request::getProvider(); // get available provider Curl or Stream
+            $provider->setBaseUri('http://www.hotelclub.com/helper/hotelSmartfill');
+            $provider->header->set('Accept', 'application/json');
+            $response = $provider->post('','searchedText=' . trim ( $this->request->get ( "q" )));
+            //send response
+            $res = new Response;
+            $res
+                ->setHeader("Content-Type", "application/json; charset=UTF-8")
+                ->setRawHeader("HTTP/1.1 200 OK")
+                ->setStatusCode(200, "OK")
+                ->setContent($response->body)
+                ->send();;
+
+            /*
             header ( 'Content-type: application/json; charset=utf-8' );
             $ch = curl_init ();
             curl_setopt ( $ch, CURLOPT_URL, "http://www.hotelclub.com/helper/hotelSmartfill" );
@@ -641,9 +659,10 @@ class IndexController extends ControllerBase {
                 $this->getDI()->getShared('logger')->log("Curl Error: " . curl_errno($ch) .": ".
                     curl_error($ch));
             }
-            curl_close ( $ch );
+            curl_close ( $ch );*/
         }
-        die ();
+        $this->view->disable();
+        //die ();
     }
 
     public function show404Action() {
