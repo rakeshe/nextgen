@@ -2342,6 +2342,7 @@ var map, levelRegion, tempResultVal, countryShortName, countryLongName;
 var markersArray = [];
 var lat = 15.5403, lang = 10.5463;
 var zoomLevel, zoomVal = 2;
+var mapCanvas = document.getElementById('map-canvas');
 
 /** World map specific **/
 var goggleRegions = {
@@ -2393,18 +2394,34 @@ function loadMap(){
 							//this is the object you are looking for
 							var country = data.results[0].address_components[j];
 							countryShortName = country.short_name;
-							break;
 						}
 					}
 				}
-			});	
-			console.log(countryShortName, 'Coming out');
-			console.log(googleCountryZoomLevel[countryShortName]);	
-			zoomVal = googleCountryZoomLevel[countryShortName];				
-			resetGoogleMapPosition();
+				console.log(googleCountryZoomLevel[countryShortName]);	
+				zoomVal = googleCountryZoomLevel[countryShortName];				
+				resetGoogleMapPosition();
+				geocoder = new google.maps.Geocoder();
+				mapOptions = {
+					center: new google.maps.LatLng(lat, lang),
+					zoom: zoomVal,
+					minZoom: 2,
+					panControl: true,
+					disableDoubleClickZoom: true,
+					panControlOptions: {
+						position: google.maps.ControlPosition.RIGHT_TOP
+					},
+					zoomControlOptions: {
+						style: google.maps.ZoomControlStyle.LARGE,
+						position: google.maps.ControlPosition.RIGHT_TOP
+					},
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+				map = new google.maps.Map(mapCanvas, mapOptions);
+				zoomLevel = map.getZoom();
+			});
 			break;
 		case 2:
-		console.log('Region');
+			console.log('Region');
 			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
 			lat = googleRegionZoomLevel[nextgen.selRegion][1];
 			lang = googleRegionZoomLevel[nextgen.selRegion][2];
@@ -2417,9 +2434,8 @@ function loadMap(){
 function initialize(){
 	loadMap();//this function is to modify the map with direct url and menu click
 	geocoder = new google.maps.Geocoder();
-	var mapCanvas = document.getElementById('map-canvas');
-	console.log(lat, lang);
-	var mapOptions = {
+	
+	mapOptions = {
 		center: new google.maps.LatLng(lat, lang),
 		zoom: zoomVal,
 		minZoom: 2,
@@ -2434,15 +2450,14 @@ function initialize(){
 		},
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
-	var map = new google.maps.Map(mapCanvas, mapOptions);
+	map = new google.maps.Map(mapCanvas, mapOptions);
 	zoomLevel = map.getZoom();
+	
 	// add a click event handler to the map object
 	google.maps.event.addListener(map, "click", function(event)
 	{
 		//map.setZoom(map.getZoom()+1);
 		placeMarker(event.latLng);
-		console.log('coming here..');
-		console.log(event.latLng.lat(),event.latLng.lng());
 	});
 
 	function placeMarker(location) {
