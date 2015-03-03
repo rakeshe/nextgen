@@ -1849,7 +1849,6 @@ function resetMap(){
 $(document).on('click','text[text-anchor="middle"]',function(){
 	var sel = $.trim($(this).text()), url='';
 	//nextgen.mapClickRequest('city', $.trim($(this).text()));
-	//console.log(nextgen.data['urls'][nextgen.selRegion]);
 	$.each(nextgen.data['urls'][nextgen.selRegion], function(index, value){
 		if(nextgen.getLavel==3){ //while clicking on city label
 			if (typeof value === 'object') {
@@ -2360,33 +2359,27 @@ var googleRegionZoomLevel = {
 	'americas': [3,  33.43144133557529, -96.328125], 
 	'europe--uae': [4, 42.81152174509788, 13.359375],
 	'southeast-asia': [4, -5.615985819155327, 115.6640625], 
-	'northeast-asia': [6, 36.03133177633187, 117.421875]
+	'northeast-asia': [4, 36.03133177633187, 117.421875]
 }
 
 /** Zoom Level for each country inside map specific **/
 var googleCountryZoomLevel = {
-	'AU': 6, 'NZ': 8, 'FJ': 8,'AR': 8, 'BR': 8, 'CA': 8, 'MX': 8, 'US': 7, 'AT': 8,'BE': 8, 'CZ': 8, 'FR': 8, 'DE': 8, 'GR': 8,'IE': 8, 'NL': 8, 'PT': 8, 'ES': 8, 'SE': 7, 'TR': 8,'AE': 8, 'GB': 8, 'ID': 8, 'MY': 7, 'PH': 8,'SG': 8, 'TH': 8, 'VN': 8, 'CN': 8, 'HK': 8,'JP': 8, 'MO': 8, 'KR': 8, 'TW': 8
+	'AU': 6, 'NZ': 6, 'FJ': 7,'AR': 6, 'BR': 5, 'CA': 7, 'MX': 7, 'US': 7, 'AT': 7,'BE': 7, 'CZ': 7, 'FR': 7, 'DE': 7, 'GR': 7,'IE': 7, 'NL': 7, 'PT': 7, 'ES': 7, 'SE': 7, 'TR': 7,'AE': 7, 'GB': 7, 'ID': 7, 'MY': 7, 'PH': 7,'SG': 7, 'TH': 7, 'VN': 7, 'CN': 6, 'HK': 7,'JP': 7, 'MO': 7, 'KR': 7, 'TW': 7
 }
 
 //load the map details and modify according to the data
-function loadMap(){
-	/** Declartion of google maps variables **/	
+function loadGoogleMap(){
+	// Declartion of google maps variables
 	levelRegion = nextgen.dataP['info']['url'].split("/");
-	console.log(levelRegion.length);
 	switch(levelRegion.length){
-		case 4:
-		console.log('City');
-			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
-				//console.log("Data: " + data.results + "\nStatus: " + status);
-				console.log(data.results);
-			});			
+		case 2:
+			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
+			lat = googleRegionZoomLevel[nextgen.selRegion][1];
+			lang = googleRegionZoomLevel[nextgen.selRegion][2];
 			resetGoogleMapPosition();
-			break;
+		break;
 		case 3:
 			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[2], function(data, status){
-				//console.log("Data: " + data.results[0].address_components + "\nStatus: " + );
-				lat = data.results[0].geometry.location.lat;
-				lang = data.results[0].geometry.location.lng;
 				for (var j=0; j<data.results[0].address_components.length; j++) {
 					for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
 						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
@@ -2394,46 +2387,41 @@ function loadMap(){
 							//this is the object you are looking for
 							var country = data.results[0].address_components[j];
 							countryShortName = country.short_name;
+							break;
 						}
 					}
 				}
-				console.log(googleCountryZoomLevel[countryShortName]);	
-				zoomVal = googleCountryZoomLevel[countryShortName];				
-				resetGoogleMapPosition();
-				geocoder = new google.maps.Geocoder();
-				mapOptions = {
-					center: new google.maps.LatLng(lat, lang),
-					zoom: zoomVal,
-					minZoom: 2,
-					panControl: true,
-					disableDoubleClickZoom: true,
-					panControlOptions: {
-						position: google.maps.ControlPosition.RIGHT_TOP
-					},
-					zoomControlOptions: {
-						style: google.maps.ZoomControlStyle.LARGE,
-						position: google.maps.ControlPosition.RIGHT_TOP
-					},
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				}
-				map = new google.maps.Map(mapCanvas, mapOptions);
-				zoomLevel = map.getZoom();
+				fetchCountryName(data.results, data.results[0].geometry.location);
 			});
-			break;
-		case 2:
-			console.log('Region');
-			zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
-			lat = googleRegionZoomLevel[nextgen.selRegion][1];
-			lang = googleRegionZoomLevel[nextgen.selRegion][2];
+		break;
+		case 4:
+		console.log('City');
+			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
+				//console.log("Data: " + data.results + "\nStatus: " + status);
+				/*for (var j=0; j<data.results[0].address_components.length; j++) {
+					for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
+						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+						if (data.results[0].address_components[j].types[0] == "country") {
+							//this is the object you are looking for
+							var country = data.results[0].address_components[j];
+							countryShortName = country.short_name;
+							break;
+						}
+					}
+				}
+				console.log(countryShortName);
+				console.log(data.results, data.results[0].geometry.location);*/
+				fetchCityName(data.results, data.results[0].geometry.location);
+			});			
 			resetGoogleMapPosition();
 			break;
-	}	
+	}
 }
 
 /** initializate function for google maps **/
-function initialize(){
-	loadMap();//this function is to modify the map with direct url and menu click
+function initialize(){	
 	geocoder = new google.maps.Geocoder();
+	loadGoogleMap();//this function is to modify the map with direct url and menu click
 	
 	mapOptions = {
 		center: new google.maps.LatLng(lat, lang),
@@ -2458,180 +2446,190 @@ function initialize(){
 	{
 		//map.setZoom(map.getZoom()+1);
 		placeMarker(event.latLng);
+	});	
+	
+	
+
+function placeMarker(location) {
+	/*var marker = new google.maps.Marker({
+	  position: location
+	});*/
+	var tempRegionName;
+	geocoder.geocode( {'latLng': location},	function(results, status) {
+		if(zoomLevel==2){
+			fetchRegionName(results, location);
+		}else if(zoomLevel==3){
+			fetchCountryName(results, location);			
+		}else if(zoomLevel>=6){
+			fetchCityName(results, location);
+		}
 	});
+}//placeMarker
+}
 
-	function placeMarker(location) {
-		/*var marker = new google.maps.Marker({
-		  position: location
-		});*/
-		var tempRegionName;
-		geocoder.geocode( {'latLng': location},	function(results, status) {
-			console.log(zoomLevel);
-			if(zoomLevel==2){
-				var regionVal;
-				//fetch region
-				for (var j=0; j<results[0].address_components.length; j++) {
-					for (var c=0;c<results[0].address_components[j].types.length;c++) {
-						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-						if (results[0].address_components[j].types[0] == "country") {
-							//this is the object you are looking for
-							var country= results[0].address_components[j];
-							countryShortName = country.short_name;
-							break;
-						}
-					}
+/** fetch the valid region **/
+function fetchRegionName(results, location){
+	var regionVal;
+		//fetch region
+		for (var j=0; j<results[0].address_components.length; j++) {
+			for (var c=0;c<results[0].address_components[j].types.length;c++) {
+				//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+				if (results[0].address_components[j].types[0] == "country") {
+					//this is the object you are looking for
+					var country= results[0].address_components[j];
+					countryShortName = country.short_name;
+					break;
 				}
-				$.each(goggleRegions, function(regionName, regionValue){
-					tempRegionName = regionValue.indexOf(countryShortName);
-					if(tempRegionName>=0){
-						map.setZoom(googleRegionZoomLevel[regionName][0]);
-						map.setCenter(location);
-						nextgen.selRegion = regionName;
-						res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
-						res.success(function(data){
-							nextgen.dataP = data;
-							nextgen.drawCards();
-							nextgen.drawCountry(regionName, regionName);
-							nextgen.selRegion = regionName;
-							nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
-							hideRegionName();
-							nextgen.drawMenu(nextgen.selRegion);					
-							resetGoogleMapPosition();
-						})
-						.error(function(data){
-							console.log('Exception: '+ data.responseText);
-						});
-						zoomLevel = map.getZoom();
-						regionVal = 1;
-						return false;
-					}else{
-						regionVal = 0;
-					}
+			}
+		}
+		$.each(goggleRegions, function(regionName, regionValue){
+			tempRegionName = regionValue.indexOf(countryShortName);
+			if(tempRegionName>=0){
+				map.setZoom(googleRegionZoomLevel[regionName][0]);
+				map.setCenter(location);
+				nextgen.selRegion = regionName;
+				res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
+				res.success(function(data){
+					nextgen.dataP = data;
+					nextgen.drawCards();
+					nextgen.drawCountry(regionName, regionName);
+					nextgen.selRegion = regionName;
+					nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
+					hideRegionName();
+					nextgen.drawMenu(nextgen.selRegion);					
+					resetGoogleMapPosition();
+				})
+				.error(function(data){
+					console.log('Exception: '+ data.responseText);
 				});
-				if(regionVal == 0) { alert('Please select the valid region');return false; }
-			}else if(zoomLevel==3){
-				//fetch country
-				for (var k=0; k<results[0].address_components.length; k++) {
-					for (var d=0;d<results[0].address_components[k].types.length;d++) {
-						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-						if (results[0].address_components[k].types[0] == "country") {
-							//this is the object you are looking for
-							var country= results[0].address_components[k];
-							countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
-							countryShortName = country.short_name.toUpperCase();//country short name
-							break;
-						}
-					}
-				}
-				console.log(countryShortName, countryLongName);
-				$.each(goggleRegions, function(regionName, regionValue){
-					tempRegionName = regionValue.indexOf(countryShortName);
-					//console.log(regionName, tempRegionName);
-					if(tempRegionName>=0){
-						if(countryShortName!='MO'){ map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]); }
-						else{ map.setZoom(7); }
-						map.setCenter(location);
-						zoomLevel = map.getZoom();
-						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
-						res.success(function(data){
-							nextgen.dataP = data;
-							nextgen.drawCards();
-							nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
-							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
-							data = regionMapConf('city-code', nextgen.selRegion);
-							nextgen.mapAction(nextgen.selRegion);
-							hideRegionName();
-						})
-						.error(function(data){
-							console.log('Exception: '+ data.responseText);
-						});				
-						resetGoogleMapPosition();
-					}
-				});
-			}else if(zoomLevel>=6){
-				console.log(nextgen.getCities);
-				//console.log(results);
-				for (var k=0; k<results[0].address_components.length; k++) {
-					for (var d=0;d<results[0].address_components[k].types.length;d++) {
-						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-						if (results[0].address_components[k].types[0] == "locality") {
-							//this is the object you are looking for
-							var country= results[0].address_components[k];
-							countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
-							countryShortName = country.short_name.toUpperCase();//country short name
-							break;
-						}
-					}
-				}
-				//console.log(results[2].formatted_address);
-				for (var key in nextgen.getCities) {
-					var cityNameExists1 = results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
-					var cityNameExists2 = results[1].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
-					var cityNameExists3 = results[2].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
-					var cityNameExists4 = results[3].formatted_address.indexOf(nextgen.getCities[key]['name_en']);
-					if((cityNameExists1>=0)||(cityNameExists2>=0)||(cityNameExists3>=0)||(cityNameExists4>=0))
-					{
-						console.log(nextgen.getCities[key]['name_en'], nextgen.getCities[key]['url']);
-						map.setZoom(map.getZoom()+7);
-						map.setCenter(location);
-						zoomLevel = map.getZoom();
-						console.log(zoomLevel);
-						res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
-						res.success(function(data){
-							console.log(uriBase ,nextgen.getCities[key]['url']);
-							nextgen.dataP = data;
-							nextgen.drawCards();
-							nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
-							hideRegionName();
-							var markers  = [];
-							//fetched all the deal hotel details
-							$.each(nextgen.data['deals'], function(hotelId, hotelDetails){
-								markers .push(hotelDetails['hotel_name'], nextgen.getCities[key]['name_en']);
-								return;
-							});
-							// Info Window Content
-							var infoWindowContent = [
-								['Content goes here...']
-							];
-								
-							// Display multiple markers on a map
-							var infoWindow = new google.maps.InfoWindow(), marker, i;
-							
-							// Loop through our array of markers & place each one on the map  
-							for( i = 0; i < markers.length; i++ ) {
-								//var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-								//bounds.extend(position);
-								marker = new google.maps.Marker({
-									//position: position,
-									map: map,
-									title: markers[i][0]
-								});
-								
-								// Allow each marker to have an info window    
-								google.maps.event.addListener(marker, 'click', (function(marker, i) {
-									return function() {
-										infoWindow.setContent(infoWindowContent[i][0]);
-										infoWindow.open(map, marker);
-									}
-								})(marker, i));
-
-								// Automatically center the map fitting all markers on the screen
-								//map.fitBounds(bounds);
-								console.log('Success');
-							}
-						})
-						.error(function(data){
-							console.log('failed');
-							console.log('Exception: '+ data.responseText);
-						});
-					}
-				}
-				resetGoogleMapPosition();
+				zoomLevel = map.getZoom();
+				regionVal = 1;
+				return false;
+			}else{
+				regionVal = 0;
 			}
 		});
-	}
+		if(regionVal == 0) { alert('Please select the valid region');return false; }
 }
-google.maps.event.addDomListener(window, 'load', initialize);
+
+/** fetch valid country name **/
+function fetchCountryName(results, location){
+	//fetch country
+	for (var k=0; k<results[0].address_components.length; k++) {
+		for (var d=0;d<results[0].address_components[k].types.length;d++) {
+			//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+			if (results[0].address_components[k].types[0] == "country") {
+				//this is the object you are looking for
+				var country= results[0].address_components[k];
+				countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
+				countryShortName = country.short_name.toUpperCase();//country short name
+				break;
+			}
+		}
+	}
+	$.each(goggleRegions, function(regionName, regionValue){
+		tempRegionName = regionValue.indexOf(countryShortName);
+		if(tempRegionName>=0){
+			if(countryShortName!='MO'){ map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]); }
+			else{ map.setZoom(7); }
+			map.setCenter(location);
+			zoomLevel = map.getZoom();
+			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
+			res.success(function(data){
+				nextgen.dataP = data;
+				nextgen.drawCards();
+				nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
+				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
+				data = regionMapConf('city-code', nextgen.selRegion);
+				nextgen.mapAction(nextgen.selRegion);
+				hideRegionName();
+			})
+			.error(function(data){
+				console.log('Exception: '+ data.responseText);
+			});				
+			resetGoogleMapPosition();
+		}
+	});
+}
+
+/** reset valid city name **/
+function fetchCityName(results, location){
+	for (var k=0; k<results[0].address_components.length; k++) {
+		for (var d=0;d<results[0].address_components[k].types.length;d++) {
+			//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+			if (results[0].address_components[k].types[0] == "locality") {
+				//this is the object you are looking for
+				var country= results[0].address_components[k];
+				countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
+				countryShortName = country.short_name.toUpperCase();//country short name
+				break;
+			}
+		}
+	}
+	for (var key in nextgen.getCities) {
+		var cityNameExists1=-1, cityNameExists2=-1, cityNameExists3=-1, cityNameExists4=-1;
+		if(results[0]!='undefined'){ cityNameExists1= results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
+		//if(results[1]!='undefined'){ cityNameExists2 = results[1].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
+		//if(results[2]!='undefined'){ cityNameExists3 = results[2].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
+		//if(results[3]!='undefined'){ cityNameExists4 = results[3].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
+		//console.log(cityNameExists1,cityNameExists2,cityNameExists3,cityNameExists4);
+		if((cityNameExists1>=0))
+		{
+			console.log('Coming inside');
+			map.setZoom(map.getZoom()+7);
+			map.setCenter(location);
+			zoomLevel = map.getZoom();
+			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
+			res.success(function(data){
+				nextgen.dataP = data;
+				nextgen.drawCards();
+				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
+				hideRegionName();
+				var markers  = [];
+				//fetched all the deal hotel details
+				$.each(nextgen.data['deals'], function(hotelId, hotelDetails){
+					markers.push(hotelDetails['hotel_name'], nextgen.getCities[key]['name_en']);
+					return;
+				});
+				// Info Window Content
+				var infoWindowContent = [
+					['Content goes here...']
+				];
+					
+				// Display multiple markers on a map
+				var infoWindow = new google.maps.InfoWindow(), marker, i;
+				
+				// Loop through our array of markers & place each one on the map  
+				for( i = 0; i < markers.length; i++ ) {
+					//var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+					//bounds.extend(position);
+					marker = new google.maps.Marker({
+						//position: position,
+						map: map,
+						title: markers[i][0]
+					});
+					
+					// Allow each marker to have an info window    
+					google.maps.event.addListener(marker, 'click', (function(marker, i) {
+						return function() {
+							infoWindow.setContent(infoWindowContent[i][0]);
+							infoWindow.open(map, marker);
+						}
+					})(marker, i));
+
+					// Automatically center the map fitting all markers on the screen
+					//map.fitBounds(bounds);
+					console.log('Success');
+				}
+			})
+			.error(function(data){
+				console.log('failed');
+				console.log('Exception: '+ data.responseText);
+			});
+		}
+	}
+	resetGoogleMapPosition();
+}
 
 /** reseting google map position based on level**/
 function resetGoogleMapPosition(){
@@ -2643,3 +2641,6 @@ function resetGoogleMapPosition(){
 		$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
 	}
 }
+
+/** load google map when window is loaded **/
+google.maps.event.addDomListener(window, 'load', initialize);
