@@ -646,7 +646,7 @@ class IndexController extends ControllerBase {
                 ->setRawHeader("HTTP/1.1 200 OK")
                 ->setStatusCode(200, "OK")
                 ->setContent($response->body)
-                ->send();;
+                ->send();
 
             /*
             header ( 'Content-type: application/json; charset=utf-8' );
