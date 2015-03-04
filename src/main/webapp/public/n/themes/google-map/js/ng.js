@@ -2255,7 +2255,6 @@ function setCordinateVal(){
 	$('text[y="349.6690915387225"]').attr('y','330');//Montreal - QC
 	$('text[y="296.38658555269444"]').attr('y','280');//Rio
 	$('text[y="358.8571563865426"]').attr('y','340');//HongKong
-
 }//setCordinateVal
 
 //stop the timer value
@@ -2342,6 +2341,9 @@ var markersArray = [];
 var lat = 15.5403, lang = 10.5463;
 var zoomLevel, zoomVal = 2;
 var mapCanvas = document.getElementById('map-canvas');
+var delay = 100;
+var infowindow = new google.maps.InfoWindow();
+var bounds = new google.maps.LatLngBounds();
 
 /** World map specific **/
 var goggleRegions = {
@@ -2363,8 +2365,11 @@ var googleRegionZoomLevel = {
 }
 
 /** Zoom Level for each country inside map specific **/
+/*var googleCountryZoomLevel = {
+	//'AU': 6, 'NZ': 6, 'FJ': 7,'AR': 6, 'BR': 5, 'CA': 7, 'MX': 7, 'US': 7, 'AT': 7,'BE': 7, 'CZ': 7, 'FR': 7, 'DE': 7, 'GR': 7,'IE': 7, 'NL': 7, 'PT': 7, 'ES': 7, 'SE': 7, 'TR': 7,'AE': 7, 'GB': 7, 'ID': 7, 'MY': 7, 'PH': 7,'SG': 7, 'TH': 7, 'VN': 7, 'CN': 6, 'HK': 7,'JP': 7, 'MO': 7, 'KR': 7, 'TW': 7 
+}*/
 var googleCountryZoomLevel = {
-	'AU': 6, 'NZ': 6, 'FJ': 7,'AR': 6, 'BR': 5, 'CA': 7, 'MX': 7, 'US': 7, 'AT': 7,'BE': 7, 'CZ': 7, 'FR': 7, 'DE': 7, 'GR': 7,'IE': 7, 'NL': 7, 'PT': 7, 'ES': 7, 'SE': 7, 'TR': 7,'AE': 7, 'GB': 7, 'ID': 7, 'MY': 7, 'PH': 7,'SG': 7, 'TH': 7, 'VN': 7, 'CN': 6, 'HK': 7,'JP': 7, 'MO': 7, 'KR': 7, 'TW': 7
+	'AU': 4, 'NZ': 4, 'FJ': 4,'AR': 4, 'BR': 4, 'CA': 4, 'MX': 4, 'US': 4, 'AT': 4,'BE': 4, 'CZ': 4, 'FR': 4, 'DE': 4, 'GR': 4,'IE': 4, 'NL': 4, 'PT': 4, 'ES': 4, 'SE': 4, 'TR': 4,'AE': 4, 'GB': 4, 'ID': 4, 'MY': 4, 'PH': 4,'SG': 4, 'TH': 4, 'VN': 4, 'CN': 4, 'HK': 4,'JP': 4, 'MO': 4, 'KR': 4, 'TW': 4
 }
 
 //load the map details and modify according to the data
@@ -2397,20 +2402,6 @@ function loadGoogleMap(){
 		case 4:
 		console.log('City');
 			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
-				//console.log("Data: " + data.results + "\nStatus: " + status);
-				/*for (var j=0; j<data.results[0].address_components.length; j++) {
-					for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
-						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-						if (data.results[0].address_components[j].types[0] == "country") {
-							//this is the object you are looking for
-							var country = data.results[0].address_components[j];
-							countryShortName = country.short_name;
-							break;
-						}
-					}
-				}
-				console.log(countryShortName);
-				console.log(data.results, data.results[0].geometry.location);*/
 				fetchCityName(data.results, data.results[0].geometry.location);
 			});			
 			resetGoogleMapPosition();
@@ -2447,70 +2438,69 @@ function initialize(){
 		//map.setZoom(map.getZoom()+1);
 		placeMarker(event.latLng);
 	});	
-	
-	
 
-function placeMarker(location) {
-	/*var marker = new google.maps.Marker({
-	  position: location
-	});*/
-	var tempRegionName;
-	geocoder.geocode( {'latLng': location},	function(results, status) {
-		if(zoomLevel==2){
-			fetchRegionName(results, location);
-		}else if(zoomLevel==3){
-			fetchCountryName(results, location);			
-		}else if(zoomLevel>=6){
-			fetchCityName(results, location);
-		}
-	});
-}//placeMarker
-}
+	//placeMarker to point the map
+	function placeMarker(location) {
+		/*var marker = new google.maps.Marker({
+		  position: location
+		});*/
+		var tempRegionName;
+		geocoder.geocode( {'latLng': location},	function(results, status) {
+			if(zoomLevel==2){
+				fetchRegionName(results, location);
+			}else if(zoomLevel==3){
+				fetchCountryName(results, location);			
+			}else if(zoomLevel>=6){
+				fetchCityName(results, location);
+			}
+		});
+	}//placeMarker
+}//initialize
 
 /** fetch the valid region **/
 function fetchRegionName(results, location){
 	var regionVal;
-		//fetch region
-		for (var j=0; j<results[0].address_components.length; j++) {
-			for (var c=0;c<results[0].address_components[j].types.length;c++) {
-				//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-				if (results[0].address_components[j].types[0] == "country") {
-					//this is the object you are looking for
-					var country= results[0].address_components[j];
-					countryShortName = country.short_name;
-					break;
-				}
+	//fetch region
+	for (var j=0; j<results[0].address_components.length; j++) {
+		for (var c=0;c<results[0].address_components[j].types.length;c++) {
+			//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+			if (results[0].address_components[j].types[0] == "country") {
+				//this is the object you are looking for
+				var country= results[0].address_components[j];
+				countryShortName = country.short_name;
+				break;
 			}
 		}
-		$.each(goggleRegions, function(regionName, regionValue){
-			tempRegionName = regionValue.indexOf(countryShortName);
-			if(tempRegionName>=0){
-				map.setZoom(googleRegionZoomLevel[regionName][0]);
-				map.setCenter(location);
+	}
+	$.each(goggleRegions, function(regionName, regionValue){
+		tempRegionName = regionValue.indexOf(countryShortName);
+		if(tempRegionName>=0){
+			map.setZoom(googleRegionZoomLevel[regionName][0]);
+			map.setCenter(location);
+			nextgen.selRegion = regionName;
+			res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
+			res.success(function(data){
+				nextgen.dataP = data;
+				nextgen.drawCards();
+				nextgen.drawCountry(regionName, regionName);
 				nextgen.selRegion = regionName;
-				res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
-				res.success(function(data){
-					nextgen.dataP = data;
-					nextgen.drawCards();
-					nextgen.drawCountry(regionName, regionName);
-					nextgen.selRegion = regionName;
-					nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
-					hideRegionName();
-					nextgen.drawMenu(nextgen.selRegion);					
-					resetGoogleMapPosition();
-				})
-				.error(function(data){
-					console.log('Exception: '+ data.responseText);
-				});
-				zoomLevel = map.getZoom();
-				regionVal = 1;
-				return false;
-			}else{
-				regionVal = 0;
-			}
-		});
-		if(regionVal == 0) { alert('Please select the valid region');return false; }
-}
+				nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
+				hideRegionName();
+				nextgen.drawMenu(nextgen.selRegion);					
+				resetGoogleMapPosition();
+			})
+			.error(function(data){
+				console.log('Exception: '+ data.responseText);
+			});
+			zoomLevel = map.getZoom();
+			regionVal = 1;
+			return false;
+		}else{
+			regionVal = 0;
+		}
+	});
+	if(regionVal == 0) { alert('Please select the valid region');return false; }
+}//fetchRegionName
 
 /** fetch valid country name **/
 function fetchCountryName(results, location){
@@ -2527,6 +2517,7 @@ function fetchCountryName(results, location){
 			}
 		}
 	}
+	//countryShortName value fetched on map
 	$.each(goggleRegions, function(regionName, regionValue){
 		tempRegionName = regionValue.indexOf(countryShortName);
 		if(tempRegionName>=0){
@@ -2543,6 +2534,25 @@ function fetchCountryName(results, location){
 				data = regionMapConf('city-code', nextgen.selRegion);
 				nextgen.mapAction(nextgen.selRegion);
 				hideRegionName();
+				var markers  = [], markersVal  = [];
+				//fetched all the deal hotel details	
+				for (var key in nextgen.getCities) {
+					markers.push(key);
+				}
+				$.each(markers, function (cityKey, cityStatus){
+					$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+cityStatus, function(cityDataVal, cityDataStatus){						
+						var marker = new google.maps.Marker({
+							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
+							map: map,
+						});
+						var contentString = cityDataVal.results[0].address_components[0].long_name;
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.setContent(contentString); 
+							infowindow.open(map,marker);
+						});
+						bounds.extend(marker.position);
+					});
+				});	
 			})
 			.error(function(data){
 				console.log('Exception: '+ data.responseText);
@@ -2550,7 +2560,7 @@ function fetchCountryName(results, location){
 			resetGoogleMapPosition();
 		}
 	});
-}
+}//fetchCountryName
 
 /** reset valid city name **/
 function fetchCityName(results, location){
@@ -2584,43 +2594,7 @@ function fetchCityName(results, location){
 				nextgen.dataP = data;
 				nextgen.drawCards();
 				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
-				hideRegionName();
-				var markers  = [];
-				//fetched all the deal hotel details
-				$.each(nextgen.data['deals'], function(hotelId, hotelDetails){
-					markers.push(hotelDetails['hotel_name'], nextgen.getCities[key]['name_en']);
-					return;
-				});
-				// Info Window Content
-				var infoWindowContent = [
-					['Content goes here...']
-				];
-					
-				// Display multiple markers on a map
-				var infoWindow = new google.maps.InfoWindow(), marker, i;
-				
-				// Loop through our array of markers & place each one on the map  
-				for( i = 0; i < markers.length; i++ ) {
-					//var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-					//bounds.extend(position);
-					marker = new google.maps.Marker({
-						//position: position,
-						map: map,
-						title: markers[i][0]
-					});
-					
-					// Allow each marker to have an info window    
-					google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						return function() {
-							infoWindow.setContent(infoWindowContent[i][0]);
-							infoWindow.open(map, marker);
-						}
-					})(marker, i));
-
-					// Automatically center the map fitting all markers on the screen
-					//map.fitBounds(bounds);
-					console.log('Success');
-				}
+				hideRegionName();					
 			})
 			.error(function(data){
 				console.log('failed');
@@ -2629,7 +2603,7 @@ function fetchCityName(results, location){
 		}
 	}
 	resetGoogleMapPosition();
-}
+}//fetchCityName
 
 /** reseting google map position based on level**/
 function resetGoogleMapPosition(){
@@ -2640,7 +2614,7 @@ function resetGoogleMapPosition(){
 		$("#map-canvas").css("top", "-400px");//Adjusting map position
 		$("#menu_new").css("margin-top", "-450px");//Adjusting menu position
 	}
-}
+}//resetGoogleMapPosition
 
 /** load google map when window is loaded **/
 google.maps.event.addDomListener(window, 'load', initialize);
