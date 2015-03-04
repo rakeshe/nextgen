@@ -31,7 +31,7 @@ class FeedController extends ControllerBase
 
 
     /**
-     *
+     * init
      */
     public function initialize()
     {
@@ -40,10 +40,16 @@ class FeedController extends ControllerBase
         $this->setParams();
     }
 
+    /** Verify auth
+     * @return bool
+     */
     public function checkAuth() {
         return true;
     }
 
+    /**
+     *  verify input data and set
+     */
     public function setParams() {
 
         //check and validate incoming locale
@@ -58,12 +64,35 @@ class FeedController extends ControllerBase
         if (null !== $this->request->getQuery('oneg')) {
 
             foreach(explode(',', $this->request->getQuery('oneg')) as $val) {
-                if(is_numeric($val))
-                    array_push($this->onegID, $val);
+
+                //check if onegid is available in our lead array
+                if(is_numeric($val) &&  isset($this->loadTargetingLeads()[$val]))
+                    $this->onegID[$val] = $val;
             }
         }
     }
 
+
+    /**
+     * Request Action
+     */
+    public function getHotelInfoAction() {
+
+        $res = new Response;
+        $res
+            ->setHeader("Content-Type", "application/xml; charset=UTF-8")
+            ->setRawHeader("HTTP/1.1 200 OK")
+            ->setStatusCode(200, "OK")
+            ->setContent($this->buildXmlResponse())
+            ->send();
+    }
+
+    /**
+     * Get information about hotel
+     * @param int $onegID
+     * @return json
+     * @throws \Phalcon\Http\Client\Provider\Exception
+     */
     public function getLeadInfoFromPWS($onegID) {
 
         //create obj
@@ -90,7 +119,7 @@ class FeedController extends ControllerBase
             'hotelId' => $onegID
         ]);
         //get result
-        echo $response->body;
+        return $response->body;
     }
 
     private function loadTargetingLeads() {
@@ -101,21 +130,131 @@ class FeedController extends ControllerBase
         }
     }
 
-    public function getHotelInfoAction() {
+    /**
+     * To get seasonal price based on current month
+     * @param int $onegId
+     * @return number
+     */
+    public function getHotelSeasonalPrice($onegId) {
 
-        if (count($this->onegID) > 0) {
-            $temp = [];
-            foreach( $this->onegID as $id) {
-                if (isset($this->loadTargetingLeads()[$id])) {
-                    $temp = $this->getLeadInfoFromPWS($id);
+        $details = $this->loadTargetingLeads()[$onegId]; // get lead details
+        $now = new \DateTime('now');
+        $cntMonth = $now->format('M'); // get current month in string formate
+
+        //convert high season months to array formate
+        $highSeason = explode(',' , $details['highSeason']);
+        $highSeasonFlag = false; // flag
+
+        foreach($highSeason as $HSM) {
+
+            //if current month
+            if (trim($HSM) == $cntMonth) {
+                $highSeasonFlag = true;
+
+              // if between months ex (Jan - Mar)
+            } else if (strpos($HSM, '-') !== false) {
+                //convert starting month and ending months to array
+                $betweenMonth = explode('-' , $HSM);
+
+                //convert from string format month to numeric format
+                $currentMonth = date('m', strtotime($cntMonth));
+                $startMonth = date('m', strtotime(trim($betweenMonth[0])));
+                $endMonth   = date('m', strtotime(trim($betweenMonth[1])));
+
+                //check weather it is in between month
+                if ($currentMonth >= $startMonth && $currentMonth <= $endMonth) {
+                    $highSeasonFlag = true;
+                }
+            }
+        }
+        //return season price based on month
+        if ($highSeasonFlag == true)
+            return $details['highSeasonPrice'];
+        else
+            return $details['lowSeasonPrice'];
+    }
+
+    /*
+     * Build xml response format
+     */
+    public function buildXmlResponse() {
+
+        $doc = new \DOMDocument('1.0', 'UTF-8');
+        $doc->formatOutput = true;
+
+        //requestPricing - root element
+        $productsTag = $doc->createElement('Products');
+        $doc->appendChild($productsTag);
+
+        //assign which array should be execute (all data from lead file or requested onegid)
+        $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
+
+        foreach( $loop as $key => $id) {
+
+            //$onegId     = $key; //hotel ID
+            $price      = $this->getHotelSeasonalPrice($key);  //seasonal price
+            $pwsDetail  = json_decode($this->getLeadInfoFromPWS($key)); // get info from PWS
+
+            $image = false;
+            $thImg = '';
+            foreach($pwsDetail->hotels->hotel[0]->details->content->media as $media) {
+
+                if (strpos($media->title, '-Guest-Room') !== false && $image == false) {
+                    $image = $media->value;
+                }
+
+                if ($media->type == 'thumbnail') {
+                    $thImg = $media->value;
                 }
             }
 
-        } else {
-            $temp = [];
-            foreach( $this->loadTargetingLeads() as $key => $id) {
-               $temp = $this->getLeadInfoFromPWS($key);
-            }
+            //version Tag
+            $versionTag = $doc->createElement('Versions');
+            $productsTag->appendChild($versionTag);
+
+            //HotelName tag
+            $hotelNameTag = $doc->createElement('HotelName');
+            $hotelNameTag->appendChild(
+                $doc->createTextNode($pwsDetail->hotels->hotel[0]->details->name)
+            );
+            $versionTag->appendChild($hotelNameTag);
+
+            //City Tag
+            $cityTag = $doc->createElement('City');
+            $cityTag->appendChild(
+                $doc->createTextNode($pwsDetail->hotels->hotel[0]->details->address->city)
+            );
+            $versionTag->appendChild($cityTag);
+
+            //Price Tag
+            $priceTag = $doc->createElement('Price');
+            $priceTag->appendChild(
+                $doc->createTextNode($price)
+            );
+            $versionTag->appendChild($priceTag);
+
+            //Image Tag
+            $imageTag = $doc->createElement('Image');
+            $imageTag->appendChild(
+                $doc->createTextNode($image)
+            );
+            $versionTag->appendChild($imageTag);
+
+            //Thumbnail Tag
+            $thumbnailTag = $doc->createElement('Thumbnail');
+            $thumbnailTag->appendChild(
+                $doc->createTextNode($thImg)
+            );
+            $versionTag->appendChild($thumbnailTag);
+
+            //Image Tag
+            $urlTag = $doc->createElement('URL');
+            $urlTag->appendChild(
+                $doc->createTextNode($pwsDetail->hotels->hotel[0]->rooms->roomRates[0]->roomRate[0]->href)
+            );
+            $versionTag->appendChild($urlTag);
         }
+
+       return $doc->saveXML();
     }
 }
