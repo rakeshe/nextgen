@@ -74,7 +74,7 @@ class FeedController extends ControllerBase
         $provider->header->set('Accept', 'application/json+oww-hotel.v3');
         //set curl options
         $provider->setOptions([
-            CURLOPT_USERPWD => ORBITZ_API_USR.':'.ORBITZ_API_PASSWD,
+            CURLOPT_USERPWD => self::ORBITZ_API_USR.':'.self::ORBITZ_API_PASSWD,
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_CIPHER_LIST => 'TLSv1',
@@ -103,5 +103,19 @@ class FeedController extends ControllerBase
 
     public function getHotelInfoAction() {
 
+        if (count($this->onegID) > 0) {
+            $temp = [];
+            foreach( $this->onegID as $id) {
+                if (isset($this->loadTargetingLeads()[$id])) {
+                    $temp = $this->getLeadInfoFromPWS($id);
+                }
+            }
+
+        } else {
+            $temp = [];
+            foreach( $this->loadTargetingLeads() as $key => $id) {
+               $temp = $this->getLeadInfoFromPWS($key);
+            }
+        }
     }
 }
