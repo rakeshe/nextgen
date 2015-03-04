@@ -29,6 +29,12 @@ class FeedController extends ControllerBase
 
     private $onegID = [];
 
+    private $isWhiteListed = false;
+
+    private $whiteListType;
+
+    private $verifyToken = false;
+
 
     /**
      * init
@@ -44,6 +50,27 @@ class FeedController extends ControllerBase
      * @return bool
      */
     public function checkAuth() {
+        // load white list client url file
+        $list = require __DIR__ . '/../config/white_list_client_urls.php';
+
+
+        if (isset($list[$this->request->getHttpHost()])) {
+            $this->whiteListType = 'HOST';
+            $this->isWhiteListed = true;
+
+        } else if (isset($list[$this->request->getClientAddress()])) {
+            $this->whiteListType = 'IP';
+            $this->isWhiteListed = true;
+        }
+
+    }
+
+    /**
+     * To verify token
+     * @return bool
+     */
+
+    public function verifyToken() {
         return true;
     }
 
