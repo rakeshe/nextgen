@@ -16,6 +16,9 @@ return new \Phalcon\Config(array(
         'controllersDir' => 'controllers/',
         'modelsDir' => 'models/'
     ),
+    'secretKey' => [
+        'salt' => '8765639052'
+    ],
         /*
          * var supportedLanguages = {
         'ar': 'ARABIC',

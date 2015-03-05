@@ -24,6 +24,8 @@ class FeedController extends ControllerBase
 
     const ORBITZ_API_PASSWD = '4f4fca707c504edd93306613388e886a';
 
+    const RESPONSE_CONTENT_TYPE = 'application/xml';
+
 
     private $locale;
 
@@ -35,43 +37,110 @@ class FeedController extends ControllerBase
 
     private $verifyToken = false;
 
+    private $userWhiteListedData = [];
+
+    private $responseContentType;
+
 
     /**
      * init
      */
-    public function initialize()
-    {
-        $this->view->disable();
+    public function initialize() {
+
+        $this->init();
+        $this->loadWhiteListData();
         $this->checkAuth();
         $this->setParams();
+        $this->verifyOnegID();
+    }
+
+    public function init() {
+
+        $this->view->disable(); // disable view
+        //set response format
+        $this->responseContentType = self::RESPONSE_CONTENT_TYPE;
     }
 
     /** Verify auth
      * @return bool
      */
-    public function checkAuth() {
-        // load white list client url file
-        $list = require __DIR__ . '/../config/white_list_client_urls.php';
+    private function checkAuth() {
 
-
-        if (isset($list[$this->request->getHttpHost()])) {
-            $this->whiteListType = 'HOST';
-            $this->isWhiteListed = true;
-
-        } else if (isset($list[$this->request->getClientAddress()])) {
-            $this->whiteListType = 'IP';
-            $this->isWhiteListed = true;
+        if (false === $this->verifyHost()) {
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('401 Unauthorized');
         }
 
+        if (false === $this->verifyToken()) {
+
+            // get HML header objects
+            list($doc, $parent) = $this->getXMLHeader();
+
+            $errorTag = $doc->createElement('Error');
+
+            $errorTag->appendChild($doc->createTextNode("INVALID TOKEN"));
+
+            $parent->appendChild($errorTag);
+
+            $this->sendOutput('200 OK', $doc->saveXML());
+        }
+    }
+
+    private function verifyHost() {
+
+        if (isset($this->userWhiteListedData[$this->request->getHttpHost()])) {
+            $this->whiteListType = 'HOST';
+            $this->isWhiteListed = true;
+            return true;
+
+        } else if (isset($this->userWhiteListedData[$this->request->getClientAddress()])) {
+            $this->whiteListType = 'IP';
+            $this->isWhiteListed = true;
+            return true;
+        }
+        return false;
     }
 
     /**
+     * There is a known bug in phalcon get header function, So using alternative
+     * $this->request->getHeader('Authorization')
+     *
      * To verify token
      * @return bool
      */
 
     public function verifyToken() {
-        return true;
+
+        if (isset(getallheaders()['Authorization']) && !empty(getallheaders()['Authorization'])) {
+
+            if (trim(getallheaders()['Authorization']) ===
+                $this->userWhiteListedData[$this->request->getHttpHost()]) {
+                $this->verifyToken = true;
+                //token is valid
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function sendOutput($httpCode, $content = false) {
+
+        $res = new Response;
+        $res
+            ->setHeader("Content-Type", "{$this->responseContentType}; charset=UTF-8")
+            ->setRawHeader("HTTP/1.1 {$httpCode}")
+            ->setStatusCode($httpCode,'')
+            ->setContent($content)
+            ->send();
+        die();
+    }
+
+    /**
+     * Load user white list data
+     */
+    private function loadWhiteListData() {
+
+        $this->userWhiteListedData = require __DIR__ . '/../config/white_list_client_urls.php';
     }
 
     /**
@@ -97,6 +166,32 @@ class FeedController extends ControllerBase
                     $this->onegID[$val] = $val;
             }
         }
+    }
+
+    /**
+     * Verify requested onegID is valid or not, If it's invalid send the error code to user
+     * @return bool
+     */
+
+    private function verifyOnegID() {
+
+        if (null !== $this->request->getQuery('oneg')) {
+
+            if (count(array_filter($this->onegID)) == 0) {
+
+                // get HML header objects
+                list($doc, $parent) = $this->getXMLHeader();
+
+                $errorTag = $doc->createElement('Error');
+
+                $errorTag->appendChild($doc->createTextNode("INVALID HOTEL ID"));
+
+                $parent->appendChild($errorTag);
+
+                $this->sendOutput('200 OK', $doc->saveXML());
+            }
+        }
+        return true;
     }
 
 
@@ -201,10 +296,12 @@ class FeedController extends ControllerBase
             return $details['lowSeasonPrice'];
     }
 
-    /*
-     * Build xml response format
+    /**
+     * Create XML header object and returns both (doc and parent tag)
+     * @return array
      */
-    public function buildXmlResponse() {
+
+    private function getXMLHeader() {
 
         $doc = new \DOMDocument('1.0', 'UTF-8');
         $doc->formatOutput = true;
@@ -212,6 +309,16 @@ class FeedController extends ControllerBase
         //requestPricing - root element
         $productsTag = $doc->createElement('Products');
         $doc->appendChild($productsTag);
+
+        return [$doc, $productsTag];
+    }
+
+    /*
+     * Build xml response format
+     */
+    public function buildXmlResponse() {
+
+        list($doc, $productsTag) = $this->getXMLHeader();
 
         //assign which array should be execute (all data from lead file or requested onegid)
         $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
