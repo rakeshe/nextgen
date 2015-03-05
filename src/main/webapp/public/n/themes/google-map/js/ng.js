@@ -2369,7 +2369,7 @@ var googleRegionZoomLevel = {
 	//'AU': 6, 'NZ': 6, 'FJ': 7,'AR': 6, 'BR': 5, 'CA': 7, 'MX': 7, 'US': 7, 'AT': 7,'BE': 7, 'CZ': 7, 'FR': 7, 'DE': 7, 'GR': 7,'IE': 7, 'NL': 7, 'PT': 7, 'ES': 7, 'SE': 7, 'TR': 7,'AE': 7, 'GB': 7, 'ID': 7, 'MY': 7, 'PH': 7,'SG': 7, 'TH': 7, 'VN': 7, 'CN': 6, 'HK': 7,'JP': 7, 'MO': 7, 'KR': 7, 'TW': 7 
 }*/
 var googleCountryZoomLevel = {
-	'AU': 4, 'NZ': 4, 'FJ': 4,'AR': 4, 'BR': 4, 'CA': 4, 'MX': 4, 'US': 4, 'AT': 4,'BE': 4, 'CZ': 4, 'FR': 4, 'DE': 4, 'GR': 4,'IE': 4, 'NL': 4, 'PT': 4, 'ES': 4, 'SE': 4, 'TR': 4,'AE': 4, 'GB': 4, 'ID': 4, 'MY': 4, 'PH': 4,'SG': 4, 'TH': 4, 'VN': 4, 'CN': 4, 'HK': 4,'JP': 4, 'MO': 4, 'KR': 4, 'TW': 4
+	'AU': 5, 'NZ': 5, 'FJ': 5,'AR': 5, 'BR': 5, 'CA': 5, 'MX': 5, 'US': 5, 'AT': 5,'BE': 5, 'CZ': 5, 'FR': 5, 'DE': 5, 'GR': 5,'IE': 5, 'NL': 5, 'PT': 5, 'ES': 5, 'SE': 5, 'TR': 5,'AE': 5, 'GB': 5, 'ID': 5, 'MY': 5, 'PH': 5,'SG': 5, 'TH': 5, 'VN': 5, 'CN': 5, 'HK': 5,'JP': 5, 'MO': 5, 'KR': 5, 'TW': 5
 }
 
 //load the map details and modify according to the data
@@ -2400,7 +2400,6 @@ function loadGoogleMap(){
 			});
 		break;
 		case 4:
-		console.log('City');
 			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
 				fetchCityName(data.results, data.results[0].geometry.location);
 			});			
@@ -2448,7 +2447,7 @@ function initialize(){
 		geocoder.geocode( {'latLng': location},	function(results, status) {
 			if(zoomLevel==2){
 				fetchRegionName(results, location);
-			}else if(zoomLevel==3){
+			}else if(zoomLevel==3||zoomLevel==4){
 				fetchCountryName(results, location);			
 			}else if(zoomLevel>=6){
 				fetchCityName(results, location);
@@ -2545,7 +2544,8 @@ function fetchCountryName(results, location){
 							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
 							map: map,
 						});
-						var contentString = cityDataVal.results[0].address_components[0].long_name;
+						var cityNameLink = ((cityDataVal.results[0].address_components[0].long_name).toLowerCase()).replace(/ /g,'-');
+						var contentString = ' <a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCountrys[countryShortName]['url']+ '/' + cityNameLink+ '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
 						google.maps.event.addListener(marker, 'click', function() {
 							infowindow.setContent(contentString); 
 							infowindow.open(map,marker);
@@ -2585,7 +2585,6 @@ function fetchCityName(results, location){
 		//console.log(cityNameExists1,cityNameExists2,cityNameExists3,cityNameExists4);
 		if((cityNameExists1>=0))
 		{
-			console.log('Coming inside');
 			map.setZoom(map.getZoom()+7);
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
@@ -2597,7 +2596,7 @@ function fetchCityName(results, location){
 				hideRegionName();					
 			})
 			.error(function(data){
-				console.log('failed');
+				console.log('Failed');
 				console.log('Exception: '+ data.responseText);
 			});
 		}
