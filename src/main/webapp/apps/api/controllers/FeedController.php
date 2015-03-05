@@ -261,39 +261,49 @@ class FeedController extends ControllerBase
 
         $details = $this->loadTargetingLeads()[$onegId]; // get lead details
         $now = new \DateTime('now');
-        $cntMonth = $now->format('M'); // get current month in string formate
+        $cntMonth = $now->format('m'); // get current month in string formate
 
-        //convert high season months to array formate
-        $highSeason = explode(',' , $details['highSeason']);
+        //convert high season months to array format
+        $highSeason = explode(',' , $details['high_months']);
         $highSeasonFlag = false; // flag
 
         foreach($highSeason as $HSM) {
 
-            //if current month
             if (trim($HSM) == $cntMonth) {
                 $highSeasonFlag = true;
-
-              // if between months ex (Jan - Mar)
-            } else if (strpos($HSM, '-') !== false) {
-                //convert starting month and ending months to array
-                $betweenMonth = explode('-' , $HSM);
-
-                //convert from string format month to numeric format
-                $currentMonth = date('m', strtotime($cntMonth));
-                $startMonth = date('m', strtotime(trim($betweenMonth[0])));
-                $endMonth   = date('m', strtotime(trim($betweenMonth[1])));
-
-                //check weather it is in between month
-                if ($currentMonth >= $startMonth && $currentMonth <= $endMonth) {
-                    $highSeasonFlag = true;
-                }
+                break;
             }
         }
-        //return season price based on month
+
         if ($highSeasonFlag == true)
-            return $details['highSeasonPrice'];
+            return $details['price_high'];
         else
-            return $details['lowSeasonPrice'];
+            return $details['price_low'];
+        /*
+           foreach($highSeason as $HSM) {
+
+                //if current month
+                if (trim($HSM) == $cntMonth) {
+                    $highSeasonFlag = true;
+
+                  // if between months ex (Jan - Mar)
+                } else if (strpos($HSM, '-') !== false) {
+                    //convert starting month and ending months to array
+                    $betweenMonth = explode('-' , $HSM);
+
+                    //convert from string format month to numeric format
+                    $currentMonth = date('m', strtotime($cntMonth));
+                    $startMonth = date('m', strtotime(trim($betweenMonth[0])));
+                    $endMonth   = date('m', strtotime(trim($betweenMonth[1])));
+
+                    //check weather it is in between month
+                    if ($currentMonth >= $startMonth && $currentMonth <= $endMonth) {
+                        $highSeasonFlag = true;
+                    }
+                }
+            }*/
+        //return season price based on month
+
     }
 
     /**
