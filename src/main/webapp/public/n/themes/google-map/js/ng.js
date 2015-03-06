@@ -2335,7 +2335,7 @@ function loginParser() {
 }
 loginParser();
 
-/*Google Map*/
+/*Google Mapk*/
 var map, levelRegion, tempResultVal, countryShortName, countryLongName;
 var markersArray = [];
 var lat = 15.5403, lang = 10.5463;
@@ -2417,8 +2417,13 @@ function initialize(){
 		center: new google.maps.LatLng(lat, lang),
 		zoom: zoomVal,
 		minZoom: 2,
-		panControl: true,
 		disableDoubleClickZoom: true,
+		/*panControl: false,draggable: true,		
+		scrollwheel: false,
+		panControl: false,
+		scaleControl: false,
+		mapTypeControl: false,
+		scaleControl: false,*/
 		panControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
@@ -2426,7 +2431,11 @@ function initialize(){
 			style: google.maps.ZoomControlStyle.LARGE,
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: true,
+		streetViewControlOptions: {
+			position: google.maps.ControlPosition.LEFT_TOP
+		}
 	}
 	map = new google.maps.Map(mapCanvas, mapOptions);
 	zoomLevel = map.getZoom();
@@ -2521,7 +2530,7 @@ function fetchCountryName(results, location){
 		tempRegionName = regionValue.indexOf(countryShortName);
 		if(tempRegionName>=0){
 			if(countryShortName!='MO'){ map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]); }
-			else{ map.setZoom(7); }
+			else{ map.setZoom(5); }
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
@@ -2545,7 +2554,7 @@ function fetchCountryName(results, location){
 							map: map,
 						});
 						var cityNameLink = ((cityDataVal.results[0].address_components[0].long_name).toLowerCase()).replace(/ /g,'-');
-						var contentString = ' <a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCountrys[countryShortName]['url']+ '/' + cityNameLink+ '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
+						var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCountrys[countryShortName]['url']+ '/' + cityNameLink + nextgen.getUrlParams() + '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
 						google.maps.event.addListener(marker, 'click', function() {
 							infowindow.setContent(contentString); 
 							infowindow.open(map,marker);
@@ -2562,6 +2571,26 @@ function fetchCountryName(results, location){
 	});
 }//fetchCountryName
 
+/** 
+	placeMarkerOnMap for both markers for city and hotels
+	markerName is city name / hotel name
+	markerColor is for displaying marker difference
+**/
+function placeMarkerOnMap(markerId,markerName, markerColor){
+	$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){						
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(dataVal.results[0].geometry.location.lat,dataVal.results[0].geometry.location.lng),
+			map: map,
+		});
+		var contentString = '<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id='+markerId+'"">'+markerName+'</a>'; 
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.setContent(contentString); 
+			infowindow.open(map,marker);
+		});
+		bounds.extend(marker.position);
+	});
+}//placeMarkerOnMap
+
 /** reset valid city name **/
 function fetchCityName(results, location){
 	for (var k=0; k<results[0].address_components.length; k++) {
@@ -2576,16 +2605,12 @@ function fetchCityName(results, location){
 			}
 		}
 	}
-	for (var key in nextgen.getCities) {
-		var cityNameExists1=-1, cityNameExists2=-1, cityNameExists3=-1, cityNameExists4=-1;
-		if(results[0]!='undefined'){ cityNameExists1= results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
-		//if(results[1]!='undefined'){ cityNameExists2 = results[1].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
-		//if(results[2]!='undefined'){ cityNameExists3 = results[2].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
-		//if(results[3]!='undefined'){ cityNameExists4 = results[3].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
-		//console.log(cityNameExists1,cityNameExists2,cityNameExists3,cityNameExists4);
+	for (var key in nextgen.getCities){
+		var cityNameExists1=-1;
+		if(results[0]!='undefined'){ cityNameExists1= results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}		
 		if((cityNameExists1>=0))
 		{
-			map.setZoom(map.getZoom()+7);
+			map.setZoom(10);
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
@@ -2593,7 +2618,17 @@ function fetchCityName(results, location){
 				nextgen.dataP = data;
 				nextgen.drawCards();
 				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCities[key]['url'] + nextgen.getUrlParams()); //
-				hideRegionName();					
+				hideRegionName();
+				$.each(data.data, function (dataKey, dataVal){
+					var hotelId = dataVal.split(",");
+					if(hotelId.length==1){
+						placeMarkerOnMap(hotelId, nextgen.data.deals[hotelId].hotel_name, 1);						
+					}else if(hotelId.length==2){
+						for(var i=0; i<hotelId.length; i++){ placeMarkerOnMap(hotelId[i], nextgen.data.deals[hotelId[i]].hotel_name, 2); }
+					}else{
+						for(var i=0; i<hotelId.length; i++){ placeMarkerOnMap(hotelId[i], nextgen.data.deals[hotelId[i]].hotel_name, 3); }
+					}
+				});
 			})
 			.error(function(data){
 				console.log('Failed');
