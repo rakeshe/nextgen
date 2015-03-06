@@ -41,6 +41,9 @@ class FeedController extends ControllerBase
 
     private $responseContentType;
 
+    private $checkOutDate;
+
+    private $checkInDate;
 
     /**
      * init
@@ -200,6 +203,20 @@ class FeedController extends ControllerBase
      */
     public function getHotelInfoAction() {
 
+        $this->checkInDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+1 day')->format('Ymd');
+        $this->checkOutDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+2 day')->format('Ymd');
+
+        //$pwsDetail  = json_decode($this->getLeadInfoFromPWS($key)); // get info from PWS
+
+        $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
+
+        /*echo "<pre>";
+        echo 'working..';
+        $onegIDs = implode(',', array_keys($loop));
+        $pwsDetail  = json_decode($this->getLeadInfoFromPWS($onegIDs)); // get info from PWS
+        print_r($pwsDetail);
+        exit;*/
+
         $res = new Response;
         $res
             ->setHeader("Content-Type", "application/xml; charset=UTF-8")
@@ -232,13 +249,15 @@ class FeedController extends ControllerBase
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_RETURNTRANSFER => true,
         ]);
+        $provider->setTimeout(60);
         //pass querysting as array
         $response = $provider->get('',[
-            //'checkIn' => 20150325,
-            //'checkOut' => '20150328',
+            'checkIn' => $this->checkInDate,
+            'checkOut' => $this->checkOutDate,
             'pos' => 'HCL',
             'contentDetails' => 'medium',
-            'hotelId' => $onegID
+            'hotelId' => $onegID,
+            'locale' => $this->locale
         ]);
         //get result
         return $response->body;
