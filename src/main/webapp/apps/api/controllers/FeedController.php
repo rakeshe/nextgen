@@ -60,7 +60,7 @@ class FeedController extends ControllerBase
     public function init() {
 
         $this->view->disable(); // disable view
-        //set response format
+        //set response format xml or json
         $this->responseContentType = self::RESPONSE_CONTENT_TYPE;
     }
 
@@ -114,7 +114,7 @@ class FeedController extends ControllerBase
 
     public function verifyToken() {
 
-        if (isset(getallheaders()['Authorization']) && !empty(getallheaders()['Authorization'])) {
+        if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
 
             if (trim(getallheaders()['Authorization']) ===
                 $this->userWhiteListedData[$this->request->getHttpHost()]) {
@@ -143,7 +143,11 @@ class FeedController extends ControllerBase
      */
     private function loadWhiteListData() {
 
-        $this->userWhiteListedData = require __DIR__ . '/../config/white_list_client_urls.php';
+        try{
+            $this->userWhiteListedData = require __DIR__ . '/../config/white_list_client_urls.php';
+        } catch(\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
@@ -169,6 +173,9 @@ class FeedController extends ControllerBase
                     $this->onegID[$val] = $val;
             }
         }
+        //set checkin and checkout date
+        $this->checkInDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+1 day')->format('Ymd');
+        $this->checkOutDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+2 day')->format('Ymd');
     }
 
     /**
@@ -203,27 +210,17 @@ class FeedController extends ControllerBase
      */
     public function getHotelInfoAction() {
 
-        $this->checkInDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+1 day')->format('Ymd');
-        $this->checkOutDate = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'))->modify('+2 day')->format('Ymd');
-
-        //$pwsDetail  = json_decode($this->getLeadInfoFromPWS($key)); // get info from PWS
-
         $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
 
-        /*echo "<pre>";
-        echo 'working..';
         $onegIDs = implode(',', array_keys($loop));
-        $pwsDetail  = json_decode($this->getLeadInfoFromPWS($onegIDs)); // get info from PWS
-        print_r($pwsDetail);
-        exit;*/
 
-        $res = new Response;
-        $res
-            ->setHeader("Content-Type", "application/xml; charset=UTF-8")
-            ->setRawHeader("HTTP/1.1 200 OK")
-            ->setStatusCode(200, "OK")
-            ->setContent($this->buildXmlResponse())
-            ->send();
+        $pwsDetail  = json_decode($this->getLeadInfoFromPWS($onegIDs)); // get info from PWS
+
+        list($objects['doc'], $objects['productTags']) = $this->getXMLHeader();
+
+        $xmlBody = $this->buildXmlResponse($pwsDetail, $objects);
+
+        $this->sendOutput('200 OK', $xmlBody);
     }
 
     /**
@@ -345,22 +342,22 @@ class FeedController extends ControllerBase
     /*
      * Build xml response format
      */
-    public function buildXmlResponse() {
+    public function buildXmlResponse($pwsDetail, $objects) {
 
-        list($doc, $productsTag) = $this->getXMLHeader();
+        $doc         = $objects['doc'];
+        $productsTag = $objects['productTags'];
 
-        //assign which array should be execute (all data from lead file or requested onegid)
-        $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
+        foreach( $pwsDetail->hotels->hotel as $key => $value) {
 
-        foreach( $loop as $key => $id) {
-
-            //$onegId     = $key; //hotel ID
-            $price      = $this->getHotelSeasonalPrice($key);  //seasonal price
-            $pwsDetail  = json_decode($this->getLeadInfoFromPWS($key)); // get info from PWS
+            $price      = $this->getHotelSeasonalPrice($value->details->id);  //seasonal price
 
             $image = false;
             $thImg = '';
-            foreach($pwsDetail->hotels->hotel[0]->details->content->media as $media) {
+            foreach($value->details->content->media as $media) {
+
+                if (!isset($media->title)) {
+                    continue;
+                }
 
                 if (strpos($media->title, '-Guest-Room') !== false && $image == false) {
                     $image = $media->value;
@@ -378,14 +375,14 @@ class FeedController extends ControllerBase
             //HotelName tag
             $hotelNameTag = $doc->createElement('HotelName');
             $hotelNameTag->appendChild(
-                $doc->createTextNode($pwsDetail->hotels->hotel[0]->details->name)
+                $doc->createTextNode($value->details->name)
             );
             $versionTag->appendChild($hotelNameTag);
 
             //City Tag
             $cityTag = $doc->createElement('City');
             $cityTag->appendChild(
-                $doc->createTextNode($pwsDetail->hotels->hotel[0]->details->address->city)
+                $doc->createTextNode($value->details->address->city)
             );
             $versionTag->appendChild($cityTag);
 
@@ -413,7 +410,7 @@ class FeedController extends ControllerBase
             //Image Tag
             $urlTag = $doc->createElement('URL');
             $urlTag->appendChild(
-                $doc->createTextNode($pwsDetail->hotels->hotel[0]->rooms->roomRates[0]->roomRate[0]->href)
+                $doc->createTextNode($value->rooms->roomRates[0]->roomRate[0]->href)
             );
             $versionTag->appendChild($urlTag);
         }
