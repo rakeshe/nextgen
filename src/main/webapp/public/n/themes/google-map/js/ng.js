@@ -2427,8 +2427,9 @@ function initialize(){
 		panControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
+		zoomControl:true,
 		zoomControlOptions: {
-			style: google.maps.ZoomControlStyle.LARGE,
+			style: google.maps.ZoomControlStyle.SMALL,
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
