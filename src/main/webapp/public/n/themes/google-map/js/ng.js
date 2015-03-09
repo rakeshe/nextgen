@@ -1347,7 +1347,8 @@ var nextgen = {
 			$.each(this.data['urls'][region], function(index, value){
 
 				if (flag == false) {
-					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
+					//html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ regoinName +'</h4></div>';
+					html += '<div data-h-name="'+ regoinEN +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20googleMapBackBtn();"></a>'+ regoinName +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -1392,7 +1393,8 @@ var nextgen = {
 				if (index == 'name') heading = value;
 
 				if (heading != false && headingEn != false && flag == false) {
-					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
+					//html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20mapBackBtn();"></a>'+ heading +'</h4></div>';
+					html += '<div data-h-name="'+ headingEn +'"><h4><a class="glyphicon glyphicon-chevron-left back_icon" href="javascript:%20googleMapBackBtn();"></a>'+ heading +'</h4></div>';
 					html += '<div class="divider_menu"></div>';
 					html += '<div id="vertical-scrollbar">';
 					html += '<ul class="country_name">';
@@ -2365,9 +2367,6 @@ var googleRegionZoomLevel = {
 }
 
 /** Zoom Level for each country inside map specific **/
-/*var googleCountryZoomLevel = {
-	//'AU': 6, 'NZ': 6, 'FJ': 7,'AR': 6, 'BR': 5, 'CA': 7, 'MX': 7, 'US': 7, 'AT': 7,'BE': 7, 'CZ': 7, 'FR': 7, 'DE': 7, 'GR': 7,'IE': 7, 'NL': 7, 'PT': 7, 'ES': 7, 'SE': 7, 'TR': 7,'AE': 7, 'GB': 7, 'ID': 7, 'MY': 7, 'PH': 7,'SG': 7, 'TH': 7, 'VN': 7, 'CN': 6, 'HK': 7,'JP': 7, 'MO': 7, 'KR': 7, 'TW': 7 
-}*/
 var googleCountryZoomLevel = {
 	'AU': 5, 'NZ': 5, 'FJ': 5,'AR': 5, 'BR': 5, 'CA': 5, 'MX': 5, 'US': 5, 'AT': 5,'BE': 5, 'CZ': 5, 'FR': 5, 'DE': 5, 'GR': 5,'IE': 5, 'NL': 5, 'PT': 5, 'ES': 5, 'SE': 5, 'TR': 5,'AE': 5, 'GB': 5, 'ID': 5, 'MY': 5, 'PH': 5,'SG': 5, 'TH': 5, 'VN': 5, 'CN': 5, 'HK': 5,'JP': 5, 'MO': 5, 'KR': 5, 'TW': 5
 }
@@ -2417,13 +2416,10 @@ function initialize(){
 		center: new google.maps.LatLng(lat, lang),
 		zoom: zoomVal,
 		minZoom: 2,
-		disableDoubleClickZoom: true,
-		/*panControl: false,draggable: true,		
-		scrollwheel: false,
+		disableDoubleClickZoom: false,
 		panControl: false,
-		scaleControl: false,
 		mapTypeControl: false,
-		scaleControl: false,*/
+		scaleControl: false,
 		panControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
@@ -2458,6 +2454,9 @@ function initialize(){
 			if(zoomLevel==2){
 				fetchRegionName(results, location);
 			}else if(zoomLevel==3||zoomLevel==4){
+				if(nextgen.selRegion==''||nextgen.selRegion=='undefined'){
+					fetchRegionName(results, location);
+				}
 				fetchCountryName(results, location);			
 			}else if(zoomLevel>=6){
 				fetchCityName(results, location);
@@ -2539,7 +2538,7 @@ function fetchCountryName(results, location){
 				nextgen.dataP = data;
 				nextgen.drawCards();
 				nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
-				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
+				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //				
 				data = regionMapConf('city-code', nextgen.selRegion);
 				nextgen.mapAction(nextgen.selRegion);
 				hideRegionName();
@@ -2611,7 +2610,7 @@ function fetchCityName(results, location){
 		if(results[0]!='undefined'){ cityNameExists1= results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}		
 		if((cityNameExists1>=0))
 		{
-			map.setZoom(10);
+			map.setZoom(13);
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
@@ -2639,6 +2638,65 @@ function fetchCityName(results, location){
 	}
 	resetGoogleMapPosition();
 }//fetchCityName
+
+/** **/
+function googleMapBackBtn(){
+	switch(nextgen.getLavel){
+		case 2:
+			map.setZoom(2);
+			//map.setCenter(location);
+			res = nextgen.sendRequest(uriBase, 'returnType=json');
+			res.success(function(data){
+				nextgen.dataP = data;
+				nextgen.getLavel = 1;
+				nextgen.selRegion = '';
+				nextgen.drawMenu('');
+				nextgen.drawCards(true);
+				$('.display_regions').html('');
+				//document.getElementById('regions_div').style.top = '-75px';
+				//x.selectMenu(cacheObj); // select menu
+				nextgen.setUrlToHistory(uriBase + nextgen.getUrlParams()); //
+				nextgen.mapAction('');
+			})
+			.error(function(data){
+				console.log('Exception: '+ data.responseText);
+			});
+			break;
+		case 3:
+			console.log('Coming here....Country');
+			break;
+		
+	}
+}//googleMapBackBtn
+
+/** default values of google maps **/
+function defaultGoogleMap(mapVal){
+	if(mapVal==1){
+		lat = 15.5403, lang = 10.5463, zoomVal = 2;
+	}
+	mapOptions = {
+		center: new google.maps.LatLng(lat, lang),
+		zoom: zoomVal,
+		minZoom: 2,
+		panControl: false,
+		mapTypeControl: false,
+		scaleControl: false,
+		panControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_TOP
+		},
+		zoomControl:true,
+		zoomControlOptions: {
+			style: google.maps.ZoomControlStyle.SMALL,
+			position: google.maps.ControlPosition.RIGHT_TOP
+		},
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: true,
+		streetViewControlOptions: {
+			position: google.maps.ControlPosition.LEFT_TOP
+		}
+	}
+	return mapOptions;
+}//defaultGoogleMap
 
 /** reseting google map position based on level**/
 function resetGoogleMapPosition(){
