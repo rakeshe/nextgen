@@ -2454,10 +2454,8 @@ function initialize(){
 			if(zoomLevel==2){
 				fetchRegionName(results, location);
 			}else if(zoomLevel==3||zoomLevel==4){
-				if(nextgen.selRegion==''||nextgen.selRegion=='undefined'){
-					fetchRegionName(results, location);
-				}
-				fetchCountryName(results, location);			
+				if(nextgen.selRegion==''||nextgen.selRegion=='undefined'){	fetchRegionName(results, location); }
+				else{	fetchCountryName(results, location); }
 			}else if(zoomLevel>=6){
 				fetchCityName(results, location);
 			}
@@ -2577,8 +2575,9 @@ function fetchCountryName(results, location){
 	markerColor is for displaying marker difference
 **/
 function placeMarkerOnMap(markerId,markerName, markerColor){
+	var marker = [];
 	$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){						
-		var marker = new google.maps.Marker({
+		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(dataVal.results[0].geometry.location.lat,dataVal.results[0].geometry.location.lng),
 			map: map,
 		});
@@ -2663,7 +2662,23 @@ function googleMapBackBtn(){
 			});
 			break;
 		case 3:
-			console.log('Coming here....Country');
+			//console.log('Coming here....Country');
+			map.setZoom(googleRegionZoomLevel[nextgen.selRegion][0]);
+			//map.setCenter(location);
+			res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
+			res.success(function(data){
+				nextgen.dataP = data;
+				nextgen.drawCards();
+				nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
+				nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion + nextgen.getUrlParams()); //
+				hideRegionName();
+				nextgen.drawMenu(nextgen.selRegion);					
+				resetGoogleMapPosition();
+			})
+			.error(function(data){
+				console.log('Exception: '+ data.responseText);
+			});
+			zoomLevel = map.getZoom();
 			break;
 		
 	}
