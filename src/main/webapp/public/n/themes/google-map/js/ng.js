@@ -2551,6 +2551,7 @@ function fetchCountryName(results, location){
 							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
 							map: map,
 						});
+						markersArray.push(marker);
 						var cityNameLink = ((cityDataVal.results[0].address_components[0].long_name).toLowerCase()).replace(/ /g,'-');
 						var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCountrys[countryShortName]['url']+ '/' + cityNameLink + nextgen.getUrlParams() + '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
 						google.maps.event.addListener(marker, 'click', function() {
@@ -2664,6 +2665,7 @@ function googleMapBackBtn(){
 		case 3:
 			//console.log('Coming here....Country');
 			map.setZoom(googleRegionZoomLevel[nextgen.selRegion][0]);
+			clear();
 			//map.setCenter(location);
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
 			res.success(function(data){
@@ -2683,6 +2685,15 @@ function googleMapBackBtn(){
 		
 	}
 }//googleMapBackBtn
+function clear(){
+	console.log(markersArray);
+   if(markersArray){
+        for(var i=0;i<markersArray.length;i++){
+            markersArray[i].setMap(null);
+        }
+        markersArray.length=0;
+    }
+}
 
 /** default values of google maps **/
 function defaultGoogleMap(mapVal){
