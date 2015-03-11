@@ -2546,6 +2546,7 @@ function fetchCountryName(results, location){
 					markers.push(key);
 				}
 				$.each(markers, function (cityKey, cityStatus){
+					markersArray = [];
 					$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+cityStatus, function(cityDataVal, cityDataStatus){						
 						var marker = new google.maps.Marker({
 							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
@@ -2576,19 +2577,20 @@ function fetchCountryName(results, location){
 	markerColor is for displaying marker difference
 **/
 function placeMarkerOnMap(markerId,markerName, markerColor){
-	var marker = [];
-	//$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){	
-		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(24.4910,54.3658),
+	$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){	
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(dataVal.results[0].geometry.location.lat,dataVal.results[0].geometry.location.lng),
+			//position: new google.maps.LatLng(24.4910,54.3658),//commented because need to place all the hotel latitude and longitude values here
 			map: map,
 		});
+		markersArray.push(marker);
 		var contentString = '<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id='+markerId+'"">'+markerName+'</a>'; 
 		google.maps.event.addListener(marker, 'click', function() {
 			infowindow.setContent(contentString); 
 			infowindow.open(map,marker);
 		});
 		bounds.extend(marker.position);
-	//});
+	});
 }//placeMarkerOnMap
 
 /** reset valid city name **/
@@ -2644,8 +2646,8 @@ function fetchCityName(results, location){
 function googleMapBackBtn(){
 	switch(nextgen.getLavel){
 		case 2:
+			clearMarkers();//clears the markers
 			map.setZoom(2);
-			//map.setCenter(location);
 			res = nextgen.sendRequest(uriBase, 'returnType=json');
 			res.success(function(data){
 				nextgen.dataP = data;
@@ -2662,8 +2664,8 @@ function googleMapBackBtn(){
 			});
 			break;
 		case 3:
+			clearMarkers();//clears the markers
 			map.setZoom(googleRegionZoomLevel[nextgen.selRegion][0]);
-			clearMarkers();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
 			res.success(function(data){
 				nextgen.dataP = data;
@@ -2678,18 +2680,18 @@ function googleMapBackBtn(){
 				console.log('Exception: '+ data.responseText);
 			});
 			zoomLevel = map.getZoom();
-			break;		
+			break;
 	}
 }//googleMapBackBtn
 
 /** clear googlemaps markers **/
 function clearMarkers(){
-   if(markersArray){
-        for(var i=0;i<markersArray.length;i++){
-            markersArray[i].setMap(null);
-        }
-        markersArray.length=0;
-    }
+	if(markersArray){
+		for(var i=0;i<markersArray.length;i++){
+			markersArray[i].setMap(null);
+		}
+		markersArray.length = 0;
+	}
 }//clearMarkers
 
 /** default values of google maps **/
