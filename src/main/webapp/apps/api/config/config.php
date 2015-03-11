@@ -9,8 +9,8 @@ return new \Phalcon\Config(array(
         'dbname' => 'test',
     ),
     'couchbase' => array(
-//        'bucket' => 'hc-nextgen'
-        'bucket' => 'hc-cache'
+        'bucket' => 'hc-nextgen'
+//        'bucket' => 'hc-cache'
     ),
     'application' => array(
         'controllersDir' => 'controllers/',
@@ -18,6 +18,11 @@ return new \Phalcon\Config(array(
     ),
     'secretKey' => [
         'salt' => '8765639052'
+    ],
+    'cacheConfig' => [
+        'enableCacheLocale' => ['en_AU', 'zh_HK'], // which locale need to be cached
+        'documentLifetime' => 30,            // cache life time (if 0 == lifetime)
+        //'cacheMoreThen' => 10 // cache when more then 10 onegid request comes
     ],
         /*
          * var supportedLanguages = {

@@ -26,7 +26,6 @@ class FeedController extends ControllerBase
 
     const RESPONSE_CONTENT_TYPE = 'application/xml';
 
-
     private $locale;
 
     private $onegID = [];
@@ -45,6 +44,10 @@ class FeedController extends ControllerBase
 
     private $checkInDate;
 
+    private $response;
+
+    private $cacheDocName;
+
     /**
      * init
      */
@@ -60,8 +63,6 @@ class FeedController extends ControllerBase
     public function init() {
 
         $this->view->disable(); // disable view
-        //set response format xml or json
-        $this->responseContentType = self::RESPONSE_CONTENT_TYPE;
     }
 
     /** Verify auth
@@ -163,6 +164,11 @@ class FeedController extends ControllerBase
             $this->locale = self::DEFAULT_LOCALE;
         }
 
+        //set response format xml or json
+        $this->responseContentType = self::RESPONSE_CONTENT_TYPE;
+        //set cache document name
+        $this->cacheDocName = 'cache:'. md5('api-response-framework'). ':' . $this->locale;
+
         //check and set the incoming onegid
         if (null !== $this->request->getQuery('oneg')) {
 
@@ -204,6 +210,44 @@ class FeedController extends ControllerBase
         return true;
     }
 
+    private function getResponseFormat($pwsDetail) {
+
+        $response = [];
+        foreach( $pwsDetail->hotels->hotel as $key => $value) {
+
+            $image = false;
+            $thImg = '';
+            foreach ($value->details->content->media as $media) {
+
+                if (!isset($media->title)) {
+                    continue;
+                }
+
+                if (strpos($media->title, '-Guest-Room') !== false && $image == false) {
+                    $image = $media->value;
+                }
+
+                if ($media->type == 'thumbnail') {
+                    $thImg = $media->value;
+                }
+            }
+
+            $this->response[$value->details->id] = [
+                'onegid'    => $value->details->id,
+                'HotelName' => $value->details->name,
+                'City'      => $value->details->address->city,
+                'Price'     => $this->getHotelSeasonalPrice($value->details->id),
+                'Image'     => $image,
+                'Thumbnail' => $thImg,
+                'URL'       => $value->rooms->roomRates[0]->roomRate[0]->href
+            ];
+
+        }
+
+        return $this->response;
+
+    }
+
 
     /**
      * Request Action
@@ -212,14 +256,58 @@ class FeedController extends ControllerBase
 
         $loop =  (count($this->onegID) > 0) ? $this->onegID : $this->loadTargetingLeads();
 
-        $onegIDs = implode(',', array_keys($loop));
+        $isCacheEnabled = false;
+        if(in_array($this->locale, (array) $this->config->cacheConfig->enableCacheLocale)) {
+            $isCacheEnabled = true;
+        }
 
-        $pwsDetail  = json_decode($this->getLeadInfoFromPWS($onegIDs)); // get info from PWS
+        //if cache enabled
+        if (true == $isCacheEnabled) {
 
-        list($objects['doc'], $objects['productTags']) = $this->getXMLHeader();
+            //get the instance from di
+            $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
 
-        $xmlBody = $this->buildXmlResponse($pwsDetail, $objects);
+            //get the data from cache
+            $cacheData   = json_decode($Couch->get($this->cacheDocName), true);
 
+            $missingOnegId = []; // to store missing onegid in cache
+
+            foreach($loop as $key => $id) {
+
+                if(array_key_exists($key, $cacheData)) {
+
+                    $this->response[$key] = $cacheData[$key];
+                } else {
+                    array_push($missingOnegId, $key);
+                }
+            }
+
+            //if missing onegid is exists, get the data from PWS server
+            if (count($missingOnegId) > 0) {
+
+                //get the data from PWS
+                $pwsDetail  = $this->getLeadInfoFromPWS(implode(',', $missingOnegId));
+
+                if (false !== $pwsDetail) {
+
+                    $this->getResponseFormat($pwsDetail);
+                    //store in couch document
+                    $Couch->set($this->cacheDocName, json_encode($this->response), $this->config->cacheConfig->documentLifetime);
+                }
+            }
+
+        } else {
+
+            $pwsDetail  = $this->getLeadInfoFromPWS(implode(',', array_keys($loop)));
+
+            if (false !== $pwsDetail) {
+                $this->getResponseFormat($pwsDetail);;
+            }
+        }
+
+        //get xml response
+        $xmlBody = $this->buildXmlResponse();
+        //send output
         $this->sendOutput('200 OK', $xmlBody);
     }
 
@@ -231,35 +319,71 @@ class FeedController extends ControllerBase
      */
     public function getLeadInfoFromPWS($onegID) {
 
-        //create obj
-        $provider = Request::getProvider();
-        //set uri
-        $provider->setBaseUri(self::ORBITZ_API_URL);
-        //set header
-        $provider->header->set('Accept', 'application/json+oww-hotel.v3');
-        //set curl options
-        $provider->setOptions([
-            CURLOPT_USERPWD => self::ORBITZ_API_USR.':'.self::ORBITZ_API_PASSWD,
-            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_SSL_CIPHER_LIST => 'TLSv1',
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_RETURNTRANSFER => true,
-        ]);
-        $provider->setTimeout(60);
-        //pass querysting as array
-        $response = $provider->get('',[
-            'checkIn' => $this->checkInDate,
-            'checkOut' => $this->checkOutDate,
-            'pos' => 'HCL',
-            'contentDetails' => 'medium',
-            'hotelId' => $onegID,
-            'locale' => $this->locale
-        ]);
-        //get result
-        return $response->body;
+        try {
+            //create obj
+            $provider = Request::getProvider();
+            //set uri
+            $provider->setBaseUri(self::ORBITZ_API_URL);
+            //set header
+            $provider->header->set('Accept', 'application/json+oww-hotel.v3');
+            //set curl options
+            $provider->setOptions([
+                CURLOPT_USERPWD => self::ORBITZ_API_USR . ':' . self::ORBITZ_API_PASSWD,
+                CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_SSL_CIPHER_LIST => 'TLSv1',
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_RETURNTRANSFER => true,
+            ]);
+            $provider->setTimeout(60);
+            //pass querysting as array
+            $response = $provider->get('', [
+                'checkIn' => $this->checkInDate,
+                'checkOut' => $this->checkOutDate,
+                'pos' => 'HCL',
+                'contentDetails' => 'medium',
+                'hotelId' => $onegID,
+                'locale' => $this->locale
+            ]);
+            //get result
+            return $this->validatePWSResponse(
+                json_decode($response->body), $onegID);
+
+        } catch (\Exception $e){
+            echo $e->getMesage();
+            return false;
+        }
     }
 
+    /**
+     * To check is any error in response
+     * @param json object $responses
+     * @param string $onegIds
+     * @return bool
+     */
+
+    private function validatePWSResponse($responses, $onegIds) {
+
+        //check error in result
+        if (isset($responses->message)) {
+
+            //checking error code
+            switch($responses->message->errorCode) {
+
+                case 'NO_RESULTS_FOUND':
+                default:
+                $this->getDI()->getShared('logger')->log("PWS API Response Error: key => {$responses->message->errorCode}
+                    value=> {$responses->message->value}");
+                break;
+            }
+            return false;
+        }
+        return $responses;
+    }
+
+    /**
+     * load lead (onegid) file
+     */
     private function loadTargetingLeads() {
         try{
             return require __DIR__ . '/../config/targetingLeads.php';
@@ -295,30 +419,6 @@ class FeedController extends ControllerBase
             return $details['price_high'];
         else
             return $details['price_low'];
-        /*
-           foreach($highSeason as $HSM) {
-
-                //if current month
-                if (trim($HSM) == $cntMonth) {
-                    $highSeasonFlag = true;
-
-                  // if between months ex (Jan - Mar)
-                } else if (strpos($HSM, '-') !== false) {
-                    //convert starting month and ending months to array
-                    $betweenMonth = explode('-' , $HSM);
-
-                    //convert from string format month to numeric format
-                    $currentMonth = date('m', strtotime($cntMonth));
-                    $startMonth = date('m', strtotime(trim($betweenMonth[0])));
-                    $endMonth   = date('m', strtotime(trim($betweenMonth[1])));
-
-                    //check weather it is in between month
-                    if ($currentMonth >= $startMonth && $currentMonth <= $endMonth) {
-                        $highSeasonFlag = true;
-                    }
-                }
-            }*/
-        //return season price based on month
 
     }
 
@@ -342,31 +442,11 @@ class FeedController extends ControllerBase
     /*
      * Build xml response format
      */
-    public function buildXmlResponse($pwsDetail, $objects) {
+    public function buildXmlResponse() {
 
-        $doc         = $objects['doc'];
-        $productsTag = $objects['productTags'];
+        list($doc, $productsTag) = $this->getXMLHeader();
 
-        foreach( $pwsDetail->hotels->hotel as $key => $value) {
-
-            $price      = $this->getHotelSeasonalPrice($value->details->id);  //seasonal price
-
-            $image = false;
-            $thImg = '';
-            foreach($value->details->content->media as $media) {
-
-                if (!isset($media->title)) {
-                    continue;
-                }
-
-                if (strpos($media->title, '-Guest-Room') !== false && $image == false) {
-                    $image = $media->value;
-                }
-
-                if ($media->type == 'thumbnail') {
-                    $thImg = $media->value;
-                }
-            }
+        foreach($this->response as $key => $value) {
 
             //version Tag
             $versionTag = $doc->createElement('Versions');
@@ -375,46 +455,50 @@ class FeedController extends ControllerBase
             //HotelName tag
             $hotelNameTag = $doc->createElement('HotelName');
             $hotelNameTag->appendChild(
-                $doc->createTextNode($value->details->name)
+                $doc->createTextNode($value['HotelName'])
             );
             $versionTag->appendChild($hotelNameTag);
 
             //City Tag
             $cityTag = $doc->createElement('City');
             $cityTag->appendChild(
-                $doc->createTextNode($value->details->address->city)
+                $doc->createTextNode($value['City'])
             );
             $versionTag->appendChild($cityTag);
 
             //Price Tag
             $priceTag = $doc->createElement('Price');
             $priceTag->appendChild(
-                $doc->createTextNode($price)
+                $doc->createTextNode($value['Price'])
             );
             $versionTag->appendChild($priceTag);
 
             //Image Tag
             $imageTag = $doc->createElement('Image');
             $imageTag->appendChild(
-                $doc->createTextNode($image)
+                $doc->createTextNode($value['Image'])
             );
             $versionTag->appendChild($imageTag);
 
             //Thumbnail Tag
             $thumbnailTag = $doc->createElement('Thumbnail');
             $thumbnailTag->appendChild(
-                $doc->createTextNode($thImg)
+                $doc->createTextNode($value['Thumbnail'])
             );
             $versionTag->appendChild($thumbnailTag);
 
             //Image Tag
             $urlTag = $doc->createElement('URL');
             $urlTag->appendChild(
-                $doc->createTextNode($value->rooms->roomRates[0]->roomRate[0]->href)
+                $doc->createTextNode($value['URL'])
             );
             $versionTag->appendChild($urlTag);
         }
-
        return $doc->saveXML();
     }
+
+    public function buildJSONResponse() {
+
+    }
+
 }
