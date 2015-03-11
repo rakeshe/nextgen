@@ -77,14 +77,20 @@ class FeedController extends ControllerBase
 
         if (false === $this->verifyToken()) {
 
-            // get HML header objects
-            list($doc, $parent) = $this->getXMLHeader();
 
-            $errorTag = $doc->createElement('Error');
+            $doc = new \DOMDocument('1.0', 'UTF-8');
+            $doc->formatOutput = true;
 
-            $errorTag->appendChild($doc->createTextNode("INVALID TOKEN"));
+            $message = $doc->createElement('message');
+            $doc->appendChild($message);
 
-            $parent->appendChild($errorTag);
+            $errorValue = $doc->createElement('value');
+            $errorValue->appendChild($doc->createTextNode("Token is invalid"));
+            $message->appendChild($errorValue);
+
+            $errorCode = $doc->createElement('errorCode');
+            $errorCode->appendChild($doc->createTextNode("INVALID_TOKEN"));
+            $message->appendChild($errorCode);
 
             $this->sendOutput('200 OK', $doc->saveXML());
         }
@@ -195,14 +201,19 @@ class FeedController extends ControllerBase
 
             if (count(array_filter($this->onegID)) == 0) {
 
-                // get HML header objects
-                list($doc, $parent) = $this->getXMLHeader();
+                $doc = new \DOMDocument('1.0', 'UTF-8');
+                $doc->formatOutput = true;
 
-                $errorTag = $doc->createElement('Error');
+                $message = $doc->createElement('message');
+                $doc->appendChild($message);
 
-                $errorTag->appendChild($doc->createTextNode("INVALID HOTEL ID"));
+                $errorValue = $doc->createElement('value');
+                $errorValue->appendChild($doc->createTextNode("Property unavailable"));
+                $message->appendChild($errorValue);
 
-                $parent->appendChild($errorTag);
+                $errorCode = $doc->createElement('errorCode');
+                $errorCode->appendChild($doc->createTextNode("NO_RESULTS_FOUND"));
+                $message->appendChild($errorCode);
 
                 $this->sendOutput('200 OK', $doc->saveXML());
             }
@@ -298,17 +309,37 @@ class FeedController extends ControllerBase
 
         } else {
 
-            $pwsDetail  = $this->getLeadInfoFromPWS(implode(',', array_keys($loop)));
+            $pwsDetail = $this->getLeadInfoFromPWS(implode(',', array_keys($loop)));
 
             if (false !== $pwsDetail) {
                 $this->getResponseFormat($pwsDetail);;
             }
         }
 
-        //get xml response
-        $xmlBody = $this->buildXmlResponse();
-        //send output
-        $this->sendOutput('200 OK', $xmlBody);
+        if (count($this->response) > 0) {
+            //get xml response
+            $xmlBody = $this->buildXmlResponse();
+            //send output
+            $this->sendOutput('200 OK', $xmlBody);
+
+        } else {
+
+            $doc = new \DOMDocument('1.0', 'UTF-8');
+            $doc->formatOutput = true;
+
+            $message = $doc->createElement('message');
+            $doc->appendChild($message);
+
+            $errorValue = $doc->createElement('value');
+            $errorValue->appendChild($doc->createTextNode("Property unavailable"));
+            $message->appendChild($errorValue);
+
+            $errorCode = $doc->createElement('errorCode');
+            $errorCode->appendChild($doc->createTextNode("NO_RESULTS_FOUND"));
+            $message->appendChild($errorCode);
+
+            $this->sendOutput('200 OK', $doc->saveXML());
+        }
     }
 
     /**
