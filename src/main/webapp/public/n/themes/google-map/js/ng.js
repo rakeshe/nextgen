@@ -2577,9 +2577,9 @@ function fetchCountryName(results, location){
 **/
 function placeMarkerOnMap(markerId,markerName, markerColor){
 	var marker = [];
-	$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){						
+	//$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){	
 		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(dataVal.results[0].geometry.location.lat,dataVal.results[0].geometry.location.lng),
+			position: new google.maps.LatLng(24.4910,54.3658),
 			map: map,
 		});
 		var contentString = '<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id='+markerId+'"">'+markerName+'</a>'; 
@@ -2588,7 +2588,7 @@ function placeMarkerOnMap(markerId,markerName, markerColor){
 			infowindow.open(map,marker);
 		});
 		bounds.extend(marker.position);
-	});
+	//});
 }//placeMarkerOnMap
 
 /** reset valid city name **/
@@ -2607,7 +2607,7 @@ function fetchCityName(results, location){
 	}
 	for (var key in nextgen.getCities){
 		var cityNameExists1=-1;
-		if(results[0]!='undefined'){ cityNameExists1= results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}		
+		if(results[0]!='undefined'){ cityNameExists1 = results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
 		if((cityNameExists1>=0))
 		{
 			map.setZoom(13);
@@ -2633,10 +2633,11 @@ function fetchCityName(results, location){
 			.error(function(data){
 				console.log('Failed');
 				console.log('Exception: '+ data.responseText);
-			});
+			});			
+			resetGoogleMapPosition();
+			break;
 		}
 	}
-	resetGoogleMapPosition();
 }//fetchCityName
 
 /** **/
@@ -2653,8 +2654,6 @@ function googleMapBackBtn(){
 				nextgen.drawMenu('');
 				nextgen.drawCards(true);
 				$('.display_regions').html('');
-				//document.getElementById('regions_div').style.top = '-75px';
-				//x.selectMenu(cacheObj); // select menu
 				nextgen.setUrlToHistory(uriBase + nextgen.getUrlParams()); //
 				nextgen.mapAction('');
 			})
@@ -2663,10 +2662,8 @@ function googleMapBackBtn(){
 			});
 			break;
 		case 3:
-			//console.log('Coming here....Country');
 			map.setZoom(googleRegionZoomLevel[nextgen.selRegion][0]);
-			clear();
-			//map.setCenter(location);
+			clearMarkers();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.selRegion, 'returnType=json');
 			res.success(function(data){
 				nextgen.dataP = data;
@@ -2681,19 +2678,19 @@ function googleMapBackBtn(){
 				console.log('Exception: '+ data.responseText);
 			});
 			zoomLevel = map.getZoom();
-			break;
-		
+			break;		
 	}
 }//googleMapBackBtn
-function clear(){
-	console.log(markersArray);
+
+/** clear googlemaps markers **/
+function clearMarkers(){
    if(markersArray){
         for(var i=0;i<markersArray.length;i++){
             markersArray[i].setMap(null);
         }
         markersArray.length=0;
     }
-}
+}//clearMarkers
 
 /** default values of google maps **/
 function defaultGoogleMap(mapVal){
