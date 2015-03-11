@@ -98,11 +98,10 @@ class FeedController extends ControllerBase
 
     private function verifyHost() {
 
-        if (isset($this->userWhiteListedData[$this->request->getHttpHost()])) {
+        if (null !== $this->request->getHttpHost() && array_key_exists($this->request->getHttpHost(), $this->userWhiteListedData)) {
             $this->whiteListType = 'HOST';
             $this->isWhiteListed = true;
             return true;
-
         } else if (isset($this->userWhiteListedData[$this->request->getClientAddress()])) {
             $this->whiteListType = 'IP';
             $this->isWhiteListed = true;
@@ -125,9 +124,9 @@ class FeedController extends ControllerBase
 
             if (trim(getallheaders()['Authorization']) ===
                 $this->userWhiteListedData[$this->request->getHttpHost()]) {
+
                 $this->verifyToken = true;
-                //token is valid
-                return true;
+                return true;  //token is valid
             }
         }
         return false;
