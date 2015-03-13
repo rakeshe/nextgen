@@ -2539,20 +2539,20 @@ function fetchCountryName(results, location){
 				nextgen.mapAction(nextgen.selRegion);
 				hideRegionName();
 				var markers  = [], markersVal  = [];
-				//fetched all the deal hotel details	
+				//fetched all the deal hotel details
 				for (var key in nextgen.getCities) {
 					markers.push(key);
 				}
 				$.each(markers, function (cityKey, cityStatus){
 					markersArray = [];
-					$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+cityStatus, function(cityDataVal, cityDataStatus){						
+					$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+cityStatus, function(cityDataVal, cityDataStatus){			
 						var marker = new google.maps.Marker({
 							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
 							map: map,
 						});
 						markersArray.push(marker);
 						var cityNameLink = ((cityDataVal.results[0].address_components[0].long_name).toLowerCase()).replace(/ /g,'-');
-						var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCountrys[countryShortName]['url']+ '/' + cityNameLink + nextgen.getUrlParams() + '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
+						var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCities[cityStatus].url + nextgen.getUrlParams() + '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
 						google.maps.event.addListener(marker, 'click', function() {
 							infowindow.setContent(contentString); 
 							infowindow.open(map,marker);
