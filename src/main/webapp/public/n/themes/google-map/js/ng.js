@@ -1386,9 +1386,7 @@ var nextgen = {
 		'drawCities' : function(region, countryUrl) {
 			$('.display_regions').css('background-color', 'white');	
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
-
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
-
 				if (index == 'name_en') headingEn = value;
 				if (index == 'name') heading = value;
 
@@ -2571,28 +2569,6 @@ function fetchCountryName(results, location){
 	});
 }//fetchCountryName
 
-/** 
-	placeMarkerOnMap for both markers for city and hotels
-	markerName is city name / hotel name
-	markerColor is for displaying marker difference
-**/
-function placeMarkerOnMap(markerId,markerName, markerColor){
-	$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+markerName, function(dataVal, hotelDataStatus){	
-		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(dataVal.results[0].geometry.location.lat,dataVal.results[0].geometry.location.lng),
-			//position: new google.maps.LatLng(24.4910,54.3658),//commented because need to place all the hotel latitude and longitude values here
-			map: map,
-		});
-		markersArray.push(marker);
-		var contentString = '<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id='+markerId+'"">'+markerName+'</a>'; 
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent(contentString); 
-			infowindow.open(map,marker);
-		});
-		bounds.extend(marker.position);
-	});
-}//placeMarkerOnMap
-
 /** reset valid city name **/
 function fetchCityName(results, location){
 	for (var k=0; k<results[0].address_components.length; k++) {
@@ -2612,7 +2588,7 @@ function fetchCityName(results, location){
 		if(results[0]!='undefined'){ cityNameExists1 = results[0].formatted_address.indexOf(nextgen.getCities[key]['name_en']);}
 		if((cityNameExists1>=0))
 		{
-			map.setZoom(13);
+			map.setZoom(11);
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCities[key]['url'], 'returnType=json');
@@ -2623,12 +2599,20 @@ function fetchCityName(results, location){
 				hideRegionName();
 				$.each(data.data, function (dataKey, dataVal){
 					var hotelId = dataVal.split(",");
+					var hotelMarkerDetails = [];
 					if(hotelId.length==1){
-						placeMarkerOnMap(hotelId, nextgen.data.deals[hotelId].hotel_name, 1);						
+						hotelMarkerDetails = hotelDetailsVal(hotelId);
+						placeMarkerOnMap(hotelMarkerDetails,  1);
 					}else if(hotelId.length==2){
-						for(var i=0; i<hotelId.length; i++){ placeMarkerOnMap(hotelId[i], nextgen.data.deals[hotelId[i]].hotel_name, 2); }
+						for(var i=0; i<hotelId.length; i++){
+							hotelMarkerDetails = hotelDetailsVal(hotelId[i]);
+							placeMarkerOnMap(hotelMarkerDetails, 2);
+						}
 					}else{
-						for(var i=0; i<hotelId.length; i++){ placeMarkerOnMap(hotelId[i], nextgen.data.deals[hotelId[i]].hotel_name, 3); }
+						for(var i=0; i<hotelId.length; i++){
+							hotelMarkerDetails = hotelDetailsVal(hotelId[i]);
+							placeMarkerOnMap(hotelMarkerDetails, 3);
+						}
 					}
 				});
 			})
@@ -2642,7 +2626,7 @@ function fetchCityName(results, location){
 	}
 }//fetchCityName
 
-/** **/
+/** go back to the google map **/
 function googleMapBackBtn(){
 	switch(nextgen.getLavel){
 		case 2:
@@ -2673,7 +2657,7 @@ function googleMapBackBtn(){
 				nextgen.drawCountry(nextgen.selRegion, nextgen.selRegion);
 				nextgen.setUrlToHistory(uriBase + '/' + nextgen.selRegion + nextgen.getUrlParams()); //
 				hideRegionName();
-				nextgen.drawMenu(nextgen.selRegion);					
+				nextgen.drawMenu(nextgen.selRegion);
 				resetGoogleMapPosition();
 			})
 			.error(function(data){
@@ -2722,6 +2706,42 @@ function defaultGoogleMap(mapVal){
 	}
 	return mapOptions;
 }//defaultGoogleMap
+
+
+/** 
+	placeMarkerOnMap for both markers for city and hotels
+	markerColor is for displaying marker platinum, gold and tier_3 indications
+**/
+function placeMarkerOnMap(hotelDetails, markerColor){
+	var markerIcon;
+	switch(markerColor){
+		case 1: markerIcon = 'yellow'; break;
+		case 2: markerIcon = 'purple'; break;
+		case 3: markerIcon = 'red'; break;
+	}
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(hotelDetails['hotel_lat'], hotelDetails['hotel_lon']),
+		map: map,
+		icon: 'http://maps.google.com/mapfiles/ms/icons/'+markerIcon+'-dot.png'
+	});
+	markersArray.push(marker);
+	var contentString = '<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id='+hotelDetails['hotel_id']+'"">'+hotelDetails['hotel_name']+'</a>'; 
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(contentString); 
+		infowindow.open(map,marker);
+	});
+	bounds.extend(marker.position);
+}//placeMarkerOnMap
+
+/** return the array value of hotel details  **/
+function hotelDetailsVal(tempHotelId){
+	var hotelDetails = [];
+	hotelDetails['hotel_id'] = tempHotelId;
+	hotelDetails['hotel_name'] = nextgen.data.deals[tempHotelId].hotel_name;
+	hotelDetails['hotel_lat'] = nextgen.data.deals[tempHotelId].hotel_lat;
+	hotelDetails['hotel_lon'] = nextgen.data.deals[tempHotelId].hotel_lon;
+	return hotelDetails;
+}//hotelDetailsVal
 
 /** reseting google map position based on level**/
 function resetGoogleMapPosition(){
