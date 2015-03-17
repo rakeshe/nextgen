@@ -33,7 +33,7 @@ $(document).on('click', '.month-arrow,.mth,.arrow', function() {
 
 $(document).ready(function(){
 
-    //if browser supports pushState, remove # from the url
+/*    //if browser supports pushState, remove # from the url
     if (typeof history.pushState != 'undefined') {
 
         Backbone.history.start({
@@ -42,9 +42,9 @@ $(document).ready(function(){
             root : "n/hong-kong-interactive",
             silent: false
         });
-    } else {
+    } else {*/
         Backbone.history.start({pushState:false});
-    }
+    //}
 
     route.loop();
 
