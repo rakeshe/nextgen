@@ -1400,12 +1400,14 @@ var nextgen = {
 				}
 
 				if (typeof value === 'object') {
-					var name = false, name_en = false, lavel = false;
+					var name = false, name_en = false, lavel = false, city_lat = false, city_lon = false;
 					$.each(value, function(key, val){
 
 						if (key == 'name') name = val;
 						if (key == 'level') lavel = val;
 						if (key == 'name_en') name_en = val;
+						if (key == 'city_lat') city_lat = val;
+						if (key == 'city_lon') city_lon = val;
 
 						if (name != false && lavel != false && name_en != false && lavel == 3) {
 
@@ -1484,7 +1486,7 @@ var nextgen = {
 			var html = '', flag = false, cities = [], heading = false, headingEn = false;
 
 			$.each(this.data['urls'][region][countryUrl], function(index, value){
-
+			
 				if (index == 'name_en') headingEn = value;
 				if (index == 'name') heading = value;				
 				
@@ -1504,7 +1506,6 @@ var nextgen = {
 				if (typeof value === 'object') {
 					var name = false, name_en = false, lavel = false;
 					$.each(value, function(key, val){
-
 						if (key == 'name') name = val;
 						if (key == 'level') lavel = val;
 						if (key == 'name_en') name_en = val;
@@ -2534,31 +2535,40 @@ function fetchCountryName(results, location){
 				nextgen.dataP = data;
 				nextgen.drawCards();
 				nextgen.drawCities(nextgen.selRegion, nextgen.getCountrys[countryShortName]['url']);
-				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //				
+				nextgen.setUrlToHistory(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'] + nextgen.getUrlParams()); //
 				data = regionMapConf('city-code', nextgen.selRegion);
 				nextgen.mapAction(nextgen.selRegion);
 				hideRegionName();
-				var markers  = [], markersVal  = [];
-				//fetched all the deal hotel details
 				for (var key in nextgen.getCities) {
-					markers.push(key);
+					urlTemp = nextgen.getCities[key]['url'];
+					break;
 				}
-				$.each(markers, function (cityKey, cityStatus){
-					markersArray = [];
-					$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+cityStatus, function(cityDataVal, cityDataStatus){			
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(cityDataVal.results[0].geometry.location.lat,cityDataVal.results[0].geometry.location.lng),
-							map: map,
+				urlTempVal = urlTemp.split("/");
+				var countryName = urlTempVal[0]+'/'+urlTempVal[1];
+				$.each(nextgen.data['urls'][nextgen.selRegion][countryName], function(index, value){
+					//check whether value is object
+					if (typeof value === 'object') {
+						var name_en = false, lavel = false, city_lat= false, city_lon= false;
+						$.each(value, function(key, val){
+							if (key == 'name_en') name_en = val;
+							if (key == 'city_lat') city_lat = val;
+							if (key == 'city_lon') city_lon = val;
+							//check whether city latitude and longitude is null
+							if(city_lat != false && city_lon != false){
+								var marker = new google.maps.Marker({
+									position: new google.maps.LatLng(city_lat,city_lon), // placing city latitude and longitude here
+									map: map,
+								});
+								markersArray.push(marker);
+								var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+name_en+'" href="'+uriBase + '/' + index + nextgen.getUrlParams() + '" >'+name_en+'</a>';
+								google.maps.event.addListener(marker, 'click', function() {
+									infowindow.setContent(contentString); 
+									infowindow.open(map,marker);
+								});
+								bounds.extend(marker.position);
+							}
 						});
-						markersArray.push(marker);
-						var cityNameLink = ((cityDataVal.results[0].address_components[0].long_name).toLowerCase()).replace(/ /g,'-');
-						var contentString = '<a data-lavel="3" class="menu-icons menu-city" tabindex="-1" data-code="'+cityDataVal.results[0].address_components[0].long_name+'" href="'+uriBase + '/' + nextgen.getCities[cityStatus].url + nextgen.getUrlParams() + '" >'+cityDataVal.results[0].address_components[0].long_name+'</a>';
-						google.maps.event.addListener(marker, 'click', function() {
-							infowindow.setContent(contentString); 
-							infowindow.open(map,marker);
-						});
-						bounds.extend(marker.position);
-					});
+					}
 				});	
 			})
 			.error(function(data){
