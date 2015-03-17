@@ -306,13 +306,12 @@
       <script src="http://www.revresda.com/js.ng/CookieName=PRO2&site=HCL&channel=insurance&Section=main&adsize=300x250&pos=bottom&platform=austin&secure=false&language=en_AU&subdomain=HCL"  language="javascript">
       </script>
     </div>
-    
+
   </div>
 </div>
 </div>
 
 <script>
-  
 var data = {destination : '{{ destination }}', trans : {update_quote : '{{t._('update_quote')}}', promocode : '{{t._("promocode")}}', single_journey : '{{t._("single_journey")}}', buy_now : '{{t._("buy_now")}}' } };
 </script>
 
