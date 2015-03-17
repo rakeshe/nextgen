@@ -65,13 +65,13 @@ sharecow.prototype = {
         /* Feel free to add to these as you wish */
         
         var shareUrl = document.location.href;
-        var shareHashUrl =  shareUrl.replace("2015/event", "2015#event");
+        //var shareHashUrl =  shareUrl.replace("2015/event", "2015#event");
         var site = site;
 
         var shareTitle = this.options.title;
         var shareTitleTw = this.options.titleTwitter;
         var shareTitlePin = this.options.titlePinterest;
-        var encUrl = this.options.thisUrl ? encodeURIComponent(this.options.thisUrl) : encodeURIComponent(shareHashUrl);
+        var encUrl = this.options.thisUrl ? encodeURIComponent(this.options.thisUrl) : encodeURIComponent(shareUrl);
         var encTitle = encodeURIComponent(shareTitle);
         var encTitleTw = encodeURIComponent(shareTitleTw);
         //var pinterestImg = encodeURIComponent('//jobs.telegraph.co.uk/customcontent/women-in-space/'+this.options.img);
