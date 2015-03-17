@@ -18,7 +18,7 @@
         {{ stylesheet_link('themes/common/font/font_serifa.css?' ~ appVersion ) }}
         {{ stylesheet_link('themes/' ~ theme ~ '/css/ng.css?' ~ appVersion ) }}
         {{ stylesheet_link('themes/' ~ theme ~ '/css/'~ fontCSS ~'.css?' ~ appVersion ) }}
-        {{ stylesheet_link("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css", false) }}
+        {{ stylesheet_link("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/blitzer/jquery-ui.min.css", false) }}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -34,9 +34,9 @@
     </head>
     <body>
         {{ content() }}
-        {{ javascript_include("http://google.com/jsapi", false) }}
-        {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js", false) }}
-        {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", false) }}
+        {{ javascript_include("//google.com/jsapi", false) }}
+        {{ javascript_include("//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js", false) }}
+        {{ javascript_include("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", false) }}
         {# javascript_include('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') #}
 		{{ javascript_include('vendor/bootstrap3.0/js/bootstrap.min.js?' ~ appVersion ) }}
         {{ javascript_include('themes/' ~ theme ~ '/js/ng.js?' ~ appVersion ) }}
