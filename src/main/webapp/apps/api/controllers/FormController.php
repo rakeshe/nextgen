@@ -169,12 +169,15 @@ class FormController extends ControllerBase
         return true;
     }
 
+    /**
+     * build mysql connection
+     */
     public function connectMysql() {
 
         $di = $this->getDI();
         $config = $this->config;
         $di['db']  = function () use ($config) {
-            return new DbAdapter(array(
+            return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
                 "host" => $config->database->host,
                 "username" => $config->database->username,
                 "password" => $config->database->password,
@@ -187,9 +190,49 @@ class FormController extends ControllerBase
         $this->setDI( $di);
     }
 
+    /**
+     * store action, to save data in mysql
+     */
+
     public function storeAction() {
 
         if (true == $this->validateInputData()) {
+
+            $formModel = new \HC\Api\Models\ApiFormData();
+
+            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
+            $formModel->first_name = $this->request->getPost('first_name', 'striptags');
+            $formModel->last_name = $this->request->getPost('last_name', 'striptags');
+            $formModel->email = $this->request->getPost('email', 'striptags');
+            $formModel->city = $this->request->getPost('city', 'striptags');
+            $formModel->state = $this->request->getPost('state', 'striptags');
+            $formModel->country = $this->request->getPost('country', 'striptags');
+            $formModel->phone = $this->request->getPost('phone', 'striptags');
+            $formModel->opt_in = $this->request->getPost('opt_in', 'striptags');
+            $formModel->answer = $this->request->getPost('answer', 'striptags');
+            $formModel->timestamp = $this->request->getPost('timestamp', 'striptags');
+            $formModel->app_id = $this->request->getPost('app_id', 'striptags');
+
+            if (!$formModel->save()) {
+
+                $value = [];
+                foreach ($formModel->getMessages() as $key => $message) {
+                    $value[$key]['value'] = $message->getMessage();
+                }
+                $message = [$value];
+            } else {
+
+                $message = [
+                    'value' => 'data stored successfully',
+                    'successCode' => 'SUCCESS'
+                ];
+            }
+            //send out put
+            $this->sendOutput('201 OK', json_encode([
+                'message' => [
+                    $message
+                ]
+            ]));
 
         } else {
             $value = [];
@@ -204,5 +247,4 @@ class FormController extends ControllerBase
             ]));
         }
     }
-
 }

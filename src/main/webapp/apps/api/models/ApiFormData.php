@@ -1,6 +1,16 @@
 <?php
 
-use Phalcon\Mvc\Model\Validator\Email as Email;
+/**
+ *
+ * @package    ApiModel
+ * @author     K.N. Santosh Hegde
+ * @since      18/03/15
+ * @version    1.0
+ */
+
+namespace HC\Api\Models;
+use Phalcon\Exception,
+    Phalcon\Mvc\Model\Validator\Email as Email;
 
 class ApiFormData extends \Phalcon\Mvc\Model
 {
