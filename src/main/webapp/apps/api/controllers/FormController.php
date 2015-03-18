@@ -57,6 +57,9 @@ class FormController extends ControllerBase
                 ]
             ]));
         }
+
+        //connect to mysql
+        $this->connectMysql();
     }
 
     /**
@@ -75,7 +78,7 @@ class FormController extends ControllerBase
      * load whitelist url file
      */
 
-    public function loadWhiteListUrls() {
+    private function loadWhiteListUrls() {
 
         try{
 
@@ -166,12 +169,29 @@ class FormController extends ControllerBase
         return true;
     }
 
+    public function connectMysql() {
+
+        $di = $this->getDI();
+        $config = $this->config;
+        $di['db']  = function () use ($config) {
+            return new DbAdapter(array(
+                "host" => $config->database->host,
+                "username" => $config->database->username,
+                "password" => $config->database->password,
+                "dbname" => $config->database->dbname,
+                "options" => array(
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+                )
+            ));
+        };
+        $this->setDI( $di);
+    }
+
     public function storeAction() {
 
         if (true == $this->validateInputData()) {
 
         } else {
-
             $value = [];
             foreach ($this->validationMessages as $key => $message) {
                $value[$key]['value'] = $message;

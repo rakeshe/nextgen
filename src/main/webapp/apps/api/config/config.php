@@ -6,7 +6,7 @@ return new \Phalcon\Config(array(
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'dbname' => 'test',
+        'dbname' => 'deals_new_v5',
     ),
     'couchbase' => array(
         'bucket' => 'hc-nextgen'

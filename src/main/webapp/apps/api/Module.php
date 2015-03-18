@@ -50,7 +50,20 @@ class Module {
 //           $obj = new \HC\Library\Couchbase($conf['bucket'], $conf['host'], $conf['port'], $conf['user'], $conf['password']);
 //           $obj->connect();
 //          return $obj->couchbase;
-       });      
+       });
+
+        /*$di->set('db', function () use ($di) {
+            $config = $di->get('config');
+            return new DbAdapter(array(
+                "host" => $config->database->host,
+                "username" => $config->database->username,
+                "password" => $config->database->password,
+                "dbname" => $config->database->dbname,
+                "options" => array(
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+                )
+            ));
+        });*/
         
     }
     
