@@ -1,0 +1,63 @@
+/* Tabbed example */
+
+#TabMenu{
+	width:1020px;
+	height:600px;}
+
+div.tabs {
+  width:1020px;
+  height:530px;		
+  position: relative;		/* Establish a containing block */
+  line-height: 1;		/* Easier to calculate with */
+  z-index: 0;
+  }			/* So that we can put other things behind */
+
+
+div.tabs > div {
+  display: inline}		/* We want the buttons all on one line */
+
+
+div.tabs > div > a {
+	font-family: 'museo_slab500';
+	text-decoration:none;
+  color: RGB(85,51,126);			/* Looks more like a button than a link */
+  background: RGB(177,187,185);		/* Active tabs are light gray */
+  padding: 5px;		/* Some breathing space */
+  border: 1px outset #BBB;	/* Make it look like a button */
+  border-bottom: 1px solid RGB(177,187,185);} /* Visually connect tab and tab body */
+
+
+div.tabs > div:not(:target) > a {
+  border-bottom: none;		/* Make the bottom border disappear */
+  background:#FFF;}		/* Inactive tabs are dark gray */
+
+
+div.tabs > div:target > a,	/* Apply to the targeted item or... */
+:target #tab1 > a {		/* ... to the default item */
+  border-bottom: 0.1em solid #CCC; /* Visually connect tab and tab body */
+  background: #fff;
+  color:#000;}		/* Active tab is light gray */
+
+
+div.tabs > div > div {
+ 	/* Light gray */
+  z-index: -2;			/* Behind, because the borders overlap */
+  left: 0; top: 1.3em;		/* The top needs some calculation... */
+  bottom: 0; right: 0;		/* Other sides flush with containing block */
+  /*overflow: auto;		/* Scroll bar if needed */
+  padding: 0;	/* Looks better */
+  padding-left:0;}	/* 3D look */
+  
+
+
+div.tabs > div:not(:target) > div { /* Protect CSS1 & CSS2 browsers */
+  position: absolute }		/* All these DIVs overlap */
+
+
+div.tabs > div:target > div, :target #tab1 > div {
+  position: absolute;		/* All these DIVs overlap */
+  z-index: -1}			/* Raise it above the others */
+
+
+div.tabs :target {
+  outline: none}

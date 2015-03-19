@@ -4,8 +4,7 @@ app.Router = Backbone.Router.extend({
 
 	once: false,
 
-	//initUrl: '#month/january/2015',
-	initUrl: '',
+	initUrl: '#month/january/2015',
 
 	routes: {
 		"": "start",
@@ -58,11 +57,13 @@ app.Router = Backbone.Router.extend({
 
 		$('#outbox').removeClass('open');
 		$('#lightbox').removeClass('open');
+        /*
+         * dont change meta desc and title dynamically based on page beign displayed
         $('meta[name="description"]').attr('content', result.attributes.tip);
-        document.title = result.attributes.name + ' ' + title;
+        document.title = result.attributes.name + ' ' + title;*/
 
-        //this.scrollPage();
-        setTimeout(_.bind(this.scrollPage, this), 500);
+        //this.scrollPage();  // Stop auto scroll
+        //setTimeout(_.bind(this.scrollPage, this), 500);  // stop delayed scroll
 	},
 
 	event: function(name, year, id){

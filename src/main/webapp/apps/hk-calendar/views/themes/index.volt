@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="fragment" content="!">
-    {{ get_title() }}
+    <title>{{ title }}</title>
     <meta name="description" content="From a Bruce Lee exhibition to the birthday of Confucius, discover Hong Kong's unmissable events with this interactive calendar.">
-    <link rel="canonical" href="{{ canonicalUri }}">
+    <link rel="canonical" href="http://www.hotelclub.com/n/hong-kong-interactive/">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Experience Hong Kong | The Unmissable Events">
@@ -32,7 +32,6 @@
     {{ javascript_include("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", false) }}
     {{ javascript_include(theme ~ 'js/libs/modernizr.min.js?' ~ appVersion ) }}
     {{ javascript_include("https://maps.googleapis.com/maps/api/js?v=3.exp",false) }}
-    <script>var title = '{{ title }}';</script>
 
     <!-- Google Analytics -->
     <script>
@@ -41,7 +40,7 @@
                 ,i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-11728193-3', 'auto');
+        ga('create', 'UA-60157781-1', 'auto');
         ga('send', 'pageview');
     </script>
     <script>var title = '{{ title }}';</script>
@@ -66,24 +65,24 @@
         </div>
 
         <div class="arrow">
-            <a class="mth" href="month/january/2015"><img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down"></a>
+            <img src="{{ themePath }}img/arrow2.png" height="44" width="44" alt="Go down">
         </div>
     </section>
     <section class="back month one">
         <nav id="menu">
             <ul>
-                <li class="active"><a class="mth" href="month/january/2015">Jan / 15</a></li>
-                <li><a class="mth" href="month/february/2015">Feb / 15</a></li>
-                <li><a class="mth" href="month/march/2015">Mar / 15</a></li>
-                <li><a class="mth" href="month/april/2015">Apr / 15</a></li>
-                <li><a class="mth" href="month/may/2015">May / 15</a></li>
-                <li><a class="mth" href="month/june/2015">Jun / 15</a></li>
-                <li><a class="mth" href="month/july/2015">Jul / 15</a></li>
-                <li><a class="mth" href="month/august/2015">Aug / 15</a></li>
-                <li><a class="mth" href="month/september/2015">Sep / 15</a></li>
-                <li><a class="mth" href="month/october/2015">Oct / 15</a></li>
-                <li><a class="mth" href="month/november/2015">Nov / 15</a></li>
-                <li><a class="mth" href="month/december/2015">Dec / 15</a></li>
+                <li class="active"><a class="mth" href="#month/january/2015">Jan / 15</a></li>
+                <li><a class="mth" href="#month/february/2015">Feb / 15</a></li>
+                <li><a class="mth" href="#month/march/2015">Mar / 15</a></li>
+                <li><a class="mth" href="#month/april/2015">Apr / 15</a></li>
+                <li><a class="mth" href="#month/may/2015">May / 15</a></li>
+                <li><a class="mth" href="#month/june/2015">Jun / 15</a></li>
+                <li><a class="mth" href="#month/july/2015">Jul / 15</a></li>
+                <li><a class="mth" href="#month/august/2015">Aug / 15</a></li>
+                <li><a class="mth" href="#month/september/2015">Sep / 15</a></li>
+                <li><a class="mth" href="#month/october/2015">Oct / 15</a></li>
+                <li><a class="mth" href="#month/november/2015">Nov / 15</a></li>
+                <li><a class="mth" href="#month/december/2015">Dec / 15</a></li>
             </ul>
         </nav>
         <div class="month-container">

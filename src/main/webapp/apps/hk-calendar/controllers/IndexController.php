@@ -25,7 +25,7 @@ class IndexController extends Controller
      */
     public function init()
     {
-        \Phalcon\Tag::setTitle('Hong Kong Interactive Calendar');
+        \Phalcon\Tag::setTitle(self::PAGE_TITLE);
     }
 
     /**
