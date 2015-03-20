@@ -2382,20 +2382,28 @@ function loadGoogleMap(){
 			resetGoogleMapPosition();
 		break;
 		case 3:
-			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[2], function(data, status){
-				for (var j=0; j<data.results[0].address_components.length; j++) {
-					for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
-						//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-						if (data.results[0].address_components[j].types[0] == "country") {
-							//this is the object you are looking for
-							var country = data.results[0].address_components[j];
-							countryShortName = country.short_name;
-							break;
+			if(levelRegion[2]!=nextgen.selRegion){
+				zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
+				lat = googleRegionZoomLevel[nextgen.selRegion][1];
+				lang = googleRegionZoomLevel[nextgen.selRegion][2];
+				resetGoogleMapPosition();
+			}else{
+				$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[2], function(data, status){
+					for (var j=0; j<data.results[0].address_components.length; j++) {
+						for (var c=0;c<data.results[0].address_components[j].types.length;c++) {
+							//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
+							if (data.results[0].address_components[j].types[0] == "country") {
+								//this is the object you are looking for
+								var country = data.results[0].address_components[j];
+								countryShortName = country.short_name;
+								break;
+							}
 						}
 					}
-				}
-				fetchCountryName(data.results, data.results[0].geometry.location);
-			});
+					console.log(data);
+					fetchCountryName(data.results, data.results[0].geometry.location);
+				});
+			}
 		break;
 		case 4:
 			$.get("http://maps.googleapis.com/maps/api/geocode/json?address="+levelRegion[3], function(data, status){
@@ -2416,7 +2424,7 @@ function initialize(){
 		zoom: zoomVal,
 		minZoom: 2,
 		disableDoubleClickZoom: false,
-		panControl: false,
+		panControl: true,
 		mapTypeControl: false,
 		scaleControl: false,
 		panControlOptions: {
@@ -2480,24 +2488,7 @@ function fetchRegionName(results, location){
 	$.each(goggleRegions, function(regionName, regionValue){
 		tempRegionName = regionValue.indexOf(countryShortName);
 		if(tempRegionName>=0){
-			map.setZoom(googleRegionZoomLevel[regionName][0]);
-			map.setCenter(location);
-			nextgen.selRegion = regionName;
-			res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
-			res.success(function(data){
-				nextgen.dataP = data;
-				nextgen.drawCards();
-				nextgen.drawCountry(regionName, regionName);
-				nextgen.selRegion = regionName;
-				nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
-				hideRegionName();
-				nextgen.drawMenu(nextgen.selRegion);					
-				resetGoogleMapPosition();
-			})
-			.error(function(data){
-				console.log('Exception: '+ data.responseText);
-			});
-			zoomLevel = map.getZoom();
+			resetRegionMap(regionName, location);
 			regionVal = 1;
 			return false;
 		}else{
@@ -2526,8 +2517,11 @@ function fetchCountryName(results, location){
 	$.each(goggleRegions, function(regionName, regionValue){
 		tempRegionName = regionValue.indexOf(countryShortName);
 		if(tempRegionName>=0){
-			if(countryShortName!='MO'){ map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]); }
-			else{ map.setZoom(5); }
+			if(regionName!=nextgen.selRegion){ 
+				resetRegionMap(regionName, location);
+				return false;
+			}
+			map.setZoom(googleCountryZoomLevel[goggleRegions[regionName][tempRegionName]]);
 			map.setCenter(location);
 			zoomLevel = map.getZoom();
 			res = nextgen.sendRequest(uriBase + '/' + nextgen.getCountrys[countryShortName]['url'], 'returnType=json');
@@ -2677,6 +2671,29 @@ function googleMapBackBtn(){
 			break;
 	}
 }//googleMapBackBtn
+
+/** when move from one region to another region, reset the region in google map **/
+function resetRegionMap(regionName, location){
+	map.setZoom(googleRegionZoomLevel[regionName][0]);
+	map.setCenter(location);
+	nextgen.selRegion = regionName;
+	res = nextgen.sendRequest(uriBase + '/' + regionName, 'returnType=json');
+	res.success(function(data){
+		nextgen.dataP = data;
+		nextgen.drawCards();
+		nextgen.drawCountry(regionName, regionName);
+		nextgen.selRegion = regionName;
+		nextgen.setUrlToHistory(uriBase + '/' + regionName + nextgen.getUrlParams()); //
+		hideRegionName();
+		nextgen.drawMenu(nextgen.selRegion);
+		resetGoogleMapPosition();
+	})
+	.error(function(data){
+		console.log('Exception: '+ data.responseText);
+	});
+	zoomLevel = map.getZoom();
+	return false;
+}//resetRegionMap
 
 /** clear googlemaps markers **/
 function clearMarkers(){
