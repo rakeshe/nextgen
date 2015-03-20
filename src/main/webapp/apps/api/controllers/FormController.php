@@ -142,27 +142,26 @@ class FormController extends ControllerBase
         $validation = new \Phalcon\Validation();
 
         $validation->add('first_name', new PresenceOf([
-            'messages' => 'The first name is required',
+            'message' => 'The first name is required',
         ]));
 
         $validation->add('last_name', new PresenceOf([
-            'messages' => 'The last name is required'
+            'message' => 'The last name is required'
         ]));
 
-        $validation->add('email', new PresenceOf([
-            'messages' => 'The e-mail is required'
+        $validation->add('comments', new PresenceOf([
+            'message' => 'The comment field is required'
         ]));
 
-        $validation->add('email', new Email([
-            'messages' => 'The e-mail is not valid'
-        ]));
 
         $message = $validation->validate($this->request->getPost());
 
         if (count($message) > 0) {
 
             foreach ($message as $key => $msg) {
-              array_push($this->validationMessages , $msg->getMessage());
+
+              array_push($this->validationMessages , ['code' => $this->getErrorCodes()[$msg->getField()]['code'],
+                  'message' => $msg->getMessage()]);
             }
             return false;
         }
@@ -210,7 +209,9 @@ class FormController extends ControllerBase
             $formModel->phone = $this->request->getPost('phone', 'striptags');
             $formModel->opt_in = $this->request->getPost('opt_in', 'striptags');
             $formModel->answer = $this->request->getPost('answer', 'striptags');
-            $formModel->timestamp = $this->request->getPost('timestamp', 'striptags');
+
+            $now   = new \DateTime('now');
+            $formModel->timestamp =  $now->format( 'Y-m-d h:m:s' );
             $formModel->app_id = $this->request->getPost('app_id', 'striptags');
 
             if (!$formModel->save()) {
@@ -246,5 +247,50 @@ class FormController extends ControllerBase
                 ]
             ]));
         }
+    }
+
+    public function getErrorCodes() {
+        return [
+            'api_key' => [
+                'code' => 'INVALID_API_KEY',
+                'message' => 'invalid api key'
+            ],
+            'title' => [
+                'code' => 'INVALID_TITLE_FIELD',
+                'message' => ''
+            ],
+            'first_name' => [
+                'code' => 'INVALID_FIRST_NAME_FIELD',
+                'message' => 'First name is required'
+            ],
+            'last_name' => [
+                'code' => 'INVALID_LAST_NAME_FIELD',
+                'message' => 'Last name is required'
+            ],
+            'email' => [
+                'code' => 'INVALID_EMAIL_FIELD',
+                'message' => ''
+            ],
+            'phone' => [
+                'code' => 'INVALID_PHONE_FIELD',
+                'message' => ''
+            ],
+            'city' => [
+                'code' => 'INVALID_CITY_FIELD',
+                'message' => ''
+            ],
+            'country' => [
+                'code' => 'INVALID_COUNTRY_FIELD',
+                'message' => ''
+            ],
+            'postcode' => [
+                'code' => 'INVALID_POST_CODE_FIELD',
+                'message' => ''
+            ],
+            'comments' => [
+                'code' => 'INVALID_COMMENT_FIELD',
+                'message' => ''
+            ],
+        ];
     }
 }

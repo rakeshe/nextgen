@@ -1,16 +1,8 @@
 <?php
 
-/**
- *
- * @package    ApiModel
- * @author     K.N. Santosh Hegde
- * @since      18/03/15
- * @version    1.0
- */
-
 namespace HC\Api\Models;
-use Phalcon\Exception,
-    Phalcon\Mvc\Model\Validator\Email as Email;
+
+use Phalcon\Mvc\Model\Validator\Email as Email;
 
 class ApiFormData extends \Phalcon\Mvc\Model
 {
@@ -25,7 +17,7 @@ class ApiFormData extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $campaign_key;
+    public $title;
 
     /**
      *
@@ -71,6 +63,12 @@ class ApiFormData extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var string
+     */
+    public $postcode;
+
+    /**
+     *
      * @var integer
      */
     public $opt_in;
@@ -79,7 +77,7 @@ class ApiFormData extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $answer;
+    public $comments;
 
     /**
      *
@@ -99,14 +97,14 @@ class ApiFormData extends \Phalcon\Mvc\Model
     public function validation()
     {
 
-        $this->validate(
+       /* $this->validate(
             new Email(
                 array(
                     'field'    => 'email',
                     'required' => true,
                 )
             )
-        );
+        );*/
         if ($this->validationHasFailed() == true) {
             return false;
         }
@@ -119,7 +117,7 @@ class ApiFormData extends \Phalcon\Mvc\Model
     {
         return array(
             'id' => 'id', 
-            'campaign_key' => 'campaign_key', 
+            'title' => 'title', 
             'first_name' => 'first_name', 
             'last_name' => 'last_name', 
             'email' => 'email', 
@@ -127,8 +125,9 @@ class ApiFormData extends \Phalcon\Mvc\Model
             'state' => 'state', 
             'country' => 'country', 
             'phone' => 'phone', 
+            'postcode' => 'postcode', 
             'opt_in' => 'opt_in', 
-            'answer' => 'answer', 
+            'comments' => 'comments', 
             'timestamp' => 'timestamp', 
             'app_id' => 'app_id'
         );
