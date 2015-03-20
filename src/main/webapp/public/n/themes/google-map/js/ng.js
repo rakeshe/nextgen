@@ -2382,7 +2382,7 @@ function loadGoogleMap(){
 			resetGoogleMapPosition();
 		break;
 		case 3:
-			if(levelRegion[2]!=nextgen.selRegion){
+			if(levelRegion[1]!=nextgen.selRegion){
 				zoomVal = googleRegionZoomLevel[nextgen.selRegion][0];
 				lat = googleRegionZoomLevel[nextgen.selRegion][1];
 				lang = googleRegionZoomLevel[nextgen.selRegion][2];
@@ -2400,7 +2400,6 @@ function loadGoogleMap(){
 							}
 						}
 					}
-					console.log(data);
 					fetchCountryName(data.results, data.results[0].geometry.location);
 				});
 			}
@@ -2423,7 +2422,7 @@ function initialize(){
 		center: new google.maps.LatLng(lat, lang),
 		zoom: zoomVal,
 		minZoom: 2,
-		disableDoubleClickZoom: false,
+		disableDoubleClickZoom: true,
 		panControl: true,
 		mapTypeControl: false,
 		scaleControl: false,
@@ -2463,7 +2462,7 @@ function initialize(){
 			}else if(zoomLevel==3||zoomLevel==4){
 				if(nextgen.selRegion==''||nextgen.selRegion=='undefined'){	fetchRegionName(results, location); }
 				else{	fetchCountryName(results, location); }
-			}else if(zoomLevel>=6){
+			}else if(zoomLevel>=5){
 				fetchCityName(results, location);
 			}
 		});
@@ -2578,7 +2577,7 @@ function fetchCityName(results, location){
 	for (var k=0; k<results[0].address_components.length; k++) {
 		for (var d=0;d<results[0].address_components[k].types.length;d++) {
 			//there are different types that might hold a country 'country' usually does in come cases looking for sublocality type will be more appropriate
-			if (results[0].address_components[k].types[0] == "locality") {
+			if (results[0].address_components[k].types[0] == "country") {
 				//this is the object you are looking for
 				var country= results[0].address_components[k];
 				countryLongName = country.long_name.toLowerCase().replace(" ", "-");//country long name
@@ -2586,6 +2585,20 @@ function fetchCityName(results, location){
 				break;
 			}
 		}
+	}
+	levelRegion = nextgen.dataP['info']['url'].split("/");	
+	$.each(goggleRegions, function(regionName, regionValue){
+		tempRegionName = regionValue.indexOf(countryShortName);
+		if(tempRegionName>=0){
+			if(regionName!=nextgen.selRegion){
+				resetRegionMap(regionName, location);
+				return false;
+			}
+		}
+	});
+	if(levelRegion[2]!=countryLongName){ 
+		clearMarkers();
+		fetchCountryName(results, location);
 	}
 	for (var key in nextgen.getCities){
 		var cityNameExists1=-1;
@@ -2721,6 +2734,7 @@ function defaultGoogleMap(mapVal){
 			position: google.maps.ControlPosition.RIGHT_TOP
 		},
 		zoomControl:true,
+		disableDoubleClickZoom: true,
 		zoomControlOptions: {
 			style: google.maps.ZoomControlStyle.SMALL,
 			position: google.maps.ControlPosition.RIGHT_TOP
@@ -2764,9 +2778,11 @@ function placeMarkerOnMap(hotelDetails, markerColor){
 function hotelDetailsVal(tempHotelId){
 	var hotelDetails = [];
 	hotelDetails['hotel_id'] = tempHotelId;
-	hotelDetails['hotel_name'] = nextgen.data.deals[tempHotelId].hotel_name;
-	hotelDetails['hotel_lat'] = nextgen.data.deals[tempHotelId].hotel_lat;
-	hotelDetails['hotel_lon'] = nextgen.data.deals[tempHotelId].hotel_lon;
+	if(nextgen.data.deals[tempHotelId]){
+		hotelDetails['hotel_name'] = nextgen.data.deals[tempHotelId].hotel_name;
+		hotelDetails['hotel_lat'] = nextgen.data.deals[tempHotelId].hotel_lat;
+		hotelDetails['hotel_lon'] = nextgen.data.deals[tempHotelId].hotel_lon;
+	}
 	return hotelDetails;
 }//hotelDetailsVal
 
