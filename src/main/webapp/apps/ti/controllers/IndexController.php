@@ -121,7 +121,9 @@ class IndexController extends ControllerBase {
         $priceModel->numChild = $this->request->getPost('ddlChild', 'int');
         $priceModel->dob = array_filter($this->request->getPost('AdobOne', 'string'));
         $priceModel->couponCode = $this->request->getPost('couponCode', array('alphanum', 'trim'));
-        $priceModel->setAgeCats(); //count the travelers        
+        $priceModel->proxyHost = $this->config->searchConfig->orbitzSquidProxyProd->host;
+        $priceModel->proxyPort = $this->config->searchConfig->orbitzSquidProxyProd->port;
+        $priceModel->setAgeCats(); //count the travelers
         $priceModel->buildXML(); //build the xml form
 
         if ($dom = $priceModel->makeRequest()) {
