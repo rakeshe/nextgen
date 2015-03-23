@@ -148,6 +148,14 @@ return new \Phalcon\Config(array(
         5 => 'WW'
     ),
     'searchConfig' => array(
+        'orbitzSquidProxyProd' => [
+            'host' => 'proxyvip.prod.orbitz.net',
+            'port' => '3128'
+        ],
+        'orbitzSquidProxyStaging' => [
+            'host' => 'proxyvip.stag.orbitz.net',
+            'port' => '3128'
+        ],
         'stagingGateWay' => array(
 //AllianzPricingGateway = "https://uat.magroup-webservice.com/gateway/pricing",
             'AllianzPricingGateway' => "https://www.magroup-webservice.com/gateway/pricing",
