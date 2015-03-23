@@ -35,6 +35,10 @@ class PricingModel extends \Phalcon\Mvc\Model {
     public $pricingGatewayUrl;
     public $xmlPostFildes;
     public $couponCode = null;
+    public $proxyHost;
+    public $proxyPort;
+    public $proxyUsername;
+    public $proxyPaswword;
 
     /**
      * Categorise the people based on date of birth
@@ -75,6 +79,8 @@ class PricingModel extends \Phalcon\Mvc\Model {
         $provider->setBaseUri($this->pricingGatewayUrl);
         //set header
         $provider->header->set('Accept', 'Content-Type: application/xml');
+        //Set proxy
+        $provider->setProxy($this->proxyHost, $this->proxyPort );
         //send xml post data
         $response = $provider->post('', $this->xmlPostFildes);
         //get response
