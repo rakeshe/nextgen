@@ -81,12 +81,7 @@ class FormController extends ControllerBase
      * @return bool
      */
     private function verifyRequestType() {
-
-        if (true == $this->request->isPost() && true == $this->request->isAjax()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->request->isPost() && true == $this->request->isAjax();
     }
     /**
      * load whitelist url file
