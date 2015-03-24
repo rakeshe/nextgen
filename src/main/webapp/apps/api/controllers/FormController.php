@@ -17,7 +17,10 @@ use Phalcon\Http\Client\Exception,
 
 class FormController extends ControllerBase
 {
-    const WHITE_LIST_URL_FILE = 'formDataWhiteListUrls.php';
+    const WHITE_LIST_URL_FILE = 'formWhiteListUrls.json';
+
+    // the doc generate format:-> api:form: md5('white_list_urls'):doc;
+    const WHITE_LIST_DOCUMENT_FILE = 'api:form:aae72e94ee51b1151bf9ad47823402f0:doc';
 
     private $whiteListUrls;
 
@@ -29,6 +32,8 @@ class FormController extends ControllerBase
 
     private $validationMessages = [];
 
+    private $availableHosts = [];
+
     public function initialize() {
 
         //validate security stuffs
@@ -37,8 +42,17 @@ class FormController extends ControllerBase
 
     private function validate() {
 
+
+        $this->updateWhiteListFile();
+
         //load whitelist file
         $this->loadWhiteListUrls();
+
+        //verify api key
+        if (false == $this->verifyAppKey()) {
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('401 Unauthorized');
+        }
 
         //verify host
         if (false == $this->verifyHost()) {
@@ -83,7 +97,8 @@ class FormController extends ControllerBase
         try{
 
             if (file_exists(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE)) {
-                $this->whiteListUrls = require_once __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
+                //require_once __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
+                $this->whiteListUrls = json_decode(file_get_contents(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE), true);
             } else {
                 throw new Exception('required file does not exists');
             }
@@ -94,16 +109,33 @@ class FormController extends ControllerBase
     }
 
     /**
+     * To verify app key
+     * @return bool
+     */
+    private function verifyAppKey() {
+
+        if (null!= $this->request->getPost('api_key') &&
+            array_key_exists($this->request->getPost('api_key'), $this->whiteListUrls)) {
+
+            $this->availableHosts = $this->whiteListUrls[$this->request->getPost('api_key')];
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Verify host name or IP is whitelisted or not
      * @return bool
      */
     private function verifyHost() {
 
-        if (null !== $this->request->getHttpHost() && array_key_exists($this->request->getHttpHost(), $this->whiteListUrls)) {
+        if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+            array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
             $this->whiteListType = 'HOST';
             $this->isWhiteListed = true;
             return true;
-        } else if (null !== $this->request->getHttpHost() && array_key_exists($this->request->getClientAddress(), $this->whiteListUrls)) {
+        } else if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+            array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
             $this->whiteListType = 'IP';
             $this->isWhiteListed = true;
             return true;
@@ -246,6 +278,39 @@ class FormController extends ControllerBase
                     $value
                 ]
             ]));
+        }
+    }
+
+    protected function updateWhiteListFile(){
+
+        $filePath = __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
+
+        $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+
+        $cacheData   = $Couch->get(self::WHITE_LIST_DOCUMENT_FILE);
+
+        if (null != $cacheData) {
+
+            $storeFile = true;
+
+            if(file_exists($filePath) ){
+                $interval = strtotime('-24 hours');
+                if (filemtime($filePath) <= $interval ){
+                    $storeFile = true;
+                } else{
+                    $storeFile = false;
+                }
+            }
+            $request = new \Phalcon\Http\Request();
+            $forceWrite = $request->getQuery('api-frm-whitelist-cache');
+            if($forceWrite == 'yes') {
+                $storeFile = true;
+            }
+            if($storeFile){
+                $file = fopen($filePath, 'w');
+                fputs($file, $cacheData);
+                fclose($file);
+            }
         }
     }
 
