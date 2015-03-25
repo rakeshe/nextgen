@@ -121,8 +121,8 @@ class IndexController extends ControllerBase {
         $priceModel->numChild = $this->request->getPost('ddlChild', 'int');
         $priceModel->dob = array_filter($this->request->getPost('AdobOne', 'string'));
         $priceModel->couponCode = $this->request->getPost('couponCode', array('alphanum', 'trim'));
-        $priceModel->proxyHost = $this->config->searchConfig->orbitzSquidProxyProd->host;
-        $priceModel->proxyPort = $this->config->searchConfig->orbitzSquidProxyProd->port;
+        $this->setCurlProxy($priceModel);
+
         $priceModel->setAgeCats(); //count the travelers
         $priceModel->buildXML(); //build the xml form
 
@@ -255,4 +255,9 @@ class IndexController extends ControllerBase {
         return 'Please Enter Date of Birth'; // field is not valid
     }
 
+    protected function setCurlProxy(\HC\TI\Models\PricingModel &$model){
+        $proxyConfig = $this->config->searchConfig->orbitzSquidProxy[ORBITZ_ENV];
+            $model->proxyHost = $proxyConfig['host'];
+            $model->proxyPort = $proxyConfig['port'];
+    }
 }
