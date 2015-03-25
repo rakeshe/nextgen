@@ -148,13 +148,23 @@ return new \Phalcon\Config(array(
         5 => 'WW'
     ),
     'searchConfig' => array(
-        'orbitzSquidProxyProd' => [
-            'host' => 'proxyvip.prod.orbitz.net',
-            'port' => '3128'
-        ],
-        'orbitzSquidProxyStaging' => [
-            'host' => 'proxyvip.stag.orbitz.net',
-            'port' => '3128'
+        'orbitzSquidProxy' => [
+            'production' => [
+                'host' => 'proxyvip.prod.orbitz.net',
+                'port' => '3128'
+            ],
+            'staging'    => [
+                'host' => 'proxyvip.stag.orbitz.net',
+                'port' => '3128'
+            ],
+            'fqa1'       => [
+                'host' => 'proxyvip.stag.orbitz.net',
+                'port' => '3128'
+            ],
+            'dev'        => [
+                'host' => 'proxyvip.stag.orbitz.net',
+                'port' => '3128'
+            ]
         ],
         'stagingGateWay' => array(
 //AllianzPricingGateway = "https://uat.magroup-webservice.com/gateway/pricing",
