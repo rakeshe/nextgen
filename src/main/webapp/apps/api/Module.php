@@ -51,6 +51,8 @@ class Module {
                 '.phtml' => 'Phalcon\Mvc\View\Engine\Php' // Generate Template files uses PHP itself as the template engine
             ));
 
+            //disable the view
+            $view->disable();
             return $view;
         }, true);
 
