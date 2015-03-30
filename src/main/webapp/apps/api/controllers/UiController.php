@@ -44,9 +44,6 @@ class UIController extends ControllerBase {
 
     public function initialize() {
 
-        // load view is not working, need to figure out...
-        //$this->enableView();
-
         $this->setParams();
 
         $this->loadCouchMenu();
@@ -57,24 +54,50 @@ class UIController extends ControllerBase {
 
     }
 
+    /**
+     *  Validate input values and set to class properties
+     */
+
     public function setParams() {
 
-
+        // validate and set language
         $this->languageCode = (null != $this->request->getQuery('locale')) ?
             in_array($this->request->getQuery('locale'), (array) $this->config->locales) ? $this->request->getQuery('locale')
                 : self::DEFAULT_LOCALE : self::DEFAULT_LOCALE;
 
-        $this->currencyCode = self::DEFAULT_CURRENCY_CODE;
+        //validate and set currency
+        if (null == $this->request->getQuery('curr', 'string')) {
 
+            $this->currencyCode = self::DEFAULT_CURRENCY_CODE;
+        } else {
+            $isValid = false;
+            foreach($this->config->currencies as $key => $val) {
+                foreach($val as $k => $v) {
+                    if ($this->request->getQuery('curr') === $k)
+                        $isValid = true;
+                }
+            }
+
+            if ($isValid == true)
+                $this->currencyCode = $this->request->getQuery('curr', 'string');
+            else
+                $this->currencyCode = self::DEFAULT_CURRENCY_CODE;
+        }
+
+        //set theme name
         $this->theme = (null != $this->request->getQuery('theme')) ?  array_key_exists($this->request->getQuery('theme'), $this->config->themes)
             ? $this->request->getQuery('theme') :  self::DEFAULT_THEME : self::DEFAULT_THEME;
 
+        //set theme type
         $this->themeMode = (null != $this->request->getQuery('mode')) ? array_key_exists($this->request->getQuery('mode'), $this->config->themeMode)
             ? $this->request->getQuery('mode') : self::DEFAULT_THEME_MODE : self::DEFAULT_THEME_MODE;
 
     }
 
     public function headerAction() {
+
+        //enable view
+        $this->enableView();
 
         $this->view->setVars([
             'appVersion'        => APPLICATION_VERSION,
@@ -101,6 +124,9 @@ class UIController extends ControllerBase {
     }
 
     public function footerAction() {
+
+        //enable view
+        $this->enableView();
 
         $this->view->setVars([
             'appVersion' => APPLICATION_VERSION,
@@ -172,38 +198,14 @@ class UIController extends ControllerBase {
         return false;
     }
 
+    /**
+     * Enable view
+     */
+
     private function enableView() {
 
         $di = $this->getDI();
-
-        $di['view'] = function($di) use($di) {
-
-            $view = $di['view'];
-
-            $view->setViewsDir(__DIR__.'/views/themes/');
-
-            $view->registerEngines(array(
-                '.volt' => function($view, $di) {
-
-                    $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
-
-                    $volt->setOptions(array(
-                        'compiledPath' => __DIR__.'/../../data/volt/',
-                        'compiledSeparator' => '_',
-                    ));
-                    //This binds the function php function to volt function
-                    $compiler = $volt->getCompiler();
-                    $compiler->addFunction('ucfirst', 'ucfirst');
-                    $compiler->addFunction('print_r', 'print_r');
-                    return $volt;
-                },
-                '.phtml' => 'Phalcon\Mvc\View\Engine\Php' // Generate Template files uses PHP itself as the template engine
-            ));
-
-            return $view;
-        };
-
-        $this->setDI( $di );
+        $di['view']->enable();
     }
 
 } 
