@@ -5,6 +5,8 @@
  * @author     Santosh Hegde
  * @since      18/3/15
  * @version    1.0
+ * @todo create a form validation based on template, eg for simple competion entry form: your_name, your_email, your_answer
+ *       and full form: first_name, last_name, email ....
  */
 namespace HC\Api\Controllers;
 
@@ -63,13 +65,6 @@ class FormController extends ControllerBase
     }
 
     /**
-     * Verify request type
-     * @return bool
-     */
-    private function verifyRequestType() {
-        return $this->request->isPost() && true == $this->request->isAjax();
-    }
-    /**
      * load whitelist url file
      */
 
@@ -87,13 +82,20 @@ class FormController extends ControllerBase
             $this->getExceptionMessage($e);
         }
     }
+    /**
+     * Verify request type
+     * @return bool
+     */
+    private function verifyRequestType() {
+        return $this->request->isAjax();
+    }
 
     /**
      * Verify host name or IP is whitelisted or not
      * @return bool
      */
     private function verifyHost() {
-
+        $host = $this->request->getHttpHost();
         if (null !== $this->request->getHttpHost() && array_key_exists($this->request->getHttpHost(), $this->whiteListUrls)) {
             $this->whiteListType = 'HOST';
             $this->isWhiteListed = true;
@@ -137,17 +139,19 @@ class FormController extends ControllerBase
         $validation = new \Phalcon\Validation();
 
         $validation->add('first_name', new PresenceOf([
-            'message' => 'The first name is required',
+            'message' => 'Your first name is required',
         ]));
 
         $validation->add('last_name', new PresenceOf([
-            'message' => 'The last name is required'
+            'message' => 'Your last name is required'
         ]));
 
         $validation->add('comments', new PresenceOf([
-            'message' => 'The comment field is required'
+            'message' => 'Your comments are required'
         ]));
 
+        // Filter any extra spaces
+        $validation->setFilters('first_name', 'trim')->setFilters('last_name', 'trim');
 
         $message = $validation->validate($this->request->getPost());
 
@@ -157,6 +161,39 @@ class FormController extends ControllerBase
 
               array_push($this->validationMessages , ['code' => $this->getErrorCodes()[$msg->getField()]['code'],
                   'message' => $msg->getMessage()]);
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private function validateCompetitionInputData() {
+
+        $validation = new \Phalcon\Validation();
+
+        $validation->add('first_name', new PresenceOf([
+                    'message' => 'Your name is required',
+                ]));
+
+        $validation->add('email', new Email([
+                    'message' => 'Valid email address is required'
+                ]));
+
+        $validation->add('comments', new PresenceOf([
+                    'message' => 'Your answer is required'
+                ]));
+
+        // Filter any extra spaces
+        $validation->setFilters('first_name', 'trim')->setFilters('email', 'trim');
+
+        $message = $validation->validate($this->request->getPost());
+
+        if (count($message) > 0) {
+
+            foreach ($message as $key => $msg) {
+
+                array_push($this->validationMessages , ['code' => $this->getErrorCodes()[$msg->getField()]['code'],
+                                                        'message' => $msg->getMessage()]);
             }
             return false;
         }
@@ -192,7 +229,7 @@ class FormController extends ControllerBase
 
         if (true == $this->validateInputData()) {
 
-            $formModel = new \HC\Api\Models\ApiFormData();
+            $formModel = new \HC\Api\Models\ApiForm();
 
             $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
             $formModel->first_name = $this->request->getPost('first_name', 'striptags');
@@ -241,6 +278,65 @@ class FormController extends ControllerBase
                     $value
                 ]
             ]));
+        }
+    }
+
+    /**
+     * store action, to save data in mysql
+     */
+    public function storeCompetitionAction() {
+
+        if (true == $this->validateCompetitionInputData()) {
+
+            $formModel = new \HC\Api\Models\ApiForm();
+
+            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
+            $formModel->first_name = $this->request->getPost('first_name', 'striptags');
+            $formModel->last_name = $this->request->getPost('last_name', 'striptags');
+            $formModel->email = $this->request->getPost('email', 'striptags');
+            $formModel->city = $this->request->getPost('city', 'striptags');
+            $formModel->state = $this->request->getPost('state', 'striptags');
+            $formModel->country = $this->request->getPost('country', 'striptags');
+            $formModel->phone = $this->request->getPost('phone', 'striptags');
+            $formModel->opt_in = $this->request->getPost('opt_in', 'striptags');
+            $formModel->comments = $this->request->getPost('comments', 'striptags');
+
+            $now   = new \DateTime('now');
+            $formModel->dt_created =  $now->format( 'Y-m-d h:m:s' );
+            $formModel->id_app = $this->request->getPost('id_app', 'striptags');
+
+            if (!$formModel->save()) {
+
+                $value = [];
+                foreach ($formModel->getMessages() as $key => $message) {
+                    $value[$key]['value'] = $message->getMessage();
+                }
+                $message = [$value];
+            } else {
+
+                $message = [
+                    'value' => 'data stored successfully',
+                    'successCode' => 'SUCCESS'
+                ];
+            }
+            //send out put
+            $this->sendOutput('201 OK', json_encode([
+                        'message' => [
+                            $message
+                        ]
+                    ]));
+
+        } else {
+            $value = [];
+            foreach ($this->validationMessages as $key => $message) {
+                $value[$key]['value'] = $message;
+            }
+
+            $this->sendOutput('201 OK', json_encode([
+                        'message' => [
+                            $value
+                        ]
+                    ]));
         }
     }
 
