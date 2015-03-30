@@ -4,14 +4,14 @@ namespace HC\Api\Models;
 
 use Phalcon\Mvc\Model\Validator\Email as Email;
 
-class ApiFormData extends \Phalcon\Mvc\Model
+class ApiForm extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $id;
+    public $id_api_form;
 
     /**
      *
@@ -116,7 +116,7 @@ class ApiFormData extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
+            'id_api_form' => 'id_api',
             'title' => 'title', 
             'first_name' => 'first_name', 
             'last_name' => 'last_name', 
@@ -128,8 +128,8 @@ class ApiFormData extends \Phalcon\Mvc\Model
             'postcode' => 'postcode', 
             'opt_in' => 'opt_in', 
             'comments' => 'comments', 
-            'timestamp' => 'timestamp', 
-            'app_id' => 'app_id'
+            'dt_created' => 'dt_created',
+            'id_app' => 'id_app'
         );
     }
 
