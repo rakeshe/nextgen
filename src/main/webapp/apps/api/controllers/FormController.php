@@ -69,7 +69,7 @@ class FormController extends ControllerBase
 
         //verify hash
         if (false == $this->verifyHash()) {
-            $this->responseContentType = 'text/html';
+            $this->responseContentType = 'application/json';
             $this->sendOutput('201 OK', json_encode([
                 'message' => [
                     'value' => 'Token is invalid',
