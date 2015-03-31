@@ -202,8 +202,9 @@ class FormController extends ControllerBase
     private function validateInputData() {
 
         $validator = new \Phalcon\Validation();
-        //echo '<pre>';
+
         if (isset($this->validations[$this->request->getPost('api_key')])) {
+
             foreach ($this->validations[$this->request->getPost('api_key')] as $key => $val ) {
 
                 if (isset($val['builtin']) && is_array($val['pattern'])) {
@@ -211,7 +212,7 @@ class FormController extends ControllerBase
                     foreach ($val['builtin'] as $k => $v) {
 
                         /*
-                         * KNOW BUG - CAN'T CREATE OBJECT FROM VARIABLE
+                         * KNOWN BUG - CAN'T CREATE OBJECT FROM VARIABLE
                          * Because of that using if and else statement
                          */
 
@@ -378,7 +379,6 @@ class FormController extends ControllerBase
             ]));
 
         } else {
-            echo '*****';
             $value = [];
             foreach ($this->validationMessages as $key => $message) {
                $value[$key]['value'] = $message;
