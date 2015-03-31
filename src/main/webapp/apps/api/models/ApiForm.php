@@ -89,7 +89,7 @@ class ApiForm extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $app_id;
+    public $id_app;
 
     /**
      * Validations and business logic
