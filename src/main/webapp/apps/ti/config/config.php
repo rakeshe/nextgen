@@ -158,12 +158,12 @@ return new \Phalcon\Config(array(
                 'port' => '3128'
             ],
             'fqa1'       => [
-                'host' => 'proxyvip.stag.orbitz.net',
-                'port' => '3128'
+                'host' => null,
+                'port' => null
             ],
             'dev'        => [
-                'host' => 'proxyvip.stag.orbitz.net',
-                'port' => '3128'
+                'host' => null,
+                'port' => null
             ]
         ],
         'stagingGateWay' => array(
