@@ -39,6 +39,8 @@ class FormController extends ControllerBase
 
     private $app_id;
 
+    private $hostName;
+
     public function initialize() {
 
         //validate security stuffs
@@ -65,6 +67,17 @@ class FormController extends ControllerBase
             $this->sendOutput('401 Unauthorized');
         }
 
+        //verify hash
+        if (false == $this->verifyHash()) {
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('201 OK', json_encode([
+                'message' => [
+                    'value' => 'Token is invalid',
+                    'errorCode' => 'INVALID_TOKEN'
+                ]
+            ]));
+        }
+
         //verify request type
         if (false == $this->verifyRequestType()) {
 
@@ -79,6 +92,21 @@ class FormController extends ControllerBase
 
         //connect to mysql
         $this->connectMysql();
+    }
+
+    /**
+     * Verify hash code
+     */
+    private function verifyHash() {
+
+        if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
+
+            if (isset($this->availableHosts[$this->hostName])
+                && getallheaders()['Authorization'] === $this->availableHosts[$this->hostName]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -133,11 +161,13 @@ class FormController extends ControllerBase
             array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
             $this->whiteListType = 'HOST';
             $this->isWhiteListed = true;
+            $this->hostName = $this->request->getHttpHost();
             return true;
-        } else if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
             array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
             $this->whiteListType = 'IP';
             $this->isWhiteListed = true;
+            $this->hostName = $this->request->getClientAddress();
             return true;
         }
         return false;
