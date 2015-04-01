@@ -212,7 +212,7 @@ class FormController extends ControllerBase
 
             foreach ($this->validations[$this->request->getPost('api_key')] as $key => $val ) {
 
-                if (isset($val['builtin']) && is_array($val['pattern'])) {
+                if (isset($val['builtin']) && is_array($val['builtin'])) {
 
                     foreach ($val['builtin'] as $k => $v) {
 
