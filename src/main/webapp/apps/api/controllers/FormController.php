@@ -116,7 +116,8 @@ class FormController extends ControllerBase
      * @return bool
      */
     private function verifyRequestType() {
-        return $this->request->isPost() && true == $this->request->isAjax();
+
+        return $this->request->isGet() && true == $this->request->isAjax();
     }
     /**
      * load whitelist url file
@@ -144,10 +145,10 @@ class FormController extends ControllerBase
      */
     private function verifyAppKey() {
 
-        if (null!= $this->request->getPost('api_key') &&
-            array_key_exists($this->request->getPost('api_key'), $this->whiteListUrls)) {
+        if (null!= $this->request->getQuery('api_key') &&
+            array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)) {
 
-            $this->availableHosts = $this->whiteListUrls[$this->request->getPost('api_key')];
+            $this->availableHosts = $this->whiteListUrls[$this->request->getQuery('api_key')];
             return true;
         }
         return false;
@@ -208,9 +209,9 @@ class FormController extends ControllerBase
 
         $validator = new \Phalcon\Validation();
 
-        if (isset($this->validations[$this->request->getPost('api_key')])) {
+        if (isset($this->validations[$this->request->getQuery('api_key')])) {
 
-            foreach ($this->validations[$this->request->getPost('api_key')] as $key => $val ) {
+            foreach ($this->validations[$this->request->getQuery('api_key')] as $key => $val ) {
 
                 if (isset($val['builtin']) && is_array($val['builtin'])) {
 
@@ -269,7 +270,9 @@ class FormController extends ControllerBase
         // Filter any extra spaces
         $validation->setFilters('first_name', 'trim')->setFilters('last_name', 'trim');*/
 
-        $message = $validator->validate($this->request->getPost());
+        $all = $this->request->getQuery();
+        //array_shift($all);
+        $message = $validator->validate($all);
 
         if (count($message) > 0) {
 
@@ -302,7 +305,7 @@ class FormController extends ControllerBase
         // Filter any extra spaces
         $validation->setFilters('first_name', 'trim')->setFilters('email', 'trim');
 
-        $message = $validation->validate($this->request->getPost());
+        $message = $validation->validate($this->request->getQuery());
 
         if (count($message) > 0) {
 
@@ -347,20 +350,20 @@ class FormController extends ControllerBase
 
             $formModel = new \HC\Api\Models\ApiForm();
 
-            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
-            $formModel->first_name = $this->request->getPost('first_name', 'striptags');
-            $formModel->last_name = $this->request->getPost('last_name', 'striptags');
-            $formModel->email = $this->request->getPost('email', 'striptags');
-            $formModel->city = $this->request->getPost('city', 'striptags');
-            $formModel->state = $this->request->getPost('state', 'striptags');
-            $formModel->country = $this->request->getPost('country', 'striptags');
-            $formModel->phone = $this->request->getPost('phone', 'striptags');
-            $formModel->opt_in = $this->request->getPost('opt_in', 'striptags');
-            $formModel->answer = $this->request->getPost('answer', 'striptags');
+            $formModel->campaign_key = $this->request->getQuery('campaign_key', 'striptags');
+            $formModel->first_name = $this->request->getQuery('first_name', 'striptags');
+            $formModel->last_name = $this->request->getQuery('last_name', 'striptags');
+            $formModel->email = $this->request->getQuery('email', 'striptags');
+            $formModel->city = $this->request->getQuery('city', 'striptags');
+            $formModel->state = $this->request->getQuery('state', 'striptags');
+            $formModel->country = $this->request->getQuery('country', 'striptags');
+            $formModel->phone = $this->request->getQuery('phone', 'striptags');
+            $formModel->opt_in = $this->request->getQuery('opt_in', 'striptags');
+            $formModel->answer = $this->request->getQuery('answer', 'striptags');
 
             $now   = new \DateTime('now');
             $formModel->timestamp =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->id_app = $this->request->getPost('api_key', 'striptags');
+            $formModel->id_app = $this->request->getQuery('api_key', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -439,20 +442,20 @@ class FormController extends ControllerBase
 
             $formModel = new \HC\Api\Models\ApiForm();
 
-//            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
-            $formModel->first_name = $this->request->getPost('first_name', 'striptags');
-            $formModel->last_name = $this->request->getPost('last_name', 'striptags');
-            $formModel->email = $this->request->getPost('email', 'striptags');
-            $formModel->city = $this->request->getPost('city', 'striptags');
-            $formModel->state = $this->request->getPost('state', 'striptags');
-            $formModel->country = $this->request->getPost('country', 'striptags');
-            $formModel->phone = $this->request->getPost('phone', 'striptags');
-            $formModel->opt_in = $this->request->getPost('opt_in', 'striptags');
-            $formModel->comments = $this->request->getPost('comments', 'striptags');
+//            $formModel->campaign_key = $this->request->getQuery('campaign_key', 'striptags');
+            $formModel->first_name = $this->request->getQuery('first_name', 'striptags');
+            $formModel->last_name = $this->request->getQuery('last_name', 'striptags');
+            $formModel->email = $this->request->getQuery('email', 'striptags');
+            $formModel->city = $this->request->getQuery('city', 'striptags');
+            $formModel->state = $this->request->getQuery('state', 'striptags');
+            $formModel->country = $this->request->getQuery('country', 'striptags');
+            $formModel->phone = $this->request->getQuery('phone', 'striptags');
+            $formModel->opt_in = $this->request->getQuery('opt_in', 'striptags');
+            $formModel->comments = $this->request->getQuery('comments', 'striptags');
 
             $now   = new \DateTime('now');
             $formModel->dt_created =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->id_app = $this->request->getPost('api_key', 'striptags');
+            $formModel->id_app = $this->request->getQuery('api_key', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -527,8 +530,8 @@ class FormController extends ControllerBase
                 'code' => 'INVALID_POST_CODE_FIELD',
                 'message' => ''
             ],
-            'comments' => [
-                'code' => 'INVALID_COMMENT_FIELD',
+            'answer' => [
+                'code' => 'INVALID_ANSWER_FIELD',
                 'message' => ''
             ],
         ];
@@ -562,7 +565,7 @@ class FormController extends ControllerBase
                 ]
             ],
         ],
-        'Macau' => [
+        'sands_macau' => [
 
             'first_name' => [
                 'pattern' => [
@@ -581,7 +584,7 @@ class FormController extends ControllerBase
                     'Email'      => 'The e-mail is not valid'
                 ]
             ],
-            'comments' => [
+            'answer' => [
                 'pattern' => [
                     '/^[\s]*$/' => 'Answer name should not be empty',
                 ],
