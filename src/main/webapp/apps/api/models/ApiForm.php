@@ -8,8 +8,9 @@ class ApiForm extends \Phalcon\Mvc\Model
 {
 
     /**
-     *
-     * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", nullable=false, column="id_api_form")
      */
     public $id_api_form;
 
@@ -116,7 +117,7 @@ class ApiForm extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id_api_form' => 'id_api',
+            'id_api_form' => 'id_api_form',
             'title' => 'title', 
             'first_name' => 'first_name', 
             'last_name' => 'last_name', 
