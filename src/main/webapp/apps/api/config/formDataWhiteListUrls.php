@@ -11,6 +11,5 @@
  */
 return [
     'dev.nextgen.com' => '9c845aebd0c2d4a5532e7cced7aaa1d5',
-    'nextgen-release' => '9c845aebd0c2d4a5532e7cced7aaa1d5',
 
 ];

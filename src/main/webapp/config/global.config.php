@@ -39,16 +39,45 @@ function getCouchConfigs()
     }
     return $couchConfig;
 }
+function getMySqlConfigs()
+{
+    $config = null;
+    switch (apache_getenv("ORBITZ_ENV")) {
+        case 'dev':
+            $config = [
+                'adapter' => 'Mysql',
+                'host' => 'localhost',
+                'username' => 'root',
+                'password' => '',
+                'dbname' => 'deals'
+            ];
+            break;
+        case 'fqa1':
+            $config = [
+                'adapter' => 'Mysql',
+                'host' => 's1stashvip.stag.o.com',
+                'username' => 'hcnxg_service',
+                'password' => 'hcnxg_service@456',
+                'dbname' => 'hcnxg'
+            ];
+            break;
+        case 'production':
+            $config = [
+                'adapter' => 'Mysql',
+                'host' => 's1stashvip.stag.o.com',
+                'username' => 'hcnxg_service',
+                'password' => 'hcnxg_service@456',
+                'dbname' => 'hcnxg'
+            ];
+            break;
+    }
+    return $config;
+}
+
 return new \Phalcon\Config(array(
     'ORBITZ_ENV' => apache_getenv("ORBITZ_ENV"),
-    'database' => array(
-        'adapter' => '115',
-        'host' => '115',
-        'username' => '115',
-        'password' => '115',
-        'dbname' => '115',
-    ),
     'couchbase' => getCouchConfigs(),
+    'database' => getMySqlConfigs(),
 
     'menuItems' => array(
         'top' => array(
