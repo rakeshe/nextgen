@@ -25,6 +25,8 @@ class FormController extends ControllerBase
     // the doc generate format:-> api:form: md5('white_list_urls'):doc;
     const WHITE_LIST_DOCUMENT_FILE = 'api:form:aae72e94ee51b1151bf9ad47823402f0:doc';
 
+    const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn';
+
     private $whiteListUrls;
 
     private $whiteListType;
@@ -156,6 +158,9 @@ class FormController extends ControllerBase
      * @return bool
      */
     private function verifyHost() {
+
+        // Pass if within default hotelclub hosts
+        if(in_array($this->request->getHttpHost(),explode(',', self::DEFAULT_WHITE_LIST_HOSTS))) return true;
 
         if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
             array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
@@ -434,7 +439,7 @@ class FormController extends ControllerBase
 
             $formModel = new \HC\Api\Models\ApiForm();
 
-            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
+//            $formModel->campaign_key = $this->request->getPost('campaign_key', 'striptags');
             $formModel->first_name = $this->request->getPost('first_name', 'striptags');
             $formModel->last_name = $this->request->getPost('last_name', 'striptags');
             $formModel->email = $this->request->getPost('email', 'striptags');
