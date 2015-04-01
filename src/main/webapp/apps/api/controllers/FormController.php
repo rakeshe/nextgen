@@ -15,7 +15,8 @@ use Phalcon\Http\Client\Exception,
     Phalcon\Http\Response,
     Phalcon\Validation\Message,
     Phalcon\Validation\Validator\PresenceOf,
-    Phalcon\Validation\Validator\Email;
+    Phalcon\Validation\Validator\Email,
+    Phalcon\Validation\Validator\Regex as RegexValidator;
 
 class FormController extends ControllerBase
 {
@@ -35,6 +36,10 @@ class FormController extends ControllerBase
     private $validationMessages = [];
 
     private $availableHosts = [];
+
+    private $app_id;
+
+    private $hostName;
 
     public function initialize() {
 
@@ -62,6 +67,17 @@ class FormController extends ControllerBase
             $this->sendOutput('401 Unauthorized');
         }
 
+        //verify hash
+        if (false == $this->verifyHash()) {
+            $this->responseContentType = 'application/json';
+            $this->sendOutput('201 OK', json_encode([
+                'message' => [
+                    'value' => 'Token is invalid',
+                    'errorCode' => 'INVALID_TOKEN'
+                ]
+            ]));
+        }
+
         //verify request type
         if (false == $this->verifyRequestType()) {
 
@@ -76,6 +92,21 @@ class FormController extends ControllerBase
 
         //connect to mysql
         $this->connectMysql();
+    }
+
+    /**
+     * Verify hash code
+     */
+    private function verifyHash() {
+
+        if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
+
+            if (isset($this->availableHosts[$this->hostName])
+                && getallheaders()['Authorization'] === $this->availableHosts[$this->hostName]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -130,11 +161,13 @@ class FormController extends ControllerBase
             array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
             $this->whiteListType = 'HOST';
             $this->isWhiteListed = true;
+            $this->hostName = $this->request->getHttpHost();
             return true;
-        } else if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
             array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
             $this->whiteListType = 'IP';
             $this->isWhiteListed = true;
+            $this->hostName = $this->request->getClientAddress();
             return true;
         }
         return false;
@@ -168,7 +201,53 @@ class FormController extends ControllerBase
 
     private function validateInputData() {
 
-        $validation = new \Phalcon\Validation();
+        $validator = new \Phalcon\Validation();
+
+        if (isset($this->validations[$this->request->getPost('api_key')])) {
+
+            foreach ($this->validations[$this->request->getPost('api_key')] as $key => $val ) {
+
+                if (isset($val['builtin']) && is_array($val['pattern'])) {
+
+                    foreach ($val['builtin'] as $k => $v) {
+
+                        /*
+                         * KNOWN BUG - CAN'T CREATE OBJECT FROM VARIABLE
+                         * Because of that using if and else statement
+                         */
+
+                        if ($k == 'PresenceOf') {
+
+                            $validator->add($key, new PresenceOf([
+                                'message' => $v
+                            ]));
+
+                        } else if ($k == 'Email') {
+
+                            $validator->add($key, new Email([
+                                'message' => $v
+                            ]));
+
+                        } else if ($k == 'something-else') {
+
+                            $validator->add($key, new $k([
+                                'message' => $v
+                            ]));
+                        }
+
+
+                       /* $validator->add($key, new RegexValidator(array(
+                            'pattern' => $k,
+                            'message' => $v
+                        )));*/
+                    }
+                }
+
+            }
+
+        }
+
+/*        $validation = new \Phalcon\Validation();
 
         $validation->add('first_name', new PresenceOf([
             'message' => 'Your first name is required',
@@ -183,9 +262,9 @@ class FormController extends ControllerBase
         ]));
 
         // Filter any extra spaces
-        $validation->setFilters('first_name', 'trim')->setFilters('last_name', 'trim');
+        $validation->setFilters('first_name', 'trim')->setFilters('last_name', 'trim');*/
 
-        $message = $validation->validate($this->request->getPost());
+        $message = $validator->validate($this->request->getPost());
 
         if (count($message) > 0) {
 
@@ -276,7 +355,7 @@ class FormController extends ControllerBase
 
             $now   = new \DateTime('now');
             $formModel->timestamp =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->app_id = $this->request->getPost('app_id', 'striptags');
+            $formModel->id_app = $this->request->getPost('api_key', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -368,7 +447,7 @@ class FormController extends ControllerBase
 
             $now   = new \DateTime('now');
             $formModel->dt_created =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->id_app = $this->request->getPost('id_app', 'striptags');
+            $formModel->id_app = $this->request->getPost('api_key', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -449,4 +528,62 @@ class FormController extends ControllerBase
             ],
         ];
     }
+
+    private $validations = [
+        'mixandmatch' => [
+            'first_name' => [
+                'pattern' => [
+                    '/^[\s]*[\s]*$/' => 'First name should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The first name is required'
+                ]
+            ],
+            'email' => [
+                'pattern' => [
+                    '/^[\s]*$/' => 'email should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The email is required',
+                    'Email'      => 'The e-mail is not valid'
+                ]
+            ],
+            'comments' => [
+                'pattern' => [
+                    '/^[\s]*$/' => 'Answer name should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The answer is required',
+                ]
+            ],
+        ],
+        'Macau' => [
+
+            'first_name' => [
+                'pattern' => [
+                    '/^[\s]*[\s]*$/' => 'First name should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The first name is required'
+                ]
+            ],
+            'email' => [
+                'pattern' => [
+                    '/^[\s]*$/' => 'email should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The email is required',
+                    'Email'      => 'The e-mail is not valid'
+                ]
+            ],
+            'comments' => [
+                'pattern' => [
+                    '/^[\s]*$/' => 'Answer name should not be empty',
+                ],
+                'builtin' => [
+                    'PresenceOf' => 'The answer is required',
+                ]
+            ],
+        ]
+    ];
 }
