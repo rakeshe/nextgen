@@ -58,7 +58,7 @@ function getMySqlConfigs()
                 'host' => 's1stashvip.stag.o.com',
                 'username' => 'hcnxg_service',
                 'password' => 'hcnxg_service@456',
-                'dbname' => 'deals'
+                'dbname' => 'hcnxg'
             ];
             break;
         case 'production':
@@ -67,7 +67,7 @@ function getMySqlConfigs()
                 'host' => 's1stashvip.stag.o.com',
                 'username' => 'hcnxg_service',
                 'password' => 'hcnxg_service@456',
-                'dbname' => 'deals'
+                'dbname' => 'hcnxg'
             ];
             break;
     }
