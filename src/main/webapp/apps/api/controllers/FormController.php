@@ -49,6 +49,13 @@ class FormController extends ControllerBase
         $this->validate();
     }
 
+
+    /**
+     * Validate incoming request for following:
+     * 1. request type is get and ajax
+     * 2. requesting host is whitelisted
+     * 3. app_key hash matches md5 of "secret salt/request host"
+     */
     private function validate() {
 
 
@@ -57,39 +64,28 @@ class FormController extends ControllerBase
         //load whitelist file
         $this->loadWhiteListUrls();
 
-        //verify api key
-        if (false == $this->verifyAppKey()) {
-            $this->responseContentType = 'text/html';
-            $this->sendOutput('401 Unauthorized');
-        }
+/*        //verify request type
+        if (false == $this->verifyRequestType()) {
 
-        //verify host
+            $this->responseContentType = 'application/json';
+            $this->sendOutput('201 OK', json_encode([
+                        'message' => [
+                            'value' => 'Request type is not valid',
+                            'errorCode' => 'INVALID_REQUEST_TYPE'
+                        ]
+                    ]));
+        }*/
+
+        //verify host - check if request host is white listed
         if (false == $this->verifyHost()) {
             $this->responseContentType = 'text/html';
             $this->sendOutput('401 Unauthorized');
         }
 
-        //verify hash
-        if (false == $this->verifyHash()) {
-            $this->responseContentType = 'application/json';
-            $this->sendOutput('201 OK', json_encode([
-                'message' => [
-                    'value' => 'Token is invalid',
-                    'errorCode' => 'INVALID_TOKEN'
-                ]
-            ]));
-        }
-
-        //verify request type
-        if (false == $this->verifyRequestType()) {
-
-            $this->responseContentType = 'application/json';
-            $this->sendOutput('201 OK', json_encode([
-                'message' => [
-                    'value' => 'Request type is not valid',
-                    'errorCode' => 'INVALID_REQUEST_TYPE'
-                ]
-            ]));
+        //verify app key check app_key matches nd5 hash of secret/requestHost
+        if (false == $this->verifyAppKey()) {
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('401 Unauthorized');
         }
 
         //connect to mysql
@@ -144,37 +140,37 @@ class FormController extends ControllerBase
      * @return bool
      */
     private function verifyAppKey() {
-
-        if (null!= $this->request->getQuery('api_key') &&
-            array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)) {
-
-            $this->availableHosts = $this->whiteListUrls[$this->request->getQuery('api_key')];
-            return true;
-        }
-        return false;
+        $key = $this->request->getQuery('app_key');
+        $md5 = $this->getHashForHost() ;
+        return null!= $this->request->getQuery('app_key') && $this->getHashForHost() === $this->request->getQuery('app_key');
     }
 
     /**
-     * Verify host name or IP is whitelisted or not
+     * Verify host name or IP is whitelisted against app id
      * @return bool
      */
     private function verifyHost() {
-
         // Pass if within default hotelclub hosts
         if(in_array($this->request->getHttpHost(),explode(',', self::DEFAULT_WHITE_LIST_HOSTS))) return true;
 
-        if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
-            $this->whiteListType = 'HOST';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getHttpHost();
-            return true;
-        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
-            $this->whiteListType = 'IP';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getClientAddress();
-            return true;
+        // Check if request host is whitelisted againts app id
+        $appId = $this->request->getQuery('app_id');
+        if(!empty($this->whiteListUrls[$appId])){
+            $this->availableHosts = $this->whiteListUrls[$appId];
+
+            if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+                array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
+                $this->whiteListType = 'HOST';
+                $this->isWhiteListed = true;
+                $this->hostName = $this->request->getHttpHost();
+                return true;
+            } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
+                array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
+                $this->whiteListType = 'IP';
+                $this->isWhiteListed = true;
+                $this->hostName = $this->request->getClientAddress();
+                return true;
+            }
         }
         return false;
     }
@@ -209,9 +205,9 @@ class FormController extends ControllerBase
 
         $validator = new \Phalcon\Validation();
 
-        if (isset($this->validations[$this->request->getQuery('api_key')])) {
+        if (isset($this->validations[$this->request->getQuery('app_key')])) {
 
-            foreach ($this->validations[$this->request->getQuery('api_key')] as $key => $val ) {
+            foreach ($this->validations[$this->request->getQuery('app_key')] as $key => $val ) {
 
                 if (isset($val['builtin']) && is_array($val['builtin'])) {
 
@@ -363,7 +359,7 @@ class FormController extends ControllerBase
 
             $now   = new \DateTime('now');
             $formModel->timestamp =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->id_app = $this->request->getQuery('api_key', 'striptags');
+            $formModel->id_app = $this->request->getQuery('app_id', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -380,11 +376,11 @@ class FormController extends ControllerBase
                 ];
             }
             //send out put
-            $this->sendOutput('201 OK', json_encode([
+            $this->sendOutput('201 OK', $this->request->getQuery('callback') .'('. json_encode([
                 'message' => [
                     $message
                 ]
-            ]));
+            ]).')' );
 
         } else {
             $value = [];
@@ -455,7 +451,7 @@ class FormController extends ControllerBase
 
             $now   = new \DateTime('now');
             $formModel->dt_created =  $now->format( 'Y-m-d h:m:s' );
-            $formModel->id_app = $this->request->getQuery('api_key', 'striptags');
+            $formModel->id_app = $this->request->getQuery('app_id', 'striptags');
 
             if (!$formModel->save()) {
 
@@ -472,11 +468,11 @@ class FormController extends ControllerBase
                 ];
             }
             //send out put
-            $this->sendOutput('201 OK', json_encode([
+            $this->sendOutput('201 OK', $this->request->getQuery('callback') .'('. json_encode([
                         'message' => [
                             $message
                         ]
-                    ]));
+                    ]).')' );
 
         } else {
             $value = [];
@@ -594,4 +590,13 @@ class FormController extends ControllerBase
             ],
         ]
     ];
+
+    /**
+     * @return string
+     */
+    public function getHashForHost(){
+        $requestHost = $this->request->getHttpHost();
+        $secretSalt = $this->config->secretKey->salt;
+        return md5($secretSalt.'/'.$requestHost);
+    }
 }
