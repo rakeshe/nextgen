@@ -83,10 +83,10 @@ class FormController extends ControllerBase
         }
 
         //verify app key check app_key matches nd5 hash of secret/requestHost
-        if (false == $this->verifyAppKey()) {
+/*        if (false == $this->verifyAppKey()) {
             $this->responseContentType = 'text/html';
             $this->sendOutput('401 Unauthorized');
-        }
+        }*/
 
         //connect to mysql
         $this->connectMysql();
