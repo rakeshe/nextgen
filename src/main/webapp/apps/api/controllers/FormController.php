@@ -77,10 +77,10 @@ class FormController extends ControllerBase
         }*/
 
         //verify host - check if request host is white listed
-//        if (false == $this->verifyHost()) {
-//            $this->responseContentType = 'text/html';
-//            $this->sendOutput('401 Unauthorized');
-//        }
+/*        if (false == $this->verifyHost()) {
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('401 Unauthorized');
+        }*/
 
         //verify app key check app_key matches nd5 hash of secret/requestHost
 /*        if (false == $this->verifyAppKey()) {
