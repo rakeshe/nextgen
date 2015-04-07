@@ -237,11 +237,6 @@ class FormController extends ControllerBase
                             ]));
                         }
 
-
-                       /* $validator->add($key, new RegexValidator(array(
-                            'pattern' => $k,
-                            'message' => $v
-                        )));*/
                     }
                 }
 
@@ -249,33 +244,18 @@ class FormController extends ControllerBase
 
         }
 
-/*        $validation = new \Phalcon\Validation();
-
-        $validation->add('first_name', new PresenceOf([
-            'message' => 'Your first name is required',
-        ]));
-
-        $validation->add('last_name', new PresenceOf([
-            'message' => 'Your last name is required'
-        ]));
-
-        $validation->add('comments', new PresenceOf([
-            'message' => 'Your comments are required'
-        ]));
-
-        // Filter any extra spaces
-        $validation->setFilters('first_name', 'trim')->setFilters('last_name', 'trim');*/
-
         $all = $this->request->getQuery();
-        //array_shift($all);
         $message = $validator->validate($all);
 
         if (count($message) > 0) {
-
+            $errorCodes = $this->getErrorCodes();
             foreach ($message as $key => $msg) {
+                if(!empty($errorCodes[$msg->getField()]['code'])){
+                    array_push($this->validationMessages ,
+                        ['code' => $errorCodes[$msg->getField()]['code'],
+                         'message' => $msg->getMessage()]);
+                }
 
-              array_push($this->validationMessages , ['code' => $this->getErrorCodes()[$msg->getField()]['code'],
-                  'message' => $msg->getMessage()]);
             }
             return false;
         }
@@ -526,7 +506,7 @@ class FormController extends ControllerBase
                 'code' => 'INVALID_POST_CODE_FIELD',
                 'message' => ''
             ],
-            'answer' => [
+            'comments' => [
                 'code' => 'INVALID_ANSWER_FIELD',
                 'message' => ''
             ],
