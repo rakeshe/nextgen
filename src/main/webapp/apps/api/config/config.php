@@ -14,13 +14,19 @@ return new \Phalcon\Config(array(
         //'cacheMoreThen' => 10 // cache when more then 10 onegid request comes
     ],
     'themes' => [
-        'merch' => 'World on sale sale'
+        'merch' => [
+            'merch' => 'World on sale sale'
+            ],
+        'carousel' => [
+            'default' => 'default theme'
+        ]
     ],
     'themeMode' => [
         'desktop' => 'World on sale sale',
         'mobile'  => '',
         'tablet'  => '',
     ],
+    'scope' => ['full', 'partial'],
         /*
          * var supportedLanguages = {
         'ar': 'ARABIC',
