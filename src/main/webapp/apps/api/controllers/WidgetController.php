@@ -35,12 +35,30 @@ class WidgetController extends ControllerBase {
 
     private $theme;
 
-    private $responseContentType = 'text/html';
-
     private $name_seo;
 
     public function initialize() {
 
+        //update white list urls
+        $this->updateWhiteListFile();
+
+        //load white list urls
+        $this->loadWhiteListUrls();
+
+        //set api key manually
+        if (isset($this->whiteListUrls['widget_banner'])) {
+
+            $this->availableHosts = $this->whiteListUrls['widget_banner'];
+        }
+
+        //verify host
+        if (false == $this->verifyHost()) {
+
+            $this->responseContentType = 'text/html';
+            $this->sendOutput('401 Unauthorized');
+        }
+
+        //set params
         $this->setParams();
     }
 
@@ -78,7 +96,7 @@ class WidgetController extends ControllerBase {
     public function bannerAction() {
 
         //load carousel data
-       $carouselData = $this->loadCarouselData();
+        $carouselData = $this->loadCarouselData();
 
         //enable view
         $this->enableView();
@@ -87,7 +105,7 @@ class WidgetController extends ControllerBase {
             'protocol' => stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://',
             'serverName' => $_SERVER['SERVER_NAME'],
             'appVersion'=> APPLICATION_VERSION,
-            'theme'     => 'api-carousel/' . $this->theme,
+            'theme'     => 'api-banner/' . $this->theme,
             'device'    => $this->device,
             'scope'     => $this->scope,
             'name_seo'  => $this->name_seo,
@@ -102,24 +120,6 @@ class WidgetController extends ControllerBase {
         $this->sendOutput('201 OK', $view->getContent());
     }
 
-
-    /**
-     * Send output to client
-     *
-     * @param $httpCode
-     * @param bool $content
-     */
-    private function sendOutput($httpCode, $content = false) {
-
-        $res = new Response;
-        $res
-            ->setHeader("Content-Type", "{$this->responseContentType}; charset=UTF-8")
-            ->setRawHeader("HTTP/1.1 {$httpCode}")
-            ->setStatusCode($httpCode,'')
-            ->setContent($content)
-            ->send();
-        die();
-    }
 
     /**
      * Load carousel couch document

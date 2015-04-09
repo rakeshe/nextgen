@@ -6,8 +6,8 @@
         "flex-pages": "9c845aebd0c2d4a5532e7cced7aaa1d5",
         "hostname5": "hash"
     },
-    "app_key_2": {
-        "hostname1": "hash",
+    "widget_banner": {
+        "dev.nextgen.com": "no hash",
         "hostname2": "hash",
         "hostname3": "hash",
         "hostname4": "hash",
