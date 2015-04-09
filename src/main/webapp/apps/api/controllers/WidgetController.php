@@ -84,7 +84,7 @@ class WidgetController extends ControllerBase {
         $this->enableView();
 
         $this->view->setVars([
-            'protocal' => stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://',
+            'protocol' => stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://',
             'serverName' => $_SERVER['SERVER_NAME'],
             'appVersion'=> APPLICATION_VERSION,
             'theme'     => 'api-carousel/' . $this->theme,
