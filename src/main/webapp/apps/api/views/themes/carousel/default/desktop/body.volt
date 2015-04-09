@@ -16,10 +16,10 @@ if scope is partial return only body (<body>) part
     <body>
 {% endif %}
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    {{ stylesheet_link('themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ protocal }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {{ stylesheet_link(protocal ~ serverName ~ '/n/themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
+    <script src="{{ protocal }}ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ protocal }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 {% if scope == 'full' %}
 
@@ -30,48 +30,57 @@ if scope is partial return only body (<body>) part
 
 <!--<img src="images/Slider.jpg" />-->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
+        {% if isset(data['banners']) %}
+        {% set activeFlag=false %}
+        {% set BannerCount = 0 %}
+        {% for key, val in data['banners'] %}
 
-        <div class="item active">
-            <img src="images/banner.png" alt="Chania">
-            <div class="carousel-caption"><div class="open_quote">“</div><div class="carousel-heading-content">I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture.</div><div class="close_quote">”</div>
-                <p class="carousel-normal-text">Phillip, Sydney</p>
+            <div class="item {% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}">
+                {% if device == 'mobile' %}
+                    <img src="{{ val['url_mobile'] }}" alt="{{ val['image_name'] }}">
+                {% elseif device == 'tablet' %}
+                    <img src="{{ val['url_tablet'] }}" alt="{{ val['image_name'] }}">
+                {% else %}
+                    <img src="{{ val['url_desktop'] }}" alt="{{ val['image_name'] }}">
+                {% endif %}
+
+                <div class="carousel-caption">
+                    <div class="open_quote">“</div>
+                    <div class="carousel-heading-content">
+                        {{ val['h1'] }}
+                    </div>
+                    <div class="close_quote">”</div>
+                    <p class="carousel-normal-text">
+                        {{ val['h3'] }}
+                    </p>
+                </div>
             </div>
-        </div>
-
-        <div class="item">
-            <img src="images/banner.png" alt="Chania">
-            <div class="carousel-caption"><div class="open_quote">“</div><div class="carousel-heading-content">I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture.</div><div class="close_quote">”</div>
-                <p class="carousel-normal-text">Phillip, Sydney</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="images/banner.png" alt="Chania">
-            <div class="carousel-caption"><div class="open_quote">“</div><div class="carousel-heading-content">I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture.</div><div class="close_quote">”</div>
-                <p class="carousel-normal-text">Phillip, Sydney</p>
-            </div>
-        </div>
-
+        {% set BannerCount = BannerCount + 1 %}
+        {% endfor %}
+        {% endif %}
     </div>
+
+    <!-- Indicators -->
+    {% set activeFlag=false %}
+    <ol class="carousel-indicators">
+        {% for key, index in 1..BannerCount %}
+            <li data-target="#myCarousel" data-slide-to="{{ key }}" class="{% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}"></li>
+        {% endfor %}
+    </ol>
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-        <img src="images/left-arrow.png" class="left_arrow_image" width="20" height="40"/>
+        <img src="{{ protocal }}{{ serverName }}/n/themes/{{theme}}/img/left-arrow.png" class="left_arrow_image" width="20" height="40"/>
         <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
         <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-        <img src="images/right-arrow.png" class="right_arrow_image" width="20" height="40"/>
+        <img src="{{ protocal }}{{ serverName }}/n/themes/{{theme}}/img/right-arrow.png" class="right_arrow_image" width="20" height="40"/>
         <span class="sr-only">Next</span>
     </a>
 </div>

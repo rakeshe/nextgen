@@ -68,9 +68,8 @@ class WidgetController extends ControllerBase {
             ? $this->request->getQuery('theme') :  self::DEFAULT_THEME : self::DEFAULT_THEME;
 
         //set device type
-        $this->device = (null != $this->request->getQuery('device')) ? array_key_exists($this->request->getQuery('device'), $this->config->device)
+        $this->device = (null != $this->request->getQuery('device')) ? array_key_exists($this->request->getQuery('device'), (array) $this->config->themeMode)
             ? $this->request->getQuery('device') : self::DEFAULT_THEME_DEVICE : self::DEFAULT_THEME_DEVICE;
-
     }
 
     /**
@@ -85,11 +84,14 @@ class WidgetController extends ControllerBase {
         $this->enableView();
 
         $this->view->setVars([
-            'appVersion'        => APPLICATION_VERSION,
-            'theme'             => 'api-carousel/' . $this->theme,
-            'device'            => $this->device,
-            'scope'             => $this->scope,
-            'name_seo'          => $this->name_seo,
+            'protocal' => stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://',
+            'serverName' => $_SERVER['SERVER_NAME'],
+            'appVersion'=> APPLICATION_VERSION,
+            'theme'     => 'api-carousel/' . $this->theme,
+            'device'    => $this->device,
+            'scope'     => $this->scope,
+            'name_seo'  => $this->name_seo,
+            'data'      => json_decode($carouselData, TRUE),
         ]);
 
         $view = clone $this->view;
@@ -147,9 +149,10 @@ class WidgetController extends ControllerBase {
                      "h5":null,
                      "h6":null,
                      "description":null,
-                     "url_desktop":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_tablet":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_mobile":null,
+                     "image_name" : "China",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -160,9 +163,10 @@ class WidgetController extends ControllerBase {
                      "h5":null,
                      "h6":null,
                      "description":null,
-                     "url_desktop":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_tablet":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_mobile":null,
+                     "image_name" : "China",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -173,9 +177,38 @@ class WidgetController extends ControllerBase {
                      "h5":null,
                      "h6":null,
                      "description":null,
-                     "url_desktop":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_tablet":"https:\/\/www.tnetnoc.com\/HCL\/assets\/2015\/bcm\/value_prop\/banner.png",
-                     "url_mobile":null,
+                     "image_name" : "China",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "tags":null
+                  },
+                  {
+                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
+                     "h2":null,
+                     "h3":"Phillip, Sydney",
+                     "h4":null,
+                     "h5":null,
+                     "h6":null,
+                     "description":null,
+                     "image_name" : "China",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "tags":null
+                  },
+                  {
+                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
+                     "h2":null,
+                     "h3":"Phillip, Sydney",
+                     "h4":null,
+                     "h5":null,
+                     "h6":null,
+                     "description":null,
+                     "image_name" : "China",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
                      "tags":null
                   }
                ]

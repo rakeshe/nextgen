@@ -42,6 +42,7 @@ class Module {
                     ));
                     //This binds the function php function to volt function
                     $compiler = $volt->getCompiler();
+                    $compiler->addFunction('isset', 'isset');
                     $compiler->addFunction('print_r', 'print_r');
                     $compiler->addFunction('empty', 'empty');
                     $compiler->addFunction('isArray', 'is_array');
