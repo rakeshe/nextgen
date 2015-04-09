@@ -31,7 +31,6 @@ if scope is partial return only body (<body>) part
 <!--<img src="images/Slider.jpg" />-->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         {% if isset(data['banners']) %}

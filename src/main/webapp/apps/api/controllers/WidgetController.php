@@ -75,7 +75,7 @@ class WidgetController extends ControllerBase {
     /**
      * Carousel action
      */
-    public function carouselAction() {
+    public function bannerAction() {
 
         //load carousel data
        $carouselData = $this->loadCarouselData();
@@ -97,7 +97,7 @@ class WidgetController extends ControllerBase {
         $view = clone $this->view;
         $view->start();
         $view->setRenderLevel($view::LEVEL_ACTION_VIEW);
-        $view->render('carousel/' . $this->theme . '/' . $this->device, 'body');
+        $view->render('banner/' . $this->theme . '/' . $this->device, 'body');
         $view->finish();
         $this->sendOutput('201 OK', $view->getContent());
     }
@@ -150,9 +150,9 @@ class WidgetController extends ControllerBase {
                      "h6":null,
                      "description":null,
                      "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -164,9 +164,9 @@ class WidgetController extends ControllerBase {
                      "h6":null,
                      "description":null,
                      "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -178,9 +178,9 @@ class WidgetController extends ControllerBase {
                      "h6":null,
                      "description":null,
                      "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -192,9 +192,9 @@ class WidgetController extends ControllerBase {
                      "h6":null,
                      "description":null,
                      "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
                      "tags":null
                   },
                   {
@@ -206,9 +206,9 @@ class WidgetController extends ControllerBase {
                      "h6":null,
                      "description":null,
                      "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-carousel/default/img/banner.png",
+                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
+                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
                      "tags":null
                   }
                ]
