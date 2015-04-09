@@ -20,39 +20,19 @@ use Phalcon\Http\Client\Exception,
 
 class FormController extends ControllerBase
 {
-    const WHITE_LIST_URL_FILE = 'formWhiteListUrls.json';
-
-    // the doc generate format:-> api:form: md5('white_list_urls'):doc;
-    const WHITE_LIST_DOCUMENT_FILE = 'api:form:aae72e94ee51b1151bf9ad47823402f0:doc';
-
-    const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn';
-
-    private $whiteListUrls;
-
-    private $whiteListType;
-
-    private $isWhiteListed = false;
-
-    private $responseContentType = 'application/json';
 
     private $validationMessages = [];
 
-    private $availableHosts = [];
-
-    private $app_id;
-
-    private $hostName;
 
     public function initialize() {
+
+        $this->updateWhiteListFile();
 
         //validate security stuffs
         $this->validate();
     }
 
     private function validate() {
-
-
-        $this->updateWhiteListFile();
 
         //load whitelist file
         $this->loadWhiteListUrls();
@@ -96,114 +76,6 @@ class FormController extends ControllerBase
         $this->connectMysql();
     }
 
-    /**
-     * Verify hash code
-     */
-    private function verifyHash() {
-
-        if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
-
-            if (isset($this->availableHosts[$this->hostName])
-                && getallheaders()['Authorization'] === $this->availableHosts[$this->hostName]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Verify request type
-     * @return bool
-     */
-    private function verifyRequestType() {
-
-        return $this->request->isGet() && true == $this->request->isAjax();
-    }
-    /**
-     * load whitelist url file
-     */
-
-    private function loadWhiteListUrls() {
-
-        try{
-
-            if (file_exists(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE)) {
-                //require_once __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
-                $this->whiteListUrls = json_decode(file_get_contents(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE), true);
-            } else {
-                throw new Exception('required file does not exists');
-            }
-
-        }catch (\Exception $e) {
-            $this->getExceptionMessage($e);
-        }
-    }
-
-    /**
-     * To verify app key
-     * @return bool
-     */
-    private function verifyAppKey() {
-
-        if (null!= $this->request->getQuery('api_key') &&
-            array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)) {
-
-            $this->availableHosts = $this->whiteListUrls[$this->request->getQuery('api_key')];
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Verify host name or IP is whitelisted or not
-     * @return bool
-     */
-    private function verifyHost() {
-
-        // Pass if within default hotelclub hosts
-        if(in_array($this->request->getHttpHost(),explode(',', self::DEFAULT_WHITE_LIST_HOSTS))) return true;
-
-        if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
-            $this->whiteListType = 'HOST';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getHttpHost();
-            return true;
-        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
-            $this->whiteListType = 'IP';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getClientAddress();
-            return true;
-        }
-        return false;
-    }
-    /**
-     * Get exception info
-     * @param object $e
-     */
-    private function getExceptionMessage($e) {
-
-        if ('dev' === ORBITZ_ENV) {
-            echo "Form API Exception line no: {$e->getLine()}, Message: {$e->getMessage()}";
-        } else {
-            $this->getDI()->getShared('logger')->log("Form API Exception line no: {$e->getLine()},
-                    Message: {$e->getMessage()}");
-        }
-
-    }
-
-    private function sendOutput($httpCode, $content = false) {
-
-        $res = new Response;
-        $res
-            ->setHeader("Content-Type", "{$this->responseContentType}; charset=UTF-8")
-            ->setRawHeader("HTTP/1.1 {$httpCode}")
-            ->setStatusCode($httpCode,'')
-            ->setContent($content)
-            ->send();
-        die();
-    }
 
     private function validateInputData() {
 
@@ -397,39 +269,6 @@ class FormController extends ControllerBase
                     $value
                 ]
             ]));
-        }
-    }
-
-    protected function updateWhiteListFile(){
-
-        $filePath = __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
-
-        $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-
-        $cacheData   = $Couch->get(self::WHITE_LIST_DOCUMENT_FILE);
-
-        if (null != $cacheData) {
-
-            $storeFile = true;
-
-            if(file_exists($filePath) ){
-                $interval = strtotime('-24 hours');
-                if (filemtime($filePath) <= $interval ){
-                    $storeFile = true;
-                } else{
-                    $storeFile = false;
-                }
-            }
-            $request = new \Phalcon\Http\Request();
-            $forceWrite = $request->getQuery('api-frm-whitelist-cache');
-            if($forceWrite == 'yes') {
-                $storeFile = true;
-            }
-            if($storeFile){
-                $file = fopen($filePath, 'w');
-                fputs($file, $cacheData);
-                fclose($file);
-            }
         }
     }
 
