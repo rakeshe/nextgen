@@ -40,7 +40,6 @@ class UIController extends ControllerBase {
 
     private $theme;
 
-    private $responseContentType = 'text/html';
 
     public function initialize() {
 
@@ -139,18 +138,6 @@ class UIController extends ControllerBase {
         $view->render($this->theme . '/' . $this->themeMode, 'footer');
         $view->finish();
         $this->sendOutput('201 OK', $view->getContent());
-    }
-
-    private function sendOutput($httpCode, $content = false) {
-
-        $res = new Response;
-        $res
-            ->setHeader("Content-Type", "{$this->responseContentType}; charset=UTF-8")
-            ->setRawHeader("HTTP/1.1 {$httpCode}")
-            ->setStatusCode($httpCode,'')
-            ->setContent($content)
-            ->send();
-        die();
     }
 
     protected function getCurrencyListByGroup() {
