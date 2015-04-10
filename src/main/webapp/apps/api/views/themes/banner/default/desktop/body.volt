@@ -17,7 +17,7 @@ if scope is partial return only body (<body>) part
 {% endif %}
 
     <link rel="stylesheet" href="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    {{ stylesheet_link(protocol ~ serverName ~ '/n/themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
+    {{ stylesheet_link(protocol ~ serverName ~ '/n/themes/' ~ theme ~ '/css/common.css?' ~ appVersion ) }}
     <script src="{{ protocol }}ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
