@@ -93,7 +93,7 @@ class WidgetController extends ControllerBase {
     /**
      * Carousel action
      */
-    public function bannerAction() {
+    public function carouselAction() {
 
         //load carousel data
         $carouselData = $this->loadCarouselData();
@@ -112,12 +112,13 @@ class WidgetController extends ControllerBase {
             'data'      => json_decode($carouselData, TRUE),
         ]);
 
-        $view = clone $this->view;
+        $this->view->render('banner/' . $this->theme . '/' . $this->device, 'body');
+/*        $view = clone $this->view;
         $view->start();
         $view->setRenderLevel($view::LEVEL_ACTION_VIEW);
         $view->render('banner/' . $this->theme . '/' . $this->device, 'body');
         $view->finish();
-        $this->sendOutput('201 OK', $view->getContent());
+        $this->sendOutput('201 OK', $view->getContent());*/
     }
 
 
