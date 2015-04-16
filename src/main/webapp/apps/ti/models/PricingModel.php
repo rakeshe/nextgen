@@ -137,7 +137,7 @@ class PricingModel extends \Phalcon\Mvc\Model {
         ]   ;
         $provider  = Request::getProvider();
         //set pricing gateway url path
-        $provider->setBaseUri('http://nextgen-release/n/api/proxy/request/');
+        $provider->setBaseUri('http://qa1.hclubtest.com/n/api/proxy/request/');
         //send xml post data
         $response = $provider->post('', $proxyPaylod);
         //get response
