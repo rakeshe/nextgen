@@ -171,8 +171,10 @@ class Header implements \Countable
                 self::$messages[$this->statusCode];
         }
 
-        foreach ($this->fields as $field => $value) {
-            $lines[] = $field . ': ' . $value;
+        if(is_array($this->fields)) {
+            foreach ($this->fields as $field => $value) {
+                $lines[] = $field . ': ' . $value;
+            }
         }
 
         if ($flags & self::BUILD_FIELDS) {
