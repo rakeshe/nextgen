@@ -28,7 +28,7 @@ class ProxyController extends ControllerBase
 
     protected $params;
     protected $provider;
-    protected $response;
+    protected $providerResponse;
 
     /**
      *
@@ -175,8 +175,8 @@ class ProxyController extends ControllerBase
 
     public function  requestAction()
     {
-        $this->response = $this->makeRequest();
-        $this->sendResponse($this->response);
+        $this->providerResponse = $this->makeRequest();
+        $this->sendResponse($this->providerResponse);
     }
 
 
