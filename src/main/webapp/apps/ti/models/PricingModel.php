@@ -99,8 +99,10 @@ class PricingModel extends \Phalcon\Mvc\Model {
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_STDERR, $verbose);
         curl_setopt($ch, CURLOPT_URL, $this->pricingGatewayUrl);
+        curl_setopt($ch, CURLOPT_PROXY, $this->proxyHost .':' . $this->proxyPort);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/xml"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_TIMEOUT, 40);
@@ -120,6 +122,29 @@ class PricingModel extends \Phalcon\Mvc\Model {
         curl_close($ch);
         return $result;
     }
+
+    /**
+     * @return string
+     * @throws \Phalcon\Http\Client\Provider\Exception
+     */
+    public function doProxyRequest(){
+        $proxyPaylod = [
+            'host' => $this->pricingGatewayUrl,
+            'port' => null,
+            'header' => ['Accept'=> 'Content-Type: application/xml'],
+            'payload' => $this->xmlPostFildes,
+            'method' => 'POST'
+        ]   ;
+        $provider  = Request::getProvider();
+        //set pricing gateway url path
+        $provider->setBaseUri('http://nextgen-release/n/api/proxy/request/');
+        //send xml post data
+        $response = $provider->post('', $proxyPaylod);
+        //get response
+        return $response->body;
+    }
+
+
 
     /**
      * To build the xml body
