@@ -126,7 +126,7 @@ class IndexController extends ControllerBase {
         $priceModel->setAgeCats(); //count the travelers
         $priceModel->buildXML(); //build the xml form
 
-        if ($dom = $priceModel->doProxyRequest()) {
+        if ($dom = $priceModel->doRequest()) {
 
             $xml = (array) simplexml_load_string($dom);
             if (isset($xml['error'])) {
