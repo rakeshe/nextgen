@@ -17,7 +17,7 @@ if scope is partial return only body (<body>) part
 {% endif %}
 
     <link rel="stylesheet" href="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    {{ stylesheet_link(protocol ~ serverName ~ '/n/themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
+    {{ stylesheet_link('themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
     <script src="{{ protocol }}ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -29,23 +29,23 @@ if scope is partial return only body (<body>) part
 {% endif %}
 
 <!--<img src="images/Slider.jpg" />-->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: {{ width }}px; height: {{ height }}px">
 
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        {% if isset(data['banners']) %}
+        {% if isset(data['items'][locale]) %}
         {% set activeFlag=false %}
         {% set BannerCount = 0 %}
-        {% for key, val in data['banners'] %}
+        {% for key, val in data['items'][locale] %}
 
             <div class="item {% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}">
                 {% if device == 'mobile' %}
-                    <img src="{{ val['url_mobile'] }}" alt="{{ val['image_name'] }}">
+                    <img src="{{ val['url_mobile'] }}" alt="{{ val['tags'] }}">
                 {% elseif device == 'tablet' %}
-                    <img src="{{ val['url_tablet'] }}" alt="{{ val['image_name'] }}">
+                    <img src="{{ val['url_tablet'] }}" alt="{{ val['tags'] }}">
                 {% else %}
-                    <img src="{{ val['url_desktop'] }}" alt="{{ val['image_name'] }}">
+                    <img src="{{ val['url_desktop'] }}" alt="{{ val['tags'] }}">
                 {% endif %}
 
                 <div class="carousel-caption">
