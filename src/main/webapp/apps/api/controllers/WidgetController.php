@@ -27,7 +27,7 @@ class WidgetController extends ControllerBase {
 
     const DEFAULT_SCOPE = 'full';
 
-    private $languageCode;
+    private $locale;
 
     private $scope;
 
@@ -36,6 +36,12 @@ class WidgetController extends ControllerBase {
     private $theme;
 
     private $name_seo;
+
+    protected $widgetData;
+
+    protected $widgetHeight;
+
+    protected $widgetWidth;
 
     public function initialize() {
 
@@ -72,22 +78,28 @@ class WidgetController extends ControllerBase {
         $this->name_seo = $this->request->getQuery('id');
 
         //validate and set scopt (full or partial)
-        $this->scope = (null != $this->request->getQuery('scope')) ?
-            in_array($this->request->getQuery('scope'), (array) $this->config->scope) ? $this->request->getQuery('scope')
-                : self::DEFAULT_SCOPE : self::DEFAULT_SCOPE;
+        $this->scope = (null != $this->request->getQuery('scope')) &&
+            in_array($this->request->getQuery('scope'), (array) $this->config->scope) ?
+            $this->request->getQuery('scope') : self::DEFAULT_SCOPE;
 
         // validate and set language
-        $this->languageCode = (null != $this->request->getQuery('locale')) ?
-            in_array($this->request->getQuery('locale'), (array) $this->config->locales) ? $this->request->getQuery('locale')
-                : self::DEFAULT_LOCALE : self::DEFAULT_LOCALE;
+        $this->locale = (null != $this->request->getQuery('locale')) &&
+            in_array($this->request->getQuery('locale'), (array) $this->config->locales) ?
+            $this->request->getQuery('locale') : self::DEFAULT_LOCALE;
 
         //set theme name
-        $this->theme = (null != $this->request->getQuery('theme')) ?  array_key_exists($this->request->getQuery('theme'), $this->config->themes->carousel)
-            ? $this->request->getQuery('theme') :  self::DEFAULT_THEME : self::DEFAULT_THEME;
+        $this->theme = (null != $this->request->getQuery('theme')) &&
+            array_key_exists($this->request->getQuery('theme'), $this->config->themes->carousel) ?
+            $this->request->getQuery('theme') :  self::DEFAULT_THEME;
 
         //set device type
-        $this->device = (null != $this->request->getQuery('device')) ? array_key_exists($this->request->getQuery('device'), (array) $this->config->themeMode)
-            ? $this->request->getQuery('device') : self::DEFAULT_THEME_DEVICE : self::DEFAULT_THEME_DEVICE;
+        $this->device = (null != $this->request->getQuery('device')) &&
+            array_key_exists($this->request->getQuery('device'), (array) $this->config->themeMode) ?
+            $this->request->getQuery('device') : self::DEFAULT_THEME_DEVICE;
+
+        // Set height and width (an override)
+        $this->widgetHeight = $this->request->getQuery('height');
+        $this->widgetWidth = $this->request->getQuery('width');
     }
 
     /**
@@ -96,7 +108,7 @@ class WidgetController extends ControllerBase {
     public function carouselAction() {
 
         //load carousel data
-        $carouselData = $this->loadCarouselData();
+        $this->loadCarouselData();
 
         //enable view
         $this->enableView();
@@ -109,7 +121,11 @@ class WidgetController extends ControllerBase {
             'device'    => $this->device,
             'scope'     => $this->scope,
             'name_seo'  => $this->name_seo,
-            'data'      => json_decode($carouselData, TRUE),
+            'data'      => $this->widgetData,
+            'locale' => $this->locale,
+                'width' => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
+                'height' => null === $this->widgetHeight ? $this->widgetData['height'] : $this->widgetHeight
+
         ]);
 
         $this->view->render('banner/' . $this->theme . '/' . $this->device, 'body');
@@ -131,94 +147,18 @@ class WidgetController extends ControllerBase {
 
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var   = $Couch->get(ORBITZ_ENV . ":carousel:". md5($this->name_seo) . ":" . $this->languageCode);
-            //$this->carouselData = json_decode($var, true);
-            //return $this;
+            $var   = $Couch->get(ORBITZ_ENV . ":deals:". md5("banner"));
+            if(!empty($var)){
+                $var = json_decode($var, true);
+                if(!empty($var[$this->name_seo]) ){
+                    $this->widgetData = $var[$this->name_seo];
+                }
+            }
 
-            return '{
-               "id_banner":1,
-               "name":"The Club",
-               "name_seo":"the-club",
-               "dt_created":"2015-04-07 14:44:23",
-               "locale":"en_AU",
-               "banners":[
-                  {
-                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
-                     "h2":null,
-                     "h3":"Phillip, Sydney",
-                     "h4":null,
-                     "h5":null,
-                     "h6":null,
-                     "description":null,
-                     "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "tags":null
-                  },
-                  {
-                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
-                     "h2":null,
-                     "h3":"Phillip, Sydney",
-                     "h4":null,
-                     "h5":null,
-                     "h6":null,
-                     "description":null,
-                     "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "tags":null
-                  },
-                  {
-                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
-                     "h2":null,
-                     "h3":"Phillip, Sydney",
-                     "h4":null,
-                     "h5":null,
-                     "h6":null,
-                     "description":null,
-                     "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "tags":null
-                  },
-                  {
-                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
-                     "h2":null,
-                     "h3":"Phillip, Sydney",
-                     "h4":null,
-                     "h5":null,
-                     "h6":null,
-                     "description":null,
-                     "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "tags":null
-                  },
-                  {
-                     "h1":"I came to run the NY marathon and to my great surprise, I was upgraded to a luxurious double room. A million thanks for this very nice gesture. (1)",
-                     "h2":null,
-                     "h3":"Phillip, Sydney",
-                     "h4":null,
-                     "h5":null,
-                     "h6":null,
-                     "description":null,
-                     "image_name" : "China",
-                     "url_desktop":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_tablet":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "url_mobile":"http://dev.nextgen.com/n/themes/api-banner/default/img/banner.png",
-                     "tags":null
-                  }
-               ]
-            }';
 
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
-        return false;
     }
 
     /**
