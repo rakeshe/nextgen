@@ -61,7 +61,8 @@ class WidgetController extends ControllerBase {
         if (false == $this->verifyHost()) {
 
             $this->responseContentType = 'text/html';
-            $this->sendOutput('401 Unauthorized');
+//            $this->sendOutput('401 Unauthorized');
+            $this->sendOutput($this->printHostsAction());
         }
 
         //set params
@@ -171,7 +172,9 @@ class WidgetController extends ControllerBase {
     }
 
     public function printHostsAction(){
-        echo 'this server:' . $this->request->getServerName() .PHP_EOL ;
-        echo 'requesting server:' . $this->request->getHttpHost() .PHP_EOL ;
+        return [
+            'this server' => $this->request->getServerName(),
+            'requesting server' => $this->request->getHttpHost()
+            ];
     }
 }
