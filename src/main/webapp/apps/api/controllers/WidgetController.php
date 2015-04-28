@@ -170,4 +170,8 @@ class WidgetController extends ControllerBase {
         $di['view']->enable();
     }
 
+    public function printHostsAction(){
+        echo 'this server:' . $this->request->getServerName() .PHP_EOL ;
+        echo 'requesting server:' . $this->request->getHttpHost() .PHP_EOL ;
+    }
 }
