@@ -14,9 +14,9 @@ class ControllerBase extends \Phalcon\Mvc\Controller
     const WHITE_LIST_URL_FILE = 'formWhiteListUrls.json';
 
     // the doc generate format:-> api:form: md5('white_list_urls'):doc;
-    const WHITE_LIST_DOCUMENT_FILE = 'api:form:aae72e94ee51b1151bf9ad47823402f0:doc';
+    const WHITE_LIST_DOCUMENT_FILE = 'api:aae72e94ee51b1151bf9ad47823402f0:doc';
 
-    const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn';
+    const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn, cmsref.hotelclub.com, hotelclub.com';
 
     protected $whiteListUrls;
 
@@ -101,7 +101,10 @@ class ControllerBase extends \Phalcon\Mvc\Controller
     protected function verifyHost() {
 
         // Pass if within default hotelclub hosts
-        if(in_array($this->request->getHttpHost(),explode(',', self::DEFAULT_WHITE_LIST_HOSTS))) return true;
+
+        $defaultWhiteListHosts = self::DEFAULT_WHITE_LIST_HOSTS .',' . $this->request->getServerName();
+
+        if(in_array($this->request->getHttpHost(),explode(',', $defaultWhiteListHosts))) return true;
 
         if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
             array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
