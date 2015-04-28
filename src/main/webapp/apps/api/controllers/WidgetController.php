@@ -62,7 +62,7 @@ class WidgetController extends ControllerBase {
 
             $this->responseContentType = 'text/html';
 //            $this->sendOutput('401 Unauthorized');
-            $this->sendOutput($this->printHostsAction());
+            $this->sendOutput(json_encode($this->getHostsInfo()));
         }
 
         //set params
@@ -171,10 +171,14 @@ class WidgetController extends ControllerBase {
         $di['view']->enable();
     }
 
-    public function printHostsAction(){
+    protected function getHostsInfo(){
         return [
             'this server' => $this->request->getServerName(),
             'requesting server' => $this->request->getHttpHost()
             ];
+    }
+
+    public function printHostInfoAction(){
+        print_r($this->getHostsInfo());
     }
 }
