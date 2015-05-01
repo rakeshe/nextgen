@@ -13,8 +13,8 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 {
     const WHITE_LIST_URL_FILE = 'formWhiteListUrls.json';
 
-    // the doc generate format:-> api:form: md5('white_list_urls'):doc;
-    const WHITE_LIST_DOCUMENT_FILE = 'api:aae72e94ee51b1151bf9ad47823402f0:doc';
+    // the doc generate format:-> [env]:deals:[md5('white_list')];
+    const WHITE_LIST_DOCUMENT_FILE = 'deals:0254505138836ad899ee5b0fa8d79ef9';
 
     const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn, cmsref.hotelclub.com, hotelclub.com';
 
@@ -167,7 +167,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
         $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
 
-        $cacheData   = $Couch->get(self::WHITE_LIST_DOCUMENT_FILE);
+        $cacheData   = $Couch->get( ORBITZ_ENV .':' . self::WHITE_LIST_DOCUMENT_FILE);
 
         if (null != $cacheData) {
 
@@ -182,7 +182,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
                 }
             }
             $request = new \Phalcon\Http\Request();
-            $forceWrite = $request->getQuery('api-frm-whitelist-cache');
+            $forceWrite = $request->getQuery('deals-whitelist-cache');
             if($forceWrite == 'yes') {
                 $storeFile = true;
             }
