@@ -40,6 +40,10 @@
 .right_arrow_image {
     margin:137px 0 0 80px !important;
 }
+
+.left_arrow_image_centre {
+    margin:137px 0 0 360px !important;
+}
 .open_quote{
     font-size:59px !important;
     opacity:0.6;
@@ -75,4 +79,17 @@
     width: 7px !important;
     height: 7px !important;
     margin-right: 10px;
+}
+
+.carousel-indicators.right{
+    margin-left: 15%;
+}
+
+.carousel-indicators.left{
+    margin-left: -75%;
+}
+
+
+.hidden {
+    display: none;
 }
