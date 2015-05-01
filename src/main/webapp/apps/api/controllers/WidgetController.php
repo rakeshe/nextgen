@@ -27,6 +27,11 @@ class WidgetController extends ControllerBase {
 
     const DEFAULT_SCOPE = 'full';
 
+    const DEFAULT_SHOW_NAV_ARROWS = '1';
+
+    const DEFAULT_SHOW_NAV_DOTS = '1';
+
+
     private $locale;
 
     private $scope;
@@ -36,6 +41,9 @@ class WidgetController extends ControllerBase {
     private $theme;
 
     private $name_seo;
+    private $navArrows;
+    private $navDots;
+
 
     protected $widgetData;
 
@@ -98,7 +106,10 @@ class WidgetController extends ControllerBase {
             array_key_exists($this->request->getQuery('device'), (array) $this->config->themeMode) ?
             $this->request->getQuery('device') : self::DEFAULT_THEME_DEVICE;
 
-        // Set height and width (an override)
+
+        // Set overrides
+        $this->navArrows = null === $this->request->getQuery('nav_arrows') ? self::DEFAULT_SHOW_NAV_ARROWS : $this->request->getQuery('nav_arrows') ;
+        $this->navDots = null === $this->request->getQuery('nav_dots') ? self::DEFAULT_SHOW_NAV_DOTS : $this->request->getQuery('nav_dots') ;
         $this->widgetHeight = $this->request->getQuery('height');
         $this->widgetWidth = $this->request->getQuery('width');
     }
@@ -122,6 +133,8 @@ class WidgetController extends ControllerBase {
             'device'    => $this->device,
             'scope'     => $this->scope,
             'name_seo'  => $this->name_seo,
+            'nav_arrows'  => $this->navArrows,
+            'nav_dots'  => $this->navDots,
             'data'      => $this->widgetData,
             'locale' => $this->locale,
                 'width' => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
