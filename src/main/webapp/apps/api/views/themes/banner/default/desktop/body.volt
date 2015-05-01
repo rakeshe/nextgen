@@ -47,7 +47,7 @@ if scope is partial return only body (<body>) part
                 {% else %}
                     <img src="{{ val['url_desktop'] }}" alt="{{ val['tags'] }}">
                 {% endif %}
-
+                {% if not(val['h1'] is empty) %}
                 <div class="carousel-caption">
                     <div class="open_quote">“</div>
                     <div class="carousel-heading-content">
@@ -58,6 +58,7 @@ if scope is partial return only body (<body>) part
                         {{ val['h3'] }}
                     </p>
                 </div>
+                {% endif %}
             </div>
         {% set BannerCount = BannerCount + 1 %}
         {% endfor %}
@@ -65,14 +66,17 @@ if scope is partial return only body (<body>) part
     </div>
 
     <!-- Indicators -->
+    {% if nav_dots == '1' %}
     {% set activeFlag=false %}
     <ol class="carousel-indicators">
         {% for key, index in 1..BannerCount %}
             <li data-target="#myCarousel" data-slide-to="{{ key }}" class="{% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}"></li>
         {% endfor %}
     </ol>
+    {% endif %}
 
     <!-- Left and right controls -->
+    {% if nav_arrows == '1' %}
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
         <img src="{{ protocol }}{{ serverName }}/n/themes/{{theme}}/img/left-arrow.png" class="left_arrow_image" width="20" height="40"/>
@@ -83,6 +87,7 @@ if scope is partial return only body (<body>) part
         <img src="{{ protocol }}{{ serverName }}/n/themes/{{theme}}/img/right-arrow.png" class="right_arrow_image" width="20" height="40"/>
         <span class="sr-only">Next</span>
     </a>
+    {% endif %}
 </div>
 </body>
 
