@@ -20,8 +20,6 @@ use Phalcon\Http\Client\Exception,
 
 class FormController extends ControllerBase
 {
-    const WHITE_LIST_URL_FILE = 'formWhiteListUrls.json';
-
     // the doc generate format:-> api:form: md5('white_list_urls'):doc;
     const WHITE_LIST_DOCUMENT_FILE = 'api:form:aae72e94ee51b1151bf9ad47823402f0:doc';
 
