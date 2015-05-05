@@ -67,9 +67,9 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
         try{
 
-            if (file_exists(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE)) {
+            if (file_exists(__DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE)) {
                 //require_once __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
-                $this->whiteListUrls = json_decode(file_get_contents(__DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE), true);
+                $this->whiteListUrls = json_decode(file_get_contents(__DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE), true);
             } else {
                 throw new Exception('required file does not exists');
             }
@@ -163,7 +163,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     protected function updateWhiteListFile(){
 
-        $filePath = __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
+        $filePath = __DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE;
 
         $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
 
