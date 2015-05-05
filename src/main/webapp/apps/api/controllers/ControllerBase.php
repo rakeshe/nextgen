@@ -182,7 +182,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
                 }
             }
             $request = new \Phalcon\Http\Request();
-            $forceWrite = $request->getQuery('deals-whitelist-cache');
+            $forceWrite = $request->getQuery('reload-whitelist-cache');
             if($forceWrite == 'yes') {
                 $storeFile = true;
             }
