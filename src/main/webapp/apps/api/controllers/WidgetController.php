@@ -187,7 +187,8 @@ class WidgetController extends ControllerBase {
     protected function getHostsInfo(){
         return [
             'this server' => $this->request->getServerName(),
-            'requesting server' => $this->request->getHttpHost()
+            'requesting server' => $this->request->getHttpHost(),
+            'white lists' => $this->availableHosts
             ];
     }
 
