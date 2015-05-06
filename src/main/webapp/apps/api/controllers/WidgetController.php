@@ -66,12 +66,12 @@ class WidgetController extends ControllerBase {
         }
 
         //verify host
-        if (false == $this->verifyHost()) {
+        /*if (false == $this->verifyHost()) {
 
             $this->responseContentType = 'text/html';
 //            $this->sendOutput('401 Unauthorized');
             $this->sendOutput(json_encode($this->getHostsInfo()));
-        }
+        }*/
 
         //set params
         $this->setParams();
