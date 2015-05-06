@@ -40,6 +40,7 @@ if scope is partial return only body (<body>) part
         {% for key, val in data['items'][locale] %}
 
             <div class="item {% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}">
+                <a href="{{ val['target_url'] }}" target="_blank">
                 {% if device == 'mobile' %}
                     <img src="{{ val['url_mobile'] }}" alt="{{ val['tags'] }}">
                 {% elseif device == 'tablet' %}
@@ -47,6 +48,7 @@ if scope is partial return only body (<body>) part
                 {% else %}
                     <img src="{{ val['url_desktop'] }}" alt="{{ val['tags'] }}">
                 {% endif %}
+                </a>
                 {% if not(val['h1'] is empty) %}
                 <div class="carousel-caption">
                     <div class="open_quote">“</div>
@@ -68,7 +70,7 @@ if scope is partial return only body (<body>) part
     <!-- Indicators -->
     {% if nav_dots == '1' %}
     {% set activeFlag=false %}
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators {{ pos_nav_dots }} ">
         {% for key, index in 1..BannerCount %}
             <li data-target="#myCarousel" data-slide-to="{{ key }}" class="{% if activeFlag == false %}active{% set activeFlag=true %}{% endif %}"></li>
         {% endfor %}

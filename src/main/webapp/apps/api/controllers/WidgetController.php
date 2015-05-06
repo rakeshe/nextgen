@@ -43,12 +43,12 @@ class WidgetController extends ControllerBase {
     private $name_seo;
     private $navArrows;
     private $navDots;
+    private $navDotsPos;
+    private $navArrowsPos;
 
 
     protected $widgetData;
-
     protected $widgetHeight;
-
     protected $widgetWidth;
 
     public function initialize() {
@@ -112,6 +112,8 @@ class WidgetController extends ControllerBase {
         $this->navDots = null === $this->request->getQuery('nav_dots') ? self::DEFAULT_SHOW_NAV_DOTS : $this->request->getQuery('nav_dots') ;
         $this->widgetHeight = $this->request->getQuery('height');
         $this->widgetWidth = $this->request->getQuery('width');
+        $this->navDotsPos =  $this->request->getQuery('pos_nav_dots');
+        $this->navArrowsPos =  $this->request->getQuery('pos_nav_arrows');
     }
 
     /**
@@ -134,7 +136,9 @@ class WidgetController extends ControllerBase {
             'scope'     => $this->scope,
             'name_seo'  => $this->name_seo,
             'nav_arrows'  => $this->navArrows,
+            'pos_nav_arrows'  => $this->navArrowsPos,
             'nav_dots'  => $this->navDots,
+            'pos_nav_dots'  => $this->navDotsPos,
             'data'      => $this->widgetData,
             'locale' => $this->locale,
                 'width' => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
