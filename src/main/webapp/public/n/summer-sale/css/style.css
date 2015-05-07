@@ -1,0 +1,91 @@
+/*main body*/
+body{ 
+	margin:0px;
+	background-image:url('../img/bg.png');
+	background-position:center top;
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-size:auto;
+	position:relative;
+	left:-10px;
+	width:986px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/*main body container*/
+#container{}
+#header_container{}/*header container*/
+#banner_cont{}/*banner content*/
+
+/*destination container*/
+#destination_block{}
+.region_block{}
+.city_block{}
+.duration_block{}
+#banner_sub_cont{}
+
+/*main container*/
+#main_container{}
+#main_head{}
+#main_content_block{}
+.content_head_block{}
+.content_dest_block{}
+.head_dest{}
+.content_dest{}
+.content_cards_block{}
+.content_desc_block{}
+
+/*search page - filter container*/
+#filter_container{}
+.filter_hotels{}
+.filter_hotels_block{}
+.hotel_type{}
+.hotel_head{}
+.hotel_type_val{}
+.hotel_type_rating{}
+.hotel_mini_star{}
+.rating_star{}
+
+.filter_best_for{}
+.best_for{}
+.best_for_head{}
+.best_for_val{}
+.best_for_review{}
+.best_for_head{}
+.best_for_scroller{}
+
+.filter_price_range{}
+.price_range{}
+.price_range_head{}
+.best_for_val{}
+.price_range_offer{}
+.best_for_scroller{}
+.offer_val{}
+
+.facilities{}
+.facilities_head{}
+.facilities_val{}
+
+/*hotel card blocks*/
+#hotel_card_id{}
+.hotel_card_id_img{}
+.hotel_card_id_likes{}
+.hotel_card_id_likes_percent{}
+.hotel_card_id_pics{}
+.hotel_card_id_hotel_name{}
+.hotel_card_id_hotel_loc{}
+.hotel_card_id_hotel_rating{}
+.hotel_card_id_hotel_fac{}
+.hotel_card_id_member_price_label{}
+.hotel_card_id_general_price{}
+.hotel_card_id_member_price{}
+.hotel_card_id_member_price_day{}
+.hotel_card_id_rating{}
+.hotel_card_id_reviews{}
+.hotel_card_id_dates{}
+
+/*footer body container*/
+#footer_container{}
+
+
