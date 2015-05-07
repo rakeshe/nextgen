@@ -17,7 +17,8 @@ if scope is partial return only body (<body>) part
 {% endif %}
 
     <link rel="stylesheet" href="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    {{ stylesheet_link('themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}
+    <link rel="stylesheet" href="{{ protocol }}myhotelclub.website/css/desktop.css">
+    {#{{ stylesheet_link('themes/' ~ theme ~ '/css/desktop.css?' ~ appVersion ) }}#}
     <script src="{{ protocol }}ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ protocol }}maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -81,12 +82,12 @@ if scope is partial return only body (<body>) part
     {% if nav_arrows == '1' %}
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-        <img src="{{ protocol }}{{ serverName }}/n/themes/{{theme}}/img/left-arrow.png" class="left_arrow_image" width="20" height="40"/>
+        <img src="/n/themes/{{theme}}/img/left-arrow.png" class="left_arrow_image" width="20" height="40"/>
         <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
         <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-        <img src="{{ protocol }}{{ serverName }}/n/themes/{{theme}}/img/right-arrow.png" class="right_arrow_image" width="20" height="40"/>
+        <img src="/n/themes/{{theme}}/img/right-arrow.png" class="right_arrow_image" width="20" height="40"/>
         <span class="sr-only">Next</span>
     </a>
     {% endif %}
