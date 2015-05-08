@@ -31,6 +31,7 @@ class WidgetController extends ControllerBase
     const DEFAULT_SHOW_NAV_ARROWS = '1';
 
     const DEFAULT_SHOW_NAV_DOTS = '1';
+    const DEFAULT_SHOW_CAPTION_QUOTE = '1';
 
 
     private $locale;
@@ -46,7 +47,7 @@ class WidgetController extends ControllerBase
     private $navDots;
     private $navDotsPos;
     private $navArrowsPos;
-
+    protected $captionQuote;
 
     protected $widgetData;
     protected $widgetHeight;
@@ -120,6 +121,7 @@ class WidgetController extends ControllerBase
         $this->widgetWidth  = $this->request->getQuery('width');
         $this->navDotsPos   = $this->request->getQuery('pos_nav_dots');
         $this->navArrowsPos = $this->request->getQuery('pos_nav_arrows');
+        $this->captionQuote = null === $this->request->getQuery('quote') ? self::DEFAULT_SHOW_CAPTION_QUOTE : $this->request->getQuery('quote');
     }
 
     /**
@@ -148,6 +150,7 @@ class WidgetController extends ControllerBase
                 'nav_dots'       => $this->navDots,
                 'pos_nav_dots'   => $this->navDotsPos,
                 'data'           => $this->widgetData,
+                'caption_quote'           => $this->captionQuote,
                 'locale'         => $this->locale,
                 'width'          => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
                 'height'         => null === $this->widgetHeight ? $this->widgetData['height'] : $this->widgetHeight
