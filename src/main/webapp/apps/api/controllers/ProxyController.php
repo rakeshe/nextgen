@@ -16,6 +16,7 @@ use Phalcon\Http\Response;
 class ProxyController extends ControllerBase
 {
 
+    const BASE_URL = 'http://www.hotelclub.com';
     const   REQUEST_METHOD_GET = 'GET';
     const   REQUEST_METHOD_POST = 'POST';
     const   REQUEST_METHOD_AJAX = 'AJAX';
@@ -44,7 +45,7 @@ class ProxyController extends ControllerBase
     public function initialize()
     {
         $this->view->disable();
-        if ($this->request->isPost() == true) {
+        if ($this->request->isPost()) {
             $this->provider  = Request::getProvider();
 
             $this->requestHost =  $this->request->getPost("host");
@@ -141,7 +142,8 @@ class ProxyController extends ControllerBase
     {
 
         $httpResponse =  new Response();
-        $httpResponse->setHeader("Content-Type", "application/xml");
+//        $httpResponse->setHeader("Content-Type", "application/xml");
+        $httpResponse->setHeader('Accept', 'application/json');
         $httpResponse->setRawHeader("HTTP/1.1 200 OK");
         $httpResponse->setStatusCode(200, "OK");
         $httpResponse->setContent($body);
