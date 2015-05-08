@@ -97,6 +97,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
     /**
      * Verify host name or IP is whitelisted or not
      * @return bool
+     * @todo, verify host logic, check md5(getHttpHost().':'.secret_salt) againsts api_key
      */
     protected function verifyHost() {
 
