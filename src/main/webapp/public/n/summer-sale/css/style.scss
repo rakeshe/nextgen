@@ -1,0 +1,348 @@
+$std-width: 968px;
+$body-width: 987px;
+$header-width: 630px;
+$select-width: 315px;
+
+$font-type: "Helvetica,Arial,sans-serif";
+$font-type-arial: "Arial Regular","Arial";
+
+$value-auto: auto;
+
+$font-head-size: 26px;
+$font-title-size: 20px;
+$font-sub-head-size: 18px;
+$font-body-size: 16px;
+$font-select-size: 14px;
+$font-small-size: 13px;
+$font-mini-size: 12px;
+
+$font-normal: normal;
+$font-bold: bold;
+
+$font-weight-small: 400;
+$font-weight-large: 700;
+
+$bg-color: #676767;
+$head-color: #ffffff;
+$sub-head-color: #666666;
+$title-color: #424242;
+$body-color: #333333;
+$select-color: #606060;
+$border-color: #cccccc;
+$black-color: #000000;
+
+$no-text-decoration: none;
+$word-wrap: break-word;
+$overflow-val: hidden;
+$default-auto: auto;
+
+$float-value: left;
+
+body{
+	margin: 0px;
+	background-image: url('../img/bg.png');
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-size: $value-auto;
+	position: relative;
+	left: -10px;
+	width: $std-width;
+	margin-left: $default-auto;
+	margin-right: $default-auto;
+}
+ul{
+	margin: 0 $value-auto;
+	padding:0;
+	list-style-type: none;
+}
+/*main body container*/
+#container{
+	width: $std-width;
+	font-family: $font-type;
+}
+#header_container{
+	opacity: 50%;
+}
+#banner_head_block{
+    width: $header-width;
+	height: 52px;
+	display: block;
+	margin: 34px 0 13px 4px;
+}
+.banner_cont_bg{
+	color: $head-color;
+    position: absolute;
+}
+.banner_cont{
+    position: absolute;
+	padding: 10px 0 0 10px;
+    width: 610px;
+    word-wrap: $word-wrap;
+	color: $head-color;
+	font-family: $font-type-arial;
+    font-size: $font-head-size;
+	font-weight: $font-normal;
+}
+
+/*destination container*/
+#destination_block{	
+	display: block;
+	width: 1005px;
+	height: 405px;
+	margin-left: 5px;
+}
+.select_val{
+	text-align: left;
+	color: $select-color;
+	font-size: $font-select-size;	
+}
+.region_block{ 
+	color: $sub-head-color;
+    font-size: $font-body-size;
+    text-align: left;
+	float: $float-value;
+	width: $select-width;
+	margin-right:20px;
+	padding: 12px;
+}
+.city_block{
+	color: $sub-head-color;
+    font-size: $font-body-size;
+    text-align: left;
+	float: $float-value;
+	width: $select-width;
+	margin-right:20px;
+	padding: 12px;
+}
+.duration_block{
+	color: $sub-head-color;
+    font-size: $font-body-size;
+    text-align: left;
+	float: $float-value;
+	width: $select-width;
+	margin-right:20px;
+	padding: 12px;
+}
+#banner_sub_cont{	
+	background-color: $head-color;
+    border: 1px solid border-color;
+    color: $body-color;
+    font-family: $font-type-arial;
+    font-size: $font-sub-head-size;
+    font-style: $font-normal;
+    height: 22px; 
+	margin: 0 auto 0 42px;
+    padding: 15px 23px;
+    position: absolute;
+    text-align: center;
+    top: 387px;
+    width: 840px;
+}
+
+/*main container*/
+#main_container{
+	display:block;
+	width: 995px;
+	height: $value-auto;
+}
+#main_head{
+	color: $title-color;
+    display: block;
+    float: left;
+    font-family: $font-type-arial;
+    font-size: $font-title-size;
+    height: 22px;
+    margin: 0;
+    padding: 4px;
+    text-align: left;
+    width: 713px;
+}
+.main_contients_name{
+	color: $body-color;
+    font-family: $font-type-arial;
+    font-size: $font-small-size;
+    font-style: $font-normal;
+    font-weight: $font-weight-small;
+    height: 22px;
+    line-height: $font-normal;
+    margin: 3px;
+    padding: 7px 0;
+    text-align: left;
+}
+.continents_val{
+	margin:0 4px;
+}
+#main_content_block{
+	display: block;
+	height: 427px;
+	width: $body-width;
+	margin-bottom: 15px;
+	background-repeat: no-repeat;
+	padding: 7px;
+}
+#main_content_sub_block{
+	float: left; 
+	width: 653px;
+	height: 300px;
+}
+#content_desc_sub_block{
+	display:block; 
+	margin:0 auto; 
+	padding:0;
+}
+.content_head_block{
+	background-image: url("../img/text_-_h1_u240.png");
+    background-repeat: repeat-x;
+    margin-left: 3px;
+    width: 310px;
+	height: 250px;
+	float: left;
+}
+.continent_title{
+	margin: 3px;
+	padding: 5px 10px;
+	color: $head-color;
+    font-family: "Arial Regular","Arial";
+    font-size: 26px;
+    font-style: $font-normal;
+    font-weight: $font-weight-small;
+    line-height: normal;
+    text-align: left;
+}
+.content_dest_block{
+    float: left;
+    height: 250px;
+    margin: 5px 20px;
+    width: 300px;
+	color: $head-color;
+    font-family: $font-type-arial;
+    font-size: $font-sub-head-size;
+    font-style: $font-normal;
+    font-weight: $font-weight-large;
+}
+.head_dest{	
+    width: 300px;
+	color: $head-color;
+    font-family: $font-type-arial;
+    font-size: $font-sub-head-size;
+    font-style: bold;
+    font-weight: $font-weight-large;
+}
+.content_dest{	
+    width: 300px;
+    font-family: $font-type-arial;
+    font-size: $font-body-size;
+    font-style: $font-normal;
+    font-weight: $font-weight-large;
+}
+.head_hotel{
+	color: $head-color;
+    font-family: $font-type-arial;
+    font-size: $font-sub-head-size;
+    font-style: $font-normal;
+    font-weight: $font-weight-large;
+	margin:5px 10px;
+}
+.hotel_card{
+	background-image: url("../img/u266.png");
+    background-repeat: no-repeat;
+    font-family: $font-type-arial;
+    font-size: 14px;
+    height: 70px;
+    margin-bottom: 12px;
+    padding: 53px 0 0 115px;
+    width: 210px;
+    font-style: $font-normal;
+    font-weight: $font-weight-small;
+	color: $body-color;
+}
+.dest_val{ 
+	margin:5px 0; 
+}
+.content_cards_block_head{
+	float:left; 
+	width:300px;
+}
+.content_cards_block{
+	width: 300px;
+	height: 150px;
+}
+.content_desc_block{
+    font-family: $font-type-arial;
+	background-color: $head-color;
+	padding: 10px;
+	width: 300px;
+	height: 90px;
+	color: $black-color;
+	border: 1px solid $border-color;
+	display: inline-block;
+	font-size: $font-mini-size;
+    text-align: left;
+	margin-top: 50px;
+}
+
+/*search page - filter container*/
+#filter_container{}
+.filter_hotels{}
+.filter_hotels_block{}
+.hotel_type{}
+.hotel_head{}
+.hotel_type_val{}
+.hotel_type_rating{}
+.hotel_mini_star{}
+.rating_star{}
+
+.filter_best_for{}
+.best_for{}
+.best_for_head{}
+.best_for_val{}
+.best_for_review{}
+.best_for_head{}
+.best_for_scroller{}
+
+.filter_price_range{}
+.price_range{}
+.price_range_head{}
+.best_for_val{}
+.price_range_offer{}
+.best_for_scroller{}
+.offer_val{}
+
+.facilities{}
+.facilities_head{}
+.facilities_val{}
+
+/*hotel card blocks*/
+#hotel_card_id{}
+.hotel_card_id_img{}
+.hotel_card_id_likes{}
+.hotel_card_id_likes_percent{}
+.hotel_card_id_pics{}
+.hotel_card_id_hotel_name{}
+.hotel_card_id_hotel_loc{}
+.hotel_card_id_hotel_rating{}
+.hotel_card_id_hotel_fac{}
+.hotel_card_id_member_price_label{}
+.hotel_card_id_general_price{}
+.hotel_card_id_member_price{}
+.hotel_card_id_member_price_day{}
+.hotel_card_id_rating{}
+.hotel_card_id_reviews{}
+.hotel_card_id_dates{}
+
+/*footer body container*/
+#footer_container{
+	background-image: url('../img/footer.png');
+	background-repeat: no-repeat;
+	width: 987px;
+	height: 60px;
+	text-align: center;	
+	padding-top: 40px;
+	color: $body-color;
+    font-family: $font-type-arial;
+    font-size: $font-small-size;
+    font-style: $font-normal;
+    font-weight: $font-weight-small;
+    line-height: $font-normal;
+}

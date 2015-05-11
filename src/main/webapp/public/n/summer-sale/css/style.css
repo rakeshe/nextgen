@@ -1,89 +1,259 @@
-/*main body*/
-body{ 
-	margin:0px;
-	background-image:url('../img/bg.png');
-	background-position:center top;
-	background-repeat:no-repeat;
-	background-attachment:scroll;
-	background-size:auto;
-	position:relative;
-	left:-10px;
-	width:986px;
-	margin-left:auto;
-	margin-right:auto;
-}
+body {
+  margin: 0px;
+  background-image: url("../img/bg.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: auto;
+  position: relative;
+  left: -10px;
+  width: 968px;
+  margin-left: auto;
+  margin-right: auto; }
+
+ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none; }
 
 /*main body container*/
-#container{}
-#header_container{}/*header container*/
-#banner_cont{}/*banner content*/
+#container {
+  width: 968px;
+  font-family: "Helvetica,Arial,sans-serif"; }
+
+#header_container {
+  opacity: 50%; }
+
+#banner_head_block {
+  width: 630px;
+  height: 52px;
+  display: block;
+  margin: 34px 0 13px 4px; }
+
+.banner_cont_bg {
+  color: #ffffff;
+  position: absolute; }
+
+.banner_cont {
+  position: absolute;
+  padding: 10px 0 0 10px;
+  width: 610px;
+  word-wrap: break-word;
+  color: #ffffff;
+  font-family: "Arial Regular", "Arial";
+  font-size: 26px;
+  font-weight: normal; }
 
 /*destination container*/
-#destination_block{}
-.region_block{}
-.city_block{}
-.duration_block{}
-#banner_sub_cont{}
+#destination_block {
+  display: block;
+  width: 1005px;
+  height: 405px;
+  margin-left: 5px; }
+
+.select_val {
+  text-align: left;
+  color: #606060;
+  font-size: 14px; }
+
+.region_block {
+  color: #666666;
+  font-size: 16px;
+  text-align: left;
+  float: left;
+  width: 315px;
+  margin-right: 20px;
+  padding: 12px; }
+
+.city_block {
+  color: #666666;
+  font-size: 16px;
+  text-align: left;
+  float: left;
+  width: 315px;
+  margin-right: 20px;
+  padding: 12px; }
+
+.duration_block {
+  color: #666666;
+  font-size: 16px;
+  text-align: left;
+  float: left;
+  width: 315px;
+  margin-right: 20px;
+  padding: 12px; }
+
+#banner_sub_cont {
+  background-color: #ffffff;
+  border: 1px solid border-color;
+  color: #333333;
+  font-family: "Arial Regular", "Arial";
+  font-size: 18px;
+  font-style: normal;
+  height: 22px;
+  margin: 0 auto 0 42px;
+  padding: 15px 23px;
+  position: absolute;
+  text-align: center;
+  top: 387px;
+  width: 840px; }
 
 /*main container*/
-#main_container{}
-#main_head{}
-#main_content_block{}
-.content_head_block{}
-.content_dest_block{}
-.head_dest{}
-.content_dest{}
-.content_cards_block{}
-.content_desc_block{}
+#main_container {
+  display: block;
+  width: 995px;
+  height: auto; }
+
+#main_head {
+  color: #424242;
+  display: block;
+  float: left;
+  font-family: "Arial Regular", "Arial";
+  font-size: 20px;
+  height: 22px;
+  margin: 0;
+  padding: 4px;
+  text-align: left;
+  width: 713px; }
+
+.main_contients_name {
+  color: #333333;
+  font-family: "Arial Regular", "Arial";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  height: 22px;
+  line-height: normal;
+  margin: 3px;
+  padding: 7px 0;
+  text-align: left; }
+
+.continents_val {
+  margin: 0 4px; }
+
+#main_content_block {
+  display: block;
+  height: 427px;
+  width: 987px;
+  margin-bottom: 15px;
+  background-repeat: no-repeat;
+  padding: 7px; }
+
+#main_content_sub_block {
+  float: left;
+  width: 653px;
+  height: 300px; }
+
+#content_desc_sub_block {
+  display: block;
+  margin: 0 auto;
+  padding: 0; }
+
+.content_head_block {
+  background-image: url("../img/text_-_h1_u240.png");
+  background-repeat: repeat-x;
+  margin-left: 3px;
+  width: 310px;
+  height: 250px;
+  float: left; }
+
+.continent_title {
+  margin: 3px;
+  padding: 5px 10px;
+  color: #ffffff;
+  font-family: "Arial Regular","Arial";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left; }
+
+.content_dest_block {
+  float: left;
+  height: 250px;
+  margin: 5px 20px;
+  width: 300px;
+  color: #ffffff;
+  font-family: "Arial Regular", "Arial";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700; }
+
+.head_dest {
+  width: 300px;
+  color: #ffffff;
+  font-family: "Arial Regular", "Arial";
+  font-size: 18px;
+  font-style: bold;
+  font-weight: 700; }
+
+.content_dest {
+  width: 300px;
+  font-family: "Arial Regular", "Arial";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700; }
+
+.head_hotel {
+  color: #ffffff;
+  font-family: "Arial Regular", "Arial";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 5px 10px; }
+
+.hotel_card {
+  background-image: url("../img/u266.png");
+  background-repeat: no-repeat;
+  font-family: "Arial Regular", "Arial";
+  font-size: 14px;
+  height: 70px;
+  margin-bottom: 12px;
+  padding: 53px 0 0 115px;
+  width: 210px;
+  font-style: normal;
+  font-weight: 400;
+  color: #333333; }
+
+.dest_val {
+  margin: 5px 0; }
+
+.content_cards_block_head {
+  float: left;
+  width: 300px; }
+
+.content_cards_block {
+  width: 300px;
+  height: 150px; }
+
+.content_desc_block {
+  font-family: "Arial Regular", "Arial";
+  background-color: #ffffff;
+  padding: 10px;
+  width: 300px;
+  height: 90px;
+  color: #000000;
+  border: 1px solid #cccccc;
+  display: inline-block;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 50px; }
 
 /*search page - filter container*/
-#filter_container{}
-.filter_hotels{}
-.filter_hotels_block{}
-.hotel_type{}
-.hotel_head{}
-.hotel_type_val{}
-.hotel_type_rating{}
-.hotel_mini_star{}
-.rating_star{}
-
-.filter_best_for{}
-.best_for{}
-.best_for_head{}
-.best_for_val{}
-.best_for_review{}
-.best_for_head{}
-.best_for_scroller{}
-
-.filter_price_range{}
-.price_range{}
-.price_range_head{}
-.best_for_val{}
-.price_range_offer{}
-.best_for_scroller{}
-.offer_val{}
-
-.facilities{}
-.facilities_head{}
-.facilities_val{}
-
 /*hotel card blocks*/
-#hotel_card_id{}
-.hotel_card_id_img{}
-.hotel_card_id_likes{}
-.hotel_card_id_likes_percent{}
-.hotel_card_id_pics{}
-.hotel_card_id_hotel_name{}
-.hotel_card_id_hotel_loc{}
-.hotel_card_id_hotel_rating{}
-.hotel_card_id_hotel_fac{}
-.hotel_card_id_member_price_label{}
-.hotel_card_id_general_price{}
-.hotel_card_id_member_price{}
-.hotel_card_id_member_price_day{}
-.hotel_card_id_rating{}
-.hotel_card_id_reviews{}
-.hotel_card_id_dates{}
-
 /*footer body container*/
-#footer_container{}
+#footer_container {
+  background-image: url("../img/footer.png");
+  background-repeat: no-repeat;
+  width: 987px;
+  height: 60px;
+  text-align: center;
+  padding-top: 40px;
+  color: #333333;
+  font-family: "Arial Regular", "Arial";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; }
+
+/*# sourceMappingURL=style.css.map */
