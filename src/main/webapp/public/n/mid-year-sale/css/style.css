@@ -1,0 +1,179 @@
+.nav {
+  height: 57px;
+  background: #FFF; }
+
+.logo {
+  float: left;
+  padding-right: 25px;
+  padding-bottom: 15px; }
+
+.logo-footer {
+  float: left;
+  padding-right: 25px;
+  padding-bottom: 15px; }
+
+.tag-line {
+  font-size: 16px;
+  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: #e80f1e;
+  float: left; }
+
+.user {
+  float: right;
+  width: 490px;
+  text-align: left;
+  padding-top: 12px; }
+
+.member-section {
+  background-image: url("../images/assets/nav-arrow-drop-down.png");
+  background-repeat: no-repeat;
+  background-position: 140px 10px; }
+
+.club-section {
+  float: left;
+  width: 180px; }
+
+.currency-section {
+  float: left;
+  width: 65px; }
+
+.locale-section {
+  float: left;
+  width: 65px; }
+
+.user-id p {
+  line-height: 100%;
+  margin-bottom: 0px; }
+
+.club-id p {
+  line-height: 100%;
+  margin-bottom: 0px; }
+
+.user-id a {
+  text-decoration: none;
+  color: #333; }
+
+.club-id a {
+  text-decoration: none;
+  color: #333; }
+
+.user-member {
+  font-size: 15px;
+  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-weight: 300; }
+
+.user-club-info {
+  font-size: 12px;
+  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-weight: 300; }
+
+.points-token {
+  background-image: url("../images/assets/Reward-Token.gif");
+  background-repeat: no-repeat;
+  background-position: 0px 2px;
+  padding-left: 16px; }
+
+.drop-down-arrow {
+  background-image: url("../images/assets/drop-down-arrow.gif");
+  background-repeat: no-repeat;
+  background-position: 0px 4px;
+  padding-left: 16px; }
+
+.locale-drop-down-arrow {
+  background-image: url("../images/assets/drop-down-arrow.gif");
+  background-repeat: no-repeat;
+  background-position: 0px 16px;
+  padding-left: 16px; }
+
+.user-space {
+  margin-top: 6px; }
+
+/* NAVIGATION - Locale Drop Down Menu */
+.locale-menu {
+  width: 400px;
+  background: #FFF;
+  border: 1px solid #55337e;
+  float: left; }
+
+.locale-list {
+  float: left;
+  padding-left: 0px;
+  margin-bottom: 0px; }
+  .locale-list li {
+    display: block;
+    float: left;
+    width: 44%;
+    list-style: none;
+    padding: 3%;
+    background-color: #FFF; }
+  .locale-list li:hover {
+    display: block;
+    float: left;
+    width: 44%;
+    list-style: none;
+    padding: 3%;
+    background-color: #ebebeb; }
+  .locale-list li a {
+    text-decoration: none;
+    color: #333; }
+
+.flag-pos {
+  float: left;
+  width: 32px;
+  height: 32px;
+  padding-right: 10px; }
+
+.flag-txt-pos {
+  padding-top: 4px; }
+
+/* NAVIGATION - Currency Drop Down Menu */
+.Countries {
+  font-size: 16px;
+  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  margin-bottom: 0px;
+  color: #55337e; }
+
+.currencySelector {
+  padding: 12px; }
+
+.currencySelector ul {
+  margin-bottom: 0px; }
+.currencySelector li {
+  list-style: none; }
+
+.cur-section ul {
+  font-size: 16px;
+  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-weight: 300; }
+.cur-section li {
+  display: block;
+  float: left;
+  width: 94%;
+  list-style: none;
+  padding: 3%;
+  background-color: #55337e;
+  font-size: 14px; }
+.cur-section li:hover {
+  display: block;
+  float: left;
+  width: 94%;
+  list-style: none;
+  padding: 3%;
+  background-color: #ebebeb;
+  font-size: 14px; }
+.cur-section a {
+  text-decoration: none;
+  color: #333; }
+
+.currency-box {
+  width: 690px;
+  border: 1px solid #999;
+  float: left;
+  padding-bottom: 12px; }
+
+.mostUsed li {
+  font-weight: 500; }
+
+/*# sourceMappingURL=style.css.map */
