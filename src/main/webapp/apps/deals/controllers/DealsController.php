@@ -18,13 +18,12 @@ class DealsController extends ControllerBase {
 
     public function initialize() {
 
-        echo 'Hey we are in deal module';
 
     }
 
     public function indexAction() {
 
-        echo '  index..  ';
+      $this->view->pick('default/index/index');
     }
 
 }
