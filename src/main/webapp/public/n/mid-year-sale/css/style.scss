@@ -1,60 +1,14 @@
-$full-width: 100%;
-$general-width: 180px;
-$white-color: #FFF;
-$tag-color: #e80f1e;
-$cur-color: #55337e;
-$cur-hover-color: #ebebeb;
-$font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
-@mixin locale-val($tempWidth,$bgColor){
-	display: block;
-	float: left;
-	width: $tempWidth;
-	list-style:none;
-	padding:3%;
-	background-color:$bgColor; 
-}
-@mixin float-val($value){float:$value;}
-@mixin padd($padRight,$padLeft){	
-	@include float-val(left);
-	padding-right:$padRight;
-	padding-bottom:$padLeft;
-}
-@mixin font-val($fontSize, $fontWeight){
-	font-size:$fontSize;
-	font-family:'Museo Sans',Verdana, Geneva, sans-serif;
-	font-weight:$fontWeight;
-}
-@mixin font-val2(){	
-	color: $tag-color;
-	@include float-val(left);
-}
-@mixin img-val($imgLink, $pos1, $pos2, $padLeft){
-	background-image:url($imgLink);
-	background-repeat:no-repeat;	
-	background-position:$pos1 $pos2;
-	@if $padLeft != 0px{padding-left: $padLeft;}
-}
-@mixin general-width($general-width-val){
-	@include float-val(left);
-	width: $general-width-val;
-}
-@mixin text-deco($colorVal){
-	text-decoration:none;
-	color:$colorVal;
-}
-@mixin user-val(){	
-	line-height:100%;
-	margin-bottom:0px;
-}
+@import "global.scss";
 .nav{
 	height:57px;
 	background:$white-color;
 }
-.logo {	@include padd(25px, 15px); }
-.logo-footer { @include padd(25px, 15px); }
+@each $logoVal in logo, logo-footer{
+	.#{$logoVal}{	@include padd(left, 0, 25px, 15px, 0);	}
+}
 .tag-line {
-	@include font-val(16px, 300);
-	@include font-val2();
+	@include font-val(16px, 300, 0, 0);
+	@include font-val2($tag-color, left);
 }
 .user {
 	float:right;
@@ -62,7 +16,7 @@ $font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
 	text-align:left;
 	padding-top:12px;
 }
-.member-section { @include img-val('../images/assets/nav-arrow-drop-down.png', 140px, 10px, 0px); }
+.member-section { @include img-val('../images/assets/nav-arrow-drop-down.png', 140px, 10px, 0, 0); }
 .club-section {	@include general-width(180px); }
 .currency-section {	@include general-width(65px); }
 .locale-section { @include general-width(65px); }
@@ -70,28 +24,26 @@ $font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
   .#{$valueTemp}-id p{ @include user-val(); }
 }
 @each $valueTemp2 in user, club {
-  .#{$valueTemp2}-id a{ @include text-deco(#333); }
+  .#{$valueTemp2}-id a{ @include text-deco(#333, none); }
 }
-.user-member { @include font-val(15px, 300); }
-.user-club-info { @include font-val(12px, 300); }
-.points-token {	@include img-val('../images/assets/Reward-Token.gif', 0px, 2px, 16px); }
-.drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px, 4px, 16px); }
-.locale-drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px, 16px, 16px); }
+.user-member { @include font-val(15px, 300, 0, 0); }
+.user-club-info { @include font-val(12px, 300, 0, 0); }
+.points-token {	@include img-val('../images/assets/Reward-Token.gif', 0px, 2px, 16px, 0); }
+.drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px, 4px, 16px, 0); }
+.locale-drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px, 16px, 16px, 0); }
 .user-space { margin-top:6px; }
 /* NAVIGATION - Locale Drop Down Menu */
-.locale-menu {
-	width:400px;
-	background:#FFF;
-	border:1px solid #55337e;
+.locale-menu {	
+	@include border-bg-width-val('#55337e', '#FFF', 400px);
 	@include float-val(left);
 }
 .locale-list {
 	@include float-val(left);
 	padding-left:0px;
 	margin-bottom:0px;
-	li { @include locale-val(44%, #FFF); }
-	li:hover  {	@include locale-val(44%, #ebebeb);}
-	li a {	@include text-deco(#333);}
+	li { @include locale-val(44%, #FFF, 3%); }
+	li:hover  {	@include locale-val(44%, #ebebeb, 3%);}
+	li a {	@include text-deco(#333, none);}
 }
 .flag-pos {
 	float:left;
@@ -102,7 +54,7 @@ $font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
 .flag-txt-pos {	padding-top:4px;}
 /* NAVIGATION - Currency Drop Down Menu */
 .Countries {
-	@include font-val(16px, 300);
+	@include font-val(16px, 300, 0, 0);
 	margin-bottom:0px;
 	color: $cur-color;
 }
@@ -112,21 +64,299 @@ ul {margin-bottom:0px;}
 li {list-style:none;}
 }
 .cur-section{
-ul {@include font-val(16px, 300);}
+ul {@include font-val(16px, 300, 0, 0);}
 li {
-	@include locale-val(94%, $cur-color);
+	@include locale-val(94%, $cur-color, 3%);
 	font-size:14px;
 }
 li:hover {
-	@include locale-val(94%, $cur-hover-color);
+	@include locale-val(94%, $cur-hover-color, 3%);
 	font-size:14px;
 }
-a {	@include text-deco(#333);}
+a {	@include text-deco(#333, none);}
 }
-.currency-box {
-	width:690px;
-	border:1px solid #999;
+.currency-box {	
+	@include border-bg-width-val('#999', 0,690px);
 	float:left;
 	padding-bottom:12px;
 }
 .mostUsed li {	font-weight:500; }
+/* NAVIGATION - XXXX Drop Down Menu */
+/* HERO */
+.hero {
+	@include img-val('../images/backgrounds/poolside.jpg', top, center, 0, 0);
+	background-size: cover;
+	h1 {
+		@include font-val(28px, normal, 0, 0);
+		@include padd(0, 20px, 0, 20px, 0);
+		color:#FFF;
+		line-height:100%;
+	}
+}
+.hero-message {	padding-top:$padding-top; }
+.hero-txt-bg {
+	@include padd(0, 16px, 20px, 16px, 20px);
+	background: rgba(232, 15, 30, 0.8);
+	background-color: rgba(232, 15, 30, 0.8);	
+}
+.hero-text {
+	@include font-val(18px, 200, 0, 0);
+	color:$cur-color;
+	margin-top:24px;
+	margin-bottom:24px;
+	padding:16px;
+	background:#FFF;
+	border:2px solid $cur-color;
+	text-align:center;
+}
+.hero-space { height:305px; }
+/* SORT BUTTON */
+.sort-row {
+	margin-top:24px;
+	margin-bottom:24px;
+}
+.sort-by {
+	float:left;
+	width:10%;
+	p {		
+		margin:0px;
+		@include padd(0, 11px, 0, 10px, 0);
+		@include font-val(16px, normal, '#55337e', 0);
+		background-color:#ffffff;
+		display:block;
+		text-align:center;
+		width:100%;
+	}
+}
+.sort-it {
+	float:left;
+	width:22.5%;
+}
+.sort-button {
+	@include locale-val(90%,'#ebebeb', '11px 0 10px 0');
+	@include font-val(16px, normal, 0, 0);
+	@include img-val('../images/assets/down-arrow-purple.png', center, right, 0, 0);
+	@include text-deco(#55337e, none);
+	@include browser-val(4px, 4px);
+	text-align:center;
+	margin-left:10%;
+	border-radius: 4px;
+}
+/* FILTER BOX */
+.filter { @include img-val('../images/assets/filter-box-arrow.png', 30px, 0px, 0, 4px); }
+.filter-box {
+	background-color:#d6dddc;
+	padding-top:12px;
+	margin-top:12px;
+	overflow:visible;
+}
+.filter-container {	
+	margin:0px 12px;
+	h3 {
+		@include font-val(18px, 300, '#55337e', 0);
+		margin-bottom:8px;
+	}
+	p {	@include font-val(14px, 300, '#333', 0); }
+}
+.range {
+	@include font-val(14px, 300, 0, 0);
+	@include text-align-val(100%, '0 0 16px 0', center);
+}
+.range-input {
+	@include font-val(14px, 300, 0, 0);
+	@include text-align-val(40px, '8px', center);
+}
+/* UPSELL */
+.upsell { 
+	margin:24px 0; 
+	ul {
+		@include font-val(14px, 200, 0, 0);
+		@include upsell-val(none, right, '14px 0 0 0px');
+		margin-bottom:0 !important;
+	}
+	li { @include upsell-val(none, left, '0 0 0 10px');	}
+	a { @include text-deco(#000, underline); }
+}
+/* HOTEL CARDS */ 
+/* Four card width */
+.hotelcards	{ @include general-width(25%); margin-left: 0; }
+.card-img {	width:100%; }
+.card-info { margin:16px; }
+@each $hotelVal in hotel-name, hotel-city, hotel-price{
+	.#{$hotelVal}{	 
+		@if $hotelVal == hotel-name { @include font-val(16px, 300, '#55337e', 0); }
+		@else if $hotelVal == hotel-city { @include font-val(14px, 300, '#333', 0); }
+		@else if $hotelVal == hotel-price { @include font-val(32px, 300, '#e80f1e', 0); }
+	}
+}
+/* DESTINATIONS */
+.destination { 
+	padding:16px;
+	h3 {
+		@include font-val(28px, normal, '#FFF', 100%);
+		padding:20px 0;
+	}
+	h4 { @include font-val(18px, 300, '#FFF', 0); }
+	ol {
+		@include font-val(16px, 300, '#FFF', 100%);
+		padding-left:16px;
+		margin-top:0px;
+	}
+	ol li {	padding:0 0 8px 24px; }
+}
+.destination-txt-bg {
+	background: rgba(232, 15, 30, 0.8);
+	background-color: rgba(232, 15, 30, 0.8);
+	padding: 16px 20px;
+}
+.destination-info {
+	@include font-val(14px, 300, '#55337e', 18px); 
+	background-color:#FFF;
+	border:2px solid #55337e;
+	padding:16px;
+	margin-top:265px;
+}
+.temp-hotel-card {
+	@include font-val(14px, 300, '#FFF', 0); 
+	@include border-bg-width-val('#FFF', '#ccc', 100%);
+	padding: 50px 0;
+	margin-bottom:24px;
+	text-align:center;
+}
+.africa {
+	@include img-val('../images/backgrounds/destination-placeholder.jpg', top, center, 0, 0);
+	background-size:cover;
+	margin-bottom:24px;
+}
+/* FOOTER */
+.footer {
+	@include font-val(11px, normal, '#FFF', 16px);
+	background-color:#363636;
+	ul {
+		list-style:none;
+		padding-left:0;
+		margin-bottom:24px;
+	}
+	a {	color:#FFF;	}
+}
+.footer-intro {	padding:18px 0 12px; }
+.f-divide {
+	border-top: 1px #676665 solid;
+	padding-top:24px;
+}
+.f-head { @include font-val(13px, 300, 0, 0); }
+.f-box {
+	float:left;
+	width:50%;
+}
+.social-links {
+	li { @include upsell-val(0, left, "12px 10px 0 0");	}
+}
+.subscribe {
+	float:left;
+	width:100%;
+	margin-top:12px 0 24px 0;
+}
+
+.subscribe-input {
+	width:100%;
+	float:left;
+	background:#545454;
+	@include browser-val(32px, 32px);
+	border-radius: 32px;
+	border:0;
+	height:35px;
+}
+.submit-email {
+	@include font-val(13px, 300, '#333', 0);
+	@include browser-val(32px, 32px);
+	margin-top:3px;
+	background-color:#FFF;
+	border:0;
+	padding: 8px 24px; 
+	border-radius: 32px;
+	position: absolute;
+    right: 20px;
+    z-index: 1;
+}
+.accreditation { @include upsell-val(0, left, '0 16px 16px 0'); }
+/* DROP DOWN MENU CODING */
+.dd-label {	padding: 8px 0 8px 12px; }
+.wrapper-dropdown-1 {
+	@include text-align-val(100%, '0 auto', 0);
+	@include font-val(16px, 300, 0, 0);
+    /* Size and position */
+    position: relative; 
+    /* Styles */
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+	margin-bottom:12px;
+	:after {
+		content: "";
+		width: 0;
+		height: 0;
+		position: absolute;
+		right: 16px;
+		top: 50%;
+		margin-top: -3px;
+		border-width: 6px 6px 0 6px;
+		border-style: solid;
+		border-color: #55337e transparent;
+	}
+	.dropdown{
+	  /* Size & position */
+		position: absolute;
+		top: 100%;
+		left: 0px;
+		right: 0px;
+		z-index:1;
+
+		/* Styles */
+		background: white;
+		-webkit-transition: all 0.3s ease-out;
+		-moz-transition: all 0.3s ease-out;
+		-ms-transition: all 0.3s ease-out;
+		-o-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+		list-style: none;
+		padding-left:0px;
+
+		/* Hiding */
+		opacity: 0;
+		pointer-events: none;
+	}.dropdown li{
+		a {
+		display: block;
+		text-decoration: none;
+		color: #333;
+		padding: 12px;
+		-webkit-transition: all 0.3s ease-out;
+		-moz-transition: all 0.3s ease-out;
+		-ms-transition: all 0.3s ease-out;
+		-o-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+		}		
+		:hover a {
+			color: #55337e;
+			background:#e4e3e3;
+		}
+	}.active:after {
+		border-width: 0px 6px 6px 6px;
+		border-style: solid;
+		border-color: #55337e transparent;
+	}.active .dropdown {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+.no-opacity .wrapper-dropdown-1 .dropdown,
+.no-pointerevents .wrapper-dropdown-1 .dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+.no-opacity .wrapper-dropdown-1.active .dropdown,
+.no-pointerevents .wrapper-dropdown-1.active .dropdown {
+    display: block;
+}

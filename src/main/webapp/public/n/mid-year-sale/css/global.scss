@@ -1,0 +1,76 @@
+$full-width: 100%;
+$general-width: 180px;
+$white-color: #FFF;
+$tag-color: #e80f1e;
+$cur-color: #55337e;
+$cur-hover-color: #ebebeb;
+$font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
+$padding-top: 80px;
+$padding-right: 80px;
+$padding-bottom: 80px;
+$padding-left: 80px;
+@mixin locale-val($tempWidth,$bgColor, $padVal){
+	display: block;
+	float: left;
+	width: $tempWidth;
+	list-style:none;
+	padding:$padVal;
+	background-color:$bgColor; 
+}
+@mixin float-val($value){float:$value;}
+@mixin padd($floatVal, $padTop,$padRight, $padBot,$padLeft){
+	padding-top:$padTop;
+	padding-right:$padRight;
+	padding-bottom:$padBot;
+	padding-left:$padLeft;
+	@if $floatVal != 0{	@include float-val($floatVal); }
+}
+@mixin font-val($fontSize, $fontWeight, $colorVal, $lineHeight){
+	font-size:$fontSize;
+	font-family: $font-family-val;
+	font-weight:$fontWeight;
+	@if $colorVal!= 0{ color: $colorVal; }
+	@if $lineHeight!= 0{ line-height: $lineHeight; }
+}
+@mixin font-val2($colorVal, $floatVal){	
+	color: $colorVal;
+	@include float-val($floatVal);
+}
+@mixin img-val($imgLink, $pos1, $pos2, $padLeft, $padTop){
+	background-image: url($imgLink);
+	background-repeat: no-repeat;	
+	background-position: $pos1 $pos2;
+	@if $padLeft != 0{ padding-left: $padLeft; }
+	@if $padTop != 0{ padding-top: $padTop; }
+}
+@mixin general-width($general-width-val){
+	@include float-val(left);
+	width: $general-width-val;
+}
+@mixin text-deco($colorVal, $decoVal){
+	text-decoration: $decoVal;
+	color: $colorVal;
+}
+@mixin user-val(){	
+	line-height: 100%;
+	margin-bottom: 0px;
+}
+@mixin browser-val($webVal, $mozVal){	
+	-webkit-border-radius: $webVal;
+	-moz-border-radius: $mozVal;
+}
+@mixin text-align-val($widthVal, $marginVal, $textAlign){	
+	width: $widthVal;
+	margin: marginVal;
+	@if $textAlign != 0{ text-align: $textAlign; }
+}
+@mixin upsell-val($listVal, $floatVal, $paddVal){
+	float: $floatVal;
+	padding: $paddVal;
+	@if $listVal!=0 { list-style: $listVal; }
+}
+@mixin border-bg-width-val($borderVal, $bgVal, $widthVal){
+	border:1px solid $borderVal;
+	@if $bgVal != 0{ background:$bgVal; }
+	@if $widthVal != 0{	width:$widthVal; }
+}

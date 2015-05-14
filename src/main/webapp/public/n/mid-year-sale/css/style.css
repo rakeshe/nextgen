@@ -3,18 +3,22 @@
   background: #FFF; }
 
 .logo {
-  float: left;
+  padding-top: 0;
   padding-right: 25px;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  padding-left: 0;
+  float: left; }
 
 .logo-footer {
-  float: left;
+  padding-top: 0;
   padding-right: 25px;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  padding-left: 0;
+  float: left; }
 
 .tag-line {
   font-size: 16px;
-  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300;
   color: #e80f1e;
   float: left; }
@@ -60,12 +64,12 @@
 
 .user-member {
   font-size: 15px;
-  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300; }
 
 .user-club-info {
   font-size: 12px;
-  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300; }
 
 .points-token {
@@ -91,9 +95,9 @@
 
 /* NAVIGATION - Locale Drop Down Menu */
 .locale-menu {
+  border: 1px solid "#55337e";
+  background: "#FFF";
   width: 400px;
-  background: #FFF;
-  border: 1px solid #55337e;
   float: left; }
 
 .locale-list {
@@ -130,7 +134,7 @@
 /* NAVIGATION - Currency Drop Down Menu */
 .Countries {
   font-size: 16px;
-  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300;
   margin-bottom: 0px;
   color: #55337e; }
@@ -145,7 +149,7 @@
 
 .cur-section ul {
   font-size: 16px;
-  font-family: 'Museo Sans',Verdana, Geneva, sans-serif;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300; }
 .cur-section li {
   display: block;
@@ -168,12 +172,408 @@
   color: #333; }
 
 .currency-box {
+  border: 1px solid "#999";
   width: 690px;
-  border: 1px solid #999;
   float: left;
   padding-bottom: 12px; }
 
 .mostUsed li {
   font-weight: 500; }
+
+/* NAVIGATION - XXXX Drop Down Menu */
+/* HERO */
+.hero {
+  background-image: url("../images/backgrounds/poolside.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover; }
+  .hero h1 {
+    font-size: 28px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: normal;
+    padding-top: 20px;
+    padding-right: 0;
+    padding-bottom: 20px;
+    padding-left: 0;
+    color: #FFF;
+    line-height: 100%; }
+
+.hero-message {
+  padding-top: 80px; }
+
+.hero-txt-bg {
+  padding-top: 16px;
+  padding-right: 20px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  background: rgba(232, 15, 30, 0.8);
+  background-color: rgba(232, 15, 30, 0.8); }
+
+.hero-text {
+  font-size: 18px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 200;
+  color: #55337e;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #FFF;
+  border: 2px solid #55337e;
+  text-align: center; }
+
+.hero-space {
+  height: 305px; }
+
+/* SORT BUTTON */
+.sort-row {
+  margin-top: 24px;
+  margin-bottom: 24px; }
+
+.sort-by {
+  float: left;
+  width: 10%; }
+  .sort-by p {
+    margin: 0px;
+    padding-top: 11px;
+    padding-right: 0;
+    padding-bottom: 10px;
+    padding-left: 0;
+    font-size: 16px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: normal;
+    color: "#55337e";
+    background-color: #ffffff;
+    display: block;
+    text-align: center;
+    width: 100%; }
+
+.sort-it {
+  float: left;
+  width: 22.5%; }
+
+.sort-button {
+  display: block;
+  float: left;
+  width: 90%;
+  list-style: none;
+  padding: "11px 0 10px 0";
+  background-color: "#ebebeb";
+  font-size: 16px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  background-image: url("../images/assets/down-arrow-purple.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+  text-decoration: none;
+  color: #55337e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  text-align: center;
+  margin-left: 10%;
+  border-radius: 4px; }
+
+/* FILTER BOX */
+.filter {
+  background-image: url("../images/assets/filter-box-arrow.png");
+  background-repeat: no-repeat;
+  background-position: 30px 0px;
+  padding-top: 4px; }
+
+.filter-box {
+  background-color: #d6dddc;
+  padding-top: 12px;
+  margin-top: 12px;
+  overflow: visible; }
+
+.filter-container {
+  margin: 0px 12px; }
+  .filter-container h3 {
+    font-size: 18px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    color: "#55337e";
+    margin-bottom: 8px; }
+  .filter-container p {
+    font-size: 14px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    color: "#333"; }
+
+.range {
+  font-size: 14px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  width: 100%;
+  margin: marginVal;
+  text-align: center; }
+
+.range-input {
+  font-size: 14px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  width: 40px;
+  margin: marginVal;
+  text-align: center; }
+
+/* UPSELL */
+.upsell {
+  margin: 24px 0; }
+  .upsell ul {
+    font-size: 14px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 200;
+    float: right;
+    padding: "14px 0 0 0px";
+    list-style: none;
+    margin-bottom: 0 !important; }
+  .upsell li {
+    float: left;
+    padding: "0 0 0 10px";
+    list-style: none; }
+  .upsell a {
+    text-decoration: underline;
+    color: #000; }
+
+/* HOTEL CARDS */
+/* Four card width */
+.hotelcards {
+  float: left;
+  width: 25%;
+  margin-left: 0; }
+
+.card-img {
+  width: 100%; }
+
+.card-info {
+  margin: 16px; }
+
+.hotel-name {
+  font-size: 16px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#55337e"; }
+
+.hotel-city {
+  font-size: 14px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#333"; }
+
+.hotel-price {
+  font-size: 32px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#e80f1e"; }
+
+/* DESTINATIONS */
+.destination {
+  padding: 16px; }
+  .destination h3 {
+    font-size: 28px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: normal;
+    color: "#FFF";
+    line-height: 100%;
+    padding: 20px 0; }
+  .destination h4 {
+    font-size: 18px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    color: "#FFF"; }
+  .destination ol {
+    font-size: 16px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    color: "#FFF";
+    line-height: 100%;
+    padding-left: 16px;
+    margin-top: 0px; }
+  .destination ol li {
+    padding: 0 0 8px 24px; }
+
+.destination-txt-bg {
+  background: rgba(232, 15, 30, 0.8);
+  background-color: rgba(232, 15, 30, 0.8);
+  padding: 16px 20px; }
+
+.destination-info {
+  font-size: 14px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#55337e";
+  line-height: 18px;
+  background-color: #FFF;
+  border: 2px solid #55337e;
+  padding: 16px;
+  margin-top: 265px; }
+
+.temp-hotel-card {
+  font-size: 14px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#FFF";
+  border: 1px solid "#FFF";
+  background: "#ccc";
+  width: 100%;
+  padding: 50px 0;
+  margin-bottom: 24px;
+  text-align: center; }
+
+.africa {
+  background-image: url("../images/backgrounds/destination-placeholder.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  margin-bottom: 24px; }
+
+/* FOOTER */
+.footer {
+  font-size: 11px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: normal;
+  color: "#FFF";
+  line-height: 16px;
+  background-color: #363636; }
+  .footer ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 24px; }
+  .footer a {
+    color: #FFF; }
+
+.footer-intro {
+  padding: 18px 0 12px; }
+
+.f-divide {
+  border-top: 1px #676665 solid;
+  padding-top: 24px; }
+
+.f-head {
+  font-size: 13px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300; }
+
+.f-box {
+  float: left;
+  width: 50%; }
+
+.social-links li {
+  float: left;
+  padding: "12px 10px 0 0"; }
+
+.subscribe {
+  float: left;
+  width: 100%;
+  margin-top: 12px 0 24px 0; }
+
+.subscribe-input {
+  width: 100%;
+  float: left;
+  background: #545454;
+  -webkit-border-radius: 32px;
+  -moz-border-radius: 32px;
+  border-radius: 32px;
+  border: 0;
+  height: 35px; }
+
+.submit-email {
+  font-size: 13px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  color: "#333";
+  -webkit-border-radius: 32px;
+  -moz-border-radius: 32px;
+  margin-top: 3px;
+  background-color: #FFF;
+  border: 0;
+  padding: 8px 24px;
+  border-radius: 32px;
+  position: absolute;
+  right: 20px;
+  z-index: 1; }
+
+.accreditation {
+  float: left;
+  padding: "0 16px 16px 0"; }
+
+/* DROP DOWN MENU CODING */
+.dd-label {
+  padding: 8px 0 8px 12px; }
+
+.wrapper-dropdown-1 {
+  width: 100%;
+  margin: marginVal;
+  font-size: 16px;
+  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+  font-weight: 300;
+  /* Size and position */
+  position: relative;
+  /* Styles */
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 12px; }
+  .wrapper-dropdown-1 :after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #55337e transparent; }
+  .wrapper-dropdown-1 .dropdown {
+    /* Size & position */
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    /* Styles */
+    background: white;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    list-style: none;
+    padding-left: 0px;
+    /* Hiding */
+    opacity: 0;
+    pointer-events: none; }
+  .wrapper-dropdown-1 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 12px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
+  .wrapper-dropdown-1 .dropdown li :hover a {
+    color: #55337e;
+    background: #e4e3e3; }
+  .wrapper-dropdown-1 .active:after {
+    border-width: 0px 6px 6px 6px;
+    border-style: solid;
+    border-color: #55337e transparent; }
+  .wrapper-dropdown-1 .active .dropdown {
+    opacity: 1;
+    pointer-events: auto; }
+
+.no-opacity .wrapper-dropdown-1 .dropdown,
+.no-pointerevents .wrapper-dropdown-1 .dropdown {
+  display: none;
+  opacity: 1;
+  /* If opacity support but no pointer-events support */
+  pointer-events: auto;
+  /* If pointer-events support but no pointer-events support */ }
+
+.no-opacity .wrapper-dropdown-1.active .dropdown,
+.no-pointerevents .wrapper-dropdown-1.active .dropdown {
+  display: block; }
 
 /*# sourceMappingURL=style.css.map */
