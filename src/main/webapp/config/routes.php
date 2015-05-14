@@ -197,6 +197,21 @@ $router->add(
     )
 );
 
+/**
+ * Deals module
+ */
+
+$router->add(
+    '/n/deals/:params',
+    array(
+        "params"       => 1,
+        "controller"   => 'deals',
+        "action"       => 'index',
+        'module'       => 'deals',
+        'namespace'    => 'HC\Deals\Controllers\\',
+    )
+);
+
 
 /**
  * API Routers
