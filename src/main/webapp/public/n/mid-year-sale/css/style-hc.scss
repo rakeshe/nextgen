@@ -1,5 +1,5 @@
 @import "global.scss";
-.nav{
+.nav{ 
 	height:57px;
 	background:$white-color;
 }
@@ -67,10 +67,10 @@ li { list-style:none; }
 	li {
 		@include locale-val(94%, $cur-color, 3%, block, left, none);
 		font-size:14px;
-	}
-	li:hover {
-		@include locale-val(94%, $cur-hover-color, 3%, block, left, none);
-		font-size:14px;
+		&:hover {
+			@include locale-val(94%, $cur-hover-color, 3%, block, left, none);
+			font-size:14px;
+		}
 	}
 	a {	@include text-deco(#333, none);}
 }

@@ -1,14 +1,4 @@
-$full-width: 100%;
-$general-width: 180px;
-$white-color: #FFF;
-$tag-color: #e80f1e;
-$cur-color: #55337e;
-$cur-hover-color: #ebebeb;
-$font-family-val: 'Museo Sans',Verdana, Geneva, sans-serif;
-$padding-top: 80px;
-$padding-right: 80px;
-$padding-bottom: 80px;
-$padding-left: 80px;
+@import 'global-variable.scss';
 @mixin locale-val($tempWidth,$bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
 	width: $tempWidth;
 	background-color: $bgColor; 
@@ -17,7 +7,7 @@ $padding-left: 80px;
 	@if $floatVal != 0{ float: $floatVal; }
 	@if $listStyleVal != 0{ list-style: $listStyleVal; }
 }
-@mixin float-val($value){float:$value;}
+@mixin float-val($value){ float:$value; }
 @mixin padd($floatVal, $padVal){
 	padding: $padVal;
 	@if $floatVal != 0{	@include float-val($floatVal); }
@@ -88,4 +78,11 @@ $padding-left: 80px;
 	-ms-transition: all 0.3s ease-out;
 	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
+}
+@mixin wid-pad-val($widthVal, $padVal, $marginVal, $bordSizeVal, $floatVal){
+	@if $widthVal != 0{ width: $widthVal; }
+	@if $padVal != 0{ padding: $padVal; }
+	@if $marginVal != 0{ margin: $marginVal; }
+	@if $bordSizeVal != 0{ box-sizing: $bordSizeVal; }
+	@if $floatVal != 0{ float: $floatVal; }
 }

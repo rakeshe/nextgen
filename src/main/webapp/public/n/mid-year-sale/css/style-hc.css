@@ -153,14 +153,14 @@
   float: left;
   list-style: none;
   font-size: 14px; }
-.cur-section li:hover, .cur-section .footer ul:hover, .footer .cur-section ul:hover, .cur-section .wrapper-dropdown-1 .dropdown:hover, .wrapper-dropdown-1 .cur-section .dropdown:hover {
-  width: 94%;
-  background-color: #ebebeb;
-  padding: 3%;
-  display: block;
-  float: left;
-  list-style: none;
-  font-size: 14px; }
+  .cur-section li:hover, .cur-section .footer ul:hover, .footer .cur-section ul:hover, .cur-section .wrapper-dropdown-1 .dropdown:hover, .wrapper-dropdown-1 .cur-section .dropdown:hover {
+    width: 94%;
+    background-color: #ebebeb;
+    padding: 3%;
+    display: block;
+    float: left;
+    list-style: none;
+    font-size: 14px; }
 .cur-section a {
   text-decoration: none;
   color: #333; }
