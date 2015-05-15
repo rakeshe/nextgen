@@ -26,7 +26,7 @@
 .member-section {
   background-image: url("../images/assets/nav-arrow-drop-down.png");
   background-repeat: no-repeat;
-  background-position: 140px 10px; }
+  background-position: "140px 10px"; }
 
 .club-section {
   float: left;
@@ -69,19 +69,19 @@
 .points-token {
   background-image: url("../images/assets/Reward-Token.gif");
   background-repeat: no-repeat;
-  background-position: 0px 2px;
+  background-position: "0px 2px";
   padding-left: 16px; }
 
 .drop-down-arrow {
   background-image: url("../images/assets/drop-down-arrow.gif");
   background-repeat: no-repeat;
-  background-position: 0px 4px;
+  background-position: "0px 4px";
   padding-left: 16px; }
 
 .locale-drop-down-arrow {
   background-image: url("../images/assets/drop-down-arrow.gif");
   background-repeat: no-repeat;
-  background-position: 0px 16px;
+  background-position: "0px 16px";
   padding-left: 16px; }
 
 .user-space {
@@ -179,7 +179,7 @@
 .hero {
   background-image: url("../images/backgrounds/poolside.jpg");
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: "top center";
   background-size: cover; }
   .hero h1 {
     font-size: 28px;
@@ -188,32 +188,27 @@
     padding: "20px 0 20px 0";
     color: #FFF;
     line-height: 100%; }
-
-.hero-message {
-  padding-top: 80px; }
-
-.hero-txt-bg {
-  padding: "16px 20px 16px 20px";
-  background: rgba(232, 15, 30, 0.8);
-  background-color: rgba(232, 15, 30, 0.8); }
-
-.hero-text {
-  font-size: 18px;
-  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
-  font-weight: 200;
-  border: "2px solid $cur-color";
-  background: "#FFF";
-  color: #55337e;
-  padding: 16px;
-  text-align: center; }
-
-.hero-space {
-  height: 305px; }
+  .hero-message {
+    padding-top: 80px; }
+  .hero-txt-bg {
+    padding: "16px 20px 16px 20px";
+    background: rgba(232, 15, 30, 0.8);
+    background-color: rgba(232, 15, 30, 0.8); }
+  .hero-text {
+    font-size: 18px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 200;
+    border: "2px solid $cur-color";
+    background: "#FFF";
+    color: #55337e;
+    padding: 16px;
+    text-align: center; }
+  .hero-space {
+    height: 305px; }
 
 /* SORT BUTTON */
 .sort-row, .hero-text {
   margin: 24px 0; }
-
 .sort-by {
   float: left;
   width: 10%; }
@@ -228,11 +223,9 @@
     display: block;
     margin: 0px;
     text-align: center; }
-
 .sort-it {
   float: left;
   width: 22.5%; }
-
 .sort-button {
   width: 90%;
   background-color: "#ebebeb";
@@ -245,7 +238,7 @@
   font-weight: normal;
   background-image: url("../images/assets/down-arrow-purple.png");
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: "center right";
   text-decoration: none;
   color: #55337e;
   -webkit-border-radius: 4px;
@@ -258,28 +251,26 @@
 .filter {
   background-image: url("../images/assets/filter-box-arrow.png");
   background-repeat: no-repeat;
-  background-position: 30px 0px;
+  background-position: "30px 0px";
   padding-top: 4px; }
-
-.filter-box {
-  background-color: #d6dddc;
-  padding-top: 12px;
-  margin-top: 12px;
-  overflow: visible; }
-
-.filter-container {
-  margin: 0px 12px; }
-  .filter-container h3 {
-    font-size: 18px;
-    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
-    font-weight: 300;
-    color: "#55337e";
-    margin-bottom: 8px; }
-  .filter-container p {
-    font-size: 14px;
-    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
-    font-weight: 300;
-    color: "#333"; }
+  .filter-box {
+    background-color: #d6dddc;
+    padding-top: 12px;
+    margin-top: 12px;
+    overflow: visible; }
+  .filter-container {
+    margin: 0px 12px; }
+    .filter-container h3 {
+      font-size: 18px;
+      font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+      font-weight: 300;
+      color: "#55337e";
+      margin-bottom: 8px; }
+    .filter-container p {
+      font-size: 14px;
+      font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+      font-weight: 300;
+      color: "#333"; }
 
 .range {
   font-size: 14px;
@@ -288,14 +279,13 @@
   width: 100%;
   margin: marginVal;
   text-align: center; }
-
-.range-input {
-  font-size: 14px;
-  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
-  font-weight: 300;
-  width: 40px;
-  margin: marginVal;
-  text-align: center; }
+  .range-input {
+    font-size: 14px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    width: 40px;
+    margin: marginVal;
+    text-align: center; }
 
 /* UPSELL */
 .upsell {
@@ -372,22 +362,20 @@
     margin-top: 0px; }
   .destination ol li, .destination ol .footer ul, .footer .destination ol ul, .destination ol .wrapper-dropdown-1 .dropdown, .wrapper-dropdown-1 .destination ol .dropdown {
     padding: 0 0 8px 24px; }
-
-.destination-txt-bg {
-  background: rgba(232, 15, 30, 0.8);
-  background-color: rgba(232, 15, 30, 0.8);
-  padding: 16px 20px; }
-
-.destination-info {
-  font-size: 14px;
-  font-family: "Museo Sans", Verdana, Geneva, sans-serif;
-  font-weight: 300;
-  color: "#55337e";
-  line-height: 18px;
-  border: "2px solid #55337e";
-  background: "#FFF";
-  padding: 16px;
-  margin-top: 265px; }
+  .destination-txt-bg {
+    background: rgba(232, 15, 30, 0.8);
+    background-color: rgba(232, 15, 30, 0.8);
+    padding: 16px 20px; }
+  .destination-info {
+    font-size: 14px;
+    font-family: "Museo Sans", Verdana, Geneva, sans-serif;
+    font-weight: 300;
+    color: "#55337e";
+    line-height: 18px;
+    border: "2px solid #55337e";
+    background: "#FFF";
+    padding: 16px;
+    margin-top: 265px; }
 
 .temp-hotel-card {
   font-size: 14px;
@@ -404,7 +392,7 @@
 .africa {
   background-image: url("../images/backgrounds/destination-placeholder.jpg");
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: "top center";
   background-size: cover;
   margin-bottom: 24px; }
 
@@ -421,19 +409,16 @@
     margin-bottom: 24px; }
   .footer a {
     color: #FFF; }
-
-.footer-intro {
-  padding: 18px 0 12px; }
+  .footer-intro {
+    padding: 18px 0 12px; }
 
 .f-divide {
   border-top: 1px #676665 solid;
   padding-top: 24px; }
-
 .f-head {
   font-size: 13px;
   font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300; }
-
 .f-box {
   float: left;
   width: 50%; }
@@ -446,16 +431,15 @@
   float: left;
   width: 100%;
   margin-top: 12px 0 24px 0; }
-
-.subscribe-input {
-  width: 100%;
-  float: left;
-  background: #545454;
-  -webkit-border-radius: 32px;
-  -moz-border-radius: 32px;
-  border-radius: 32px;
-  border: 0;
-  height: 35px; }
+  .subscribe-input {
+    width: 100%;
+    float: left;
+    background: #545454;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    border: 0;
+    height: 35px; }
 
 .submit-email {
   font-size: 13px;
@@ -494,7 +478,7 @@
   cursor: pointer;
   outline: none;
   margin-bottom: 12px; }
-  .wrapper-dropdown-1 :after {
+  .wrapper-dropdown-1:after {
     @i border-bg-width-val($borderVal, $bgVal, $widthVal)
 		@include border-val('6px 6px 0 6px', solid, '#55337e transparent');
     top: 50%;
@@ -522,7 +506,7 @@
     @inculde webkit-val();
     display: block;
     padding: 12px; }
-  .wrapper-dropdown-1 .dropdown li :hover a, .wrapper-dropdown-1 .dropdown .footer ul :hover a, .footer .wrapper-dropdown-1 .dropdown ul :hover a, .wrapper-dropdown-1 .dropdown .dropdown :hover a {
+  .wrapper-dropdown-1 .dropdown li:hover a, .wrapper-dropdown-1 .dropdown .footer ul:hover a, .footer .wrapper-dropdown-1 .dropdown ul:hover a, .wrapper-dropdown-1 .dropdown .dropdown:hover a {
     color: #55337e;
     background: #e4e3e3; }
   .wrapper-dropdown-1 .active:after {
@@ -533,16 +517,14 @@
     opacity: 1;
     pointer-events: auto; }
 
-.no-opacity .wrapper-dropdown-1 .dropdown,
-.no-pointerevents .wrapper-dropdown-1 .dropdown {
+.no-opacity .wrapper-dropdown-1 .dropdown, .no-pointerevents .wrapper-dropdown-1 .dropdown {
   display: none;
   opacity: 1;
   /* If opacity support but no pointer-events support */
   pointer-events: auto;
   /* If pointer-events support but no pointer-events support */ }
 
-.no-opacity .wrapper-dropdown-1.active .dropdown,
-.no-pointerevents .wrapper-dropdown-1.active .dropdown {
+.no-opacity .wrapper-dropdown-1.active .dropdown, .no-pointerevents .wrapper-dropdown-1.active .dropdown {
   display: block; }
 
 /*# sourceMappingURL=style-hc.css.map */

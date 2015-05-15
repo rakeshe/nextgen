@@ -33,10 +33,10 @@ $padding-left: 80px;
 	color: $colorVal;
 	@include float-val($floatVal);
 }
-@mixin img-val($imgLink, $pos1, $pos2, $padLeft, $padTop){
+@mixin img-val($imgLink, $pos, $padLeft, $padTop){
 	background-image: url($imgLink);
 	background-repeat: no-repeat;	
-	background-position: $pos1 $pos2;
+	@if $pos != 0{ background-position: $pos; }
 	@if $padLeft != 0{ padding-left: $padLeft; }
 	@if $padTop != 0{ padding-top: $padTop; }
 }
