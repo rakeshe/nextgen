@@ -1,4 +1,5 @@
 @import "global.scss";
+@import "style-media.scss";
 .nav{ 
 	height:57px;
 	background:$white-color;
@@ -16,9 +17,9 @@
 	text-align:left;
 }
 .member-section { @include img-val('../images/assets/nav-arrow-drop-down.png', '140px 10px', 0, 0); }
-.club-section {	@include general-width(180px); }
-.currency-section {	@include general-width(65px); }
-.locale-section { @include general-width(65px); }
+.club-section {	@include general-width(180px, left); }
+.currency-section {	@include general-width(65px, left); }
+.locale-section { @include general-width(65px, left); }
 @each $valueTemp in user, club {
   .#{$valueTemp}-id p{ @include user-val(); }
 }
@@ -111,7 +112,7 @@ li { list-style:none; }
 .sort{
 	&-row {	margin:24px 0; }
 	&-by {
-		@include general-width(10%);
+		@include general-width(10%, left);
 		p {		
 			@include padd(0, '11px 0 10px 0');
 			@include font-val(16px, normal, '#55337e', 0);
@@ -120,7 +121,7 @@ li { list-style:none; }
 			text-align:center;
 		}
 	}
-	&-it {	@include general-width(22.5%); }
+	&-it {	@include general-width(22.5%, left); }
 	&-button {
 		@include locale-val(90%,'#ebebeb', '11px 0 10px 0', block, left, none);
 		@include font-val(16px, normal, 0, 0);
@@ -171,7 +172,7 @@ li { list-style:none; }
 }
 /* HOTEL CARDS */ 
 /* Four card width */
-.hotelcards	{ @include general-width(25%); margin-left: 0; }
+.hotelcards	{ @include general-width(25%, left); margin-left: 0; }
 .card-img {	width:100%; }
 .card-info { margin:16px; }
 @each $hotelVal in hotel-name, hotel-city, hotel-price{

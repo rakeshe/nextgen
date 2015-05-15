@@ -1,3 +1,86 @@
+@media (max-width: 768px) {
+  .logo {
+    width: 46px;
+    padding: "0 0px 15px 0";
+    float: left;
+    height: auto; }
+    .logo-footer {
+      width: 46px;
+      padding: "0 0px 15px 0";
+      float: left;
+      height: auto; }
+
+  .tag-line, .member-section, .rewards {
+    display: none; }
+
+  .user {
+    float: right;
+    width: 225px;
+    text-align: left; }
+
+  .club-section {
+    float: left;
+    width: 95px; }
+
+  .locale-menu {
+    border: "1px solid #55337e";
+    background: "#FFF";
+    width: 80%;
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%; }
+
+  /* Code is Repeated for 768px - so don't include
+  .locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
+  .locale-list li:hover  { @include locale-val(44%, #ebebeb, 3%, block, left, none); }*/
+  .currency-box {
+    border: "1px solid #999";
+    width: 80%;
+    float: left;
+    padding: "0 0 12px 0";
+    margin-left: 10%;
+    margin-right: 10%; }
+
+  .hero-message {
+    padding-top: 40px; }
+
+  .sort-by {
+    float: left;
+    width: 100%; }
+  .sort-it {
+    float: left;
+    width: 50%;
+    margin-bottom: 12px; }
+  .sort-button {
+    width: 90%;
+    margin: "0 5%"; }
+
+  .upsell ul {
+    float: left; }
+
+  .destination-info {
+    margin-top: 26px; }
+
+  .submit-email {
+    position: absolute;
+    right: 0px;
+    z-index: 1; } }
+/* Three card width */
+@media (max-width: 1024px) {
+  .hotelcards {
+    float: left;
+    width: "33.333333333%";
+    margin-left: 0; } }
+/* Two card width */
+@media (max-width: 769px) {
+  .hotelcards {
+    float: left;
+    width: "50%";
+    margin-left: 0; } }
+@media (max-width: 765px) {
+  .hotelcards {
+    width: 100%;
+    margin-left: 0 !important; } }
 .nav {
   height: 57px;
   background: #FFF; }
@@ -277,14 +360,14 @@
   font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300;
   width: 100%;
-  margin: marginVal;
+  margin: "0 0 16px 0";
   text-align: center; }
   .range-input {
     font-size: 14px;
     font-family: "Museo Sans", Verdana, Geneva, sans-serif;
     font-weight: 300;
     width: 40px;
-    margin: marginVal;
+    margin: "8px";
     text-align: center; }
 
 /* UPSELL */
@@ -467,7 +550,7 @@
 
 .wrapper-dropdown-1 {
   width: 100%;
-  margin: marginVal;
+  margin: "0 auto";
   font-size: 16px;
   font-family: "Museo Sans", Verdana, Geneva, sans-serif;
   font-weight: 300;

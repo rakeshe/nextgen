@@ -1,7 +1,7 @@
 @import 'global-variable.scss';
 @mixin locale-val($tempWidth,$bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
 	width: $tempWidth;
-	background-color: $bgColor; 
+	@if $bgColor != 0{ background-color: $bgColor; }
 	@if $padVal != 0{ padding: $padVal; }
 	@if $displayVal != 0{ display: $displayVal; }
 	@if $floatVal != 0{ float: $floatVal; }
@@ -30,8 +30,8 @@
 	@if $padLeft != 0{ padding-left: $padLeft; }
 	@if $padTop != 0{ padding-top: $padTop; }
 }
-@mixin general-width($general-width-val){
-	@include float-val(left);
+@mixin general-width($general-width-val, $floatVal){
+	@if $floatVal != 0 { float: $floatVal; }
 	width: $general-width-val;
 }
 @mixin text-deco($colorVal, $decoVal){
@@ -48,7 +48,7 @@
 }
 @mixin text-align-val($widthVal, $marginVal, $textAlign){	
 	width: $widthVal;
-	margin: marginVal;
+	margin: $marginVal;
 	@if $textAlign != 0{ text-align: $textAlign; }
 }
 @mixin upsell-val($listVal, $floatVal, $paddVal){

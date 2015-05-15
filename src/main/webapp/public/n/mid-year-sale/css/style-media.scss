@@ -1,0 +1,64 @@
+@import 'global-variable.scss';
+@media #{$tablet}{ 
+	.logo { 
+		@include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto;	
+		&-footer { @include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto; }	
+	}
+	.tag-line, .member-section, .rewards {	display:none; }
+	.user {
+		@include general-width(225px, right);
+		text-align:left;
+	}
+	.club-section {	@include general-width(95px, left);	}
+	.locale-menu {
+		@include border-bg-width-val('1px solid #55337e', '#FFF', 80%);
+		@include float-val(left);
+		margin-left:10%;
+		margin-right:10%;
+	}
+	/* Code is Repeated for 768px - so don't include
+	.locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
+	.locale-list li:hover  { @include locale-val(44%, #ebebeb, 3%, block, left, none); }*/
+	.currency-box {
+		@include border-bg-width-val('1px solid #999', 0,80%);
+		@include upsell-val(0, left, '0 0 12px 0');
+		margin-left:10%;
+		margin-right:10%;
+	}
+	.hero-message {	padding-top:40px; }
+	.sort{
+		&-by {	@include general-width(100%, left);	}
+		&-it {	
+			@include general-width(50%, left); 
+			margin-bottom:12px;
+		}
+		&-button {	@include text-align-val(90%, '0 5%', 0); }
+	}
+	.upsell ul { float:left; }
+	.destination-info {	margin-top:26px; }
+	.submit-email {
+		position: absolute;
+		right: 0px;
+		z-index: 1;
+	}
+}
+/* Three card width */
+@media (max-width:1024px) {	
+	.hotelcards	{ 
+		@include general-width('33.333333333%', left);
+		margin-left: 0;  
+	}
+}
+/* Two card width */
+@media (max-width:769px) { 
+	.hotelcards { 
+		@include general-width('50%', left);
+		margin-left: 0;
+	} 
+} 
+@media (max-width: 765px) {	
+	.hotelcards { 
+		width: 100%; 
+		margin-left: 0 !important; 
+	}
+}
