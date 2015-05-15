@@ -9,20 +9,17 @@ $padding-top: 80px;
 $padding-right: 80px;
 $padding-bottom: 80px;
 $padding-left: 80px;
-@mixin locale-val($tempWidth,$bgColor, $padVal){
-	display: block;
-	float: left;
+@mixin locale-val($tempWidth,$bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
 	width: $tempWidth;
-	list-style:none;
-	padding:$padVal;
-	background-color:$bgColor; 
+	background-color: $bgColor; 
+	@if $padVal != 0{ padding: $padVal; }
+	@if $displayVal != 0{ display: $displayVal; }
+	@if $floatVal != 0{ float: $floatVal; }
+	@if $listStyleVal != 0{ list-style: $listStyleVal; }
 }
 @mixin float-val($value){float:$value;}
-@mixin padd($floatVal, $padTop,$padRight, $padBot,$padLeft){
-	padding-top:$padTop;
-	padding-right:$padRight;
-	padding-bottom:$padBot;
-	padding-left:$padLeft;
+@mixin padd($floatVal, $padVal){
+	padding: $padVal;
 	@if $floatVal != 0{	@include float-val($floatVal); }
 }
 @mixin font-val($fontSize, $fontWeight, $colorVal, $lineHeight){
@@ -70,7 +67,25 @@ $padding-left: 80px;
 	@if $listVal!=0 { list-style: $listVal; }
 }
 @mixin border-bg-width-val($borderVal, $bgVal, $widthVal){
-	border:1px solid $borderVal;
+	border:$borderVal;
 	@if $bgVal != 0{ background:$bgVal; }
 	@if $widthVal != 0{	width:$widthVal; }
+}
+@mixin border-val($borWidth, $borStyle, $borColor){
+	border-width: $borWidth;
+	border-style: $borStyle;
+	border-color: $borColor transparent;
+}
+@mixin top-right-bot-left-val($top, $right, $bot,$left){	
+	@if $top != 0{ top: $top; }
+	@if $right != 0{ left: $right; } 
+	@if $bot != 0{ right: $bot; }
+	@if $left != 0{ bottom: $left; }
+}
+@mixin webkit-val(){
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
