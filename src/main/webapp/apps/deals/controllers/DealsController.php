@@ -16,14 +16,25 @@ use Phalcon\Http\Response;
 class DealsController extends ControllerBase {
 
 
+    private $cityData;
+
     public function initialize() {
+        $this->init();
+    }
 
+    public function init() {
 
+        $model = new \HC\Deals\Models\DealsModel();
+
+        $this->cityData = $model->getCityDocument();
     }
 
     public function indexAction() {
 
-      $this->view->pick('default/index/index');
+        $this->view->setVars([
+            'cityData' => $this->cityData
+            ]);
+        $this->view->pick('default/index/index');
     }
 
 }

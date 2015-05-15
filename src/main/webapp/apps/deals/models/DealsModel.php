@@ -12,7 +12,7 @@ namespace HC\Deals\Models;
 
 use Phalcon\Exception;
 
-class Deals extends \Phalcon\Mvc\Model
+class DealsModel extends \Phalcon\Mvc\Model
 {
 
 
@@ -27,5 +27,16 @@ class Deals extends \Phalcon\Mvc\Model
     public function setPageUrl($url) {
 
     }
+
+    public function getCityDocument() {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/city.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
 
 }

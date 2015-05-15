@@ -1,6 +1,10 @@
 {% if appVersion is not defined %}
     {% set appVersion = '1.0.0' %}
 {% endif %}
+
+{% if theme is not defined %}
+{% set theme = 'default' %}
+{% endif %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,8 +31,15 @@
     </head>
     <body>
         {{ content() }}
+
+        {{ partial(theme ~ '/partials/hotelCard') }}
+        {{ partial(theme ~ '/partials/regionHotelCard') }}
+        {{ partial(theme ~ '/partials/footer') }}
+
         {{ javascript_include('themes/deals/js/jquery.js?' ~ appVersion ) }}
         {{ javascript_include('themes/deals/js/jquery-ui.js?' ~ appVersion ) }}
+        {{ javascript_include('themes/deals/js/handlebars-v3.0.3.js?' ~ appVersion ) }}
+        {{ javascript_include('themes/deals/js/deals.js?' ~ appVersion ) }}
         <script>
             $( "#slider" ).slider({
                 range: true,
