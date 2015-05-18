@@ -7,6 +7,7 @@
 
             $('.filter').hide();
             this.displayHeader();
+            //this.displayRobot();
             //this.displayFilter();
             //this.displaySortBox();
             //this.displayHotelCards();
@@ -14,6 +15,11 @@
             //this.displayUpsell();
             this.displayFooter();
             this.displayDropDownData();
+        },
+
+        displayRobot : function() {
+            var template = HB.compile( $("#robot-template").html() );
+            $('body').append(template()).addClass('parentDisable');
         },
 
         displayHeader : function() {
@@ -106,32 +112,42 @@
     deals.init();
    // console.log(deals.getCityData());
 
-})(jQuery, Handlebars);
+    $(document).on('click', '.filter-button', function(e) {
+        $('.filter').slideToggle();
+        e.preventDefault();
+    });
 
-$(document).on('click', '.filter-button', function(e) {
-    $('.filter').slideToggle();
-    e.preventDefault();
-});
+    $(document).ready(function(){
 
-$(document).ready(function(){
+        //remove default select option
+        $('.input-default-value').change(function() {
+            //remove default option
+            var className = $(this).data('rm-val');
+            $('.' + className + ' option[value="0"]').remove();
 
-    //remove default select option
-    $('.input-default-value').change(function() {
-        //remove default option
-        var className = $(this).data('rm-val');
-        $('.' + className + ' option[value="0"]').remove();
+            //release disable
+            switch (className) {
+                case 'dropdown-region' :
+                    $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+                    break;
 
-        //release disable
-        switch (className) {
-            case 'dropdown-region' :
-                $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
-                break;
+                case 'dropdown-cities' :
+                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+                    break;
 
-            case 'dropdown-cities' :
-                $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
-                break;
-        }
+                case 'dropWhereDo' :
+                    if ($(this).val() == ':robot') {
+                        //initialize popup
+                        console.log($(this).val());
+                        deals.displayRobot();
+                    } else {
+                        //start routing ....
+                    }
+                    break;
+            }
+
+        });
 
     });
 
-});
+})(jQuery, Handlebars);

@@ -565,10 +565,25 @@ select {
 	width:590px;
 }
 .modal-box {
-	float:left;
-	width:590px;
-	background: rgba(255, 255, 255, 0.8);
-	background-color: rgba(255, 255, 255, 0.8);
+    float: left;
+    width: 590px;
+    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
+}
+
+.parentDisable{
+    position:fixed;
+    top:0;
+    left:0;
+    background:#000;
+    opacity:0.8;
+    z-index:998;
+    height:100%;
+    width:100%;
 }
 	@media (max-width: 768px) {
 		.modal-wrapper {
