@@ -5,16 +5,40 @@
 
         init : function() {
 
-            this.displayDropDownData();
             $('.filter').hide();
-           // this.displayHotelCards();
-            this.displayRegionHotelCards();
+            this.displayHeader();
+            //this.displayFilter();
+            //this.displaySortBox();
+            //this.displayHotelCards();
+            //this.displayRegionHotelCards();
+            //this.displayUpsell();
             this.displayFooter();
+            this.displayDropDownData();
+        },
+
+        displayHeader : function() {
+            var template = HB.compile( $("#header-template").html() );
+            $('#header-container').append(template());
+        },
+
+        displayFilter : function() {
+            var template = HB.compile( $("#filter-template").html() );
+            $('#filter-box').append(template());
+        },
+
+        displayUpsell:function() {
+            var template = HB.compile( $("#upsell-template").html() );
+            $('#upsel-selection').append(template());
+        },
+
+        displaySortBox: function() {
+            var template = HB.compile( $("#sort-template").html() );
+            $('.section .container #sort-row-uq').append(template());
         },
 
         displayHotelCards : function() {
-            var template = HB.compile( $("#hotel-card-template").html() );
-            $('.section .hotel-cards-container').append(template());
+            //var template = HB.compile( $("#hotel-card-template").html() );
+           // $('.section .hotel-cards-container').append(template());
         },
 
         displayRegionHotelCards : function () {
@@ -31,11 +55,11 @@
         getWhereDoGoText : function () {
 
             return {
-                '2015-5-20' : 'in the next 7 days',
-                '2015-5-29' : 'in the next 14 days',
-                '2015-6-20' : 'in the next 30 days',
-                '2015-6-20' : '30 days and beyond',
-                ':datePopup' : 'exact dates'
+                '7' : 'in the next 7 days',
+                '14' : 'in the next 14 days',
+                '30' : 'in the next 30 days',
+                '31' : '30 days and beyond',
+                ':robot' : 'exact dates'
             }
         },
 
