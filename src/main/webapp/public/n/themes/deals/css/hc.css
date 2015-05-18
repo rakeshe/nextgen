@@ -188,6 +188,10 @@ select {
  	text-overflow: "";
 }
 
+.disabled-style {
+    color : #929292;
+}
+
 /* NAVIGATION - Locale Drop Down Menu */
 .locale-wrapper {
 	padding-top:16px;

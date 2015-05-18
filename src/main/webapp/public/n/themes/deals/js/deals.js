@@ -112,3 +112,26 @@ $(document).on('click', '.filter-button', function(e) {
     $('.filter').slideToggle();
     e.preventDefault();
 });
+
+$(document).ready(function(){
+
+    //remove default select option
+    $('.input-default-value').change(function() {
+        //remove default option
+        var className = $(this).data('rm-val');
+        $('.' + className + ' option[value="0"]').remove();
+
+        //release disable
+        switch (className) {
+            case 'dropdown-region' :
+                $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+                break;
+
+            case 'dropdown-cities' :
+                $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+                break;
+        }
+
+    });
+
+});

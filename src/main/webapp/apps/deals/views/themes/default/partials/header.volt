@@ -71,12 +71,12 @@
                 </select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled="disabled" name="" class="hotel-dropdown-select dropdown-cities input-default-value" data-rm-val="dropdown-cities">
+                <select disabled="disabled" name="" class="hotel-dropdown-select dropdown-cities input-default-value disabled-style" data-rm-val="dropdown-cities">
                     <option selected="selected" value="0">City?</option>
                 </select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled name="" class="hotel-dropdown-select dropWhereDo input-default-value" data-rm-val="dropWhereDo">
+                <select disabled name="" class="hotel-dropdown-select dropWhereDo input-default-value disabled-style" data-rm-val="dropWhereDo">
                     <option selected="selected" value="0">When do you want to go?</option>
                 </select>
             </div> <!-- End 4 Col -->
