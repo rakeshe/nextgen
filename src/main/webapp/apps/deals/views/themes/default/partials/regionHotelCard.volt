@@ -1,4 +1,5 @@
 <script id="region-card-template" type="text/x-handlebars-template">
+
     <!-- Africa -->
     <div class="row africa">
         <div class="destination">
