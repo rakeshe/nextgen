@@ -66,19 +66,13 @@
         </div>
         <div class="row">
             <div class="four columns">
-                <select name="" class="hotel-dropdown-select dropdown-region input-default-value" data-rm-val="dropdown-region">
-                    <option selected="selected" value="0">Where do you want to go?</option>
-                </select>
+               <select name="" class="hotel-dropdown-select dropdown-region input-default-value" data-rm-val="dropdown-region"></select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled="disabled" name="" class="hotel-dropdown-select dropdown-cities input-default-value disabled-style" data-rm-val="dropdown-cities">
-                    <option selected="selected" value="0">City?</option>
-                </select>
+                <select disabled="disabled" name="" class="hotel-dropdown-select dropdown-cities input-default-value disabled-style" data-rm-val="dropdown-cities"></select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled name="" class="hotel-dropdown-select dropWhereDo input-default-value disabled-style" data-rm-val="dropWhereDo">
-                    <option selected="selected" value="0">When do you want to go?</option>
-                </select>
+                <select disabled name="" class="hotel-dropdown-select dropWhereDo input-default-value disabled-style" data-rm-val="dropWhereDo"></select>
             </div> <!-- End 4 Col -->
         </div> <!-- End Row -->
     </div>

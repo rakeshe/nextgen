@@ -1,6 +1,6 @@
 <script id="sort-template" type="text/x-handlebars-template">
 <div class="row sort-row">
-    <div class="three columns">
+    <div class="three columns" id="filter-btn">
         <a class="filter-button" title="Filter">Filter</a>
     </div>
     <div class="nine columns">

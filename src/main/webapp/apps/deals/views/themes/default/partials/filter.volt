@@ -89,3 +89,4 @@
         </div>
     </div><!-- End Row -->
 </div><!-- End Filter Box -->
+</script>

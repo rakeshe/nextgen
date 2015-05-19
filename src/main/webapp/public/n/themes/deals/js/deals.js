@@ -1,15 +1,14 @@
 (function( $, HB ) {
 
-
-    var deals = {
+    var Deals = {
 
         init : function() {
 
             $('.filter').hide();
             this.displayHeader();
             //this.displayRobot();
-            //this.displayFilter();
             //this.displaySortBox();
+            //this.displayFilter();
             //this.displayHotelCards();
             //this.displayRegionHotelCards();
             //this.displayUpsell();
@@ -17,9 +16,38 @@
             this.displayDropDownData();
         },
 
+        reLoadLandingPage: function() {
+
+            $('.section .container #sort-row-uq').html('');
+            $('.section .hotel-cards-container').html('');
+            this.setDropDownDefaultOption().dropRegion();
+            this.setDropDownDefaultOption().dropCities().attr('disabled','disabled');
+            this.setDropDownDefaultOption().dropWhereDo().attr('disabled','disabled');
+            $('.search-sale-box').show();
+        },
+
+        route : function(obj, ctrl) {
+
+            if (typeof this[ctrl] == 'function') {
+
+                if(typeof obj == 'object') {
+                    history.pushState({url: obj.city}, obj.city + ' Hotels', obj.city);
+                }
+                this[ctrl]();
+            } else {
+                console.log('Controller not found!!');
+            }
+        },
+
+        hotelCardCtrl : function() {
+            $('.search-sale-box').hide();
+            this.displaySortBox();
+            this.displayHotelCards();
+        },
+
         displayRobot : function() {
             var template = HB.compile( $("#robot-template").html() );
-            $('body').append(template()).addClass('parentDisable');
+            $('body').append(template()).addClass();
         },
 
         displayHeader : function() {
@@ -30,6 +58,7 @@
         displayFilter : function() {
             var template = HB.compile( $("#filter-template").html() );
             $('#filter-box').append(template());
+            $('#filter-btn').show();
         },
 
         displayUpsell:function() {
@@ -43,8 +72,8 @@
         },
 
         displayHotelCards : function() {
-            //var template = HB.compile( $("#hotel-card-template").html() );
-           // $('.section .hotel-cards-container').append(template());
+            var template = HB.compile( $("#hotel-card-template").html() );
+            $('.section .hotel-cards-container').append(template());
         },
 
         displayRegionHotelCards : function () {
@@ -73,11 +102,38 @@
             return $.parseJSON(cData);
         },
 
+        setDropDownDefaultOption : function() {
+            return {
+                dropRegion : function() {
+                   return $('.dropdown-region').append( $('<option>', {
+                        value : '0',
+                        text : 'Where do you want to go?',
+                        'selected' :'selected'
+                    }) );
+
+                },
+                dropCities : function() {
+                    return $('.dropdown-cities').append( $('<option>', {
+                        value : '0',
+                        text : 'City?',
+                        'selected' :'selected'
+                    }) );
+                },
+                dropWhereDo : function() {
+                    return $('.dropWhereDo').append( $('<option>', {
+                        value : '0',
+                        text : 'When do you want to go?',
+                        'selected' :'selected'
+                    }) );
+                }
+            }
+        },
+
         displayDropDownData : function () {
 
-            var dropRegion  = $('.dropdown-region'),
-                dropCities  = $('.dropdown-cities')
-                dropWhereDo = $('.dropWhereDo');
+            var dropRegion = this.setDropDownDefaultOption().dropRegion(),
+                dropCities = this.setDropDownDefaultOption().dropCities(),
+                dropWhereDo = this.setDropDownDefaultOption().dropWhereDo();
 
             $.each(this.getCityData(), function(key, val){
 
@@ -93,7 +149,7 @@
                             value : k,
                             text : v.nameUtf8
                         }) );
-                    })
+                    });
                 }
             });
 
@@ -106,10 +162,10 @@
                 );
             })
         }
-
     }
 
-    deals.init();
+
+    Deals.init();
    // console.log(deals.getCityData());
 
     $(document).on('click', '.filter-button', function(e) {
@@ -118,6 +174,17 @@
     });
 
     $(document).ready(function(){
+
+        $(window).bind('popstate', function(event) {
+
+            var state = event.originalEvent.state;
+
+            if (state) {
+                Deals.route('', 'hotelCardCtrl');
+            } else {
+                Deals.reLoadLandingPage();
+            }
+        });
 
         //remove default select option
         $('.input-default-value').change(function() {
@@ -138,10 +205,19 @@
                 case 'dropWhereDo' :
                     if ($(this).val() == ':robot') {
                         //initialize popup
-                        console.log($(this).val());
-                        deals.displayRobot();
+                        //console.log($(this).val());
+                        Deals.displayRobot();
                     } else {
                         //start routing ....
+                       var rg = $('.dropdown-region').val(),
+                           cy = $('.dropdown-cities').val(),
+                           dy = $('.dropWhereDo').val();
+
+                        console.log(typeof rg, typeof cy, typeof dy);
+                        if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
+                            //start routing ..
+                            Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
+                        }
                     }
                     break;
             }
