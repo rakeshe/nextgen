@@ -4,6 +4,7 @@
         <div class="modal-box">
             <div class="modal-container">
                 <div class="modal-row">
+					<img src="/n/themes/deals/images/assets/close_exit.png" title="close modal-wrapper" class="cancel-action" width="25" height="25">
                     <h3>Search all of HotelClub</h3>
                 </div>
                 <div class="modal-row">
@@ -60,7 +61,7 @@
                         <a href="#" title="Search" class="modal-row-button">Search hotels</a>
                     </div>
                     <div class="twelve columns">
-                        <p class="modal-cancel"><small><a href="#" title="Cancel">Cancel</a></small></p>
+                       <p class="modal-cancel"><small><a href="#" title="Cancel" class="cancel-action">Cancel</a></small></p> 
                     </div>
                 </div>
             </div>

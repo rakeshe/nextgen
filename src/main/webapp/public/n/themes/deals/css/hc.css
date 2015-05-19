@@ -558,11 +558,19 @@ select {
 		.select-dates-button {
 			width:100%;
 		}
+		.modal-box {
+			width:60% !important;
+		}
 	}
 /* Modal - Message pop up */
 .modal-wrapper {
+	display: none;
 	float:left;
 	width:590px;
+}
+.cancel-action{
+	float:right;
+	cursor:pointer;
 }
 .modal-box {
     float: left;
