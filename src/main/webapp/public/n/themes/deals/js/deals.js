@@ -47,7 +47,8 @@
 
         displayRobot : function() {
             var template = HB.compile( $("#robot-template").html() );
-            $('body').append(template()).addClass();
+            $('body').append(template());
+			$('.modal-wrapper').show();
         },
 
         displayHeader : function() {
@@ -225,5 +226,10 @@
         });
 
     });
-
+	
+	$(document).on('click','.cancel-action',function(){
+		$('.modal-wrapper').hide();
+		$(".dropWhereDo").prepend('<option value="0" selected="selected">When do you want to go?</option>');
+	}); 
 })(jQuery, Handlebars);
+
