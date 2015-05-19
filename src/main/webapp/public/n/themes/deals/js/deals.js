@@ -226,10 +226,11 @@
         });
 
     });
-	
+
 	$(document).on('click','.cancel-action',function(){
 		$('.modal-wrapper').hide();
-		$(".dropWhereDo").prepend('<option value="0" selected="selected">When do you want to go?</option>');
-	}); 
+        Deals.setDropDownDefaultOption().dropWhereDo();
+	});
+    
 })(jQuery, Handlebars);
 
