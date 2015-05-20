@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 0px;
   box-sizing: border-box; }
 .column,
 .columns {
@@ -27,13 +27,17 @@
 @media (max-width: 768px) {
   .container {
     width: 90%;
-    padding: 0; }
+    padding: 0px; }
 }
 
 /* For devices larger than 768px */
+
 @media (min-width: 769px) {
   .container {
-    width: 100%; }
+    width: 100%;
+	padding-left:20px;
+	padding-right:20px;
+}
   .column,
   .columns {
     margin-left: 4%; }
@@ -94,6 +98,13 @@
 
 }
 
+@media (min-width: 1025px) {
+  .container {
+    width: 100%;
+	padding-left:0px;
+	padding-right:0px;
+	}
+}
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

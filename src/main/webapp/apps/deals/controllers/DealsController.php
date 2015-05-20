@@ -18,18 +18,31 @@ class DealsController extends ControllerBase {
 
     private $cityData;
 
+    private $model;
+
     public function initialize() {
+
         $this->init();
+
+        if ($this->request->isPost() && $this->request->isAjax()) {
+
+            $hotelData = $this->model->getHotels($this->request->getPost('region', 'string'),
+                $this->request->getPost('city', 'string'));
+
+            die($hotelData);
+        }
+
+
     }
 
     public function init() {
 
-        $model = new \HC\Deals\Models\DealsModel();
-
-        $this->cityData = $model->getCityDocument();
+        $this->model = new \HC\Deals\Models\DealsModel();
     }
 
     public function indexAction() {
+
+        $this->cityData = $this->model->getCityDocument();
 
         $this->view->setVars([
             'cityData' => $this->cityData

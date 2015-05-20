@@ -38,5 +38,15 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
     }
 
+    public function getHotels($region, $city) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/deals.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
 
 }

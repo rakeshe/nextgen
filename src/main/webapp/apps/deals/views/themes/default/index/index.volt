@@ -1,4 +1,4 @@
-<script> var cData = '{{cityData}}'; </script>
+<script> var cData = '{{cityData}}', MNME = 'n/deals'; </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
@@ -12,7 +12,20 @@
     <div class="container">
         <div class="row">
             <div class="hero-text">
-                <span class="hero-text-sell">Room upgrades, instant rewards and extraordinary benefits.</span> <span class="hero-text-cta">Not a member? <a href="#">Join now</a></span>
+                <div class="hero-text-box">
+                    <div class="five columns">
+                        <p class="hero-text-title">My Club</p>
+                        <p class="hero-text-body">Earn more member rewards with every booking including this sale.</p>
+                    </div>
+                    <div class="one columns" style="text-align:center;">
+                        <img src="/n/themes/deals/images/assets/plus-cross.png" style="padding-top:48px;padding-bottom:24px;"/>
+                    </div>
+                    <div class="six columns">
+                        <img src="/n/themes/deals/images/assets/wine-promo.png" style="float:right; padding-left:24px; padding-right:24px;"/>
+                        <p class="hero-text-title">Special member offer</p>
+                        <p class="hero-text-body">Get 3 free bottles of wine from Naked Wines with your next booking.</p>
+                    </div>
+                </div>
             </div>
         </div> <!-- End Row -->
         <div id="sort-row-uq"></div>

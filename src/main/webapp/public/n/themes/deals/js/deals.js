@@ -26,6 +26,16 @@
             $('.search-sale-box').show();
         },
 
+        doRequest : function(obj) {
+            return $.ajax({
+                type : 'POST',
+                dataType : 'json',
+                url : obj.url,
+                async : false,
+                data : obj.data
+            });
+        },
+
         route : function(obj, ctrl) {
 
             if (typeof this[ctrl] == 'function') {
@@ -33,16 +43,20 @@
                 if(typeof obj == 'object') {
                     history.pushState({url: obj.city}, obj.city + ' Hotels', obj.city);
                 }
-                this[ctrl]();
+                this[ctrl](obj);
             } else {
                 console.log('Controller not found!!');
             }
         },
 
-        hotelCardCtrl : function() {
+        hotelCardCtrl : function(obj) {
+
+            var data = this.doRequest({url:'/' + MNME + '/', data: $.param(obj) });
             $('.search-sale-box').hide();
             this.displaySortBox();
-            this.displayHotelCards();
+            console.log(data.responseJSON);
+            this.displayHotelCards(data.responseJSON);
+
         },
 
         displayRobot : function() {
@@ -72,9 +86,16 @@
             $('.section .container #sort-row-uq').append(template());
         },
 
-        displayHotelCards : function() {
+        displayHotelCards : function( data ) {
             var template = HB.compile( $("#hotel-card-template").html() );
-            $('.section .hotel-cards-container').append(template());
+
+            //$.each(data, function(key, value) {
+
+               // console.log(value);
+
+                $('.section .hotel-cards-container').append(template( data ));
+           // });
+
         },
 
         displayRegionHotelCards : function () {
@@ -231,6 +252,6 @@
 		$('.modal-wrapper').hide();
         Deals.setDropDownDefaultOption().dropWhereDo();
 	});
-    
+
 })(jQuery, Handlebars);
 

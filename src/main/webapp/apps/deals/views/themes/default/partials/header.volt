@@ -17,9 +17,9 @@
                 <div class="club-id">
                     <a href="#">
                         <div class="locale-drop-down-arrow">
-                                    <span class="user-club-info">
-                                        <img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
-                                    </span>
+                                <span class="user-club-info">
+                                    <img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
+                                </span>
                         </div></a>
                 </div><!-- End User ID <ul> -->
             </div><!-- End Locale -->
@@ -62,7 +62,7 @@
 
     <div class="row search-sale-box">
         <div class="row find-your">
-            <h2>Find your extraordinary</h2>
+            <h2>Save up to 50% on hotels worldwide + get member extras like free upgrades and wifi</h2>
         </div>
         <div class="row">
             <div class="four columns">
