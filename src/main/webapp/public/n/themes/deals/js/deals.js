@@ -1,5 +1,5 @@
+var popUpVal = 0;//set default value for popUpVal to display the popup block
 (function( $, HB ) {
-
     var Deals = {
 
         init : function() {
@@ -62,7 +62,7 @@
         displayRobot : function() {
             var template = HB.compile( $("#robot-template").html() );
             $('body').append(template());
-			$('.modal-wrapper').show();
+			popUpVal = 0;//set popUpVal to display the popup block
         },
 
         displayHeader : function() {
@@ -247,11 +247,34 @@
         });
 
     });
-
+	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
-		$('.modal-wrapper').hide();
         Deals.setDropDownDefaultOption().dropWhereDo();
+		$('.modal-wrapper').hide();
+		popUpVal=2;
 	});
 
+	/*check popup event is visible or not */
+	function popupEvent(){
+		if(popUpVal==1){
+			$("body").click(function(e) {
+				if ($(e.target).parents(".modal-wrapper").size()==0&&$('.modal-wrapper').is(':visible')) {
+					console.log(e.target.class+'---'+$(e.target).parents(".modal-wrapper").size());
+					$('.modal-wrapper').hide();
+					Deals.setDropDownDefaultOption().dropWhereDo();
+					popUpVal=2;
+				}
+			});
+		}
+		else if(popUpVal==0){
+			$('.modal-wrapper').show();
+			popUpVal=1;
+		}
+		return false;
+	}//popupEvent
+	/*trigger even on outside click*/
+	$(document).click(function(e) {
+		popupEvent();//to check the popupevent
+	});
+	
 })(jQuery, Handlebars);
-

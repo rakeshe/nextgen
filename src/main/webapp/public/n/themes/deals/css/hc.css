@@ -606,10 +606,32 @@ select {
     cursor:pointer;
 }
 .modal-box {
+<<<<<<< HEAD
     float:left;
     width:590px;
     background: rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
+=======
+    float: left;
+    width: 590px;
+    background: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
+}
+
+.parentDisable{
+    position:fixed;
+    top:0;
+    left:0;
+    background:#000;
+    opacity:0.8;
+    z-index:998;
+    height:100%;
+    width:100%;
+>>>>>>> c66f25283a9d1215e06cbc7983d3579a30c9624e
 }
 @media (max-width: 768px) {
     .modal-wrapper {
@@ -702,31 +724,34 @@ select {
     text-overflow: "";
 }
 .modal-dropdown-select-date {
-    width:100%;
-    padding-left:10%;
-    height:37px;
-    color:#999999;
-    border-radius:0px;
-    border: 0 !important;  /*Removes border*/
-    outline:2px solid #dddee0;
+
+	width:90%;
+	padding-left:10%;
+	height:37px;
+	color:#999999;
+	border-radius:0px;
+	border: 0 !important;  /*Removes border*/
+	outline:2px solid #dddee0;
     -webkit-appearance: none;  /*Removes default chrome and safari style*/
     -moz-appearance: none;  /*Removes default style Firefox*/
-    background: url('../images/assets/orbot-down-arrow.png');
-    background-position:top right;
-    background-repeat:no-repeat;
-
-    text-indent: 0.01px;
-    text-overflow: "";
-
-    font-size:14px;
-    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
-    font-weight:300;
+	background: url('../images/assets/orbot-down-arrow.png');
+	background-position:top right;
+	background-repeat:no-repeat;
+	
+	text-indent: 0.01px;
+ 	text-overflow: "";
+	
+	font-size:14px;
+	font-family:'Museo Sans',Verdana, Geneva, sans-serif;
+	font-weight:300;
 }
 @media (max-width: 768px) {
     .modal-dropdown-select-date {
         padding-left:15%;
+        width:85% !important;
     }
 }
+
 .modal-row-button {
     background-color:#55337e;
     background-image:url(../images/assets/next-arrow.png);
