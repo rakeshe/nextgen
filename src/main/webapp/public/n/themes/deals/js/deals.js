@@ -235,8 +235,14 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 	/*check popup event is visible or not */
 	function popupEvent(){
 		if(popUpVal==1){
-			$('.modal-wrapper').hide();
-			popUpVal=2;
+			$("body").click(function(e) {
+				if ($(e.target).parents(".modal-wrapper").size()==0&&$('.modal-wrapper').is(':visible')) {
+					console.log(e.target.class+'---'+$(e.target).parents(".modal-wrapper").size());
+					$('.modal-wrapper').hide();
+					Deals.setDropDownDefaultOption().dropWhereDo();
+					popUpVal=2;
+				}
+			});
 		}
 		else if(popUpVal==0){
 			$('.modal-wrapper').show();
@@ -246,6 +252,7 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 	}//popupEvent
 	/*trigger even on outside click*/
 	$(document).click(function(e) {
-		popupEvent();//to check the popupevent 
+		popupEvent();//to check the popupevent
 	});
+	
 })(jQuery, Handlebars);

@@ -684,7 +684,7 @@ select {
  	text-overflow: "";
 }
 .modal-dropdown-select-date {
-	width:100%;
+	width:90%;
 	padding-left:10%;
 	height:37px;
 	color:#999999;
@@ -707,6 +707,7 @@ select {
 	@media (max-width: 768px) {
 		.modal-dropdown-select-date {
 			padding-left:15%;
+			width:85% !important;
 		}
 	}
 .modal-row-button {
