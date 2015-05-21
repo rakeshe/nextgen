@@ -1,6 +1,7 @@
 <?php
 namespace HC\Api\Controllers;
 
+use HC\Api\Models\ModelFactory;
 use Phalcon\Http\Client\Exception,
     Phalcon\Http\Client\Request,
     Phalcon\Http\Response,
@@ -28,12 +29,16 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     protected $availableHosts = [];
 
-    protected $app_id;
-
     protected $hostName;
+
+    /** @var  \HC\Api\Models\ApiModel */
+    protected $apiModel;
 
     protected function initialize() {
 
+        $this->view->disable();
+        $this->apiModel = ModelFactory::build($this->router->getControllerName());
+        $this->apiModel->init($this->request);
     }
 
     /**
@@ -101,38 +106,45 @@ class ControllerBase extends \Phalcon\Mvc\Controller
      */
     protected function verifyHost() {
 
-        // Pass if within default hotelclub hosts
+        $model = $this->apiModel;
+        if($model->getApiId() && $model->getApiKey()){
 
-        $defaultWhiteListHosts = self::DEFAULT_WHITE_LIST_HOSTS .',' . $this->request->getServerName();
+            // Allow all from white listed
+            if(in_array($model->getRequestHost(),$this->config->whiteListDomains)) return true;
 
-        if(in_array($this->request->getHttpHost(),explode(',', $defaultWhiteListHosts))) return true;
+            $hostKey = md5($model->getRequestHost() .':' . $this->config->secretKey->salt);
+            return $hostKey === $model->getApiKey();
 
-        if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
-            $this->whiteListType = 'HOST';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getHttpHost();
-            return true;
-        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
-            array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
-            $this->whiteListType = 'IP';
-            $this->isWhiteListed = true;
-            $this->hostName = $this->request->getClientAddress();
-            return true;
         }
+
+// @todo refactor this
+//        if (null !== $this->request->getHttpHost() && null !== $this->availableHosts &&
+//            array_key_exists($this->request->getHttpHost(), $this->availableHosts)) {
+//            $this->whiteListType = 'HOST';
+//            $this->isWhiteListed = true;
+//            $this->hostName = $this->request->getHttpHost();
+//            return true;
+//        } else if (null !== $this->request->getClientAddress() && null !== $this->availableHosts &&
+//            array_key_exists($this->request->getClientAddress(), $this->availableHosts)) {
+//            $this->whiteListType = 'IP';
+//            $this->isWhiteListed = true;
+//            $this->hostName = $this->request->getClientAddress();
+//            return true;
+//        }
         return false;
     }
+
+
     /**
      * Get exception info
      * @param object $e
      */
     protected function getExceptionMessage($e) {
-
+        $exceptionMessage = "API Exception Message: " .$e->getMessage() . PHP_EOL . "Stack:" . PHP_EOL .$e->getTraceAsString();
         if ('dev' === ORBITZ_ENV) {
-            echo "Form API Exception line no: {$e->getLine()}, Message: {$e->getMessage()}";
+            echo $exceptionMessage;
         } else {
-            $this->getDI()->getShared('logger')->log("Form API Exception line no: {$e->getLine()},
-                    Message: {$e->getMessage()}");
+            $this->getDI()->getShared('logger')->log($exceptionMessage);
         }
 
     }

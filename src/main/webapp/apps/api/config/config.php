@@ -191,5 +191,12 @@ return new \Phalcon\Config(array(
         'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL', 'sv_SE'],
         'large' => ['zh_CN','zh_HK','th_TH', 'ko_KR']
     ],
-   
+    'whiteListDomains' => [
+        'www.hotelclub.com',
+        'www.hotelclub.cn',
+        'cmsref.hotelclub.com',
+        'hotelclub.com',
+        'qa1.hclubtest.com',
+        'qa1.hclubtest.cn'
+    ]
 ));
