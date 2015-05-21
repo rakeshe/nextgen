@@ -1,5 +1,4 @@
 <script id="robot-template" type="text/x-handlebars-template">
-
     <div class="modal-wrapper">
         <div class="modal-box">
             <div class="modal-container">
@@ -15,9 +14,12 @@
                     <div class="six columns">
                         <p>Check-in and Check-out<br />
                         <div class="modal-calendar">
-                            <select name="" class="modal-dropdown-select-date">
+                            <!--<select name="" class="modal-dropdown-select-date">
                                 <option>JQuery date picker</option>
-                            </select></div></p>
+                            </select>-->
+							<input name="check-in" type="text" class="modal-input-date" id="check-in" value=""/>&nbsp;
+							<input name="check-out" type="text" class="modal-input-date" id="check-out" value=""/>
+							</div></p>
                     </div>
                     <div class="six columns">
                         <div class="four columns">
@@ -61,7 +63,7 @@
                         <a href="#" title="Search" class="modal-row-button">Search hotels</a>
                     </div>
                     <div class="twelve columns">
-                       <p class="modal-cancel"><small><a href="#" title="Cancel" class="cancel-action">Cancel</a></small></p> 
+                       <p class="modal-cancel cancel-action"><small>Cancel</small></p> 
                     </div>
                 </div>
             </div>

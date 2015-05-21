@@ -606,12 +606,6 @@ select {
     cursor:pointer;
 }
 .modal-box {
-<<<<<<< HEAD
-    float:left;
-    width:590px;
-    background: rgba(255, 255, 255, 0.8);
-    background-color: rgba(255, 255, 255, 0.8);
-=======
     float: left;
     width: 590px;
     background: rgba(255, 255, 255, 1);
@@ -631,7 +625,6 @@ select {
     z-index:998;
     height:100%;
     width:100%;
->>>>>>> c66f25283a9d1215e06cbc7983d3579a30c9624e
 }
 @media (max-width: 768px) {
     .modal-wrapper {
@@ -693,6 +686,24 @@ select {
         border:0px;
         color:#999999;
     }
+}
+.modal-input-date{
+	border: 0 none;
+    color: #999999;
+    height: 37px;
+    outline: 2px solid #dddee0;
+    padding-left: 6%;
+    width: 42%;
+}
+@media (max-width: 768px) {
+	.modal-input {
+		width:90%;
+		padding-left:10%;
+		height:37px;
+		outline:2px solid #dddee0;
+		border:0px;
+		color:#999999;
+	}
 }
 .modal-marker {
     background-image:url(../images/assets/orbot-marker.png);
@@ -1716,3 +1727,9 @@ select {
 #filter-btn {
     display: none;
 }
+/*date picker values*/
+.ui-widget{ font-size: 70% !important; }
+.ui-datepicker{ width: 20% !important; }
+@media (max-width: 768px) { .ui-datepicker{ width: 26% !important; } }
+@media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
+@media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }

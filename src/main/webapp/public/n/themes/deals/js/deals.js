@@ -1,5 +1,6 @@
 var popUpVal = 0;//set default value for popUpVal to display the popup block
 (function( $, HB ) {
+	
     var Deals = {
 
         init : function() {
@@ -61,7 +62,9 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 
         displayRobot : function() {
             var template = HB.compile( $("#robot-template").html() );
-            $('body').append(template());
+            $('body').append(template());//append the popup template
+			$("#check-in").datepicker();//initialize the date-picker for check-in
+			$("#check-out").datepicker();//initialize the date-picker for check-out
 			popUpVal = 0;//set popUpVal to display the popup block
         },
 
@@ -194,9 +197,16 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         $('.filter').slideToggle();
         e.preventDefault();
     });
+	$(document).on("click", "#check-in", function() {
+		$("#check-in").datepicker();
+	});
+	$(document).on("click", "#check-out", function() {
+		$("#check-out").datepicker();
+	});
+	
 
     $(document).ready(function(){
-
+		//$('#check-in').datepicker();
         $(window).bind('popstate', function(event) {
 
             var state = event.originalEvent.state;
