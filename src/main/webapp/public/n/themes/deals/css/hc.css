@@ -1728,8 +1728,18 @@ select {
     display: none;
 }
 /*date picker values*/
-.ui-widget{ font-size: 70% !important; }
 .ui-datepicker{ width: 20% !important; }
+#ui-datepicker-div {
+    border: 1px solid #999 !important; z-index: 1; background: #FFF; background-color:#FFF;
+}
+.ui-widget-header{
+	color: #000;
+    font-weight: bold;
+}.ui-datepicker th {
+    font-weight: 700;
+    text-align: left !important;
+	
+}
 @media (max-width: 768px) { .ui-datepicker{ width: 26% !important; } }
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
 @media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }

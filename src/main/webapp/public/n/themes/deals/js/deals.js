@@ -1,4 +1,3 @@
-var popUpVal = 0;//set default value for popUpVal to display the popup block
 (function( $, HB ) {
 	
     var Deals = {
@@ -65,7 +64,6 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
             $('body').append(template());//append the popup template
 			$("#check-in").datepicker();//initialize the date-picker for check-in
 			$("#check-out").datepicker();//initialize the date-picker for check-out
-			popUpVal = 0;//set popUpVal to display the popup block
         },
 
         displayHeader : function() {
@@ -197,16 +195,8 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         $('.filter').slideToggle();
         e.preventDefault();
     });
-	$(document).on("click", "#check-in", function() {
-		$("#check-in").datepicker();
-	});
-	$(document).on("click", "#check-out", function() {
-		$("#check-out").datepicker();
-	});
-	
 
-    $(document).ready(function(){
-		//$('#check-in').datepicker();
+    $(document).ready(function(){	
         $(window).bind('popstate', function(event) {
 
             var state = event.originalEvent.state;
@@ -260,31 +250,6 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
         Deals.setDropDownDefaultOption().dropWhereDo();
-		$('.modal-wrapper').hide();
-		popUpVal=2;
+		$(".modal-wrapper").remove();
 	});
-
-	/*check popup event is visible or not */
-	function popupEvent(){
-		if(popUpVal==1){
-			$("body").click(function(e) {
-				if ($(e.target).parents(".modal-wrapper").size()==0&&$('.modal-wrapper').is(':visible')) {
-					console.log(e.target.class+'---'+$(e.target).parents(".modal-wrapper").size());
-					$('.modal-wrapper').hide();
-					Deals.setDropDownDefaultOption().dropWhereDo();
-					popUpVal=2;
-				}
-			});
-		}
-		else if(popUpVal==0){
-			$('.modal-wrapper').show();
-			popUpVal=1;
-		}
-		return false;
-	}//popupEvent
-	/*trigger even on outside click*/
-	$(document).click(function(e) {
-		popupEvent();//to check the popupevent
-	});
-	
 })(jQuery, Handlebars);
