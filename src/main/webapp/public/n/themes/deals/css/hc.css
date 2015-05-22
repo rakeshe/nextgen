@@ -597,9 +597,9 @@ select {
 }
 /* Modal - Message pop up */
 .modal-wrapper {
-    display: none;
-    float:left;
     width:590px;
+	position': absolute !important;
+	z-index:999 !important;
 }
 .cancel-action{
     float:right;
@@ -615,7 +615,6 @@ select {
     left: 25%;
     z-index: 100;
 }
-
 .parentDisable{
     position:fixed;
     top:0;
@@ -694,6 +693,7 @@ select {
     outline: 2px solid #dddee0;
     padding-left: 6%;
     width: 42%;
+	z-index:999 !important;
 }
 @media (max-width: 768px) {
 	.modal-input {
@@ -711,10 +711,10 @@ select {
     background-position:7px 9px;
 }
 .modal-calendar {
-    background-image:url(../images/assets/orbot-calendar.png);
+    /*background-image:url(../images/assets/orbot-calendar.png);
     background-repeat:no-repeat;
     background-position:7px 9px;
-    background-color:#FFF;
+    background-color:#FFF;*/
 }
 .modal-dropdown-select {
     width:100%;
