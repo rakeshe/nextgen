@@ -64,8 +64,15 @@
 			var docHeight = $(document).height();
             var template = HB.compile( $("#robot-template").html() );
 			$('body').append(template());//append the popup template
-			$("#check-in").datepicker();//initialize the date-picker for check-in
-			$("#check-out").datepicker();//initialize the date-picker for check-out
+			var dateToday = new Date();
+			$("#check-in").datepicker({
+				minDate: dateToday,
+				format: 'dd/mm/yyyy'
+			});//initialize the date-picker for check-in
+			$("#check-out").datepicker({
+				minDate: dateToday,
+				format: 'dd/mm/yyyy'
+			});//initialize the date-picker for check-out
 			
 			$("body").append("<div id='overlay'></div>");
 			$("#overlay")
