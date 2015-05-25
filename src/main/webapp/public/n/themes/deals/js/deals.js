@@ -367,7 +367,6 @@
     });
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
-        Deals.setDropDownDefaultOption().dropWhereDo();
 		$(".modal-wrapper").remove();
 		$("#overlay").remove();
 	});
