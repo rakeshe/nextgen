@@ -187,7 +187,7 @@
         displayHotelCards : function( data ) {
 
             var template = HB.compile( $("#hotel-card-template").html() );
-            $('.section .hotel-cards-container').append(template( data ));
+            $('.section .hotel-cards-container').html(template( data ));
 
             $("img.lazy").lazyload({
                 effect : "fadeIn"
