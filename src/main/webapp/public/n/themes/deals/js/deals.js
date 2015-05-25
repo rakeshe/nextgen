@@ -65,13 +65,28 @@
             var template = HB.compile( $("#robot-template").html() );
 			$('body').append(template());//append the popup template
 			var dateToday = new Date();
+	var checkRates = "Check Rates";
 			$("#check-in").datepicker({
-				minDate: dateToday,
-				format: 'dd/mm/yyyy'
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#check-out').datepicker("option", "minDate",
+						$('#check-in').val()
+					);
+				}
 			});//initialize the date-picker for check-in
 			$("#check-out").datepicker({
-				minDate: dateToday,
-				format: 'dd/mm/yyyy'
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				onSelect : function(dateText, inst) {
+					$('#check-in').datepicker("option", "maxDate",
+						$('#check-out').val()
+					);
+				}
 			});//initialize the date-picker for check-out
 			
 			$("body").append("<div id='overlay'></div>");
@@ -107,7 +122,7 @@
 				'z-index': 9999,
 				'width':'116px',
 				'padding-left':'2%'
-			  });
+			});
         },
 
         displayHeader : function() {
