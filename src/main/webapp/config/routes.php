@@ -202,9 +202,11 @@ $router->add(
  */
 
 $router->add(
-    '/n/deals/:params',
+    //'/n/sale' . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHANUM . '/:params',
+     '/n/sale' . RE_SEOPATH_ALPHANUM . '/:params',
+    //'/n/sales/:params',
     array(
-        "params"       => 1,
+        "params"       =>  2,
         "controller"   => 'deals',
         "action"       => 'index',
         'module'       => 'deals',

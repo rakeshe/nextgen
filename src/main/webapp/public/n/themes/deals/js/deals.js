@@ -8,13 +8,31 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
             $('.filter').hide();
             this.displayHeader();
             //this.displayRobot();
-            //this.displaySortBox();
+            this.displaySortBox();
             //this.displayFilter();
             //this.displayHotelCards();
             //this.displayRegionHotelCards();
             //this.displayUpsell();
             this.displayFooter();
-            this.displayDropDownData();
+            this.displayDropDownData('value');
+            this.initURLUpdate();
+            this.hotelCardCtrl();
+
+        },
+
+        initURLUpdate : function () {
+
+            if (apnd != '') {
+                var curl = window.location.href, url = '';
+
+                if (curl[curl.length -1] !== undefined && curl[curl.length -1] == '/') {
+                    url = window.location.href + apnd;
+                } else {
+                    url = window.location.href + '/' + apnd;
+                }
+
+                history.pushState({url: url}, ' Hotels', url);
+            }
         },
 
         reLoadLandingPage: function() {
@@ -42,7 +60,9 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
             if (typeof this[ctrl] == 'function') {
 
                 if(typeof obj == 'object') {
-                    history.pushState({url: obj.city}, obj.city + ' Hotels', obj.city);
+
+                    var url = window.location.origin + '/' + MNME + '/' + obj.city + '/' + obj.when;
+                    history.pushState({url: url}, obj.city + ' Hotels', url);
                 }
                 this[ctrl](obj);
             } else {
@@ -52,12 +72,30 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 
         hotelCardCtrl : function(obj) {
 
-            var data = this.doRequest({url:'/' + MNME + '/', data: $.param(obj) });
-            $('.search-sale-box').hide();
-            this.displaySortBox();
-            console.log(data.responseJSON);
-            this.displayHotelCards(data.responseJSON);
+            if (typeof obj == 'object') {
 
+                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
+                // $('.search-sale-box').hide();
+                //this.displaySortBox();
+                //console.log(data.responseJSON);
+                this.displayHotelCards( data.responseJSON );
+
+            } else {
+                this.displayHotelCards( $.parseJSON(hData) );
+            }
+
+        },
+
+        getSelectedRegion: function() {
+            return 'Americas';
+        },
+
+        getSelectedCity : function() {
+            return city;
+        },
+
+        getSelectedWhen : function() {
+            return when;
         },
 
         displayRobot : function() {
@@ -90,15 +128,13 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         },
 
         displayHotelCards : function( data ) {
+
             var template = HB.compile( $("#hotel-card-template").html() );
+            $('.section .hotel-cards-container').append(template( data ));
 
-            //$.each(data, function(key, value) {
-
-               // console.log(value);
-
-                $('.section .hotel-cards-container').append(template( data ));
-           // });
-
+            $("img.lazy").lazyload({
+                effect : "fadeIn"
+            }).removeClass("lazy");
         },
 
         displayRegionHotelCards : function () {
@@ -115,10 +151,9 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         getWhereDoGoText : function () {
 
             return {
-                '7' : 'in the next 7 days',
-                '14' : 'in the next 14 days',
-                '30' : 'in the next 30 days',
-                '31' : '30 days and beyond',
+                '7-days' : 'in the next 7 days',
+                '30-days' : 'in the next 30 days',
+                '30-beyond' : '30 days and beyond',
                 ':robot' : 'exact dates'
             }
         },
@@ -154,37 +189,61 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
             }
         },
 
-        displayDropDownData : function () {
+        displayDropDownData : function (selectType) {
 
-            var dropRegion = this.setDropDownDefaultOption().dropRegion(),
-                dropCities = this.setDropDownDefaultOption().dropCities(),
-                dropWhereDo = this.setDropDownDefaultOption().dropWhereDo();
+           if (selectType == 'default') {
+
+               var dropRegion = this.setDropDownDefaultOption().dropRegion(),
+                   dropCities = this.setDropDownDefaultOption().dropCities(),
+                   dropWhereDo = this.setDropDownDefaultOption().dropWhereDo();
+           } else if (selectType == 'value') {
+
+               var dropRegion  = $('.dropdown-region'),
+                   dropCities  = $('.dropdown-cities'),
+                   dropWhereDo = $('.dropWhereDo');
+           }
+
+            var self = this;
 
             $.each(this.getCityData(), function(key, val){
 
-                dropRegion.append( $('<option>', {
+                var opt = {
                     value : key,
                     text : val.nameUtf8
-                }) );
+                };
+                if (selectType == 'value' && key == self.getSelectedRegion()) {
+                    opt.selected = "selected";
+                }
+
+                dropRegion.append( $('<option>', opt) );
 
                 if (typeof val.cities === 'object') {
 
                     $.each(val.cities, function (k, v) {
-                        dropCities.append( $('<option>', {
+
+                        var opt =  opt = {
                             value : k,
                             text : v.nameUtf8
-                        }) );
+                        };
+                        if (selectType == 'value' && k == self.getSelectedCity()) {
+                            opt.selected = "selected";
+                        }
+
+                        dropCities.append( $('<option>', opt ) );
                     });
                 }
             });
 
             $.each(this.getWhereDoGoText(), function (key, val) {
-                dropWhereDo.append(
-                  $('<option>', {
-                      value : key,
-                      text : val
-                  })
-                );
+
+                var opt =  opt = {
+                    value : key,
+                    text : val
+                };
+                if (selectType == 'value' && key == self.getSelectedWhen()) {
+                    opt.selected = "selected";
+                }
+                dropWhereDo.append( $('<option>', opt ) );
             })
         }
     }
@@ -227,11 +286,11 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
             //release disable
             switch (className) {
                 case 'dropdown-region' :
-                    $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+                   // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     break;
 
                 case 'dropdown-cities' :
-                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+                   // $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
                     break;
 
                 case 'dropWhereDo' :
@@ -245,7 +304,7 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
                            cy = $('.dropdown-cities').val(),
                            dy = $('.dropWhereDo').val();
 
-                        console.log(typeof rg, typeof cy, typeof dy);
+                       // console.log(typeof rg, typeof cy, typeof dy);
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');

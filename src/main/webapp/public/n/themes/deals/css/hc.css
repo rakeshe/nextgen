@@ -688,7 +688,7 @@ select {
     }
 }
 .modal-input-date{
-	border: 0 none;
+    border: 0 none;
     color: #999999;
     height: 37px;
     outline: 2px solid #dddee0;
@@ -696,14 +696,14 @@ select {
     width: 42%;
 }
 @media (max-width: 768px) {
-	.modal-input {
-		width:90%;
-		padding-left:10%;
-		height:37px;
-		outline:2px solid #dddee0;
-		border:0px;
-		color:#999999;
-	}
+    .modal-input {
+        width:90%;
+        padding-left:10%;
+        height:37px;
+        outline:2px solid #dddee0;
+        border:0px;
+        color:#999999;
+    }
 }
 .modal-marker {
     background-image:url(../images/assets/orbot-marker.png);
@@ -735,34 +735,31 @@ select {
     text-overflow: "";
 }
 .modal-dropdown-select-date {
-
-	width:90%;
-	padding-left:10%;
-	height:37px;
-	color:#999999;
-	border-radius:0px;
-	border: 0 !important;  /*Removes border*/
-	outline:2px solid #dddee0;
+    width:100%;
+    padding-left:10%;
+    height:37px;
+    color:#999999;
+    border-radius:0px;
+    border: 0 !important;  /*Removes border*/
+    outline:2px solid #dddee0;
     -webkit-appearance: none;  /*Removes default chrome and safari style*/
     -moz-appearance: none;  /*Removes default style Firefox*/
-	background: url('../images/assets/orbot-down-arrow.png');
-	background-position:top right;
-	background-repeat:no-repeat;
-	
-	text-indent: 0.01px;
- 	text-overflow: "";
-	
-	font-size:14px;
-	font-family:'Museo Sans',Verdana, Geneva, sans-serif;
-	font-weight:300;
+    background: url('../images/assets/orbot-down-arrow.png');
+    background-position:top right;
+    background-repeat:no-repeat;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+
+    font-size:14px;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-weight:300;
 }
 @media (max-width: 768px) {
     .modal-dropdown-select-date {
         padding-left:15%;
-        width:85% !important;
     }
 }
-
 .modal-row-button {
     background-color:#55337e;
     background-image:url(../images/assets/next-arrow.png);
@@ -945,7 +942,7 @@ select {
 /* HERO */
 .hero {
     background-image:url(../images/backgrounds/resort-desktop.jpg);
-    background-position:top center;
+    background-position:center;
     background-size:cover;
 }
 
@@ -974,10 +971,10 @@ select {
 }
 .hero-text {
     float:left;
-    width:80%;
-    margin-left:10%;
-    margin-right:10%;
-    margin-top:-88px;
+    width:100%;
+    margin-left:0%;
+    margin-right:0%;
+    margin-top:-70px;
     margin-bottom:24px;
     background:#f6eee7;
     border:2px solid #FFF;
@@ -987,29 +984,45 @@ select {
 
 }
 .hero-text-box {
-    padding:24px;
+    padding-left:24px;
+    padding-right:24px;
+    padding-top:12px;
+    padding-bottom:12px;
     float:left;
 }
 .hero-text a {
     text-decoration:underline;
-    color:#e61d23;
+    color:#55337e;
 }
 .hero-text-title {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     color:#e61d23;
-    font-size:24px;
-    line-height:100%;
-
-    margin-bottom:16px;
+    font-size:20px;
+    line-height:25px;
+    margin-bottom:6px;
 }
 .hero-text-body {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     color:#333;
-    font-size:20px;
+    font-size:18px;
     margin-bottom:0px;
-    line-height:150%;
+    line-height:24px;
 }
-
+.hero-image {
+    float:right;
+    padding-left:24px;
+    padding-right:0px;
+}
+.hero-cross {
+    padding-top:37px;
+    padding-bottom:24px;
+}
+@media (max-width: 768px) {
+    .hero-cross {
+        padding-top:4px;
+        padding-bottom:24px;
+    }
+}
 
 
 .hero-space {
@@ -1035,11 +1048,43 @@ select {
 .find-your h2 {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
-    font-size:24px;
+    font-size:23px;
     line-height:24px;
     font-style:italic;
     margin-top:8px;
     margin-bottom:20px;
+}
+/* Pagination */
+
+.pag-city {
+    float:left;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-weight:300;
+    font-size:17px;
+    color:#666666;
+}
+.pag-destination {
+    font-family:'museo_slab500',Verdana, Geneva, sans-serif;
+}
+.pag-links {
+    float:right;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-weight:300;
+    font-size:17px;
+    color:#666666;
+}
+@media (max-width: 768px) {
+    .pag-links {
+        float:left;
+    }
+}
+.pag-links a {
+    color:#666666;
+    text-decoration:underline;
+}
+.pag-links a:hover {
+    color:#55337e;
+    text-decoration:underline;
 }
 
 /* SORT BUTTON */
@@ -1138,7 +1183,7 @@ select {
     background-position:30px 0px;
 }
 .filter-box {
-    background-color:#d6dddc;
+    background-color:#ebebeb;
     padding-top:12px;
     margin-top:12px;
     overflow:visible;
@@ -1282,7 +1327,7 @@ select {
 .card-container {
     position: relative;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1016px;
     margin: 0 auto;
     padding: 0 0px;
     box-sizing: border-box;
@@ -1304,7 +1349,7 @@ select {
 @media (min-width: 769px) {
     .card-container {
         width: 100%;
-        padding: 10px;
+        padding: 20px;
     }
 }
 
@@ -1316,7 +1361,7 @@ select {
 }
 
 /* Four card width */
-.hotelcards	{ width: 25%; float:left; margin-left: 0;}
+.hotelcards	{ width: 33.333333333%; float:left; margin-left: 0;}
 
 /* Three card width */
 @media (max-width:1024px) {
@@ -1341,29 +1386,26 @@ select {
     height:465px;
     overflow:hidden;
 }
-.card:hover {
-    background-color:#ecf0ef;
-}
 .card-member {
     display:block;
     width:100%;
     background-color:#e80f1e;
     text-align:center;
     color:#FFF;
-    padding-top:2px;
-    padding-bottom:2px;
-    font-size:12px;
+    padding-top:1px;
+    padding-bottom:1px;
+    font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 }
 .card-non-member {
     display:block;
     width:100%;
-    background-color:#666;
+    background-color:#959595;
     text-align:center;
-    color:#FFF;
-    padding-top:2px;
-    padding-bottom:2px;
-    font-size:12px;
+    color:#d9d9d9;
+    padding-top:1px;
+    padding-bottom:1px;
+    font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 }
 
@@ -1381,12 +1423,13 @@ select {
 }
 .hotel-name {
     font-size:24px;
+    line-height:25px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#55337e;
     display:block;
     width:100%;
-    height:32px;
+    height:64px;
     overflow:hidden;
 }
 .hotel-city {
@@ -1678,44 +1721,43 @@ select {
     margin-bottom:24px;
 }
 
-.subscribe-input {
+.subscribe-box {
     width:100%;
+    height:38px;
     float:left;
     background:#545454;
     -webkit-border-radius: 32px;
     -moz-border-radius: 32px;
     border-radius: 32px;
     border:0;
-    height:35px;
+}
+
+.subscribe-input {
+    width:65%;
+    height:36px;
+    float:left;
+    background:#545454;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    border:0;
+    text-indent:16px;
 }
 
 .submit-email {
-    margin-top:3px;
+    width:30%;
+    display:block;
+    float:right;
+    height:38px;
     background-color:#FFF;
     color:#333;
     border:0;
-    padding-top:8px;
-    padding-bottom:8px;
-    padding-left:24px;
-    padding-right:24px;
     -webkit-border-radius: 32px;
     -moz-border-radius: 32px;
     border-radius: 32px;
     font-size:13px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
-
-    position: absolute;
-    right: 0px;
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    .submit-email {
-        position: absolute;
-        right: 0px;
-        z-index: 1;
-    }
 }
 
 .accreditation {

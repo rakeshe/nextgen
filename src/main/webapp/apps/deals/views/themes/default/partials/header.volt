@@ -69,10 +69,10 @@
                <select name="" class="hotel-dropdown-select dropdown-region input-default-value" data-rm-val="dropdown-region"></select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled="disabled" name="" class="hotel-dropdown-select dropdown-cities input-default-value disabled-style" data-rm-val="dropdown-cities"></select>
+                <select name="" class="hotel-dropdown-select dropdown-cities input-default-value" data-rm-val="dropdown-cities"></select>
             </div> <!-- End 4 Col -->
             <div class="four columns">
-                <select disabled name="" class="hotel-dropdown-select dropWhereDo input-default-value disabled-style" data-rm-val="dropWhereDo"></select>
+                <select name="" class="hotel-dropdown-select dropWhereDo input-default-value" data-rm-val="dropWhereDo"></select>
             </div> <!-- End 4 Col -->
         </div> <!-- End Row -->
     </div>
