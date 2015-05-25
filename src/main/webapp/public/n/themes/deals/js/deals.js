@@ -56,14 +56,58 @@
             this.displaySortBox();
             console.log(data.responseJSON);
             this.displayHotelCards(data.responseJSON);
-
+			
         },
 
         displayRobot : function() {
+			$(".modal-wrapper").fadeIn('slow');
+			var docHeight = $(document).height();
             var template = HB.compile( $("#robot-template").html() );
-            $('body').append(template());//append the popup template
-			$("#check-in").datepicker();//initialize the date-picker for check-in
-			$("#check-out").datepicker();//initialize the date-picker for check-out
+			$('body').append(template());//append the popup template
+			var dateToday = new Date();
+			$("#check-in").datepicker({
+				minDate: dateToday,
+				format: 'dd/mm/yyyy'
+			});//initialize the date-picker for check-in
+			$("#check-out").datepicker({
+				minDate: dateToday,
+				format: 'dd/mm/yyyy'
+			});//initialize the date-picker for check-out
+			
+			$("body").append("<div id='overlay'></div>");
+			$("#overlay")
+				.height(docHeight)
+				.css({
+				 'opacity' : 0.4,
+				 'position': 'absolute',
+				 'top': 0,
+				 'left': 0,
+				 'background-color': 'black',
+				 'width': '100%',
+				 'z-index': 200
+			});
+			$(".modal-wrapper").css({
+				'position': 'absolute',
+				'top': '150px',
+				'left': '150px',
+				'z-index': 999
+			});
+			$("#check-in").css({
+				'position': 'absolute',
+				'top': '171px',
+				'left': '17px',
+				'z-index': 9999,
+				'width':'116px',
+				'padding-left':'2%'
+			});
+			$("#check-out").css({
+				'position': 'absolute',
+				'top': '171px',
+				'left': '156px',
+				'z-index': 9999,
+				'width':'116px',
+				'padding-left':'2%'
+			  });
         },
 
         displayHeader : function() {
@@ -251,5 +295,6 @@
 	$(document).on('click','.cancel-action',function(){
         Deals.setDropDownDefaultOption().dropWhereDo();
 		$(".modal-wrapper").remove();
+		$("#overlay").remove();
 	});
 })(jQuery, Handlebars);
