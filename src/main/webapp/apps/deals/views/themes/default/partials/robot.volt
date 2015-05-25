@@ -17,8 +17,8 @@
                             <!--<select name="" class="modal-dropdown-select-date">
                                 <option>JQuery date picker</option>
                             </select>-->
-							<input name="check-in" type="text" class="modal-input-date" id="check-in" value=""/>&nbsp;
-							<input name="check-out" type="text" class="modal-input-date" id="check-out" value=""/>
+							<input name="check-in" type="text" class="modal-input-date" id="check-in"/>&nbsp;
+							<input name="check-out" type="text" class="modal-input-date" id="check-out"/>
 							</div></p>
                     </div>
                     <div class="six columns">

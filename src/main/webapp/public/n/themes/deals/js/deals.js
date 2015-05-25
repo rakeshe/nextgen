@@ -1,4 +1,3 @@
-var popUpVal = 0;//set default value for popUpVal to display the popup block
 (function( $, HB ) {
 	
     var Deals = {
@@ -99,11 +98,69 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         },
 
         displayRobot : function() {
+			$(".modal-wrapper").fadeIn('slow');
+			var docHeight = $(document).height();
             var template = HB.compile( $("#robot-template").html() );
-            $('body').append(template());//append the popup template
-			$("#check-in").datepicker();//initialize the date-picker for check-in
-			$("#check-out").datepicker();//initialize the date-picker for check-out
-			popUpVal = 0;//set popUpVal to display the popup block
+			$('body').append(template());//append the popup template
+			var dateToday = new Date();
+	var checkRates = "Check Rates";
+			$("#check-in").datepicker({
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#check-out').datepicker("option", "minDate",
+						$('#check-in').val()
+					);
+				}
+			});//initialize the date-picker for check-in
+			$("#check-out").datepicker({
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				onSelect : function(dateText, inst) {
+					$('#check-in').datepicker("option", "maxDate",
+						$('#check-out').val()
+					);
+				}
+			});//initialize the date-picker for check-out
+			
+			$("body").append("<div id='overlay'></div>");
+			$("#overlay")
+				.height(docHeight)
+				.css({
+				 'opacity' : 0.4,
+				 'position': 'absolute',
+				 'top': 0,
+				 'left': 0,
+				 'background-color': 'black',
+				 'width': '100%',
+				 'z-index': 200
+			});
+			$(".modal-wrapper").css({
+				'position': 'absolute',
+				'top': '150px',
+				'left': '150px',
+				'z-index': 999
+			});
+			$("#check-in").css({
+				'position': 'absolute',
+				'top': '171px',
+				'left': '17px',
+				'z-index': 9999,
+				'width':'116px',
+				'padding-left':'2%'
+			});
+			$("#check-out").css({
+				'position': 'absolute',
+				'top': '171px',
+				'left': '156px',
+				'z-index': 9999,
+				'width':'116px',
+				'padding-left':'2%'
+			});
         },
 
         displayHeader : function() {
@@ -256,16 +313,8 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
         $('.filter').slideToggle();
         e.preventDefault();
     });
-	$(document).on("click", "#check-in", function() {
-		$("#check-in").datepicker();
-	});
-	$(document).on("click", "#check-out", function() {
-		$("#check-out").datepicker();
-	});
-	
 
-    $(document).ready(function(){
-		//$('#check-in').datepicker();
+    $(document).ready(function(){	
         $(window).bind('popstate', function(event) {
 
             var state = event.originalEvent.state;
@@ -319,31 +368,7 @@ var popUpVal = 0;//set default value for popUpVal to display the popup block
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
         Deals.setDropDownDefaultOption().dropWhereDo();
-		$('.modal-wrapper').hide();
-		popUpVal=2;
+		$(".modal-wrapper").remove();
+		$("#overlay").remove();
 	});
-
-	/*check popup event is visible or not */
-	function popupEvent(){
-		if(popUpVal==1){
-			$("body").click(function(e) {
-				if ($(e.target).parents(".modal-wrapper").size()==0&&$('.modal-wrapper').is(':visible')) {
-					console.log(e.target.class+'---'+$(e.target).parents(".modal-wrapper").size());
-					$('.modal-wrapper').hide();
-					Deals.setDropDownDefaultOption().dropWhereDo();
-					popUpVal=2;
-				}
-			});
-		}
-		else if(popUpVal==0){
-			$('.modal-wrapper').show();
-			popUpVal=1;
-		}
-		return false;
-	}//popupEvent
-	/*trigger even on outside click*/
-	$(document).click(function(e) {
-		popupEvent();//to check the popupevent
-	});
-	
 })(jQuery, Handlebars);
