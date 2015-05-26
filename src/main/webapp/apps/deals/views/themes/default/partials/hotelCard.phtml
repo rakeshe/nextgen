@@ -2,26 +2,22 @@
 
     {{#each this}}
 
-
     <div class="hotelcards">
         <!-- Card 1 -->
         <div class="card">
             <div class="card-image">
-                <div class="card-member">Member exclusive</div>
-                <img src="http://www.tnetnoc.com/hotelphotos/967/246967/2241284-Moana-Surfrider-A-Westin-Resort-and-Spa-BarLounge-1-DEF.jpg" class="card-img">
+                <div class="card-member">Member Exclusive Offer</div>
+                <img class="lazy card-img" data-original="http://www.tnetnoc.com/hotelphotos/967/246967/2241284-Moana-Surfrider-A-Westin-Resort-and-Spa-BarLounge-1-DEF.jpg"/>
             </div>
             <div class="card-info">
-                <div class="hotel-name">{{hotelNameUtf8}}</div>
-                <div class="hotel-city">{{cityName}}</div>
+                <div class="hotel-name">{{hotelNameUtf8}}&nbsp;{{cityName}}</div>
+                <!--<div class="hotel-city">Melboune</div>-->
                 <div class="card-left">
-                    <div class="star-sprite-4">
+                    <div class="star-sprite-{{starRating}}">
                     </div>
-                    <p class="hotel-offer">{{marketText}}Get up to 20% off</p>
+                    <p class="hotel-offer">{{marketText}}</p>
                     <ul class="card-feat-list">
-                        <li>FREE Concierge</li>
-                        <li>Breakfast included</li>
-                        <li>FREE wifi</li>
-                        <li>and more</li>
+                        <li>Includes Breakfast for 1, Internet Access and more</li>
                     </ul>
                 </div>
                 <div class="card-right">
@@ -29,11 +25,10 @@
                         &nbsp;<span class="member-q"><a href="#" title="Member price">?</a></span></p>
                     <p class="hotel-price">{{price}}{{curySymbole}}</p>
                     <p class="hotel-avg">avg/night</p>
-                    <a href="#" class="hotel-card-button" title="">View hotel</a>
+                    <a href="#" class="hotel-card-button" title="">Select dates</a>
                 </div>
             </div>
         </div><!-- End Card 1 -->
-    </div>
-    </div>
+    </div><!-- End Card Container -->
     {{/each}}
 </script>

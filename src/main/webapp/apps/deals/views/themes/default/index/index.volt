@@ -1,4 +1,4 @@
-<script> var cData = '{{cityData}}', MNME = 'n/deals'; </script>
+<script> var cData = '{{cityData}}', hData = '{{hData}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}'; </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
