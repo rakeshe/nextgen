@@ -21,16 +21,14 @@
                         </div></a>
                 </div>-->
 				<!-- End User ID <ul> -->
-				<dl id="defaultVal" class="dropdown">
-					<dt><a href="#"><span><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English" /></a></dt>
-					<dd>
-						<ul>
+				<div id="defaultVal" class="dropdown">
+					<a href="#"><span><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English" /></a>
+					<ul>
 							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English"/></a></li>
 							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/fr.png" alt="French"/></a></li>
 							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/de.png" alt="Detuche"/></a></li>
 						</ul>
-					</dd>
-				</dl>
+				</div>
             </div><!-- End Locale -->
             <div class="currency-section">
                 <div class="club-id">

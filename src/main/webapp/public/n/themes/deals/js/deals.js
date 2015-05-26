@@ -260,20 +260,20 @@
     $(document).ready(function(){	
 		/*drop down for language selection*/
 		
-		$(".dropdown dt a").click(function() {
-			$(".dropdown dd ul").toggle();
+		$(".dropdown a").click(function() {
+			$(".dropdown ul").toggle();
 		});
 					
-		$(".dropdown dd ul li a").click(function() {
+		$(".dropdown ul li a").click(function() {
 			var text = $(this).html();
-			$(".dropdown dt a span").html(text);
-			$(".dropdown dd ul").hide();
+			$(".dropdown a span").html(text);
+			$(".dropdown ul").hide();
 		});
 
 		$(document).bind('click', function(e) {
 			var $clicked = $(e.target);
 			if (! $clicked.parents().hasClass("dropdown"))
-				$(".dropdown dd ul").hide();
+				$(".dropdown ul").hide();
 		});
 		/*end drop down for language selection*/
 		
