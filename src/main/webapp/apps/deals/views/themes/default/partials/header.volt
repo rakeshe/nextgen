@@ -10,20 +10,26 @@
         <!-- Tagline -->
         <span class="tag-line">More extraordinary with every stay</span>
         <!-- End Tagline -->
-
         <div class="user"><!-- Fix this Div - Has witdth issues -->
-
             <div class="locale-section">
-                <div class="club-id">
+                <!--<div class="club-id">
                     <a href="#">
                         <div class="locale-drop-down-arrow">
                                 <span class="user-club-info">
                                     <img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
                                 </span>
                         </div></a>
-                </div><!-- End User ID <ul> -->
+                </div>-->
+				<!-- End User ID <ul> -->
+				<div id="defaultVal" class="dropdown">
+					<a href="#"><span><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English" /></a>
+					<ul>
+							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English"/></a></li>
+							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/fr.png" alt="French"/></a></li>
+							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/de.png" alt="Detuche"/></a></li>
+						</ul>
+				</div>
             </div><!-- End Locale -->
-
             <div class="currency-section">
                 <div class="club-id">
                     <a href="#">
