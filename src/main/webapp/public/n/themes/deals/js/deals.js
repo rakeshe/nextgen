@@ -62,10 +62,12 @@
         displayRobot : function() {
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
+			Deals.setDropDownDefaultOption().dropWhereDo();
             var template = HB.compile( $("#robot-template").html() );
 			$('body').append(template());//append the popup template
+			
 			var dateToday = new Date();
-	var checkRates = "Check Rates";
+			var checkRates = "Check Rates";
 			$("#check-in").datepicker({
 				inline : true,
 				minDate : 0,
@@ -93,7 +95,7 @@
 			$("#overlay")
 				.height(docHeight)
 				.css({
-				 'opacity' : 0.4,
+				 'opacity' : 0.6,
 				 'position': 'absolute',
 				 'top': 0,
 				 'left': 0,
@@ -256,6 +258,25 @@
     });
 
     $(document).ready(function(){	
+		/*drop down for language selection*/
+		
+		$(".dropdown dt a").click(function() {
+			$(".dropdown dd ul").toggle();
+		});
+					
+		$(".dropdown dd ul li a").click(function() {
+			var text = $(this).html();
+			$(".dropdown dt a span").html(text);
+			$(".dropdown dd ul").hide();
+		});
+
+		$(document).bind('click', function(e) {
+			var $clicked = $(e.target);
+			if (! $clicked.parents().hasClass("dropdown"))
+				$(".dropdown dd ul").hide();
+		});
+		/*end drop down for language selection*/
+		
         $(window).bind('popstate', function(event) {
 
             var state = event.originalEvent.state;
@@ -308,7 +329,6 @@
     });
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
-        Deals.setDropDownDefaultOption().dropWhereDo();
 		$(".modal-wrapper").remove();
 		$("#overlay").remove();
 	});
