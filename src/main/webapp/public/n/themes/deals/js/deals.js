@@ -319,20 +319,24 @@
     $(document).ready(function(){	
 		/*drop down for language selection*/
 		
-		$(".dropdown a").click(function() {
-			$(".dropdown ul").toggle();
+		$(".club-id").click(function() {
+			$(".locale-wrapper").toggle();
 		});
 					
-		$(".dropdown ul li a").click(function() {
+		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
-			$(".dropdown a span").html(text);
-			$(".dropdown ul").hide();
+			console.log($(".locale-drop-down-arrow").html(text));
+			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
+			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
+			$(".locale-drop-down-arrow .flag-txt-pos").remove();
 		});
 
 		$(document).bind('click', function(e) {
 			var $clicked = $(e.target);
-			if (! $clicked.parents().hasClass("dropdown"))
-				$(".dropdown ul").hide();
+			console.log($clicked.parents().hasClass("club-id"));
+			if(!$clicked.parents().hasClass("club-id")){
+				$(".club-id .locale-wrapper").hide();
+			}
 		});
 		/*end drop down for language selection*/
 		
