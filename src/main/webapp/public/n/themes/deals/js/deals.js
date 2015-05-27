@@ -10,6 +10,7 @@
 
             $('.filter').hide();
             this.displayHeader();
+            this.displayUserInfo();
             //this.displayRobot();
             this.displaySortBox();
             //this.displayFilter();
@@ -88,6 +89,26 @@
 
         },
 
+        displayUserInfo : function() {
+
+            if (uInfo != '' && typeof  $.parseJSON(uInfo) === 'object') {
+
+                this.userInfo = $.parseJSON(uInfo);
+
+                $('.user-member-name').html(
+                    this.userInfo.name.first_name.charAt(0).toUpperCase() + this.userInfo.name.first_name.substring(1)
+                    +' '+
+                    this.userInfo.name.last_name.charAt(0).toUpperCase() + this.userInfo.name.last_name.substring(1)
+                );
+                $('.user-club-info-card-type').html(
+                    this.userInfo.tierType.charAt(0).toUpperCase() + this.userInfo.tierType.substring(1).toLowerCase()
+                    + ' Member'
+                );
+
+                $('.usr-rewards-point').prepend(this.userInfo.availAmount.value + ' ');
+            }
+        },
+
         displayRobot : function() {
             console.log({city:this.city});
 			$(".modal-wrapper").fadeIn('slow');
@@ -157,6 +178,8 @@
         },
 
         displayHeader : function() {
+
+            console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template());
         },

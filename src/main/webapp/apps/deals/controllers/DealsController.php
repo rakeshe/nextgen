@@ -34,6 +34,10 @@ class DealsController extends ControllerBase {
 
     private $appendURL;
 
+    private $userId;
+
+    private $userInfo;
+
     public function initialize() {
 
         $this->init();
@@ -46,7 +50,39 @@ class DealsController extends ControllerBase {
             die($hotelData);
         }
 
+        if (NULL !== $this->userId)
+            $this->setUserInfo();
+
     }
+
+    public function setUserInfo() {
+
+        $uInfo = $this->model->getLoyaltyInfo('');
+        $lInfo = json_decode($this->model->getUserInfo(''), TRUE);
+        echo '<pre>';
+
+
+        if (NULL !== $uInfo) {
+
+            foreach(json_decode($uInfo, TRUE) as $key => $val) {
+
+                if ($key == 'lite_member') {
+                    $this->userInfo['mId']   = (!isset($val['member_id'])) ? '' : $val['member_id'];
+                    $this->userInfo['name']  = (!isset($val['name'])) ? '' : $val['name'];
+                    $this->userInfo['email'] = (!isset($val['email_address'])) ? '' : $val['email_address'];
+                }
+            }
+        }
+
+        if (NULL !== $lInfo) {
+
+            $this->userInfo['mid'] = $lInfo['loyalty_member_number'];
+            $this->userInfo['tierType'] = $lInfo['tier_type'];
+            $this->userInfo['availAmount'] = $lInfo['available_amount'];
+            $this->userInfo['availAmountInUsrCurr'] = $lInfo['available_amount_in_member_currency'];
+        }
+    }
+
 
     public function init() {
 
@@ -82,6 +118,11 @@ class DealsController extends ControllerBase {
         if (isset($this->request->get()['sort']))
             $this->sort = $this->request->get()['sort'];
 
+        if ($this->cookies->get('mid')->__toString() != '') {
+            $this->userId = $this->cookies->get('mid')->__toString();
+        }
+
+        $this->userId = 123;
     }
 
     public function indexAction() {
@@ -96,6 +137,7 @@ class DealsController extends ControllerBase {
             'appendURL' => $this->appendURL,
             'url'       => self::DEFAULT_URL,
             'hData'     => $this->model->getHotels('', $this->city),
+            'userInfo'  => json_encode($this->userInfo),
             ]);
 
         $this->view->pick('default/index/index');

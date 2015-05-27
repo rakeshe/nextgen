@@ -43,7 +43,7 @@
                 <div class="user-id">
                     <a href="#">
                         <p><span class="user-member">Your Club</span><br/>
-                            <span class="user-club-info points-token">114.09 <span class="rewards">Member Rewards</span></span></p>
+                            <span class="user-club-info points-token usr-rewards-point"><span class="rewards">Member Rewards</span></span></p>
                     </a>
                 </div>
             </div><!-- End Club -->
@@ -51,8 +51,8 @@
             <div class="member-section">
                 <div class="user-id">
                     <a href="#">
-                        <p><span class="user-member">John</span><br/>
-                            <span class="user-club-info">Platinum Member</span></p>
+                        <p><span class="user-member user-member-name">John</span><br/>
+                            <span class="user-club-info user-club-info-card-type">Platinum Member</span></p>
                     </a>
                 </div>
             </div><!-- End Members -->
