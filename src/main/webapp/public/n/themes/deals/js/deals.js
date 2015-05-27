@@ -4,6 +4,10 @@
 
         init : function() {
 
+            this.city = city;
+            this.region = '';
+            this.when = when;
+
             $('.filter').hide();
             this.displayHeader();
             //this.displayRobot();
@@ -16,7 +20,6 @@
             this.displayDropDownData('value');
             this.initURLUpdate();
             this.hotelCardCtrl();
-
         },
 
         initURLUpdate : function () {
@@ -85,24 +88,12 @@
 
         },
 
-        getSelectedRegion: function() {
-            return 'Americas';
-        },
-
-        getSelectedCity : function() {
-            return city;
-        },
-
-        getSelectedWhen : function() {
-            return when;
-        },
-
         displayRobot : function() {
+            console.log({city:this.city});
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
-			Deals.setDropDownDefaultOption().dropWhereDo();
             var template = HB.compile( $("#robot-template").html() );
-			$('body').append(template());//append the popup template
+			$('body').append(template({city:this.city}));//append the popup template
 			
 			var dateToday = new Date();
 			var checkRates = "Check Rates";
@@ -270,7 +261,7 @@
                     value : key,
                     text : val.nameUtf8
                 };
-                if (selectType == 'value' && key == self.getSelectedRegion()) {
+                if (selectType == 'value' && key == self.region) {
                     opt.selected = "selected";
                 }
 
@@ -284,7 +275,7 @@
                             value : k,
                             text : v.nameUtf8
                         };
-                        if (selectType == 'value' && k == self.getSelectedCity()) {
+                        if (selectType == 'value' && k == self.city) {
                             opt.selected = "selected";
                         }
 
@@ -299,7 +290,7 @@
                     value : key,
                     text : val
                 };
-                if (selectType == 'value' && key == self.getSelectedWhen()) {
+                if (selectType == 'value' && key == self.when) {
                     opt.selected = "selected";
                 }
                 dropWhereDo.append( $('<option>', opt ) );
@@ -357,6 +348,14 @@
             var className = $(this).data('rm-val');
             $('.' + className + ' option[value="0"]').remove();
 
+            var rg = $('.dropdown-region').val(),
+                cy = $('.dropdown-cities').val(),
+                dy = $('.dropWhereDo').val();
+
+            Deals.region = rg;
+            Deals.city = cy;
+            Deals.when = dy;
+
             //release disable
             switch (className) {
                 case 'dropdown-region' :
@@ -368,16 +367,13 @@
                     break;
 
                 case 'dropWhereDo' :
+
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
                         Deals.displayRobot();
                     } else {
                         //start routing ....
-                       var rg = $('.dropdown-region').val(),
-                           cy = $('.dropdown-cities').val(),
-                           dy = $('.dropWhereDo').val();
-
                        // console.log(typeof rg, typeof cy, typeof dy);
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
@@ -394,5 +390,6 @@
 	$(document).on('click','.cancel-action',function(){
 		$(".modal-wrapper").remove();
 		$("#overlay").remove();
+        Deals.setDropDownDefaultOption().dropWhereDo();
 	});
 })(jQuery, Handlebars);
