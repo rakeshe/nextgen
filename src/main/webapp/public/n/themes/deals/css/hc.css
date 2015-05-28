@@ -124,12 +124,19 @@
     background-position:0px 1px;
     padding-left:16px;
 }
-
 .club-id p {
     line-height:100%;
     margin-bottom:0px;
 }
 .club-id a {
+    text-decoration:none;
+    color:#FFF;
+}
+.club-id-currency p {
+    line-height:100%;
+    margin-bottom:0px;
+}
+.club-id-currency a {
     text-decoration:none;
     color:#FFF;
 }
@@ -336,9 +343,12 @@ select {
     padding-top:16px;
     float:left;
     width:690px;
+	margin-left: -310px;
     background-image:url(../images/assets/menu-box-arrow.png);
     background-repeat:no-repeat;
     background-position:top center;
+	position:absolute;
+	display:none;
 }
 .currency-box {
     width:690px;

@@ -332,8 +332,7 @@
 
     $(document).ready(function(){	
 		/*drop down for language selection*/
-		
-		$(".club-id").click(function() {
+		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
 		});
 					
@@ -343,6 +342,7 @@
 			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
 			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
 			$(".locale-drop-down-arrow .flag-txt-pos").remove();
+			$(".club-id .locale-wrapper").hide();
 		});
 
 		$(document).bind('click', function(e) {
@@ -351,11 +351,19 @@
 			if(!$clicked.parents().hasClass("club-id")){
 				$(".club-id .locale-wrapper").hide();
 			}
+			if(!$clicked.parents().hasClass("club-id-currency")){
+				$(".currency-wrapper").hide();
+			}
 		});
 		/*end drop down for language selection*/
 		
-        $(window).bind('popstate', function(event) {
+		/*drop down for currency selection*/
+		$(".club-id-currency").click(function() {
+			$(".currency-wrapper").toggle();
+		});
+		/*end drop down for currency selection*/
 
+		$(window).bind('popstate', function(event) {
             var state = event.originalEvent.state;
 
             if (state) {
