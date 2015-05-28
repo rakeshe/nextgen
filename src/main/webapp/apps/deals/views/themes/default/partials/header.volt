@@ -11,33 +11,158 @@
         <span class="tag-line">More extraordinary with every stay</span>
         <!-- End Tagline -->
         <div class="user"><!-- Fix this Div - Has witdth issues -->
-            <div class="locale-section">
-                <!--<div class="club-id">
-                    <a href="#">
-                        <div class="locale-drop-down-arrow">
-                                <span class="user-club-info">
-                                    <img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
-                                </span>
-                        </div></a>
-                </div>-->
-				<!-- End User ID <ul> -->
-				<div id="defaultVal" class="dropdown">
-					<a href="#"><span><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English" /></a>
-					<ul>
-							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/au.png" alt="English"/></a></li>
-							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/fr.png" alt="French"/></a></li>
-							<li><a href="#"><img class="flag" src="/n/themes/deals/images/assets/de.png" alt="Detuche"/></a></li>
-						</ul>
+			<div class="locale-section">
+				<div class="club-id">
+					<div class="locale-drop-down-arrow">
+						<a href="#">
+							<span class="user-club-info">
+								<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
+							</span>
+						</a>
+					</div>
+					<div class="locale-wrapper">
+						<div class="locale-menu">
+							<ul class="locale-list">
+								<li>
+									<a href="#">
+										<div class="flag-pos">
+										<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" /></div>
+										<div class="flag-txt-pos">English</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-tw" alt="繁體中文 (台灣)" /></div>
+									<div class="flag-txt-pos">繁體中文 (台灣)</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-cn" alt="简体中文" /></div>
+									<div class="flag-txt-pos">简体中文</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-hk" alt="繁體中文 (香港)" /></div>
+									<div class="flag-txt-pos">繁體中文 (香港)</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-my" alt="Bahasa Malaysia" /></div>
+									<div class="flag-txt-pos">Bahasa Malaysia</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-de" alt="Deutsch" /></div>
+									<div class="flag-txt-pos">Deutsch</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-es" alt="Español" /></div>
+									<div class="flag-txt-pos">Español</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-fr" alt="Français<" /></div>
+									<div class="flag-txt-pos">Français</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-id" alt="Bahasa Indonesia" /></div>
+									<div class="flag-txt-pos">Bahasa Indonesia</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-it" alt="Italiano" /></div>
+									<div class="flag-txt-pos">Italiano</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-jp" alt="日本語" /></div>
+									<div class="flag-txt-pos">日本語</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-kr" alt="한국어" /></div>
+									<div class="flag-txt-pos">한국어</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-nl" alt="Nederlands" /></div>
+									<div class="flag-txt-pos">Nederlands</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-pl" alt="Polski" /></div>
+									<div class="flag-txt-pos">Polski</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-pt" alt="Português" /></div>
+									<div class="flag-txt-pos">Português</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-ru" alt="Русский" /></div>
+									<div class="flag-txt-pos">Русский</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-sv" alt="Svenska" /></div>
+									<div class="flag-txt-pos">Svenska</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+									<div class="flag-pos">
+									<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-th" alt="ไทย" /></div>
+									<div class="flag-txt-pos">ไทย</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div><!-- End User ID <ul> -->
+			</div><!-- End Locale -->
+			
+			<div class="currency-section">
+				<div class="club-id">
+					<a href="#">
+						<div class="user-space">
+							<span class="user-club-info drop-down-arrow">$AUD</span>
+						</div></a>
 				</div>
-            </div><!-- End Locale -->
-            <div class="currency-section">
-                <div class="club-id">
-                    <a href="#">
-                        <div class="user-space">
-                            <span class="user-club-info drop-down-arrow">$AUD</span>
-                        </div></a>
-                </div>
-            </div><!-- End Currency -->
+			</div><!-- End Currency -->
 
             <div class="club-section">
                 <div class="user-id">
