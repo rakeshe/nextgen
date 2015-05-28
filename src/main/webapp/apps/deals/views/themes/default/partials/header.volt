@@ -156,11 +156,192 @@
 			</div><!-- End Locale -->
 			
 			<div class="currency-section">
-				<div class="club-id">
+				<div class="club-id-currency">
 					<a href="#">
 						<div class="user-space">
 							<span class="user-club-info drop-down-arrow">$AUD</span>
-						</div></a>
+						</div>
+					</a>
+					<div class="currency-wrapper">
+						<div class="currency-box">
+							<ul class="currencySelector selector multiColumn">
+								<li class="currency-col"> <!-- Col -->
+									<div class="mostUsed cur-section">
+										<h5 class="Countries">Most-used currencies</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+											<span class="current" title="AUD - Australian Dollar">AUD - Australian Dollar</span>
+											</li>
+
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="CNY - Chinese Yuan">CNY - Chinese Yuan</a>
+											</li>
+
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="EUR - Euro">EUR - Euro</a>
+											</li>
+
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="GBP - British Pound Sterling">GBP - British Pound Sterling</a>
+											</li>
+
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="NZD - New Zealand Dollar">NZD - New Zealand Dollar</a>   
+											</li>
+
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="USD - US Dollar">USD - US Dollar</a>
+											</li>
+										</ul>
+									</div>
+									<div class="cur-section top">
+										<h5 class="Countries">Africa</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+											<a href="#" class="link" title="ZAR - South African Rand">ZAR - South African Rand</a>   
+											</li>
+										</ul>
+									</div>								
+									<div class="cur-section top">
+										<h5 class="Countries">Americas</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="BRL - Brazilian Real">BRL - Brazilian Real</a>   
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="CAD - Canadian Dollar">CAD - Canadian Dollar</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="COP - Colombia Peso">COP - Colombia Peso</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="MXN - Mexican Peso">MXN - Mexican Peso</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="USD - US Dollar">USD - US Dollar</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+							
+								<li class="currency-col currency-col-space currency-col-divide"> <!-- Col -->
+									<div class="cur-section center">
+										<h5 class="Countries">Asia</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="CNY - Chinese Yuan">CNY - Chinese Yuan</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="HKD - Hong Kong Dollar">HKD - Hong Kong Dollar</a>   
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="IDR - Indonesia Rupiah">IDR - Indonesia Rupiah</a>   
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="INR - Indian Rupee">INR - Indian Rupee</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="JPY - Japanese Yen">JPY - Japanese Yen</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="KRW - South Korean Won">KRW - South Korean Won</a>   
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="MYR - Malaysian Ringgit">MYR - Malaysian Ringgit</a>   
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="PHP - Philippine Peso">PHP - Philippine Peso</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="SGD - Singapore Dollar">SGD - Singapore Dollar</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="THB - Thai Baht">THB - Thai Baht</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="TWD - New Taiwan Dollar">TWD - New Taiwan Dollar</a>
+											</li>
+										</ul>
+									</div>
+									
+									<div class="cur-section center top">
+										<h5 class="Countries">Middle East</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="AED - UAE Dirham">AED - UAE Dirham</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="ILS - Israeli New Sheqel">ILS - Israeli New Sheqel</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="QAR - Qatar Rial">QAR - Qatar Rial</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="SAR - Saudi Arabia Riyal">SAR - Saudi Arabia Riyal</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="TRY - Turkish Lira">TRY - Turkish Lira</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+							
+								<li class="currency-col currency-col-space"> <!-- Col -->
+									<div class="cur-section">
+										<h5 class="Countries">Europe</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="CHF - Swiss Franc">CHF - Swiss Franc</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="CZK - Czech Republic Koruna">CZK - Czech Republic Koruna</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="DKK - Danish Krone">DKK - Danish Krone</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="EUR - Euro">EUR - Euro</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="GBP - British Pound Sterling">GBP - British Pound Sterling</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="HUF - Hungary Forint">HUF - Hungary Forint</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="NOK - Norwegian Krone">NOK - Norwegian Krone</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="PLN - Polish Zloty">PLN - Polish Zloty</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="RUB - Russian Ruble">RUB - Russian Ruble</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="SEK - Swedish Krona">SEK - Swedish Krona</a>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="#" class="link" title="UAH - Ukrainian Hryvnia">UAH - Ukrainian Hryvnia</a>
+											</li>
+										</ul>
+									</div>
+									<div class="cur-section top">
+										<h5 class="Countries">Oceania</h5>
+										<ul>
+											<li data-component="currencySelectorItem">
+												<span class="current" title="AUD - Australian Dollar">AUD - Australian Dollar</span>
+											</li>
+											<li data-component="currencySelectorItem">
+												<a href="http://www.hotelclub.com/?curr=NZD" class="link" title="NZD - New Zealand Dollar">NZD - New Zealand Dollar</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
 				</div>
 			</div><!-- End Currency -->
 
