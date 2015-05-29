@@ -197,6 +197,23 @@ $router->add(
     )
 );
 
+/**
+ * Deals module
+ */
+
+$router->add(
+    //'/n/sale' . RE_SEOPATH_ALPHANUM . RE_SEOPATH_ALPHA . RE_SEOPATH_ALPHANUM . '/:params',
+     '/n/sale' . RE_SEOPATH_ALPHANUM . '/:params',
+    //'/n/sales/:params',
+    array(
+        "params"       =>  2,
+        "controller"   => 'deals',
+        "action"       => 'index',
+        'module'       => 'deals',
+        'namespace'    => 'HC\Deals\Controllers\\',
+    )
+);
+
 
 /**
  * API Routers

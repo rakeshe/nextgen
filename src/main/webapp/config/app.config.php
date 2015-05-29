@@ -1,29 +1,34 @@
 <?php
-
-return array(
-    'api' => array(
+/**
+ * Register module
+ */
+return [
+    'api' => [
         'className' => 'HC\Api\Module',
         'path' => '../apps/api/Module.php'
-    ),
-    'common' => array(
+    ],
+    'common' => [
         'className' => 'HC\Common\Module',
         'path' => '../apps/common/Module.php'
-    ),
-    'ti' => array(
+    ],
+    'ti' => [
         'className' => 'HC\TI\Module',
         'path' => '../apps/ti/Module.php'
-    ),
-    'merch' => array(
+    ],
+    'merch' => [
         'className' => 'HC\Merch\Module',
         'path' => '../apps/merch/Module.php'
-    ),
-
-    'hk-calendar' => array(
+    ],
+    'hk-calendar' => [
         'className' => 'HC\HkCalendar\Module',
         'path' => '../apps/hk-calendar/Module.php'
-    ),
-    'mixandmatch' => array(
+    ],
+    'mixandmatch' => [
         'className' => 'HC\MixAndMatch\Module',
         'path' => '../apps/mixandmatch/Module.php'
-    )
-);
+    ],
+    'deals' => [
+        'className' => 'HC\Deals\Module',
+        'path' => '../apps/deals/Module.php'
+    ],
+];
