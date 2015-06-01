@@ -48,5 +48,26 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
     }
 
+    public function getUserInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/loyalty_member.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
+    public function getLoyaltyInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/user-info.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+
+    }
+
 
 }
