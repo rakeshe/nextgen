@@ -1,5 +1,26 @@
 (function( $, HB ) {
-	
+
+    HB.registerHelper('whenEqual', function(val1, val2, options) {
+        if (val1 == val2) {
+            return options.fn(this);
+        }
+    });
+
+    HB.registerHelper('whenNotEqual', function(val1, val2, options) {
+        if (val1 != val2) {
+            return options.fn(this);
+        }
+    });
+
+    HB.registerHelper('isTrue', function(val, options) {
+        console.log('hac' + val);
+        if (val == true) {
+            return options.fn(this);
+        }
+    });
+
+
+
     var Deals = {
 
         init : function() {
@@ -9,6 +30,8 @@
             this.when = when;
 
             this.cityImage = new Array();
+
+            this.isLoggedIn = false;
 
             $('.filter').hide();
             this.displayHeader();
@@ -103,10 +126,15 @@
                 // $('.search-sale-box').hide();
                 //this.displaySortBox();
                 //console.log(data.responseJSON);
-                this.displayHotelCards( data.responseJSON );
+               // console.log('logged in ' + this.isLoggedIn);
+               // console.log(data.responseJSON.push(this.isLoggedIn));
+                //var response = data.responseJSON;
+                //response['isLoggedIn'] = isLoggedIn;
+                console.log(data.responseJSON);
+                this.displayHotelCards( { hData : data.responseJSON, isLoggedIn : this.isLoggedIn} );
 
             } else {
-                this.displayHotelCards( $.parseJSON(hData) );
+                this.displayHotelCards( { hData : $.parseJSON(hData), isLoggedIn : this.isLoggedIn});
             }
 
         },
@@ -116,6 +144,7 @@
             if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
 
                 this.userInfo = $.parseJSON(uInfo);
+                this.isLoggedIn = true;
 
                 $('.user-member-name').html(
                     this.userInfo.name.first_name.charAt(0).toUpperCase() + this.userInfo.name.first_name.substring(1)
@@ -438,8 +467,8 @@
 
         setCityImage : function() {
 
-            console.log(this.cityImage);
-            console.log('city image ' + this.cityImage[this.city]);
+            //console.log(this.cityImage);
+            //console.log('city image ' + this.cityImage[this.city]);
             if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
                 $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
             }

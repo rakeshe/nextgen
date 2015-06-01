@@ -1,12 +1,28 @@
 <script id="hotel-card-template" type="text/x-handlebars-template">
 
-    {{#each this}}
+    {{#each hData}}
 
     <div class="hotelcards">
         <!-- Card 1 -->
         <div class="card">
             <div class="card-image">
-                <div class="card-member">Member Exclusive Offer</div>
+
+                {{#whenEqual ../isLoggedIn true}}
+
+                    {{#whenEqual isMemberExclusive 'true'}}
+                            <div class="card-member">Member Exclusive Offer</div>
+                    {{/whenEqual}}
+
+                {{/whenEqual}}
+
+                {{#whenEqual ../isLoggedIn false}}
+
+                    {{#whenEqual isMemberExclusive 'true'}}
+                        <div class="card-non-member">Member Exclusive Offer</div>
+                    {{/whenEqual}}
+
+                {{/whenEqual}}
+
                 <img class="lazy card-img" data-original="http://www.tnetnoc.com/hotelphotos/967/246967/2241284-Moana-Surfrider-A-Westin-Resort-and-Spa-BarLounge-1-DEF.jpg"/>
             </div>
             <div class="card-info">
