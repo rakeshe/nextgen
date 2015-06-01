@@ -121,7 +121,7 @@ class DealsController extends ControllerBase {
             $this->userId = $this->cookies->get('mid')->__toString();
         }
 
-        $this->userId = 123;
+        //$this->userId = 123;
     }
 
     public function indexAction() {
