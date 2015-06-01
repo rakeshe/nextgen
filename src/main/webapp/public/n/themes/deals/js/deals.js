@@ -460,7 +460,7 @@
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
 		});
-					
+		
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
 			//console.log($(".locale-drop-down-arrow").html(text));
@@ -485,6 +485,14 @@
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
 			$(".currency-wrapper").toggle();
+		});
+		
+		$(".currency-box ul li ul li").click(function() {
+			var text = $(this).html();
+			console.log(text);
+			console.log($(".user-space .drop-down-arrow").html(text));
+			console.log($(".user-space .drop-down-arrow .desc").remove());
+			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
 
