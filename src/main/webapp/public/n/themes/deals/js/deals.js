@@ -307,11 +307,19 @@
         e.preventDefault();
     });
 
-    $(document).ready(function(){	
+    $(document).ready(function(){
+		/*card hover design*/
+        $('.card').hover(function() {
+           console.log(this);
+            $(this).css('border','1px solid red');
+        }, function () {
+            $(this).css('border','1px solid #d0d9d7');
+        });
+		
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
-		});
+		});		
 		
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();

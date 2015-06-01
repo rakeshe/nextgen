@@ -1354,7 +1354,12 @@ select {
     content: "";
     display: table;
     clear: both; }
-
+	
+#card-desc{
+    display: block;
+    height: 163px;
+    width: 100%;
+}
 /* For devices smaller than 768px */
 @media (max-width: 768px) {
     .card-container {
