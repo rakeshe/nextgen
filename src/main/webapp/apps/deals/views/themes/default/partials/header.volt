@@ -345,23 +345,42 @@
 				</div>
 			</div><!-- End Currency -->
 
-            <div class="club-section">
-                <div class="user-id">
-                    <a href="#">
-                        <p><span class="user-member">Your Club</span><br/>
-                            <span class="user-club-info points-token usr-rewards-point"><span class="rewards">Member Rewards</span></span></p>
-                    </a>
-                </div>
-            </div><!-- End Club -->
+            <div class="logged-in-user">
+                <div class="club-section">
+                    <div class="user-id">
+                        <a href="#">
+                            <p><span class="user-member">Your Club</span><br/>
+                                <span class="user-club-info points-token usr-rewards-point"><span class="rewards">Member Rewards</span></span></p>
+                        </a>
+                    </div>
+                </div><!-- End Club -->
 
-            <div class="member-section">
-                <div class="user-id">
-                    <a href="#">
-                        <p><span class="user-member user-member-name">John</span><br/>
-                            <span class="user-club-info user-club-info-card-type">Platinum Member</span></p>
-                    </a>
-                </div>
-            </div><!-- End Members -->
+                <div class="member-section">
+                    <div class="user-id">
+                        <a href="#">
+                            <p><span class="user-member user-member-name">John</span><br/>
+                                <span class="user-club-info user-club-info-card-type">Platinum Member</span></p>
+                        </a>
+                    </div>
+                </div><!-- End Members -->
+            </div>
+
+            <div class="logged-out-user">
+                <div class="member-section">
+                    <div class="user-id">
+
+                   <p><span class="user-member user-member-name">Welcome to HotelClub</span><br/>
+                    <a id="sign-in">
+                        <span class="user-club-info user-club-info-card-type">sign in</span>
+                    </a> /
+                       <a id="register">
+                           <span class="user-club-info user-club-info-card-type">Register</span>
+                       </a>
+                   </p>
+
+                    </div>
+                </div><!-- End Members -->
+            </div>
 
         </div><!-- End User -->
 

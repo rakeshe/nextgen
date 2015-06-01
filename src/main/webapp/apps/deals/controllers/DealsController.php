@@ -59,7 +59,6 @@ class DealsController extends ControllerBase {
 
         $uInfo = $this->model->getLoyaltyInfo('');
         $lInfo = json_decode($this->model->getUserInfo(''), TRUE);
-        echo '<pre>';
 
 
         if (NULL !== $uInfo) {

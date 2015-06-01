@@ -21,7 +21,26 @@
             this.displayDropDownData('value');
             this.initURLUpdate();
             this.hotelCardCtrl();
+
+
+ /*           $.get("https://www.hotelclub.com/account/login", null, function (data) {
+                $('body').html(data);
+                //alert(data);
+            })*/
         },
+
+        setCity : function(city) {
+           this.city = city
+        },
+
+        setRegion : function(region) {
+            this.region = region
+        },
+
+        setWhen : function(when) {
+            this.when = when;
+        },
+
 
         initURLUpdate : function () {
 
@@ -91,7 +110,7 @@
 
         displayUserInfo : function() {
 
-            if (uInfo != '' && typeof  $.parseJSON(uInfo) === 'object') {
+            if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
 
                 this.userInfo = $.parseJSON(uInfo);
 
@@ -106,11 +125,15 @@
                 );
 
                 $('.usr-rewards-point').prepend(this.userInfo.availAmount.value + ' ');
+                $('.logged-in-user').show();
+
+            } else {
+                $('.logged-out-user').show();
             }
         },
 
         displayRobot : function() {
-            console.log({city:this.city});
+            //console.log({city:this.city});
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#robot-template").html() );
@@ -179,7 +202,7 @@
 
         displayHeader : function() {
 
-            console.log($.parseJSON(uInfo));
+            //console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template());
         },
@@ -262,6 +285,31 @@
             }
         },
 
+        displayWhenGo : function(defaultText) {
+
+            if (defaultText === true) {
+
+                dropWhereDo = $('.dropWhereDo').html('').append( $('<option>', {
+                        value : '0',
+                        text : 'When do you want to go?',
+                        'selected' :'selected'
+                    }) );
+            } else {
+                dropWhereDo = $('.dropWhereDo').html('');
+            }
+
+            $.each(this.getWhereDoGoText(), function (key, val) {
+
+                var opt =  opt = {
+                    value : key,
+                    text : val
+                };
+                dropWhereDo.append( $('<option>', opt ) );
+            })
+
+            return dropWhereDo;
+        },
+
         displayDropDownData : function (selectType) {
 
            if (selectType == 'default') {
@@ -278,34 +326,65 @@
 
             var self = this;
 
+            var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
+
             $.each(this.getCityData(), function(key, val){
 
-                var opt = {
+                var RegionOpt = {
                     value : key,
                     text : val.nameUtf8
                 };
-                if (selectType == 'value' && key == self.region) {
-                    opt.selected = "selected";
-                }
 
-                dropRegion.append( $('<option>', opt) );
+                dropRegion.append( $('<option>', RegionOpt) );
 
-                if (typeof val.cities === 'object') {
+                if (typeof val.cities === 'object' && loopThrough !== false) {
+
 
                     $.each(val.cities, function (k, v) {
 
-                        var opt =  opt = {
-                            value : k,
-                            text : v.nameUtf8
-                        };
-                        if (selectType == 'value' && k == self.city) {
-                            opt.selected = "selected";
+                        if (regionFlag === key) {
+
+                        } else {
+                           // console.log('city flag ' + cityFlag);
+                            if (cityFlag == true) {
+                               //console.log(chopArr);
+                                //console.log('re val' + key);
+                                loopThrough = false;
+                                return false;
+                                //console.log('working..');
+                            } else {
+                                chopArr.length = 0;
+                                regionVal = '';
+                            }
+                            regionFlag = key;
                         }
 
-                        dropCities.append( $('<option>', opt ) );
+                        if (k === self.city) {
+                            cityFlag = true;
+                            regionVal = key;
+                            //console.log('found ' + self.city);
+                        }
+                        chopArr.push(v);
+                       // dropCities.append( $('<option>', opt ) );
+
                     });
                 }
             });
+
+            $.each(chopArr, function (key, val) {
+
+                var opt =  opt = {
+                    value : val.name,
+                    text : val.nameUtf8
+                };
+
+                if (selectType == 'value' && val.name == self.city) {
+                    opt.selected = "selected";
+                }
+                dropCities.append( $('<option>', opt ) );
+            });
+
+            $('.dropdown-region').val(regionVal).attr("selected", "selected");
 
             $.each(this.getWhereDoGoText(), function (key, val) {
 
@@ -318,6 +397,34 @@
                 }
                 dropWhereDo.append( $('<option>', opt ) );
             })
+        },
+
+        displayDropDownCity : function(region) {
+
+            //console.log(typeof this.getCityData()[region] == "object");
+
+            if (typeof this.getCityData()[region] == "object") {
+
+                $('.dropdown-cities option').remove()
+
+                var dropCities = this.setDropDownDefaultOption().dropCities();
+                this.displayWhenGo(true).attr('disabled','disabled').addClass('disabled-style');
+
+                $.each(this.getCityData()[region], function (k, v) {
+
+                    if (typeof v === "object") {
+
+                        $.each(v, function (k1, v1) {
+
+                            var opt =  opt = {
+                                value : v1.name,
+                                text : v1.nameUtf8
+                            };
+                            dropCities.append( $('<option>', opt ) );
+                        });
+                    }
+                });
+            }
         }
     }
 
@@ -330,7 +437,7 @@
         e.preventDefault();
     });
 
-    $(document).ready(function(){	
+    $(document).ready(function(){
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
@@ -338,7 +445,7 @@
 					
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
-			console.log($(".locale-drop-down-arrow").html(text));
+			//console.log($(".locale-drop-down-arrow").html(text));
 			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
 			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
 			$(".locale-drop-down-arrow .flag-txt-pos").remove();
@@ -347,7 +454,7 @@
 
 		$(document).bind('click', function(e) {
 			var $clicked = $(e.target);
-			console.log($clicked.parents().hasClass("club-id"));
+			//console.log($clicked.parents().hasClass("club-id"));
 			if(!$clicked.parents().hasClass("club-id")){
 				$(".club-id .locale-wrapper").hide();
 			}
@@ -383,18 +490,23 @@
                 cy = $('.dropdown-cities').val(),
                 dy = $('.dropWhereDo').val();
 
-            Deals.region = rg;
-            Deals.city = cy;
-            Deals.when = dy;
+            Deals.setRegion(rg);
+            Deals.setCity(cy);
+            Deals.setWhen(dy);
 
             //release disable
             switch (className) {
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+                    Deals.displayDropDownCity(rg);
                     break;
 
                 case 'dropdown-cities' :
-                   // $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+
+                    if (dy != 0) {
+                        Deals.displayWhenGo(true);
+                    }
                     break;
 
                 case 'dropWhereDo' :
@@ -421,6 +533,6 @@
 	$(document).on('click','.cancel-action',function(){
 		$(".modal-wrapper").remove();
 		$("#overlay").remove();
-        Deals.setDropDownDefaultOption().dropWhereDo();
+        Deals.displayWhenGo(true);
 	});
 })(jQuery, Handlebars);

@@ -1836,3 +1836,18 @@ select {
 .dropdown span.value { display:none; }
 .dropdown img.flag { margin-left:15px; width:20px !important; height: 15px !important; }*/
 /*drop down for language selection*/
+
+.logged-in-user {
+    display: none;
+}
+
+.logged-out-user {
+    float:right;
+    display:none;
+    color: #ffffff;
+
+}
+
+.logged-out-user, .member-section {
+    background-image : none;
+}
