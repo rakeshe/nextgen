@@ -8,8 +8,11 @@
             this.region = '';
             this.when = when;
 
+            this.cityImage = new Array();
+
             $('.filter').hide();
             this.displayHeader();
+            this.displayUserInfo();
             //this.displayRobot();
             this.displaySortBox();
             //this.displayFilter();
@@ -18,9 +21,29 @@
             //this.displayUpsell();
             this.displayFooter();
             this.displayDropDownData('value');
+            this.setCityImage();
             this.initURLUpdate();
             this.hotelCardCtrl();
+
+
+ /*           $.get("https://www.hotelclub.com/account/login", null, function (data) {
+                $('body').html(data);
+                //alert(data);
+            })*/
         },
+
+        setCity : function(city) {
+           this.city = city
+        },
+
+        setRegion : function(region) {
+            this.region = region
+        },
+
+        setWhen : function(when) {
+            this.when = when;
+        },
+
 
         initURLUpdate : function () {
 
@@ -88,8 +111,32 @@
 
         },
 
+        displayUserInfo : function() {
+
+            if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
+
+                this.userInfo = $.parseJSON(uInfo);
+
+                $('.user-member-name').html(
+                    this.userInfo.name.first_name.charAt(0).toUpperCase() + this.userInfo.name.first_name.substring(1)
+                    +' '+
+                    this.userInfo.name.last_name.charAt(0).toUpperCase() + this.userInfo.name.last_name.substring(1)
+                );
+                $('.user-club-info-card-type').html(
+                    this.userInfo.tierType.charAt(0).toUpperCase() + this.userInfo.tierType.substring(1).toLowerCase()
+                    + ' Member'
+                );
+
+                $('.usr-rewards-point').prepend(this.userInfo.availAmount.value + ' ');
+                $('.logged-in-user').show();
+
+            } else {
+                $('.logged-out-user').show();
+            }
+        },
+
         displayRobot : function() {
-            console.log({city:this.city});
+            //console.log({city:this.city});
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#robot-template").html() );
@@ -157,6 +204,8 @@
         },
 
         displayHeader : function() {
+
+            //console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template());
         },
@@ -239,6 +288,31 @@
             }
         },
 
+        displayWhenGo : function(defaultText) {
+
+            if (defaultText === true) {
+
+                dropWhereDo = $('.dropWhereDo').html('').append( $('<option>', {
+                        value : '0',
+                        text : 'When do you want to go?',
+                        'selected' :'selected'
+                    }) );
+            } else {
+                dropWhereDo = $('.dropWhereDo').html('');
+            }
+
+            $.each(this.getWhereDoGoText(), function (key, val) {
+
+                var opt =  opt = {
+                    value : key,
+                    text : val
+                };
+                dropWhereDo.append( $('<option>', opt ) );
+            })
+
+            return dropWhereDo;
+        },
+
         displayDropDownData : function (selectType) {
 
            if (selectType == 'default') {
@@ -255,34 +329,69 @@
 
             var self = this;
 
+            var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
+
             $.each(this.getCityData(), function(key, val){
 
-                var opt = {
+                var RegionOpt = {
                     value : key,
                     text : val.nameUtf8
                 };
-                if (selectType == 'value' && key == self.region) {
-                    opt.selected = "selected";
-                }
 
-                dropRegion.append( $('<option>', opt) );
+                dropRegion.append( $('<option>', RegionOpt) );
 
-                if (typeof val.cities === 'object') {
+                if (typeof val.cities === 'object' && loopThrough !== false) {
+
 
                     $.each(val.cities, function (k, v) {
 
-                        var opt =  opt = {
-                            value : k,
-                            text : v.nameUtf8
-                        };
-                        if (selectType == 'value' && k == self.city) {
-                            opt.selected = "selected";
+                        if (regionFlag === key) {
+
+                        } else {
+                           // console.log('city flag ' + cityFlag);
+                            if (cityFlag == true) {
+                               //console.log(chopArr);
+                                //console.log('re val' + key);
+                                loopThrough = false;
+                                return false;
+                                //console.log('working..');
+                            } else {
+                                chopArr.length = 0;
+                                regionVal = '';
+                            }
+                            regionFlag = key;
                         }
 
-                        dropCities.append( $('<option>', opt ) );
+                        if (k === self.city) {
+                            cityFlag = true;
+                            regionVal = key;
+                            //console.log('found ' + self.city);
+                        }
+                        chopArr.push(v);
+                       // dropCities.append( $('<option>', opt ) );
+
                     });
                 }
             });
+
+            // display city
+            $.each(chopArr, function (key, val) {
+
+                var opt =  opt = {
+                    value : val.nameUtf8,
+                    text : val.nameUtf8
+                };
+
+                self.cityImage[val.nameUtf8] = val.image;
+
+                if (selectType == 'value' && val.name == self.city) {
+                    opt.selected = "selected";
+                }
+
+                dropCities.append( $('<option>', opt ) );
+            });
+
+            $('.dropdown-region').val(regionVal).attr("selected", "selected");
 
             $.each(this.getWhereDoGoText(), function (key, val) {
 
@@ -295,6 +404,45 @@
                 }
                 dropWhereDo.append( $('<option>', opt ) );
             })
+        },
+
+        displayDropDownCity : function(region) {
+
+            //console.log(typeof this.getCityData()[region] == "object");
+
+            if (typeof this.getCityData()[region] == "object") {
+
+                this.cityImage.length = 0;
+                self = this;
+                $('.dropdown-cities option').remove()
+                var dropCities = this.setDropDownDefaultOption().dropCities();
+                this.displayWhenGo(true).attr('disabled','disabled').addClass('disabled-style');
+
+                $.each(this.getCityData()[region], function (k, v) {
+
+                    if (typeof v === "object") {
+
+                        $.each(v, function (k1, v1) {
+
+                            var opt =  opt = {
+                                value : k1,
+                                text : v1.nameUtf8
+                            };
+                            self.cityImage[k1] = v1.image;
+                            dropCities.append( $('<option>', opt ) );
+                        });
+                    }
+                });
+            }
+        },
+
+        setCityImage : function() {
+
+            console.log(this.cityImage);
+            console.log('city image ' + this.cityImage[this.city]);
+            if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
+                $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
+            }
         }
     }
 
@@ -307,7 +455,7 @@
         e.preventDefault();
     });
 
-    $(document).ready(function(){	
+    $(document).ready(function(){
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
@@ -315,7 +463,7 @@
 		
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
-			console.log($(".locale-drop-down-arrow").html(text));
+			//console.log($(".locale-drop-down-arrow").html(text));
 			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
 			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
 			$(".locale-drop-down-arrow .flag-txt-pos").remove();
@@ -324,7 +472,7 @@
 
 		$(document).bind('click', function(e) {
 			var $clicked = $(e.target);
-			console.log($clicked.parents().hasClass("club-id"));
+			//console.log($clicked.parents().hasClass("club-id"));
 			if(!$clicked.parents().hasClass("club-id")){
 				$(".club-id .locale-wrapper").hide();
 			}
@@ -368,18 +516,26 @@
                 cy = $('.dropdown-cities').val(),
                 dy = $('.dropWhereDo').val();
 
-            Deals.region = rg;
-            Deals.city = cy;
-            Deals.when = dy;
+            Deals.setRegion(rg);
+            Deals.setCity(cy);
+            Deals.setWhen(dy);
 
             //release disable
             switch (className) {
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+                    Deals.displayDropDownCity(rg);
+                    $('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
 
                 case 'dropdown-cities' :
-                   // $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+
+                    if (dy != 0) {
+                        Deals.displayWhenGo(true);
+                    }
+
+                    Deals.setCityImage();
                     break;
 
                 case 'dropWhereDo' :
@@ -406,6 +562,6 @@
 	$(document).on('click','.cancel-action',function(){
 		$(".modal-wrapper").remove();
 		$("#overlay").remove();
-        Deals.setDropDownDefaultOption().dropWhereDo();
+        Deals.displayWhenGo(true);
 	});
 })(jQuery, Handlebars);
