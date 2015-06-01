@@ -10,32 +10,14 @@
 
 namespace HC\Api\Controllers;
 
+use HC\Api\Models\ProxyModel;
 use Phalcon\Http\Client\Request;
 use Phalcon\Http\Response;
 
 class ProxyController extends ControllerBase
 {
-
-    const   REQUEST_METHOD_GET = 'GET';
-    const   REQUEST_METHOD_POST = 'POST';
-    const   REQUEST_METHOD_AJAX = 'AJAX';
-
-    protected $requestHost;
-    protected $requestPort;
-    protected $requestHeader;
-    protected $requestPayload;
-    protected $requestMethod;
-
-    protected $params;
     protected $provider;
     protected $providerResponse;
-
-    /**
-     *
-     */
-    public function init()
-    {
-    }
 
 
     /**
@@ -43,66 +25,15 @@ class ProxyController extends ControllerBase
      */
     public function initialize()
     {
-        $this->view->disable();
-        if ($this->request->isPost() == true) {
-            $this->provider  = Request::getProvider();
-
-            $this->requestHost =  $this->request->getPost("host");
-            $this->requestPort =  $this->request->getPost("port");
-            $this->requestHeader =  $this->request->getPost("header");
-            $this->requestPayload =  $this->request->getPost("payload");
-            $this->requestMethod =  $this->request->getPost("method");
-
-        } else {
-            $this->forward('Error/show404');
-        }
-    }
-
-    /**
-     * make request using phalcon incubator
-     *
-     */
-    public function makeRequest() {
-
-        $provider  = Request::getProvider();
+        parent::initialize();
+        $this->setProvider();
+        /** @var ProxyModel $apiModel */
+        $apiModel = $this->apiModel;
         //set pricing gateway url path
-        $provider->setBaseUri($this->requestHost);
+        $this->provider->setBaseUri($apiModel->getProxyBaseUri());
+
         //set header
-        $provider->header->setMultiple($this->requestHeader);
-        //Set proxy
-//        $provider->setProxy($this->proxyHost, $this->proxyPort );
-        //send xml post data
-        $response = $this->requestMethod === self::REQUEST_METHOD_POST ?
-            $provider->post('', $this->requestPayload) :
-            $provider->get($this->requestPayload);
-
-        //get response
-        return $response->body;
-    }
-
-    /**
-     * Encapusulation: Getters and Setters
-     */
-
-
-    /**
-     * @return null
-     */
-    public function getParams()
-    {
-        if ($this->params === null) {
-            $this->setParams();
-        }
-        return $this->params;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setParams()
-    {
-        $this->params = $this->dispatcher->getParams();
-        return $this;
+        $this->provider->header->setMultiple($apiModel->getProxyHeaders());
     }
 
     /**
@@ -114,25 +45,33 @@ class ProxyController extends ControllerBase
     }
 
     /**
-     * @param mixed $provider
+     * @throws \Phalcon\Http\Client\Provider\Exception
      */
-    public function setProvider($provider)
+    public function setProvider()
     {
-        $this->provider = $provider;
+        $this->provider = Request::getProvider();
     }
-
 
     /**
-     * @return null
+     * make request using phalcon incubator
+     *
      */
-    protected function getHttpRefererHost()
+    public function makeRequest()
     {
-        $request = new \Phalcon\Http\Request();
-        $referer = parse_url($request->getHTTPReferer());
-        return !empty($referer['host']) ? $referer['host'] : null;
+        $payload = $this->apiModel->getProxyPayload();
+        if ($payload) {
+            try {
+                $response = $this->apiModel->getProxyMethod() === \HC\Api\Models\ApiModel::REQUEST_METHOD_POST ?
+                    $this->provider->post('', $payload) :
+                    $this->provider->get($payload);
 
+                return $response->body;
+            } catch (\Exception $e) {
+                $this->getExceptionMessage($e);
+            }
+
+        }
     }
-
 
     /**
      * @param $body
@@ -140,7 +79,7 @@ class ProxyController extends ControllerBase
     protected function sendResponse($body)
     {
 
-        $httpResponse =  new Response();
+        $httpResponse = new Response();
         $httpResponse->setHeader("Content-Type", "application/xml");
         $httpResponse->setRawHeader("HTTP/1.1 200 OK");
         $httpResponse->setStatusCode(200, "OK");
@@ -178,7 +117,5 @@ class ProxyController extends ControllerBase
         $this->providerResponse = $this->makeRequest();
         $this->sendResponse($this->providerResponse);
     }
-
-
 
 }

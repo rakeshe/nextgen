@@ -17,7 +17,8 @@ use Phalcon\Http\Client\Exception,
     Phalcon\Validation\Validator\Email;
 
 
-class WidgetController extends ControllerBase {
+class WidgetController extends ControllerBase
+{
 
     const DEFAULT_THEME = 'default';
 
@@ -30,6 +31,7 @@ class WidgetController extends ControllerBase {
     const DEFAULT_SHOW_NAV_ARROWS = '1';
 
     const DEFAULT_SHOW_NAV_DOTS = '1';
+    const DEFAULT_SHOW_CAPTION_QUOTE = '1';
 
 
     private $locale;
@@ -45,13 +47,14 @@ class WidgetController extends ControllerBase {
     private $navDots;
     private $navDotsPos;
     private $navArrowsPos;
-
+    protected $captionQuote;
 
     protected $widgetData;
     protected $widgetHeight;
     protected $widgetWidth;
 
-    public function initialize() {
+    public function initialize()
+    {
 
         //update white list urls
         $this->updateWhiteListFile();
@@ -69,8 +72,7 @@ class WidgetController extends ControllerBase {
         /*if (false == $this->verifyHost()) {
 
             $this->responseContentType = 'text/html';
-//            $this->sendOutput('401 Unauthorized');
-            $this->sendOutput(json_encode($this->getHostsInfo()));
+            $this->sendOutput('401 Unauthorized');
         }*/
 
         //set params
@@ -81,45 +83,52 @@ class WidgetController extends ControllerBase {
      *  Validate required params and set to class properties
      */
 
-    public function setParams() {
+    public function setParams()
+    {
 
         //set id
         $this->name_seo = $this->request->getQuery('id');
 
         //validate and set scopt (full or partial)
         $this->scope = (null != $this->request->getQuery('scope')) &&
-            in_array($this->request->getQuery('scope'), (array) $this->config->scope) ?
+        in_array($this->request->getQuery('scope'), (array)$this->config->scope) ?
             $this->request->getQuery('scope') : self::DEFAULT_SCOPE;
 
         // validate and set language
         $this->locale = (null != $this->request->getQuery('locale')) &&
-            in_array($this->request->getQuery('locale'), (array) $this->config->locales) ?
+        in_array($this->request->getQuery('locale'), (array)$this->config->locales) ?
             $this->request->getQuery('locale') : self::DEFAULT_LOCALE;
 
         //set theme name
         $this->theme = (null != $this->request->getQuery('theme')) &&
-            array_key_exists($this->request->getQuery('theme'), $this->config->themes->carousel) ?
-            $this->request->getQuery('theme') :  self::DEFAULT_THEME;
+        array_key_exists($this->request->getQuery('theme'), $this->config->themes->carousel) ?
+            $this->request->getQuery('theme') : self::DEFAULT_THEME;
 
         //set device type
         $this->device = (null != $this->request->getQuery('device')) &&
-            array_key_exists($this->request->getQuery('device'), (array) $this->config->themeMode) ?
+        array_key_exists($this->request->getQuery('device'), (array)$this->config->themeMode) ?
             $this->request->getQuery('device') : self::DEFAULT_THEME_DEVICE;
 
 
         // Set overrides
-        $this->navArrows = null === $this->request->getQuery('nav_arrows') ? self::DEFAULT_SHOW_NAV_ARROWS : $this->request->getQuery('nav_arrows') ;
-        $this->navDots = null === $this->request->getQuery('nav_dots') ? self::DEFAULT_SHOW_NAV_DOTS : $this->request->getQuery('nav_dots') ;
+        $this->navArrows    = null === $this->request->getQuery(
+            'nav_arrows'
+        ) ? self::DEFAULT_SHOW_NAV_ARROWS : $this->request->getQuery('nav_arrows');
+        $this->navDots      = null === $this->request->getQuery(
+            'nav_dots'
+        ) ? self::DEFAULT_SHOW_NAV_DOTS : $this->request->getQuery('nav_dots');
         $this->widgetHeight = $this->request->getQuery('height');
-        $this->widgetWidth = $this->request->getQuery('width');
-        $this->navDotsPos =  $this->request->getQuery('pos_nav_dots');
-        $this->navArrowsPos =  $this->request->getQuery('pos_nav_arrows');
+        $this->widgetWidth  = $this->request->getQuery('width');
+        $this->navDotsPos   = $this->request->getQuery('pos_nav_dots');
+        $this->navArrowsPos = $this->request->getQuery('pos_nav_arrows');
+        $this->captionQuote = null === $this->request->getQuery('quote') ? self::DEFAULT_SHOW_CAPTION_QUOTE : $this->request->getQuery('quote');
     }
 
     /**
      * Carousel action
      */
-    public function carouselAction() {
+    public function carouselAction()
+    {
 
         //load carousel data
         $this->loadCarouselData();
@@ -127,48 +136,53 @@ class WidgetController extends ControllerBase {
         //enable view
         $this->enableView();
 
-        $this->view->setVars([
-            'protocol' => stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://',
-            'serverName' => $_SERVER['SERVER_NAME'],
-            'appVersion'=> APPLICATION_VERSION,
-            'theme'     => 'api-banner/' . $this->theme,
-            'device'    => $this->device,
-            'scope'     => $this->scope,
-            'name_seo'  => $this->name_seo,
-            'nav_arrows'  => $this->navArrows,
-            'pos_nav_arrows'  => $this->navArrowsPos,
-            'nav_dots'  => $this->navDots,
-            'pos_nav_dots'  => $this->navDotsPos,
-            'data'      => $this->widgetData,
-            'locale' => $this->locale,
-                'width' => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
-                'height' => null === $this->widgetHeight ? $this->widgetData['height'] : $this->widgetHeight
+        $this->view->setVars(
+            [
+                'protocol'       => stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https://' : 'http://',
+                'serverName'     => $_SERVER['SERVER_NAME'],
+                'appVersion'     => APPLICATION_VERSION,
+                'theme'          => 'api-banner/' . $this->theme,
+                'device'         => $this->device,
+                'scope'          => $this->scope,
+                'name_seo'       => $this->name_seo,
+                'nav_arrows'     => $this->navArrows,
+                'pos_nav_arrows' => $this->navArrowsPos,
+                'nav_dots'       => $this->navDots,
+                'pos_nav_dots'   => $this->navDotsPos,
+                'data'           => $this->widgetData,
+                'caption_quote'           => $this->captionQuote,
+                'locale'         => $this->locale,
+                'width'          => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
+                'height'         => null === $this->widgetHeight ? $this->widgetData['height'] : $this->widgetHeight
 
-        ]);
+            ]
+        );
 
         $this->view->render('banner/' . $this->theme . '/' . $this->device, 'body');
-/*        $view = clone $this->view;
-        $view->start();
-        $view->setRenderLevel($view::LEVEL_ACTION_VIEW);
-        $view->render('banner/' . $this->theme . '/' . $this->device, 'body');
-        $view->finish();
-        $this->sendOutput('201 OK', $view->getContent());*/
+        /*        $view = clone $this->view;
+                $view->start();
+                $view->setRenderLevel($view::LEVEL_ACTION_VIEW);
+                $view->render('banner/' . $this->theme . '/' . $this->device, 'body');
+                $view->finish();
+                $this->sendOutput('201 OK', $view->getContent());*/
     }
 
 
     /**
      * Load carousel couch document
+     *
      * @return bool|string
      */
 
-    public function loadCarouselData() {
+    public function loadCarouselData()
+    {
 
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var   = $Couch->get(ORBITZ_ENV . ":deals:". md5("banner"));
-            if(!empty($var)){
+            $var   = $Couch->get(ORBITZ_ENV . ":deals:" . md5("banner"));
+            if (!empty($var)) {
                 $var = json_decode($var, true);
-                if(!empty($var[$this->name_seo]) ){
+                if (!empty($var[$this->name_seo])) {
                     $this->widgetData = $var[$this->name_seo];
                 }
             }
@@ -182,21 +196,24 @@ class WidgetController extends ControllerBase {
     /**
      * Enable view
      */
-    private function enableView() {
+    private function enableView()
+    {
 
         $di = $this->getDI();
         $di['view']->enable();
     }
 
-    protected function getHostsInfo(){
+    protected function getHostsInfo()
+    {
         return [
-            'this server' => $this->request->getServerName(),
+            'this server'       => $this->request->getServerName(),
             'requesting server' => $this->request->getHttpHost(),
-            'white lists' => $this->availableHosts
-            ];
+            'white lists'       => $this->availableHosts
+        ];
     }
 
-    public function printHostInfoAction(){
+    public function printHostInfoAction()
+    {
         print_r($this->getHostsInfo());
     }
 }

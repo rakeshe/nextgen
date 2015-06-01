@@ -28,23 +28,108 @@
             <div class="card-info">
                 <div class="hotel-name">{{hotelNameUtf8}}&nbsp;{{cityName}}</div>
                 <!--<div class="hotel-city">Melboune</div>-->
-                <div class="card-left">
-                    <div class="star-sprite-{{starRating}}">
-                    </div>
-                    <p class="hotel-offer">{{marketText}}</p>
-                    <ul class="card-feat-list">
-                        <li>Includes Breakfast for 1, Internet Access and more</li>
-                    </ul>
-                </div>
-                <div class="card-right">
-                    <p class="hotel-member">Member price
-                        &nbsp;<span class="member-q"><a href="#" title="Member price">?</a></span></p>
-                    <p class="hotel-price">{{price}}{{curySymbole}}</p>
-                    <p class="hotel-avg">avg/night</p>
-                    <a href="#" class="hotel-card-button" title="">Select dates</a>
-                </div>
+				<div id="card-desc">
+					<div class="card-left">
+						<div class="star-sprite-{{starRating}}">
+						</div>
+						<p class="hotel-offer">{{marketText}}</p>
+						<ul class="card-feat-list">
+						<li>Includes Breakfast for 1, Internet Access and more</li>
+						</ul>
+					</div>
+					<div class="card-right">
+						<p class="hotel-member">Member price
+						&nbsp;<span class="member-q"><a href="#" title="Member price">?</a></span></p>
+						<p class="hotel-price">{{price}}{{curySymbole}}</p>
+						<p class="hotel-avg">avg/night</p>
+						<span class="hotel-card-button" title="">Select dates</span>
+					</div>
+				</div>
             </div>
         </div><!-- End Card 1 -->
     </div><!-- End Card Container -->
     {{/each}}
+	
+	<div class="select-dates">
+		<p class="select-dates-close-window"><span class="close-select-dates" title="Close">Close</span></p>
+        
+        <div class="select-dates-container">
+        
+        <h3 style="float:left;">Choose your dates</h3>
+            
+            <div class="select-dates-row">
+                <div class="select-dates-in-out">
+                    <p>Check in<br />
+                    <input name="" type="text" class="select-dates-input" id="select-check-in" value="dd/mm/yy"/></p>
+                </div>
+                <div class="select-dates-in-out">
+                    <p>Check out<br />
+                    <input name="" type="text" class="select-dates-input" id="select-check-out" value="dd/mm/yy"/></p>
+                </div>
+                <div class="select-dates-nights">
+                    <p>Nights<br />
+                    <input name="" type="text" class="select-dates-display" value="0"/></p>
+                </div>
+            </div><!-- End row -->
+            
+            <div class="select-dates-row room-divide1">
+                <div class="select-dates-room">
+                    <p>Room 1</p>
+                </div>
+                <div class="select-dates-humans">
+                    <p>Adult <small>(18+)</small><br />
+                    <select name="" class="select-dates-input">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select></p>
+                </div>
+                <div class="select-dates-humans">
+                    <p>Children <small>(0-17)</small><br />
+                    <select name="" class="select-dates-input-child" id="child-input-1">
+                      <option value='0'>0</option>
+                      <option value='1'>1</option>
+                      <option value='2'>2</option>
+                      <option value='3'>3</option>
+                      <option value='4'>4</option>
+                    </select></p>
+                </div>
+				<div class="room">
+				</div>
+            </div><!-- End room -->
+            
+            <!--<div class="select-dates-row room-divide2">
+                <div class="select-dates-room">
+                    <p>Room 2</p>
+                </div>
+                <div class="select-dates-humans">
+                    <p>Adult <small>(18+)</small><br />
+                    <select name="" class="select-dates-input">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select></p>
+                </div>
+                <div class="select-dates-humans">
+                    <p>Children <small>(0-17)</small><br />
+                    <select name="" class="select-dates-input">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select></p>
+                </div>
+            </div>--><!-- End room --> 
+            
+			<p class="select-dates-add-remove">
+				<small>If you are travelling in room 1 include yourself in that room</small><br />
+				<small><span class="add-room">Add a room</span> | <span class="remove-room">Remove this room</span></small>
+			</p>
+            <div class="select-dates-row">
+                <a href="#" title="Find a room" class="select-dates-button">Find</a>
+            </div><!-- End Button -->
+        </div>
+    </div>
 </script>

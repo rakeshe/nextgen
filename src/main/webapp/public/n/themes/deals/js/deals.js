@@ -485,10 +485,18 @@
     });
 
     $(document).ready(function(){
+		/*card hover design*/
+        $('.card').hover(function() {
+           console.log(this);
+            $(this).css('border','1px solid #e80f1e');
+        }, function () {
+            $(this).css('border','1px solid #d0d9d7');
+        });
+
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
-		});
+		});		
 		
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
@@ -524,6 +532,96 @@
 			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
+		
+		/*display popup - on date selection starts here*/
+		$('.hotel-card-button').click(function (){
+			$(".select-dates").fadeIn('slow');
+			var docHeight = $(document).height();
+			$("body").append("<div id='overlay'></div>");
+			$("#overlay")
+				.height(docHeight)
+				.css({
+				 'opacity' : 0.6,
+				 'position': 'absolute',
+				 'top': 0,
+				 'left': 0,
+				 'background-color': 'black',
+				 'width': '100%',
+				 'z-index': 200
+			});
+			$(".select-dates").css({
+				'position': 'fixed',
+				'top': '24%',
+				'left': '34%',
+				'display':'block',
+				'z-index': 999
+			});			
+			$("#select-check-in").datepicker({
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				firstDay : 0,
+				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				onSelect : function(dateText, inst) {
+					$('#select-check-out').datepicker("option", "minDate",
+						$('#select-check-in').val()
+					);
+				}
+			});//initialize the date-picker for check-in
+			$("#select-check-out").datepicker({
+				inline : true,
+				minDate : 0,
+				showCurrentAtPos : 0,
+				onSelect : function(dateText, inst) {
+					$('#select-check-in').datepicker("option", "maxDate",
+						$('#select-check-out').val()
+					);
+				},
+				onClose: function() {
+				   var fromDate = $("#select-check-in").datepicker('getDate');
+				   var toDate = $("#select-check-out").datepicker('getDate');
+				   // date difference in millisec
+				   var diff = new Date(toDate - fromDate);
+				   // date difference in days
+				   var days = diff/1000/60/60/24;
+
+				   console.log(days);
+				   $('.select-dates-display').val(days)
+			   }
+			});//initialize the date-picker for check-out
+			});
+		
+		$('.close-select-dates').click(function (){
+			$('.select-dates').css('display','none');
+			$("#overlay").remove();
+		})
+		$('.add-room').click(function (){
+			//add one more room
+			console.log('adding room');
+		})
+		$('.remove-room').click(function (){
+			//remove one  room			
+			console.log('removing room');
+		})
+		/*display popup - on date selection ends here*/
+		
+		$('.select-dates-input-child').on('change', function() {
+		  console.log( this.value ); // or $(this).val()
+		  if(this.value>=1){ 
+			$('.roomVal').remove();
+			$(".room").css("display","block"); 
+			var cntVal, i;
+			cntVal = '<div class="roomVal"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
+			for(i=0;i<this.value;i++){
+				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+			}	
+			console.log(cntVal);
+			cntVal+="<div>";
+			$(".room").append(cntVal).html();
+		}  else{
+			 $('.roomVal').remove();
+			}		
+		});
 
 		$(window).bind('popstate', function(event) {
             var state = event.originalEvent.state;
@@ -534,7 +632,7 @@
                 Deals.reLoadLandingPage();
             }
         });
-
+		
         //remove default select option
         $('.input-default-value').change(function() {
             //remove default option
@@ -554,7 +652,8 @@
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
-                    $('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
+                    // do not reset image, keep prev image
+                    //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
 
                 case 'dropdown-cities' :
@@ -563,8 +662,8 @@
                     if (dy != 0) {
                         Deals.displayWhenGo(true);
                     }
-
-                    Deals.setCityImage();
+                    //set city image only afer user selects last option
+                    //Deals.setCityImage();
                     break;
 
                 case 'dropWhereDo' :
@@ -579,6 +678,7 @@
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
+                            Deals.setCityImage();
                         }
                     }
                     break;
