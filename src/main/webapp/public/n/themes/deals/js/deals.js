@@ -8,6 +8,8 @@
             this.region = '';
             this.when = when;
 
+            this.cityImage = new Array();
+
             $('.filter').hide();
             this.displayHeader();
             this.displayUserInfo();
@@ -19,6 +21,7 @@
             //this.displayUpsell();
             this.displayFooter();
             this.displayDropDownData('value');
+            this.setCityImage();
             this.initURLUpdate();
             this.hotelCardCtrl();
 
@@ -371,16 +374,20 @@
                 }
             });
 
+            // display city
             $.each(chopArr, function (key, val) {
 
                 var opt =  opt = {
-                    value : val.name,
+                    value : val.nameUtf8,
                     text : val.nameUtf8
                 };
+
+                self.cityImage[val.nameUtf8] = val.image;
 
                 if (selectType == 'value' && val.name == self.city) {
                     opt.selected = "selected";
                 }
+
                 dropCities.append( $('<option>', opt ) );
             });
 
@@ -405,8 +412,9 @@
 
             if (typeof this.getCityData()[region] == "object") {
 
+                this.cityImage.length = 0;
+                self = this;
                 $('.dropdown-cities option').remove()
-
                 var dropCities = this.setDropDownDefaultOption().dropCities();
                 this.displayWhenGo(true).attr('disabled','disabled').addClass('disabled-style');
 
@@ -417,13 +425,23 @@
                         $.each(v, function (k1, v1) {
 
                             var opt =  opt = {
-                                value : v1.name,
+                                value : k1,
                                 text : v1.nameUtf8
                             };
+                            self.cityImage[k1] = v1.image;
                             dropCities.append( $('<option>', opt ) );
                         });
                     }
                 });
+            }
+        },
+
+        setCityImage : function() {
+
+            console.log(this.cityImage);
+            console.log('city image ' + this.cityImage[this.city]);
+            if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
+                $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
             }
         }
     }
@@ -499,6 +517,7 @@
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
+                    $('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
 
                 case 'dropdown-cities' :
@@ -507,6 +526,8 @@
                     if (dy != 0) {
                         Deals.displayWhenGo(true);
                     }
+
+                    Deals.setCityImage();
                     break;
 
                 case 'dropWhereDo' :
