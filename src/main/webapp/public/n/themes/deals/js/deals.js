@@ -525,7 +525,8 @@
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
-                    $('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
+                    // do not reset image, keep prev image
+                    //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
 
                 case 'dropdown-cities' :
@@ -534,8 +535,8 @@
                     if (dy != 0) {
                         Deals.displayWhenGo(true);
                     }
-
-                    Deals.setCityImage();
+                    //set city image only afer user selects last option
+                    //Deals.setCityImage();
                     break;
 
                 case 'dropWhereDo' :
@@ -550,6 +551,7 @@
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
+                            Deals.setCityImage();
                         }
                     }
                     break;
