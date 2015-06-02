@@ -487,7 +487,6 @@
     $(document).ready(function(){
 		/*card hover design*/
         $('.card').hover(function() {
-           console.log(this);
             $(this).css('border','1px solid #e80f1e');
         }, function () {
             $(this).css('border','1px solid #d0d9d7');
@@ -518,12 +517,12 @@
 			}
 		});
 		/*end drop down for language selection*/
-		
+
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
 			$(".currency-wrapper").toggle();
 		});
-		
+
 		$(".currency-box ul li ul li").click(function() {
 			var text = $(this).html();
 			console.log(text);
@@ -532,7 +531,7 @@
 			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
-		
+
 		/*display popup - on date selection starts here*/
 		$('.hotel-card-button').click(function (){
 			$(".select-dates").fadeIn('slow');
@@ -555,7 +554,7 @@
 				'left': '34%',
 				'display':'block',
 				'z-index': 999
-			});			
+			});
 			$("#select-check-in").datepicker({
 				inline : true,
 				minDate : 0,
@@ -585,20 +584,32 @@
 			   }
 			});//initialize the date-picker for check-out
 		});
-		
+
 		$('.close-select-dates').click(function (){
 			$('.select-dates').css('display','none');
 			$("#overlay").remove();
-		})
+		});
 		$('.add-room').click(function (){
 			//add one more room
 			console.log('adding room');
-		})
+		});
 		$('.remove-room').click(function (){
 			//remove one  room			
 			console.log('removing room');
-		})
+		});
 		/*display popup - on date selection ends here*/
+
+		/* member-info starts here.. */
+		$(".member-info").hover(function(){
+			console.log($(this).next());
+			var divToShow = $(this).next();
+			divToShow.css({
+				'display': 'block'
+			});
+		},function (){
+			$(".member-info-desc").hide();
+		});
+		/* member-info ends here.. */
 		
 		$('.select-dates-input-child').on('change', function() {
 		  console.log( this.value ); // or $(this).val()
@@ -615,7 +626,7 @@
 			$(".room").append(cntVal).html();
 		}  else{
 			 $('.roomVal').remove();
-			}		
+			}
 		});
 
 		$(window).bind('popstate', function(event) {
