@@ -534,7 +534,7 @@
 		/*end drop down for currency selection*/
 		
 		/*display popup - on date selection starts here*/
-		$('.hotel-card-button').click(function (){
+		$('#card-desc').click(function (){
 			$(".select-dates").fadeIn('slow');
 			var docHeight = $(document).height();
 			$("body").append("<div id='overlay'></div>");
@@ -566,7 +566,10 @@
 					$('#select-check-out').datepicker("option", "minDate",
 						$('#select-check-in').val()
 					);
-				}
+				},
+				onClose: function() {
+				   dateCalculate();
+			   }
 			});//initialize the date-picker for check-in
 			$("#select-check-out").datepicker({
 				inline : true,
@@ -578,15 +581,7 @@
 					);
 				},
 				onClose: function() {
-				   var fromDate = $("#select-check-in").datepicker('getDate');
-				   var toDate = $("#select-check-out").datepicker('getDate');
-				   // date difference in millisec
-				   var diff = new Date(toDate - fromDate);
-				   // date difference in days
-				   var days = diff/1000/60/60/24;
-
-				   console.log(days);
-				   $('.select-dates-display').val(days)
+				   dateCalculate();
 			   }
 			});//initialize the date-picker for check-out
 			});
@@ -693,4 +688,16 @@
 		$("#overlay").remove();
         Deals.displayWhenGo(true);
 	});
+	function dateCalculate(){
+		var fromDate = $("#select-check-in").datepicker('getDate');
+		var toDate = $("#select-check-out").datepicker('getDate');
+		// date difference in millisec
+		if(fromDate&&toDate){
+			var diff = new Date(toDate - fromDate);
+			// date difference in days
+			var days = diff/1000/60/60/24;
+			console.log(days);
+			$('.select-dates-display').val(days);
+		}
+	}
 })(jQuery, Handlebars);

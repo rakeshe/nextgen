@@ -1375,6 +1375,7 @@ select {
     display: block;
     height: 163px;
     width: 100%;
+	cursor:pointer;
 }
 /* For devices smaller than 768px */
 @media (max-width: 768px) {
