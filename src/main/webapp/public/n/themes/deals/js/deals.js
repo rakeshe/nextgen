@@ -534,7 +534,7 @@
 		/*end drop down for currency selection*/
 		
 		/*display popup - on date selection starts here*/
-		$('#card-desc').click(function (){
+		$('.hotel-card-button').click(function (){
 			$(".select-dates").fadeIn('slow');
 			var docHeight = $(document).height();
 			$("body").append("<div id='overlay'></div>");
@@ -584,7 +584,7 @@
 				   dateCalculate();
 			   }
 			});//initialize the date-picker for check-out
-			});
+		});
 		
 		$('.close-select-dates').click(function (){
 			$('.select-dates').css('display','none');

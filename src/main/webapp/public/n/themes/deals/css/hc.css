@@ -1471,6 +1471,14 @@ select {
     height:64px;
     overflow:hidden;
 }
+.hotel-name a{
+	text-decoration:none;
+    color:#55337e;
+}
+.hotel-name a:hover{
+	text-decoration:underline;
+    color:#e80f1e;
+}
 .hotel-city {
     font-size:20px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
