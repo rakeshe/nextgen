@@ -117,6 +117,7 @@
     font-size:12px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+	color: #FFF;
 }
 .points-token {
     background-image:url(../images/assets/Reward-Token.png);
@@ -1375,6 +1376,7 @@ select {
     display: block;
     height: 163px;
     width: 100%;
+	cursor:pointer;
 }
 /* For devices smaller than 768px */
 @media (max-width: 768px) {
@@ -1874,14 +1876,11 @@ select {
 .logged-in-user {
     display: none;
 }
-
 .logged-out-user {
     float:right;
     display:none;
     color: #ffffff;
-
 }
-
 .logged-out-user, .member-section {
     background-image : none;
 }
