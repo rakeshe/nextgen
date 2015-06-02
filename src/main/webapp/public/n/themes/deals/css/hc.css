@@ -462,6 +462,8 @@ select {
     background-repeat:no-repeat;
     background-position:top left;
 }
+
+
 /* Date selector pop up */
 .select-dates-wrapper {
     background-image:url(../images/assets/date-box-arrow.png);
@@ -475,6 +477,7 @@ select {
     width:350px;
     float:left;
     margin-left:16px;
+	display:none;
 }
 @media (max-width: 768px) {
     .select-dates-wrapper {
@@ -522,7 +525,7 @@ select {
     float:left;
     width:40%;
 }
-.select-dates-input {
+.select-dates-input, .select-dates-input-child {
     width:80%;
     margin-right:10%;
 
@@ -541,6 +544,10 @@ select {
 
     text-indent: 0.01px;
     text-overflow: "";
+}
+.add-room, .remove-room{
+	cursor:pointer;
+	text-decoration:none;
 }
 .select-dates-display {
     width:80%;
@@ -583,6 +590,15 @@ select {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#333;
+}
+.select-dates-close-window span {
+    float:right; padding:2px;
+    font-size:11px;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-weight:300;
+    color:#333;
+	text-decoration:underline;
+	cursor:pointer;
 }
 .select-dates-button {
     background-color:#55337e;
@@ -1354,7 +1370,12 @@ select {
     content: "";
     display: table;
     clear: both; }
-
+	
+#card-desc{
+    display: block;
+    height: 163px;
+    width: 100%;
+}
 /* For devices smaller than 768px */
 @media (max-width: 768px) {
     .card-container {
@@ -1581,6 +1602,19 @@ select {
     border-radius: 32px;
     float:right;
     margin-top:48px;
+	cursor:pointer;
+}
+.add-room, .remove-room{
+	cursor: pointer;
+    text-decoration: underline;
+}
+.child-room{
+	width:20% !important;
+	margin-right: 4% !important;
+	padding-left: 4% !important;
+}
+.room-1, {
+	display:none;
 }
 .member-q {
     display:block;
@@ -1836,3 +1870,18 @@ select {
 .dropdown span.value { display:none; }
 .dropdown img.flag { margin-left:15px; width:20px !important; height: 15px !important; }*/
 /*drop down for language selection*/
+
+.logged-in-user {
+    display: none;
+}
+
+.logged-out-user {
+    float:right;
+    display:none;
+    color: #ffffff;
+
+}
+
+.logged-out-user, .member-section {
+    background-image : none;
+}

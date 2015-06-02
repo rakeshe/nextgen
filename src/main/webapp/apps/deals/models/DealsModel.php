@@ -41,11 +41,36 @@ class DealsModel extends \Phalcon\Mvc\Model
     public function getHotels($region, $city) {
 
         try{
-            $data = file_get_contents( __DIR__ . '/../data/deals.json');
+            $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
+            $dataFile = $cityName.'.json';
+            $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
+                file_get_contents(__DIR__ .'/../data/'. $dataFile) :
+                file_get_contents( __DIR__ . '/../data/deals.json');
             return $data;
         }catch (\Exception $e) {
 
         }
+    }
+
+    public function getUserInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/loyalty_member.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
+    public function getLoyaltyInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/user-info.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+
     }
 
 
