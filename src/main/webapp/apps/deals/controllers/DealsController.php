@@ -18,7 +18,7 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_CITY = 'Sydney';
 
-    const DEFAULT_WHEN = '7-days';
+    const DEFAULT_WHEN = '30-days';
 
     const DEFAULT_URL = 'n/sale/deals';
 
