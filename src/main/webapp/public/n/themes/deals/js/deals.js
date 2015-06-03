@@ -178,8 +178,8 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				firstDay : 0,
 				dateFormat: 'dd/mm/yy',
+				firstDay : 0,
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
@@ -572,6 +572,7 @@
 				minDate : 0,
 				showCurrentAtPos : 0,
 				firstDay : 0,
+				dateFormat: 'dd/mm/yy',
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#select-check-in').datepicker('getDate');
@@ -587,6 +588,7 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
+				dateFormat: 'dd/mm/yy',
 				onSelect : function(dateText, inst) {
 					$('#select-check-in').datepicker("option", "maxDate",
 						$('#select-check-out').val()
