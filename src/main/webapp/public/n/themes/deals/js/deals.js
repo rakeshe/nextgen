@@ -187,17 +187,20 @@
 				minDate : 0,
 				showCurrentAtPos : 0,
 				firstDay : 0,
+				dateFormat: 'dd/mm/yy',
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
-					$('#check-out').datepicker("option", "minDate",
-						$('#check-in').val()
-					);
+					var date2 = $('#check-in').datepicker('getDate');
+					date2.setDate(date2.getDate() + 1);
+					$('#check-out').datepicker('setDate', date2);
+					$('#check-out').datepicker('option', 'minDate', date2);
 				}
 			});//initialize the date-picker for check-in
 			$("#check-out").datepicker({
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
+				dateFormat: 'dd/mm/yy',
 				onSelect : function(dateText, inst) {
 					$('#check-in').datepicker("option", "maxDate",
 						$('#check-out').val()
@@ -579,9 +582,10 @@
 				firstDay : 0,
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
-					$('#select-check-out').datepicker("option", "minDate",
-						$('#select-check-in').val()
-					);
+					var date2 = $('#select-check-in').datepicker('getDate');
+					date2.setDate(date2.getDate() + 1);
+					$('#select-check-out').datepicker('setDate', date2);
+					$('#select-check-out').datepicker('option', 'minDate', date2);
 				},
 				onClose: function() {
 				   dateCalculate();
@@ -637,7 +641,7 @@
 			cntVal = '<div class="roomVal"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
-			}	
+			}
 			console.log(cntVal);
 			cntVal+="<div>";
 			$(".room").append(cntVal).html();
@@ -655,7 +659,7 @@
                 Deals.reLoadLandingPage();
             }
         });
-		
+
         //remove default select option
         $('.input-default-value').change(function() {
             //remove default option

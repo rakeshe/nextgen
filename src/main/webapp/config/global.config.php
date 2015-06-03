@@ -9,7 +9,7 @@
 function getCouchConfigs()
 {
     switch (apache_getenv("ORBITZ_ENV")) {
-        case 'dev':
+        /*case 'dev':
             $couchConfig = [
                 'host'     => '127.0.1.1',
                 'port'     => 8091,
@@ -33,6 +33,14 @@ function getCouchConfigs()
                 'port' => 8006,
                 'user' => '',
                 'password' => 'hc-cache-prod2',
+                'bucket' => 'hc-cache'
+            ];
+            break;*/
+			default: $couchConfig = [
+                'host'     => '127.0.1.1',
+                'port'     => 8091,
+                'user'     => '',
+                'password' => '',
                 'bucket' => 'hc-cache'
             ];
             break;
