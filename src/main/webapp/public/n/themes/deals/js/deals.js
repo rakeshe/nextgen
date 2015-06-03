@@ -19,6 +19,14 @@
         }
     });
 
+    Handlebars.registerHelper('trimString', function(string, value) {
+
+        if (string.length > value ) {
+            var string = string.substring(0, value) + '..';
+        }
+        return new Handlebars.SafeString( string )
+    });
+
 
 
     var Deals = {
