@@ -36,7 +36,7 @@
             $('.filter').hide();
             this.displayHeader();
             this.displayUserInfo();
-            //this.displayRobot();
+            //this.displayOrbot();
             this.displaySortBox();
             //this.displayFilter();
             //this.displayHotelCards();
@@ -164,13 +164,14 @@
             }
         },
 
-        displayRobot : function() {
+        displayOrbot : function() {
             //console.log({city:this.city});
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
-            var template = HB.compile( $("#robot-template").html() );
-			$('body').append(template({city:this.city}));//append the popup template
-			
+            var template = HB.compile( $("#orbot-template").html() );
+			$('body').append( template( {city : this.city} ) );//append the popup template
+
+            console.log(this.city);
 			var dateToday = new Date();
 			var checkRates = "Check Rates";
 			$("#check-in").datepicker({
@@ -419,6 +420,8 @@
 
                 dropCities.append( $('<option>', opt ) );
             });
+            //get last destinatoin
+            dropCities.append( this.getLastDestination() );
 
             $('.dropdown-region').val(regionVal).attr("selected", "selected");
 
@@ -462,7 +465,13 @@
                         });
                     }
                 });
+                //get last destinatoin
+                dropCities.append( this.getLastDestination() );
             }
+        },
+
+        getLastDestination : function() {
+          return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
         },
 
         setCityImage : function() {
@@ -663,11 +672,17 @@
                     break;
 
                 case 'dropdown-cities' :
-                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
 
-                    if (dy != 0) {
+                    if (cy == ":orbot-dest") {
+
+                        Deals.setCity('');
+                        Deals.displayOrbot();
+                    } else if (dy != 0) {
                         Deals.displayWhenGo(true);
                     }
+
+                    $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
+
                     //set city image only afer user selects last option
                     //Deals.setCityImage();
                     break;
@@ -677,7 +692,7 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
-                        Deals.displayRobot();
+                        Deals.displayOrbot();
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
