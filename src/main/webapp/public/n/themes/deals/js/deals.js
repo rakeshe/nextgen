@@ -287,6 +287,10 @@
             }
         },
 
+        getLastDestination : function() {
+            return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
+        },
+
         getCityData : function() {
             return $.parseJSON(cData);
         },
@@ -468,10 +472,6 @@
                 //get last destinatoin
                 dropCities.append( this.getLastDestination() );
             }
-        },
-
-        getLastDestination : function() {
-          return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
         },
 
         setCityImage : function() {
