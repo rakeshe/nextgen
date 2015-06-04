@@ -775,6 +775,8 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
+                        if (cy == ":orbot-dest")
+                            Deals.setCity('');
                         Deals.displayOrbot();
                     } else {
                         //start routing ....
