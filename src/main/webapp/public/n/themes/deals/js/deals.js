@@ -13,7 +13,7 @@
     });
 
     HB.registerHelper('isTrue', function(val, options) {
-        console.log('hac' + val);
+        //console.log('hac' + val);
         if (val == true) {
             return options.fn(this);
         }
@@ -118,7 +118,9 @@
                 if(typeof obj == 'object') {
 
                     var url = window.location.origin + '/' + MNME + '/' + obj.city + '/' + obj.when;
-                    history.pushState({url: url}, obj.city + ' Hotels', url);
+                    if ( url !== window.location.href ) {
+                        history.pushState({url: url}, obj.city + ' Hotels', url);
+                    }
                 }
                 this[ctrl](obj);
             } else {
@@ -126,20 +128,22 @@
             }
         },
 
+        defaultCtrl : function(obj) {
+            this.initURLUpdate();
+        },
+
         hotelCardCtrl : function(obj) {
 
             if (typeof obj == 'object') {
 
-                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
-                // $('.search-sale-box').hide();
-                //this.displaySortBox();
-                //console.log(data.responseJSON);
-               // console.log('logged in ' + this.isLoggedIn);
-               // console.log(data.responseJSON.push(this.isLoggedIn));
-                //var response = data.responseJSON;
-                //response['isLoggedIn'] = isLoggedIn;
-                console.log(data.responseJSON);
+                this.city = obj.city,
+                this.region = obj.region,
+                this.when = obj.when;
+
+                var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
                 this.displayHotelCards( { hData : data.responseJSON, isLoggedIn : this.isLoggedIn} );
+                if ( obj.dropDownRefresh === true )
+                    this.displayDropDownData('value');
 
             } else {
                 this.displayHotelCards( { hData : $.parseJSON(hData), isLoggedIn : this.isLoggedIn});
@@ -179,7 +183,7 @@
             var template = HB.compile( $("#orbot-template").html() );
 			$('body').append( template( {city : this.city} ) );//append the popup template
 
-            console.log(this.city);
+            //console.log(this.city);
 			var dateToday = new Date();
 			var checkRates = "Check Rates";
 			$("#check-in").datepicker({
@@ -367,14 +371,16 @@
                    dropWhereDo = this.setDropDownDefaultOption().dropWhereDo();
            } else if (selectType == 'value') {
 
-               var dropRegion  = $('.dropdown-region'),
-                   dropCities  = $('.dropdown-cities'),
-                   dropWhereDo = $('.dropWhereDo');
+               var dropRegion  = $('.dropdown-region').html(''),
+                   dropCities  = $('.dropdown-cities').html(''),
+                   dropWhereDo = $('.dropWhereDo').html('');
            }
 
             var self = this;
 
             var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
+
+            //console.log('city: ' + self.city);
 
             $.each(this.getCityData(), function(key, val){
 
@@ -382,7 +388,6 @@
                     value : key,
                     text : val.nameUtf8
                 };
-
                 dropRegion.append( $('<option>', RegionOpt) );
 
                 if (typeof val.cities === 'object' && loopThrough !== false) {
@@ -420,6 +425,7 @@
             });
 
             // display city
+            //console.log(chopArr);
             $.each(chopArr, function (key, val) {
 
                 var opt =  opt = {
@@ -429,7 +435,7 @@
 
                 self.cityImage[val.nameUtf8] = val.image;
 
-                if (selectType == 'value' && val.name == self.city) {
+                if (selectType == 'value' && val.nameUtf8 == self.city) {
                     opt.selected = "selected";
                 }
 
@@ -515,8 +521,8 @@
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
 			$(".locale-wrapper").toggle();
-		});		
-		
+		});
+
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
 			//console.log($(".locale-drop-down-arrow").html(text));
@@ -545,9 +551,9 @@
 
 		$(".currency-box ul li ul li").click(function() {
 			var text = $(this).html();
-			console.log(text);
-			console.log($(".user-space .drop-down-arrow").html(text));
-			console.log($(".user-space .drop-down-arrow .desc").remove());
+			//console.log(text);
+			//console.log($(".user-space .drop-down-arrow").html(text));
+			//console.log($(".user-space .drop-down-arrow .desc").remove());
 			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
@@ -612,17 +618,17 @@
 		});
 		$('.add-room').click(function (){
 			//add one more room
-			console.log('adding room');
+			//console.log('adding room');
 		});
 		$('.remove-room').click(function (){
-			//remove one  room			
-			console.log('removing room');
+			//remove one  room
+			//console.log('removing room');
 		});
 		/*display popup - on date selection ends here*/
 
 		/* member-info starts here.. */
 		$(".member-info").hover(function(){
-			console.log($(this).next());
+			//console.log($(this).next());
 			var divToShow = $(this).next();
 			divToShow.css({
 				'display': 'block'
@@ -631,18 +637,18 @@
 			$(".member-info-desc").hide();
 		});
 		/* member-info ends here.. */
-		
+
 		$('.select-dates-input-child').on('change', function() {
-		  console.log( this.value ); // or $(this).val()
-		  if(this.value>=1){ 
+		 // console.log( this.value ); // or $(this).val()
+		  if(this.value>=1){
 			$('.roomVal').remove();
-			$(".room").css("display","block"); 
+			$(".room").css("display","block");
 			var cntVal, i;
 			cntVal = '<div class="roomVal"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
-			console.log(cntVal);
+			//console.log(cntVal);
 			cntVal+="<div>";
 			$(".room").append(cntVal).html();
 		}  else{
@@ -650,14 +656,23 @@
 			}
 		});
 
-		$(window).bind('popstate', function(event) {
-            var state = event.originalEvent.state;
+        //Using setTimeout only isn't a correct solution because you have no idea how long it will take for the content to be
+        // loaded so it's possible the popstate event is emitted after the timeout.
+        window.addEventListener( 'load' , function() {
+            setTimeout( function() {
+                window.addEventListener( 'popstate' , function( event ) {
 
-            if (state) {
-                Deals.route('', 'hotelCardCtrl');
-            } else {
-                Deals.reLoadLandingPage();
-            }
+                    if ( event.state ) {
+                        var urlArr = event.state.url.split( '/' );
+                            when = urlArr[ urlArr.length -1 ],
+                            city = urlArr[ urlArr.length -2 ];
+                        Deals.route( {region : '', city : city, when: when, dropDownRefresh : true}, 'hotelCardCtrl' );
+
+                    } else {
+                        Deals.defaultCtrl( '' );
+                    }
+                });
+            }, 0);
         });
 
         //remove default select option
@@ -734,7 +749,7 @@
 			var diff = new Date(toDate - fromDate);
 			// date difference in days
 			var days = diff/1000/60/60/24;
-			console.log(days);
+			//console.log(days);
 			$('.select-dates-display').val(days);
 		}
 	}
