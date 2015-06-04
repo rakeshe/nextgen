@@ -33,7 +33,7 @@
         {{ content() }}
 
         {{ partial(theme ~ '/partials/header') }}
-        {{ partial(theme ~ '/partials/robot') }}
+        {{ partial(theme ~ '/partials/orbot') }}
         {{ partial(theme ~ '/partials/sort') }}
         {{ partial(theme ~ '/partials/filter') }}
         {{ partial(theme ~ '/partials/hotelCard') }}
