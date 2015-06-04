@@ -190,8 +190,8 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				firstDay : 0,
 				dateFormat: 'dd/mm/yy',
+				firstDay : 0,
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
@@ -501,7 +501,6 @@
         }
     }
 
-
     Deals.init();
    // console.log(deals.getCityData());
 
@@ -510,7 +509,60 @@
         e.preventDefault();
     });
 
+	/*document ready*/
     $(document).ready(function(){
+		/*add-room functionality*/
+		$('.add-room').on('click',function(event) {
+			var roomVal = 1;
+			if(!$('.room-divide2').is(":visible")){
+				roomVal = 2;
+				$('.remove-room').css("display","block");
+				$('.divider-room').css("display","block");
+			}
+			else if(!$('.room-divide3').is(":visible")){
+				roomVal = 3;
+				$('.remove-room').css("display","block");
+				$('.divider-room').css("display","block");
+			}
+			else if(!$('.room-divide4').is(":visible")){
+				roomVal = 4;
+				$('.add-room').css("display","none");
+				$('.divider-room').css("display","none");
+			}
+			var roomCompVal='';
+			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			$(".room-divide"+(roomVal-1)).append(roomCompVal).html();
+		});
+
+		/*remove-room functionality*/
+		$('.remove-room').on('click',function(event) {
+			if($('.room-divide4').is(":visible")){
+				roomVal = 4;
+				$('.add-room').css("display","block");
+				$('.remove-room').css("display","block");
+				$('.divider-room').css("display","block");
+			}
+			else if($('.room-divide3').is(":visible")){
+				roomVal = 3;
+				$('.add-room').css("display","block");
+				$('.remove-room').css("display","block");
+				$('.divider-room').css("display","block");
+			}
+			else if($('.room-divide2').is(":visible")){
+				roomVal = 2;
+				$('.add-room').css("display","block");
+				$('.divider-room').css("display","none");
+				$('.remove-room').css("display","none");
+			}
+			$('.room-divide'+roomVal).remove();
+		});
+
+		/*drop down selection for children ages*/
+		$("#child-input-1").on('change', function(event){ roomChildVal(1, this.value); });
+		$(document).on('change', "#child-input-2", function(event){ roomChildVal(2, this.value); });
+		$(document).on('change', "#child-input-3", function(event){ roomChildVal(3, this.value); });
+		$(document).on('change', "#child-input-4", function(event){ roomChildVal(4, this.value); });
+
 		/*card hover design*/
         $('.card').hover(function() {
             $(this).css('border','1px solid #e80f1e');
@@ -576,7 +628,7 @@
 			});
 			$(".select-dates").css({
 				'position': 'fixed',
-				'top': '24%',
+				'top': '6%',
 				'left': '34%',
 				'display':'block',
 				'z-index': 999
@@ -586,6 +638,7 @@
 				minDate : 0,
 				showCurrentAtPos : 0,
 				firstDay : 0,
+				format: 'dd/mm/yy',
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#select-check-in').datepicker('getDate');
@@ -601,6 +654,7 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
+				format: 'dd/mm/yy',
 				onSelect : function(dateText, inst) {
 					$('#select-check-in').datepicker("option", "maxDate",
 						$('#select-check-out').val()
@@ -616,6 +670,7 @@
 			$('.select-dates').css('display','none');
 			$("#overlay").remove();
 		});
+
 		$('.add-room').click(function (){
 			//add one more room
 			//console.log('adding room');
@@ -624,6 +679,7 @@
 			//remove one  room
 			//console.log('removing room');
 		});
+
 		/*display popup - on date selection ends here*/
 
 		/* member-info starts here.. */
@@ -731,9 +787,7 @@
                     }
                     break;
             }
-
         });
-
     });
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
@@ -741,6 +795,8 @@
 		$("#overlay").remove();
         Deals.displayWhenGo(true);
 	});
+
+	/*function to calculate and display the date difference*/
 	function dateCalculate(){
 		var fromDate = $("#select-check-in").datepicker('getDate');
 		var toDate = $("#select-check-out").datepicker('getDate');
@@ -752,5 +808,22 @@
 			//console.log(days);
 			$('.select-dates-display').val(days);
 		}
-	}
+	}//dateCalculate
+
+	/*function to create a number of children ages based on room selected*/
+	function roomChildVal(roomChild, roomChildVal){
+		if(roomChildVal>=1){
+			$('.roomVal-'+roomChild).remove();
+			$(".room-"+roomChild).css("display","block");
+			var cntVal, i;
+			cntVal = '<div class="roomVal-'+roomChild+'"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
+			for(i=0;i<roomChildVal;i++){
+				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+			}
+			cntVal+="<div>";
+			$(".room-"+roomChild).append(cntVal).html();
+		}else{
+			$('.roomVal-'+roomChild).remove();
+		}
+	}//roomChildVal
 })(jQuery, Handlebars);
