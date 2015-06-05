@@ -1,0 +1,91 @@
+@import 'global-variable.scss';
+@mixin locale-val($tempWidth,$bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
+	width: $tempWidth;
+	@if $bgColor != 0{ background-color: $bgColor; }
+	@if $padVal != 0{ padding: $padVal; }
+	@if $displayVal != 0{ display: $displayVal; }
+	@if $floatVal != 0{ float: $floatVal; }
+	@if $listStyleVal != 0{ list-style: $listStyleVal; }
+}
+@mixin float-val($value){ float:$value; }
+@mixin padd($floatVal, $padVal){
+	padding: $padVal;
+	@if $floatVal != 0{	@include float-val($floatVal); }
+}
+@mixin font-val($fontSize, $fontWeight, $colorVal, $lineHeight){
+	font-size:$fontSize;
+	font-family: $font-family-val;
+	font-weight:$fontWeight;
+	@if $colorVal!= 0{ color: $colorVal; }
+	@if $lineHeight!= 0{ line-height: $lineHeight; }
+}
+@mixin font-val2($colorVal, $floatVal){	
+	color: $colorVal;
+	@include float-val($floatVal);
+}
+@mixin img-val($imgLink, $pos, $padLeft, $padTop){
+	background-image: url($imgLink);
+	background-repeat: no-repeat;	
+	@if $pos != 0{ background-position: $pos; }
+	@if $padLeft != 0{ padding-left: $padLeft; }
+	@if $padTop != 0{ padding-top: $padTop; }
+}
+@mixin general-width($general-width-val, $floatVal){
+	@if $floatVal != 0 { float: $floatVal; }
+	width: $general-width-val;
+}
+@mixin text-deco($colorVal, $decoVal){
+	text-decoration: $decoVal;
+	color: $colorVal;
+}
+@mixin user-val(){	
+	line-height: 100%;
+	margin-bottom: 0px;
+}
+@mixin browser-val($webVal, $mozVal, $borRadius, $webApp, $mozApp){	
+	-webkit-border-radius: $webVal;
+	-moz-border-radius: $mozVal;
+	border-radius: $borRadius;
+	@if $webApp != 0{ -webkit-appearance: none; }
+    @if $mozApp != 0{ -moz-appearance: none; }
+}
+@mixin text-align-val($widthVal, $marginVal, $textAlign){	
+	width: $widthVal;
+	margin: $marginVal;
+	@if $textAlign != 0{ text-align: $textAlign; }
+}
+@mixin upsell-val($listVal, $floatVal, $paddVal){
+	float: $floatVal;
+	padding: $paddVal;
+	@if $listVal!=0 { list-style: $listVal; }
+}
+@mixin border-bg-width-val($borderVal, $bgVal, $widthVal){
+	border:$borderVal;
+	@if $bgVal != 0{ background:$bgVal; }
+	@if $widthVal != 0{	width:$widthVal; }
+}
+@mixin border-val($borWidth, $borStyle, $borColor){
+	border-width: $borWidth;
+	border-style: $borStyle;
+	border-color: $borColor transparent;
+}
+@mixin top-right-bot-left-val($top, $right, $bot,$left){	
+	@if $top != 0{ top: $top; }
+	@if $right != 0{ left: $right; } 
+	@if $bot != 0{ right: $bot; }
+	@if $left != 0{ bottom: $left; }
+}
+@mixin webkit-val(){
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+@mixin wid-pad-val($widthVal, $padVal, $marginVal, $bordSizeVal, $floatVal){
+	@if $widthVal != 0{ width: $widthVal; }
+	@if $padVal != 0{ padding: $padVal; }
+	@if $marginVal != 0{ margin: $marginVal; }
+	@if $bordSizeVal != 0{ box-sizing: $bordSizeVal; }
+	@if $floatVal != 0{ float: $floatVal; }
+}
