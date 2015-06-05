@@ -28,6 +28,7 @@
         <meta name="robots" content="noindex, nofollow">
         <meta name="description" content="Great hotel deals, no booking fees & member rewards. Cheap hotels in over 74,000 hotels worldwide. Get more from your holiday. Join us at hotelclub.com.">
         <meta name="author" content="hotel, club, hotelclub, hotelclub.net, hotels, reservation, reservations, accomodation, accomodations, rooms, lodging, service, rates, hotels, discounts, cheap, online, travel, booking, information, resorts">
+        {{ partial('../../../common/views/tracking/web_trends_meta') }}
     </head>
     <body>
         {{ content() }}
@@ -56,5 +57,6 @@
                 values: [ 1, 100 ]
             });
          </script>
+        {{ partial('../../../common/views/tracking/web_trends_data_collector') }}
     </body>
 </html>
