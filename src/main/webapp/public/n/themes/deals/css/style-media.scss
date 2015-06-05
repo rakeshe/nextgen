@@ -82,6 +82,16 @@
 	.modal-dropdown-select-date { padding-left:15%; }
 	.modal-row-button { width:100%; }
     .modal-cancel {	@include wid-pad-val(0, 0, '5px 0 0px 0', 0, left);  }
+	.register-wrapper {
+		@include img-val('../images/assets/register-box-arrow.png', 'bottom center', 0, 0);
+		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+    }
+    .register-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left);  }
+	.register-input {
+		@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+		width:90%;	
+        padding-left:10%;
+    }
 }
 /* Three card width */
 @media (max-width:1024px) {	
