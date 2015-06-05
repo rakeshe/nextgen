@@ -1,6 +1,6 @@
 @import 'global-variable.scss';
-@mixin locale-val($tempWidth,$bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
-	width: $tempWidth;
+@mixin locale-val($tempWidth, $bgColor, $padVal, $displayVal, $floatVal, $listStyleVal){
+	@if $tempWidth != 0{ width: $tempWidth; }
 	@if $bgColor != 0{ background-color: $bgColor; }
 	@if $padVal != 0{ padding: $padVal; }
 	@if $displayVal != 0{ display: $displayVal; }
@@ -13,8 +13,15 @@
 	@if $floatVal != 0{	@include float-val($floatVal); }
 }
 @mixin font-val($fontSize, $fontWeight, $colorVal, $lineHeight){
-	font-size:$fontSize;
+	@if $fontSize!= 0{ font-size:$fontSize; }
 	font-family: $font-family-val;
+	font-weight:$fontWeight;
+	@if $colorVal!= 0{ color: $colorVal; }
+	@if $lineHeight!= 0{ line-height: $lineHeight; }
+}
+@mixin font-val-2($fontSize, $fontWeight, $colorVal, $lineHeight){
+	@if $fontSize!= 0{ font-size:$fontSize; }
+	font-family: $font-family-val2;
 	font-weight:$fontWeight;
 	@if $colorVal!= 0{ color: $colorVal; }
 	@if $lineHeight!= 0{ line-height: $lineHeight; }
@@ -30,9 +37,10 @@
 	@if $padLeft != 0{ padding-left: $padLeft; }
 	@if $padTop != 0{ padding-top: $padTop; }
 }
-@mixin general-width($general-width-val, $floatVal){
+@mixin general-width($general-width-val, $general-height-val, $floatVal){
 	@if $floatVal != 0 { float: $floatVal; }
-	width: $general-width-val;
+	@if $general-height-val != 0 { height: $general-height-val; }
+	@if $general-width-val != 0 { width: $general-width-val; }	
 }
 @mixin text-deco($colorVal, $decoVal){
 	text-decoration: $decoVal;
@@ -42,12 +50,13 @@
 	line-height: 100%;
 	margin-bottom: 0px;
 }
-@mixin browser-val($webVal, $mozVal, $borRadius, $webApp, $mozApp){	
-	-webkit-border-radius: $webVal;
-	-moz-border-radius: $mozVal;
-	border-radius: $borRadius;
-	@if $webApp != 0{ -webkit-appearance: none; }
-    @if $mozApp != 0{ -moz-appearance: none; }
+@mixin browser-val($webVal, $mozVal, $borRadius, $webApp, $mozApp, $appearance){	
+	@if $webVal != 0{ -webkit-border-radius: $webVal; }
+	@if $mozVal != 0{ -moz-border-radius: $mozVal; }
+	@if $borRadius != 0{ border-radius: $borRadius; }
+	@if $webApp != 0{ -webkit-appearance: $webApp; }
+    @if $mozApp != 0{ -moz-appearance: $mozApp; }
+    @if $appearance != 0{ appearance: $appearance; }
 }
 @mixin text-align-val($widthVal, $marginVal, $textAlign){	
 	width: $widthVal;
@@ -88,4 +97,24 @@
 	@if $marginVal != 0{ margin: $marginVal; }
 	@if $bordSizeVal != 0{ box-sizing: $bordSizeVal; }
 	@if $floatVal != 0{ float: $floatVal; }
+}
+@mixin height-width-indent-margin($heightVal, $widthVal, $indentVal, $marginVal){
+	@if $heightVal != 0{ height: $heightVal; }
+	@if $widthVal != 0{ width: $widthVal; }
+	@if $indentVal != 0{ text-indent: $indentVal; }
+	@if $marginVal != 0{ margin: $marginVal; }
+}
+@mixin wid-pos-zindex-top-left($widthVal, $posVal, $zindexVal, $topVal, $leftVal, $cursorVal){
+	@if $widthVal != 0{ width: $widthVal; }
+	@if $posVal != 0{ position: $posVal; }
+	@if $zindexVal != 0{ z-index: $zindexVal; }
+	@if $topVal != 0{ top: $topVal; }
+	@if $leftVal != 0{ left: $leftVal; }
+	@if $cursorVal != 0{ cursor: $cursorVal; }
+}
+@mixin height-color-border-outline($heightVal, $colorVal, $borderVal, $outlineVal){
+	@if $heightVal != 0{ height: $heightVal; }
+	@if $colorVal != 0{ color: $colorVal; }
+	@if $borderVal != 0{ border: $borderVal; }
+	@if $outlineVal != 0{ outline: $outlineVal; }
 }
