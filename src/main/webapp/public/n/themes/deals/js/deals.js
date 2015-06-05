@@ -323,7 +323,7 @@
                 dropCities : function() {
                     return $('.dropdown-cities').append( $('<option>', {
                         value : '0',
-                        text : 'City?',
+                        text : 'What City?',
                         'selected' :'selected'
                     }) );
                 },

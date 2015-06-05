@@ -128,6 +128,9 @@ class DealsController extends ControllerBase {
 
         $this->cityData = $this->model->getCityDocument();
 
+        // Add Webtrends tracking
+        $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
+
         $this->view->setVars([
             'cityData'  => $this->cityData,
             'city'      => $this->city,
@@ -137,9 +140,22 @@ class DealsController extends ControllerBase {
             'url'       => self::DEFAULT_URL,
             'hData'     => $this->model->getHotels('', $this->city),
             'userInfo'  => json_encode($this->userInfo),
+            'wtMetaData' => $webTrends
+                ->setOwwPage($this->router->getRewriteUri())
+                ->getWtMetaData(),
+            'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
             ]);
 
         $this->view->pick('default/index/index');
     }
 
+    protected function getWtMetaData(){
+        return [
+            'DCSext.LNG' => null === $this->languageCode ? 'en_AU' : $this->languageCode ,
+            'DCSext.pos' => 'HCL',
+            'DCSext.hostname' => 'www.hotelclub.com',
+            'DCSext.owwPage' =>  $this->router->getRewriteUri()
+        ];
+
+    }
 }

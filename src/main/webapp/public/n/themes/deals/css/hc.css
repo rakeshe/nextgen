@@ -1494,7 +1494,7 @@ select {
     color:#55337e;
 }
 .hotel-name a:hover{
-	text-decoration:underline;
+	text-decoration: none;
     color:#e80f1e;
 }
 .hotel-city {
@@ -1566,6 +1566,7 @@ select {
     font-size:16px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    line-height:120%;
 }
 .card-normal-list {
     margin:0px;
