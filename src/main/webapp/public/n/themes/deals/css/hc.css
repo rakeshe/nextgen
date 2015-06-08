@@ -61,8 +61,8 @@
 @media (max-width: 768px) {
     .user {
         float:right;
-        /*width:225px;*/
-        width:300px;
+        width:225px;
+        /*width:300px;*/
         text-align:left;
     }
 }
@@ -77,10 +77,14 @@
 @media (max-width: 768px) {
 	.member-section {
         display:block;
-		width: 160px !important;
+		width: 95px !important;
     }
 	.user-member-name{
 		font-size:12px !important;
+	}
+	.logged-in-user > .member-section {
+		width: 135px !important;
+		text-align:right;
 	}
 }
 .club-section {
