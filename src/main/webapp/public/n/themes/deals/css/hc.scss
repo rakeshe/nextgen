@@ -5,20 +5,26 @@
 	background:'#';
 }
 @each $logoVal in logo, logo-footer{
-	.#{$logoVal}{	@include padd(left, '0 25px 15px 0');	}
+	.#{$logoVal}{
+		padding-right:25px;
+		padding-bottom:15px;
+		float:left;
+	}
 }
 .tag-line {
 	@include font-val(16px, 300, 0, 0);
 	@include font-val2($white-color, left);
-	@include padd(left, '15px 0 0 0');
+    padding-top:15px;
+    float:left;
 }
-.user {
-	@include padd(right, '12px 0 0 0');
+.user {	
+    padding-top:12px;
+    float:right;
 	width:490px;
 	text-align:left;
 }
 .member-section { 
-	@include img-val('../images/assets/nav-arrow-drop-down.png', '140px 10px', 0, 0); 
+	@include img-val('../images/assets/nav-arrow-drop-down.png', 140px 10px, 0, 0);
 	@include general-width(180px, 0, left);
 }
 .club-section {	@include general-width(180px, 0, left); }
@@ -36,20 +42,18 @@
 .club-id-currency a { @include text-deco(#FFF, none); }
 .user-member { @include font-val(15px, 300, 0, 0); }
 .user-club-info { @include font-val(12px, 300, $white-color, 0); }
-.points-token {	@include img-val('../images/assets/Reward-Token.gif', '0px 1px', 16px, 0); }
-.drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', '0px 4px', 16px, 0); }
-.locale-drop-down-arrow { 
-	@include img-val('../images/assets/drop-down-arrow.gif', '0px 16px !important', 16px, 0); 
-	> .flag-pos {
-		float: inherit;
-	}
+.points-token {	@include img-val('../images/assets/Reward-Token.gif', 0px 1px, 16px, 0); }
+.drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px 4px, 16px, 0); }
+.locale-drop-down-arrow {
+	@include img-val('../images/assets/drop-down-arrow.gif', 0px 16px !important, 16px, 0); 
+	> .flag-pos { float: inherit; }
 }
 .user-space { margin-top:6px; }
 /* hotel search - Drop Down Menu */
 .hotel-dropdown-select {
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 3%, 0);
-	@include font-val(15px, 300, '#333', 0);
-	@include border-bg-width-val('1px solid #CCC', '#FFF', '100%');
+	@include img-val('../images/assets/orbot-down-arrow.png', top right, 3%, 0);
+	@include font-val(15px, 300, #333, 0);
+	@include border-bg-width-val('1px solid #CCC', #FFF, 100%);
 	@include browser-val(6px, 6px, 0px, none, none, none);
     height:37px;
     margin-bottom:24px;
@@ -66,14 +70,14 @@ select {
 
 /* NAVIGATION - Locale Drop Down Menu */
 .locale-wrapper {
-	@include img-val('../images/assets/menu-box-arrow.png', 'top left', 0, 16px);
+	@include img-val('../images/assets/menu-box-arrow.png', top left, 0, 16px);
 	@include general-width(400px, 0, left);
 	display:none;
 	z-index: 999;
 	position:absolute;
 }
 .locale-menu {	
-	@include border-bg-width-val('1px solid #55337e', '#FFF', 400px);
+	@include border-bg-width-val('1px solid #55337e', #FFF, 400px);
 	@include float-val(left);
 }
 .locale-list {
@@ -118,7 +122,7 @@ select {
 	a {	@include text-deco(#333, none);}
 }
 .currency-wrapper {
-	@include img-val('../images/assets/menu-box-arrow.png', 'top center', 0, 16px);
+	@include img-val('../images/assets/menu-box-arrow.png', top center, 0, 16px);
 	@include general-width(690px, 0, left);
 	margin-left: -310px;
 	position:absolute;
@@ -126,7 +130,7 @@ select {
 }
 .currency-box {	
 	@include border-bg-width-val('1px solid #999', 0,690px);
-	@include upsell-val(0, left, '0 0 12px 0');
+	@include upsell-val(0, left, 0 0 12px 0);
 }
 .currency-col {	@include general-width(30%, 0, left); }
 .currency-col-space { padding-left:3%; }
@@ -137,7 +141,7 @@ select {
 .mostUsed li {	font-weight:500; }
 /* NAVIGATION - Member Drop Down Menu */
 .member-drop-down-wrap {
-	@include img-val('../images/assets/menu-box-arrow.png', 'top center', 0, 16px);
+	@include img-val('../images/assets/menu-box-arrow.png', top center, 0, 16px);
     width:180px;
 }
 .member-drop-down {
@@ -150,50 +154,50 @@ select {
 		width:180px;
 	}
 	li {
-		@include locale-val(0, 0, '12px 0 12px 14px', block, 0, none);
+		@include locale-val(0, 0, 12px 0 12px 14px, block, 0, none);
 		border-bottom:1px solid #c7c6c6;
 		:hover { background:#ebebeb; }
 	}
 	a {	@include text-deco(#333, none); }
 }
-.member-drop-down-social { @include padd(right, '0 0 0 14px'); }
+.member-drop-down-social { @include padd(right, 0 0 0 14px); }
 .member-drop-down-fb {
-	@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
+	@include img-val('../images/assets/facebook-login-icon.png', top left, 0, 0);
 	@include locale-val(26px, 0, 0, block, right, 0);
-	@include height-width-indent-margin(26px, 0, -9999px, '-2px 0 0 10px');
+	@include height-width-indent-margin(26px, 0, -9999px, -2px 0 0 10px);
 }
 .member-drop-down-gp {
-	@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
+	@include img-val('../images/assets/google-plus-login-icon.png', top left, 0, 0);
 	@include locale-val(26px, 0, 0, block, right, 0);	
-	@include height-width-indent-margin(26px, 0, -9999px, '-2px 0 0 0');
+	@include height-width-indent-margin(26px, 0, -9999px, -2px 0 0 0);
 }
 
 /* Date selector pop up */
 .select-dates-wrapper {
-	@include img-val('../images/assets/date-box-arrow.png', '1px 16px', 0, 0);
+	@include img-val('../images/assets/date-box-arrow.png', 1px 16px, 0, 0);
 	@include general-width(366px, 0, left);
 }
 .select-dates {
-	@include locale-val(400px, '#d6dddc', 0, none, left, 0);
+	@include locale-val(400px, #d6dddc, 0, none, left, 0);
     margin-left:16px;
 }
 .select-dates-container {
     margin:16px;
 	h3 {
-		@include font-val-2(18px, 300, '#55337e', 0);
+		@include font-val-2(18px, 300, #55337e, 0);
 		margin-bottom:8px;
 	}
-	p {	@include font-val(14px, 300, '#333', 0); }
+	p {	@include font-val(14px, 300, #333, 0); }
 	a { @include text-deco(#55337e, underline); }
 }
 .select-dates-row { @include general-width(100%, 0, left); }
 .select-dates-in-out { @include general-width(40%, 0, left); }
 .select-dates-input, .select-dates-input-child {
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 10%, 0);
-	@include locale-val(80%, '#FFF', 0, 0, 0, 0);
+	@include img-val('../images/assets/orbot-down-arrow.png', top right, 10%, 0);
+	@include locale-val(80%, #FFF, 0, 0, 0, 0);
 	@include browser-val(0, 0, 0px, none, none, 0);
-	@include height-width-indent-margin(37px, 80%, '0.01px', '0 10% 0 0');
-	@include height-color-border-outline(0, '#999999', '0 !important', '2px solid #dddee0');
+	@include height-width-indent-margin(37px, 80%, 0.01px, 0 10% 0 0);
+	@include height-color-border-outline(0, #999999, 0 !important, 2px solid #dddee0);
     border-radius:0px;
     text-overflow: "";
 }
@@ -231,18 +235,18 @@ select {
 }
 .select-dates-close-window{
 	a {
-		@include font-val(11px, 300, '#333', 0);
+		@include font-val(11px, 300, #333, 0);
 		float:right; padding:2px;
 	}
 	span {
-		@include font-val(11px, 300, '#333', 0);
+		@include font-val(11px, 300, #333, 0);
 		float:right; padding:2px;
 		text-decoration:underline;
 		cursor:pointer;
 	}
 }
 .select-dates-button {
-	@include font-val(16px, 300, '#FFF', 0);
+	@include font-val(16px, 300, #FFF, 0);
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
 	@include text-align-val(50%, 0, center);
 	@include locale-val(0, '#55337e', '11px 0 10px 0', block, right, 0);
@@ -272,8 +276,8 @@ select {
 }
 .modal-row { 
 	@include wid-pad-val(100%, 0, '0 0 16px 0', 0, left); 
-	h3 { @include font-val-2(18px, 300, '#55337e', 0); margin-bottom:0px; }
-	p { @include font-val(14px, 300, '#333', 200%);	margin-bottom:0px; }
+	h3 { @include font-val-2(18px, 300, #55337e, 0); margin-bottom:0px; }
+	p { @include font-val(14px, 300, #333, 200%);	margin-bottom:0px; }
 	a { @include text-deco(#55337e, underline); }
 }
 .modal-input {
@@ -296,14 +300,21 @@ select {
     padding-left:10%;
     background-color:#FFF;
     text-overflow: "";
+	&-date{
+		@include height-color-border-outline(37px, '#999999', '0 !important', '2px solid #dddee0');
+	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 0, 0);
+	@include height-width-indent-margin(0, 100%, '0.01px', 0);
+	@include browser-val(0, 0, 0px, none, none, 0);	
+    padding-left:10%;
+    background-color:#FFF;
+    text-overflow: "";
+		@include font-val(14px, 300, 0, 0);
+	}
 }
-.modal-dropdown-select-date{
-    @extend .modal-dropdown-select;
-	@include font-val(14px, 300, 0, 0);
-}
+.modal-dropdown-select
 .modal-row-button {
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
-	@include font-val(16px, 300, '#FFF !important', 0);
+	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, none, none, 0);
 	@include locale-val(50%, #55337e, '11px 0 10px 0', block, right, 0);
     text-decoration:none !important;
@@ -322,8 +333,8 @@ select {
     float:left;
     width:100%;
     margin-bottom:16px;
-	h3 { @include font-val-2(18px, 300, '#55337e', 0); margin-bottom:0px; }
-	p { @include font-val(14px, 300, '#333', 200%); margin-bottom:0px; }
+	h3 { @include font-val-2(18px, 300, #55337e, 0); margin-bottom:0px; }
+	p { @include font-val(14px, 300, #333, 200%); margin-bottom:0px; }
 	a { @include text-deco(#55337e, underline);	}
 }
 .register-input {
@@ -336,8 +347,8 @@ select {
 
 .register-row-button {
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);	
-	@include locale-val(100%, '#55337e', '11px 0 10px 0', block, right, 0);
-	@include font-val(16px, 300, '#FFF !important', 0);
+	@include locale-val(100%, #55337e, '11px 0 10px 0', block, right, 0);
+	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);
     text-decoration:none !important;
     text-align:center;
@@ -377,17 +388,17 @@ select {
 		color:#FFF;
 		line-height:100%;
 	}
-	&-message {	padding-top:$padding-top; }
+	&-message {	text-align: center; }
 	&-txt-bg {
-		@include padd(0, '16px 20px 16px 20px');
+		@include padd(0, 16px 20px 16px 20px);
 		background: rgba(232, 15, 30, 0.8);
 		background-color: rgba(232, 15, 30, 0.8);	
 	}
 	&-text {
 		@include font-val(18px, 200, 0, 0);
-		@include border-bg-width-val('2px solid $cur-color', '#FFF',0);
+		@include border-bg-width-val(2px solid $cur-color, #FFF,0);
 		color:$cur-color;
-		@extend .sort-row;
+		margin:24px 0;
 		padding:16px;
 		text-align:center;
 	}
@@ -398,11 +409,11 @@ select {
 	}
 	&-text a { @include text-deco(#55337e, underline); }
 	&-text-title {
-		@include font-val-2(20px, 0, '#e61d23', 25px);
+		@include font-val-2(20px, 0, #e61d23, 25px);
 		margin-bottom:6px;
 	}
 	&-text-body {
-		@include font-val(18px, 0, '#333', 24px);
+		@include font-val(18px, 0, #333, 24px);
 		margin-bottom:0px;
 	}
 	&-image {
@@ -437,14 +448,14 @@ select {
 /* Pagination */
 .pag{
 	&-city {
-		@include font-val(17px, 300, '#666666', 0);
+		@include font-val(17px, 300, #666666, 0);
 		float:left;
 	}
 	&-destination {
 		font-family:'museo_slab500',Verdana, Geneva, sans-serif;
 	}
 	&-links {
-		@include font-val(17px, 300, '#666666', 0);
+		@include font-val(17px, 300, #666666, 0);
 		float:right;
 	}
 	&-links a {	@include text-deco(#666666, underline);	}
@@ -456,18 +467,18 @@ select {
 	&-by {
 		@include general-width(10%, 0, left);
 		p {		
-			@include padd(0, '11px 0 10px 0');
-			@include font-val(16px, normal, '#55337e', 0);
-			@include locale-val(100%, '#FFF', 0, block, 0, 0);
+			@include padd(0, 11px 0 10px 0);
+			@include font-val(16px, normal, #55337e, 0);
+			@include locale-val(100%, #FFF, 0, block, 0, 0);
 			margin:0px;
 			text-align:center;
 		}
 	}
 	&-it {	@include general-width(22.5%, 0, left); }
 	&-button {
-		@include locale-val(90%,'#ebebeb', '11px 0 10px 0', block, left, none);
+		@include locale-val(90%,#ebebeb, 11px 0 10px 0, block, left, none);
 		@include font-val(16px, normal, 0, 0);
-		@include img-val('../images/assets/down-arrow-purple.png', 'center right', 0, 0);
+		@include img-val('../images/assets/down-arrow-purple.png', center right, 0, 0);
 		@include text-deco(#55337e, none);
 		@include browser-val(4px, 4px, 4px, 0, 0, 0);
 		text-align:center;
@@ -476,11 +487,11 @@ select {
 }
 /* FILTER BOX */
 .filter {
-	@include img-val('../images/assets/filter-box-arrow.png', '30px 0px', 0, 4px);
+	@include img-val('../images/assets/filter-box-arrow.png', 30px 0px, 0, 4px);
 	&-button {
-		@include locale-val(100%, #edac12, '11px 0 10px 0', block, 0, 0);
-		@include img-val('../images/assets/down-arrow.png', 'center right', 0, 0);
-		@include font-val(16px, normal, '#000', 0);
+		@include locale-val(100%, #edac12, 11px 0 10px 0, block, 0, 0);
+		@include img-val('../images/assets/down-arrow.png', center right, 0, 0);
+		@include font-val(16px, normal, #000, 0);
 		@include browser-val(32px, 32px, 32px, 0, 0, 0);
 		text-decoration:none;
 		text-align:center;
@@ -494,13 +505,13 @@ select {
 	&-container {	
 		margin:0px 12px;
 		h3 {
-			@include font-val(18px, 300, '#55337e', 0);
+			@include font-val(18px, 300, #55337e, 0);
 			margin-bottom:8px;
 		}
-		p {	@include font-val(14px, 300, '#333', 0); }
+		p {	@include font-val(14px, 300, #333, 0); }
 	}
 	&-list {
-		@include font-val(14px, 300, '#333', 0);
+		@include font-val(14px, 300, #333, 0);
 		list-style:none;
 		padding:0px;
 	}
@@ -509,10 +520,10 @@ select {
 }
 .range {
 	@include font-val(14px, 300, 0, 0);
-	@include text-align-val(100%, '0 0 16px 0', center);
+	@include text-align-val(100%, 0 0 16px 0, center);
 	&-input {
 		@include font-val(14px, 300, 0, 0);
-		@include text-align-val(40px, '8px', center);
+		@include text-align-val(40px, 8px, center);
 	}
 }
 .star{
@@ -522,23 +533,23 @@ select {
 	}
 	&-search li {
 		@include locale-val(15px, 0, 0, block, left, 0);
-		@include height-width-indent-margin(14px, 0, '-9999px', 0);
-		@include img-val('../images/assets/rating-sprite.png', '0px 0px', 0, 0);
-		&:hover { @include img-val('../images/assets/rating-sprite.png', '0px -14px', 0, 0); }
+		@include height-width-indent-margin(14px, 0, -9999px, 0);
+		@include img-val('../images/assets/rating-sprite.png', 0px 0px, 0, 0);
+		&:hover { @include img-val('../images/assets/rating-sprite.png', 0px -14px, 0, 0); }
 	}
 }
 /* UPSELL */
 .upsell { 
 	margin:24px 0;		
-	li { @include upsell-val(none, left, '0 0 0 10px');	}
+	li { @include upsell-val(none, left, 0 0 0 10px);	}
 	a { @include text-deco(#000, underline); }
 	ul {
-		@include upsell-val(none, right, '14px 0 0 0px');
+		@include upsell-val(none, right, 14px 0 0 0px);
 		@include font-val(14px, 200, 0, 0);
 		margin-bottom:0 !important;
 	}
 	&-head {
-		@include font-val(27px, 300, '#55337e', 0);		
+		@include font-val(27px, 300, #55337e, 0);		
 		float:left;
 		margin-bottom:0 !important;
 	}
@@ -546,7 +557,7 @@ select {
 /* HOTEL CARDS */
 .card-container {
 	@include wid-pos-zindex-top-left(100%, relative, 0, 0, 0, 0);
-	@include wid-pad-val(0, '0 0px', '0 auto', 'border-box', 0);
+	@include wid-pad-val(0, 0 0px, 0 auto, border-box, 0);
     max-width: 1016px;
 	&:after {
 		content: "";
@@ -567,13 +578,13 @@ select {
     border:1px solid #d0d9d7;
     overflow:hidden;
 	&-member {
-		@include locale-val(100%, '#e80f1e', '1px 0', block, 0, 0);
-		@include font-val(15px, 0, '#FFF', 0);
+		@include locale-val(100%, #e80f1e, 1px 0, block, 0, 0);
+		@include font-val(15px, 0, #FFF, 0);
 		text-align:center;
 	}
 	&-non-member {
-		@include locale-val(100%, '#959595', '1px 0', block, 0, 0);
-		@include font-val(15px, 0, '#d9d9d9', 0);
+		@include locale-val(100%, #959595, 1px 0, block, 0, 0);
+		@include font-val(15px, 0, #d9d9d9, 0);
 		text-align:center;
 	}
 	&-image {
@@ -586,7 +597,7 @@ select {
 @each $hotelVal in hotel-name, hotel-city, hotel-price{
 	.#{$hotelVal}{	 
 		@if $hotelVal == hotel-name { 
-			@include font-val(24px, 300, '#55337e', 25px);
+			@include font-val(24px, 300, #55337e, 25px);
 			display:block;
 			width:100%;
 			height:64px;
@@ -595,38 +606,38 @@ select {
 			a:hover{ @include text-deco(#e80f1e, underline); }
 		}
 		@else if $hotelVal == hotel-city { 			
-			@include font-val(20px, 300, '#333', 0); 
+			@include font-val(20px, 300, #333, 0); 
 			display:block;
 			width:100%;
 			height:32px;
 			overflow:hidden;
 		}
 		@else if $hotelVal == hotel-price { 
-			@include font-val(32px, 300, '#e80f1e', 0);
+			@include font-val(32px, 300, #e80f1e, 0);
 		}
 	}
 }
 
 .star-sprite{
 	&-1 {
-		@include height-width-indent-margin(14px, 75px, 0, '0 0 12px 0');
-		@include img-val('../images/assets/star-sprite.png', '0px 0px', 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
+		@include img-val('../images/assets/star-sprite.png', 0px 0px, 0, 0);
 	}
 	&-2 {
-		@include height-width-indent-margin(14px, 75px, 0, '0 0 12px 0');
-		@include img-val('../images/assets/star-sprite.png', '0px -14px', 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
+		@include img-val('../images/assets/star-sprite.png', 0px -14px, 0, 0);
 	}
 	&-3 {
-		@include height-width-indent-margin(14px, 75px, 0, '0 0 12px 0');
-		@include img-val('../images/assets/star-sprite.png', '0px -28px', 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
+		@include img-val('../images/assets/star-sprite.png', 0px -28px, 0, 0);
 	}
 	&-4 {
-		@include height-width-indent-margin(14px, 75px, 0, '0 0 12px 0');
-		@include img-val('../images/assets/star-sprite.png', '0px -42px', 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
+		@include img-val('../images/assets/star-sprite.png', 0px -42px, 0, 0);
 	}
 	&-5 {
-		@include height-width-indent-margin(14px, 75px, 0, '0 0 12px 0');
-		@include img-val('../images/assets/star-sprite.png', '0px -56px', 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
+		@include img-val('../images/assets/star-sprite.png', 0px -56px, 0, 0);
 	}
 }
 
@@ -648,29 +659,29 @@ select {
 }
 .hotel{
 	&-offer {
-		@include font-val(16px, 300, '#e80f1e', 120%);
+		@include font-val(16px, 300, #e80f1e, 120%);
 		margin-bottom:9px !important;
 		padding:0px;
 	}
 	&-member {
-		@include font-val(12px, 300, '#e80f1e', 120%);
+		@include font-val(12px, 300, #e80f1e, 120%);
 		margin-bottom:0px !important;
 		padding:0px;
 	}
 	&-price {
-		@include font-val(40px, 300, '#e80f1e', 120%);
+		@include font-val(40px, 300, #e80f1e, 120%);
 		margin-bottom:0px !important;
 		padding:0px;
 	}
 	&-avg {
-		@include font-val(12px, 300, '#333', 100%);	
+		@include font-val(12px, 300, #333, 100%);	
 		margin-bottom:0px !important;
 		padding:0px;
 	}
 	&-card-button {
-		@include font-val(13px, 300, '#FFF', 0);	
-		@include img-val('../images/assets/card-arrow.png', 'center right', 0, 6px);
-		@include locale-val(100%, #55337e, '6px 0', block, 0, 0);
+		@include font-val(13px, 300, #FFF, 0);	
+		@include img-val('../images/assets/card-arrow.png', center right, 0, 6px);
+		@include locale-val(100%, #55337e, 6px 0, block, 0, 0);
 		@include browser-val(32px, 32px, 32px, 0, 0, 0);
 		text-decoration:none;
 		text-align:center;
@@ -691,19 +702,19 @@ select {
 .room-1, .room-2, .room-3, .room-4{	display:none; }
 .member-{
 	&q {
-		@include locale-val(12px, '#999', 0, block, right, 0);
+		@include locale-val(12px, #999, 0, block, right, 0);
 		@include browser-val(10px, 10px, 10px, 0, 0, 0);
-		@include font-val(9px, 0, '#FFF', 0);			
+		@include font-val(9px, 0, #FFF, 0);			
 		height:12px;
 		text-align:center;
 		cursor:pointer;
-		a {	@include text-deco('#FFF', none); }
+		a {	@include text-deco(#FFF, none); }
 	}
 	&info-{
 		&desc{
-			@include locale-val(200px, '#999', 0, none, right, 0);
+			@include locale-val(200px, #999, 0, none, right, 0);
 			@include wid-pos-zindex-top-left(0, absolute, 9999, 0, 0, 0);
-			@include font-val(13px, 0, '#000', 0);	
+			@include font-val(13px, 0, #000, 0);	
 			margin: -30px 0 0 15px;
 			text-align: left;
 			text-decoration: none;
@@ -729,12 +740,12 @@ select {
 .destination { 
 	padding:16px;
 	h3 {
-		@include font-val-2(28px, normal, '#FFF', 100%);
+		@include font-val-2(28px, normal, #FFF, 100%);
 		padding:20px 0;
 	}
-	h4 { @include font-val-2(18px, 300, '#FFF', 0); }
+	h4 { @include font-val-2(18px, 300, #FFF, 0); }
 	ol {
-		@include font-val(16px, 300, '#FFF', 100%);
+		@include font-val(16px, 300, #FFF, 100%);
 		padding-left:16px;
 		margin-top:0px;
 		li { padding:0 0 8px 24px; }
@@ -745,27 +756,27 @@ select {
 		padding: 16px 20px;
 	}
 	&-info {
-		@include font-val(14px, 300, '#55337e', 18px);
-		@include border-bg-width-val('2px solid #55337e', '#FFF', 0);
+		@include font-val(14px, 300, #55337e, 18px);
+		@include border-bg-width-val(2px solid #55337e, #FFF, 0);
 		padding:16px;
 		margin-top:265px;
 	}
 }
 .temp-hotel-card {
-	@include font-val(14px, 300, '#FFF', 0); 
-	@include border-bg-width-val('1px solid #FFF', '#ccc', 100%);
+	@include font-val(14px, 300, #FFF, 0); 
+	@include border-bg-width-val(1px solid #FFF, #ccc, 100%);
 	padding: 50px 0;
 	margin-bottom:24px;
 	text-align:center;
 }
 .africa {
-	@include img-val('../images/backgrounds/destination-placeholder.jpg', 'top center', 0, 0);
+	@include img-val('../images/backgrounds/destination-placeholder.jpg', top center, 0, 0);
 	background-size:cover;
 	margin-bottom:24px;
 }
 /* FOOTER */
 .footer {
-	@include font-val(11px, normal, '#FFF', 16px);
+	@include font-val(11px, normal, #FFF, 16px);
 	background-color:#363636;
 	ul {
 		list-style:none;
@@ -808,7 +819,7 @@ select {
 	}
 }
 .submit-email {
-	@include font-val(13px, 300, '#333', 0);
+	@include font-val(13px, 300, #333, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);
 	@include wid-pos-zindex-top-left(0, absolute, 1, 0, 0, 0);
 	margin-top:3px;
@@ -817,11 +828,11 @@ select {
 	padding: 8px 24px; 
     right: 20px;
 }
-.accreditation { @include upsell-val(0, left, '0 16px 16px 0'); }
+.accreditation { @include upsell-val(0, left, 0 16px 16px 0); }
 /* DROP DOWN MENU CODING */
 .dd-label {	padding: 8px 0 8px 12px; }
 .wrapper-dropdown-1 {
-	@include text-align-val(100%, '0 auto', 0);
+	@include text-align-val(100%, 0 auto, 0);
 	@include font-val(16px, 300, 0, 0);
     /* Size and position */
     position: relative; 
@@ -832,7 +843,7 @@ select {
 	margin-bottom:12px;
 	&:after {
 		@i border-bg-width-val($borderVal, $bgVal, $widthVal)
-		@include border-val('6px 6px 0 6px', solid, '#55337e transparent');
+		@include border-val(6px 6px 0 6px, solid, #55337e transparent);
 		@include top-right-bot-left-val(50%, 16px, 0, 0);content: "";
 		width: 0;
 		height: 0;
@@ -848,7 +859,6 @@ select {
 		/* Styles */
 		background: white;
 		@inculde webkit-val();
-		@extend li;
 		padding-left:0px;
 
 		/* Hiding */
@@ -867,7 +877,7 @@ select {
 			background:#e4e3e3;
 		}
 	}
-	.active:after { @include border-val('0px 6px 6px 6px', solid, '#55337e transparent');	}
+	.active:after { @include border-val(0px 6px 6px 6px, solid, #55337e transparent);	}
 	.active .dropdown {
 		opacity: 1;
 		pointer-events: auto;
