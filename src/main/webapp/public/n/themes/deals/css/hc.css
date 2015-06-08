@@ -61,7 +61,8 @@
 @media (max-width: 768px) {
     .user {
         float:right;
-        width:225px;
+        /*width:225px;*/
+        width:300px;
         text-align:left;
     }
 }
@@ -74,9 +75,13 @@
     background-position:140px 10px;
 }
 @media (max-width: 768px) {
-    .member-section {
-        display:none;
+	.member-section {
+        display:block;
+		width: 160px !important;
     }
+	.user-member-name{
+		font-size:12px !important;
+	}
 }
 .club-section {
     float:left;
@@ -1566,7 +1571,6 @@ select {
     font-size:16px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
-    line-height:120%;
 }
 .card-normal-list {
     margin:0px;
