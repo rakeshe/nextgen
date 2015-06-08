@@ -1,8 +1,14 @@
 @import 'global-variable.scss';
 @media #{$tablet}{
 	.logo { 
-		@include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto;	
-		&-footer { @include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto; }	
+		@include general-width(46px, auto, left);
+		padding-right:0px;
+        padding-bottom:15px;
+		&-footer { 
+			@include general-width(50px, auto, left);
+			padding-right:25px;
+			padding-bottom:15px;
+		}
 	}
 	.tag-line, .member-section, .rewards {	display:none; }
 	.user {
