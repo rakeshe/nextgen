@@ -118,3 +118,9 @@
 	@if $borderVal != 0{ border: $borderVal; }
 	@if $outlineVal != 0{ outline: $outlineVal; }
 }
+@mixin width-float-overflow-textAlgin($widthVal, $floatVal, $overVal, $textAlignVal){
+	@if $widthVal != 0{ width: $widthVal; }
+	@if $floatVal != 0{ float: floatVal; }
+	@if $overVal != 0{ overflow: overVal; }
+	@if $textAlignVal != 0{ text-align: textAlignVal; }
+}

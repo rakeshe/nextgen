@@ -1,5 +1,5 @@
 @import 'global-variable.scss';
-@media #{$tablet}{ 
+@media #{$tablet}{
 	.logo { 
 		@include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto;	
 		&-footer { @include locale-val(46px,0, '0 0px 15px 0', 0, left, 0); height: auto; }	
@@ -86,12 +86,31 @@
 		@include img-val('../images/assets/register-box-arrow.png', 'bottom center', 0, 0);
 		@include wid-pad-val(80%, 0, '0 10%', 0, left);
     }
-    .register-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left);  }
-	.register-input {
-		@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
-		width:90%;	
-        padding-left:10%;
+    .register{
+		&-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left);  }
+		&-input {
+			@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+			width:90%;	
+			padding-left:10%;
+		}
+	}
+	.hero-cross {
+        padding-top:4px;
+        padding-bottom:24px;
     }
+	.pag-links { float:left; }
+	.star-search{ 
+		li {
+			@include height-width-indent-margin(28px, 30px, '-9999px', 0);
+			@include img-val('../images/assets/rating-sprite-large.png', '0px 0px', 0, 0);
+			float:left;
+			display:block;
+			&:hover { @include img-val('../images/assets/rating-sprite-large.png', '0px -28px', 0, 0); }
+		}
+	}
+	.card-container { width: 95%; padding: 0px; }
+	.hotelcards { width: 100%; margin-left: 0 !important;}
+	.ui-datepicker{ width: 26% !important; }
 }
 /* Three card width */
 @media (max-width:1024px) {	
@@ -99,6 +118,10 @@
 		@include general-width('33.333333333%', 0, left);
 		margin-left: 0;  
 	}
+	.card-container {
+        width: 100%;
+        padding: 0px;
+    }
 }
 /* Two card width */
 @media (max-width:769px) { 
@@ -106,6 +129,10 @@
 		@include general-width('50%', 0, left);
 		margin-left: 0;
 	}
+	.card-container {
+        width: 100%;
+        padding: 20px;
+    }
 } 
 @media (max-width: 765px) {	
 	.hotelcards { 
@@ -113,3 +140,6 @@
 		margin-left: 0 !important; 
 	}
 }
+
+@media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
+@media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }
