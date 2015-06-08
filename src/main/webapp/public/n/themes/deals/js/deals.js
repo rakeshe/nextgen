@@ -37,6 +37,8 @@
             this.region = '';
             this.when = when;
 
+            this.hData = $.parseJSON(hData);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
@@ -75,6 +77,9 @@
             this.when = when;
         },
 
+        setHData : function(data) {
+            this.hData = data;
+        },
 
         initURLUpdate : function () {
 
@@ -141,12 +146,15 @@
                 this.when = obj.when;
 
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
-                this.displayHotelCards( { hData : data.responseJSON, isLoggedIn : this.isLoggedIn} );
+
+                this.setHData( data.responseJSON );
+
+                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn} );
                 if ( obj.dropDownRefresh === true )
                     this.displayDropDownData('value');
 
             } else {
-                this.displayHotelCards( { hData : $.parseJSON(hData), isLoggedIn : this.isLoggedIn});
+                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn});
             }
 
         },
@@ -498,6 +506,41 @@
             if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
                 $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
             }
+        },
+
+        sortByNumber : function(fName) {
+
+            var newArr = new Array();
+            $.each(this.hData, function (key, val) {
+                newArr.push(val);
+            });
+
+            newArr.sort(function (a, b) {
+                return a[fName] - b[fName];
+            });
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
+        },
+
+        sortByText : function(fName) {
+
+            var newArr = new Array();
+            $.each(this.hData, function (key, val) {
+                newArr.push(val);
+            });
+
+            newArr.sort(function (a, b) {
+
+                if (a[fName] > b[fName]) {
+                    return 1;
+                }
+                if (a[fName] < b[fName]) {
+                    return -1;
+                }
+                // a must be equal to b
+                return 0;
+            });
+
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
         }
     }
 
@@ -511,6 +554,27 @@
 
 	/*document ready*/
     $(document).ready(function(){
+
+
+        $('.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks').on('click', function(e) {
+
+            e.preventDefault();
+
+            if ($(this).data('sort') == 'ourPicks') {
+                // not idea what to do ...
+                //Deals.sortByText();
+            } else if ($(this).data('sort') == 'price') {
+console.log('price');
+                Deals.sortByNumber('price');
+            } else if ($(this).data('sort') == 'name') {
+
+                Deals.sortByText('hotelNameUtf8');
+            } else if ($(this).data('sort') == 'rating') {
+
+                Deals.sortByNumber('starRating');
+            }
+
+        });
 		/*add-room functionality*/
 		$('.add-room').on('click',function(event) {
 			var roomVal = 1;

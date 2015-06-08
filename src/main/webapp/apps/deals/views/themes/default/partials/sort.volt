@@ -8,16 +8,16 @@
             <p>Sort by:</p>
         </div>
         <div class="sort-it">
-            <a href="" class="sort-button" title="Price">Price</a>
+            <a class="sort-button sort-box-price" data-sort="price" title="Price">Price</a>
         </div>
         <div class="sort-it">
-            <a href="" class="sort-button" title="Name">Name</a>
+            <a class="sort-button sort-box-name" data-sort="name" title="Name">Name</a>
         </div>
         <div class="sort-it">
-            <a href="" class="sort-button" title="Rating">Rating</a>
+            <a class="sort-button sort-box-rating" data-sort="rating" title="Rating">Rating</a>
         </div>
         <div class="sort-it">
-            <a href="" class="sort-button" title="Our picks">Our picks</a>
+            <a class="sort-button sort-box-picks" data-sort="ourPicks" title="Our picks">Our picks</a>
         </div>
     </div>
 </div>
