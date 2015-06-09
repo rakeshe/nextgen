@@ -599,7 +599,7 @@ console.log('price');
 				$('.divider-room').css("display","none");
 			}
 			var roomCompVal='';
-			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
 			$(".room-divide"+(roomVal-1)).append(roomCompVal).html();
 		});
 
@@ -607,9 +607,9 @@ console.log('price');
 		$('.remove-room').on('click',function(event) {
 			 if($('.room-divide5').is(":visible")){
 				roomVal = 5;
-				$('.add-room').css("display","none");
+				$('.add-room').css("display","block");
 				$('.remove-room').css("display","block");
-				$('.divider-room').css("display","none");
+				$('.divider-room').css("display","block");
 			}
 			else if($('.room-divide4').is(":visible")){
 				roomVal = 4;

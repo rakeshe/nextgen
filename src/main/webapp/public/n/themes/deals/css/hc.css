@@ -540,11 +540,21 @@ select {
     float:left;
     width:40%;
 }
+.select-lable{
+	font-size:12px;
+	padding: 0 0 10px 0;
+	font-weight:700;
+	color:#6d6d6d;
+}
+.select-dates-in-out p, .select-dates-nights p{
+	font-weight: bold;
+	color: #6d6d6d;
+}
 .select-dates-input, .select-dates-input-child {
-    width:80%;
+    width:65%;
     margin-right:10%;
 
-    padding-left:10%;
+    padding-left:4%;
     height:37px;
     color:#999999;
     border-radius:0px;
@@ -559,6 +569,7 @@ select {
 
     text-indent: 0.01px;
     text-overflow: "";
+	font-weight:300;
 }
 .add-room, .remove-room{
 	cursor:pointer;
@@ -570,7 +581,6 @@ select {
     height:37px;
     text-align:center;
     color:#666;
-    background-color:#d6dddc;
     border-radius:0px;
     border: 0 !important;  /*Removes border*/
 }
@@ -580,17 +590,18 @@ select {
 }
 .select-dates-room {
     float:left;
-    width:25%;
+    width:40%;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
 .select-dates-room p {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-    font-weight:300;
+    font-weight:bold;
+	color: #6d6d6d;
 }
 .select-dates-humans {
     float:left;
-    width:35%;
+    width:30%;
 }
 .room-divide {
     border-bottom:1px solid #CCC;
