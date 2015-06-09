@@ -1,4 +1,6 @@
-<script> var cData = '{{cityData}}', hData = '{{hData}}', uInfo = '{{userInfo}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}'; </script>
+<script> var cData = '{{cityData}}', hData = '{{hData}}', uInfo = '{{userInfo}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}';
+var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}';
+</script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
@@ -14,16 +16,16 @@
             <div class="hero-text">
                 <div class="hero-text-box">
                     <div class="five columns">
-                        <p class="hero-text-title">My Club</p>
-                        <p class="hero-text-body">Earn more member rewards with every booking including this sale.</p>
+                        <p class="hero-text-title promo-one-title"></p>
+                        <p class="hero-text-body promo-one-body"></p>
                     </div>
                     <div class="one columns" style="text-align:center;">
                         <img src="/n/themes/deals/images/assets/plus-cross.png" style="padding-top:48px;padding-bottom:24px;"/>
                     </div>
                     <div class="six columns">
-                        <img src="/n/themes/deals/images/assets/wine-promo.png" style="float:right; padding-left:24px; padding-right:24px;"/>
-                        <p class="hero-text-title">Special member offer</p>
-                        <p class="hero-text-body">Get 3 free bottles of wine from Naked Wines with your next booking.</p>
+                        <img src="" class="promo-two-img" style="float:right; padding-left:24px; padding-right:24px;"/>
+                        <p class="hero-text-title promo-two-title"></p>
+                        <p class="hero-text-body promo-two-dody"></p>
                     </div>
                 </div>
             </div>
