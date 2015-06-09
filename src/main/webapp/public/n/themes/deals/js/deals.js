@@ -508,20 +508,26 @@
             }
         },
 
-        sortByNumber : function(fName) {
+        sortByNumber : function(fName, type) {
 
-            var newArr = new Array();
+            var newArr = Array();
+
             $.each(this.hData, function (key, val) {
                 newArr.push(val);
             });
 
             newArr.sort(function (a, b) {
-                return a[fName] - b[fName];
+
+                if (type == 'asc') {
+                    return a[fName] - b[fName];
+                } else {
+                    return b[fName] - a[fName];
+                }
             });
             this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
         },
 
-        sortByText : function(fName) {
+        sortByText : function(fName, type) {
 
             var newArr = new Array();
             $.each(this.hData, function (key, val) {
@@ -530,14 +536,27 @@
 
             newArr.sort(function (a, b) {
 
-                if (a[fName] > b[fName]) {
-                    return 1;
+                if (type == 'asc') {
+
+                    if (a[fName] > b[fName]) {
+                        return 1;
+                    }
+                    if (a[fName] < b[fName]) {
+                        return -1;
+                    }
+                    return 0; // a must be equal to b
+
+                } else {
+
+                    if (a[fName] < b[fName]) {
+                        return 1;
+                    }
+                    if (a[fName] > b[fName]) {
+                        return -1;
+                    }
+                    return 0; // a must be equal to b
                 }
-                if (a[fName] < b[fName]) {
-                    return -1;
-                }
-                // a must be equal to b
-                return 0;
+
             });
 
             this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
@@ -555,24 +574,33 @@
 	/*document ready*/
     $(document).ready(function(){
 
-
         $('.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks').on('click', function(e) {
 
             e.preventDefault();
+            var self = $(this),
+                order = self.attr('data-order'),
+                type = '';
+
+            if (order == 'des')
+                type = 'asc';
+            else if (order == 'asc')
+                type = 'des';
+            else
+                type = 'asc';
 
             if ($(this).data('sort') == 'ourPicks') {
                 // not idea what to do ...
                 //Deals.sortByText();
             } else if ($(this).data('sort') == 'price') {
-console.log('price');
-                Deals.sortByNumber('price');
+                Deals.sortByNumber('price', type);
             } else if ($(this).data('sort') == 'name') {
-
-                Deals.sortByText('hotelNameUtf8');
+                Deals.sortByText('hotelNameUtf8', type);
             } else if ($(this).data('sort') == 'rating') {
-
-                Deals.sortByNumber('starRating');
+                Deals.sortByNumber('starRating', type);
             }
+            $('.sort-button').removeAttr('style');
+            self.attr('data-order', type)
+                .css('background-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
 
         });
 

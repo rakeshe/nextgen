@@ -1190,7 +1190,7 @@ select {
 }
 .sort-button {
     background-color:#ebebeb;
-    background-image:url(../images/assets/down-arrow-purple.png);
+    #background-image:url(../images/assets/down-arrow-purple.png);
     background-repeat:no-repeat;
     background-position:center right;
     color:#55337e;
