@@ -52,7 +52,7 @@
 						</div></div>
 						<p class="hotel-price">{{curySymbole}}{{price}}</p>
 						<p class="hotel-avg">avg/night</p>
-						<span class="hotel-card-button" title="">Select dates</span>
+						<span class="hotel-card-button" data-hotel='{{{hotelNameUtf8}}}'>Select dates</span>
 					</div>
 				</div>
             </div>
@@ -61,12 +61,13 @@
     {{/each}}
 	
 	<div class="select-dates">
-		<p class="select-dates-close-window"><span class="close-select-dates" title="Close">Close</span></p>
+		<div class="select-dates-close-window">
+			<h3 class="select-date-hotel-name">&nbsp;</h3>
+			<span class="close-select-dates" title="Close">Close</span>
+		</div>
         
         <div class="select-dates-container">
-        
-        <h3 style="float:left;">Choose your dates</h3>
-            
+            <div class="select-lable">Select the dates for your hotel stay</div>
             <div class="select-dates-row">
                 <div class="select-dates-in-out">
                     <p>Check in<br />
@@ -98,11 +99,12 @@
                 <div class="select-dates-humans room1">
                     <p>Children <small>(0-17)</small><br />
                     <select name="" class="select-dates-input-child" id="child-input-1">
-                      <option value='0'>0</option>
+                      <option value='0'>---</option>
                       <option value='1'>1</option>
                       <option value='2'>2</option>
                       <option value='3'>3</option>
                       <option value='4'>4</option>
+                      <option value='5'>5</option>
                     </select></p>
                 </div>
 				<div class="room-1">

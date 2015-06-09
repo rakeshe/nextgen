@@ -617,7 +617,6 @@
 
         });
 
-
 		/*card hover design*/
         $('.card').hover(function() {
             $(this).css('border','1px solid #e80f1e');
@@ -664,17 +663,6 @@
 			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
-
-		$('.add-room').click(function (){
-			//add one more room
-			//console.log('adding room');
-		});
-		$('.remove-room').click(function (){
-			//remove one  room
-			//console.log('removing room');
-		});
-
-		/*display popup - on date selection ends here*/
 
 		/* member-info starts here.. */
 		$(".member-info").hover(function(){
