@@ -490,6 +490,9 @@ select {
     margin-left:16px;
 	display:none;
 }
+.select-dates-hotel-name{
+	float:left;
+}
 @media (max-width: 768px) {
     .select-dates-wrapper {
         background-image:url();
