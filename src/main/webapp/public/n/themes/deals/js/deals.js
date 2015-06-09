@@ -45,6 +45,7 @@
 
             $('.filter').hide();
             this.displayHeader();
+            this.updatePromotion();
             this.displayUserInfo();
             //this.displayOrbot();
             this.displaySortBox();
@@ -156,6 +157,18 @@
             } else {
                 this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn});
             }
+
+        },
+
+        updatePromotion : function() {
+          var club = $.parseJSON(clubPromo),
+              pm = $.parseJSON(pmPromo);
+
+            $('.promo-one-title').html(club.title);
+            $('.promo-one-body').html(club.text);
+            $('.promo-two-title').html(pm.title);
+            $('.promo-two-dody').html(pm.text);
+            $('.promo-two-img').attr('src', pm.image);
 
         },
 

@@ -5,7 +5,7 @@ return new \Phalcon\Config ([
 		),
 		'couchbase' => array (
 //				'bucket' => 'hc-nextgen'
-//				'bucket' => 'hc-cache'
+				'bucket' => 'hc-cache'
 		),
 		'application' => array (
 				'controllersDir' => 'controllers/',

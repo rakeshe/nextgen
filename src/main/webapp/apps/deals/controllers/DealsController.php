@@ -144,6 +144,8 @@ class DealsController extends ControllerBase {
                 ->setOwwPage($this->router->getRewriteUri())
                 ->getWtMetaData(),
             'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
+            'clubPromotion' => $this->model->getClubPromotions(),
+            'pmPromotion' => $this->model->getPMPromotions()
             ]);
 
         $this->view->pick('default/index/index');
