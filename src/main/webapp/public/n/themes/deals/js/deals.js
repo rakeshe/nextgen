@@ -148,11 +148,14 @@
 
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
 
-                this.setHData( data.responseJSON );
-
-                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn} );
-                if ( obj.dropDownRefresh === true )
-                    this.displayDropDownData('value');
+                if ($.isEmptyObject(data.responseJSON) === false) {
+                    this.setHData(data.responseJSON);
+                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
+                    if (obj.dropDownRefresh === true)
+                        this.displayDropDownData('value');
+                } else {
+                    this.displayOrbotInPage();
+                }
 
             } else {
 
@@ -167,22 +170,9 @@
 
         displayOrbotInPage : function() {
 
-            console.log('working');
-
-/*            float: left;
-            width: 590px;
-            background: rgba(255, 255, 255, 1);
-            background-color: rgba(255, 255, 255, 1);
-            *//* position: absolute; *//*
-            top: 25%;
-            margin-left: 25%;
-            z-index: 100;
-            border: black solid 10px;
-        }*/
-
 
             var template = HB.compile( $("#orbot-template").html() );
-            $('.section .hotel-cards-container').append(
+            $('.section .hotel-cards-container').html('').append(
                 $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
                 .append(template( {city : 'Sydney'} ));
 
