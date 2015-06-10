@@ -48,7 +48,7 @@
             this.updatePromotion();
             this.displayUserInfo();
             //this.displayOrbot();
-            this.displaySortBox();
+            //this.displaySortBox(); //don't display in init..
             //this.displayFilter();
             //this.displayHotelCards();
             //this.displayRegionHotelCards();
@@ -149,29 +149,33 @@
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
 
                 if ($.isEmptyObject(data.responseJSON) === false) {
+
+                    this.displaySortBox();
                     this.setHData(data.responseJSON);
                     this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
                     if (obj.dropDownRefresh === true)
                         this.displayDropDownData('value');
                 } else {
-                    this.displayOrbotInPage();
+                    this.displayNoHotelOrbot();
                 }
 
             } else {
 
                 if ($.isEmptyObject(this.hData) === false) {
+                    this.displaySortBox();
                     this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
                 } else {
-                    this.displayOrbotInPage();
+                    this.displayNoHotelOrbot();
                 }
             }
 
         },
 
-        displayOrbotInPage : function() {
+        displayNoHotelOrbot : function() {
 
-
+            $('#sort-row-uq').html(''); // remove all content in sort box
             var template = HB.compile( $("#orbot-template").html() );
+
             $('.section .hotel-cards-container').html('').append(
                 $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
                 .append(template( {city : 'Sydney'} ));
@@ -339,7 +343,7 @@
 
         displaySortBox: function() {
             var template = HB.compile( $("#sort-template").html() );
-            $('.section .container #sort-row-uq').append(template());
+            $('.section .container #sort-row-uq').html(template());
         },
 
         displayHotelCards : function( data ) {
@@ -636,36 +640,6 @@
 
 	/*document ready*/
     $(document).ready(function(){
-
-        $('.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks').on('click', function(e) {
-
-            e.preventDefault();
-            var self = $(this),
-                order = self.attr('data-order'),
-                type = '';
-
-            if (order == 'des')
-                type = 'asc';
-            else if (order == 'asc')
-                type = 'des';
-            else
-                type = 'asc';
-
-            if ($(this).data('sort') == 'ourPicks') {
-                // not idea what to do ...
-                //Deals.sortByText();
-            } else if ($(this).data('sort') == 'price') {
-                Deals.sortByNumber('price', type);
-            } else if ($(this).data('sort') == 'name') {
-                Deals.sortByText('hotelNameUtf8', type);
-            } else if ($(this).data('sort') == 'rating') {
-                Deals.sortByNumber('starRating', type);
-            }
-            $('.sort-button').removeAttr('style');
-            self.attr('data-order', type)
-                .css('background-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
-
-        });
 
 		/*card hover design*/
         $('.card').hover(function() {
@@ -1012,6 +986,36 @@
         + "hotel.rooms[0].adlts=2"
         + "hotel.keyword.key="
         + cityName
+    });
+
+    $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
+
+        e.preventDefault();
+        var self = $(this),
+            order = self.attr('data-order'),
+            type = '';
+
+        if (order == 'des')
+            type = 'asc';
+        else if (order == 'asc')
+            type = 'des';
+        else
+            type = 'asc';
+
+        if ($(this).data('sort') == 'ourPicks') {
+            // not idea what to do ...
+            //Deals.sortByText();
+        } else if ($(this).data('sort') == 'price') {
+            Deals.sortByNumber('price', type);
+        } else if ($(this).data('sort') == 'name') {
+            Deals.sortByText('hotelNameUtf8', type);
+        } else if ($(this).data('sort') == 'rating') {
+            Deals.sortByNumber('starRating', type);
+        }
+        $('.sort-button').removeAttr('style');
+        self.attr('data-order', type)
+            .css('background-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
+
     });
 
 	/*function to calculate and display the date difference*/
