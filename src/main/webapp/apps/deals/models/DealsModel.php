@@ -47,7 +47,8 @@ class DealsModel extends \Phalcon\Mvc\Model
             $dataFile = $cityName.'.json';
             $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
                 file_get_contents(__DIR__ .'/../data/'. $dataFile) :
-                file_get_contents( __DIR__ . '/../data/deals.json');
+                '{}';
+                //file_get_contents( __DIR__ . '/../data/deals.json');
             return $data;
         }catch (\Exception $e) {
 

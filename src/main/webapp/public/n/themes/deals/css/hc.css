@@ -1985,3 +1985,10 @@ select {
 .logged-out-user, .member-section {
     background-image : none;
 }
+
+.err-hotel-not-found {
+    margin-left: 15%;
+    margin-bottom: 1%;
+    font-size: 15px;
+    color: #ff0000;
+}

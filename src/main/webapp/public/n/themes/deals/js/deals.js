@@ -155,8 +155,68 @@
                     this.displayDropDownData('value');
 
             } else {
-                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn});
+
+                if ($.isEmptyObject(this.hData) === false) {
+                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
+                } else {
+                    this.displayOrbotInPage();
+                }
             }
+
+        },
+
+        displayOrbotInPage : function() {
+
+            console.log('working');
+
+/*            float: left;
+            width: 590px;
+            background: rgba(255, 255, 255, 1);
+            background-color: rgba(255, 255, 255, 1);
+            *//* position: absolute; *//*
+            top: 25%;
+            margin-left: 25%;
+            z-index: 100;
+            border: black solid 10px;
+        }*/
+
+
+            var template = HB.compile( $("#orbot-template").html() );
+            $('.section .hotel-cards-container').append(
+                $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
+                .append(template( {city : 'Sydney'} ));
+
+            $('.modal-box').attr('style', 'position:relative;z-index: 0;border: black solid 1px;');
+            $('.modal-row-button').addClass('no-hotel-orbot');
+            $('.cancel-action').remove();
+
+            var dateToday = new Date();
+            var checkRates = "Check Rates";
+            $("#check-in").datepicker({
+                inline : true,
+                minDate : 0,
+                showCurrentAtPos : 0,
+                dateFormat: 'dd/mm/yy',
+                firstDay : 0,
+                dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+                onSelect : function(dateText, inst) {
+                    var date2 = $('#check-in').datepicker('getDate');
+                    date2.setDate(date2.getDate() + 1);
+                    $('#check-out').datepicker('setDate', date2);
+                    $('#check-out').datepicker('option', 'minDate', date2);
+                }
+            });//initialize the date-picker for check-in
+            $("#check-out").datepicker({
+                inline : true,
+                minDate : 0,
+                showCurrentAtPos : 0,
+                dateFormat: 'dd/mm/yy',
+                onSelect : function(dateText, inst) {
+                    $('#check-in').datepicker("option", "maxDate",
+                        $('#check-out').val()
+                    );
+                }
+            });//initialize the date-picker for check-out
 
         },
 
@@ -897,6 +957,33 @@
 		$("#overlay").remove();
         Deals.displayWhenGo(true);
 	});
+
+    $(document).on('click', '.no-hotel-orbot', function(e) {
+        e.preventDefault();
+
+        var checkIn  = $('#check-in').val(),
+            checkOut = $('#check-out').val(),
+            hotelName 	 = $('.search-hotel-name').val(),
+            promo 	 = $('#pp-promo').val(),
+            local = 'en_AU',
+            cityName = $('.robot-city-name').val();
+
+        window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+        + promo
+        + "&locale="
+        + local
+        + "&hotel.hname="
+        + hotelName
+        + "&hotel.type=keyword&hotel.chkin="
+        + checkIn
+        + "&hotel.chkout="
+        + checkOut
+        + "&search=Search"
+        + "&hsv.showDetails=true"
+        + "hotel.rooms[0].adlts=2"
+        + "hotel.keyword.key="
+        + cityName
+    });
 
 	/*function to calculate and display the date difference*/
 	function dateCalculate(){
