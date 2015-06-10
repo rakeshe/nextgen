@@ -14,6 +14,8 @@ use Phalcon\Exception;
 
 class DealsModel extends \Phalcon\Mvc\Model
 {
+    const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club:en_AU'; // sale:md5(deals):promo_club:en_AU
+    const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm:en_AU'; // sale:md5(deals):promo_pm:en_AU
 
 
     public function init() {
@@ -71,6 +73,50 @@ class DealsModel extends \Phalcon\Mvc\Model
 
         }
 
+    }
+
+    public function getClubPromotions() {
+
+        try {
+
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get(ORBITZ_ENV . self::PROMOTIONS_CLUB_DOC_NAME);
+
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/club-promotion.json')) {
+                    return file_get_contents( __DIR__ . '/../data/club-promotion.json');
+                }
+                return false;
+            }
+            return $data;
+
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return false;
+    }
+
+    public function getPMPromotions() {
+
+        try {
+
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get(ORBITZ_ENV . self::PROMOTIONS_PM_DOC_NAME);
+
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/pm-promotion.json')) {
+                    return file_get_contents( __DIR__ . '/../data/pm-promotion.json');
+                }
+                return false;
+            }
+            return $data;
+
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return false;
     }
 
 

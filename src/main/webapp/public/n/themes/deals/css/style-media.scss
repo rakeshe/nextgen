@@ -1,0 +1,151 @@
+@import 'global-variable.scss';
+@media #{$tablet}{
+	.logo { 
+		@include general-width(46px, auto, left);
+		padding-right:0px;
+        padding-bottom:15px;
+		&-footer { 
+			@include general-width(50px, auto, left);
+			padding-right:25px;
+			padding-bottom:15px;
+		}
+	}
+	.tag-line, .member-section, .rewards {	display:none; }
+	.user {
+		@include general-width(225px, 0, right);
+		text-align:left;
+	}
+	.club-section {	@include general-width(95px, 0, left);	}
+	.locale-menu {
+		@include border-bg-width-val('1px solid #55337e', '#FFF', 80%);
+		@include float-val(left);
+		margin-left:10%;
+		margin-right:10%;
+	}
+	/* Code is Repeated for 768px - so don't include
+	.locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
+	.locale-list li:hover  { @include locale-val(44%, #ebebeb, 3%, block, left, none); }*/
+	.currency-box {
+		@include border-bg-width-val('1px solid #999', 0,80%);
+		@include upsell-val(0, left, '0 0 12px 0');
+		margin-left:10%;
+		margin-right:10%;
+	}
+	.hero-message {	padding-top:40px; }
+	.sort{
+		&-by {	@include general-width(100%, 0, left);	}
+		&-it {	
+			@include general-width(50%, 0, left); 
+			margin-bottom:12px;
+		}
+		&-button {	@include text-align-val(90%, '0 5%', 0); }
+	}
+	.upsell ul { float:left; }
+	.destination-info {	margin-top:26px; }
+	.submit-email {
+		position: absolute;
+		right: 0px;
+		z-index: 1;
+	}
+	
+	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
+    .currency-box {	@include wid-pad-val(80%, '0 0 12px 0', '0 10%', 0, left); }
+    .currency-col {	@include general-width(100%, 0, left); }
+    .currency-col-space { padding-left:0%; }
+    .currency-col-divide {
+		border-left:0px;
+        border-right:0px;
+    }
+	.select-dates-wrapper {
+		@include img-val('../images/assets/date-box-arrow.png', '1px 16px', 0, 0);
+		@include general-width(80%, 0, left);
+        margin-left:10%;
+        margin-right:10%;
+    }
+    .select-dates {
+		@include locale-val(100%, '#d6dddc', 0, 0, left, 0);
+        margin-left:0px;
+    }
+	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
+    .currency-box {	@include wid-pad-val(80%, '0 0 12px 0', '0 10%', 0, left); }
+    .currency-col {	@include general-width(100%, 0, left);   }
+    .currency-col-space { padding-left:0%; }
+    .currency-col-divide {
+        border-left:0px;
+        border-right:0px;
+    }
+	.select-dates-button { width:100%; }
+    .modal-box { width:60% !important; }
+	.modal-wrapper {
+		@include img-val('../images/assets/modal-box-arrow.png', 'bottom center', 0, 0);
+		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+    }
+    .modal-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left); }
+	.modal-input {
+		@include wid-pad-val(90%, '0 0 0 10%', 0, 0, 0);		
+		@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+    }
+	.modal-dropdown-select-date { padding-left:15%; }
+	.modal-row-button { width:100%; }
+    .modal-cancel {	@include wid-pad-val(0, 0, '5px 0 0px 0', 0, left);  }
+	.register-wrapper {
+		@include img-val('../images/assets/register-box-arrow.png', 'bottom center', 0, 0);
+		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+    }
+    .register{
+		&-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left);  }
+		&-input {
+			@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+			width:90%;	
+			padding-left:10%;
+		}
+	}
+	.hero-cross {
+        padding-top:4px;
+        padding-bottom:24px;
+    }
+	.pag-links { float:left; }
+	.star-search{ 
+		li {
+			@include height-width-indent-margin(28px, 30px, '-9999px', 0);
+			@include img-val('../images/assets/rating-sprite-large.png', '0px 0px', 0, 0);
+			float:left;
+			display:block;
+			&:hover { @include img-val('../images/assets/rating-sprite-large.png', '0px -28px', 0, 0); }
+		}
+	}
+	.card-container { width: 95%; padding: 0px; }
+	.hotelcards { width: 100%; margin-left: 0 !important;}
+	.ui-datepicker{ width: 26% !important; }
+}
+/* Three card width */
+@media (max-width:1024px) {	
+	.hotelcards	{ 
+		@include general-width('33.333333333%', 0, left);
+		margin-left: 0;  
+	}
+	.card-container {
+        width: 100%;
+        padding: 0px;
+    }
+}
+/* Two card width */
+@media (max-width:769px) { 
+	.hotelcards { 
+		@include general-width('50%', 0, left);
+		margin-left: 0;
+	}
+	.card-container {
+        width: 100%;
+        padding: 20px;
+    }
+} 
+@media (max-width: 765px) {	
+	.hotelcards { 
+		width: 100%; 
+		margin-left: 0 !important; 
+	}
+}
+
+@media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
+@media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }

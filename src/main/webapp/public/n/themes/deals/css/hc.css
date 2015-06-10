@@ -62,6 +62,7 @@
     .user {
         float:right;
         width:225px;
+        /*width:300px;*/
         text-align:left;
     }
 }
@@ -74,9 +75,17 @@
     background-position:140px 10px;
 }
 @media (max-width: 768px) {
-    .member-section {
-        display:none;
+	.member-section {
+        display:block;
+		width: 95px !important;
     }
+	.user-member-name{
+		font-size:12px !important;
+	}
+	.logged-in-user > .member-section {
+		width: 135px !important;
+		text-align:right;
+	}
 }
 .club-section {
     float:left;
@@ -474,12 +483,16 @@ select {
     width:366px;
 }
 .select-dates {
-    background-color:#d6dddc;
+    background-color:#FFF;
     /*width:350px;*/
 	width:400px;
     float:left;
     margin-left:16px;
 	display:none;
+	border-radius: 10px;
+}
+.select-dates-hotel-name{
+	float:left;
 }
 @media (max-width: 768px) {
     .select-dates-wrapper {
@@ -527,11 +540,21 @@ select {
     float:left;
     width:40%;
 }
+.select-lable{
+	font-size:12px;
+	padding: 0 0 10px 0;
+	font-weight:700;
+	color:#6d6d6d;
+}
+.select-dates-in-out p, .select-dates-nights p{
+	font-weight: bold;
+	color: #6d6d6d;
+}
 .select-dates-input, .select-dates-input-child {
-    width:80%;
+    width:65%;
     margin-right:10%;
 
-    padding-left:10%;
+    padding-left:4%;
     height:37px;
     color:#999999;
     border-radius:0px;
@@ -546,6 +569,7 @@ select {
 
     text-indent: 0.01px;
     text-overflow: "";
+	font-weight:300;
 }
 .add-room, .remove-room{
 	cursor:pointer;
@@ -557,7 +581,6 @@ select {
     height:37px;
     text-align:center;
     color:#666;
-    background-color:#d6dddc;
     border-radius:0px;
     border: 0 !important;  /*Removes border*/
 }
@@ -567,17 +590,18 @@ select {
 }
 .select-dates-room {
     float:left;
-    width:25%;
+    width:40%;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
 .select-dates-room p {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-    font-weight:300;
+    font-weight:bold;
+	color: #6d6d6d;
 }
 .select-dates-humans {
     float:left;
-    width:35%;
+    width:30%;
 }
 .room-divide {
     border-bottom:1px solid #CCC;
@@ -602,20 +626,31 @@ select {
 	margin-right:5px;
 }
 .select-dates-close-window a {
-    float:right; padding:2px;
+    float:right;
     font-size:11px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#333;
+	background-color#ccc;
+}
+.select-dates-close-window{
+	background-color: #ccc;
+    border-radius: 10px 10px 0 0;
+    height: 53px;
+}
+.select-date-hotel-name{
+	float: left;
+    padding: 15px 0 0 15px;
 }
 .select-dates-close-window span {
-    float:right; padding:2px;
-    font-size:11px;
-    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
-    font-weight:300;
-    color:#333;
-	text-decoration:underline;
-	cursor:pointer;
+    color: #333;
+    cursor: pointer;
+    float: right;
+    font-family: "museo_sans300",Verdana,Geneva,sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    padding: 15px 10px 0 0;
+    text-decoration: underline;
 }
 .select-dates-button {
     background-color:#55337e;
@@ -1181,7 +1216,7 @@ select {
 }
 .sort-button {
     background-color:#ebebeb;
-    background-image:url(../images/assets/down-arrow-purple.png);
+    #background-image:url(../images/assets/down-arrow-purple.png);
     background-repeat:no-repeat;
     background-position:center right;
     color:#55337e;
@@ -1566,7 +1601,6 @@ select {
     font-size:16px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
-    line-height:120%;
 }
 .card-normal-list {
     margin:0px;

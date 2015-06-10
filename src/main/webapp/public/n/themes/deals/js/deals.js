@@ -37,12 +37,15 @@
             this.region = '';
             this.when = when;
 
+            this.hData = $.parseJSON(hData);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
 
             $('.filter').hide();
             this.displayHeader();
+            this.updatePromotion();
             this.displayUserInfo();
             //this.displayOrbot();
             this.displaySortBox();
@@ -75,6 +78,9 @@
             this.when = when;
         },
 
+        setHData : function(data) {
+            this.hData = data;
+        },
 
         initURLUpdate : function () {
 
@@ -141,13 +147,28 @@
                 this.when = obj.when;
 
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
-                this.displayHotelCards( { hData : data.responseJSON, isLoggedIn : this.isLoggedIn} );
+
+                this.setHData( data.responseJSON );
+
+                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn} );
                 if ( obj.dropDownRefresh === true )
                     this.displayDropDownData('value');
 
             } else {
-                this.displayHotelCards( { hData : $.parseJSON(hData), isLoggedIn : this.isLoggedIn});
+                this.displayHotelCards( { hData : this.hData, isLoggedIn : this.isLoggedIn});
             }
+
+        },
+
+        updatePromotion : function() {
+          var club = $.parseJSON(clubPromo),
+              pm = $.parseJSON(pmPromo);
+
+            $('.promo-one-title').html(club.title);
+            $('.promo-one-body').html(club.text);
+            $('.promo-two-title').html(pm.title);
+            $('.promo-two-dody').html(pm.text);
+            $('.promo-two-img').attr('src', pm.image);
 
         },
 
@@ -498,6 +519,60 @@
             if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
                 $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
             }
+        },
+
+        sortByNumber : function(fName, type) {
+
+            var newArr = Array();
+
+            $.each(this.hData, function (key, val) {
+                newArr.push(val);
+            });
+
+            newArr.sort(function (a, b) {
+
+                if (type == 'asc') {
+                    return a[fName] - b[fName];
+                } else {
+                    return b[fName] - a[fName];
+                }
+            });
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
+        },
+
+        sortByText : function(fName, type) {
+
+            var newArr = new Array();
+            $.each(this.hData, function (key, val) {
+                newArr.push(val);
+            });
+
+            newArr.sort(function (a, b) {
+
+                if (type == 'asc') {
+
+                    if (a[fName] > b[fName]) {
+                        return 1;
+                    }
+                    if (a[fName] < b[fName]) {
+                        return -1;
+                    }
+                    return 0; // a must be equal to b
+
+                } else {
+
+                    if (a[fName] < b[fName]) {
+                        return 1;
+                    }
+                    if (a[fName] > b[fName]) {
+                        return -1;
+                    }
+                    return 0; // a must be equal to b
+                }
+
+            });
+
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
         }
     }
 
@@ -511,57 +586,36 @@
 
 	/*document ready*/
     $(document).ready(function(){
-		/*add-room functionality*/
-		$('.add-room').on('click',function(event) {
-			var roomVal = 1;
-			if(!$('.room-divide2').is(":visible")){
-				roomVal = 2;
-				$('.remove-room').css("display","block");
-				$('.divider-room').css("display","block");
-			}
-			else if(!$('.room-divide3').is(":visible")){
-				roomVal = 3;
-				$('.remove-room').css("display","block");
-				$('.divider-room').css("display","block");
-			}
-			else if(!$('.room-divide4').is(":visible")){
-				roomVal = 4;
-				$('.add-room').css("display","none");
-				$('.divider-room').css("display","none");
-			}
-			var roomCompVal='';
-			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
-			$(".room-divide"+(roomVal-1)).append(roomCompVal).html();
-		});
 
-		/*remove-room functionality*/
-		$('.remove-room').on('click',function(event) {
-			if($('.room-divide4').is(":visible")){
-				roomVal = 4;
-				$('.add-room').css("display","block");
-				$('.remove-room').css("display","block");
-				$('.divider-room').css("display","block");
-			}
-			else if($('.room-divide3').is(":visible")){
-				roomVal = 3;
-				$('.add-room').css("display","block");
-				$('.remove-room').css("display","block");
-				$('.divider-room').css("display","block");
-			}
-			else if($('.room-divide2').is(":visible")){
-				roomVal = 2;
-				$('.add-room').css("display","block");
-				$('.divider-room').css("display","none");
-				$('.remove-room').css("display","none");
-			}
-			$('.room-divide'+roomVal).remove();
-		});
+        $('.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks').on('click', function(e) {
 
-		/*drop down selection for children ages*/
-		$("#child-input-1").on('change', function(event){ roomChildVal(1, this.value); });
-		$(document).on('change', "#child-input-2", function(event){ roomChildVal(2, this.value); });
-		$(document).on('change', "#child-input-3", function(event){ roomChildVal(3, this.value); });
-		$(document).on('change', "#child-input-4", function(event){ roomChildVal(4, this.value); });
+            e.preventDefault();
+            var self = $(this),
+                order = self.attr('data-order'),
+                type = '';
+
+            if (order == 'des')
+                type = 'asc';
+            else if (order == 'asc')
+                type = 'des';
+            else
+                type = 'asc';
+
+            if ($(this).data('sort') == 'ourPicks') {
+                // not idea what to do ...
+                //Deals.sortByText();
+            } else if ($(this).data('sort') == 'price') {
+                Deals.sortByNumber('price', type);
+            } else if ($(this).data('sort') == 'name') {
+                Deals.sortByText('hotelNameUtf8', type);
+            } else if ($(this).data('sort') == 'rating') {
+                Deals.sortByNumber('starRating', type);
+            }
+            $('.sort-button').removeAttr('style');
+            self.attr('data-order', type)
+                .css('background-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
+
+        });
 
 		/*card hover design*/
         $('.card').hover(function() {
@@ -609,78 +663,6 @@
 			//console.log($(".currencySelectorItem").html(text));
 		});
 		/*end drop down for currency selection*/
-
-		/*display popup - on date selection starts here*/
-		$('.hotel-card-button').click(function (){
-			$(".select-dates").fadeIn('slow');
-			var docHeight = $(document).height();
-			$("body").append("<div id='overlay'></div>");
-			$("#overlay")
-				.height(docHeight)
-				.css({
-				 'opacity' : 0.6,
-				 'position': 'absolute',
-				 'top': 0,
-				 'left': 0,
-				 'background-color': 'black',
-				 'width': '100%',
-				 'z-index': 200
-			});
-			$(".select-dates").css({
-				'position': 'fixed',
-				'top': '6%',
-				'left': '34%',
-				'display':'block',
-				'z-index': 999
-			});
-			$("#select-check-in").datepicker({
-				inline : true,
-				minDate : 0,
-				showCurrentAtPos : 0,
-				firstDay : 0,
-				format: 'dd/mm/yy',
-				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
-				onSelect : function(dateText, inst) {
-					var date2 = $('#select-check-in').datepicker('getDate');
-					date2.setDate(date2.getDate() + 1);
-					$('#select-check-out').datepicker('setDate', date2);
-					$('#select-check-out').datepicker('option', 'minDate', date2);
-				},
-				onClose: function() {
-				   dateCalculate();
-			   }
-			});//initialize the date-picker for check-in
-			$("#select-check-out").datepicker({
-				inline : true,
-				minDate : 0,
-				showCurrentAtPos : 0,
-				format: 'dd/mm/yy',
-				onSelect : function(dateText, inst) {
-					$('#select-check-in').datepicker("option", "maxDate",
-						$('#select-check-out').val()
-					);
-				},
-				onClose: function() {
-				   dateCalculate();
-			   }
-			});//initialize the date-picker for check-out
-		});
-
-		$('.close-select-dates').click(function (){
-			$('.select-dates').css('display','none');
-			$("#overlay").remove();
-		});
-
-		$('.add-room').click(function (){
-			//add one more room
-			//console.log('adding room');
-		});
-		$('.remove-room').click(function (){
-			//remove one  room
-			//console.log('removing room');
-		});
-
-		/*display popup - on date selection ends here*/
 
 		/* member-info starts here.. */
 		$(".member-info").hover(function(){
@@ -791,6 +773,123 @@
             }
         });
     });
+
+    /*display popup - on date selection starts here*/
+    $( document ).on( 'click', '.hotel-card-button', function () {
+
+        $(".select-dates").fadeIn('slow');
+        var docHeight = $(document).height();
+        $("body").append("<div id='overlay'></div>");
+        $("#overlay")
+            .height(docHeight)
+            .css({
+                'opacity' : 0.6,
+                'position': 'absolute',
+                'top': 0,
+                'left': 0,
+                'background-color': 'black',
+                'width': '100%',
+                'z-index': 200
+            });
+        $(".select-dates").css({
+            'position': 'fixed',
+            'top': '6%',
+            'left': '34%',
+            'display':'block',
+            'z-index': 999
+        });
+        $("#select-check-in").datepicker({
+            inline : true,
+            minDate : 0,
+            showCurrentAtPos : 0,
+            firstDay : 0,
+            format: 'dd/mm/yy',
+            dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+            onSelect : function(dateText, inst) {
+                var date2 = $('#select-check-in').datepicker('getDate');
+                date2.setDate(date2.getDate() + 1);
+                $('#select-check-out').datepicker('setDate', date2);
+                $('#select-check-out').datepicker('option', 'minDate', date2);
+            },
+            onClose: function() {
+                dateCalculate();
+            }
+        });//initialize the date-picker for check-in
+        $("#select-check-out").datepicker({
+            inline : true,
+            minDate : 0,
+            showCurrentAtPos : 0,
+            format: 'dd/mm/yy',
+            onSelect : function(dateText, inst) {
+                $('#select-check-in').datepicker("option", "maxDate",
+                    $('#select-check-out').val()
+                );
+            },
+            onClose: function() {
+                dateCalculate();
+            }
+        });//initialize the date-picker for check-out
+
+
+        /*add-room functionality*/
+        $('.add-room').on('click',function(event) {
+            var roomVal = 1;
+            if(!$('.room-divide2').is(":visible")){
+                roomVal = 2;
+                $('.remove-room').css("display","block");
+                $('.divider-room').css("display","block");
+            }
+            else if(!$('.room-divide3').is(":visible")){
+                roomVal = 3;
+                $('.remove-room').css("display","block");
+                $('.divider-room').css("display","block");
+            }
+            else if(!$('.room-divide4').is(":visible")){
+                roomVal = 4;
+                $('.add-room').css("display","none");
+                $('.divider-room').css("display","none");
+            }
+            var roomCompVal='';
+            roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+            $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
+        });
+
+        /*remove-room functionality*/
+        $('.remove-room').on('click',function(event) {
+            if($('.room-divide4').is(":visible")){
+                roomVal = 4;
+                $('.add-room').css("display","block");
+                $('.remove-room').css("display","block");
+                $('.divider-room').css("display","block");
+            }
+            else if($('.room-divide3').is(":visible")){
+                roomVal = 3;
+                $('.add-room').css("display","block");
+                $('.remove-room').css("display","block");
+                $('.divider-room').css("display","block");
+            }
+            else if($('.room-divide2').is(":visible")){
+                roomVal = 2;
+                $('.add-room').css("display","block");
+                $('.divider-room').css("display","none");
+                $('.remove-room').css("display","none");
+            }
+            $('.room-divide'+roomVal).remove();
+        });
+
+        /*drop down selection for children ages*/
+        $("#child-input-1").on('change', function(event){ roomChildVal(1, this.value); });
+        $("#child-input-2").on('change', function(event){ roomChildVal(2, this.value); });
+        $("#child-input-3").on('change', function(event){ roomChildVal(3, this.value); });
+        $("#child-input-4").on('change', function(event){ roomChildVal(4, this.value); });
+
+    });
+
+    $(document).on('click', '.close-select-dates', function (){
+        $('.select-dates').css('display','none');
+        $("#overlay").remove();
+    });
+
 	/*on click '.cancel-function' class close the popup */
 	$(document).on('click','.cancel-action',function(){
 		$(".modal-wrapper").remove();
