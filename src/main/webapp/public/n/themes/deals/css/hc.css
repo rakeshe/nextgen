@@ -541,13 +541,14 @@ select {
 }
 .select-dates-in-out {
     float:left;
-    width:40%;
+    width:35%;
+}
 }
 .select-date-hotel-val{
 	display:none;
 }
 .select-lable{
-	padding: 0 0 10px 0;
+	padding: 0 0 5px 0;
 	font-weight:700;
 	color:#6d6d6d;
 	width: 100%;
@@ -560,7 +561,7 @@ select {
 	color: #6d6d6d;
 }
 .select-dates-input, .select-dates-input-child {
-    width:65%;
+    width:80%;
     margin-right:10%;
 
     padding-left:4%;
@@ -621,7 +622,7 @@ select {
 }
 .select-dates-room {
     float:left;
-    width:40%;
+    width:35%;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
@@ -1705,9 +1706,9 @@ select {
     text-decoration: underline;
 }
 .child-room{
-	width:20% !important;
+	width:15% !important;
 	margin-right: 4% !important;
-	padding-left: 4% !important;
+	padding-left: 2% !important;
 }
 .room-1, .room-2, .room-3, .room-4{
 	display:none;
@@ -1970,7 +1971,15 @@ select {
 .ui-datepicker-prev:hover, .ui-datepicker-next:hover{
 	border:1px solid #ccc;
     border-radius: 5px;
-	background-image: url("assets/ui-icons_cc0000_256x240.png");
+	/*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
+}
+.ui-datepicker-prev:hover{	
+	background-image: url("../images/assets/prev.png") !important;
+	background-repeat: no-repeat;
+}
+.ui-datepicker-next:hover{	
+	background-image: url("../images/assets/next.png") !important;
+	background-repeat: no-repeat;
 }
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
 	background-image: none;
