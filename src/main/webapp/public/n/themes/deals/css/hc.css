@@ -736,6 +736,13 @@ select {
     left: 25%;
     z-index: 100;
 }
+.orbot-in-page{
+    position: relative;
+    z-index: 0;
+    left:0%;
+    width: 100%;
+    margin-bottom: 20px;
+}
 .parentDisable{
     position:fixed;
     top:0;
@@ -2021,7 +2028,7 @@ select {
 }
 
 .err-hotel-not-found {
-    margin-left: 15%;
+    margin-left: 2%;
     margin-bottom: 1%;
     font-size: 15px;
     color: #ff0000;

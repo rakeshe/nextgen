@@ -180,7 +180,9 @@
                 $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
                 .append(template( {city : 'Sydney'} ));
 
-            $('.modal-box').attr('style', 'position:relative;z-index: 0;border: black solid 1px;');
+            //$('.modal-box').attr('style', 'position:relative;z-index: 0;border: black solid 1px;');
+            $('.modal-wrapper').addClass ('orbot-in-page');
+            $('.modal-box').removeClass('modal-box');
             $('.modal-row-button').addClass('no-hotel-orbot');
             $('.cancel-action').remove();
 
@@ -807,7 +809,7 @@
 
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
-		var hotelId = $(this).attr('date-onegid');
+		var hotelId = $(this).attr('data-onegid');
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
 		$('.select-date-hotel-name').append($('.hotel-card-button').attr('data-hotel'));
@@ -884,8 +886,17 @@
                     }
                 }
 			}
-			window.location ="http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode=&locale=en_AU&hotel.hid=254023&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&hsv.showDetails=true"+room;
-			//console.log("http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode=&locale=en_AU&hotel.hid="+hotelId+"&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&hsv.showDetails=true"+room);
+
+			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="
+                + "&locale=en_AU"
+                + "&hotel.hid="+hotelId
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="+checkIn
+                +"&hotel.chkout="+checkOut
+                +"&search=Search"
+                + "&hsv.showDetails=true"
+                +room;
 		});
         /*add-room functionality*/
         $('.add-room').on('click',function(event) {
@@ -966,12 +977,12 @@
 
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
-            hotelName 	 = $('.search-hotel-name').val(),
-            promo 	 = $('#pp-promo').val(),
+            hotelName 	 = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
+            promo = $("#pp-promo").val() == undefined || $("#pp-promo").val() == 'Enter code' ? '' : $("#pp-promo").val(),
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
 
-        window.location = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+        var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
         + promo
         + "&locale="
         + local
@@ -981,11 +992,12 @@
         + checkIn
         + "&hotel.chkout="
         + checkOut
-        + "&search=Search"
-        + "&hsv.showDetails=true"
-        + "hotel.rooms[0].adlts=2"
-        + "hotel.keyword.key="
+        + "&hotel.rooms[0].adlts=2"
+        + "&hotel.keyword.key="
         + cityName
+            + "&search=Search"
+            ;
+        window.location = searchUrl;
     });
 
     $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
