@@ -622,7 +622,7 @@ select {
 }
 .select-dates-room {
     float:left;
-    width:40%;
+    width:35%;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
@@ -1706,9 +1706,9 @@ select {
     text-decoration: underline;
 }
 .child-room{
-	width:20% !important;
+	width:15% !important;
 	margin-right: 4% !important;
-	padding-left: 4% !important;
+	padding-left: 2% !important;
 }
 .room-1, .room-2, .room-3, .room-4{
 	display:none;
