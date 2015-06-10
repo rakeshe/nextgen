@@ -776,8 +776,9 @@
 
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
-
         $(".select-dates").fadeIn('slow');
+		$('.select-date-hotel-name').empty();
+		$('.select-date-hotel-name').append($('.hotel-card-button').attr('data-hotel'));
         var docHeight = $(document).height();
         $("body").append("<div id='overlay'></div>");
         $("#overlay")
