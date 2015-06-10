@@ -527,6 +527,9 @@ select {
     font-weight:300;
     color:#333;
 }
+.select-dates-room-val{
+	float:left;
+}
 .select-dates-container a {
     color:#55337e;
     text-decoration:underline;
@@ -541,10 +544,13 @@ select {
     width:40%;
 }
 .select-lable{
-	font-size:12px;
 	padding: 0 0 10px 0;
 	font-weight:700;
 	color:#6d6d6d;
+	width: 100%;
+	float: left;
+	font-size:14px;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 }
 .select-dates-in-out p, .select-dates-nights p{
 	font-weight: bold;
@@ -641,6 +647,8 @@ select {
 .select-date-hotel-name{
 	float: left;
     padding: 15px 0 0 15px;
+	font-family:'museo_slab500',Verdana, Geneva, sans-serif;
+	font-size:20px;
 }
 .select-dates-close-window span {
     color: #333;
