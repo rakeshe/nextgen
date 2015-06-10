@@ -543,6 +543,9 @@ select {
     float:left;
     width:40%;
 }
+.select-date-hotel-val{
+	display:none;
+}
 .select-lable{
 	padding: 0 0 10px 0;
 	font-weight:700;
@@ -557,6 +560,28 @@ select {
 	color: #6d6d6d;
 }
 .select-dates-input, .select-dates-input-child {
+    width:65%;
+    margin-right:10%;
+
+    padding-left:4%;
+    height:37px;
+    color:#999999;
+    border-radius:0px;
+    border: 0 !important;  /*Removes border*/
+    outline:2px solid #dddee0;
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    background: url('../images/assets/orbot-down-arrow.png');
+    background-position:top right;
+    background-repeat:no-repeat;
+    background-color:#FFF;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+	font-weight:300;
+}
+
+.select-dates-input-popup{
     width:65%;
     margin-right:10%;
 

@@ -29,7 +29,7 @@
             <div class="card-info">
                 <div class="hotel-name">
 					<!-- Dynamic hotel id value will be replaced here.. -->
-					<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=19142" target="_blank">{{{trimString hotelNameUtf8 42}}}</a></div>
+					<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=19142" target="_blank">{{{trimString hotelNameUtf8 42}}}{</a></div>
                 <!--<div class="hotel-city">Melboune</div>-->
 				<div class="card-desc">
 					<div class="card-left">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="select-dates-humans">
                     <p>Adult <small>(18+)</small><br />
-                    <select name="" class="select-dates-input">
+                    <select name="adult-input-1" class="select-dates-input-popup" id="adult-input-1">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="select-dates-humans room1">
                     <p>Children <small>(0-17)</small><br />
-                    <select name="" class="select-dates-input-child" id="child-input-1">
+                    <select name="child-input-1" class="select-dates-input-popup" id="child-input-1">
                       <option value='0'>---</option>
                       <option value='1'>1</option>
                       <option value='2'>2</option>
@@ -116,7 +116,7 @@
 				<small><span class="add-room">Add a room</span> <span class="divider-room"> | </span><span class="remove-room"> Remove this room</span></small>
 			</p>
             <div class="select-dates-row">
-                <a href="#" title="Find a room" class="select-dates-button find-btn">Find</a>
+                <a title="Find a room" class="select-dates-button find-btn">Find</a>
             </div><!-- End Button -->
         </div>
     </div>

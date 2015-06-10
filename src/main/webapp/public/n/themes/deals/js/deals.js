@@ -834,11 +834,20 @@
         });
     });
 
+	/*start of display child candidates*/
+	$(document).on('change','#child-input-2', function(event){ roomChildVal(2, this.value); });
+	$(document).on('change','#child-input-3', function(event){ roomChildVal(3, this.value); });
+	$(document).on('change','#child-input-4', function(event){ roomChildVal(4, this.value); });
+	$(document).on('change','#child-input-5', function(event){ roomChildVal(5, this.value); });
+	/*end of displaying child candidates*/
+
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
+		var hotelId = $(this).attr('date-onegid');
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
 		$('.select-date-hotel-name').append($('.hotel-card-button').attr('data-hotel'));
+
         var docHeight = $(document).height();
         $("body").append("<div id='overlay'></div>");
         $("#overlay")
@@ -864,7 +873,7 @@
             minDate : 0,
             showCurrentAtPos : 0,
             firstDay : 0,
-            format: 'dd/mm/yy',
+            dateFormat: 'dd/mm/yy',
             dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
@@ -880,7 +889,7 @@
             inline : true,
             minDate : 0,
             showCurrentAtPos : 0,
-            format: 'dd/mm/yy',
+            dateFormat: 'dd/mm/yy',
             onSelect : function(dateText, inst) {
                 $('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
@@ -891,7 +900,29 @@
             }
         });//initialize the date-picker for check-out
 
+		$('.select-dates-button').on('click', function (){
+			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			var hotel = new Array();
+			if($('.room-divide5').is(":visible")){ roomValTemp = 5;	}
+			else if($('.room-divide4').is(":visible")){ roomValTemp = 4; }
+            else if($('.room-divide3').is(":visible")){ roomValTemp = 3; }
+            else if($('.room-divide2').is(":visible")){ roomValTemp = 2; }
+            else if($('.room-divide1').is(":visible")){ roomValTemp = 1; }
 
+			console.log(roomValTemp);
+			for(var i=1;i<=roomValTemp;i++){
+				room += '&hotel.rooms['+(i-1)+'].adlts=' + $('#adult-input-'+i).val();
+                chlen = $('#child-input-'+i).val();
+                room += '&hotel.rooms['+(i-1)+'].chlds=' + chlen;
+				if (chlen > 0) {
+                    for(var j=1; j<= chlen; j++) {
+                        room += '&hotel.rooms['+(i-1)+'].chldAge['+(j-1)+']=' + $('#room-'+i+'-child-'+j).val();
+                    }
+                }
+			}
+			window.location ="http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode=&locale=en_AU&hotel.hid=254023&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&hsv.showDetails=true"+room;
+			//console.log("http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode=&locale=en_AU&hotel.hid="+hotelId+"&hotel.type=keyword&hotel.chkin="+checkIn+"&hotel.chkout="+checkOut+"&search=Search&hsv.showDetails=true"+room);
+		});
         /*add-room functionality*/
         $('.add-room').on('click',function(event) {
             var roomVal = 1;
@@ -907,17 +938,28 @@
             }
             else if(!$('.room-divide4').is(":visible")){
                 roomVal = 4;
-                $('.add-room').css("display","none");
-                $('.divider-room').css("display","none");
+                $('.add-room').css("display","block");
+                $('.divider-room').css("display","block");
             }
-            var roomCompVal='';
-            roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='' class='select-dates-input'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			else if(!$('.room-divide5').is(":visible")){
+				roomVal = 5;
+ 				$('.add-room').css("display","none");
+ 				$('.divider-room').css("display","none");
+ 			}
+            var roomCompVal='';            
+			roomCompVal="<br/><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>"; 			
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
         /*remove-room functionality*/
         $('.remove-room').on('click',function(event) {
-            if($('.room-divide4').is(":visible")){
+            if($('.room-divide5').is(":visible")){
+				roomVal = 5;
+				$('.add-room').css("display","block");
+				$('.remove-room').css("display","block");
+				$('.divider-room').css("display","block");
+			}
+			else if($('.room-divide4').is(":visible")){
                 roomVal = 4;
                 $('.add-room').css("display","block");
                 $('.remove-room').css("display","block");
@@ -939,10 +981,7 @@
         });
 
         /*drop down selection for children ages*/
-        $("#child-input-1").on('change', function(event){ roomChildVal(1, this.value); });
-        $("#child-input-2").on('change', function(event){ roomChildVal(2, this.value); });
-        $("#child-input-3").on('change', function(event){ roomChildVal(3, this.value); });
-        $("#child-input-4").on('change', function(event){ roomChildVal(4, this.value); });
+        $("#child-input-1").on('change', function(event){ console.log(1); roomChildVal(1, this.value); });
 
     });
 
@@ -1001,13 +1040,14 @@
 
 	/*function to create a number of children ages based on room selected*/
 	function roomChildVal(roomChild, roomChildVal){
+		console.log(roomChild, roomChildVal);
 		if(roomChildVal>=1){
 			$('.roomVal-'+roomChild).remove();
 			$(".room-"+roomChild).css("display","block");
 			var cntVal, i;
 			cntVal = '<div class="roomVal-'+roomChild+'"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
-			for(i=0;i<roomChildVal;i++){
-				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+			for(i=1;i<=roomChildVal;i++){
+				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
 			cntVal+="<div>";
 			$(".room-"+roomChild).append(cntVal).html();
