@@ -27,6 +27,7 @@ function getCouchConfigs()
                 'bucket' => 'hc-cache'
             ];
             break;
+
         case 'production':
             $couchConfig = [
                 'host' => 'cache-wm.prod.orbitz.net',
@@ -36,7 +37,7 @@ function getCouchConfigs()
                 'bucket' => 'hc-cache'
             ];
             break;
-			default: $couchConfig = [
+	default: $couchConfig = [
                 'host'     => '127.0.1.1',
                 'port'     => 8091,
                 'user'     => '',
