@@ -806,6 +806,57 @@
 	$(document).on('change','#child-input-5', function(event){ roomChildVal(5, this.value); });
 	/*end of displaying child candidates*/
 
+    $(document).on('change', '.orbot-select-children', function(){
+
+        var child = '',
+            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
+            text = '<p>Ages of children at time of trip (for pricing, discounts)</p>',
+            parentObj = $(this).parents('.modal-row');
+
+        for(var i=1; i <= $(this).val(); i++) {
+            child += '<div class="two columns">';
+            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '</div>';
+        }
+        $('.orbot-child-' + parentObj.attr('data-row')).remove();
+        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+parentObj.attr('data-row')+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
+    });
+
+    $(document).on('change', '.orbot-select-rooms', function() {
+
+        var child = '',
+            parentObj = $(this).parents('.modal-row'),
+            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>';
+
+        // remove if any child element exists
+        for (var i=5; i > $(this).val(); i--) {
+            $('.orbot-child-'+(i-1)).remove();
+        }
+
+        for(var i=1; i < $(this).val(); i++) {
+
+            child += '<div data-row="'+i+'" class="modal-row orb-rooms-dy"><div class="six columns">&nbsp;</div><div class="six columns">';
+
+            child += '<div class="four columns">Room '+(i+1)+'</div>';
+            child += '<div class="four columns">';
+            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '</div>';
+
+            child += '<div class="four columns">';
+            child += '<select class="modal-dropdown-select orbot-select-children">'+ option + '</select>';
+            child += '</div>';
+
+            child += '</div></div>';
+        }
+
+        $('.orb-rooms-dy').remove();
+        if (parentObj.next('.or-sub-option').length > 0) {
+            parentObj.next().after( child );
+        } else {
+            parentObj.after( child );
+        }
+    });
+
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
