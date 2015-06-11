@@ -178,9 +178,8 @@
 
             $('.section .hotel-cards-container').html('').append(
                 $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
-                .append(template( {city : 'Sydney'} ));
+                .append(template( {city : this.city} ));
 
-            //$('.modal-box').attr('style', 'position:relative;z-index: 0;border: black solid 1px;');
             $('.modal-wrapper').addClass ('orbot-in-page');
             $('.modal-box').removeClass('modal-box');
             $('.modal-row-button').addClass('no-hotel-orbot');
@@ -810,9 +809,11 @@
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
+        var hotelName = $(this).attr('data-hotel');
+        $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
-		$('.select-date-hotel-name').append($('.hotel-card-button').attr('data-hotel'));
+		$('.select-date-hotel-name').append(hotelName);
 
         var docHeight = $(document).height();
         $("body").append("<div id='overlay'></div>");
@@ -890,13 +891,14 @@
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="
                 + "&locale=en_AU"
-                + "&hotel.hid="+hotelId
+                + "&hotel.hid="+$('#selected-oneg').val()
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
                 +"&hotel.chkout="+checkOut
                 +"&search=Search"
                 + "&hsv.showDetails=true"
                 +room;
+            window.open(searchUrl, '_blank');
 		});
         /*add-room functionality*/
         $('.add-room').on('click',function(event) {
@@ -997,7 +999,7 @@
         + cityName
             + "&search=Search"
             ;
-        window.location = searchUrl;
+        window.open(searchUrl, '_blank');
     });
 
     $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
