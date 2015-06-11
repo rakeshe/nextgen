@@ -4,7 +4,7 @@
         <ul class="breadcrumbs">
             <li><a href="/n/sale/deals/">Home</a></li>
             >
-            <li>Sydney</li>
+            <li id="breadcrumb-city">{{ city }}</li>
         </ul>
     </div>
     <div class="nine columns">
