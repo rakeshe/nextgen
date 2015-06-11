@@ -1055,7 +1055,8 @@
 
     $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
 
-        e.preventDefault();
+        e.preventDefault(); // prevent default option
+
         var self = $(this),
             order = self.attr('data-order'),
             type = '';
@@ -1068,8 +1069,7 @@
             type = 'asc';
 
         if ($(this).data('sort') == 'ourPicks') {
-            // not idea what to do ...
-            //Deals.sortByText();
+            // no idea what to do ...
         } else if ($(this).data('sort') == 'price') {
             Deals.sortByNumber('price', type);
         } else if ($(this).data('sort') == 'name') {
@@ -1077,14 +1077,10 @@
         } else if ($(this).data('sort') == 'rating') {
             Deals.sortByNumber('starRating', type);
         }
-        //$('.sort-box-price').html($('.sort-box-price').attr('title'));
-       // $('.sort-box-name').html($('.sort-box-name').attr('title'));
-        //$('.sort-box-rating').html($('.sort-box-rating').attr('title'));
-        //$('.sort-box-picks').html($('.sort-box-picks').attr('title'));
+        
         $('.sort-indicator-image').remove();
         self.append(' <img class="sort-indicator-image" src="/n/themes/deals/images/assets/' + type + '-arrow-purple.png" />');
         self.attr('data-order', type)
-            //.css('list-style-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
 
     });
 
