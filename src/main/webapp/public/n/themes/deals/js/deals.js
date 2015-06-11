@@ -1026,9 +1026,14 @@
         } else if ($(this).data('sort') == 'rating') {
             Deals.sortByNumber('starRating', type);
         }
+        $('.sort-box-price').html($('.sort-box-price').attr('title'));
+        $('.sort-box-name').html($('.sort-box-name').attr('title'));
+        $('.sort-box-rating').html($('.sort-box-rating').attr('title'));
+        $('.sort-box-picks').html($('.sort-box-picks').attr('title'));
+        self.html(self.attr('title') + ' <img src="/n/themes/deals/images/assets/' + type + '-arrow-purple.png" />');
         $('.sort-button').removeAttr('style');
         self.attr('data-order', type)
-            .css('background-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
+            .css('list-style-image', 'url(/n/themes/deals/images/assets/' + type + '-arrow-purple.png)');
 
     });
 
