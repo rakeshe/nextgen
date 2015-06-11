@@ -1222,13 +1222,29 @@ select {
 }
 .sort-control {
     float: right;
+    margin-bottom: 0 !important;
 }
 .sort-list {
-    float: left;
+    display: inline;
     list-style: none;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 16px;
+    padding-right: 0px;
+    cursor: pointer;
 }
+
+/* BREADCRUMB LINKS */
+.breadcrumbs {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0 !important;
+}
+.breadcrumbs li {
+    display: inline;
+}
+.breadcrumbs a {
+    color: #55337e;
+}
+
 
 /* FILTER BUTTON */
 

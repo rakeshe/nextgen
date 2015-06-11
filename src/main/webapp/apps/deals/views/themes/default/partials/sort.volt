@@ -1,7 +1,11 @@
 <script id="sort-template" type="text/x-handlebars-template">
 <div class="row sort-row">
     <div class="three columns" id="filter-btn">
-        <a href="/n/sale/deals/">Home</a> > <a href="#">Sydney</a>
+        <ul class="breadcrumbs">
+            <li><a href="/n/sale/deals/">Home</a></li>
+            >
+            <li>Sydney</li>
+        </ul>
     </div>
     <div class="nine columns">
         <ul class="sort-control">
