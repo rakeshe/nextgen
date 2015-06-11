@@ -1982,3 +1982,5 @@ select {
     font-size: 15px;
     color: #ff0000;
 }
+.breadcrumb{ display: inline; list-style: none;}
+.breadcrumb-list{ display: inline;}
