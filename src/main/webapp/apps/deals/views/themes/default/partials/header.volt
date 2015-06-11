@@ -386,7 +386,7 @@
     <!-- End Navigation -->
 
     <div class="row hero-message">
-        <img src="/n/themes/deals/images/assets/MYS-Logo.png" align="The extraordinary mid year sale - HotelClub" />
+        <img src="/n/themes/deals/images/assets/MYS-Logo.png" align="The extraordinary mid year sale - HotelClub" style="padding-bottom:10px;" />
     </div> <!-- End Row -->
 
     <div class="row search-sale-box">

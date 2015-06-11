@@ -186,7 +186,7 @@
     background-position:top right;
     background-repeat:no-repeat;
     background-color:#FFF;
-    margin-bottom:24px;
+    margin-bottom:22px;
 
     text-indent: 0.01px;
     text-overflow: "";
@@ -1077,7 +1077,7 @@ select {
 .hero-message {
     text-align:center;
 }
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .hero-message {
         padding-top:px;
     }
@@ -1154,17 +1154,17 @@ select {
 
 
 .hero-space {
-    height:235px;
+    height:170px;
 }
 .mys-logo {
     text-align:center;
 }
 .search-sale-box {
     padding-top:14px;
-    padding-left:24px;
-    padding-right:24px;
-    background: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.5);
+    padding-left:22px;
+    padding-right:22px;
+    background: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -1176,7 +1176,7 @@ select {
 .find-your h2 {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
-    font-size:23px;
+    font-size:22px;
     line-height:24px;
     font-style:italic;
     margin-top:8px;
@@ -1222,7 +1222,7 @@ select {
 }
 .sort-by {
     float:left;
-    width:10%;
+    width:;
 }
 
 @media (max-width: 768px) {
@@ -1240,13 +1240,16 @@ select {
     font-size:16px;
     text-align:center;
     width:100%;
-    padding-top:11px;
-    padding-bottom:10px;
+    padding-top:;
+    padding-bottom:;
     margin:0px;
 }
 .sort-it {
     float:left;
-    width:22.5%;
+    width:;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
 }
 @media (max-width: 768px) {
     .sort-it {
@@ -1256,7 +1259,7 @@ select {
     }
 }
 .sort-button {
-    background-color:#ebebeb;
+    background-color:#ffffff;
     #background-image:url(../images/assets/down-arrow-purple.png);
     background-repeat:no-repeat;
     background-position:center right;
@@ -1266,10 +1269,11 @@ select {
     display:block;
     font-size:16px;
     text-align:center;
-    width:90%;
-    margin-left:10%;
-    padding-top:11px;
-    padding-bottom:10px;
+    width:;
+    float: left;
+    margin-left:10px;
+    padding-top:2px;
+    padding-bottom:2px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -1589,7 +1593,7 @@ select {
     background:url(../images/assets/star-sprite.png);
     background-repeat:no-repeat;
     background-position:0px 0px;
-    margin-bottom:12px;
+    margin-bottom:18px;
 }
 .star-sprite-2 {
     width:75px;
@@ -1597,7 +1601,7 @@ select {
     background:url(../images/assets/star-sprite.png);
     background-repeat:no-repeat;
     background-position:0px -14px;
-    margin-bottom:12px;
+    margin-bottom:18px;
 }
 .star-sprite-3 {
     width:75px;
@@ -1605,7 +1609,7 @@ select {
     background:url(../images/assets/star-sprite.png);
     background-repeat:no-repeat;
     background-position:0px -28px;
-    margin-bottom:12px;
+    margin-bottom:18px;
 }
 .star-sprite-4 {
     width:75px;
@@ -1613,7 +1617,7 @@ select {
     background:url(../images/assets/star-sprite.png);
     background-repeat:no-repeat;
     background-position:0px -42px;
-    margin-bottom:12px;
+    margin-bottom:18px;
 }
 .star-sprite-5 {
     width:75px;
@@ -1621,7 +1625,7 @@ select {
     background:url(../images/assets/star-sprite.png);
     background-repeat:no-repeat;
     background-position:0px -56px;
-    margin-bottom:12px;
+    margin-bottom:18px;
 }
 .card-left {
     width:60%;
@@ -1642,6 +1646,7 @@ select {
     font-size:16px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    line-height: 119%;
 }
 .card-normal-list {
     margin:0px;
@@ -1658,7 +1663,7 @@ select {
     color:#e80f1e;
     margin-bottom:9px !important;
     padding:0px;
-    line-height:120%;
+    line-height:119%;
 }
 .hotel-member {
     font-size:12px;
