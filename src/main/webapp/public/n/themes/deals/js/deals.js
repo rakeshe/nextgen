@@ -864,7 +864,7 @@
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
-		$('.select-date-hotel-name').append(hotelName);
+		$('.select-date-hotel-name').append(hotelName.substring(0, 30));
 
         var docHeight = $(document).height();
         $("body").append("<div id='overlay'></div>");
