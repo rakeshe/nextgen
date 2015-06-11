@@ -20,7 +20,7 @@ var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}';
                         <p class="hero-text-body promo-one-body"></p>
                     </div>
                     <div class="one columns" style="text-align:center;">
-                        <img src="/n/themes/deals/images/assets/plus-cross.png" style="padding-top:48px;padding-bottom:24px;"/>
+                        <img src="/n/themes/deals/images/assets/plus-cross.png" class="hero-cross"/>
                     </div>
                     <div class="six columns">
                         <img src="" class="promo-two-img" style="float:right; padding-left:24px; padding-right:24px;"/>
