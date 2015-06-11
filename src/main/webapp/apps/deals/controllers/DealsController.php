@@ -132,6 +132,7 @@ class DealsController extends ControllerBase {
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
         $this->view->setVars([
+            'appVersion' => APPLICATION_VERSION,
             'cityData'  => $this->cityData,
             'city'      => $this->city,
             'when'      => $this->when,
