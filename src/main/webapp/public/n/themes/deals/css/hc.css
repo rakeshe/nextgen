@@ -1217,73 +1217,17 @@ select {
 
 /* SORT BUTTON */
 .sort-row {
-    margin-top:24px;
-    margin-bottom:24px;
+    margin-top:1px;
+    margin-bottom:1px;
 }
-.sort-by {
-    float:left;
-    width:;
+.sort-control {
+    float: right;
 }
-
-@media (max-width: 768px) {
-    .sort-by {
-        float:left;
-        width:100%;
-    }
-}
-
-.sort-by p {
-    background-color:#ffffff;
-    color:#55337e;
-    font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-    display:block;
-    font-size:16px;
-    text-align:center;
-    width:100%;
-    padding-top:;
-    padding-bottom:;
-    margin:0px;
-}
-.sort-it {
-    float:left;
-    width:;
+.sort-list {
+    float: left;
+    list-style: none;
     padding-left: 8px;
     padding-right: 8px;
-    display: block;
-}
-@media (max-width: 768px) {
-    .sort-it {
-        float:left;
-        width:50%;
-        margin-bottom:12px;
-    }
-}
-.sort-button {
-    background-color:#ffffff;
-    #background-image:url(../images/assets/down-arrow-purple.png);
-    background-repeat:no-repeat;
-    background-position:center right;
-    color:#55337e;
-    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
-    text-decoration:none;
-    display:block;
-    font-size:16px;
-    text-align:center;
-    width:;
-    float: left;
-    margin-left:10px;
-    padding-top:2px;
-    padding-bottom:2px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-@media (max-width: 768px) {
-    .sort-button {
-        width:90%;
-        margin-left:5%;
-        margin-right:5%;
-    }
 }
 
 /* FILTER BUTTON */
@@ -1956,7 +1900,7 @@ select {
     padding-bottom:16px;
 }
 #filter-btn {
-    display: none;
+    display:;
 }
 /*date picker values*/
 .ui-datepicker{ width: 20% !important; }
