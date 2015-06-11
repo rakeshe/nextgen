@@ -1,10 +1,11 @@
 <script id="sort-template" type="text/x-handlebars-template">
 <div class="row sort-row">
     <div class="three columns" id="filter-btn">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-list"><a href="/n/sale/deals/">Home</a> ></li>
-            <li class="breadcrumb-list" id="bread-crumb-city">{{ city }}</li>
-            </ul>
+        <ul class="breadcrumbs">
+            <li><a href="/n/sale/deals/">Home</a></li>
+            >
+            <li>Sydney</li>
+        </ul>
     </div>
     <div class="nine columns">
         <ul class="sort-control">
@@ -13,8 +14,6 @@
             </li>
             <li class="sort-list">
                 <a class="sort-button sort-box-price" data-sort="price" title="Price">Price</a>
-
-
             </li>
             <li class="sort-list">
                 <a class="sort-button sort-box-name" data-sort="name" title="Name">Name</a>
