@@ -253,7 +253,13 @@
         },
 
         displayOrbot : function() {
-            //console.log({city:this.city});
+
+            // Check if on page orbot is exists
+            if ($('.orbot-in-page').length > 0) {
+                $('.section .hotel-cards-container').html('');
+            }
+            //scroll to top of the page
+            $("html, body").animate({ scrollTop: 0 }, 300);
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#orbot-template").html() );
