@@ -733,7 +733,7 @@ select {
 }
 .modal-box {
     float: left;
-    width: 590px;
+    width: 715px;
     background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
     position: absolute;
@@ -2011,3 +2011,7 @@ select {
 }
 .breadcrumb{ display: inline; list-style: none;}
 .breadcrumb-list{ display: inline;}
+
+.orb-child-age-sty {
+    float:right;
+}

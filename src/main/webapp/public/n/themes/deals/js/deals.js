@@ -253,7 +253,13 @@
         },
 
         displayOrbot : function() {
-            //console.log({city:this.city});
+
+            // Check if on page orbot is exists
+            if ($('.orbot-in-page').length > 0) {
+                $('.section .hotel-cards-container').html('');
+            }
+            //scroll to top of the page
+            $("html, body").animate({ scrollTop: 0 }, 300);
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#orbot-template").html() );
@@ -809,29 +815,32 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
-            text = '<div>Ages of children at time of trip (for pricing, discounts)</div>',
-            parentObj = $(this).parents('.modal-row');
+            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
+            parentObj = $(this).parents('.modal-row'),
+            dataRow = parentObj.attr('data-row');
 
         for(var i=1; i <= $(this).val(); i++) {
-            child += '<div class="two columns">';
-            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '<div class="two columns orb-child-age-sty">';
+            child += '<select class="modal-dropdown-select orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
             child += '</div>';
         }
         $('.orbot-child-' + parentObj.attr('data-row')).remove();
-        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+parentObj.attr('data-row')+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
+        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+dataRow+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
     });
 
     $(document).on('change', '.orbot-select-rooms', function() {
 
         var child = '',
             parentObj = $(this).parents('.modal-row'),
-            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>';
+            optionChild = '<option>--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
+            optionAdult = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>';
 
         // remove if any child element exists
-        for (var i=5; i > $(this).val(); i--) {
+        for (var i = 0; i <= 5; i++) {
             $('.orbot-child-'+(i-1)).remove();
         }
+        $('.orb-child-0').val('--');
 
         for(var i=1; i < $(this).val(); i++) {
 
@@ -839,11 +848,11 @@
 
             child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
 
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orbot-select-children">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orbot-select-children orb-child-'+i+'">'+ optionChild + '</select>';
             child += '</div>';
 
             child += '</div></div>';
@@ -1026,11 +1035,27 @@
 	});
 
     $(document).on('click', '.no-hotel-orbot', function(e) {
+
         e.preventDefault();
+        var rooms = '';
+        for(var i=0; i< $('.orbot-select-rooms').val(); i++) {
+
+            rooms += '&hotel.rooms%5B'+i+'%5D.adlts='+$('.orb-adults-'+i).val();
+            var chLen = $('.orb-child-'+i).val();
+
+            if (chLen > 0) {
+                rooms += '&hotel.rooms%5B'+i+'%5D.chlds='+chLen;
+                for (var j = 1; j <= chLen; j++) {
+                    rooms += '&hotel.rooms%5B'+i+'%5D.chldAge%5B'+(j-1)+'%5D='+$('.orb-child-age-'+i+'-'+j).val();
+                }
+            }
+        }
+
+        console.log(rooms);
 
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
-            hotelName 	 = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
+            hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
             promo = $("#pp-promo").val() == undefined || $("#pp-promo").val() == 'Enter code' ? '' : $("#pp-promo").val(),
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
@@ -1045,11 +1070,12 @@
         + checkIn
         + "&hotel.chkout="
         + checkOut
-        + "&hotel.rooms[0].adlts=2"
+       // + "&hotel.rooms[0].adlts=2"
         + "&hotel.keyword.key="
         + cityName
-            + "&search=Search"
-            ;
+        + "&search=Search"
+        + rooms;
+
         window.open(searchUrl, '_blank');
     });
 
