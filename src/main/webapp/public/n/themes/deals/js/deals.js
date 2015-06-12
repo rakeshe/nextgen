@@ -809,8 +809,8 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
-            text = '<p>Ages of children at time of trip (for pricing, discounts)</p>',
+            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            text = '<p style="font-size:12px;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
 
@@ -827,12 +827,14 @@
 
         var child = '',
             parentObj = $(this).parents('.modal-row'),
-            option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>';
+            optionChild = '<option>--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
+            optionAdult = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>';
 
         // remove if any child element exists
-        for (var i=5; i > $(this).val(); i--) {
+        for (var i = 0; i <= 5; i++) {
             $('.orbot-child-'+(i-1)).remove();
         }
+        $('.orb-child-0').val('--');
 
         for(var i=1; i < $(this).val(); i++) {
 
@@ -840,11 +842,11 @@
 
             child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
 
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orbot-select-children orb-child-'+i+'">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orbot-select-children orb-child-'+i+'">'+ optionChild + '</select>';
             child += '</div>';
 
             child += '</div></div>';
@@ -1034,14 +1036,16 @@
 
             rooms += '&hotel.rooms%5B'+i+'%5D.adlts='+$('.orb-adults-'+i).val();
             var chLen = $('.orb-child-'+i).val();
-            rooms += '&hotel.rooms%5B'+i+'%5D.chlds='+chLen;
 
             if (chLen > 0) {
+                rooms += '&hotel.rooms%5B'+i+'%5D.chlds='+chLen;
                 for (var j = 1; j <= chLen; j++) {
                     rooms += '&hotel.rooms%5B'+i+'%5D.chldAge%5B'+(j-1)+'%5D='+$('.orb-child-age-'+i+'-'+j).val();
                 }
             }
         }
+
+        console.log(rooms);
 
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
@@ -1060,7 +1064,7 @@
         + checkIn
         + "&hotel.chkout="
         + checkOut
-        + "&hotel.rooms[0].adlts=2"
+       // + "&hotel.rooms[0].adlts=2"
         + "&hotel.keyword.key="
         + cityName
         + "&search=Search"
