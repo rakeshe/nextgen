@@ -811,15 +811,16 @@
         var child = '',
             option = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
             text = '<p>Ages of children at time of trip (for pricing, discounts)</p>',
-            parentObj = $(this).parents('.modal-row');
+            parentObj = $(this).parents('.modal-row'),
+            dataRow = parentObj.attr('data-row');
 
         for(var i=1; i <= $(this).val(); i++) {
             child += '<div class="two columns">';
-            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
             child += '</div>';
         }
         $('.orbot-child-' + parentObj.attr('data-row')).remove();
-        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+parentObj.attr('data-row')+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
+        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+dataRow+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
     });
 
     $(document).on('change', '.orbot-select-rooms', function() {
@@ -839,11 +840,11 @@
 
             child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ option + '</select>';
             child += '</div>';
 
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orbot-select-children">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select orbot-select-children orb-child-'+i+'">'+ option + '</select>';
             child += '</div>';
 
             child += '</div></div>';
@@ -1026,11 +1027,25 @@
 	});
 
     $(document).on('click', '.no-hotel-orbot', function(e) {
+
         e.preventDefault();
+        var rooms = '';
+        for(var i=0; i< $('.orbot-select-rooms').val(); i++) {
+
+            rooms += '&hotel.rooms%5B'+i+'%5D.adlts='+$('.orb-adults-'+i).val();
+            var chLen = $('.orb-child-'+i).val();
+            rooms += '&hotel.rooms%5B'+i+'%5D.chlds='+chLen;
+
+            if (chLen > 0) {
+                for (var j = 1; j <= chLen; j++) {
+                    rooms += '&hotel.rooms%5B'+i+'%5D.chldAge%5B'+(j-1)+'%5D='+$('.orb-child-age-'+i+'-'+j).val();
+                }
+            }
+        }
 
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
-            hotelName 	 = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
+            hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
             promo = $("#pp-promo").val() == undefined || $("#pp-promo").val() == 'Enter code' ? '' : $("#pp-promo").val(),
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
@@ -1048,8 +1063,9 @@
         + "&hotel.rooms[0].adlts=2"
         + "&hotel.keyword.key="
         + cityName
-            + "&search=Search"
-            ;
+        + "&search=Search"
+        + rooms;
+
         window.open(searchUrl, '_blank');
     });
 
