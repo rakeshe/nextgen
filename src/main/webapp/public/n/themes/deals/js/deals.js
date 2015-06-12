@@ -889,7 +889,7 @@
                 'z-index': 200
             });
         $(".select-dates").css({
-            'position': 'fixed',
+            'position': 'absolute',
             'top': '6%',
             'left': '34%',
             'display':'block',
@@ -1013,6 +1013,7 @@
                 $('.add-room').css("display","block");
                 $('.divider-room').css("display","none");
                 $('.remove-room').css("display","none");
+				$('.horizontal-line').remove();
             }
             $('.room-divide'+roomVal).remove();
         });
