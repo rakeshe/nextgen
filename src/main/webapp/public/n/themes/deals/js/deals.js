@@ -713,7 +713,7 @@
 			$('.roomVal').remove();
 			$(".room").css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
+			cntVal = '<div class="roomVal"><p class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</p>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
@@ -984,7 +984,7 @@
  				$('.divider-room').css("display","none");
  			}
             var roomCompVal='';            
-			roomCompVal="<br/><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Children <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>"; 			
+			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
@@ -1131,7 +1131,7 @@
 			$('.roomVal-'+roomChild).remove();
 			$(".room-"+roomChild).css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal-'+roomChild+'"><p class="">Ages of children at time of trip (for pricing, discounts)</p>';
+			cntVal = '<div class="roomVal-'+roomChild+'"><p class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</p>';
 			for(i=1;i<=roomChildVal;i++){
 				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
