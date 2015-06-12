@@ -707,7 +707,7 @@
 			$('.roomVal').remove();
 			$(".room").css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal"><p class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</p>';
+			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
@@ -861,11 +861,11 @@
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
+		var browserWidth = $(window).width();
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
 		$('.select-date-hotel-name').append(hotelName.substring(0, 30));
-
         var docHeight = $(document).height();
         $("body").append("<div id='overlay'></div>");
         $("#overlay")
@@ -960,22 +960,22 @@
                 $('.divider-room').css("display","block");
             }
             else if(!$('.room-divide3').is(":visible")){
-                roomVal = 3;
+                roomVal = 3;selectDateScroll();
                 $('.remove-room').css("display","block");
                 $('.divider-room').css("display","block");
             }
             else if(!$('.room-divide4').is(":visible")){
-                roomVal = 4;
+                roomVal = 4;selectDateScroll();
                 $('.add-room').css("display","block");
                 $('.divider-room').css("display","block");
             }
 			else if(!$('.room-divide5').is(":visible")){
-				roomVal = 5;
+				roomVal = 5;selectDateScroll();
  				$('.add-room').css("display","none");
  				$('.divider-room').css("display","none");
  			}
             var roomCompVal='';            
-			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option>1</option><option>2</option><option>3</option><option>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
@@ -1105,7 +1105,7 @@
 			$('.roomVal-'+roomChild).remove();
 			$(".room-"+roomChild).css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal-'+roomChild+'"><p class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</p>';
+			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=1;i<=roomChildVal;i++){
 				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
@@ -1115,4 +1115,12 @@
 			$('.roomVal-'+roomChild).remove();
 		}
 	}//roomChildVal
+
+	/*overfolow for select dates exceeds more than 3 rooms*/
+	function selectDateScroll(){
+		$('.select-dates').css({
+			'height':'500px',
+			'overflow-y':'scroll'
+		});
+	}//selectDateScroll
 })(jQuery, Handlebars);

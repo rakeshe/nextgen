@@ -506,7 +506,7 @@ select {
     }
     .select-dates {
         background-color:#d6dddc;
-        width:100%;
+        width:65% !important;
         float:left;
         margin-left:0px;
     }
@@ -715,7 +715,7 @@ select {
 }
 @media (max-width: 768px) {
     .select-dates-button {
-        width:100%;
+        width:45%;
     }
     .modal-box {
         width:60% !important;
