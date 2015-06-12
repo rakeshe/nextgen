@@ -810,12 +810,12 @@
 
         var child = '',
             option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
-            text = '<p style="font-size:12px;">Ages of children at time of trip (for pricing, discounts)</p>',
+            text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
 
         for(var i=1; i <= $(this).val(); i++) {
-            child += '<div class="two columns">';
+            child += '<div class="two columns orb-child-age-sty">';
             child += '<select class="modal-dropdown-select orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
             child += '</div>';
         }
