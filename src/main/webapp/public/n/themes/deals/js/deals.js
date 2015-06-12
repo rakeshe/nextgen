@@ -822,7 +822,7 @@
 
         for(var i=1; i <= $(this).val(); i++) {
             child += '<div class="two columns orb-child-age-sty">';
-            child += '<select class="modal-dropdown-select orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select-child orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
             child += '</div>';
         }
         $('.orbot-child-' + parentObj.attr('data-row')).remove();
@@ -1034,7 +1034,7 @@
         Deals.displayWhenGo(true);
 	});
 
-    $(document).on('click', '.no-hotel-orbot', function(e) {
+    $(document).on('click', '.no-hotel-orbot, .modal-row-button', function(e) {
 
         e.preventDefault();
         var rooms = '';

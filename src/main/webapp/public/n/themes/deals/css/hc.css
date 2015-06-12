@@ -732,14 +732,15 @@ select {
     cursor:pointer;
 }
 .modal-box {
-    float: left;
+    #float: left;
     width: 715px;
     background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
     position: absolute;
     top: 25%;
-    left: 25%;
-    z-index: 100;
+    left: 24%;
+    z-index: 15;
+    margin: 0 auto;
 }
 .orbot-in-page{
     position: relative;
@@ -849,7 +850,7 @@ select {
     background-position:7px 9px;
     background-color:#FFF;*/
 }
-.modal-dropdown-select {
+.modal-dropdown-select, .modal-dropdown-select-child {
     width:100%;
     padding-left:10%;
     height:37px;
@@ -866,6 +867,10 @@ select {
 
     text-indent: 0.01px;
     text-overflow: "";
+}
+.modal-dropdown-select-child {
+    background-position: 29px 3px !important;
+    background-size: 19px 33px;
 }
 .modal-dropdown-select-date {
     width:100%;
