@@ -1013,6 +1013,7 @@
                 $('.add-room').css("display","block");
                 $('.divider-room').css("display","none");
                 $('.remove-room').css("display","none");
+				$('.horizontal-line').remove();
             }
             $('.room-divide'+roomVal).remove();
         });
