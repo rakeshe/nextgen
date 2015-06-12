@@ -485,7 +485,7 @@ select {
 .select-dates {
     background-color:#FFF;
     /*width:350px;*/
-	width:400px;
+	width:435px;
     float:left;
     margin-left:16px;
 	display:none;
@@ -512,37 +512,36 @@ select {
     }
 }
 .select-dates-container {
-    margin:16px;
+	margin:16px;
 }
 .select-dates-container h3 {
-    font-size:18px;
-    font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-    font-weight:300;
-    color:#55337e;
-    margin-bottom:8px;
+	font-size:18px;
+	font-family:'museo_slab500',Verdana, Geneva, sans-serif;
+	font-weight:300;
+	color:#55337e;
+	margin-bottom:8px;
 }
 .select-dates-container p {
-    font-size:14px;
-    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
-    font-weight:300;
-    color:#333;
+	font-size:14px;
+	font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+	font-weight:300;
+	color:#333;
 }
 .select-dates-room-val{
 	float:left;
 }
 .select-dates-container a {
-    color:#55337e;
-    text-decoration:underline;
+	color:#55337e;
+	text-decoration:underline;
 }
 .select-dates-row {
-    float:left;
-    width:100%;
-    /*margin-bottom:16px;*/
+	float:left;
+	width:100%;
+	/*margin-bottom:16px;*/
 }
 .select-dates-in-out {
-    float:left;
-    width:35%;
-}
+	float:left;
+	width:32%;
 }
 .select-date-hotel-val{
 	display:none;
@@ -562,8 +561,7 @@ select {
 }
 .select-dates-input, .select-dates-input-child {
     width:80%;
-    margin-right:10%;
-
+    margin-right:6%;
     padding-left:4%;
     height:37px;
     color:#999999;
@@ -581,31 +579,29 @@ select {
     text-overflow: "";
 	font-weight:300;
 }
-
+.select-date-ages-label{
+	font-size:12px !important;
+}
 .select-dates-input-popup{
-    width:65%;
-    margin-right:10%;
-
-    padding-left:4%;
-    height:37px;
-    color:#999999;
-    border-radius:0px;
-    border: 0 !important;  /*Removes border*/
-    outline:2px solid #dddee0;
-    -webkit-appearance: none;  /*Removes default chrome and safari style*/
-    -moz-appearance: none;  /*Removes default style Firefox*/
-    background: url('../images/assets/orbot-down-arrow.png');
-    background-position:top right;
-    background-repeat:no-repeat;
-    background-color:#FFF;
-
+    -moz-appearance: none;
+    background: #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top;
+    border: 0 none !important;
+    border-radius: 0;
+    color: #999999;
+    font-weight: 300;
+    height: 37px;
+    outline: 2px solid #dddee0;
+    padding-left: 15%;
     text-indent: 0.01px;
     text-overflow: "";
-	font-weight:300;
+    width: 75%;
 }
 .add-room, .remove-room{
 	cursor:pointer;
 	text-decoration:none;
+}
+.add-remove-lable{
+	clear:both;
 }
 .select-dates-display {
     width:80%;
@@ -622,7 +618,7 @@ select {
 }
 .select-dates-room {
     float:left;
-    width:35%;
+    width:32%;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
@@ -633,14 +629,16 @@ select {
 }
 .select-dates-humans {
     float:left;
-    width:30%;
+    width:22%;
 }
 .room-divide {
     border-bottom:1px solid #CCC;
 }
 .select-dates-add-remove {
-    float:left;
-    margin-bottom:16px;
+    float: right;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 68%;
 }
 .add-room{
 	display:block;
@@ -1675,15 +1673,21 @@ select {
 }
 .add-room, .remove-room{
 	cursor: pointer;
+    font-family: museo_sans300;
+    font-size: 11px !important;
     text-decoration: underline;
 }
 .child-room{
-	width:15% !important;
-	margin-right: 4% !important;
-	padding-left: 2% !important;
+	margin-bottom: 5% !important;
+	margin-right: 8% !important;
+    padding-left: 5% !important;
+    width: 25% !important;
 }
 .room-1, .room-2, .room-3, .room-4{
 	display:none;
+	clear:both;
+	float: right;
+    width: 68%;
 }
 .member-q {
     display:block;
