@@ -603,6 +603,13 @@ select {
 .add-remove-lable{
 	clear:both;
 }
+.horizontal-line{
+	width:97%;
+	border-top:2px solid #eee;
+	display:block;
+	margin:5px;
+	clear:both
+}
 .select-dates-display {
     width:80%;
     margin-right:10%;
