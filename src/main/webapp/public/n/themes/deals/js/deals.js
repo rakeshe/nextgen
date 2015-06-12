@@ -889,7 +889,7 @@
                 'z-index': 200
             });
         $(".select-dates").css({
-            'position': 'fixed',
+            'position': 'absolute',
             'top': '6%',
             'left': '34%',
             'display':'block',
