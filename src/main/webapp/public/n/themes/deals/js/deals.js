@@ -1105,10 +1105,14 @@
             order = self.attr('data-order'),
             type = '';
 
-        if (order == 'des')
+        // Because our picks cannot be re-sorted
+        if (self.data('sort') == 'ourPicks')
+            type = 'des';
+        else if (order == 'des')
             type = 'asc';
         else if (order == 'asc')
             type = 'des';
+
         else
             type = 'asc';
 
