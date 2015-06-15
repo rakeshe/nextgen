@@ -814,6 +814,8 @@
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
                             Deals.setCityImage();
+                            // Set breadcrumb
+                            $('#breadcrumb-city').html(cy);
                         }
                     }
                     break;
