@@ -707,6 +707,7 @@ select {
 }
 .find-btn{
 	margin-bottom:20px;
+	cursor:pointer;
 }
 @media (max-width: 768px) {
     .select-dates-button {

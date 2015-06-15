@@ -1,5 +1,4 @@
 (function( $, HB ) {
-
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -917,7 +916,7 @@
             minDate : 0,
             showCurrentAtPos : 0,
             firstDay : 0,
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'dd/mm/y',
             dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
@@ -933,7 +932,7 @@
             inline : true,
             minDate : 0,
             showCurrentAtPos : 0,
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'dd/mm/y',
             onSelect : function(dateText, inst) {
                 $('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
