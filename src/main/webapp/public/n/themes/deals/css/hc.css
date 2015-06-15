@@ -730,7 +730,7 @@ select {
 /* Modal - Message pop up */
 .modal-wrapper {
     width:590px;
-	position': absolute !important;
+	position: absolute !important;
 	z-index:999 !important;
 }
 .cancel-action{
