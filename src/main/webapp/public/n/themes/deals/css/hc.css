@@ -557,8 +557,10 @@ select {
     height:37px;
     color:#999999;
     border-radius:0px;
-    border: 0 !important;  /*Removes border*/
-    outline:2px solid #dddee0;
+    border: 0;  /*Removes border*/
+    /*outline:2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
     -webkit-appearance: none;  /*Removes default chrome and safari style*/
     -moz-appearance: none;  /*Removes default style Firefox*/
     background: url('../images/assets/orbot-down-arrow.png');
@@ -576,12 +578,14 @@ select {
 .select-dates-input-popup{
     -moz-appearance: none;
     background: #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top;
-    border: 0 none !important;
+    border: 0;
     border-radius: 0;
     color: #999999;
     font-weight: 300;
     height: 37px;
-    outline: 2px solid #dddee0;
+    /*outline: 2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
     padding-left: 15%;
     text-indent: 0.01px;
     text-overflow: "";
