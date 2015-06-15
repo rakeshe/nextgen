@@ -749,11 +749,12 @@ select {
     margin: 0 auto;
 }
 .orbot-in-page{
-    position: relative;
+    position: relative !important;
     z-index: 0;
     left:0%;
     width: 100%;
     margin-bottom: 20px;
+    height: 360px;
 }
 .parentDisable{
     position:fixed;
