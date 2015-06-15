@@ -152,7 +152,11 @@
 
                     this.displaySortBox();
                     this.setHData(data.responseJSON);
-                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
+
+                    //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
+                    // Display hotels using sort our picks in descending order, ie deals with highest score (sortOrder) on top
+                    Deals.sortByNumber('sortOrder', 'des');
+
                     if (obj.dropDownRefresh === true)
                         this.displayDropDownData('value');
                 } else {
@@ -889,7 +893,7 @@
                 'z-index': 200
             });
         $(".select-dates").css({
-            'position': 'absolute',
+            'position': 'fixed',
             'top': '6%',
             'left': '34%',
             'display':'block',
@@ -1096,7 +1100,7 @@
             type = 'asc';
 
         if ($(this).data('sort') == 'ourPicks') {
-            // no idea what to do ...
+            Deals.sortByNumber('sortOrder', type);
         } else if ($(this).data('sort') == 'price') {
             Deals.sortByNumber('price', type);
         } else if ($(this).data('sort') == 'name') {
@@ -1144,10 +1148,12 @@
 	}//roomChildVal
 
 	/*overfolow for select dates exceeds more than 3 rooms*/
+
+    /** decide thi sis UAT **/
 	function selectDateScroll(){
 		$('.select-dates').css({
-			'height':'500px',
-			'overflow-y':'scroll'
+			//'height':'500px',
+			//'overflow-y':'scroll'
 		});
 	}//selectDateScroll
 })(jQuery, Handlebars);
