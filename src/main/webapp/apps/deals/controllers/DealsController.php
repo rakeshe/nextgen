@@ -10,6 +10,7 @@
 
 namespace HC\Deals\Controllers;
 
+use HC\Deals\Models\DealsModel;
 use Phalcon\Http\Client\Request;
 use Phalcon\Http\Response;
 
@@ -24,6 +25,7 @@ class DealsController extends ControllerBase {
 
     private $cityData;
 
+    /** @var  \HC\Deals\Models\DealsModel  */
     private $model;
 
     private $city;
@@ -131,23 +133,31 @@ class DealsController extends ControllerBase {
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
-        $this->view->setVars([
-            'appVersion' => APPLICATION_VERSION,
-            'cityData'  => $this->cityData,
-            'city'      => $this->city,
-            'when'      => $this->when,
-            'sort'      => $this->sort,
-            'appendURL' => $this->appendURL,
-            'url'       => self::DEFAULT_URL,
-            'hData'     => $this->model->getHotels('', $this->city),
-            'userInfo'  => json_encode($this->userInfo),
-            'wtMetaData' => $webTrends
-                ->setOwwPage($this->router->getRewriteUri())
-                ->getWtMetaData(),
-            'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
-            'clubPromotion' => $this->model->getClubPromotions(),
-            'pmPromotion' => $this->model->getPMPromotions()
-            ]);
+        // Get Cms Documents
+        $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
+        $docFooterAbout = $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_ABOUT, true);
+
+        $this->view->setVars(
+            [
+                'appVersion'          => APPLICATION_VERSION,
+                'cityData'            => $this->cityData,
+                'city'                => $this->city,
+                'when'                => $this->when,
+                'sort'                => $this->sort,
+                'appendURL'           => $this->appendURL,
+                'url'                 => self::DEFAULT_URL,
+                'hData'               => $this->model->getHotels('', $this->city),
+                'userInfo'            => json_encode($this->userInfo),
+                'wtMetaData'          => $webTrends
+                    ->setOwwPage($this->router->getRewriteUri())
+                    ->getWtMetaData(),
+                'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
+                'clubPromotion'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
+                'pmPromotion'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
+                'docFooterSeo'        => $docFooterSeo->html,
+                'docFooterAbout'      => $docFooterAbout->html
+            ]
+        );
 
         $this->view->pick('default/index/index');
     }

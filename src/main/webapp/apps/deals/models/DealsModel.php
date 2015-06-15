@@ -14,9 +14,12 @@ use Phalcon\Exception;
 
 class DealsModel extends \Phalcon\Mvc\Model
 {
-    const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club:en_AU'; // sale:md5(deals):promo_club:en_AU
-    const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm:en_AU'; // sale:md5(deals):promo_pm:en_AU
+    const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
+    const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm'; // sale:md5(deals):promo_pm
+    const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
+    const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
 
+    protected $locale = 'en_AU';
 
     public function init() {
 
@@ -118,6 +121,52 @@ class DealsModel extends \Phalcon\Mvc\Model
             echo $ex->getMessage();
         }
         return false;
+    }
+
+    /**
+     * Given document name, retrieve from Couch first, then file system if fails
+     * @param $documentName
+     * @return bool|string
+     */
+    public function getCmsDocument($documentName, $decode = false) {
+
+        try {
+            $couchDocName = ORBITZ_ENV . ':'. $documentName . ':'. $this->getLocale();
+            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
+
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }
+            return $decode ? json_decode($data) : $data;
+
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
 

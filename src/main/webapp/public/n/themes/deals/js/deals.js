@@ -661,16 +661,23 @@
 
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
-			$(".locale-wrapper").toggle();
+            /**
+             * disabled: Phase 1, 2
+
+            $(".locale-wrapper").toggle();
+             */
 		});
 
 		$(".locale-wrapper ul li a").click(function() {
 			var text = $(this).html();
 			//console.log($(".locale-drop-down-arrow").html(text));
+			/*
+			disabled: Phase 1, 2
 			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
 			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
 			$(".locale-drop-down-arrow .flag-txt-pos").remove();
 			$(".club-id .locale-wrapper").hide();
+			*/
 		});
 
 		$(document).bind('click', function(e) {
@@ -680,15 +687,21 @@
 				$(".club-id .locale-wrapper").hide();
 			}
 			if(!$clicked.parents().hasClass("club-id-currency")){
-				$(".currency-wrapper").hide();
+                /**
+                 * disabled: Phase 1, 2
+                $(".currency-wrapper").hide();
+                */
 			}
 		});
 		/*end drop down for language selection*/
 
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
-			$(".currency-wrapper").toggle();
-		});
+            /**
+             * disabled: Phase 1, 2
+            $(".currency-wrapper").toggle();
+             */
+        });
 
 		$(".currency-box ul li ul li").click(function() {
 			var text = $(this).html();
@@ -988,7 +1001,7 @@
  				$('.divider-room').css("display","none");
  			}
             var roomCompVal='';            
-			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 

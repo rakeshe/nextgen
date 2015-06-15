@@ -43,9 +43,13 @@
 .user-member { @include font-val(15px, 300, 0, 0); }
 .user-club-info { @include font-val(12px, 300, $white-color, 0); }
 .points-token {	@include img-val('../images/assets/Reward-Token.gif', 0px 1px, 16px, 0); }
+/* Disabled: Phase 1, 2
 .drop-down-arrow { @include img-val('../images/assets/drop-down-arrow.gif', 0px 4px, 16px, 0); }
+*/
 .locale-drop-down-arrow {
-	@include img-val('../images/assets/drop-down-arrow.gif', 0px 16px !important, 16px, 0); 
+/** disabled: Phase 1, 2 until localisation is delivered
+  @include img-val('../images/assets/drop-down-arrow.gif', 0px 16px !important, 16px, 0);
+   */
 	> .flag-pos { float: inherit; }
 }
 .user-space { margin-top:6px; }
