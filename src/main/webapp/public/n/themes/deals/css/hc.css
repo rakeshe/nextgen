@@ -496,11 +496,14 @@ select {
     }
     .select-dates {
         background-color:#d6dddc;
-        /*width:65% !important;*/
-        width:100%;
+        width:65% !important;
+        /*width:100%;*/
         float:left;
         margin-left:0px;
     }
+	.select-label-val{
+		background-color:#d6dddc;
+	}
 }
 .select-dates-container {
 	margin:16px;
@@ -533,6 +536,7 @@ select {
 .select-dates-in-out {
 	float:left;
 	width:32%;
+	height:80px;
 }
 .select-date-hotel-val{
 	display:none;
@@ -550,6 +554,12 @@ select {
 	font-weight: bold;
 	color: #6d6d6d;
 }
+.select-label-val{
+	border: 0 !important;
+    font-size: 11px;
+    font-weight: normal;
+    margin-left: 3px;
+}
 .select-dates-input, .select-dates-input-child {
     width:80%;
     margin-right:6%;
@@ -557,8 +567,10 @@ select {
     height:37px;
     color:#999999;
     border-radius:0px;
-    border: 0 !important;  /*Removes border*/
-    outline:2px solid #dddee0;
+    border: 0;  /*Removes border*/
+    /*outline:2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
     -webkit-appearance: none;  /*Removes default chrome and safari style*/
     -moz-appearance: none;  /*Removes default style Firefox*/
     background: url('../images/assets/orbot-down-arrow.png');
@@ -576,12 +588,14 @@ select {
 .select-dates-input-popup{
     -moz-appearance: none;
     background: #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top;
-    border: 0 none !important;
+    border: 0;
     border-radius: 0;
     color: #999999;
     font-weight: 300;
     height: 37px;
-    outline: 2px solid #dddee0;
+    /*outline: 2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
     padding-left: 15%;
     text-indent: 0.01px;
     text-overflow: "";
@@ -703,6 +717,7 @@ select {
 }
 .find-btn{
 	margin-bottom:20px;
+	cursor:pointer;
 }
 @media (max-width: 768px) {
     .select-dates-button {
