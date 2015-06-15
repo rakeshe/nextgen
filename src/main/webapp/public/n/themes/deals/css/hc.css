@@ -506,7 +506,8 @@ select {
     }
     .select-dates {
         background-color:#d6dddc;
-        width:65% !important;
+        /*width:65% !important;*/
+        width:100%;
         float:left;
         margin-left:0px;
     }
@@ -1523,7 +1524,7 @@ select {
 }
 .card-img {
     width:100%;
-    height:auto;
+    height:208px;
 }
 .card-info {
     margin:16px;
