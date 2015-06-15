@@ -194,7 +194,7 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/yy',
+                dateFormat: 'dd/mm/y',
                 firstDay : 0,
                 dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
                 onSelect : function(dateText, inst) {
@@ -208,7 +208,7 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/yy',
+                dateFormat: 'dd/mm/y',
                 onSelect : function(dateText, inst) {
                     $('#check-in').datepicker("option", "maxDate",
                         $('#check-out').val()
