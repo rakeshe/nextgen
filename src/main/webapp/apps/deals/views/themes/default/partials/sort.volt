@@ -23,6 +23,7 @@
             </li>
             <li class="sort-list">
                 <a class="sort-button sort-box-picks" data-sort="ourPicks" title="Our picks">Our picks</a>
+                <img class="sort-indicator-image" src="/n/themes/deals/images/assets/des-arrow-purple.png">
             </li>
         </ul>
     </div>

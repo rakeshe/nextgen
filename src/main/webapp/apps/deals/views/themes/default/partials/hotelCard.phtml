@@ -23,14 +23,14 @@
 
                 {{/whenEqual}}
 				<!-- Dynamic hotel id value will be replaced here.. -->
-                <a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=19142" target="_blank"><img class="lazy card-img" data-original="http://www.tnetnoc.com/hotelphotos/967/246967/2241284-Moana-Surfrider-A-Westin-Resort-and-Spa-BarLounge-1-DEF.jpg"/>
+                <a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
+                    <img class="lazy card-img" data-original="{{thImgUrl}}" />
 				</a>
             </div>
             <div class="card-info">
                 <div class="hotel-name">
 					<!-- Dynamic hotel id value will be replaced here.. -->
-					<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=19142" target="_blank">{{{trimString hotelNameUtf8 30}}}</a></div>
-                <!--<div class="hotel-city">Melboune</div>-->
+					<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">{{{trimString hotelNameUtf8 30}}}</a></div>
 				<div class="card-desc">
 					<div class="card-left">
 						<div class="star-sprite-{{starRating}}">
@@ -91,9 +91,8 @@
                 <div class="select-dates-humans">
                     <p>Adult <small>(18+)</small><br />
                     <select name="adult-input-1" class="select-dates-input-popup" id="adult-input-1">
-                      <option value='0'>---</option>
                       <option value='1'>1</option>
-                      <option value='2'>2</option>
+                      <option value='2' selected>2</option>
                       <option value='3'>3</option>
                       <option value='4'>4</option>
                     </select></p>
