@@ -1,4 +1,5 @@
 (function( $, HB ) {
+
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -916,7 +917,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
