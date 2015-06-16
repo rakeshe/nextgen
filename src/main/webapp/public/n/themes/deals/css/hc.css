@@ -2027,3 +2027,7 @@ select {
 .orb-child-age-sty {
     float:right;
 }
+
+.orbot-validation-message p {
+    color: red !important;
+}

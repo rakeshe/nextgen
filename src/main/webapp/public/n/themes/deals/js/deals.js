@@ -637,6 +637,81 @@
             });
 
             this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
+        },
+
+        orbotValidation : function() {
+
+            var validForm = true;
+                cityName = $('.robot-city-name'),
+                checkIn = $('#check-in'),
+                checkOut = $('#check-out'),
+                valMessage = $('.orbot-validation-message'),
+                checkInDate = (checkIn.val() == 'dd/mm/yy') ? '' : checkIn.val(),
+                checkoutDate = (checkOut.val() == 'dd/mm/yy') ? '' : checkOut.val()
+
+            valMessage.html(''); // clear validation messages
+            cityName.css('outline',' 2px solid #dddee0');
+            checkIn.css('outline',' 2px solid #dddee0');
+            checkOut.css('outline',' 2px solid #dddee0');
+
+            if ($.trim(cityName.val()) == '') {
+                cityName.css('outline',' 1px solid red');
+                valMessage.append('<p>City name should not be blank</p>');
+                validForm = false;
+            }
+
+            if ($.trim(checkInDate) == '') {
+                checkIn.css('outline',' 1px solid red');
+                valMessage.append('<p>Check-in date should not be blank</p>')
+                validForm = false;
+            }
+
+            if ($.trim(checkoutDate) == '') {
+                checkOut.css('outline',' 1px solid red');
+                valMessage.append('<p>Check-out date should not be blank</p>')
+                validForm = false;
+                return false;
+            }
+
+            var chD = checkInDate.split('/'),
+                chD = chD[1]+'/'+chD[0]+'/'+chD[2],
+                cInTimestamp = new Date(chD).getTime();
+
+            if (isNaN(cInTimestamp) == true) {
+                checkIn.css('outline',' 1px solid red');
+                valMessage.append('<p>Please enter valid Check-in date</p>')
+                validForm = false;
+            }
+
+            var chOD = checkoutDate.split('/'),
+                chOD = chOD[1]+'/'+chOD[0]+'/'+chOD[2],
+                cOutTimestamp = new Date(chOD).getTime();
+
+            if (isNaN(cOutTimestamp) == true) {
+                checkOut.css('outline',' 1px solid red');
+                valMessage.append('<p>Please enter valid Check-out date</p>')
+                validForm = false;
+            }
+
+            var d = new Date(),
+                obj = new Date((d.getMonth() + 1) +'/'+ d.getDate() +'/'+ d.getFullYear());
+
+            if ( obj.getTime() > new Date(chD).getTime() ) {
+                checkIn.css('outline',' 1px solid red');
+                valMessage.append('<p>Please enter valid Check-in date</p>')
+                validForm = false;
+            }
+
+            if ( cInTimestamp >= cOutTimestamp ) {
+                checkOut.css('outline',' 1px solid red');
+                valMessage.append('<p>Please enter valid Check-out date</p>')
+                validForm = false;
+            }
+
+            if (validForm == true)
+                return true;
+            else
+                return false
         }
     }
 
@@ -1058,6 +1133,11 @@
 	});
 
     $(document).on('click', '.no-hotel-orbot, .modal-row-button', function(e) {
+
+
+        if (Deals.orbotValidation() == false) {
+            return false;
+        }
 
         e.preventDefault();
         var rooms = '';
