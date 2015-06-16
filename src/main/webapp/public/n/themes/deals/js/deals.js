@@ -999,22 +999,23 @@
                 $('.divider-room').css("display","block");
             }
             else if(!$('.room-divide3').is(":visible")){
-                roomVal = 3;selectDateScroll();
+                roomVal = 3;
                 $('.remove-room').css("display","block");
                 $('.divider-room').css("display","block");
             }
             else if(!$('.room-divide4').is(":visible")){
-                roomVal = 4;selectDateScroll();
+                roomVal = 4;
                 $('.add-room').css("display","block");
                 $('.divider-room').css("display","block");
             }
 			else if(!$('.room-divide5').is(":visible")){
-				roomVal = 5;selectDateScroll();
+				roomVal = 5;
  				$('.add-room').css("display","none");
  				$('.divider-room').css("display","none");
  			}
+			selectDateScroll('add', roomVal);
             var roomCompVal='';            
-			roomCompVal="<div class='horizontal-line'></div><div class='select-dates-row room-divide"+roomVal+"'><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
@@ -1046,6 +1047,7 @@
 				$('.horizontal-line').remove();
             }
             $('.room-divide'+roomVal).remove();
+			selectDateScroll('remove', roomVal);
         });
 
         /*drop down selection for children ages*/
@@ -1180,10 +1182,15 @@
 	/*overfolow for select dates exceeds more than 3 rooms*/
 
     /** decide thi sis UAT **/
-	function selectDateScroll(){
-		$('.select-dates').css({
-			//'height':'500px',
-			//'overflow-y':'scroll'
-		});
+	function selectDateScroll(val, roomVal){
+		var selectHeight = $('.select-dates').height();
+		if(val=='add'&&roomVal>=3){
+			$('.select-dates').css({
+				'height': '500px',
+				'overflow-y': 'scroll'
+			});
+		}else if(val=='remove'&&roomVal<=3){
+			$('.select-dates').attr('style','height:auto;position:fixed;top:6%;left:34%;display:block;z-index:999');		
+		}
 	}//selectDateScroll
 })(jQuery, Handlebars);
