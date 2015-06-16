@@ -1254,6 +1254,8 @@ select {
     list-style: none;
     padding-left: 0;
     margin-bottom: 0 !important;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-weight:300;
 }
 .breadcrumbs li {
     display: inline;
