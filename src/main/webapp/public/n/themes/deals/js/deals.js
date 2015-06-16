@@ -310,13 +310,13 @@
 				 'z-index': 200
 			});
 			$(".modal-wrapper").css({
-				'position': 'absolute',
+				//'position': 'absolute',
 				'top': '150px',
 				'left': '150px',
 				'z-index': 999
 			});
-			$("#check-in").css({
-				'position': 'absolute',
+/*			$("#check-in").css({
+				//'position': 'absolute',
 				'top': '171px',
 				'left': '17px',
 				'z-index': 9999,
@@ -324,13 +324,13 @@
 				'padding-left':'2%'
 			});
 			$("#check-out").css({
-				'position': 'absolute',
+				//'position': 'absolute',
 				'top': '171px',
 				'left': '156px',
 				'z-index': 9999,
 				'width':'116px',
 				'padding-left':'2%'
-			});
+			});*/
         },
 
         displayHeader : function() {

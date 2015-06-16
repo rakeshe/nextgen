@@ -2031,3 +2031,7 @@ select {
 .orbot-validation-message p {
     color: red !important;
 }
+
+#ui-datepicker-div {
+    z-index: 1000 !important;
+}
