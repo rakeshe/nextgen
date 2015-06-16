@@ -462,7 +462,12 @@ select {
     background-repeat:no-repeat;
     background-position:top left;
 }
-
+/*modal date picker*/
+#alt-check-in, #alt-check-out{
+	color: #999999;
+    margin-left: 5px;
+    margin-top: 17px !important;
+}
 
 /* Date selector pop up */
 .select-dates-wrapper {
