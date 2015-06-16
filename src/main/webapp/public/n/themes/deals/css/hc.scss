@@ -273,11 +273,12 @@ select {
     background-color: rgba(255, 255, 255, 1);
 }
 .orbot-in-page{
-  position: relative;
+  position: relative !important;
   z-index: 0;
   left:0%;
   width: 100%;
   margin-bottom: 20px;
+  height: 360px;
 }
 .parentDisable{
 	@include wid-pos-zindex-top-left(100%, 'fixed', '998', 0, 0, 0);    

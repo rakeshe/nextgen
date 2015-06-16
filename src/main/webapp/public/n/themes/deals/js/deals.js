@@ -1,5 +1,4 @@
 (function( $, HB ) {
-
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -195,7 +194,7 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/yy',
+                dateFormat: 'dd/mm/y',
                 firstDay : 0,
                 dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
                 onSelect : function(dateText, inst) {
@@ -209,7 +208,7 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/yy',
+                dateFormat: 'dd/mm/y',
                 onSelect : function(dateText, inst) {
                     $('#check-in').datepicker("option", "maxDate",
                         $('#check-out').val()
@@ -276,7 +275,7 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				dateFormat: 'dd/mm/yy',
+				dateFormat: 'dd/mm/y',
 				firstDay : 0,
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
@@ -290,7 +289,7 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				dateFormat: 'dd/mm/yy',
+				dateFormat: 'dd/mm/y',
 				onSelect : function(dateText, inst) {
 					$('#check-in').datepicker("option", "maxDate",
 						$('#check-out').val()
@@ -815,6 +814,8 @@
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
                             Deals.setCityImage();
+                            // Set breadcrumb
+                            $('#breadcrumb-city').html(cy);
                         }
                     }
                     break;
@@ -917,7 +918,9 @@
             minDate : 0,
             showCurrentAtPos : 0,
             firstDay : 0,
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'dd/mm/y',
+			altField: "#alternate-check-in",
+			altFormat: "D,d M yy",
             dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
@@ -933,7 +936,9 @@
             inline : true,
             minDate : 0,
             showCurrentAtPos : 0,
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'dd/mm/y',
+			altField: "#alternate-check-out",
+			altFormat: "D,d M yy",
             onSelect : function(dateText, inst) {
                 $('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
@@ -1105,10 +1110,14 @@
             order = self.attr('data-order'),
             type = '';
 
-        if (order == 'des')
+        // Because our picks cannot be re-sorted
+        if (self.data('sort') == 'ourPicks')
+            type = 'des';
+        else if (order == 'des')
             type = 'asc';
         else if (order == 'asc')
             type = 'des';
+
         else
             type = 'asc';
 
