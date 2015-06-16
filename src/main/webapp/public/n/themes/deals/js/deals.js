@@ -720,7 +720,34 @@
                 return true;
             else
                 return false
-        }
+        },
+		selectDateValidation : function() {
+            var validSelectForm = true, selectCheckIn = $('#select-check-in'), selectCheckOut = $('#select-check-out'), selectValMessage = $('.select-validation-message');
+            selectCheckInDate = (selectCheckIn.val() == 'dd/mm/yy') ? '' : selectCheckIn.val();
+            selectCheckOutDate = (selectCheckOut.val() == 'dd/mm/yy') ? '' : selectCheckOut.val();
+			selectValMessage.html(''); // clear validation messages
+
+			if ($.trim(selectCheckInDate) == '') {
+                selectCheckIn.css('outline',' 1px solid red');
+                selectValMessage.append('<p>Check-in date should not be blank</p>');
+				$('#alternate-check-in').val('');
+                validSelectForm = false;
+            }
+			if ($.trim(selectCheckOutDate) == '') {
+                selectCheckOut.css('outline',' 1px solid red');
+                selectValMessage.append('<p>Check-out date should not be blank</p>');
+				$('#alternate-check-out').val('');
+                validSelectForm = false;
+            }
+			if (validSelectForm == true){
+				selectValMessage.empty();
+				selectCheckIn.css('outline','0');
+				selectCheckOut.css('outline','0');
+                return true;
+			}
+            else
+                return false;
+		}
     }
 
     Deals.init();
@@ -1034,6 +1061,10 @@
 
 		$('.select-dates-button').on('click', function (){
 			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			if (Deals.selectDateValidation() == false) {
+				return false;
+			}
+
 			var hotel = new Array();
 			if($('.room-divide5').is(":visible")){ roomValTemp = 5;	}
 			else if($('.room-divide4').is(":visible")){ roomValTemp = 4; }

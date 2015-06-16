@@ -489,6 +489,10 @@ select {
 .select-dates-hotel-name{
 	float:left;
 }
+.select-validation-message p{
+	color: red !important;
+    font-size: 12px !important;
+}
 @media (max-width: 768px) {
     .select-dates-wrapper {
         background-image:url();
