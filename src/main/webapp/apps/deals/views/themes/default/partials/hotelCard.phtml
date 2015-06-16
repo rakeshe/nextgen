@@ -36,9 +36,78 @@
 						<div class="star-sprite-{{starRating}}">
 						</div>
 						<p class="hotel-offer">{{marketText}}</p>
-						<ul class="card-feat-list">
-						<li>Includes Breakfast for 1, Internet Access and more</li>
-						</ul>
+
+                        {{#each promotion as |value index|}}
+
+                            {{#each value as |v i|}}
+
+                                {{#whenEqual ../../../isLoggedIn true}} {{#whenEqual index '0'}}
+
+                                    {{#whenEqual i 'PO'}}
+                                        <ul class="card-feat-list">
+                                            {{#each v as |vl in|}}
+                                                <li>{{vl}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'DO'}}
+                                        <ul class="card-feat-list">
+                                            {{#each v as |vl in|}}
+                                            <li>{{vl}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'FN'}}
+                                        <ul class="card-feat-list">
+                                            {{#each v as |vl in|}}
+                                            <li>{{vl}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'VA'}}
+                                        <ul class="card-normal-list">
+                                            {{#each v as |vl in|}}
+                                            <li>{{vl}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/whenEqual}}
+
+                                {{/whenEqual}} {{/whenEqual}}
+
+                            {{#whenEqual ../../../isLoggedIn false}} {{#whenEqual index '1'}}
+
+                                    {{#whenEqual i 'PO'}}
+                                    <ul class="card-feat-list">
+                                        {{#each v as |vl in|}}
+                                        <li>{{vl}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'DO'}}
+                                    <ul class="card-feat-list">
+                                        {{#each v as |vl in|}}
+                                        <li>{{vl}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'FN'}}
+                                    <ul class="card-feat-list">
+                                        {{#each v as |vl in|}}
+                                        <li>{{vl}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/whenEqual}}
+                                    {{#whenEqual i 'VA'}}
+                                    <ul class="card-normal-list">
+                                        {{#each v as |vl in|}}
+                                        <li>{{vl}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/whenEqual}}
+
+                            {{/whenEqual}} {{/whenEqual}}
+                            {{/each}}
+                        {{/each}}
 					</div>
 					<div class="card-right">
 						<div class="hotel-member">Member price
