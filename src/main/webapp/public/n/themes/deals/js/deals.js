@@ -1073,27 +1073,32 @@
             else if($('.room-divide1').is(":visible")){ roomValTemp = 1; }
 
 			console.log(roomValTemp);
+
 			for(var i=1;i<=roomValTemp;i++){
-				room += '&hotel.rooms['+(i-1)+'].adlts=' + $('#adult-input-'+i).val();
+				room += '&hotel.rooms%5B'+(i-1)+'%5D.adlts=' + $('#adult-input-'+i).val();
                 chlen = $('#child-input-'+i).val();
-                room += '&hotel.rooms['+(i-1)+'].chlds=' + chlen;
+                room += '&hotel.rooms%5B'+(i-1)+'%5D.chlds=' + chlen;
 				if (chlen > 0) {
                     for(var j=1; j<= chlen; j++) {
-                        room += '&hotel.rooms['+(i-1)+'].chldAge['+(j-1)+']=' + $('#room-'+i+'-child-'+j).val();
+                        room += '&hotel.rooms%5B'+(i-1)+'%5D.chldAge%5B'+(j-1)+'%5D=' + $('#room-'+i+'-child-'+j).val();
                     }
                 }
 			}
+
+			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
+				+ "&hotel.hname="+ hotelName
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
-                +"&hotel.chkout="+checkOut
-                +"&search=Search"
-                + "&hsv.showDetails=true"
-                +room;
+                + "&hotel.chkout="+checkOut
+				+ "&hotel.keyword.key="+cityName
+                + "&search=Search"
+                + room;
+			//console.log(searchUrl);
             window.open(searchUrl, '_blank');
 		});
         /*add-room functionality*/
