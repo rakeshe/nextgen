@@ -1250,6 +1250,9 @@ select {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
 }
+.sr-space {
+    padding-right: 10px;
+}
 
 /* BREADCRUMB LINKS */
 .breadcrumbs {
@@ -1264,6 +1267,9 @@ select {
 }
 .breadcrumbs a {
     color: #55337e;
+}
+.bc-space {
+    padding-left: 11px;
 }
 
 
