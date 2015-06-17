@@ -70,7 +70,7 @@
                 for (var prop in obj) {
                     // important check that this is objects own property
                     // not from prototype prop inherited
-                    shortMarkText = obj["PO"][Object.keys(obj["PO"])[0]];
+                    shortMarkText = undefined == obj["PO"] || null== obj["PO"] ? '' : obj["PO"][Object.keys(obj["PO"])[0]];
                     if (obj.hasOwnProperty(prop)) {
 
                         if (typeof obj[prop] == 'object') {
