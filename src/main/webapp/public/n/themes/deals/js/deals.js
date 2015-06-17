@@ -416,7 +416,9 @@
 			var docHeight = $(document).height();
             var template = HB.compile( $("#orbot-template").html() );
 			$('body').append( template( {city : this.city} ) );//append the popup template
-
+			var browserWidthTemp = $(window).width(), leftTempVal;
+			if(browserWidthTemp>=980){ leftTempVal = '150px'; }
+			else{ leftTempVal = '0px'; }
             //console.log(this.city);
 			var dateToday = new Date();
 			var checkRates = "Check Rates";
@@ -465,7 +467,7 @@
 			$(".modal-wrapper").css({
 				//'position': 'absolute',
 				'top': '150px',
-				'left': '150px',
+				'left': leftTempVal,
 				'z-index': 999
 			});
 /*			$("#check-in").css({
