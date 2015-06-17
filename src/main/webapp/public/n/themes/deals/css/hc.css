@@ -543,7 +543,7 @@ select {
 .select-dates-row {
 	float:left;
 	width:100%;
-	/*margin-bottom:16px;*/
+	margin-top:10px;
 }
 .select-dates-in-out {
 	float:left;
@@ -726,6 +726,14 @@ select {
     -webkit-border-radius: 32px;
     -moz-border-radius: 32px;
     border-radius: 32px;
+}
+.select-dates-footer{
+	float:left;
+	width:50%;
+}
+#promo-code-val{
+	width; 50% !important;
+	 background:none !important;
 }
 .find-btn{
 	margin-bottom:20px;

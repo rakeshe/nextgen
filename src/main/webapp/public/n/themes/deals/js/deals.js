@@ -804,6 +804,12 @@
 		});
 		/*end drop down for language selection*/
 
+		/*promo-code-val clear data starts here*/
+		$('#promo-code-val').on('click', function() {
+			$('#promo-code-val').val('');
+		});
+		/*promo-code-val clear data ends here*/
+
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
             /**
@@ -1060,7 +1066,7 @@
         });//initialize the date-picker for check-out
 
 		$('.select-dates-button').on('click', function (){
-			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(), roomValTemp, room = '', chlen=0, promoCodeVal = $('#promo-code-val').val();
 			if (Deals.selectDateValidation() == false) {
 				return false;
 			}
@@ -1088,10 +1094,10 @@
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&hotel.couponCode="
+                + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
-				+ "&hotel.hname="+ hotelName
+				+ "&hotel.hname="+hotelName
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
                 + "&hotel.chkout="+checkOut
