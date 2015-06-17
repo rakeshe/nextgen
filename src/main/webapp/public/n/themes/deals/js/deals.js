@@ -1,4 +1,114 @@
 (function( $, HB ) {
+
+    var resetCounterValue = 0;
+
+    HB.registerHelper('chString', function(val, options) {
+
+        var len = val.length,
+            string = '',
+            total = '';
+
+        total = Math.ceil( len / 20 ) * 20;
+
+        if (resetCounterValue >= 80 ) {
+            return '';
+        }
+
+        var totalCount = resetCounterValue = total + resetCounterValue;
+
+        if (totalCount >= 80) {
+
+            var ch = totalCount - 80,
+                chChar = 20 - ch;
+
+            if (chChar > 0)
+            string = new Handlebars.SafeString('<li>' + val.substring(0, chChar) + '.. </li>');
+
+        } else {
+            string = new Handlebars.SafeString('<li>' + val + '</li>');
+        }
+        return string;
+    });
+
+    HB.registerHelper('isMemberExclusive', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return options.fn(this);
+        }
+    });
+
+    HB.registerHelper('displayExclusiveBanner', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
+        } else if (promotion.length > 1 && logged == false) {
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer</div>');
+        }
+    });
+
+    HB.registerHelper('displayPromotions', function(promotion, logged, options) {
+
+        //console.log(promotion)
+        var TPValues = '',//'<ul class="card-feat-list">',
+            VAValues = '', //' <ul class="card-normal-list">',
+            promoLen = promotion.length,
+            isDisplay = true,
+            shortMarkText = '';
+
+        if (promoLen == 2 && logged == true) {
+            var vkey = 1;
+        } else {
+            var vkey = 0;
+        }
+
+        for (var key in promotion) {
+
+            if (isDisplay == true) {
+
+            if (promotion.hasOwnProperty(vkey)) {
+                var obj = promotion[vkey];
+
+                for (var prop in obj) {
+                    // important check that this is objects own property
+                    // not from prototype prop inherited
+                    shortMarkText = obj["PO"][Object.keys(obj["PO"])[0]];
+                    if (obj.hasOwnProperty(prop)) {
+
+                        if (typeof obj[prop] == 'object') {
+                            //console.log(obj[prop]);
+                            for (var ar in obj[prop]) {
+
+                                if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+                                    TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                    console.log('prop =>' + prop + '=>' + vkey);
+                                } else if (prop == 'VA') {
+                                    VAValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                }
+                            }
+                        } else {
+
+                        }
+                    }
+                }
+            }
+                isDisplay = false;
+            }
+
+        }
+
+        resetCounterValue = 0; //reset counter
+
+        shortMarkText = '<p class="hotel-offer">'+ shortMarkText + '</p>';
+        TPValues = '<ul class="card-feat-list">'+ TPValues +'</ul>';
+        VAValues = '<ul class="card-normal-list">'+ VAValues +'</ul>'
+        return new Handlebars.SafeString(shortMarkText + TPValues + VAValues);
+
+    });
+
+    HB.registerHelper('resetCounter', function(val, options) {
+        resetCounterValue = 0
+    });
+
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -800,10 +910,10 @@
     $(document).ready(function(){
 
 		/*card hover design*/
-        $('.card').hover(function() {
-            $(this).css('border','1px solid #e80f1e');
+        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
+            $(this).parents('.card').css('border','1px solid #e80f1e');
         }, function () {
-            $(this).css('border','1px solid #d0d9d7');
+            $(this).parents('.card').css('border','1px solid #d0d9d7');
         });
 
 		/*drop down for language selection*/
@@ -842,6 +952,12 @@
 		});
 		/*end drop down for language selection*/
 
+		/*promo-code-val clear data starts here*/
+		$('#promo-code-val').on('click', function() {
+			$('#promo-code-val').val('');
+		});
+		/*promo-code-val clear data ends here*/
+
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
             /**
@@ -860,7 +976,7 @@
 		/*end drop down for currency selection*/
 
 		/* member-info starts here.. */
-		$(".member-info").hover(function(){
+		/*$(".member-info").hover(function(){
 			//console.log($(this).next());
 			var divToShow = $(this).next();
 			divToShow.css({
@@ -868,6 +984,17 @@
 			});
 		},function (){
 			$(".member-info-desc").hide();
+		});*/
+		$('.member-info').on('click', function() {
+			$('.member-info-desc').css('display', 'none');
+			var divToShow = $(this).next();
+			divToShow.css({
+				'display': 'block'
+			});
+		});
+		$('.member-info-close').on('click', function() {
+			console.log('Coming here...');
+			$(this).parent().parent().css('display','none');
 		});
 		/* member-info ends here.. */
 
@@ -934,7 +1061,10 @@
                 case 'dropdown-cities' :
 
                     if (cy == ":orbot-dest") {
-
+						if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         Deals.setCity('');
                         Deals.displayOrbot();
                     } else if (dy != 0) {
@@ -952,9 +1082,13 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
+                        if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
-                        Deals.displayOrbot();
+							Deals.displayOrbot();
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
@@ -984,7 +1118,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
@@ -1040,6 +1174,22 @@
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
 		var browserWidth = $(window).width();
+		if(browserWidth<768){
+			//redirect to hotelclub site with the all the input value
+			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="
+                + "&locale=en_AU"
+                + "&hotel.hid="+hotelId
+				+ "&hotel.hname="+hotelName
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="
+                + "&hotel.chkout="
+				+ "&hotel.keyword.key="
+                + "&search=Search";
+			//console.log(searchUrl);
+            window.open(searchUrl, '_blank');
+			return false;
+		}
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
@@ -1101,7 +1251,7 @@
         });//initialize the date-picker for check-out
 
 		$('.select-dates-button').on('click', function (){
-			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(), roomValTemp, room = '', chlen=0, promoCodeVal = $('#promo-code-val').val();
 			if (Deals.selectDateValidation() == false) {
 				return false;
 			}
@@ -1127,12 +1277,16 @@
 			}
 
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
+			//close the select-dates popup
+			$('.select-dates').css('display','none');
+			$("#overlay").remove();
 
+			//redirect to hotelclub site with the all the input value
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&hotel.couponCode="
+                + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
-				+ "&hotel.hname="+ hotelName
+				+ "&hotel.hname="+hotelName
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
                 + "&hotel.chkout="+checkOut
