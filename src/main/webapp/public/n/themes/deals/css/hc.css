@@ -1985,6 +1985,35 @@ select {
 	border:1px solid #ccc;
 	border-radius:5px;
 }
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    border:1px solid #ccc;
+    border-radius: 5px;
+    /*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
+}
+.ui-datepicker-prev {  
+    background-image: url("../images/assets/prev.png") !important;
+    background-repeat: no-repeat;
+}
+.ui-datepicker-next {  
+    background-image: url("../images/assets/next.png") !important;
+    background-repeat: no-repeat;
+}
+.ui-datepicker .ui-datepicker-prev {
+    left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+    right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+    left: 2px !important;
+    top: 2px !important;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+    right: 2px !important;
+    top: 2px !important
+}
+
 .ui-datepicker-prev:hover, .ui-datepicker-next:hover{
 	border:1px solid #ccc;
     border-radius: 5px;
