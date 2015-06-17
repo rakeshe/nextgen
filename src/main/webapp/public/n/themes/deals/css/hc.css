@@ -770,7 +770,7 @@ select {
     left:0%;
     width: 100%;
     margin-bottom: 20px;
-    height: 360px;
+    /*height: 360px;*/
 }
 .parentDisable{
     position:fixed;
