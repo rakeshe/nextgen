@@ -236,7 +236,10 @@
 
         displayUserInfo : function() {
 
-            if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
+            /**
+             * Re-enable this once member service until then use parse login
+             */
+            /*if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
 
                 this.userInfo = $.parseJSON(uInfo);
                 this.isLoggedIn = true;
@@ -256,7 +259,38 @@
 
             } else {
                 $('.logged-out-user').show();
-            }
+            }*/
+            /* Requesting the url to get members value */
+            var locale = 'en_AU';
+            //var hclUrl = "//www.hotelclub.com/?locale=" + locale;
+            var hclUrl = "/n/logged-in.html";
+            var request = $.ajax(hclUrl);
+
+
+            request.done(function (msg) {
+                //var cookieset =  $.cookie('mid'); // get cookie tmid value
+                var cookieset = '266414671';  // use mine
+                if (cookieset != '' && cookieset != null) {
+                    var Mydata = $.trim(msg);
+                    /* filter the members value from Requested data*/
+                    var htmlObject = $($.parseHTML(Mydata));
+                    var welcomeText = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+                    var loyaltyTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+                    var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+                    /* if Cookies tmid value is set then displays the data */
+
+
+                    alert(welcomeText +'\n' + loyaltyInfo +'\n' + loyaltyTier);
+                    if (welcomeText != '' && loyaltyTier != '' && typeof loyaltyTier != 'undefined' && loyaltyInfo != '' && typeof loyaltyInfo != 'undefined') {
+                        $('.sign_in-link').hide();
+                        $('.register-link').hide();
+                        $('ul.login li.welcomeText').html(welcomeText);
+                        $("ul.login").append('<li class="loyaltyTier">' + loyaltyTier + '</li>');
+                        $("ul.login").append('<li class="loyaltyInfo">' + loyaltyInfo + '</li>');
+                        $("ul.login").append('<li class="signOutLink"><a href="https://www.hotelclub.com/account/logout" class="link" rel="nofollow">' + msgSignOut + '</a></li>');
+                    }
+                }
+            });
         },
 
         displayOrbot : function() {
@@ -747,7 +781,11 @@
 			}
             else
                 return false;
-		}
+		},
+        /**
+         * This is from merch.js, temporary implementation until member service is fixed
+         */
+        parseLogin : function(){}
     }
 
     Deals.init();
@@ -931,6 +969,9 @@
                     break;
             }
         });
+
+        // Parse Logins
+        Deals.parseLogin();
     });
 
 	/*start of display child candidates*/
