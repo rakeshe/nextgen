@@ -4,28 +4,40 @@
 
     HB.registerHelper('chString', function(val, options) {
 
-        var len = val.length,
+       // console.log(val);
+
+        var AllowLen = 140;
             string = '',
             total = '';
 
-        total = Math.ceil( len / 20 ) * 20;
+        for(var i=0; i < val.length; i++) {
 
-        if (resetCounterValue >= 80 ) {
-            return '';
-        }
+            var len = val[i].length;
 
-        var totalCount = resetCounterValue = total + resetCounterValue;
+            if (val[i].length == 0)
+                continue;
 
-        if (totalCount >= 80) {
+            total = Math.ceil( len / 20 ) * 20;
 
-            var ch = totalCount - 80,
-                chChar = 20 - ch;
+            if (resetCounterValue >= AllowLen ) {
+                return '';
+            }
 
-            if (chChar > 0)
-            string = new Handlebars.SafeString('<li>' + val.substring(0, chChar) + '.. </li>');
+            var totalCount = resetCounterValue = total + resetCounterValue;
 
-        } else {
-            string = new Handlebars.SafeString('<li>' + val + '</li>');
+            if (totalCount >= AllowLen) {
+
+                var ch = totalCount - AllowLen,
+                    chChar = 20 - ch;
+
+                if (chChar > 0)
+                    string += new Handlebars.SafeString('<li>' + val[i].substring(0, chChar) + '.. </li>');
+
+            } else {
+
+                string += new Handlebars.SafeString('<li>' + val[i] + '</li>');
+
+            }
         }
         return string;
     });
@@ -42,67 +54,97 @@
         if (promotion.length > 1 && logged == true) {
             return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
         } else if (promotion.length > 1 && logged == false) {
-            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer</div>');
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer Available</div>');
         }
     });
 
     HB.registerHelper('displayPromotions', function(promotion, logged, options) {
 
         //console.log(promotion)
-        var TPValues = '',//'<ul class="card-feat-list">',
-            VAValues = '', //' <ul class="card-normal-list">',
+        var TPValuesKey1 = new Array,//'<ul class="card-feat-list">',
+            VAValuesKey1 = new Array, //' <ul class="card-normal-list">',
+            TPValuesKey2 = new Array,
+            VAValuesKey2 = new Array,
             promoLen = promotion.length,
             isDisplay = true,
-            shortMarkText = '';
+            shortMarkTextKey1 = new Array,
+            shortMarkTextKey2 = new Array;
 
         if (promoLen == 2 && logged == true) {
-            var vkey = 1;
+            var vkey = 0;
         } else {
             var vkey = 0;
         }
 
         for (var key in promotion) {
 
-            if (isDisplay == true) {
 
-            if (promotion.hasOwnProperty(vkey)) {
-                var obj = promotion[vkey];
+            if (promotion.hasOwnProperty(key)) {
+                var obj = promotion[key];
 
                 for (var prop in obj) {
                     // important check that this is objects own property
                     // not from prototype prop inherited
-                    shortMarkText = obj["PO"][Object.keys(obj["PO"])[0]];
                     if (obj.hasOwnProperty(prop)) {
 
                         if (typeof obj[prop] == 'object') {
                             //console.log(obj[prop]);
                             for (var ar in obj[prop]) {
 
-                                if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
-                                    TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
-                                    console.log('prop =>' + prop + '=>' + vkey);
-                                } else if (prop == 'VA') {
-                                    VAValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                if (key == 0) {
+
+                                    if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+
+                                        shortMarkTextKey1.push(obj["PO"][Object.keys(obj["PO"])[0]]); // take out first line
+                                        obj["PO"][Object.keys(obj["PO"])[0]] = null; // delete first line
+
+                                        if (obj[prop][ar] != null) {
+                                            console.log('+++++' + typeof obj[prop][ar]);
+                                            TPValuesKey1.push(obj[prop][ar]);
+                                        }
+                                    } else if (prop == 'VA') {
+                                            VAValuesKey1.push(obj[prop][ar]);
+                                    }
+
+                                } else if (key == 1) {
+
+                                    if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+
+                                        shortMarkTextKey2.push(obj["PO"][Object.keys(obj["PO"])[0]]); // take out first line
+                                        obj["PO"][Object.keys(obj["PO"])[0]] = ''; // delete first line
+                                        if (obj[prop][ar] != null) {
+                                            TPValuesKey2.push(obj[prop][ar]);
+                                            //console.log('prop =>' + prop + '=>' + vkey);
+                                            // console.log(obj["PO"][Object.keys(obj["PO"])[0]]);
+                                        }
+                                    } else if (prop == 'VA') {
+                                            VAValuesKey2.push(obj[prop][ar]);
+                                    }
                                 }
                             }
-                        } else {
-
                         }
                     }
                 }
             }
-                isDisplay = false;
-            }
 
         }
 
-        resetCounterValue = 0; //reset counter
+        if (logged == true && promoLen == 2) {
 
-        shortMarkText = '<p class="hotel-offer">'+ shortMarkText + '</p>';
-        TPValues = '<ul class="card-feat-list">'+ TPValues +'</ul>';
-        VAValues = '<ul class="card-normal-list">'+ VAValues +'</ul>'
-        return new Handlebars.SafeString(shortMarkText + TPValues + VAValues);
+            shortMarkTextKey2 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey2, '').replace('<li>', '').replace('</li>', '') + '</p>';
+            TPValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey2, '') +'</ul>';
+            VAValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey2, '') + Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            resetCounterValue = 0; //reset counter
+            return new Handlebars.SafeString(shortMarkTextKey2 + TPValuesKey2 + VAValuesKey2);
 
+        } else {
+
+            shortMarkTextKey1 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey1, '').replace('<li>', '').replace('</li>', '') + '</p>';
+            TPValuesKey1 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey1, '') +'</ul>';
+            VAValuesKey1 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            resetCounterValue = 0; //reset counter
+            return new Handlebars.SafeString(shortMarkTextKey1 + TPValuesKey1 + VAValuesKey1);
+        }
     });
 
     HB.registerHelper('resetCounter', function(val, options) {
