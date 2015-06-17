@@ -934,7 +934,7 @@
 		/*end drop down for currency selection*/
 
 		/* member-info starts here.. */
-		$(".member-info").hover(function(){
+		/*$(".member-info").hover(function(){
 			//console.log($(this).next());
 			var divToShow = $(this).next();
 			divToShow.css({
@@ -942,6 +942,17 @@
 			});
 		},function (){
 			$(".member-info-desc").hide();
+		});*/
+		$('.member-info').on('click', function() {
+			$('.member-info-desc').css('display', 'none');
+			var divToShow = $(this).next();
+			divToShow.css({
+				'display': 'block'
+			});
+		});
+		$('.member-info-close').on('click', function() {
+			console.log('Coming here...');
+			$(this).parent().parent().css('display','none');
 		});
 		/* member-info ends here.. */
 
@@ -1008,7 +1019,10 @@
                 case 'dropdown-cities' :
 
                     if (cy == ":orbot-dest") {
-
+						if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         Deals.setCity('');
                         Deals.displayOrbot();
                     } else if (dy != 0) {
@@ -1026,9 +1040,13 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
+                        if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
-                        Deals.displayOrbot();
+							Deals.displayOrbot();
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
@@ -1111,6 +1129,22 @@
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
 		var browserWidth = $(window).width();
+		if(browserWidth<768){
+			//redirect to hotelclub site with the all the input value
+			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="
+                + "&locale=en_AU"
+                + "&hotel.hid="+hotelId
+				+ "&hotel.hname="+hotelName
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="
+                + "&hotel.chkout="
+				+ "&hotel.keyword.key="
+                + "&search=Search";
+			//console.log(searchUrl);
+            window.open(searchUrl, '_blank');
+			return false;
+		}
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
