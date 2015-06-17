@@ -2,7 +2,7 @@
     <!-- Navigation -->
     <div class="row">
         <!-- Logo  -->
-        <a href="http://www.hotelclub.com" title="HotelClub">
+        <a href="http://www.hotelclub.com" title="HotelClub" target="_blank">
             <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo"/>
         </a>
         <!-- End Logo -->
