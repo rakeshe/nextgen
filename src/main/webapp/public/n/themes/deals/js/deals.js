@@ -828,7 +828,7 @@
 		/*end drop down for currency selection*/
 
 		/* member-info starts here.. */
-		$(".member-info").hover(function(){
+		/*$(".member-info").hover(function(){
 			//console.log($(this).next());
 			var divToShow = $(this).next();
 			divToShow.css({
@@ -836,6 +836,17 @@
 			});
 		},function (){
 			$(".member-info-desc").hide();
+		});*/
+		$('.member-info').on('click', function() {
+			$('.member-info-desc').css('display', 'none');
+			var divToShow = $(this).next();
+			divToShow.css({
+				'display': 'block'
+			});
+		});
+		$('.member-info-close').on('click', function() {
+			console.log('Coming here...');
+			$(this).parent().parent().css('display','none');
 		});
 		/* member-info ends here.. */
 

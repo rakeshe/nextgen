@@ -1761,7 +1761,7 @@ select {
 	width: 200px;
 	z-index: 9999;
 	position: absolute;
-	margin: -30px 0 0 15px;
+	margin: -33px 0 0 12px;
 	color: #000;
 	text-align: left;
 	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
@@ -1769,24 +1769,36 @@ select {
     font-size: 13px;
 }
 .member-info-top{
-	width:250px;
+	width:296px;
 	background-image: url("../images/assets/top.png");
 	background-repeat: no-repeat;
 	height:46px;
+	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
+    font-size: 12px;
+}
+.member-info-close{
+	width:95%;
+	text-align: right;
+	padding-top:15px;
+	text-decoration: underline;
+	cursor:pointer;
 }
 .member-info-middle{
-	width:230px;
+	width:244px;
 	background-image: url("../images/assets/middle.png");
 	background-repeat: repeat-y;
-	padding: 0 20px 0 40px;
-	margin-top:-10px;
+	padding: 0 0 10px 50px;
+	margin: -3px 0 0 2px;
 	height:auto;
+	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
+    font-size: 12px;
 }
 .member-info-bottom{
-	width:250px;
+	width:291px;
 	background-image: url("../images/assets/bottom.png");
 	background-repeat: no-repeat;
 	height:auto;
+	margin-left: 4px;
 }
 /* DESTINATIONS */
 .destination {
