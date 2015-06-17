@@ -38,11 +38,10 @@
     });
 
     HB.registerHelper('displayExclusiveBanner', function(promotion, logged, options) {
-
         if (promotion.length > 1 && logged == true) {
             return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
         } else if (promotion.length > 1 && logged == false) {
-            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer</div>');
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer Available</div>');
         }
     });
 
@@ -79,7 +78,8 @@
                             for (var ar in obj[prop]) {
 
                                 if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
-                                    TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                    // not required only member only VA
+                                    //TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
                                     console.log('prop =>' + prop + '=>' + vkey);
                                 } else if (prop == 'VA') {
                                     VAValues += Handlebars.helpers.chString(obj[prop][ar], '');
