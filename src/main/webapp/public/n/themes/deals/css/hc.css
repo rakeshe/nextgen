@@ -470,6 +470,7 @@ select {
 #alt-check-in, #alt-check-out{
 	color: #999999;
     margin-left: 5px;
+	width: 45% !important;
 }
 
 /* Date selector pop up */
@@ -739,9 +740,6 @@ select {
     .select-dates-button {
         width:45%;
     }
-    .modal-box {
-        width:60% !important;
-    }
 }
 /* Modal - Message pop up */
 .modal-wrapper {
@@ -785,9 +783,6 @@ select {
 @media (max-width: 768px) {
     .modal-wrapper {
         float:left;
-        width:80%;
-        margin-left:10%;
-        margin-right:10%;
         background-image:url(../images/assets/modal-box-arrow.png);
         background-repeat:no-repeat;
         background-position:bottom center;
