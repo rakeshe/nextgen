@@ -1023,6 +1023,22 @@
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
 		var browserWidth = $(window).width();
+		if(browserWidth<768){
+			//redirect to hotelclub site with the all the input value
+			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="
+                + "&locale=en_AU"
+                + "&hotel.hid="+hotelId
+				+ "&hotel.hname="+hotelName
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="
+                + "&hotel.chkout="
+				+ "&hotel.keyword.key="
+                + "&search=Search";
+			//console.log(searchUrl);
+            window.open(searchUrl, '_blank');
+			return false;
+		}
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();

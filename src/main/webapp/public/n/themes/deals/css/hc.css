@@ -507,15 +507,11 @@ select {
         margin-right:10%;
     }
     .select-dates {
-        background-color:#d6dddc;
         width:65% !important;
         /*width:100%;*/
         float:left;
         margin-left:0px;
     }
-	.select-label-val{
-		background-color:#d6dddc;
-	}
 }
 .select-dates-container {
 	margin:16px;
