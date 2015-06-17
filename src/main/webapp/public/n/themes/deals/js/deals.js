@@ -1092,7 +1092,11 @@
 			}
 
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
+			//close the select-dates popup
+			$('.select-dates').css('display','none');
+			$("#overlay").remove();
 
+			//redirect to hotelclub site with the all the input value
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
