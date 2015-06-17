@@ -6,21 +6,8 @@
         <div class="card">
             <div class="card-image">
 
-                {{#whenEqual ../isLoggedIn true}}
+                {{displayExclusiveBanner promotion ../isLoggedIn}}
 
-                    {{#whenEqual isMemberExclusive 'true'}}
-                            <div class="card-member">Member Exclusive Offer</div>
-                    {{/whenEqual}}
-
-                {{/whenEqual}}
-
-                {{#whenEqual ../isLoggedIn false}}
-
-                    {{#whenEqual isMemberExclusive 'true'}}
-                        <div class="card-non-member">Member Exclusive Offer</div>
-                    {{/whenEqual}}
-
-                {{/whenEqual}}
 				<!-- Dynamic hotel id value will be replaced here.. -->
                 <a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
                     <img class="lazy card-img" data-original="{{thImgUrl}}" />
@@ -36,78 +23,8 @@
 						</div>
 						<p class="hotel-offer">{{marketText}}</p>
 
-                        {{#each promotion as |value index|}}
+                        {{displayPromotions promotion ../isLoggedIn}}
 
-                            {{#each value as |v i|}}
-
-                                {{#whenEqual ../../../isLoggedIn true}} {{#whenEqual index '0'}}
-
-                                    {{#whenEqual i 'PO'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                                {{chString vl}}
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'DO'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                            {{chString vl}}
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'FN'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                            {{chString vl}}
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'VA'}}
-                                        <ul class="card-normal-list">
-                                            {{#each v as |vl in|}}
-                                           {{chString vl}}
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-
-                                {{/whenEqual}} {{/whenEqual}}
-
-                            {{#whenEqual ../../../isLoggedIn false}} {{#whenEqual index '1'}}
-
-                                    {{#whenEqual i 'PO'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        {{chString vl}}
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'DO'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        {{chString vl}}
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'FN'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        {{chString vl}}
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'VA'}}
-                                    <ul class="card-normal-list">
-                                        {{#each v as |vl in|}}
-                                        {{chString vl}}
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-
-                            {{/whenEqual}} {{/whenEqual}}
-                            {{/each}}
-                        {{/each}}
-                        {{resetCounter}}
 					</div>
 					<div class="card-right">
 						<div class="hotel-member">Member price
