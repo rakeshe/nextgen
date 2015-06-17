@@ -52,7 +52,8 @@
         var TPValues = '',//'<ul class="card-feat-list">',
             VAValues = '', //' <ul class="card-normal-list">',
             promoLen = promotion.length,
-            isDisplay = true;
+            isDisplay = true,
+            shortMarkText = '';
 
         if (promoLen == 2 && logged == true) {
             var vkey = 1;
@@ -70,6 +71,7 @@
                 for (var prop in obj) {
                     // important check that this is objects own property
                     // not from prototype prop inherited
+                    shortMarkText = obj["PO"][Object.keys(obj["PO"])[0]];
                     if (obj.hasOwnProperty(prop)) {
 
                         if (typeof obj[prop] == 'object') {
@@ -78,6 +80,7 @@
 
                                 if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
                                     TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                    console.log('prop =>' + prop + '=>' + vkey);
                                 } else if (prop == 'VA') {
                                     VAValues += Handlebars.helpers.chString(obj[prop][ar], '');
                                 }
@@ -95,9 +98,10 @@
 
         resetCounterValue = 0; //reset counter
 
+        shortMarkText = '<p class="hotel-offer">'+ shortMarkText + '</p>';
         TPValues = '<ul class="card-feat-list">'+ TPValues +'</ul>';
         VAValues = '<ul class="card-normal-list">'+ VAValues +'</ul>'
-        return new Handlebars.SafeString(TPValues + VAValues);
+        return new Handlebars.SafeString(shortMarkText + TPValues + VAValues);
 
     });
 
