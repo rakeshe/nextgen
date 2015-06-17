@@ -1,4 +1,110 @@
 (function( $, HB ) {
+
+    var resetCounterValue = 0;
+
+    HB.registerHelper('chString', function(val, options) {
+
+        var len = val.length,
+            string = '',
+            total = '';
+
+        total = Math.ceil( len / 20 ) * 20;
+
+        if (resetCounterValue >= 80 ) {
+            return '';
+        }
+
+        var totalCount = resetCounterValue = total + resetCounterValue;
+
+        if (totalCount >= 80) {
+
+            var ch = totalCount - 80,
+                chChar = 20 - ch;
+
+            if (chChar > 0)
+            string = new Handlebars.SafeString('<li>' + val.substring(0, chChar) + '.. </li>');
+
+        } else {
+            string = new Handlebars.SafeString('<li>' + val + '</li>');
+        }
+        return string;
+    });
+
+    HB.registerHelper('isMemberExclusive', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return options.fn(this);
+        }
+    });
+
+    HB.registerHelper('displayExclusiveBanner', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
+        } else if (promotion.length > 1 && logged == false) {
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer</div>');
+        }
+    });
+
+    HB.registerHelper('displayPromotions', function(promotion, logged, options) {
+
+        //console.log(promotion)
+        var TPValues = '',//'<ul class="card-feat-list">',
+            VAValues = '', //' <ul class="card-normal-list">',
+            promoLen = promotion.length,
+            isDisplay = true;
+
+        if (promoLen == 2 && logged == true) {
+            var vkey = 1;
+        } else {
+            var vkey = 0;
+        }
+
+        for (var key in promotion) {
+
+            if (isDisplay == true) {
+
+            if (promotion.hasOwnProperty(vkey)) {
+                var obj = promotion[vkey];
+
+                for (var prop in obj) {
+                    // important check that this is objects own property
+                    // not from prototype prop inherited
+                    if (obj.hasOwnProperty(prop)) {
+
+                        if (typeof obj[prop] == 'object') {
+                            //console.log(obj[prop]);
+                            for (var ar in obj[prop]) {
+
+                                if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+                                    TPValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                } else if (prop == 'VA') {
+                                    VAValues += Handlebars.helpers.chString(obj[prop][ar], '');
+                                }
+                            }
+                        } else {
+
+                        }
+                    }
+                }
+            }
+                isDisplay = false;
+            }
+
+        }
+
+        resetCounterValue = 0; //reset counter
+
+        TPValues = '<ul class="card-feat-list">'+ TPValues +'</ul>';
+        VAValues = '<ul class="card-normal-list">'+ VAValues +'</ul>'
+        return new Handlebars.SafeString(TPValues + VAValues);
+
+    });
+
+    HB.registerHelper('resetCounter', function(val, options) {
+        resetCounterValue = 0
+    });
+
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -967,7 +1073,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
