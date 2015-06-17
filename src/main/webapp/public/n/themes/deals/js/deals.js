@@ -1,5 +1,41 @@
 (function( $, HB ) {
 
+    var resetCounterValue = 0;
+
+    HB.registerHelper('chString', function(val, options) {
+
+        var len = this.length,
+            string = '',
+            total = '';
+
+        total = Math.ceil( len / 20 ) * 20;
+
+        if (resetCounterValue >= 80 ) {
+            return '';
+        }
+
+        var totalCount = resetCounterValue = total + resetCounterValue;
+
+        if (totalCount >= 80) {
+
+            var ch = totalCount - 80,
+                chChar = 20 - ch;
+
+            if (chChar > 0)
+            string = new Handlebars.SafeString('<li>' + val.substring(0, chChar) + '.. </li>');
+
+        } else {
+            string = new Handlebars.SafeString('<li>' + val + '</li>');
+        }
+        //console.log(totalCount + ' '+ val);
+        return string;
+
+    });
+
+    HB.registerHelper('resetCounter', function(val, options) {
+        resetCounterValue = 0
+    });
+
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);

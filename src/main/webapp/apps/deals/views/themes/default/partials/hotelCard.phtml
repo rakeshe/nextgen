@@ -1,5 +1,4 @@
 <script id="hotel-card-template" type="text/x-handlebars-template">
-
     {{#each hData}}
 
     <div class="hotelcards">
@@ -46,28 +45,28 @@
                                     {{#whenEqual i 'PO'}}
                                         <ul class="card-feat-list">
                                             {{#each v as |vl in|}}
-                                                <li>{{vl}}</li>
+                                                {{chString vl}}
                                             {{/each}}
                                         </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'DO'}}
                                         <ul class="card-feat-list">
                                             {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
+                                            {{chString vl}}
                                             {{/each}}
                                         </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'FN'}}
                                         <ul class="card-feat-list">
                                             {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
+                                            {{chString vl}}
                                             {{/each}}
                                         </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'VA'}}
                                         <ul class="card-normal-list">
                                             {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
+                                           {{chString vl}}
                                             {{/each}}
                                         </ul>
                                     {{/whenEqual}}
@@ -79,28 +78,28 @@
                                     {{#whenEqual i 'PO'}}
                                     <ul class="card-feat-list">
                                         {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
+                                        {{chString vl}}
                                         {{/each}}
                                     </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'DO'}}
                                     <ul class="card-feat-list">
                                         {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
+                                        {{chString vl}}
                                         {{/each}}
                                     </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'FN'}}
                                     <ul class="card-feat-list">
                                         {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
+                                        {{chString vl}}
                                         {{/each}}
                                     </ul>
                                     {{/whenEqual}}
                                     {{#whenEqual i 'VA'}}
                                     <ul class="card-normal-list">
                                         {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
+                                        {{chString vl}}
                                         {{/each}}
                                     </ul>
                                     {{/whenEqual}}
@@ -108,6 +107,7 @@
                             {{/whenEqual}} {{/whenEqual}}
                             {{/each}}
                         {{/each}}
+                        {{resetCounter}}
 					</div>
 					<div class="card-right">
 						<div class="hotel-member">Member price
