@@ -913,7 +913,10 @@
                 case 'dropdown-cities' :
 
                     if (cy == ":orbot-dest") {
-
+						if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         Deals.setCity('');
                         Deals.displayOrbot();
                     } else if (dy != 0) {
@@ -931,9 +934,13 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
+                        if($(document).width()<768){
+							window.open('http://www.hotelclub.com/', '_blank');
+							return false;
+						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
-                        Deals.displayOrbot();
+							Deals.displayOrbot();
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
