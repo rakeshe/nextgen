@@ -762,10 +762,10 @@
     $(document).ready(function(){
 
 		/*card hover design*/
-        $('.card').hover(function() {
-            $(this).css('border','1px solid #e80f1e');
+        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
+            $(this).parents('.card').css('border','1px solid #e80f1e');
         }, function () {
-            $(this).css('border','1px solid #d0d9d7');
+            $(this).parents('.card').css('border','1px solid #d0d9d7');
         });
 
 		/*drop down for language selection*/
