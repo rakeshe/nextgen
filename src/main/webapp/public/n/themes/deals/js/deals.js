@@ -799,10 +799,10 @@
     $(document).ready(function(){
 
 		/*card hover design*/
-        $('.card').hover(function() {
-            $(this).css('border','1px solid #e80f1e');
+        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
+            $(this).parents('.card').css('border','1px solid #e80f1e');
         }, function () {
-            $(this).css('border','1px solid #d0d9d7');
+            $(this).parents('.card').css('border','1px solid #d0d9d7');
         });
 
 		/*drop down for language selection*/
@@ -840,6 +840,12 @@
 			}
 		});
 		/*end drop down for language selection*/
+
+		/*promo-code-val clear data starts here*/
+		$('#promo-code-val').on('click', function() {
+			$('#promo-code-val').val('');
+		});
+		/*promo-code-val clear data ends here*/
 
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
@@ -1097,7 +1103,7 @@
         });//initialize the date-picker for check-out
 
 		$('.select-dates-button').on('click', function (){
-			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(), roomValTemp, room = '', chlen=0, promoCodeVal = $('#promo-code-val').val();
 			if (Deals.selectDateValidation() == false) {
 				return false;
 			}
@@ -1110,27 +1116,36 @@
             else if($('.room-divide1').is(":visible")){ roomValTemp = 1; }
 
 			console.log(roomValTemp);
+
 			for(var i=1;i<=roomValTemp;i++){
-				room += '&hotel.rooms['+(i-1)+'].adlts=' + $('#adult-input-'+i).val();
+				room += '&hotel.rooms%5B'+(i-1)+'%5D.adlts=' + $('#adult-input-'+i).val();
                 chlen = $('#child-input-'+i).val();
-                room += '&hotel.rooms['+(i-1)+'].chlds=' + chlen;
+                room += '&hotel.rooms%5B'+(i-1)+'%5D.chlds=' + chlen;
 				if (chlen > 0) {
                     for(var j=1; j<= chlen; j++) {
-                        room += '&hotel.rooms['+(i-1)+'].chldAge['+(j-1)+']=' + $('#room-'+i+'-child-'+j).val();
+                        room += '&hotel.rooms%5B'+(i-1)+'%5D.chldAge%5B'+(j-1)+'%5D=' + $('#room-'+i+'-child-'+j).val();
                     }
                 }
 			}
 
+			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
+			//close the select-dates popup
+			$('.select-dates').css('display','none');
+			$("#overlay").remove();
+
+			//redirect to hotelclub site with the all the input value
 			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&hotel.couponCode="
+                + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
+				+ "&hotel.hname="+hotelName
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
-                +"&hotel.chkout="+checkOut
-                +"&search=Search"
-                + "&hsv.showDetails=true"
-                +room;
+                + "&hotel.chkout="+checkOut
+				+ "&hotel.keyword.key="+cityName
+                + "&search=Search"
+                + room;
+			//console.log(searchUrl);
             window.open(searchUrl, '_blank');
 		});
         /*add-room functionality*/
