@@ -42,7 +42,7 @@
         if (promotion.length > 1 && logged == true) {
             return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
         } else if (promotion.length > 1 && logged == false) {
-            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer</div>');
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer Available</div>');
         }
     });
 
