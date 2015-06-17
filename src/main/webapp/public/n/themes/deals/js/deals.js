@@ -1428,11 +1428,14 @@
 
         var self = $(this),
             order = self.attr('data-order'),
-            type = '';
-
+            type = '',
+            typeIcon = '',
+            desIcon = ' &or;',
+            ascIcon = ' &and;';
+        $('.sort-button').css({'font-weight': 'normal'});
         // Because our picks cannot be re-sorted
         if (self.data('sort') == 'ourPicks')
-            type = 'des';
+            type = 'asc';
         else if (order == 'des')
             type = 'asc';
         else if (order == 'asc')
@@ -1440,6 +1443,8 @@
 
         else
             type = 'asc';
+
+        typeIcon = type == 'asc' ? ascIcon : desIcon;
 
         if ($(this).data('sort') == 'ourPicks') {
             Deals.sortByNumber('sortOrder', type);
@@ -1452,7 +1457,8 @@
         }
         
         $('.sort-indicator-image').remove();
-        self.append(' <img class="sort-indicator-image" src="/n/themes/deals/images/assets/' + type + '-arrow-purple.png" />');
+        self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+        self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
 
     });
