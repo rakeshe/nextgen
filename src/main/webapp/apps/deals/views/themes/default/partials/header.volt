@@ -14,7 +14,7 @@
 			<div class="locale-section">
 				<div class="club-id">
 					<div class="locale-drop-down-arrow">
-						<a href="#">
+						<a href="#" style="pointer-events: none;cursor: default;">
 							<span class="user-club-info">
 								<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
 							</span>
