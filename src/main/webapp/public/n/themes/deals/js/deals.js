@@ -441,16 +441,16 @@
                 $('.logged-out-user').show();
             }*/
             // Check cookie for logged in state
-            //var cookieset =  $.cookie('mid'); // get cookie tmid value
-            var cookieset = '266414671';  // use mine
+            var cookieset =  $.cookie('mid'); // get cookie tmid value
+            //var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
 
 
                 /* Requesting the url to get members value */
                 var locale = 'en_AU';
-                //var hclUrl = "https://www.hotelclub.com/?locale=" + locale;
-                var hclUrl = "/n/logged-in.html";
+                var hclUrl = "https://www.hotelclub.com/?locale=" + locale;
+                //var hclUrl = "/n/logged-in.html";
                 var request = $.ajax(hclUrl);
 
                 request.done(function (msg) {
