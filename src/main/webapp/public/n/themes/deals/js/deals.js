@@ -167,7 +167,7 @@
 
             shortMarkTextKey1 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey1, '').replace('<li>', '').replace('</li>', '') + '</p>';
             TPValuesKey1 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey1, '') +'</ul>';
-            VAValuesKey1 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            VAValuesKey1 = '<ul class="card-normal-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
             resetCounterValue = 0; //reset counter
             return new Handlebars.SafeString(shortMarkTextKey1 + TPValuesKey1 + VAValuesKey1);
         }
