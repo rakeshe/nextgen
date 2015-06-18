@@ -1007,7 +1007,7 @@
 			var cntVal, i;
 			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=0;i<this.value;i++){
-				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
 			//console.log(cntVal);
 			cntVal+="<div>";
@@ -1486,7 +1486,7 @@
 			var cntVal, i;
 			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=1;i<=roomChildVal;i++){
-				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
 			cntVal+="<div>";
 			$(".room-"+roomChild).append(cntVal).html();
