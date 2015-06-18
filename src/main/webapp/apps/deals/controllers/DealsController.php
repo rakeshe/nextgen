@@ -45,9 +45,11 @@ class DealsController extends ControllerBase {
         $this->init();
 
         if ($this->request->isPost() && $this->request->isAjax()) {
-
-            $hotelData = $this->model->getHotels($this->request->getPost('region', 'string'),
-                $this->request->getPost('city', 'string'));
+            $hotelData = $this->model->getHotels(
+                $this->request->getPost('region', 'string'),
+                $this->request->getPost('city', 'string'),
+                $this->request->getPost('when', 'string')
+            );
 
             die($hotelData);
         }

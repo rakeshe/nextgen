@@ -1650,9 +1650,10 @@ select {
     margin:0px;
     padding-left:18px;
     list-style-image:url(../images/assets/list-cross-gray-new.png);
-    font-size:16px;
+    font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    line-height: 19px;
 }
 .hotel-offer {
     font-size:16px;
@@ -2001,11 +2002,11 @@ select {
     border-radius: 5px;
 	/*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
 }
-.ui-datepicker-prev:hover{	
+.ui-datepicker-prev{
 	background-image: url("../images/assets/prev.png") !important;
 	background-repeat: no-repeat;
 }
-.ui-datepicker-next:hover{	
+.ui-datepicker-next{
 	background-image: url("../images/assets/next.png") !important;
 	background-repeat: no-repeat;
 }

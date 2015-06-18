@@ -39,20 +39,16 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     public function getCityDocument() {
 
-        try{
+/*        try{
             $data = file_get_contents( __DIR__ . '/../data/city.json');
             return $data;
         }catch (\Exception $e) {
 
-        }
-    }
-
-    public function getHotels($region=self::DEFAULT_REGION, $city=self::DEFAULT_CITY, $when = self::DEFAULT_TRAVEL_PERIOD) {
-
+        }*/
         try{
-            /*// format: production:sale:md5(deals/Sydney/30-days):en_AU
-            $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
-            $couchDocName = ORBITZ_ENV . ':sale:'. md5('deals/'. $cityName .'/'. $when) . ':' . $this->getLocale();
+            // format: production:sale:md5(deals/city):en_AU
+            $docUrl = 'deals/city';
+            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
             $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
 
             // Try couch first
@@ -65,12 +61,40 @@ class DealsModel extends \Phalcon\Mvc\Model
                 if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
                     $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
                 }
-            }*/
+            }
+            $data = null == $data ? '{}' : $data;
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
+    public function getHotels($region=self::DEFAULT_REGION, $city=self::DEFAULT_CITY, $when = self::DEFAULT_TRAVEL_PERIOD) {
+
+        try{
+            // format: production:sale:md5(deals/Sydney/30-days):en_AU
             $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
+            $docUrl = 'deals/'. $cityName .'/'. $when;
+            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
+            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
+
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }
+            $data = null == $data ? '{}' : $data;
+            /*$cityName = strtolower(str_replace([' ',',','\''], '_', $city));
             $dataFile = $cityName.'.json';
             $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
                 file_get_contents(__DIR__ .'/../data/'. $dataFile) :
-                '{}';
+                '{}';*/
             //file_get_contents( __DIR__ . '/../data/deals.json');
             return $data;
         }catch (\Exception $e) {
