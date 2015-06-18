@@ -1063,6 +1063,7 @@
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
+                    $('.dropdown-cities').focus();
                     // do not reset image, keep prev image
                     //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
@@ -1081,7 +1082,7 @@
                     }
 
                     $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
-
+                    $('.dropWhereDo').focus();
                     //set city image only afer user selects last option
                     //Deals.setCityImage();
                     break;
