@@ -1407,7 +1407,7 @@
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
-            promo = $("#pp-promo").val() == undefined || $("#pp-promo").val() == 'Enter code' ? '' : $("#pp-promo").val(),
+            promo = ($(".search-promo-code").val() == $(".search-promo-code").attr('data-value')) ? '' : $.trim($(".search-promo-code").val()),
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
 
