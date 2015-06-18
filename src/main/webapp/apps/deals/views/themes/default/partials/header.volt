@@ -2,7 +2,7 @@
     <!-- Navigation -->
     <div class="row">
         <!-- Logo  -->
-        <a href="http://www.hotelclub.com" title="HotelClub" target="_blank">
+        <a href="//www.hotelclub.com" title="HotelClub" target="_blank">
             <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo"/>
         </a>
         <!-- End Logo -->
@@ -368,10 +368,10 @@
                     <div class="user-id">
 
                    <p><span class="user-member user-member-name">Welcome to HotelClub</span><br/>
-                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://www.hotelclub.com/{{url}}">
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=//www.hotelclub.com/{{url}}">
                         <span class="user-club-info user-club-info-card-type">Sign in</span>
                     </a> /
-                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://www.hotelclub.com/{{url}}">
+                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=//www.hotelclub.com/{{url}}">
                            <span class="user-club-info user-club-info-card-type">Register</span>
                        </a>
                    </p>
