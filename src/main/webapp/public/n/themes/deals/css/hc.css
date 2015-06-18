@@ -1380,12 +1380,12 @@ select {
     width:15px;
     height:14px;
     text-indent:-9999px;
-    background-image:url(../images/assets/rating-sprite.png);
+    background-image:url(../images/assets/rating-sprite.png?20015);
     background-position:0px 0px;
     background-repeat:no-repeat;
 }
 .star-search li:hover {
-    background-image:url(../images/assets/rating-sprite.png);
+    background-image:url(../images/assets/rating-sprite.png?20015);
     background-position:0px -14px;
     background-repeat:no-repeat;
 }
