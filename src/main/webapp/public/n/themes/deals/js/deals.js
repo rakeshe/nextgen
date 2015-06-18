@@ -955,8 +955,14 @@
 
 		/*promo-code-val clear data starts here*/
 		$('#promo-code-val').on('click', function() {
-			$('#promo-code-val').val('');
+			$(this).val('');
 		});
+
+        $('#promo-code-val').on('blur', function() {
+           if ($(this).val() == '') {
+               $(this).val($(this).attr('data-value'));
+           }
+        });
 		/*promo-code-val clear data ends here*/
 
 		/*drop down for currency selection*/
