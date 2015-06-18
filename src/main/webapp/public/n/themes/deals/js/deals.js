@@ -68,7 +68,8 @@
             promoLen = promotion.length,
             isDisplay = true,
             shortMarkTextKey1 = new Array,
-            shortMarkTextKey2 = new Array;
+            shortMarkTextKey2 = new Array,
+            promo = JSON.parse(JSON.stringify(promotion));
 
         if (promoLen == 2 && logged == true) {
             var vkey = 0;
@@ -76,11 +77,11 @@
             var vkey = 0;
         }
 
-        for (var key in promotion) {
+        for (var key in promo) {
 
 
-            if (promotion.hasOwnProperty(key)) {
-                var obj = promotion[key];
+            if (promo.hasOwnProperty(key)) {
+                var obj = promo[key];
 
                 for (var prop in obj) {
                     // important check that this is objects own property
