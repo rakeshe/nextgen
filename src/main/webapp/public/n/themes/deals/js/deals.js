@@ -955,7 +955,9 @@
 
 		/*promo-code-val clear data starts here*/
 		$('#promo-code-val').on('click', function() {
-			$(this).val('');
+            if ($(this).val() == $(this).attr('data-value')) {
+                $(this).val('');
+            }
 		});
 
         $('#promo-code-val').on('blur', function() {
