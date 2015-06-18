@@ -1250,7 +1250,11 @@
         });//initialize the date-picker for check-out
 
 		$('.select-dates-button').on('click', function (){
-			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(), roomValTemp, room = '', chlen=0, promoCodeVal = $('#promo-code-val').val();
+			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(),
+                roomValTemp, room = '',
+                chlen=0,
+                promoCodeVal = ($('#promo-code-val').val() == $('#promo-code-val').attr('data-value')) ? '' :$('#promo-code-val').val();
+
 			if (Deals.selectDateValidation() == false) {
 				return false;
 			}
@@ -1261,8 +1265,6 @@
             else if($('.room-divide3').is(":visible")){ roomValTemp = 3; }
             else if($('.room-divide2').is(":visible")){ roomValTemp = 2; }
             else if($('.room-divide1').is(":visible")){ roomValTemp = 1; }
-
-			console.log(roomValTemp);
 
 			for(var i=1;i<=roomValTemp;i++){
 				room += '&hotel.rooms%5B'+(i-1)+'%5D.adlts=' + $('#adult-input-'+i).val();
