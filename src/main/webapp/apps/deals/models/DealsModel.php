@@ -39,8 +39,30 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     public function getCityDocument() {
 
-        try{
+/*        try{
             $data = file_get_contents( __DIR__ . '/../data/city.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }*/
+        try{
+            // format: production:sale:md5(deals/city):en_AU
+            $docUrl = 'deals/city';
+            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
+            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
+
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }
+            $data = null == $data ? '{}' : $data;
             return $data;
         }catch (\Exception $e) {
 
