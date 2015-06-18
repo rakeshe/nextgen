@@ -46,6 +46,7 @@
         {{ javascript_include('themes/deals/js/jquery-ui.js?' ~ appVersion ) }}
         {{ javascript_include('themes/deals/js/handlebars-v3.0.3.js?' ~ appVersion ) }}
         {{ javascript_include('vendor/lazy-load/jquery.lazyload.js?' ~ appVersion ) }}
+        {{ javascript_include('themes/common/js/jquery.cookie.js?' ~ appVersion ) }}
         {{ javascript_include('themes/deals/js/deals.js?' ~ appVersion ) }}
         <script>
             $( "#slider" ).slider({
