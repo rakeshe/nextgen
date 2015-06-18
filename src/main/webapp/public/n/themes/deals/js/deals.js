@@ -911,11 +911,11 @@
     $(document).ready(function(){
 
 		/*card hover design*/
-        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
+/*        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
             $(this).parents('.card').css('border','1px solid #e80f1e');
         }, function () {
             $(this).parents('.card').css('border','1px solid #d0d9d7');
-        });
+        });*/
 
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
