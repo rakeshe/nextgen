@@ -1461,6 +1461,34 @@
 
     });
 
+    $(document).on('focus', '.search-hotel-name', function() {
+
+        if ($(this).val() == $(this).attr('data-value')) {
+            $(this).val('');
+        }
+    });
+
+    $(document).on('blur', '.search-hotel-name', function() {
+
+        if ($(this).val() == '') {
+            $(this).val($(this).attr('data-value'));
+        }
+    });
+
+    $(document).on('focus', '.search-promo-code', function() {
+
+        if ($(this).val() == $(this).attr('data-value')) {
+            $(this).val('');
+        }
+    });
+
+    $(document).on('blur', '.search-promo-code', function() {
+
+        if ($(this).val() == '') {
+            $(this).val($(this).attr('data-value'));
+        }
+    });
+
 	/*function to calculate and display the date difference*/
 	function dateCalculate(){
 		var fromDate = $("#select-check-in").datepicker('getDate');
