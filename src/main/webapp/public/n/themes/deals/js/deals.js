@@ -370,38 +370,42 @@
             } else {
                 $('.logged-out-user').show();
             }*/
-            /* Requesting the url to get members value */
-            var locale = 'en_AU';
-            var hclUrl = "//www.hotelclub.com/?locale=" + locale;
-            //var hclUrl = "/n/logged-in.html";
-            var request = $.ajax(hclUrl);
+            // Check cookie for logged in state
+            var cookieset =  $.cookie('mid'); // get cookie tmid value
+            //var cookieset = '266414671';  // use mine
+            if (cookieset != '' && cookieset != null) {
+                this.isLoggedIn = true;
 
-            request.done(function (msg) {
-                var cookieset =  $.cookie('mid'); // get cookie tmid value
-                //var cookieset = '266414671';  // use mine
-                if (cookieset != '' && cookieset != null) {
-                    this.isLoggedIn = true;
+
+                /* Requesting the url to get members value */
+                var locale = 'en_AU';
+                var hclUrl = "https://www.hotelclub.com/?locale=" + locale;
+                //var hclUrl = "/n/logged-in.html";
+                var request = $.ajax(hclUrl);
+
+                request.done(function (msg) {
+
                     var Mydata = $.trim(msg);
                     /* filter the members value from Requested data*/
                     var htmlObject = $($.parseHTML(Mydata));
                     var welcomeText = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
                     var loyaltyTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
                     var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
-                    welcomeText=  welcomeText.replace('Welcome ','');
-                    loyaltyTier = loyaltyTier.replace(':','');
+                    welcomeText = welcomeText.replace('Welcome ', '');
+                    loyaltyTier = loyaltyTier.replace(':', '');
 
                     //alert(welcomeText +'\n' + loyaltyInfo +'\n' + loyaltyTier);
                     $('.user-member-name').html(welcomeText);
                     $('.user-club-info-card-type').html(loyaltyTier + ' Member');
                     $('.usr-rewards-point').html(loyaltyInfo);
                     $('.logged-in-user').show();
-                }else {
+
+                });
+
+                request.fail(function () {
                     $('.logged-out-user').show();
-                }
-            });
-            request.fail(function() {
-                $('.logged-out-user').show();
-            });
+                });
+            }
         },
 
         displayOrbot : function() {
@@ -1063,7 +1067,7 @@
 
                     if (cy == ":orbot-dest") {
 						if($(document).width()<768){
-							window.open('http://www.hotelclub.com/', '_blank');
+							window.open('//www.hotelclub.com/', '_blank');
 							return false;
 						}
                         Deals.setCity('');
@@ -1084,7 +1088,7 @@
                         //initialize popup
                         //console.log($(this).val());
                         if($(document).width()<768){
-							window.open('http://www.hotelclub.com/', '_blank');
+							window.open('//www.hotelclub.com/', '_blank');
 							return false;
 						}
                         if (cy == ":orbot-dest")
@@ -1175,7 +1179,7 @@
 		var browserWidth = $(window).width();
 		if(browserWidth<768){
 			//redirect to hotelclub site with the all the input value
-			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="
                 + "&locale=en_AU"
                 + "&hotel.hid="+hotelId
@@ -1281,7 +1285,7 @@
 			$("#overlay").remove();
 
 			//redirect to hotelclub site with the all the input value
-			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
+			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
@@ -1403,7 +1407,7 @@
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
 
-        var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+        var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
         + promo
         + "&locale="
         + local
