@@ -2,7 +2,7 @@
 <!-- Footer -->
         <div class="row">
             <div class="eight columns">
-                <a href="http://www.hotelclub.com" title="HotelClub" target="_blank">
+                <a href="//www.hotelclub.com" title="HotelClub" target="_blank">
                     <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo-footer"/>
                 </a>
                 <div class="footer-intro">
@@ -16,7 +16,7 @@
                     <li><a target="_blank" href="https://twitter.com/hotelclub" title="Twitter"><img src="/n/themes/deals/images/assets/Twitter-Icon.png"/></a></li>
                     <li><a target="_blank" href="https://plus.google.com/+hotelclub/videos" title="Google+"><img src="/n/themes/deals/images/assets/Google-Icon.png"/></a></li>
                     {#<li><a target="_blank" href="https://www.youtube.com/user/HotelClub" title="YouTube"><img src="/n/themes/deals/images/assets/YouTube-Icon.png"/></a></li>#}
-                    <li><a target="_blank" href="http://www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog1-Icon.png"/></a></li>
+                    <li><a target="_blank" href="//www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog1-Icon.png"/></a></li>
                     {#<li><a target="_blank" href="http://www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog2-Icon.png"/></a></li>#}
                     {#<li><a href="#" title="WeChat"><img src="/n/themes/deals/images/assets/CN-Icon.png"/></a></li>#}
                 </ul>

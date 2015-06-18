@@ -1650,9 +1650,10 @@ select {
     margin:0px;
     padding-left:18px;
     list-style-image:url(../images/assets/list-cross-gray-new.png);
-    font-size:16px;
+    font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    line-height: 19px;
 }
 .hotel-offer {
     font-size:16px;
