@@ -1916,7 +1916,7 @@ select {
 }
 
 .social-links li {
-    float:left;
+    float:right;
     padding-right:10px;
     padding-top:12px;
 }

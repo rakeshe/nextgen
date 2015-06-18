@@ -19,6 +19,10 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
     const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
 
+    const DEFAULT_REGION='Australia, New Zealand Pacific';
+    const DEFAULT_CITY = 'Sydney';
+    const DEFAULT_TRAVEL_PERIOD = '30-days';
+
     protected $locale = 'en_AU';
 
     public function init() {
@@ -43,15 +47,31 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
     }
 
-    public function getHotels($region, $city) {
+    public function getHotels($region=self::DEFAULT_REGION, $city=self::DEFAULT_CITY, $when = self::DEFAULT_TRAVEL_PERIOD) {
 
         try{
+            /*// format: production:sale:md5(deals/Sydney/30-days):en_AU
+            $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
+            $couchDocName = ORBITZ_ENV . ':sale:'. md5('deals/'. $cityName .'/'. $when) . ':' . $this->getLocale();
+            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
+
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }*/
             $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
             $dataFile = $cityName.'.json';
             $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
                 file_get_contents(__DIR__ .'/../data/'. $dataFile) :
                 '{}';
-                //file_get_contents( __DIR__ . '/../data/deals.json');
+            //file_get_contents( __DIR__ . '/../data/deals.json');
             return $data;
         }catch (\Exception $e) {
 
