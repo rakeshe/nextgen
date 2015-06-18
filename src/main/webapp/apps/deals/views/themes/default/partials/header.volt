@@ -391,7 +391,7 @@
 
     <div class="row search-sale-box">
         <div class="row find-your">
-            <h2>Save up to 50% on hotels worldwide + get member extras like free upgrades and wifi</h2>
+            <h2>Save up to 60% on hotels worldwide + get member extras like free upgrades and wifi</h2>
         </div>
         <div class="row">
             <div class="four columns">
