@@ -404,7 +404,9 @@
 
                 request.fail(function () {
                     $('.logged-out-user').show();
+					$('.member-info').show();
                 });
+
             }
         },
 
@@ -913,7 +915,6 @@
 
 	/*document ready*/
     $(document).ready(function(){
-
 		/*card hover design*/
 /*        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
             $(this).parents('.card').css('border','1px solid #e80f1e');
