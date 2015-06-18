@@ -159,9 +159,10 @@
 
             shortMarkTextKey2 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey2, '').replace('<li>', '').replace('</li>', '') + '</p>';
             TPValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey2, '') +'</ul>';
-            VAValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey2, '') + Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            VAValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey2, '') + '</ul>';
+            var VAValuesKey1Var = '<ul class="card-normal-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
             resetCounterValue = 0; //reset counter
-            return new Handlebars.SafeString(shortMarkTextKey2 + TPValuesKey2 + VAValuesKey2);
+            return new Handlebars.SafeString(shortMarkTextKey2 + TPValuesKey2 + VAValuesKey2 + VAValuesKey1Var);
 
         } else {
 
