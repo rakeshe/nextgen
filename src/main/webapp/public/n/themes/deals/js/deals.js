@@ -739,20 +739,37 @@
             });
 
             // display city
-            //console.log(chopArr);
-            $.each(chopArr, function (key, val) {
+            var sortable = [];
+            for (var city in chopArr)
+                sortable.push([ chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'] ]);
+
+            //console.log(sortable);
+
+            sortable.sort(function(a, b) {
+
+                if (a[2] > b[2]) {
+                    return 1;
+                }
+                if (a[2] < b[2]) {
+                    return -1;
+                }
+                return 0;
+            });
+
+           // console.log(sortable);
+
+            $.each(sortable, function (key, val) {
 
                 var opt =  opt = {
-                    value : val.nameUtf8,
-                    text : val.nameUtf8
+                    value : val[2],
+                    text : val[2]
                 };
 
-                self.cityImage[val.nameUtf8] = val.image;
+                self.cityImage[val[2]] = val[1];
 
-                if (selectType == 'value' && val.nameUtf8 == self.city) {
+                if (selectType == 'value' && val[2] == self.city) {
                     opt.selected = "selected";
                 }
-
                 dropCities.append( $('<option>', opt ) );
             });
             //get last destinatoin
@@ -785,22 +802,41 @@
                 var dropCities = this.setDropDownDefaultOption().dropCities();
                 this.displayWhenGo(true).attr('disabled','disabled').addClass('disabled-style');
 
+
+                var sortable = [];
+
                 $.each(this.getCityData()[region], function (k, v) {
 
                     if (typeof v === "object") {
 
                         $.each(v, function (k1, v1) {
-
-                            var opt =  opt = {
-                                value : k1,
-                                text : v1.nameUtf8
-                            };
-                            self.cityImage[k1] = v1.image;
-                            dropCities.append( $('<option>', opt ) );
+                           sortable.push([ v1['code'], v1['image'], v1['nameUtf8'] ]);
                         });
                     }
                 });
-                //get last destinatoin
+
+                sortable.sort(function(a, b) {
+
+                    if (a[2] > b[2]) {
+                        return 1;
+                    }
+                    if (a[2] < b[2]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+
+                $.each(sortable, function (key, val) {
+
+                    var opt =  opt = {
+                        value : val[2],
+                        text : val[2]
+                    };
+
+                    self.cityImage[val[2]] = val[1];
+                    dropCities.append( $('<option>', opt ) );
+                });
+
                 dropCities.append( this.getLastDestination() );
             }
         },
