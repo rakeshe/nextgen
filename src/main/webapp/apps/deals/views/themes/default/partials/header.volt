@@ -356,8 +356,8 @@
                 <div class="member-section">
                     <div class="user-id">
                         <a href="#">
-                            <p><span class="user-member user-member-name">John</span><br/>
-                                <span class="user-club-info user-club-info-card-type">Platinum Member</span></p>
+                            <p><span class="user-member user-member-name"></span><br/>
+                                <span class="user-club-info user-club-info-card-type"></span></p>
                         </a>
                     </div>
                 </div><!-- End Members -->
@@ -368,10 +368,10 @@
                     <div class="user-id">
 
                    <p><span class="user-member user-member-name">Welcome to HotelClub</span><br/>
-                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=//www.hotelclub.com/{{url}}">
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login">
                         <span class="user-club-info user-club-info-card-type">Sign in</span>
                     </a> /
-                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=//www.hotelclub.com/{{url}}">
+                       <a id="register" href="https://www.hotelclub.com/account/registration">
                            <span class="user-club-info user-club-info-card-type">Register</span>
                        </a>
                    </p>

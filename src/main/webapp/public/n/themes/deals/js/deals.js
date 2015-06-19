@@ -440,39 +440,51 @@
             } else {
                 $('.logged-out-user').show();
             }*/
+
             // Check cookie for logged in state
             var cookieset =  $.cookie('mid'); // get cookie tmid value
             //var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
-                /* Requesting the url to get members value */
                 var locale = 'en_AU';
-                var hclUrl = "https://www.hotelclub.com/?locale=" + locale;
+                var hclUrl = "http://www.hotelclub.com/";
                 //var hclUrl = "/n/logged-in.html";
-                var request = $.ajax(hclUrl);
-
-                request.done(function (msg) {
-
-                    var Mydata = $.trim(msg);
-                    /* filter the members value from Requested data*/
-                    var htmlObject = $($.parseHTML(Mydata));
-                    var welcomeText = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
-                    var loyaltyTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
-                    var loyaltyInfo = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
-                    welcomeText = welcomeText.replace('Welcome ', '');
-                    loyaltyTier = loyaltyTier.replace(':', '');
-
-                    //alert(welcomeText +'\n' + loyaltyInfo +'\n' + loyaltyTier);
-                    $('.user-member-name').html(welcomeText);
-                    $('.user-club-info-card-type').html(loyaltyTier + ' Member');
-                    $('.usr-rewards-point').html(loyaltyInfo);
-                    $('.logged-in-user').show();
+                var request = $.ajax({
+                    type : "Get",
+                    url : hclUrl,
+                    jsonp: false
                 });
+                console.log('req sent');
+                request.done(function (msg) {
+                    console.log('parsing request');
+                    var Mydata = $.trim(msg);
+                    var htmlObject = $($.parseHTML(Mydata));
+                    var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+                    var userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+                    var userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+                    userName = userName.replace('Welcome ', '');
+                    userTier = userTier.replace(':', '');
 
+                    var UserBalanceRegx = new RegExp('.*?(\\(.*\\))',["i"]);
+                    var m = UserBalanceRegx.exec(userBalance);
+                    userBalance = m[1];
+                    userBalance = userBalance.replace('(','');
+                    userBalance = userBalance.replace(')','');
+
+                    //var userBalance = htmlObject.find('.userBalance').html();
+                    //var userName = htmlObject.find('.userName').html();
+                    //var userTier = htmlObject.find('.userTier').html();
+                    $('.user-member-name').html(userName);
+                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout">Sign out</a>');
+                    $('.usr-rewards-point').html(userBalance);
+                    $('.logged-in-user').show();
+                    $('.logged-out-user').hide();
+                });
                 request.fail(function () {
                     $('.logged-out-user').show();
                 });
-
+            } else {
+                $('.logged-out-user').show();
             }
         },
 
