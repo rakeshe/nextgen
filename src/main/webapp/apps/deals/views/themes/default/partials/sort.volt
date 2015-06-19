@@ -23,7 +23,7 @@
             </li>
             <li class="sort-list">
                 <strong><a class="sort-button sort-box-picks" data-sort="ourPicks" title="Our picks">Our picks</a>
-                <span class="sort-indicator-image">&and;</span> <!-- &or; --></strong>
+                <span class="sort-indicator-image"></span> <!-- &or; --></strong>
             </li>
         </ul>
     </div>

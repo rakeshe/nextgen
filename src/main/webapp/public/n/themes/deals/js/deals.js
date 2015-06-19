@@ -445,8 +445,6 @@
             //var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
-
-
                 /* Requesting the url to get members value */
                 var locale = 'en_AU';
                 var hclUrl = "https://www.hotelclub.com/?locale=" + locale;
@@ -469,12 +467,10 @@
                     $('.user-club-info-card-type').html(loyaltyTier + ' Member');
                     $('.usr-rewards-point').html(loyaltyInfo);
                     $('.logged-in-user').show();
-
                 });
 
                 request.fail(function () {
                     $('.logged-out-user').show();
-					$('.member-info').show();
                 });
 
             }
@@ -1028,6 +1024,13 @@
             $(this).parents('.card').css('border','1px solid #d0d9d7');
         });*/
 
+        if(Deals.isLoggedIn){
+            $('.member-info').show();
+            $('.member-price-title').show();
+        } else {
+            $('.member-info').hide();
+            $('.member-price-title').hide();
+        }
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
             /**
@@ -1304,7 +1307,8 @@
                 + "&hotel.chkin="
                 + "&hotel.chkout="
 				+ "&hotel.keyword.key="
-                + "&search=Search";
+                + "&search=Find";
+                + "&hsv.showDetails=true";
 			//console.log(searchUrl);
             window.open(searchUrl, '_blank');
 			return false;
@@ -1408,6 +1412,7 @@
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
 				+ "&hotel.hname="+hotelName
+                + "&hsv.showDetails=true"
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
                 + "&hotel.chkout="+checkOut
@@ -1557,7 +1562,7 @@
         $('.sort-button').css({'font-weight': 'normal'});
         // Because our picks cannot be re-sorted
         if (self.data('sort') == 'ourPicks')
-            type = 'asc';
+            type = 'des';
         else if (order == 'des')
             type = 'asc';
         else if (order == 'asc')
@@ -1579,7 +1584,9 @@
         }
         
         $('.sort-indicator-image').remove();
-        self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+        if ($(this).data('sort') != 'ourPicks') {
+            self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+        }
         self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
 
