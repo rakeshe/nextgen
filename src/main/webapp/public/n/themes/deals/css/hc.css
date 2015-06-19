@@ -1751,9 +1751,6 @@ select {
     border-radius: 10px;
 	cursor:pointer;
 }
-.member-price-title{
-    display: none;
-}
 .member-info-desc{
 	display: none;
 	width: 200px;
