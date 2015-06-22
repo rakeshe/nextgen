@@ -15,7 +15,7 @@
             else
                 return Math.round(price - parseFloat(memberPrice));
         } else
-            return price;
+            return Math.round(price);
     }),
 
     HB.registerHelper('chString', function(val, options) {
