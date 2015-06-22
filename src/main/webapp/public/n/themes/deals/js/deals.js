@@ -1,6 +1,22 @@
 (function( $, HB ) {
 
-    var resetCounterValue = 0;
+    var resetCounterValue = 0,
+        memberPrice = '';
+
+    HB.registerHelper('displayPrice', function(price, MemberPrice) {
+        //return price;
+        var memB = parseInt(memberPrice);
+        if (! isNaN(memB) ) {
+
+            var total = price - parseFloat(memberPrice);
+
+            if (total < 0)
+                return 0;
+            else
+                return Math.round(price - parseFloat(memberPrice));
+        } else
+            return Math.round(price);
+    }),
 
     HB.registerHelper('chString', function(val, options) {
 
@@ -223,26 +239,41 @@
             this.isLoggedIn = false;
 
             $('.filter').hide();
+
             this.displayHeader();
             this.updatePromotion();
-            this.displayUserInfo();
-            //this.displayOrbot();
-            //this.displaySortBox(); //don't display in init..
-            //this.displayFilter();
-            //this.displayHotelCards();
-            //this.displayRegionHotelCards();
-            //this.displayUpsell();
-            this.displayFooter();
-            this.displayDropDownData('value');
-            this.setCityImage();
-            this.initURLUpdate();
-            this.hotelCardCtrl();
+
+            var self = this;
+            this.displayUserInfo().always(function(){
+
+                //this.displayOrbot();
+                //this.displaySortBox(); //don't display in init..
+                //this.displayFilter();
+                //this.displayHotelCards();
+                //this.displayRegionHotelCards();
+                //this.displayUpsell();
+                self.displayFooter();
+                self.displayDropDownData('value');
+                self.setCityImage();
+                self.initURLUpdate();
+                self.hotelCardCtrl();
+
+            });
+
 
 
  /*           $.get("https://www.hotelclub.com/account/login", null, function (data) {
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        setMemberBalance : function(price) {
+            this.memberBalance = price;
+        },
+
+        getMemberBalance : function() {
+            return this.memberBalance;
         },
 
         setCity : function(city) {
@@ -346,7 +377,7 @@
 
                 if ($.isEmptyObject(this.hData) === false) {
                     this.displaySortBox();
-                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
+                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn, memBalance : memberPrice});
                 } else {
                     this.displayNoHotelOrbot();
                 }
@@ -441,6 +472,8 @@
                 $('.logged-out-user').show();
             }*/
 
+            var df = $.Deferred();
+
             // Check cookie for logged in state
             var cookieset =  $.cookie('mid'); // get cookie tmid value
             //var cookieset = '266414671';  // use mine
@@ -470,6 +503,7 @@
                     userBalance = m[1];
                     userBalance = userBalance.replace('(','');
                     userBalance = userBalance.replace(')','');
+                    memberPrice = userBalance.replace('$', '');
 
                     //var userBalance = htmlObject.find('.userBalance').html();
                     //var userName = htmlObject.find('.userName').html();
@@ -479,17 +513,18 @@
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
                     $('.logged-out-user').hide();
-					$('.member-info').hide();
-					$('.member-price-title').hide();
+
+                    df.resolve();
                 });
                 request.fail(function () {
                     $('.logged-out-user').show();
-					$('.member-info').show();
-					$('.member-price-title').show();
+                    df.reject();
                 });
             } else {
                 $('.logged-out-user').show();
+                df.reject();
             }
+            return df.promise();
         },
 
         displayOrbot : function() {
@@ -1568,6 +1603,7 @@
     $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
 
         e.preventDefault(); // prevent default option
+
         var self = $(this),
             order = self.attr('data-order'),
             type = '',
@@ -1603,9 +1639,8 @@
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
         }
         self.css({'font-weight': 'bold'});
-        self.attr('data-order', type);
+        self.attr('data-order', type)
 
-		Deals.displayUserInfo();
     });
 
     $(document).on('focus', '.search-hotel-name', function() {
