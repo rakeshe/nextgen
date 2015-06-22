@@ -1,5 +1,4 @@
 <script id="hotel-card-template" type="text/x-handlebars-template">
-
     {{#each hData}}
 
     <div class="hotelcards">
@@ -7,115 +6,31 @@
         <div class="card">
             <div class="card-image">
 
-                {{#whenEqual ../isLoggedIn true}}
+                {{displayExclusiveBanner promotion ../isLoggedIn}}
 
-                    {{#whenEqual isMemberExclusive 'true'}}
-                            <div class="card-member">Member Exclusive Offer</div>
-                    {{/whenEqual}}
-
-                {{/whenEqual}}
-
-                {{#whenEqual ../isLoggedIn false}}
-
-                    {{#whenEqual isMemberExclusive 'true'}}
-                        <div class="card-non-member">Member Exclusive Offer</div>
-                    {{/whenEqual}}
-
-                {{/whenEqual}}
 				<!-- Dynamic hotel id value will be replaced here.. -->
-                <a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
+                <a href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
                     <img class="lazy card-img" data-original="{{thImgUrl}}" />
 				</a>
             </div>
             <div class="card-info">
                 <div class="hotel-name">
 					<!-- Dynamic hotel id value will be replaced here.. -->
-					<a href="http://www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">{{{trimString hotelNameUtf8 30}}}</a></div>
+					<a href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank" class="hotel-name-head">{{{trimString hotelNameUtf8 40}}}</a></div>
 				<div class="card-desc">
 					<div class="card-left">
 						<div class="star-sprite-{{starRating}}">
 						</div>
-						<p class="hotel-offer">{{marketText}}</p>
-
-                        {{#each promotion as |value index|}}
-
-                            {{#each value as |v i|}}
-
-                                {{#whenEqual ../../../isLoggedIn true}} {{#whenEqual index '0'}}
-
-                                    {{#whenEqual i 'PO'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                                <li>{{vl}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'DO'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'FN'}}
-                                        <ul class="card-feat-list">
-                                            {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'VA'}}
-                                        <ul class="card-normal-list">
-                                            {{#each v as |vl in|}}
-                                            <li>{{vl}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/whenEqual}}
-
-                                {{/whenEqual}} {{/whenEqual}}
-
-                            {{#whenEqual ../../../isLoggedIn false}} {{#whenEqual index '1'}}
-
-                                    {{#whenEqual i 'PO'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'DO'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'FN'}}
-                                    <ul class="card-feat-list">
-                                        {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-                                    {{#whenEqual i 'VA'}}
-                                    <ul class="card-normal-list">
-                                        {{#each v as |vl in|}}
-                                        <li>{{vl}}</li>
-                                        {{/each}}
-                                    </ul>
-                                    {{/whenEqual}}
-
-                            {{/whenEqual}} {{/whenEqual}}
-                            {{/each}}
-                        {{/each}}
+                        {{displayPromotions promotion ../isLoggedIn}}
 					</div>
 					<div class="card-right">
-						<div class="hotel-member">Member price
+						<div class="hotel-member">
+                            <span class="member-price-title">Member price</span>
 						&nbsp;<div class="member-q">
-							<a class="member-info">?</a>
+							<div class="member-info">?</div>
 							<div class="member-info-desc">
-								<div class="member-info-top">&nbsp;</div>
-								<div class="member-info-middle">Member info desc goes here... Member info desc goes here... Member info desc goes here... Member info desc goes here... Member info desc goes here... Member info desc goes here... Member info desc goes here... </div>
+								<div class="member-info-top"><div class="member-info-close">Close</div></div>
+								<div class="member-info-middle">Nice! Your Member Price is the price you will pay for the room after your Member Rewards and any promotions have been applied to the original room price.</div>
 								<div class="member-info-bottom">&nbsp;</div>
 							</div>
 						</div></div>
@@ -190,7 +105,7 @@
 			</div>
 			<div class="add-remove-lable"><small><span class="add-room">Add a room</span> <span class="divider-room"> | </span><span class="remove-room"> Remove this room</span></small></div>
             <div class="select-dates-row">
-                <a title="Find a room" class="select-dates-button find-btn">Find</a>
+                <div class="select-dates-footer"><input type="text" id="promo-code-val" class="select-dates-input" value="Promo code" data-value="Promo code" maxlength="30" /></div><a title="Find a room" class="select-dates-button find-btn">Find</a>
             </div><!-- End Button -->
         </div>
     </div>

@@ -1,4 +1,184 @@
 (function( $, HB ) {
+
+    var resetCounterValue = 0;
+
+    HB.registerHelper('chString', function(val, options) {
+
+        // console.log(val);
+
+        var AllowLen = 140;
+        string = '',
+            total = '';
+
+        for(var i=0; i < val.length; i++) {
+
+            var len = val[i].length;
+
+            if (val[i].length == 0)
+                continue;
+
+            total = Math.ceil( len / 20 ) * 20;
+
+            if (resetCounterValue >= AllowLen ) {
+                return '';
+            }
+
+            var totalCount = resetCounterValue = total + resetCounterValue;
+
+            if (totalCount >= AllowLen) {
+
+                var ch = totalCount - AllowLen,
+                    chChar = 20 - ch;
+
+                if (chChar > 0)
+                    string += new Handlebars.SafeString('<li>' + val[i].substring(0, chChar) + '.. </li>');
+
+            } else {
+
+                string += new Handlebars.SafeString('<li>' + val[i] + '</li>');
+
+            }
+        }
+        return string;
+    });
+
+    HB.registerHelper('isMemberExclusive', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return options.fn(this);
+        }
+    });
+
+    HB.registerHelper('displayExclusiveBanner', function(promotion, logged, options) {
+
+        if (promotion.length > 1 && logged == true) {
+            return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
+        } else if (promotion.length > 1 && logged == false) {
+            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer Available</div>');
+        }
+    });
+
+    HB.registerHelper('displayPromotions', function(promotion, logged, options) {
+
+        //console.log(promotion)
+        var TPValuesKey1 = new Array,//'<ul class="card-feat-list">',
+            VAValuesKey1 = new Array, //' <ul class="card-normal-list">',
+            TPValuesKey2 = new Array,
+            VAValuesKey2 = new Array,
+            promoLen = promotion.length,
+            isDisplay = true,
+            shortMarkTextKey1 = new Array,
+            shortMarkTextKey2 = new Array,
+            promo = JSON.parse(JSON.stringify(promotion));
+
+        if (promoLen == 2 && logged == true) {
+            var vkey = 0;
+        } else {
+            var vkey = 0;
+        }
+
+        for (var key in promo) {
+
+
+            if (promo.hasOwnProperty(key)) {
+                var obj = promo[key];
+
+                for (var prop in obj) {
+                    // important check that this is objects own property
+                    // not from prototype prop inherited
+                    if (obj.hasOwnProperty(prop)) {
+
+                        if (typeof obj[prop] == 'object') {
+                            //console.log(obj[prop]);
+                            for (var ar in obj[prop]) {
+
+                                if (key == 0) {
+
+                                    if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+
+                                        if ( undefined != obj["PO"] || null != obj["PO"] ) {
+
+                                            shortMarkTextKey1.push(obj["PO"][Object.keys(obj["PO"])[0]]); // take out first line
+                                            obj["PO"][Object.keys(obj["PO"])[0]] = null; // delete first line
+
+                                        } else if (undefined !=  obj["FN"] || null !=  obj["FN"]) {
+
+                                            shortMarkTextKey1.push(obj["FN"][Object.keys(obj["FN"])[0]]); // take out first line
+                                            obj["FN"][Object.keys(obj["FN"])[0]] = null; // delete first line
+
+                                        } else if (undefined !=  obj["DO"] || null !=  obj["DO"]) {
+
+                                            shortMarkTextKey1.push(obj["DO"][Object.keys(obj["DO"])[0]]); // take out first line
+                                            obj["DO"][Object.keys(obj["DO"])[0]] = null; // delete first line
+                                        }
+
+                                        if (obj[prop][ar] != null) {
+                                            TPValuesKey1.push(obj[prop][ar]);
+                                        }
+                                    } else if (prop == 'VA') {
+                                        VAValuesKey1.push(obj[prop][ar]);
+                                    }
+
+                                } else if (key == 1) {
+
+                                    if (prop == 'PO' || prop == 'DO' || prop == 'FN') {
+
+                                        if ( undefined != obj["PO"] || null != obj["PO"] ) {
+
+                                            shortMarkTextKey2.push(obj["PO"][Object.keys(obj["PO"])[0]]); // take out first line
+                                            obj["PO"][Object.keys(obj["PO"])[0]] = null; // delete first line
+
+                                        } else if (undefined !=  obj["FN"] || null !=  obj["FN"]) {
+
+                                            shortMarkTextKey2.push(obj["FN"][Object.keys(obj["FN"])[0]]); // take out first line
+                                            obj["FN"][Object.keys(obj["FN"])[0]] = null; // delete first line
+
+                                        } else if (undefined !=  obj["DO"] || null !=  obj["DO"]) {
+
+                                            shortMarkTextKey2.push(obj["DO"][Object.keys(obj["DO"])[0]]); // take out first line
+                                            obj["DO"][Object.keys(obj["DO"])[0]] = null; // delete first line
+                                        }
+
+                                        if (obj[prop][ar] != null) {
+                                            TPValuesKey2.push(obj[prop][ar]);
+                                            //console.log('prop =>' + prop + '=>' + vkey);
+                                            // console.log(obj["PO"][Object.keys(obj["PO"])[0]]);
+                                        }
+                                    } else if (prop == 'VA') {
+                                        VAValuesKey2.push(obj[prop][ar]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        if (logged == true && promoLen == 2) {
+
+            shortMarkTextKey2 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey2, '').replace('<li>', '').replace('</li>', '') + '</p>';
+            TPValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey2, '') +'</ul>';
+            VAValuesKey2 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(VAValuesKey2, '') + '</ul>';
+            var VAValuesKey1Var = '<ul class="card-normal-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            resetCounterValue = 0; //reset counter
+            return new Handlebars.SafeString(shortMarkTextKey2 + TPValuesKey2 + VAValuesKey2 + VAValuesKey1Var);
+
+        } else {
+
+            shortMarkTextKey1 = '<p class="hotel-offer">'+ Handlebars.helpers.chString(shortMarkTextKey1, '').replace('<li>', '').replace('</li>', '') + '</p>';
+            TPValuesKey1 = '<ul class="card-feat-list">'+ Handlebars.helpers.chString(TPValuesKey1, '') +'</ul>';
+            VAValuesKey1 = '<ul class="card-normal-list">'+ Handlebars.helpers.chString(VAValuesKey1, '') +'</ul>';
+            resetCounterValue = 0; //reset counter
+            return new Handlebars.SafeString(shortMarkTextKey1 + TPValuesKey1 + VAValuesKey1);
+        }
+    });
+
+    HB.registerHelper('resetCounter', function(val, options) {
+        resetCounterValue = 0
+    });
+
     HB.registerHelper('whenEqual', function(val1, val2, options) {
         if (val1 == val2) {
             return options.fn(this);
@@ -236,7 +416,10 @@
 
         displayUserInfo : function() {
 
-            if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
+            /**
+             * Re-enable this once member service until then use parse login
+             */
+            /*if (uInfo != 'null' && typeof $.parseJSON(uInfo) === 'object') {
 
                 this.userInfo = $.parseJSON(uInfo);
                 this.isLoggedIn = true;
@@ -254,6 +437,52 @@
                 $('.usr-rewards-point').prepend(this.userInfo.availAmount.value + ' ');
                 $('.logged-in-user').show();
 
+            } else {
+                $('.logged-out-user').show();
+            }*/
+
+            // Check cookie for logged in state
+            var cookieset =  $.cookie('mid'); // get cookie tmid value
+            //var cookieset = '266414671';  // use mine
+            if (cookieset != '' && cookieset != null) {
+                this.isLoggedIn = true;
+                var locale = 'en_AU';
+                var hclUrl = "http://www.hotelclub.com/";
+                //var hclUrl = "/n/logged-in.html";
+                var request = $.ajax({
+                    type : "Get",
+                    url : hclUrl,
+                    jsonp: false
+                });
+                console.log('req sent');
+                request.done(function (msg) {
+                    console.log('parsing request');
+                    var Mydata = $.trim(msg);
+                    var htmlObject = $($.parseHTML(Mydata));
+                    var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+                    var userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+                    var userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+                    userName = userName.replace('Welcome ', '');
+                    userTier = userTier.replace(':', '');
+
+                    var UserBalanceRegx = new RegExp('.*?(\\(.*\\))',["i"]);
+                    var m = UserBalanceRegx.exec(userBalance);
+                    userBalance = m[1];
+                    userBalance = userBalance.replace('(','');
+                    userBalance = userBalance.replace(')','');
+
+                    //var userBalance = htmlObject.find('.userBalance').html();
+                    //var userName = htmlObject.find('.userName').html();
+                    //var userTier = htmlObject.find('.userTier').html();
+                    $('.user-member-name').html(userName);
+                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout">Sign out</a>');
+                    $('.usr-rewards-point').html(userBalance);
+                    $('.logged-in-user').show();
+                    $('.logged-out-user').hide();
+                });
+                request.fail(function () {
+                    $('.logged-out-user').show();
+                });
             } else {
                 $('.logged-out-user').show();
             }
@@ -304,7 +533,7 @@
 					);
 				}
 			});//initialize the date-picker for check-out
-			
+
 			$("body").append("<div id='overlay'></div>");
 			$("#overlay")
 				.height(docHeight)
@@ -518,20 +747,37 @@
             });
 
             // display city
-            //console.log(chopArr);
-            $.each(chopArr, function (key, val) {
+            var sortable = [];
+            for (var city in chopArr)
+                sortable.push([ chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'] ]);
+
+            //console.log(sortable);
+
+            sortable.sort(function(a, b) {
+
+                if (a[2] > b[2]) {
+                    return 1;
+                }
+                if (a[2] < b[2]) {
+                    return -1;
+                }
+                return 0;
+            });
+
+           // console.log(sortable);
+
+            $.each(sortable, function (key, val) {
 
                 var opt =  opt = {
-                    value : val.nameUtf8,
-                    text : val.nameUtf8
+                    value : val[2],
+                    text : val[2]
                 };
 
-                self.cityImage[val.nameUtf8] = val.image;
+                self.cityImage[val[2]] = val[1];
 
-                if (selectType == 'value' && val.nameUtf8 == self.city) {
+                if (selectType == 'value' && val[2] == self.city) {
                     opt.selected = "selected";
                 }
-
                 dropCities.append( $('<option>', opt ) );
             });
             //get last destinatoin
@@ -564,22 +810,41 @@
                 var dropCities = this.setDropDownDefaultOption().dropCities();
                 this.displayWhenGo(true).attr('disabled','disabled').addClass('disabled-style');
 
+
+                var sortable = [];
+
                 $.each(this.getCityData()[region], function (k, v) {
 
                     if (typeof v === "object") {
 
                         $.each(v, function (k1, v1) {
-
-                            var opt =  opt = {
-                                value : k1,
-                                text : v1.nameUtf8
-                            };
-                            self.cityImage[k1] = v1.image;
-                            dropCities.append( $('<option>', opt ) );
+                           sortable.push([ v1['code'], v1['image'], v1['nameUtf8'] ]);
                         });
                     }
                 });
-                //get last destinatoin
+
+                sortable.sort(function(a, b) {
+
+                    if (a[2] > b[2]) {
+                        return 1;
+                    }
+                    if (a[2] < b[2]) {
+                        return -1;
+                    }
+                    return 0;
+                });
+
+                $.each(sortable, function (key, val) {
+
+                    var opt =  opt = {
+                        value : val[2],
+                        text : val[2]
+                    };
+
+                    self.cityImage[val[2]] = val[1];
+                    dropCities.append( $('<option>', opt ) );
+                });
+
                 dropCities.append( this.getLastDestination() );
             }
         },
@@ -747,7 +1012,11 @@
 			}
             else
                 return false;
-		}
+		},
+        /**
+         * This is from merch.js, temporary implementation until member service is fixed
+         */
+        parseLogin : function(){}
     }
 
     Deals.init();
@@ -760,14 +1029,20 @@
 
 	/*document ready*/
     $(document).ready(function(){
-
 		/*card hover design*/
-        $('.card').hover(function() {
-            $(this).css('border','1px solid #e80f1e');
+/*        $('.card-img, .hotel-name-head, .hotel-card-button').hover(function() {
+            $(this).parents('.card').css('border','1px solid #e80f1e');
         }, function () {
-            $(this).css('border','1px solid #d0d9d7');
-        });
+            $(this).parents('.card').css('border','1px solid #d0d9d7');
+        });*/
 
+        if(Deals.isLoggedIn){
+            $('.member-info').show();
+            $('.member-price-title').show();
+        } else {
+            $('.member-info').hide();
+            $('.member-price-title').hide();
+        }
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
             /**
@@ -804,6 +1079,20 @@
 		});
 		/*end drop down for language selection*/
 
+		/*promo-code-val clear data starts here*/
+		$('#promo-code-val').on('click', function() {
+            if ($(this).val() == $(this).attr('data-value')) {
+                $(this).val('');
+            }
+		});
+
+        $('#promo-code-val').on('blur', function() {
+           if ($(this).val() == '') {
+               $(this).val($(this).attr('data-value'));
+           }
+        });
+		/*promo-code-val clear data ends here*/
+
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
             /**
@@ -822,7 +1111,7 @@
 		/*end drop down for currency selection*/
 
 		/* member-info starts here.. */
-		$(".member-info").hover(function(){
+		/*$(".member-info").hover(function(){
 			//console.log($(this).next());
 			var divToShow = $(this).next();
 			divToShow.css({
@@ -830,6 +1119,17 @@
 			});
 		},function (){
 			$(".member-info-desc").hide();
+		});*/
+		$('.member-info').on('click', function() {
+			$('.member-info-desc').css('display', 'none');
+			var divToShow = $(this).next();
+			divToShow.css({
+				'display': 'block'
+			});
+		});
+		$('.member-info-close').on('click', function() {
+			console.log('Coming here...');
+			$(this).parent().parent().css('display','none');
 		});
 		/* member-info ends here.. */
 
@@ -841,7 +1141,7 @@
 			var cntVal, i;
 			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=0;i<this.value;i++){
-				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
 			//console.log(cntVal);
 			cntVal+="<div>";
@@ -889,6 +1189,7 @@
                 case 'dropdown-region' :
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
+                    $('.dropdown-cities').focus();
                     // do not reset image, keep prev image
                     //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
@@ -896,7 +1197,10 @@
                 case 'dropdown-cities' :
 
                     if (cy == ":orbot-dest") {
-
+						if($(document).width()<768){
+							window.open('//www.hotelclub.com/', '_blank');
+							return false;
+						}
                         Deals.setCity('');
                         Deals.displayOrbot();
                     } else if (dy != 0) {
@@ -904,7 +1208,7 @@
                     }
 
                     $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
-
+                    $('.dropWhereDo').focus();
                     //set city image only afer user selects last option
                     //Deals.setCityImage();
                     break;
@@ -914,9 +1218,13 @@
                     if ($(this).val() == ':robot') {
                         //initialize popup
                         //console.log($(this).val());
+                        if($(document).width()<768){
+							window.open('//www.hotelclub.com/', '_blank');
+							return false;
+						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
-                        Deals.displayOrbot();
+							Deals.displayOrbot();
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
@@ -931,6 +1239,7 @@
                     break;
             }
         });
+
     });
 
 	/*start of display child candidates*/
@@ -943,7 +1252,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 
         var child = '',
-            option = '<option value="00"><1</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
+            option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
             parentObj = $(this).parents('.modal-row'),
             dataRow = parentObj.attr('data-row');
@@ -999,6 +1308,23 @@
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
 		var browserWidth = $(window).width();
+		if(browserWidth<768){
+			//redirect to hotelclub site with the all the input value
+			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="
+                + "&locale=en_AU"
+                + "&hotel.hid="+hotelId
+				+ "&hotel.hname="+hotelName
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="
+                + "&hotel.chkout="
+				+ "&hotel.keyword.key="
+                + "&search=Find";
+                + "&hsv.showDetails=true";
+			//console.log(searchUrl);
+            window.open(searchUrl, '_blank');
+			return false;
+		}
         $('#selected-oneg').val(hotelId);
         $(".select-dates").fadeIn('slow');
 		$('.select-date-hotel-name').empty();
@@ -1060,7 +1386,11 @@
         });//initialize the date-picker for check-out
 
 		$('.select-dates-button').on('click', function (){
-			var checkIn = $('#select-check-in').val(),checkOut = $('#select-check-out').val(), roomValTemp, room = '',chlen=0;
+			var checkIn = $('#select-check-in').val(), checkOut = $('#select-check-out').val(),
+                roomValTemp, room = '',
+                chlen=0,
+                promoCodeVal = ($('#promo-code-val').val() == $('#promo-code-val').attr('data-value')) ? '' :$('#promo-code-val').val();
+
 			if (Deals.selectDateValidation() == false) {
 				return false;
 			}
@@ -1071,8 +1401,6 @@
             else if($('.room-divide3').is(":visible")){ roomValTemp = 3; }
             else if($('.room-divide2').is(":visible")){ roomValTemp = 2; }
             else if($('.room-divide1').is(":visible")){ roomValTemp = 1; }
-
-			console.log(roomValTemp);
 
 			for(var i=1;i<=roomValTemp;i++){
 				room += '&hotel.rooms%5B'+(i-1)+'%5D.adlts=' + $('#adult-input-'+i).val();
@@ -1086,12 +1414,17 @@
 			}
 
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
+			//close the select-dates popup
+			$('.select-dates').css('display','none');
+			$("#overlay").remove();
 
-			var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&hotel.couponCode="
+			//redirect to hotelclub site with the all the input value
+			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
                 + "&hotel.hid="+$('#selected-oneg').val()
-				+ "&hotel.hname="+ hotelName
+				+ "&hotel.hname="+hotelName
+                + "&hsv.showDetails=true"
                 + "&hotel.type=keyword"
                 + "&hotel.chkin="+checkIn
                 + "&hotel.chkout="+checkOut
@@ -1205,11 +1538,11 @@
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
-            promo = $("#pp-promo").val() == undefined || $("#pp-promo").val() == 'Enter code' ? '' : $("#pp-promo").val(),
+            promo = ($(".search-promo-code").val() == $(".search-promo-code").attr('data-value')) ? '' : $.trim($(".search-promo-code").val()),
             local = 'en_AU',
             cityName = $('.robot-city-name').val();
 
-        var searchUrl = "http://www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
+        var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
         + promo
         + "&locale="
         + local
@@ -1234,8 +1567,11 @@
 
         var self = $(this),
             order = self.attr('data-order'),
-            type = '';
-
+            type = '',
+            typeIcon = '',
+            desIcon = ' &or;',
+            ascIcon = ' &and;';
+        $('.sort-button').css({'font-weight': 'normal'});
         // Because our picks cannot be re-sorted
         if (self.data('sort') == 'ourPicks')
             type = 'des';
@@ -1246,6 +1582,8 @@
 
         else
             type = 'asc';
+
+        typeIcon = type == 'asc' ? ascIcon : desIcon;
 
         if ($(this).data('sort') == 'ourPicks') {
             Deals.sortByNumber('sortOrder', type);
@@ -1258,9 +1596,40 @@
         }
         
         $('.sort-indicator-image').remove();
-        self.append(' <img class="sort-indicator-image" src="/n/themes/deals/images/assets/' + type + '-arrow-purple.png" />');
+        if ($(this).data('sort') != 'ourPicks') {
+            self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+        }
+        self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
 
+    });
+
+    $(document).on('focus', '.search-hotel-name', function() {
+
+        if ($(this).val() == $(this).attr('data-value')) {
+            $(this).val('');
+        }
+    });
+
+    $(document).on('blur', '.search-hotel-name', function() {
+
+        if ($(this).val() == '') {
+            $(this).val($(this).attr('data-value'));
+        }
+    });
+
+    $(document).on('focus', '.search-promo-code', function() {
+
+        if ($(this).val() == $(this).attr('data-value')) {
+            $(this).val('');
+        }
+    });
+
+    $(document).on('blur', '.search-promo-code', function() {
+
+        if ($(this).val() == '') {
+            $(this).val($(this).attr('data-value'));
+        }
     });
 
 	/*function to calculate and display the date difference*/
@@ -1286,7 +1655,7 @@
 			var cntVal, i;
 			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
 			for(i=1;i<=roomChildVal;i++){
-				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
+				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
 			cntVal+="<div>";
 			$(".room-"+roomChild).append(cntVal).html();
@@ -1299,14 +1668,18 @@
 
     /** decide thi sis UAT **/
 	function selectDateScroll(val, roomVal){
-		var selectHeight = $('.select-dates').height();
-		if(val=='add'&&roomVal>=3){
-			$('.select-dates').css({
-				'height': '500px',
+        var thisHeight =$('.room-divide1').css('height');
+		var selectHeight = $('.room-divide1').height();
+		if(val=='add'&&roomVal>2){
+			$('.room-divide1').css({
+				'height': thisHeight,
 				'overflow-y': 'scroll'
 			});
-		}else if(val=='remove'&&roomVal<=3){
-			$('.select-dates').attr('style','height:auto;position:fixed;top:6%;left:34%;display:block;z-index:999');		
+		}else if(val=='remove'&&roomVal<3){
+			$('.select-dates').attr('style','height:auto;position:fixed;top:6%;left:34%;display:block;z-index:999');
+            $('.room-divide1').css({
+                'height': 'auto'
+            });
 		}
 	}//selectDateScroll
 })(jQuery, Handlebars);

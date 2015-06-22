@@ -470,6 +470,7 @@ select {
 #alt-check-in, #alt-check-out{
 	color: #999999;
     margin-left: 5px;
+	width: 45% !important;
 }
 
 /* Date selector pop up */
@@ -507,15 +508,11 @@ select {
         margin-right:10%;
     }
     .select-dates {
-        background-color:#d6dddc;
         width:65% !important;
         /*width:100%;*/
         float:left;
         margin-left:0px;
     }
-	.select-label-val{
-		background-color:#d6dddc;
-	}
 }
 .select-dates-container {
 	margin:16px;
@@ -543,7 +540,7 @@ select {
 .select-dates-row {
 	float:left;
 	width:100%;
-	/*margin-bottom:16px;*/
+	margin-top:10px;
 }
 .select-dates-in-out {
 	float:left;
@@ -727,6 +724,14 @@ select {
     -moz-border-radius: 32px;
     border-radius: 32px;
 }
+.select-dates-footer{
+	float:left;
+	width:50%;
+}
+#promo-code-val{
+	width; 50% !important;
+	 background:none !important;
+}
 .find-btn{
 	margin-bottom:20px;
 	cursor:pointer;
@@ -734,9 +739,6 @@ select {
 @media (max-width: 768px) {
     .select-dates-button {
         width:45%;
-    }
-    .modal-box {
-        width:60% !important;
     }
 }
 /* Modal - Message pop up */
@@ -766,7 +768,7 @@ select {
     left:0%;
     width: 100%;
     margin-bottom: 20px;
-    height: 360px;
+    /*height: 360px;*/
 }
 .parentDisable{
     position:fixed;
@@ -781,9 +783,6 @@ select {
 @media (max-width: 768px) {
     .modal-wrapper {
         float:left;
-        width:80%;
-        margin-left:10%;
-        margin-right:10%;
         background-image:url(../images/assets/modal-box-arrow.png);
         background-repeat:no-repeat;
         background-position:bottom center;
@@ -1381,12 +1380,12 @@ select {
     width:15px;
     height:14px;
     text-indent:-9999px;
-    background-image:url(../images/assets/rating-sprite.png);
+    background-image:url(../images/assets/rating-sprite.png?20015);
     background-position:0px 0px;
     background-repeat:no-repeat;
 }
 .star-search li:hover {
-    background-image:url(../images/assets/rating-sprite.png);
+    background-image:url(../images/assets/rating-sprite.png?20015);
     background-position:0px -14px;
     background-repeat:no-repeat;
 }
@@ -1589,7 +1588,7 @@ select {
 .star-sprite-1 {
     width:75px;
     height:14px;
-    background:url(../images/assets/star-sprite.png);
+    background:url(../images/assets/star-sprite.png?20015);
     background-repeat:no-repeat;
     background-position:0px 0px;
     margin-bottom:18px;
@@ -1597,7 +1596,7 @@ select {
 .star-sprite-2 {
     width:75px;
     height:14px;
-    background:url(../images/assets/star-sprite.png);
+    background:url(../images/assets/star-sprite.png?20015);
     background-repeat:no-repeat;
     background-position:0px -14px;
     margin-bottom:18px;
@@ -1605,7 +1604,7 @@ select {
 .star-sprite-3 {
     width:75px;
     height:14px;
-    background:url(../images/assets/star-sprite.png);
+    background:url(../images/assets/star-sprite.png?20015);
     background-repeat:no-repeat;
     background-position:0px -28px;
     margin-bottom:18px;
@@ -1613,7 +1612,7 @@ select {
 .star-sprite-4 {
     width:75px;
     height:14px;
-    background:url(../images/assets/star-sprite.png);
+    background:url(../images/assets/star-sprite.png?20015);
     background-repeat:no-repeat;
     background-position:0px -42px;
     margin-bottom:18px;
@@ -1621,7 +1620,7 @@ select {
 .star-sprite-5 {
     width:75px;
     height:14px;
-    background:url(../images/assets/star-sprite.png);
+    background:url(../images/assets/star-sprite.png?20015);
     background-repeat:no-repeat;
     background-position:0px -56px;
     margin-bottom:18px;
@@ -1651,9 +1650,10 @@ select {
     margin:0px;
     padding-left:18px;
     list-style-image:url(../images/assets/list-cross-gray-new.png);
-    font-size:16px;
+    font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    line-height: 19px;
 }
 .hotel-offer {
     font-size:16px;
@@ -1733,10 +1733,17 @@ select {
 .member-q {
     display:block;
     float:right;
-    width:12px;
-    height:12px;
     text-align:center;
     font-size:9px;
+}
+.member-q a {
+    color:#FFF;
+    text-decoration:none;
+}
+.member-info{
+	display:none;
+    width:12px;
+    height:12px;
     background-color:#999;
     color:#FFF;
     -webkit-border-radius: 10px;
@@ -1744,16 +1751,12 @@ select {
     border-radius: 10px;
 	cursor:pointer;
 }
-.member-q a {
-    color:#FFF;
-    text-decoration:none;
-}
 .member-info-desc{
 	display: none;
 	width: 200px;
 	z-index: 9999;
 	position: absolute;
-	margin: -30px 0 0 15px;
+	margin: -33px 0 0 12px;
 	color: #000;
 	text-align: left;
 	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
@@ -1761,24 +1764,36 @@ select {
     font-size: 13px;
 }
 .member-info-top{
-	width:250px;
+	width:296px;
 	background-image: url("../images/assets/top.png");
 	background-repeat: no-repeat;
 	height:46px;
+	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
+    font-size: 12px;
+}
+.member-info-close{
+	width:95%;
+	text-align: right;
+	padding-top:15px;
+	text-decoration: underline;
+	cursor:pointer;
 }
 .member-info-middle{
-	width:230px;
+	width:244px;
 	background-image: url("../images/assets/middle.png");
 	background-repeat: repeat-y;
-	padding: 0 20px 0 40px;
-	margin-top:-10px;
+	padding: 0 0 10px 50px;
+	margin: -3px 0 0 2px;
 	height:auto;
+	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
+    font-size: 12px;
 }
 .member-info-bottom{
-	width:250px;
+	width:291px;
 	background-image: url("../images/assets/bottom.png");
 	background-repeat: no-repeat;
 	height:auto;
+	margin-left: 4px;
 }
 /* DESTINATIONS */
 .destination {
@@ -1905,7 +1920,7 @@ select {
 }
 
 .social-links li {
-    float:left;
+    float:right;
     padding-right:10px;
     padding-top:12px;
 }
@@ -2019,11 +2034,11 @@ select {
     border-radius: 5px;
 	/*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
 }
-.ui-datepicker-prev:hover{	
+.ui-datepicker-prev{
 	background-image: url("../images/assets/prev.png") !important;
 	background-repeat: no-repeat;
 }
-.ui-datepicker-next:hover{	
+.ui-datepicker-next{
 	background-image: url("../images/assets/next.png") !important;
 	background-repeat: no-repeat;
 }

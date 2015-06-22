@@ -2,7 +2,7 @@
     <!-- Navigation -->
     <div class="row">
         <!-- Logo  -->
-        <a href="http://www.hotelclub.com" title="HotelClub">
+        <a href="//www.hotelclub.com" title="HotelClub" target="_blank">
             <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo"/>
         </a>
         <!-- End Logo -->
@@ -14,7 +14,7 @@
 			<div class="locale-section">
 				<div class="club-id">
 					<div class="locale-drop-down-arrow">
-						<a href="#">
+						<a href="#" style="pointer-events: none;cursor: default;">
 							<span class="user-club-info">
 								<img src="/n/themes/deals/images/assets/blank.gif" class="flag flag-au" alt="Australia" />
 							</span>
@@ -356,8 +356,8 @@
                 <div class="member-section">
                     <div class="user-id">
                         <a href="#">
-                            <p><span class="user-member user-member-name">John</span><br/>
-                                <span class="user-club-info user-club-info-card-type">Platinum Member</span></p>
+                            <p><span class="user-member user-member-name"></span><br/>
+                                <span class="user-club-info user-club-info-card-type"></span></p>
                         </a>
                     </div>
                 </div><!-- End Members -->
@@ -368,10 +368,10 @@
                     <div class="user-id">
 
                    <p><span class="user-member user-member-name">Welcome to HotelClub</span><br/>
-                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://qa1.hclubtest.com/{{url}}">
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login">
                         <span class="user-club-info user-club-info-card-type">Sign in</span>
                     </a> /
-                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://qa1.hclubtest.com/{{url}}">
+                       <a id="register" href="https://www.hotelclub.com/account/registration">
                            <span class="user-club-info user-club-info-card-type">Register</span>
                        </a>
                    </p>
@@ -391,7 +391,7 @@
 
     <div class="row search-sale-box">
         <div class="row find-your">
-            <h2>Save up to 50% on hotels worldwide + get member extras like free upgrades and wifi</h2>
+            <h2>Save up to 60% on hotels worldwide + get member extras like free upgrades and wifi</h2>
         </div>
         <div class="row">
             <div class="four columns">

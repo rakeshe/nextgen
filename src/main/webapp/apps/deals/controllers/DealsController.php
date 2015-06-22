@@ -45,9 +45,11 @@ class DealsController extends ControllerBase {
         $this->init();
 
         if ($this->request->isPost() && $this->request->isAjax()) {
-
-            $hotelData = $this->model->getHotels($this->request->getPost('region', 'string'),
-                $this->request->getPost('city', 'string'));
+            $hotelData = $this->model->getHotels(
+                $this->request->getPost('region', 'string'),
+                $this->request->getPost('city', 'string'),
+                $this->request->getPost('when', 'string')
+            );
 
             die($hotelData);
         }
@@ -107,10 +109,9 @@ class DealsController extends ControllerBase {
 
 
         //if exists and should be validated
-
-        if (isset($this->dispatcher->getParams()[1]))
+        if (isset($this->dispatcher->getParams()[1])) {
             $this->when = $this->dispatcher->getParams()[1];
-        else {
+        } else {
             $this->when = self::DEFAULT_WHEN;
             $this->appendURL .= (NULL !== $this->appendURL) ? '/' . self::DEFAULT_WHEN
                                     : self::DEFAULT_WHEN;
@@ -146,7 +147,7 @@ class DealsController extends ControllerBase {
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
                 'url'                 => self::DEFAULT_URL,
-                'hData'               => $this->model->getHotels('', $this->city),
+                'hData'               => $this->model->getHotels('', $this->city, $this->when),
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())

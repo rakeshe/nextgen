@@ -811,7 +811,7 @@ select {
 }
 .social-links {	
 	ul {}
-	li { @include upsell-val(0, left, "12px 10px 0 0");	} 
+	li { @include upsell-val(0, right, "12px 10px 0 0");	}
 }
 .subscribe {
 	float:left;
