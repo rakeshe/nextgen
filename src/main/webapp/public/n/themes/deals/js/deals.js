@@ -544,17 +544,13 @@
                     $('.user-member-name').html(userName);
                     $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
-                    $('.logged-in-user').show();
-                    $('.logged-out-user').hide();
 
                     df.resolve();
                 });
                 request.fail(function () {
-                    $('.logged-out-user').show();
                     df.reject();
                 });
             } else {
-                $('.logged-out-user').show();
                 df.reject();
             }
             return df.promise();
@@ -1192,15 +1188,19 @@
 		},function (){
 			$(".member-info-desc").hide();
 		});*/
-		$('.member-info').on('click', function() {
-			$('.member-info-desc').css('display', 'none');
-			var divToShow = $(this).next();
-			divToShow.css({
-				'display': 'block'
-			});
+		$(document).on('click', '.member-info', function() {
+
+            if ($(this).next().css('display') == 'none') {
+                $('.member-info-desc').css('display', 'none');
+                var divToShow = $(this).next();
+                divToShow.css({
+                    'display': 'block'
+                });
+            } else {
+                $(this).next().css('display','none');
+            }
 		});
-		$('.member-info-close').on('click', function() {
-			console.log('Coming here...');
+        $(document).on('click','.member-info-close', function() {
 			$(this).parent().parent().css('display','none');
 		});
 		/* member-info ends here.. */

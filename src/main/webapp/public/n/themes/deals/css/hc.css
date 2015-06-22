@@ -1741,7 +1741,6 @@ select {
     text-decoration:none;
 }
 .member-info{
-	display:none;
     width:12px;
     height:12px;
     background-color:#999;
