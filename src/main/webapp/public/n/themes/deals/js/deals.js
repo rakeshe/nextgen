@@ -238,6 +238,9 @@
 
             this.isLoggedIn = false;
 
+            this.setSortBy(sBy);
+            this.setSortType(sTy);
+
             $('.filter').hide();
 
             this.displayHeader();
@@ -266,6 +269,14 @@
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        setSortBy : function(sBy) {
+            this.sortBy = sBy
+        },
+
+        setSortType : function(sTy) {
+            this.sortType = sTy
         },
 
         setMemberBalance : function(price) {
@@ -376,8 +387,30 @@
             } else {
 
                 if ($.isEmptyObject(this.hData) === false) {
-                    this.displaySortBox();
-                    this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn, memBalance : memberPrice});
+
+                     this.displaySortBox();
+
+                     if (this.sortBy == 'ourPicks') {
+                        Deals.sortByNumber('sortOrder', 'des');
+                     } else if (this.sortBy == 'price') {
+                        Deals.sortByNumber('price', this.sortType);
+                     } else if (this.sortBy == 'name') {
+                        Deals.sortByText('hotelNameUtf8', this.sortType);
+                     } else if (this.sortBy == 'rating') {
+                        Deals.sortByNumber('starRating', this.sortType);
+                     }
+
+                    var desIcon = ' &or;',
+                        ascIcon = ' &and;',
+                        typeIcon = this.sortType == 'asc' ? ascIcon : desIcon;
+                    $('.sort-button').css({'font-weight': 'normal'});
+
+                    if (this.sortBy != 'ourPicks')
+                        $('a[data-sort="'+this.sortBy+'"]').append($('<span class="sort-indicator-image">' + typeIcon + '</span>'))
+                            .attr('data-order', this.sortType );
+
+                    $('a[data-sort="'+this.sortBy+'"]').css({'font-weight': 'bold'});
+                    //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn, memBalance : memberPrice});
                 } else {
                     this.displayNoHotelOrbot();
                 }
@@ -913,7 +946,7 @@
                     return b[fName] - a[fName];
                 }
             });
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
         },
 
         sortByText : function(fName, type) {
@@ -948,7 +981,7 @@
 
             });
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
         },
 
         orbotValidation : function() {
@@ -1640,6 +1673,11 @@
         }
         self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
+
+        var url = window.location.origin + '/' + MNME + '/' + Deals.city + '/' + Deals.when + '?sort='+$(this).data('sort')+'&type='+type;
+        if ( url !== window.location.href ) {
+            history.pushState({url: url}, Deals.city + ' Hotels', url);
+        }
 
     });
 

@@ -1,5 +1,5 @@
 <script> var cData = '{{cityData}}', hData = '{{hData}}', uInfo = '{{userInfo}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}';
-var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}';
+var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}', sBy = '{{sortBy}}', sTy = '{{sortType}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->

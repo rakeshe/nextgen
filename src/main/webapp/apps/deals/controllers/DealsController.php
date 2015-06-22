@@ -40,6 +40,10 @@ class DealsController extends ControllerBase {
 
     private $userInfo;
 
+    private $sortBy;
+
+    private $sortType;
+
     public function initialize() {
 
         $this->init();
@@ -125,6 +129,20 @@ class DealsController extends ControllerBase {
         }
 
         //$this->userId = 123;
+
+        if ($this->request->get('sort','string') != NULL &&
+            in_array($this->request->get('sort','string'), (array) $this->config->sortBy)) {
+            $this->sortBy = $this->request->get('sort','string');
+
+        } else {
+            $this->sortBy = end($this->config->sortBy);
+        }
+
+        if ($this->request->get('type','string') !== NULL && $this->request->get('type','string') == 'des') {
+            $this->sortType = 'des';
+        } else {
+            $this->sortType = 'asc';
+        }
     }
 
     public function indexAction() {
@@ -156,7 +174,9 @@ class DealsController extends ControllerBase {
                 'clubPromotion'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
                 'pmPromotion'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
                 'docFooterSeo'        => $docFooterSeo->html,
-                'docFooterAbout'      => $docFooterAbout->html
+                'docFooterAbout'      => $docFooterAbout->html,
+                'sortBy'              => $this->sortBy,
+                'sortType'            => $this->sortType,
             ]
         );
 

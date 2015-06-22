@@ -119,5 +119,12 @@ return new \Phalcon\Config ([
                     'placeholder' => 'yyyy-mm-dd'
                 ]
             ]
-        ]
+        ],
+
+   'sortBy' => [
+       'price',
+       'name',
+       'rating',
+       'ourPicks'
+   ]
 ]);
