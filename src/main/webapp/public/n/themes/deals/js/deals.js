@@ -1,7 +1,7 @@
 (function( $, HB ) {
 
     var resetCounterValue = 0,
-        memberPrice = '';
+        memberPrice = 0;
 
     HB.registerHelper('displayPrice', function(price, MemberPrice) {
         //return price;
@@ -522,7 +522,7 @@
                 });
                 console.log('req sent');
                 request.done(function (msg) {
-                    console.log('parsing request');
+
                     var Mydata = $.trim(msg);
                     var htmlObject = $($.parseHTML(Mydata));
                     var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
@@ -544,6 +544,7 @@
                     $('.user-member-name').html(userName);
                     $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
+                    $('.logged-in-user').show();
 
                     df.resolve();
                 });
@@ -927,6 +928,8 @@
         },
 
         sortByNumber : function(fName, type) {
+
+            console.log(Deals.isLoggedIn);
 
             var newArr = Array();
 
