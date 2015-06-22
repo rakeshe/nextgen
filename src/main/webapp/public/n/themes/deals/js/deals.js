@@ -1075,13 +1075,13 @@
             $(this).parents('.card').css('border','1px solid #d0d9d7');
         });*/
 
-        if(Deals.isLoggedIn){
+        /*if(Deals.isLoggedIn){
             $('.member-info').show();
             $('.member-price-title').show();
         } else {
             $('.member-info').hide();
             $('.member-price-title').hide();
-        }
+        }*/
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
             /**
