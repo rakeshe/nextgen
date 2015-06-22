@@ -479,9 +479,13 @@
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
                     $('.logged-out-user').hide();
+					$('.member-info').hide();
+					$('.member-price-title').hide();
                 });
                 request.fail(function () {
                     $('.logged-out-user').show();
+					$('.member-info').show();
+					$('.member-price-title').show();
                 });
             } else {
                 $('.logged-out-user').show();
@@ -1036,13 +1040,13 @@
             $(this).parents('.card').css('border','1px solid #d0d9d7');
         });*/
 
-        if(Deals.isLoggedIn){
+        /*if(Deals.isLoggedIn){
             $('.member-info').show();
             $('.member-price-title').show();
         } else {
             $('.member-info').hide();
             $('.member-price-title').hide();
-        }
+        }*/
 		/*drop down for language selection*/
 		$(".club-id .locale-drop-down-arrow").click(function() {
             /**
@@ -1564,7 +1568,6 @@
     $(document).on('click','.sort-box-price, .sort-box-name, .sort-box-rating, .sort-box-picks', function(e) {
 
         e.preventDefault(); // prevent default option
-
         var self = $(this),
             order = self.attr('data-order'),
             type = '',
@@ -1600,8 +1603,9 @@
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
         }
         self.css({'font-weight': 'bold'});
-        self.attr('data-order', type)
+        self.attr('data-order', type);
 
+		Deals.displayUserInfo();
     });
 
     $(document).on('focus', '.search-hotel-name', function() {
