@@ -39,14 +39,16 @@
             },
             finish: function (dcs, options) {
                 dcs.dcsCleanUp("DCSext.pos", dcs.DCSext['pos']);
-                dcs.dcsVar();
+
+                if(typeof dcs.dcsVar === 'function')
+                    dcs.dcsVar();
             }
         });
     };
     (function () {
         var s = document.createElement("script");
         s.async = true;
-        s.src = "/n/themes/common/js/webtrends.min.js";
+        s.src = "/n/themes/common/js/webtrends.min.js?2-1-1";
         var s2 = document.getElementsByTagName("script")[0];
         s2.parentNode.insertBefore(s, s2);
     }());
