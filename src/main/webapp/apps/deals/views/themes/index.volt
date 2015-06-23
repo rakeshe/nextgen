@@ -23,6 +23,7 @@
 
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="fragment" content="!">
         <meta name="robots" content="index, follow">
@@ -42,7 +43,7 @@
         {{ partial(theme ~ '/partials/filter') }}
         {{ partial(theme ~ '/partials/hotelCard') }}
         {{ partial(theme ~ '/partials/upsell') }}
-        {{ partial(theme ~ '/partials/regionHotelCard') }}
+      {#  {{ partial(theme ~ '/partials/regionHotelCard') }} #}
         {{ partial(theme ~ '/partials/footer') }}
 
         {{ javascript_include('themes/deals/js/jquery.js?' ~ appVersion ) }}
