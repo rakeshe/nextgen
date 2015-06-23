@@ -39,7 +39,9 @@
             },
             finish: function (dcs, options) {
                 dcs.dcsCleanUp("DCSext.pos", dcs.DCSext['pos']);
-                dcs.dcsVar();
+
+                if(typeof dcs.dcsVar === 'function')
+                    dcs.dcsVar();
             }
         });
     };
