@@ -23,7 +23,7 @@ var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}', sBy = '{{sortB
                         <img src="/n/themes/deals/images/assets/plus-cross.png" class="hero-cross"/>
                     </div>
                     <div class="six columns">
-                        <img src="" class="promo-two-img" style="float:right; padding-left:24px; padding-right:24px;"/>
+                        <img src="" class="promo-two-img" style="float:right; padding-left:0px; padding-right:0px;"/>
                         <p class="hero-text-title promo-two-title"></p>
                         <p class="hero-text-body promo-two-dody"></p>
                     </div>
