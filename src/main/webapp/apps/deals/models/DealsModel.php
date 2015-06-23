@@ -89,7 +89,7 @@ class DealsModel extends \Phalcon\Mvc\Model
                     $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
                 }
             }
-            $data = null == $data ? '{}' : $data;
+            $data = null == $data ? '{}' : str_replace("'", "&#39;", $data);
             /*$cityName = strtolower(str_replace([' ',',','\''], '_', $city));
             $dataFile = $cityName.'.json';
             $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
