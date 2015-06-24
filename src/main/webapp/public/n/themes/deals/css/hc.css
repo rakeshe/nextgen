@@ -1105,7 +1105,7 @@ select {
 
 /* HERO */
 .hero {
-    background-image:url(http://www.hotelclub.com/n/themes/common/img/locations/509_sydney_01_desktop.jpg);
+    background-image:url(../../common/img/locations/509_sydney_01_desktop.jpg);
     background-position:center;
     background-size:cover;
 }
