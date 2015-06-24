@@ -104,21 +104,22 @@ class DealsController extends ControllerBase {
         //var_dump($this->request->get()); exit;
 
         //if exists and should be validated
-        if (isset($this->dispatcher->getParams()[0]))
-            $this->city = $this->dispatcher->getParams()[0];
-        else {
+        if (isset($this->dispatcher->getParams()[0])) {
+            $this->city = str_replace('#','',$this->dispatcher->getParams()[0]);
+            $this->appendURL .= $this->city . '/';
+        } else {
             $this->city = self::DEFAULT_CITY;
-            $this->appendURL .= self::DEFAULT_CITY;
+            $this->appendURL .= self::DEFAULT_CITY . '/';
         }
 
 
         //if exists and should be validated
         if (isset($this->dispatcher->getParams()[1])) {
             $this->when = $this->dispatcher->getParams()[1];
+            $this->appendURL .= $this->when;
         } else {
             $this->when = self::DEFAULT_WHEN;
-            $this->appendURL .= (NULL !== $this->appendURL) ? '/' . self::DEFAULT_WHEN
-                                    : self::DEFAULT_WHEN;
+            $this->appendURL .= self::DEFAULT_WHEN;
         }
 
         if (isset($this->request->get()['sort']))
