@@ -1,7 +1,8 @@
 (function( $, HB ) {
 
     var resetCounterValue = 0,
-        memberPrice = 0;
+        memberPrice = 0,
+        manualState = true;
 
     HB.registerHelper('displayPrice', function(price, MemberPrice) {
         //return price;
@@ -306,15 +307,17 @@
         initURLUpdate : function () {
 
             if (apnd != '') {
-                var curl = window.location.href, url = '';
+                var host = window.location.protocol +'//'+ window.location.hostname,
+                    curl = host + '/' + MNME,
+                    url = '';
 
                 if (curl[curl.length -1] !== undefined && curl[curl.length -1] == '/') {
-                    url = window.location.href + apnd;
+                    url = curl + apnd;
                 } else {
-                    url = window.location.href + '/' + apnd;
+                    url = curl + '/' + apnd;
                 }
-
-                history.pushState({url: url}, ' Hotels', url);
+                manualState = false;
+                History.pushState({url: url}, ' Hotels', url);
             }
         },
 
@@ -344,9 +347,11 @@
 
                 if(typeof obj == 'object') {
 
-                    var url = window.location.origin + '/' + MNME + '/' + obj.city + '/' + obj.when;
+                    var host = window.location.protocol +'//'+ window.location.hostname,
+                        url = host + '/' + MNME + '/' + obj.city + '/' + obj.when;
                     if ( url !== window.location.href ) {
-                        history.pushState({url: url}, obj.city + ' Hotels', url);
+                        manualState = false
+                        History.pushState({url: url}, obj.city + ' Hotels', url);
                     }
                 }
                 this[ctrl](obj);
@@ -929,8 +934,6 @@
 
         sortByNumber : function(fName, type) {
 
-            console.log(Deals.isLoggedIn);
-
             var newArr = Array();
 
             $.each(this.hData, function (key, val) {
@@ -1243,6 +1246,22 @@
                     }
                 });
             }, 0);
+        });
+
+        // Bind to StateChange Event
+        History.Adapter.bind(window, 'statechange', function() {
+
+            var State = History.getState();
+            if (State && manualState == true) {
+                var urlArr = State.cleanUrl.split( '/' );
+                    when = urlArr[ urlArr.length -1 ],
+                    city = urlArr[ urlArr.length -2 ];
+                Deals.route( {region : '', city : city, when: when, dropDownRefresh : true}, 'hotelCardCtrl' );
+
+            } else {
+                //Deals.defaultCtrl( '' );
+            }
+            manualState = true;
         });
 
         //remove default select option
@@ -1661,6 +1680,7 @@
         typeIcon = type == 'asc' ? ascIcon : desIcon;
 
         if ($(this).data('sort') == 'ourPicks') {
+            console.log('working..');
             Deals.sortByNumber('sortOrder', type);
         } else if ($(this).data('sort') == 'price') {
             Deals.sortByNumber('price', type);
@@ -1677,9 +1697,13 @@
         self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
 
-        var url = window.location.origin + '/' + MNME + '/' + Deals.city + '/' + Deals.when + '?sort='+$(this).data('sort')+'&type='+type;
+        //var url = window.location.origin + '/' + MNME + '/' + Deals.city + '/' + Deals.when + '?sort='+$(this).data('sort')+'&type='+type;
+        var host = window.location.protocol +'//'+ window.location.hostname,
+            url = host + '/' + MNME + '/' + Deals.city + '/' + Deals.when + '?sort='+$(this).data('sort')+'&type='+type;
+        //console.log(url);
         if ( url !== window.location.href ) {
-            history.pushState({url: url}, Deals.city + ' Hotels', url);
+            manualState = false;
+            History.pushState({url: url}, Deals.city + ' Hotels', url);
         }
 
     });
