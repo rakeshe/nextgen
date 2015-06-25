@@ -567,7 +567,6 @@
                     url : hclUrl,
                     jsonp: false
                 });
-                console.log('req sent');
                 request.done(function (msg) {
 
                     var Mydata = $.trim(msg);
@@ -598,8 +597,13 @@
                 request.fail(function () {
                     df.reject();
                 });
+                $('.logged-in-user').show();
+                $('.logged-out-user').hide();
+
             } else {
                 df.reject();
+                $('.logged-in-user').hide();
+                $('.logged-out-user').show();
             }
             return df.promise();
         },
