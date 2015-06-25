@@ -921,7 +921,7 @@
         displayDropDownCity : function(region) {
 
             //console.log(typeof this.getCityData()[region] == "object");
-
+            if(undefined === self.cityImage || null === self.cityImage ) self.cityImage = '';
             if (typeof this.getCityData()[region] == "object") {
 
                 this.cityImage.length = 0;
@@ -960,7 +960,6 @@
                         value : val[2],
                         text : val[2]
                     };
-                    if(undefined === self.cityImage || null === self.cityImage ) self.cityImage = [];
                     self.cityImage[val[2]] = val[1];
                     dropCities.append( $('<option>', opt ) );
                 });
