@@ -1774,7 +1774,7 @@ select {
 }
 .member-info-top{
 	width:296px;
-	background-image: url("../images/assets/top.png");
+	background-image: url("../images/assets/top.png?2-1-1");
 	background-repeat: no-repeat;
 	height:46px;
 	font-family: 'museo_sans300',Verdana, Geneva, sans-serif;
@@ -1789,7 +1789,7 @@ select {
 }
 .member-info-middle{
 	width:244px;
-	background-image: url("../images/assets/middle.png");
+	background-image: url("../images/assets/middle.png?2-1-1");
 	background-repeat: repeat-y;
 	padding: 0 0 10px 50px;
 	margin: -3px 0 0 2px;
@@ -1799,7 +1799,7 @@ select {
 }
 .member-info-bottom{
 	width:291px;
-	background-image: url("../images/assets/bottom.png");
+	background-image: url("../images/assets/bottom.png?2-1-1");
 	background-repeat: no-repeat;
 	height:auto;
 	margin-left: 4px;
