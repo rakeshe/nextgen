@@ -1359,14 +1359,15 @@
     });
 
 	$(document).on('click','.orbot-remove-rooms', function(){
-		var i = $('.orbot-select-rooms').parent().prev().attr('data-row');
-		$('.orbot-select-rooms').parent().prev().attr('class'), $('.orbot-select-rooms').parent().prev().remove();
+		var i = $('.orbot-select-rooms').parent().prev().children(':last-child').attr('data-row');
+		$('.orbot-select-rooms').parent().prev().children(':last-child').attr('class'), $('.orbot-select-rooms').parent().prev().children(':last-child').remove();
 
 		if((i-1)<=5){ $('.orbot-select-rooms, .orbot-divider').css('display', 'block'); }		
-		if((i)==2){ $('.orbot-remove-rooms, .orbot-divider').css('display', 'none'); }
+		if(i==2){ $('.orbot-remove-rooms, .orbot-divider').css('display', 'none'); }
+		selectExactDateScroll('remove', i);
 	});
     $(document).on('click', '.orbot-select-rooms', function() {
-		var i = parseInt($('.orbot-select-rooms').parent().prev().attr('data-row'));
+		var i = parseInt($('.orbot-select-rooms').parent().prev().children(':last-child').attr('data-row'));
         var child = '',
             parentObj = $(this).parents('.modal-row'),
             optionChild = '<option>--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
@@ -1387,10 +1388,11 @@
 
             child += '</div></div>';
 
-		$('.orbot-select-rooms').parent().parent().prev().attr('data-row', (i+1));
-		$('.orbot-select-rooms').parent().before( child );
+		$('.orbot-select-rooms').parent().parent().prev().children(':last-child').attr('data-row', (i+1));
+		$('.orbot-select-rooms').parent().prev().children(':last-child').after( child );
 		if(i>=1){ $('.orbot-remove-rooms, .orbot-divider').css('display', 'block'); }
 		if((i+1)>=5){ $('.orbot-select-rooms, .orbot-divider').css('display', 'none'); }
+		selectExactDateScroll('add', (i+1));
     });
 
     /*display popup - on date selection starts here*/
@@ -1765,19 +1767,36 @@
 	/*overfolow for select dates exceeds more than 3 rooms*/
 
     /** decide thi sis UAT **/
-	function selectDateScroll(val, roomVal){
-        var thisHeight =$('.room-divide1').css('height');
+	function selectDateScroll(roomAction, roomVal){
+        var thisHeight = $('.room-divide1').css('height');
 		var selectHeight = $('.room-divide1').height();
-		if(val=='add'&&roomVal>2){
+		if(roomAction=='add'&&roomVal>2){
 			$('.room-divide1').css({
 				'height': thisHeight,
 				'overflow-y': 'scroll'
 			});
-		}else if(val=='remove'&&roomVal<3){
+		}else if(roomAction=='remove'&&roomVal<3){
 			$('.select-dates').attr('style','height:auto;position:fixed;top:6%;left:34%;display:block;z-index:999');
             $('.room-divide1').css({
                 'height': 'auto'
             });
 		}
 	}//selectDateScroll
+
+	/** overflow for exact date is more than 3 room **/
+	function selectExactDateScroll(roomAction, roomVal){
+		if(roomAction=='add'&&roomVal>2){
+			$('.modal-row-height').css({
+				'height': '250px',
+				'overflow-y': 'scroll',
+				'padding': '20px 10px'
+			});
+		}else if(roomAction=='remove'&&roomVal<3){
+			$('.modal-row-height').css({
+				'height': 'auto',
+				'overflow-y': 'hidden'
+			});
+		}
+	}//selectExactDateScroll
+
 })(jQuery, Handlebars);

@@ -898,6 +898,11 @@ select {
     background-position: 29px 3px !important;
     background-size: 19px 33px;
 }
+.modal-row-height{
+	display:block;
+	clear:both;
+	height:auto;
+}
 .modal-dropdown-select-date {
     width:100%;
     padding-left:10%;
@@ -923,7 +928,7 @@ select {
 	clear: both;
     float: right;
     font-size: 11px;
-    width: 48%;
+    width: 49%;
 }
 .room-val{
 	border:1px solid #000;
@@ -931,19 +936,19 @@ select {
 .orbot-select-rooms{
 	cursor:pointer;
 	float:left;
-	margin: 0 2px;
+	margin: 10px 2px;
 	text-decoration: underline;
 }
 .orbot-remove-rooms{
 	display: none;
 	cursor:pointer;
-	margin: 0 2px;
+	margin: 10px 2px;
     text-decoration: underline;
 }
 .orbot-divider{
 	display:none;
 	float:left;
-	margin: 0 2px;
+	margin: 10px 2px;
 }
 @media (max-width: 768px) {
     .modal-dropdown-select-date {
