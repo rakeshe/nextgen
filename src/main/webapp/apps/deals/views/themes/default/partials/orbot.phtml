@@ -11,7 +11,7 @@
                     <p>Where would you like to go?<br />
                         <input name="" type="text" class="modal-input modal-marker robot-city-name" value="{{city}}"/></p>
                 </div>
-                <div class="modal-row" data-row="0">
+                <div class="modal-row modal-row orb-rooms-dy" data-row="1">
                     <div class="six columns">
                         <p>Check-in and Check-out<br />
                         <div class="modal-calendar">
@@ -24,16 +24,9 @@
 							<input type="text" id="alt-check-out" class="select-label-val" readonly/>
                         </div></p>
                     </div>
-                    <div class="six columns">
+                    <div class="six columns" data-room="1">
                         <div class="four columns">
-                            <p>Rooms<br />
-                                <select name="" class="modal-dropdown-select orbot-select-rooms">
-                                    <option value="1">Room 1</option>
-                                    <option value="2">Room 2</option>
-                                    <option value="3">Room 3</option>
-                                    <option value="4">Room 4</option>
-                                    <option value="5">Room 5</option>
-                                </select></p>
+                            <p>Rooms<br /> Room 1</p>
                         </div>
                         <div class="four columns">
                             <p>Adults (18+)<br />
@@ -59,6 +52,9 @@
                         </div>
                     </div>
                 </div>
+				<div class="modal-orbot-add">
+					<span class="orbot-select-rooms"> Add Room </span><span class="orbot-divider"> | </span><span class="orbot-remove-rooms"> Remove Room </span>
+				</div>
                 <div class="modal-row">
                     <div class="six columns">
                         <p>Search hotel name<br />
