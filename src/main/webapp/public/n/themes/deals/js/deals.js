@@ -1389,39 +1389,40 @@
 	/*end of displaying child candidates*/
 
     $(document).on('change', '.orbot-select-children', function(){
-	   var child = '',
+
+        var child = '',
             option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
-			dataRow1 = $(this).parents('div.six.columns').attr('class'),
-			dataRow2 = parseInt($(this).parents('div.six.columns').attr('data-room'));
-		for(var i=1; i <= $(this).val(); i++) {
+            parentObj = $(this).parents('.modal-row'),
+            dataRow = parentObj.attr('data-row');
+
+        for(var i=1; i <= $(this).val(); i++) {
             child += '<div class="two columns orb-child-age-sty">';
-            child += '<select class="modal-dropdown-select-child orb-child-age-'+(dataRow2-1)+'-'+i+'">'+ option + '</select>';
+            child += '<select class="modal-dropdown-select-child orb-child-age-'+dataRow+'-'+i+'">'+ option + '</select>';
             child += '</div>';
         }
-		$('.orbot-child-' + dataRow2).remove();
-		$(this).parents('div.six.columns').after('<div class="modal-row or-sub-option orbot-child-'+dataRow2+'"><div class="six columns">&nbsp;</div><div class="six columns data-room="'+dataRow2+'">' + text + child + '</div></div>');
+        $('.orbot-child-' + parentObj.attr('data-row')).remove();
+        parentObj.after('<div class="modal-row or-sub-option orbot-child-'+dataRow+'"><div class="six columns">&nbsp;</div><div class="six columns">' + text + child + '</div></div>');
     });
 
-	$(document).on('click','.orbot-remove-rooms', function(){
-		var i = $('.orbot-select-rooms').parent().prev().attr('data-row');
-		$('.orbot-select-rooms').parent().prev().attr('class'), $('.orbot-select-rooms').parent().prev().remove();
+    $(document).on('change', '.orbot-select-rooms', function() {
 
-		if((i-1)<=5){ $('.orbot-select-rooms, .orbot-divider').css('display', 'block'); }		
-		if((i)==2){ $('.orbot-remove-rooms, .orbot-divider').css('display', 'none'); }
-	});
-    $(document).on('click', '.orbot-select-rooms', function() {
-		var i = parseInt($('.orbot-select-rooms').parent().prev().attr('data-row'));
         var child = '',
             parentObj = $(this).parents('.modal-row'),
             optionChild = '<option>--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>',
             optionAdult = '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>';
 
-        //$('.orb-child-0').val('--');
+        // remove if any child element exists
+        for (var i = 0; i <= 5; i++) {
+            $('.orbot-child-'+(i-1)).remove();
+        }
+        $('.orb-child-0').val('--');
 
-            child += '<div data-row="'+(i+1)+'" class="modal-row orb-rooms-dy"><div class="six columns">&nbsp;</div><div class="six columns" data-room="'+(i+1)+'">';
+        for(var i=1; i < $(this).val(); i++) {
 
-            child += '<div class="four columns"><p>Room '+(i+1)+'</p></div>';
+            child += '<div data-row="'+i+'" class="modal-row orb-rooms-dy"><div class="six columns">&nbsp;</div><div class="six columns">';
+
+            child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
             child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
@@ -1431,11 +1432,14 @@
             child += '</div>';
 
             child += '</div></div>';
+        }
 
-		$('.orbot-select-rooms').parent().parent().prev().attr('data-row', (i+1));
-		$('.orbot-select-rooms').parent().before( child );
-		if(i>=1){ $('.orbot-remove-rooms, .orbot-divider').css('display', 'block'); }
-		if((i+1)>=5){ $('.orbot-select-rooms, .orbot-divider').css('display', 'none'); }
+        $('.orb-rooms-dy').remove();
+        if (parentObj.next('.or-sub-option').length > 0) {
+            parentObj.next().after( child );
+        } else {
+            parentObj.after( child );
+        }
     });
 
     /*display popup - on date selection starts here*/
@@ -1593,7 +1597,7 @@
  				$('.divider-room').css("display","none");
  			}
 			selectDateScroll('add', roomVal);
-            var roomCompVal='';            
+            var roomCompVal='';
 			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
@@ -1654,9 +1658,8 @@
         }
 
         e.preventDefault();
-        var rooms = '', orbotTempVal = $('.orbot-select-rooms').parent().prev().attr('data-row');
-
-        for(var i=0; i< orbotTempVal; i++) {
+        var rooms = '';
+        for(var i=0; i< $('.orbot-select-rooms').val(); i++) {
 
             rooms += '&hotel.rooms%5B'+i+'%5D.adlts='+$('.orb-adults-'+i).val();
             var chLen = $('.orb-child-'+i).val();
@@ -1668,6 +1671,9 @@
                 }
             }
         }
+
+        console.log(rooms);
+
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
@@ -1728,7 +1734,7 @@
         } else if ($(this).data('sort') == 'rating') {
             Deals.sortByNumber('starRating', type);
         }
-        
+
         $('.sort-indicator-image').remove();
         if ($(this).data('sort') != 'ourPicks') {
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
