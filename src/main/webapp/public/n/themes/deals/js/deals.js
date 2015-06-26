@@ -588,7 +588,7 @@
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout">Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
