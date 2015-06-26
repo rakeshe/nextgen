@@ -102,6 +102,40 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
     }
 
+    public function getPromoCardDoc() {
+
+        try{
+            // format: production:sale:md5(deals/promoCardDoc):en_AU
+            $docUrl = 'deals/promoCardDoc';
+            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
+            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
+            //dev_sale_7c6fa5c0ad27c0a6ffbed17f23b644d8_en_au.json
+
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }
+            $data = null == $data ? '{}' : trim(str_replace("'", "&#39;", $data));
+            //echo json_encode(json_decode($data)); exit;
+            /*$cityName = strtolower(str_replace([' ',',','\''], '_', $city));
+            $dataFile = $cityName.'.json';
+            $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
+                file_get_contents(__DIR__ .'/../data/'. $dataFile) :
+                '{}';*/
+            //file_get_contents( __DIR__ . '/../data/deals.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
     public function getUserInfo($memberId) {
 
         try{

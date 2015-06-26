@@ -161,6 +161,7 @@ class DealsController extends ControllerBase {
             [
                 'appVersion'          => APPLICATION_VERSION,
                 'cityData'            => $this->cityData,
+                'promoCardData'       => $this->model->getPromoCardDoc(),
                 'city'                => $this->city,
                 'when'                => $this->when,
                 'sort'                => $this->sort,
