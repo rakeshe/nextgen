@@ -1456,19 +1456,9 @@
         var hotelName = $(this).attr('data-hotel');
 		var browserWidth = $(window).width();
 		if(browserWidth<768){
-			//redirect to hotelclub site with the all the input value
-			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&hotel.couponCode="
-                + "&locale=en_AU"
-                + "&hotel.hid="+hotelId
-				+ "&hotel.hname="+hotelName
-                + "&hotel.type=keyword"
-                + "&hotel.chkin="
-                + "&hotel.chkout="
-				+ "&hotel.keyword.key="
-                + "&search=Find";
-                + "&hsv.showDetails=true";
-			//console.log(searchUrl);
+            /* This use-case is for mobile device: setup redirect url and bypass pop up */
+            var searchUrl = "//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=" + hotelId;
+
             window.open(searchUrl, '_blank');
 			return false;
 		}
