@@ -16,7 +16,7 @@ define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
 define('RE_CURRENCY_CODE', '/([A-Z]{3})');
 
 define('DEFAULT_ROUTE_MODULE', 'merch');
-define('DEFAULT_ROUTE_NAMESPACE', 'HC\Merch\Controllers');
+define('DEFAULT_ROUTE_NAMESPACE', 'HC\Deals\Controllers');
 define('DEFAULT_ROUTE_LOCALE', 'en_AU');
 define('DEFAULT_ROUTE_CONTROLLER', 'index');
 define('DEFAULT_ROUTE_ACTION', 'index');
@@ -26,9 +26,9 @@ define('DEFAULT_ROUTE_ACTION', 'index');
  */
 $router->notFound(
     array(
-        'module'     => 'merch',
+        'module'     => 'deals',
         'namespace'  => DEFAULT_ROUTE_NAMESPACE,
-        'controller' => 'index',
+        'controller' => 'Deals',
         'action'     => 'show404',
     )
 );
