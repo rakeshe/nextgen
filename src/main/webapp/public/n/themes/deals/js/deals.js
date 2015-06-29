@@ -634,9 +634,14 @@
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());					
 					date2.setDate(date2.getDate() + 1);
+
 					$('#check-out').datepicker('setDate', date2);
 					$('#check-out').datepicker('option', 'minDate', date2);
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());				
 				}
 			});//initialize the date-picker for check-in
 			$("#check-out").datepicker({
@@ -647,9 +652,13 @@
 				altField: "#alt-check-out",
 				altFormat: "D,d M yy",
 				onSelect : function(dateText, inst) {
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());
 					$('#check-in').datepicker("option", "maxDate",
 						$('#check-out').val()
 					);
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());				
 				}
 			});//initialize the date-picker for check-out
 
@@ -1208,6 +1217,7 @@
            if ($(this).val() == '') {
                $(this).val($(this).attr('data-value'));
            }
+		   ga('send', 'event', 'hotel-card', 'orbot-select', 'promo-code', '"'+$(this).val()+'"');       
         });
 		/*promo-code-val clear data ends here*/
 
@@ -1391,15 +1401,39 @@
                     break;
             }
         });
-
     });
 
+	/*start of fetching adult in select dates*/
+	$(document).on('change','.select-dates-input-popup', function(event){
+		var roomNumVal = $(this).attr('id').split("-");
+		var roomNumTemp = roomNumVal[2];
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'adult', {roomNumTemp:'"'+this.value+'"'});
+	});
+	/*end of fetching adult in select dates*/
+
 	/*start of display child candidates*/
-	$(document).on('change','#child-input-2', function(event){ roomChildVal(2, this.value); });
-	$(document).on('change','#child-input-3', function(event){ roomChildVal(3, this.value); });
-	$(document).on('change','#child-input-4', function(event){ roomChildVal(4, this.value); });
-	$(document).on('change','#child-input-5', function(event){ roomChildVal(5, this.value); });
+	$(document).on('change','#child-input-2', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {2:this.value});
+		roomChildVal(2, this.value);
+	});
+	$(document).on('change','#child-input-3', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {3:this.value});
+		roomChildVal(3, this.value);
+	});
+	$(document).on('change','#child-input-4', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {4:this.value});
+		roomChildVal(4, this.value);
+	});
+	$(document).on('change','#child-input-5', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {5:this.value});
+		roomChildVal(5, this.value);
+	});
 	/*end of displaying child candidates*/
+
+	$(document).on('change', '.orbot-select-adult', function(){
+		gaDataRowVal = parseInt($(this).parents('div.six.columns').attr('data-row'));
+		ga('send', 'event', 'search-bar', 'orbot-select', 'adults', {gaDataRowVal:$(this).val()});
+	});
 
     $(document).on('change', '.orbot-select-children', function(){
 		var child = '',
@@ -1407,6 +1441,7 @@
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
 			dataRow1 = $(this).parents('div.six.columns').attr('class'),
 			dataRow2 = parseInt($(this).parents('div.six.columns').attr('data-row'));
+			ga('send', 'event', 'search-bar', 'orbot-select', 'children', {dataRow2:$(this).val()});
 
 		for(var i=1; i <= $(this).val(); i++) {
             child += '<div class="two columns orb-child-age-sty">';
@@ -1445,7 +1480,7 @@
 
             child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ optionAdult + '</select>';
+            child += '<select class="modal-dropdown-select orbot-select-adult orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
 
             child += '<div class="four columns">';
@@ -1523,9 +1558,13 @@
             dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
+                var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
                 date2.setDate(date2.getDate() + 1);
                 $('#select-check-out').datepicker('setDate', date2);
                 $('#select-check-out').datepicker('option', 'minDate', date2);
+				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
             },
             onClose: function() {
                 dateCalculate();
@@ -1539,9 +1578,13 @@
 			altField: "#alternate-check-out",
 			altFormat: "D,d M yy",
             onSelect : function(dateText, inst) {
-                $('#select-check-in').datepicker("option", "maxDate",
+                var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
+				$('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
                 );
+				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
             },
             onClose: function() {
                 dateCalculate();
@@ -1658,7 +1701,10 @@
         });
 
         /*drop down selection for children ages*/
-        $("#child-input-1").on('change', function(event){ console.log(1); roomChildVal(1, this.value); });
+        $("#child-input-1").on('change', function(event){
+			ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {1:this.value});
+			roomChildVal(1, this.value);
+		});
 
     });
 
@@ -1718,6 +1764,7 @@
         + "&search=Search"
         + rooms;
 
+        ga('send', 'event', 'search-bar', 'orbot-select', 'search-click');
         window.open(searchUrl, '_blank');
     });
 
@@ -1805,7 +1852,8 @@
         if ($(this).val() == '') {
             $(this).val($(this).attr('data-value'));
         }
-    });
+		ga('send', 'event', 'search-bar', 'orbot-select', 'promo-code', $(this).val());
+   });
 
     $(document).on('focus', '.search-promo-code', function() {
 
@@ -1819,6 +1867,7 @@
         if ($(this).val() == '') {
             $(this).val($(this).attr('data-value'));
         }
+		ga('send', 'event', 'search-bar', 'orbot-select', 'promo-code', $(this).val());
     });
 
 	/*function to calculate and display the date difference*/
