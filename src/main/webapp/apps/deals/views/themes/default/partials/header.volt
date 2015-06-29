@@ -368,10 +368,10 @@
                     <div class="user-id">
 
                    <p><span class="user-member user-member-name">Welcome to HotelClub</span><br/>
-                    <a id="sign-in" href="https://www.hotelclub.com/account/login">
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://hotelclub.com/n/sale/deals/">
                         <span class="user-club-info user-club-info-card-type">Sign in</span>
                     </a> /
-                       <a id="register" href="https://www.hotelclub.com/account/registration">
+                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://hotelclub.com/n/sale/deals/">
                            <span class="user-club-info user-club-info-card-type">Register</span>
                        </a>
                    </p>
