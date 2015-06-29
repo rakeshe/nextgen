@@ -4,7 +4,6 @@
         memberPrice = 0,
         manualState = true;
 
-
     /* IE 9 and below workarounds
      */
     if(!Object.addEventListener){
@@ -556,12 +555,12 @@
 
             // Check cookie for logged in state
             var cookieset =  $.cookie('mid'); // get cookie tmid value
-            //var cookieset = '266414671';  // use mine
+            var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
                 var hclUrl = "http://www.hotelclub.com/";
-                //var hclUrl = "/n/logged-in.html";
+                var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
                     url : hclUrl,
@@ -588,7 +587,7 @@
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
@@ -635,9 +634,14 @@
 				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());					
 					date2.setDate(date2.getDate() + 1);
+
 					$('#check-out').datepicker('setDate', date2);
 					$('#check-out').datepicker('option', 'minDate', date2);
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());				
 				}
 			});//initialize the date-picker for check-in
 			$("#check-out").datepicker({
@@ -648,9 +652,13 @@
 				altField: "#alt-check-out",
 				altFormat: "D,d M yy",
 				onSelect : function(dateText, inst) {
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());
 					$('#check-in').datepicker("option", "maxDate",
 						$('#check-out').val()
 					);
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());				
 				}
 			});//initialize the date-picker for check-out
 
@@ -1209,6 +1217,7 @@
            if ($(this).val() == '') {
                $(this).val($(this).attr('data-value'));
            }
+		   ga('send', 'event', 'hotel-card', 'orbot-select', 'promo-code', '"'+$(this).val()+'"');       
         });
 		/*promo-code-val clear data ends here*/
 
@@ -1329,6 +1338,7 @@
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
                     $('.dropdown-cities').focus();
+                    ga('send', 'event', 'search-bar', 'region-select', rg);
                     // do not reset image, keep prev image
                     //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
@@ -1348,6 +1358,7 @@
 
                     $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
                     $('.dropWhereDo').focus();
+                    ga('send', 'event', 'search-bar', 'destination-select', cy);
                     //set city image only afer user selects last option
                     //Deals.setCityImage();
                     break;
@@ -1364,6 +1375,8 @@
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
 							Deals.displayOrbot();
+
+                        ga('send', 'event', 'search-bar', 'date.range-select', 'exact date');
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
@@ -1373,20 +1386,54 @@
                             Deals.setCityImage();
                             // Set breadcrumb
                             $('#breadcrumb-city').html(cy);
+
+                            var tVal = '';
+                            if (dy == '7-days')
+                                tVal = 'next-7-days';
+                            else if (dy == '30-days')
+                                tVal = 'next-30-days';
+                            else if (dy == '30-beyond')
+                                tVal = 'over-30-days';
+
+                            ga('send', 'event', 'search-bar', 'date.range-select', tVal);
                         }
                     }
                     break;
             }
         });
-
     });
 
+	/*start of fetching adult in select dates*/
+	$(document).on('change','.select-dates-input-popup', function(event){
+		var roomNumVal = $(this).attr('id').split("-");
+		var roomNumTemp = roomNumVal[2];
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'adult', {roomNumTemp:'"'+this.value+'"'});
+	});
+	/*end of fetching adult in select dates*/
+
 	/*start of display child candidates*/
-	$(document).on('change','#child-input-2', function(event){ roomChildVal(2, this.value); });
-	$(document).on('change','#child-input-3', function(event){ roomChildVal(3, this.value); });
-	$(document).on('change','#child-input-4', function(event){ roomChildVal(4, this.value); });
-	$(document).on('change','#child-input-5', function(event){ roomChildVal(5, this.value); });
+	$(document).on('change','#child-input-2', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {2:this.value});
+		roomChildVal(2, this.value);
+	});
+	$(document).on('change','#child-input-3', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {3:this.value});
+		roomChildVal(3, this.value);
+	});
+	$(document).on('change','#child-input-4', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {4:this.value});
+		roomChildVal(4, this.value);
+	});
+	$(document).on('change','#child-input-5', function(event){
+		ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {5:this.value});
+		roomChildVal(5, this.value);
+	});
 	/*end of displaying child candidates*/
+
+	$(document).on('change', '.orbot-select-adult', function(){
+		gaDataRowVal = parseInt($(this).parents('div.six.columns').attr('data-row'));
+		ga('send', 'event', 'search-bar', 'orbot-select', 'adults', {gaDataRowVal:$(this).val()});
+	});
 
     $(document).on('change', '.orbot-select-children', function(){
 		var child = '',
@@ -1394,6 +1441,7 @@
             text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
 			dataRow1 = $(this).parents('div.six.columns').attr('class'),
 			dataRow2 = parseInt($(this).parents('div.six.columns').attr('data-row'));
+			ga('send', 'event', 'search-bar', 'orbot-select', 'children', {dataRow2:$(this).val()});
 
 		for(var i=1; i <= $(this).val(); i++) {
             child += '<div class="two columns orb-child-age-sty">';
@@ -1432,7 +1480,7 @@
 
             child += '<div class="four columns">Room '+(i+1)+'</div>';
             child += '<div class="four columns">';
-            child += '<select class="modal-dropdown-select orb-adults-'+i+'">'+ optionAdult + '</select>';
+            child += '<select class="modal-dropdown-select orbot-select-adult orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
 
             child += '<div class="four columns">';
@@ -1454,6 +1502,9 @@
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
+
+        ga('send', 'event', 'hotel-card', 'orbot-activate', hotelName);
+
 		var browserWidth = $(window).width();
 		if(browserWidth<768){
 			//redirect to hotelclub site with the all the input value
@@ -1507,9 +1558,13 @@
             dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
+                var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
                 date2.setDate(date2.getDate() + 1);
                 $('#select-check-out').datepicker('setDate', date2);
                 $('#select-check-out').datepicker('option', 'minDate', date2);
+				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
             },
             onClose: function() {
                 dateCalculate();
@@ -1523,9 +1578,13 @@
 			altField: "#alternate-check-out",
 			altFormat: "D,d M yy",
             onSelect : function(dateText, inst) {
-                $('#select-check-in').datepicker("option", "maxDate",
+                var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
+				$('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
                 );
+				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
             },
             onClose: function() {
                 dateCalculate();
@@ -1642,7 +1701,10 @@
         });
 
         /*drop down selection for children ages*/
-        $("#child-input-1").on('change', function(event){ console.log(1); roomChildVal(1, this.value); });
+        $("#child-input-1").on('change', function(event){
+			ga('send', 'event', 'hotel-card', 'orbot-select', 'children', {1:this.value});
+			roomChildVal(1, this.value);
+		});
 
     });
 
@@ -1702,6 +1764,7 @@
         + "&search=Search"
         + rooms;
 
+        ga('send', 'event', 'search-bar', 'orbot-select', 'search-click');
         window.open(searchUrl, '_blank');
     });
 
@@ -1729,20 +1792,39 @@
 
         typeIcon = type == 'asc' ? ascIcon : desIcon;
 
-        if ($(this).data('sort') == 'ourPicks') {
-            console.log('working..');
-            Deals.sortByNumber('sortOrder', type);
-        } else if ($(this).data('sort') == 'price') {
-            Deals.sortByNumber('price', type);
+        var tName = ''
+        if ($(this).data('sort') == 'price' || $(this).data('sort') == 'rating') {
+            tName = (type == 'asc') ? 'lowest' : 'highest';
         } else if ($(this).data('sort') == 'name') {
+            tName = (type == 'asc') ? 'A-Z' : 'Z-A';
+        }
+
+        if ($(this).data('sort') == 'ourPicks') {
+
+            Deals.sortByNumber('sortOrder', type);
+            ga('send', 'event', 'sort', 'sort-picks-activate', '');
+
+        } else if ($(this).data('sort') == 'price') {
+
+            Deals.sortByNumber('price', type);
+            ga('send', 'event', 'sort', 'sort-price-activate', '');
+
+        } else if ($(this).data('sort') == 'name') {
+
             Deals.sortByText('hotelNameUtf8', type);
+            ga('send', 'event', 'sort', 'sort-name-activate', '');
+
         } else if ($(this).data('sort') == 'rating') {
+
             Deals.sortByNumber('starRating', type);
+            ga('send', 'event', 'sort', 'sort-rating-activate', '');
         }
 
         $('.sort-indicator-image').remove();
+
         if ($(this).data('sort') != 'ourPicks') {
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+            ga('send', 'event', 'sort', 'sort-'+$(this).data('sort')+'-select', tName);
         }
         self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
@@ -1770,7 +1852,8 @@
         if ($(this).val() == '') {
             $(this).val($(this).attr('data-value'));
         }
-    });
+		ga('send', 'event', 'search-bar', 'orbot-select', 'promo-code', $(this).val());
+   });
 
     $(document).on('focus', '.search-promo-code', function() {
 
@@ -1784,6 +1867,7 @@
         if ($(this).val() == '') {
             $(this).val($(this).attr('data-value'));
         }
+		ga('send', 'event', 'search-bar', 'orbot-select', 'promo-code', $(this).val());
     });
 
 	/*function to calculate and display the date difference*/
@@ -1852,5 +1936,102 @@
 			});
 		}
 	}//selectExactDateScroll
+
+    $(document).ready(function(){
+
+        $('#breadcrumb-home').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'sign-in', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        //sign in
+        $('#sign-in').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'sign-in', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        $('#register').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'join', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        $('.dropdown-region').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'region-activate', '');
+        });
+
+        $('.dropdown-cities').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'destination-activate', '');
+        });
+
+        $('.dropWhereDo').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'date.range-activate', '');
+        });
+
+        $('#mid-year-sale-logo').on('focus', function(e) {
+            e.preventDefault();
+            ga('send', 'event', '?', 'link-click', 'landing-page');
+            window.location.href = $(this).attr('href');
+        });
+    });
+
+    $(document).on('click', '.sign-out', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'sign-out', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-bookings', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-club', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-account', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#custormer-searvice', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '.hotel-thumb-image', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'hotel-card', 'image-click', $(this).children().attr('title'));
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '#hotel-property-name', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'hotel-card', 'property-name-click', $(this).val());
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '.social-media-link', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'footer', 'social-click', $(this).attr('title'));
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '.footer-destination-link', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'footer', 'link-click',  $(this).val());
+        window.location.href = $(this).attr('href');
+    });
+
+
+
 
 })(jQuery, Handlebars);

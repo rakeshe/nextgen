@@ -2,7 +2,7 @@
 <div class="row sort-row">
     <div class="three columns" id="filter-btn">
         <ul class="breadcrumbs bc-space">
-            <li><a href="/n/sale/deals/">Home</a></li>
+            <li><a id="breadcrumb-home" href="/n/sale/deals/">Home</a></li>
             >
             <li id="breadcrumb-city">{{ city }}</li>
         </ul>

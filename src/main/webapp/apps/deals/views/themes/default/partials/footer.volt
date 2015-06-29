@@ -12,13 +12,13 @@
             </div>
             <div class="four columns">
                 <ul class="social-links">
-                    <li><a target="_blank" href="https://www.facebook.com/HotelClubAU" title="Facebook"><img src="/n/themes/deals/images/assets/Facebook-Icon.png"/></a></li>
-                    <li><a target="_blank" href="https://twitter.com/hotelclub" title="Twitter"><img src="/n/themes/deals/images/assets/Twitter-Icon.png"/></a></li>
-                    <li><a target="_blank" href="https://plus.google.com/+hotelclub/videos" title="Google+"><img src="/n/themes/deals/images/assets/Google-Icon.png"/></a></li>
-                    {#<li><a target="_blank" href="https://www.youtube.com/user/HotelClub" title="YouTube"><img src="/n/themes/deals/images/assets/YouTube-Icon.png"/></a></li>#}
-                    <li><a target="_blank" href="//www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog1-Icon.png"/></a></li>
-                    {#<li><a target="_blank" href="http://www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog2-Icon.png"/></a></li>#}
-                    {#<li><a href="#" title="WeChat"><img src="/n/themes/deals/images/assets/CN-Icon.png"/></a></li>#}
+                    <li><a class="social-media-link" target="_blank" href="https://www.facebook.com/HotelClubAU" title="Facebook"><img src="/n/themes/deals/images/assets/Facebook-Icon.png"/></a></li>
+                    <li><a class="social-media-link" target="_blank" href="https://twitter.com/hotelclub" title="Twitter"><img src="/n/themes/deals/images/assets/Twitter-Icon.png"/></a></li>
+                    <li><a class="social-media-link" target="_blank" href="https://plus.google.com/+hotelclub/videos" title="Google+"><img src="/n/themes/deals/images/assets/Google-Icon.png"/></a></li>
+                    {#<li><a class="social-media-link" target="_blank" href="https://www.youtube.com/user/HotelClub" title="YouTube"><img src="/n/themes/deals/images/assets/YouTube-Icon.png"/></a></li>#}
+                    <li><a class="social-media-link" target="_blank" href="//www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog1-Icon.png"/></a></li>
+                    {#<li><a class="social-media-link" target="_blank" href="http://www.hotelclub.com/blog/" title="Blog"><img src="/n/themes/deals/images/assets/Blog2-Icon.png"/></a></li>#}
+                    {#<li><a class="social-media-link" href="#" title="WeChat"><img src="/n/themes/deals/images/assets/CN-Icon.png"/></a></li>#}
                 </ul>
                 {#<div class="subscribe">
                     <p class="f-head">Email sign up</p>

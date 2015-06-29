@@ -9,14 +9,14 @@
                 {{displayExclusiveBanner promotion ../isLoggedIn}}
 
 				<!-- Dynamic hotel id value will be replaced here.. -->
-                <a href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
-                    <img class="lazy card-img" data-original="{{thImgUrl}}" />
+                <a class="hotel-thumb-image" href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank">
+                    <img class="lazy card-img" data-original="{{thImgUrl}}" title="{{hotelNameUtf8}}"/>
 				</a>
             </div>
             <div class="card-info">
                 <div class="hotel-name">
 					<!-- Dynamic hotel id value will be replaced here.. -->
-					<a href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank" class="hotel-name-head">{{{trimString hotelNameUtf8 40}}}</a></div>
+					<a id="hotel-property-name" href="//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id={{hotelId}}" target="_blank" class="hotel-name-head">{{{trimString hotelNameUtf8 40}}}</a></div>
 				<div class="card-desc">
 					<div class="card-left">
 						<div class="star-sprite-{{starRating}}">
