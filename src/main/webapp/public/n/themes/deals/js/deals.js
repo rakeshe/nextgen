@@ -4,7 +4,6 @@
         memberPrice = 0,
         manualState = true;
 
-
     /* IE 9 and below workarounds
      */
     if(!Object.addEventListener){
@@ -556,12 +555,12 @@
 
             // Check cookie for logged in state
             var cookieset =  $.cookie('mid'); // get cookie tmid value
-            //var cookieset = '266414671';  // use mine
+            var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
                 var hclUrl = "http://www.hotelclub.com/";
-                //var hclUrl = "/n/logged-in.html";
+                var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
                     url : hclUrl,
@@ -588,7 +587,7 @@
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
@@ -1329,6 +1328,7 @@
                    // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     Deals.displayDropDownCity(rg);
                     $('.dropdown-cities').focus();
+                    ga('send', 'event', 'search-bar', 'region-select', rg);
                     // do not reset image, keep prev image
                     //$('.hero').css('background-image', 'url(/n/themes/deals/images/backgrounds/resort-desktop.jpg)');
                     break;
@@ -1348,6 +1348,7 @@
 
                     $('.dropWhereDo').removeAttr('disabled').removeClass('disabled-style');
                     $('.dropWhereDo').focus();
+                    ga('send', 'event', 'search-bar', 'destination-select', cy);
                     //set city image only afer user selects last option
                     //Deals.setCityImage();
                     break;
@@ -1364,6 +1365,8 @@
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
 							Deals.displayOrbot();
+
+                        ga('send', 'event', 'search-bar', 'date.range-select', 'exact date');
                     } else {
                         //start routing ....
                        // console.log(typeof rg, typeof cy, typeof dy);
@@ -1373,6 +1376,16 @@
                             Deals.setCityImage();
                             // Set breadcrumb
                             $('#breadcrumb-city').html(cy);
+
+                            var tVal = '';
+                            if (dy == '7-days')
+                                tVal = 'next-7-days';
+                            else if (dy == '30-days')
+                                tVal = 'next-30-days';
+                            else if (dy == '30-beyond')
+                                tVal = 'over-30-days';
+
+                            ga('send', 'event', 'search-bar', 'date.range-select', tVal);
                         }
                     }
                     break;
@@ -1454,6 +1467,9 @@
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
+
+        ga('send', 'event', 'hotel-card', 'orbot-activate', hotelName);
+
 		var browserWidth = $(window).width();
 		if(browserWidth<768){
 			//redirect to hotelclub site with the all the input value
@@ -1729,20 +1745,39 @@
 
         typeIcon = type == 'asc' ? ascIcon : desIcon;
 
-        if ($(this).data('sort') == 'ourPicks') {
-            console.log('working..');
-            Deals.sortByNumber('sortOrder', type);
-        } else if ($(this).data('sort') == 'price') {
-            Deals.sortByNumber('price', type);
+        var tName = ''
+        if ($(this).data('sort') == 'price' || $(this).data('sort') == 'rating') {
+            tName = (type == 'asc') ? 'lowest' : 'highest';
         } else if ($(this).data('sort') == 'name') {
+            tName = (type == 'asc') ? 'A-Z' : 'Z-A';
+        }
+
+        if ($(this).data('sort') == 'ourPicks') {
+
+            Deals.sortByNumber('sortOrder', type);
+            ga('send', 'event', 'sort', 'sort-picks-activate', '');
+
+        } else if ($(this).data('sort') == 'price') {
+
+            Deals.sortByNumber('price', type);
+            ga('send', 'event', 'sort', 'sort-price-activate', '');
+
+        } else if ($(this).data('sort') == 'name') {
+
             Deals.sortByText('hotelNameUtf8', type);
+            ga('send', 'event', 'sort', 'sort-name-activate', '');
+
         } else if ($(this).data('sort') == 'rating') {
+
             Deals.sortByNumber('starRating', type);
+            ga('send', 'event', 'sort', 'sort-rating-activate', '');
         }
 
         $('.sort-indicator-image').remove();
+
         if ($(this).data('sort') != 'ourPicks') {
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
+            ga('send', 'event', 'sort', 'sort-'+$(this).data('sort')+'-select', tName);
         }
         self.css({'font-weight': 'bold'});
         self.attr('data-order', type)
@@ -1852,5 +1887,102 @@
 			});
 		}
 	}//selectExactDateScroll
+
+    $(document).ready(function(){
+
+        $('#breadcrumb-home').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'sign-in', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        //sign in
+        $('#sign-in').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'sign-in', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        $('#register').on('click', function(e) {
+            e.preventDefault();
+            ga('send', 'event', 'header', 'join', '');
+            window.location.href = $(this).attr('href');
+        });
+
+        $('.dropdown-region').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'region-activate', '');
+        });
+
+        $('.dropdown-cities').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'destination-activate', '');
+        });
+
+        $('.dropWhereDo').on('focus', function() {
+            ga('send', 'event', 'search-bar', 'date.range-activate', '');
+        });
+
+        $('#mid-year-sale-logo').on('focus', function(e) {
+            e.preventDefault();
+            ga('send', 'event', '?', 'link-click', 'landing-page');
+            window.location.href = $(this).attr('href');
+        });
+    });
+
+    $(document).on('click', '.sign-out', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'sign-out', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-bookings', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-club', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#my-account', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '#custormer-searvice', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'header', 'link-click', '');
+        window.location.href = $(this).attr('href');
+    });
+
+    $(document).on('click', '.hotel-thumb-image', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'hotel-card', 'image-click', $(this).children().attr('title'));
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '#hotel-property-name', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'hotel-card', 'property-name-click', $(this).val());
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '.social-media-link', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'footer', 'social-click', $(this).attr('title'));
+        window.open($(this).attr('href'), '_blank');
+    });
+
+    $(document).on('click', '.footer-destination-link', function(e) {
+        e.preventDefault();
+        ga('send', 'event', 'footer', 'link-click',  $(this).val());
+        window.location.href = $(this).attr('href');
+    });
+
+
+
 
 })(jQuery, Handlebars);
