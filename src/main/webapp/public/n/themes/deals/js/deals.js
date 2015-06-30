@@ -450,13 +450,14 @@
                     var desIcon = ' &or;',
                         ascIcon = ' &and;',
                         typeIcon = this.sortType == 'asc' ? ascIcon : desIcon;
-                    $('.sort-button').css({'font-weight': 'normal'});
+                    $('.sort-button').css({'font-weight': 'normal','color':'#a1a1a1'});
+
 
                     if (this.sortBy != 'ourPicks')
                         $('a[data-sort="'+this.sortBy+'"]').append($('<span class="sort-indicator-image">' + typeIcon + '</span>'))
                             .attr('data-order', this.sortType );
 
-                    $('a[data-sort="'+this.sortBy+'"]').css({'font-weight': 'bold'});
+                    $('a[data-sort="'+this.sortBy+'"]').css({'font-weight': 'bold','color':'#333'});
                     //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn, memBalance : memberPrice});
                 } else {
                     this.displayNoHotelOrbot();
@@ -1379,6 +1380,15 @@
             }
         });
 
+        /** Make soem adjustments for mobile **/
+
+        /** Shorten name for Australia, New Zealand & Pacific **/
+        if($(document).width()<479){
+            var firstRegionOption = $('.dropdown-region > option:first-child').text();
+            firstRegionOption = firstRegionOption == 'Australia, New Zealand & Pacific' ? 'Australia, NZ & Pacific' : firstRegionOption;
+            $('.dropdown-region > option:first-child').text(firstRegionOption);
+        }
+
     });
 
 	/*start of display child candidates*/
@@ -1454,11 +1464,22 @@
     $( document ).on( 'click', '.hotel-card-button', function () {
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
+        var cityName = $('.dropdown-cities').val();
 		var browserWidth = $(window).width();
 		if(browserWidth<768){
             /* This use-case is for mobile device: setup redirect url and bypass pop up */
-            var searchUrl = "//www.hotelclub.com/psi?type=hotel&locale=en_AU&adults=2&id=" + hotelId;
-
+            var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
+                + "&locale=en_AU"
+                + "&hotel.hid="+ hotelId
+                + "&hotel.hname="+hotelName
+                + "&hsv.showDetails=true"
+                + "&hotel.type=keyword"
+                + "&hotel.chkin="
+                + "&hotel.chkout="
+                + "&hotel.keyword.key="+cityName
+                + "&hotel.rooms[0].adlts=2"
+                + "&search=Search";
+            console.log(searchUrl);
             window.open(searchUrl, '_blank');
 			return false;
 		}
@@ -1705,7 +1726,7 @@
             typeIcon = '',
             desIcon = ' &or;',
             ascIcon = ' &and;';
-        $('.sort-button').css({'font-weight': 'normal'});
+        $('.sort-button').css({'font-weight': 'normal','color':'#a1a1a1'});
         // Because our picks cannot be re-sorted
         if (self.data('sort') == 'ourPicks')
             type = 'des';
@@ -1734,7 +1755,7 @@
         if ($(this).data('sort') != 'ourPicks') {
             self.append('<span class="sort-indicator-image">' + typeIcon + '</span>');
         }
-        self.css({'font-weight': 'bold'});
+        self.css({'font-weight': 'bold', 'color':'#333'});
         self.attr('data-order', type)
 
         //var url = window.location.origin + '/' + MNME + '/' + Deals.city + '/' + Deals.when + '?sort='+$(this).data('sort')+'&type='+type;
