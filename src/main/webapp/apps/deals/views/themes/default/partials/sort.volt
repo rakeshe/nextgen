@@ -9,7 +9,7 @@
     </div>
     <div class="nine columns">
         <ul class="sort-control sr-space">
-            <li class="sort-list">
+            <li class="sort-list sort-list-label">
                 Sort by:
             </li>
             <li class="sort-list">
