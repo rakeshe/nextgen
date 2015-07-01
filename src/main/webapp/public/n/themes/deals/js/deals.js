@@ -657,6 +657,9 @@
                     url : hclUrl,
                     jsonp: false
                 });
+				ga('send', 'Member - ID', {
+				  'metric2':  cookieset
+				}); //Google Member ID Val
                 request.done(function (msg) {
 
                     var Mydata = $.trim(msg);
@@ -689,11 +692,17 @@
                 });
                 $('.logged-in-user').show();
                 $('.logged-out-user').hide();
-
+				ga('set', 'anonymizeIp', true);
+				ga('send', 'Session - Anon ID', {
+				  'dimension12':  'Session anon' //discuss with Rakesh
+				}); // Google Session - Anon ID
             } else {
                 df.reject();
                 $('.logged-in-user').hide();
                 $('.logged-out-user').show();
+				ga('send', 'Session - Visit ID', {
+				  'dimension17':  'Session '+cookieset
+				}); // Google Session - Session ID -//discuss with Rakesh
             }
             return df.promise();
         },
@@ -1396,6 +1405,21 @@
 
         // Bind to StateChange Event
         History.Adapter.bind(window, 'statechange', function() {
+			ga('send', 'Page - ID', {
+			  'dimension1':  'hclphp100'
+			});//Google - Page ID value
+
+			ga('send', 'Page - Locale', {
+			  'dimension20':  'en_AU'
+			});//Google - Page Locale value
+
+			ga('send', 'Page currency code', {
+			  'dimension21':  'AUD'
+			});//Google - Page Currency code value
+
+			ga('send', 'Page template name', {
+			  'dimension24':  'sale-deals-landing'
+			});//Google - Page Currency code value
 
             var State = History.getState();
             if (State && manualState == true) {
