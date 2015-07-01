@@ -1,0 +1,38 @@
+<script id="region-card-template" type="text/x-handlebars-template">
+  <!-- Destinations -->
+  <div class="region-hotel-card-box">
+  <div class="section">
+      <div class="container explore">
+          <h1>Explore destinations</h1>
+          {{regionCardExploreDestination regionCardData}}
+      </div>
+	</div>
+
+    <div class="section" id="australia">
+      <div class="container">
+
+          {{#each regionCardData}}
+
+      		<div class="row region-card-promo-box" style="background-image:url({{image}})!important;">
+            	<div class="destination">
+                	<div class="destination-info {{destinationInfoPosition @key}}">
+                        <h3>{{title}}</h3>
+                        <p>{{description}}</p>
+                        <p><strong>TOP DESTINATIONS</strong></p>
+                        {{regionCardTopDestination topDestinations}}
+                    </div>
+                    <p class="destination-top-deals"><strong>TOP DEALS</strong></p>
+                    <div class="destination-card-box">
+                    	<div class="destination-card-container">
+                            {{regionCardTopHotels topDeals}}
+                        </div>
+                    </div>
+                </div>	
+            </div><!-- End AU, NZ & Pacific -->
+
+          {{/each}}
+
+      </div><!-- End Container -->
+  </div><!-- End Section -->
+  </div>
+</script>
