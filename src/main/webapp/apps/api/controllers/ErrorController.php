@@ -14,9 +14,9 @@ class ErrorController extends ControllerBase
     
     public function show404Action() {
         // @todo quick fix remove this later
-        $this->response->redirect ( 'merch/en_AU/worldonsale');
-//        $this->response->setHeader(404, 'Not Found');
-//        die();
+//        $this->response->redirect ( 'merch/en_AU/worldonsale');
+        $this->response->setHeader(404, 'Not Found');
+        die();
     }
         
     

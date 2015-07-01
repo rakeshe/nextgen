@@ -4,7 +4,7 @@
 /* NAVIGATION */
 .nav {
     height:57px;
-    background:#;
+    /*background:#;*/
 }
 
 .logo {
@@ -172,7 +172,7 @@
     -webkit-appearance: none;  /*Removes default chrome and safari style*/
     -moz-appearance: none;  /*Removes default style Firefox*/
     appearance:none;
-    background: url('../images/assets/orbot-down-arrow.png');
+    background: url('../images/assets/orbot-down-arrow.png?2-1-6');
     background-position:top right;
     background-repeat:no-repeat;
     background-color:#FFF;
@@ -507,7 +507,7 @@ select {
 }
 @media (max-width: 768px) {
     .select-dates-wrapper {
-        background-image:url();
+        /*background-image:url();*/
         background-position:1px 16px;
         background-repeat:no-repeat;
         float:left;
@@ -690,7 +690,7 @@ select {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#333;
-	background-color#ccc;
+	background-color:#ccc;
 }
 .select-dates-close-window{
 	background-color: #ccc;
@@ -737,7 +737,7 @@ select {
 	width:50%;
 }
 #promo-code-val{
-	width; 50% !important;
+	width: 50% !important;
 	 background:none !important;
 }
 .find-btn{
@@ -1282,24 +1282,42 @@ select {
     text-decoration:underline;
 }
 
+@media (max-width: 767px) {
+    .sort-row {
+        font-size: 18px;
+    }
+    .breadcrumbs{
+        padding-bottom: 15px;
+    }
+}
 /* SORT BUTTON */
 .sort-row {
     margin-top:1px;
     margin-bottom:1px;
 }
+
+
 .sort-control {
     float: right;
     margin-bottom: 0 !important;
+    padding: 0px;
 }
 .sort-list {
-    display: inline;
+    display: inline-block;
     list-style: none;
-    padding-left: 16px;
+    padding-left: 14px;
     padding-right: 0px;
     cursor: pointer;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    color: #a1a1a1;
+}
+.sort-list:last-child, .sort-list:nth-last-child(2){
+    padding-left: 10px;
+}
+.sort-list-label {
     color: #333;
+    padding-left: 10px;
 }
 .sr-space {
     padding-right: 10px;
@@ -1312,6 +1330,7 @@ select {
     margin-bottom: 0 !important;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
+    /*padding-bottom: 10px;*/
 }
 .breadcrumbs li {
     display: inline;
@@ -2379,7 +2398,7 @@ select {
     padding-bottom:16px;
 }
 #filter-btn {
-    display:;
+    /*display:none;*/
 }
 /*date picker values*/
 .ui-datepicker{ width: 20% !important; }

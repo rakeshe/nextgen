@@ -194,4 +194,13 @@ class DealsController extends ControllerBase {
         ];
 
     }
+
+    public function show404Action() {
+        $this->dispatcher->forward(array(
+                'controller' => 'deals',
+                'action' => 'index'
+            ));
+//        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
+
+    }
 }
