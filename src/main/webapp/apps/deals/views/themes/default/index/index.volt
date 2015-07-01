@@ -12,7 +12,7 @@ var pcData = '{{promoCardData}}';
 
 </div> <!-- End Section -->
 
-<div class="section">
+<div class="section promotion-box">
     <div class="container">
         <div class="row">
             <div class="hero-text">

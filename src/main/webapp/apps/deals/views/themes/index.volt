@@ -43,7 +43,7 @@
         {{ partial(theme ~ '/partials/filter') }}
         {{ partial(theme ~ '/partials/hotelCard') }}
         {{ partial(theme ~ '/partials/upsell') }}
-      {#  {{ partial(theme ~ '/partials/regionHotelCard') }} #}
+        {{ partial(theme ~ '/partials/regionHotelCard') }}
         {{ partial(theme ~ '/partials/footer') }}
 
         {{ javascript_include('themes/deals/js/jquery.js?' ~ appVersion ) }}
