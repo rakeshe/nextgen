@@ -44,6 +44,8 @@ class DealsController extends ControllerBase {
 
     private $sortType;
 
+    private $hotels;
+
     public function initialize() {
 
         $this->init();
@@ -108,7 +110,7 @@ class DealsController extends ControllerBase {
             $this->city = str_replace('#','',$this->dispatcher->getParams()[0]);
             $this->appendURL .= $this->city . '/';
         } else {
-            $this->city = self::DEFAULT_CITY;
+           // $this->city = self::DEFAULT_CITY;
             $this->appendURL .= self::DEFAULT_CITY . '/';
         }
 
@@ -118,7 +120,7 @@ class DealsController extends ControllerBase {
             $this->when = $this->dispatcher->getParams()[1];
             $this->appendURL .= $this->when;
         } else {
-            $this->when = self::DEFAULT_WHEN;
+            //$this->when = self::DEFAULT_WHEN;
             $this->appendURL .= self::DEFAULT_WHEN;
         }
 
@@ -149,6 +151,17 @@ class DealsController extends ControllerBase {
     public function indexAction() {
 
         $this->cityData = $this->model->getCityDocument();
+        $noHotels = 'false';
+        if ($this->city !== NULL && $this->when !== NULL) {
+            $this->hotels = $this->model->getHotels('', $this->city, $this->when);
+
+            if ($this->hotels == '{}') {
+                $noHotels = 'true';
+            }
+
+        } else {
+            $this->hotels = '{}';
+        }
 
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
@@ -167,7 +180,7 @@ class DealsController extends ControllerBase {
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
                 'url'                 => self::DEFAULT_URL,
-                'hData'               => $this->model->getHotels('', $this->city, $this->when),
+                'hData'               => $this->hotels,
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())
@@ -179,6 +192,7 @@ class DealsController extends ControllerBase {
                 'docFooterAbout'      => $docFooterAbout->html,
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
+                'noHotels'            => $noHotels
             ]
         );
 

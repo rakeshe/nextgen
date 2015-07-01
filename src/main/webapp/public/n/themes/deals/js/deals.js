@@ -355,15 +355,16 @@
             var self = this;
             this.displayUserInfo().always(function(){
 
+                self.initRoute();
                 //this.displayOrbot();
                 //this.displaySortBox(); //don't display in init..
                 //this.displayFilter();
                 //this.displayHotelCards();
-                self.displayRegionHotelCards();
+                //self.displayRegionHotelCards();
                 //this.displayUpsell();
                 self.displayFooter();
-                self.displayDropDownData('value');
-                self.setCityImage();
+                //self.displayDropDownData('value');
+                //self.setCityImage();
                 //self.initURLUpdate();
                 //self.hotelCardCtrl();
 
@@ -424,6 +425,31 @@
                 manualState = false;
                 History.pushState({url: url}, ' Hotels', url);
             }
+        },
+
+        initRoute : function() {
+
+
+          if ($.isEmptyObject(this.hData) == true) {
+
+              if (noHData == 'true') {
+                  this.displayDropDownData('value');
+                  this.updatePromotion();
+                  this.displayNoHotelOrbot();
+              } else {
+                  //root to landing page
+                  this.displayDropDownData('default');
+                  this.displayRegionHotelCards();
+              }
+          } else {
+              // root to second page
+              this.displayDropDownData('value');
+              this.setCityImage();
+              this.updatePromotion();
+              $('#breadcrumb-city').html(city); // Set breadcrumb
+              this.hotelCardCtrl();
+
+          }
         },
 
         reLoadLandingPage: function() {
@@ -896,7 +922,6 @@
 
             var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
 
-            //console.log('city: ' + self.city);
 
             $.each(this.getCityData(), function(key, val){
 
@@ -977,7 +1002,8 @@
             //get last destinatoin
             dropCities.append( this.getLastDestination() );
 
-            $('.dropdown-region').val(regionVal).attr("selected", "selected");
+            if (selectType == 'value')
+                $('.dropdown-region').val(regionVal).attr("selected", "selected");
 
             $.each(this.getWhereDoGoText(), function (key, val) {
 
