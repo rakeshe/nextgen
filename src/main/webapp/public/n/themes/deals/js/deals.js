@@ -310,7 +310,7 @@
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += '<li><a data-value="'+key+'" title="Visit '+obj[key].title+'">'+obj[key].title+'</a></li>';
+                 html += '<li><a class="region-explore-dest" data-value="'+key+'" title="Visit '+obj[key].title+'">'+obj[key].title+'</a></li>';
              }
          }
          html += '</ul>';
@@ -1947,6 +1947,13 @@
             $(this).val($(this).attr('data-value'));
         }
 		ga('send', 'event', 'search-bar', 'orbot-select', 'promo-code', $(this).val());
+    });
+
+    $(document).on('click', '.region-explore-dest', function() {
+
+        $('html,body').animate({
+                scrollTop: $("#region-card-promo-" + $(this).attr('data-value')).offset().top },
+            'slow');
     });
 
 	/*function to calculate and display the date difference*/
