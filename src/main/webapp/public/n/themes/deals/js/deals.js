@@ -269,7 +269,7 @@
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += '<li><a href="'+obj[key].url+'">'+obj[key].title+'</a></li>';
+                 html += '<li><a href="/'+MNME + '/' +obj[key].url+'">'+obj[key].title+'</a></li>';
              }
 
          }
@@ -284,7 +284,7 @@
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += ' <li class="destination-card-child"><a href="#">';
+                 html += ' <li class="destination-card-child"><a href="">';
                  html += ' <div class="destination-card-img-holder">';
                  html += ' <div class="destination-card-img">';
                  html += ' <img src="'+obj[key].image+'" />';
@@ -310,7 +310,7 @@
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += ' <li><a title="Visit '+obj[key].title+'">'+obj[key].title+'</a></li>';
+                 html += '<li><a data-value="'+key+'" title="Visit '+obj[key].title+'">'+obj[key].title+'</a></li>';
              }
          }
          html += '</ul>';

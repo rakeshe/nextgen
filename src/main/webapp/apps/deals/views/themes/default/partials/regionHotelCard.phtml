@@ -13,7 +13,7 @@
 
           {{#each regionCardData}}
 
-      		<div class="row region-card-promo-box" style="background-image:url({{image}})!important;">
+      		<div class="row region-card-promo-box" id="region-card-promo-{{@key}}" style="background-image:url({{image}})!important;">
             	<div class="destination">
                 	<div class="destination-info {{destinationInfoPosition @key}}">
                         <h3>{{title}}</h3>
