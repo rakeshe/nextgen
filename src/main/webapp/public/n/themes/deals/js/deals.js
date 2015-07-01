@@ -633,7 +633,7 @@
                 });
 				ga('send', 'Member - ID', {
 				  'metric2':  cookieset
-				}); Google Member ID Val
+				}); //Google Member ID Val
                 request.done(function (msg) {
 
                     var Mydata = $.trim(msg);
