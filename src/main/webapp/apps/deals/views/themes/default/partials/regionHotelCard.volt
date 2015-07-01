@@ -1,5 +1,6 @@
 <script id="region-card-template" type="text/x-handlebars-template">
   <!-- Destinations -->
+  <div class="region-hotel-card-box">
   <div class="section">
       <div class="container explore">
           <h1>Explore destinations</h1>
@@ -352,4 +353,5 @@
 
       </div><!-- End Container -->
   </div><!-- End Section -->
+  </div>
 </script>

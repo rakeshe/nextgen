@@ -1508,7 +1508,7 @@ select {
     content: "";
     display: table;
     clear: both; }
-	
+
 .card-desc{
     display: block;
     height: 163px;
@@ -2445,11 +2445,11 @@ select {
     border-radius: 5px;
     /*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
 }
-.ui-datepicker-prev {  
+.ui-datepicker-prev {
     background-image: url("../images/assets/prev.png") !important;
     background-repeat: no-repeat;
 }
-.ui-datepicker-next {  
+.ui-datepicker-next {
     background-image: url("../images/assets/next.png") !important;
     background-repeat: no-repeat;
 }
@@ -2539,4 +2539,11 @@ select {
 
 #ui-datepicker-div {
     z-index: 1000 !important;
+}
+
+.promotion-box {
+    display:none;
+}
+.region-hotel-card-box {
+    display: none;
 }

@@ -276,6 +276,10 @@
 
             this.hData = $.parseJSON(hData);
 
+            //this.rData = $.parseJSON(pcData);
+            //this.rData = $.parseJSON(pcData);
+            //console.log(pcData);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
@@ -286,7 +290,7 @@
             $('.filter').hide();
 
             this.displayHeader();
-            this.updatePromotion();
+            //this.updatePromotion();
 
             var self = this;
             this.displayUserInfo().always(function(){
@@ -295,13 +299,13 @@
                 //this.displaySortBox(); //don't display in init..
                 //this.displayFilter();
                 //this.displayHotelCards();
-                //this.displayRegionHotelCards();
+                self.displayRegionHotelCards();
                 //this.displayUpsell();
                 self.displayFooter();
                 self.displayDropDownData('value');
                 self.setCityImage();
-                self.initURLUpdate();
-                self.hotelCardCtrl();
+                //self.initURLUpdate();
+                //self.hotelCardCtrl();
 
             });
 
@@ -516,6 +520,7 @@
           var club = $.parseJSON(clubPromo),
               pm = $.parseJSON(pmPromo);
 
+            $('.promotion-box').show();
             $('.promo-one-title').html(club.title);
             $('.promo-one-body').html(club.text);
             $('.promo-two-title').html(pm.title);
@@ -732,9 +737,10 @@
         },
 
         displayRegionHotelCards : function () {
-
+console.log(this.rData);
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template());
+            $('.section .region-cards-container').append(template(this.rData));
+            $('.region-hotel-card-box').show();
         },
 
         displayFooter : function () {
@@ -1384,6 +1390,8 @@
                             //start routing ..
                             Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
                             Deals.setCityImage();
+                            $('.region-hotel-card-box').hide();
+                             Deals.updatePromotion();
                             // Set breadcrumb
                             $('#breadcrumb-city').html(cy);
 
