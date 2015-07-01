@@ -2267,7 +2267,7 @@ select {
 		}
 	}
 	
-.pacific {
+.region-card-promo-box {
 	background-image:url(../images/backgrounds/Dest-AUNZPAC.jpg);
 	background-position:top center;
 	background-size:cover;
@@ -2275,42 +2275,6 @@ select {
 }
 	@media (max-width: 765px) {
 		.pacific {background-image:url(); margin-bottom:1px;}
-	}
-.asia-me {
-	background-image:url(../images/backgrounds/Dest-ASIAME.jpg);
-	background-position:top center;
-	background-size:cover;
-	margin-bottom:48px;
-}
-	@media (max-width: 765px) {
-		.asia-me {background-image:url(); margin-bottom:1px;}
-	}
-.europe {
-	background-image:url(../images/backgrounds/Dest-EUR.jpg);
-	background-position:top center;
-	background-size:cover;
-	margin-bottom:48px;
-}
-	@media (max-width: 765px) {
-		.europe {background-image:url(); margin-bottom:1px;}
-	}
-.americas {
-	background-image:url(../images/backgrounds/Dest-AMER.jpg);
-	background-position:top center;
-	background-size:cover;
-	margin-bottom:48px;
-}
-	@media (max-width: 765px) {
-		.americas {background-image:url(); margin-bottom:1px;}
-	}
-.africa {
-	background-image:url(../images/backgrounds/Dest-AFR.jpg);
-	background-position:top center;
-	background-size:cover;
-	margin-bottom:96px;
-}
-	@media (max-width: 765px) {
-		.africa {background-image:url(); margin-bottom:24px;}
 	}
 
 /* FOOTER */

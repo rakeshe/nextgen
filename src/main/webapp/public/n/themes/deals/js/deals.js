@@ -256,6 +256,68 @@
         }
     });
 
+    HB.registerHelper('destinationInfoPosition', function(key) {
+        if (key % 2 === 0)
+            return 'pull-left';
+        else
+            return 'pull-right';
+    });
+
+     HB.registerHelper('regionCardTopDestination', function(obj) {
+
+         var html = '<ul>';
+         for (var key in obj) {
+
+             if (obj.hasOwnProperty(key)) {
+                 html += '<li><a href="'+obj[key].url+'">'+obj[key].title+'</a></li>';
+             }
+
+         }
+         html += '</ul>';
+         return new Handlebars.SafeString(html);
+
+    });
+
+     HB.registerHelper('regionCardTopHotels', function(obj) {
+
+         var html = '<ul>';
+         for (var key in obj) {
+
+             if (obj.hasOwnProperty(key)) {
+                 html += ' <li class="destination-card-child"><a href="#">';
+                 html += ' <div class="destination-card-img-holder">';
+                 html += ' <div class="destination-card-img">';
+                 html += ' <img src="'+obj[key].image+'" />';
+                 html += ' </div>';
+                 html += '  </div>';
+                 html += '  <div class="destination-card-info">';
+                 html += '  <p class="destination-card-title">'+obj[key].title+'</p>';
+                 html += '  <div class="new-star-sprite-'+obj[key].starRating+'" style="float:left;"></div>';
+                 html += ' <div class="destination-card-city">'+obj[key].city+'</div>';
+                 html += '  <p class="destination-card-offer">'+obj[key].shortMarketingText+'</p>';
+                 html += '  </div></a>';
+                 html += '  </li>';
+             }
+         }
+         html += '</ul>';
+         return new Handlebars.SafeString(html);
+
+    });
+
+    HB.registerHelper('regionCardExploreDestination', function(obj) {
+
+         var html = '<ul>';
+         for (var key in obj) {
+
+             if (obj.hasOwnProperty(key)) {
+                 html += ' <li><a title="Visit '+obj[key].title+'">'+obj[key].title+'</a></li>';
+             }
+         }
+         html += '</ul>';
+         return new Handlebars.SafeString(html);
+
+    });
+
     Handlebars.registerHelper('trimString', function(string, value) {
 
         if (string.length > value ) {
@@ -263,7 +325,6 @@
         }
         return new Handlebars.SafeString( string )
     });
-
 
 
     var Deals = {
@@ -276,15 +337,14 @@
 
             this.hData = $.parseJSON(hData);
 
-            //this.rData = $.parseJSON(pcData);
-            //this.rData = $.parseJSON(pcData);
-            //console.log(pcData);
+            this.rData = $.parseJSON(pcData);
 
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
 
             this.setSortBy(sBy);
+
             this.setSortType(sTy);
 
             $('.filter').hide();
@@ -737,9 +797,9 @@
         },
 
         displayRegionHotelCards : function () {
-console.log(this.rData);
+            console.log(this.rData);
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template(this.rData));
+            $('.section .region-cards-container').append(template({regionCardData : this.rData}));
             $('.region-hotel-card-box').show();
         },
 
