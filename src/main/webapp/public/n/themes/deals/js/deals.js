@@ -362,7 +362,7 @@
             $('.filter').hide();
 
             this.displayHeader();
-            //this.updatePromotion();
+            this.updatePromotion();
 
             var self = this;
             this.displayUserInfo().always(function(){
