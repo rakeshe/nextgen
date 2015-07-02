@@ -1896,48 +1896,45 @@ select {
 }
 /* EXPLORE */
 .explore {
-	text-align:center;
-	padding:32px;
+    text-align:center;
+    padding:32px;
 }
-	@media (max-width: 765px) {
-		.explore {
-			text-align:left;
-			padding:0px;
-			padding-top:32px;
-		}
-	}
+@media (max-width: 765px) {
+    .explore {
+        text-align:left;
+        padding:0px;
+        padding-top:32px;
+    }
+}
 .explore ul {
-	list-style:none;
-	font-family:'museo_sans300',Verdana, Geneva, sans-serif;
-	font-size:18px;
-	font-weight:300;
-	padding:0px;
-	margin-bottom:0px;
+    list-style:none;
+    font-family:'museo_sans300',Verdana, Geneva, sans-serif;
+    font-size:18px;
+    font-weight:300;
+    padding:0px;
+    margin-bottom:0px;
 }
-	@media (max-width: 765px) {
-		.explore ul {
-			display:none;
-		}
-	}
+@media (max-width: 765px) {
+    .explore ul {
+        display:none;
+    }
+}
 .explore li {
-	display:inline;
-	padding:18px;
+    display:inline;
+    padding:18px;
 }
 .explore li a {
-	color:#7b59ab;
-	text-decoration:none;
+    color:#7b59ab;
+    text-decoration:none;
 }
 .explore li a:hover {
-	color:#4f2984;
-	text-decoration:underline;
+    color:#4f2984;
+    text-decoration:underline;
 }
 .explore h1 {
-	font-size:30px;
-	font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-	line-height:100%;
-}
-.explore .active{
-	font-weight:bold;
+    font-size:30px;
+    font-family:'museo_slab500',Verdana, Geneva, sans-serif;
+    line-height:100%;
 }
 /* DESTINATIONS */
 .destination {
