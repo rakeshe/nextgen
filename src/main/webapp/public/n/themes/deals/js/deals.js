@@ -525,9 +525,14 @@
         hotelCardCtrl : function(obj) {
 
             $('.region-hotel-card-box').hide();
+
             if ($('.promotion-box').length == 0) {
                 this.updatePromotion();
+            } else {
+                $('.promotion-box').show();
             }
+            //set city image
+            this.setCityImage();
 
             if (typeof obj == 'object') {
 
@@ -1126,8 +1131,6 @@
 
         setCityImage : function() {
 
-            //console.log(this.cityImage);
-            //console.log('city image ' + this.cityImage[this.city]);
             if (typeof this.cityImage[this.city] !== undefined && this.cityImage[this.city] != "") {
                 $('.hero').css('background-image', 'url(' + this.cityImage[this.city] + ')');
             }
@@ -1470,9 +1473,12 @@
 
             var State = History.getState();
             if (State && manualState == true) {
-                var urlArr = State.cleanUrl.split( '/' );
+                var urlArr = State.cleanUrl.split( '/'),
                     when = urlArr[ urlArr.length -1 ],
                     city = urlArr[ urlArr.length -2 ];
+
+                Deals.setCity(city);
+                Deals.setWhen(city);
 
                 if (when == '' || city == '' || typeof Deals.getWhereDoGoText()[when] == "undefined") {
 
