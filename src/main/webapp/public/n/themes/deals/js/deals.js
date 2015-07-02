@@ -505,11 +505,29 @@
             }
         },
 
-        defaultCtrl : function(obj) {
-            this.initURLUpdate();
+        defaultCtrl : function(render) {
+
+            this.setHeroesImage(); // set heroes image
+            this.displayDropDownData('default');
+            $('.promotion-box').hide();
+            $('.hotelcards').remove();
+            $('.err-hotel-not-found').remove();
+            $('.orbot-in-page').remove();
+
+            if (render === true) {
+                this.displayRegionHotelCards();
+            } else {
+                $('.region-hotel-card-box').show();
+            }
+
         },
 
         hotelCardCtrl : function(obj) {
+
+            $('.region-hotel-card-box').hide();
+            if ($('.promotion-box').length == 0) {
+                this.updatePromotion();
+            }
 
             if (typeof obj == 'object') {
 
@@ -1415,7 +1433,7 @@
 
         //Using setTimeout only isn't a correct solution because you have no idea how long it will take for the content to be
         // loaded so it's possible the popstate event is emitted after the timeout.
-        window.addEventListener( 'load' , function() {
+/*        window.addEventListener( 'load' , function() {
             setTimeout( function() {
                 window.addEventListener( 'popstate' , function( event ) {
 
@@ -1430,7 +1448,7 @@
                     }
                 });
             }, 0);
-        });
+        });*/
 
         // Bind to StateChange Event
         History.Adapter.bind(window, 'statechange', function() {
@@ -1455,10 +1473,19 @@
                 var urlArr = State.cleanUrl.split( '/' );
                     when = urlArr[ urlArr.length -1 ],
                     city = urlArr[ urlArr.length -2 ];
-                Deals.route( {region : '', city : city, when: when, dropDownRefresh : true}, 'hotelCardCtrl' );
 
-            } else {
-                //Deals.defaultCtrl( '' );
+                if (when == '' || city == '' || typeof Deals.getWhereDoGoText()[when] == "undefined") {
+
+                    if($(".region-hotel-card-box").length == 0) {
+                        Deals.defaultCtrl(true);
+                    } else {
+                        Deals.defaultCtrl(false);
+                    }
+
+                } else {
+                    Deals.route( {region : '', city : city, when: when, dropDownRefresh : true}, 'hotelCardCtrl' );
+                }
+
             }
             manualState = true;
         });
