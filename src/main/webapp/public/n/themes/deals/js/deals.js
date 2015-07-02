@@ -704,17 +704,16 @@
                 });
                 $('.logged-in-user').show();
                 $('.logged-out-user').hide();
-				ga('set', 'anonymizeIp', true);
 				ga('send', 'Session - Anon ID', {
-				  'dimension12':  'Session anon' //discuss with Rakesh
+				  'dimension12':  $.cookie('anon')
 				}); // Google Session - Anon ID
             } else {
                 df.reject();
                 $('.logged-in-user').hide();
                 $('.logged-out-user').show();
 				ga('send', 'Session - Visit ID', {
-				  'dimension17':  'Session '+cookieset
-				}); // Google Session - Session ID -//discuss with Rakesh
+				  'dimension17':  $.cookie('JSESSIONID')
+				}); // Google Session - Visit ID
             }
             return df.promise();
         },
@@ -1422,11 +1421,11 @@
 			});//Google - Page ID value
 
 			ga('send', 'Page - Locale', {
-			  'dimension20':  'en_AU'
+			  'dimension20':  $.cookie('AustinLocale')
 			});//Google - Page Locale value
 
 			ga('send', 'Page currency code', {
-			  'dimension21':  'AUD'
+			  'dimension21':  $.cookie('curr')
 			});//Google - Page Currency code value
 
 			ga('send', 'Page template name', {
