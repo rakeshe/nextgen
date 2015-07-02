@@ -916,7 +916,7 @@
         setDropDownDefaultOption : function() {
             return {
                 dropRegion : function() {
-                   return $('.dropdown-region').append( $('<option>', {
+                   return $('.dropdown-region').html('').append( $('<option>', {
                         value : '0',
                         text : 'Where do you want to go?',
                         'selected' :'selected'
@@ -924,14 +924,14 @@
 
                 },
                 dropCities : function() {
-                    return $('.dropdown-cities').append( $('<option>', {
+                    return $('.dropdown-cities').html('').append( $('<option>', {
                         value : '0',
                         text : 'What City?',
                         'selected' :'selected'
                     }) );
                 },
                 dropWhereDo : function() {
-                    return $('.dropWhereDo').append( $('<option>', {
+                    return $('.dropWhereDo').html('').append( $('<option>', {
                         value : '0',
                         text : 'When do you want to go?',
                         'selected' :'selected'
