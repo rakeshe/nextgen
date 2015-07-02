@@ -924,14 +924,16 @@
 
                 },
                 dropCities : function() {
-                    return $('.dropdown-cities').html('').append( $('<option>', {
+                    return $('.dropdown-cities').html('').attr('disabled','disabled').addClass('disabled-style')
+                        .append( $('<option>', {
                         value : '0',
                         text : 'What City?',
                         'selected' :'selected'
                     }) );
                 },
                 dropWhereDo : function() {
-                    return $('.dropWhereDo').html('').append( $('<option>', {
+                    return $('.dropWhereDo').html('').attr('disabled','disabled').addClass('disabled-style')
+                        .append( $('<option>', {
                         value : '0',
                         text : 'When do you want to go?',
                         'selected' :'selected'
@@ -1513,8 +1515,9 @@
             //release disable
             switch (className) {
                 case 'dropdown-region' :
-                   // $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
+
                     Deals.displayDropDownCity(rg);
+                    $('.dropdown-cities').removeAttr('disabled').removeClass('disabled-style');
                     $('.dropdown-cities').focus();
                     ga('send', 'event', 'search-bar', 'region-select', rg);
                     // do not reset image, keep prev image
