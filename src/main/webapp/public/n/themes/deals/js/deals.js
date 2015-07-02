@@ -549,7 +549,28 @@
 
                     //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
                     // Display hotels using sort our picks in descending order, ie deals with highest score (sortOrder) on top
-                    Deals.sortByNumber('sortOrder', 'des');
+                    //Deals.sortByNumber('sortOrder', 'des');
+
+                    if (this.sortBy == 'ourPicks') {
+                        Deals.sortByNumber('sortOrder', 'des');
+                    } else if (this.sortBy == 'price') {
+                        Deals.sortByNumber('price', this.sortType);
+                    } else if (this.sortBy == 'name') {
+                        Deals.sortByText('hotelNameUtf8', this.sortType);
+                    } else if (this.sortBy == 'rating') {
+                        Deals.sortByNumber('starRating', this.sortType);
+                    }
+
+                    var desIcon = ' &or;',
+                        ascIcon = ' &and;',
+                        typeIcon = this.sortType == 'asc' ? ascIcon : desIcon;
+                    $('.sort-button').css({'font-weight': 'normal','color':'#a1a1a1'});
+
+                    if (this.sortBy != 'ourPicks')
+                        $('a[data-sort="'+this.sortBy+'"]').append($('<span class="sort-indicator-image">' + typeIcon + '</span>'))
+                            .attr('data-order', this.sortType );
+
+                    $('a[data-sort="'+this.sortBy+'"]').css({'font-weight': 'bold','color':'#333'});
 
                     if (obj.dropDownRefresh === true)
                         this.displayDropDownData('value');
@@ -1475,10 +1496,16 @@
             if (State && manualState == true) {
                 var urlArr = State.cleanUrl.split( '/'),
                     when = urlArr[ urlArr.length -1 ],
-                    city = urlArr[ urlArr.length -2 ];
+                    city = urlArr[ urlArr.length -2];
+
+                if (when.indexOf('?') != '-1') {
+                    when = when.split('?')[0];
+                }
 
                 Deals.setCity(city);
                 Deals.setWhen(city);
+
+                console.log('city => '+city + ' when=> '+when);
 
                 if (when == '' || city == '' || typeof Deals.getWhereDoGoText()[when] == "undefined") {
 
@@ -1489,7 +1516,17 @@
                     }
 
                 } else {
-                    Deals.route( {region : '', city : city, when: when, dropDownRefresh : true}, 'hotelCardCtrl' );
+                    var sortBy = getParameterByName('sort'),
+                        sortType = getParameterByName('type');
+
+                    if (sortBy != '')
+                        Deals.sortBy = sortBy;
+
+                    if (sortType != '')
+                        Deals.sortType = sortType;
+
+
+                    Deals.hotelCardCtrl( {region : '', city : city, when: when, dropDownRefresh : true} );
                 }
 
             }
@@ -2135,6 +2172,13 @@
 			});
 		}
 	}//selectExactDateScroll
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
     $(document).ready(function(){
 
