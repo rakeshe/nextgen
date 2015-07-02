@@ -281,10 +281,22 @@
      HB.registerHelper('regionCardTopHotels', function(obj) {
 
          var html = '<ul>';
+         var baseUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&locale=en_AU"
+             + "&hsv.showDetails=true"
+             + "&hotel.type=keyword"
+             + "&hotel.chkin="
+             + "&hotel.chkout="
+             + "&hotel.rooms[0].adlts=2"
+             + "&search=Search";
+
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += ' <li class="destination-card-child"><a href="">';
+                 var hotelUrl = baseUrl + "&hotel.hid="+ obj[key].oneg
+                 + "&hotel.hname="+obj[key].title
+                 + "&hotel.keyword.key="+obj[key].city;
+
+                 html += ' <li class="destination-card-child"><a href="' + hotelUrl +'" target="_blank">';
                  html += ' <div class="destination-card-img-holder">';
                  html += ' <div class="destination-card-img">';
                  html += ' <img src="'+obj[key].image+'" />';
