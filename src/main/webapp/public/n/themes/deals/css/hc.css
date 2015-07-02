@@ -1940,22 +1940,41 @@ select {
 .destination {
     padding:22px;
 }
-.destination-image {
-	display:none;
+@media (max-width: 765px) {
+    .destination {
+        padding:0px;
+    }
 }
-	@media (max-width: 765px) {
-		.destination-image {
-			display:block;
-			width:100%;
-			height:auto;
-			margin-bottom:24px;
-		}
-	}
+
+.destination-info {
+    width:498px;
+    height:394px;
+    background: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding:22px;
+    margin-bottom:24px;
+}
+@media (max-width: 765px) {
+    .destination-info {
+        width:100%;
+        height:auto;
+        background: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, 1);
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        padding:0px;
+        margin-bottom:24px;
+    }
+}
 .pull-left {
-	float:left;
+    float:left;
 }
 .pull-right {
-	float:right;
+    float:right;
 }
 /*.destination h3 {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
@@ -1992,19 +2011,6 @@ select {
     padding-left:8px;
     padding-bottom:24px;
 }
-.destination-info {
-	background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
-    border-radius: 4px;
-    height: 394px;
-    margin-bottom: 24px;
-    padding: 22px;
-    width: 498px;
-}
-@media (max-width: 768px) {
-    .destination-info {
-        margin-top:26px;
-    }
-}
 .destination-info h3 {
 	font-family:'museo_slab500',Verdana, Geneva, sans-serif;
 	font-size:24px;
@@ -2018,6 +2024,17 @@ select {
 		color:#333;
 		line-height:32px;
 	}
+}
+.destination-image {
+    display:none;
+}
+@media (max-width: 765px) {
+    .destination-image {
+        display:block;
+        width:100%;
+        height:auto;
+        margin-bottom:24px;
+    }
 }
 .destination-info p {
 	color:#FFF;
@@ -2289,10 +2306,54 @@ select {
 	background-size:cover;
 	margin-bottom:48px;
 }
-	@media (max-width: 765px) {
-		.pacific {background-image:url(); margin-bottom:1px;}
-	}
-
+@media (max-width: 765px) {
+    .region-card-promo-box {background-image:none !important; margin-bottom:1px;}
+}
+.pacific {
+    background-image:url(../images/backgrounds/Dest-AUNZPAC.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .pacific {background-image:url(); margin-bottom:1px;}
+}
+.asia-me {
+    background-image:url(../images/backgrounds/Dest-ASIAME.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .asia-me {background-image:url(); margin-bottom:1px;}
+}
+.europe {
+    background-image:url(../images/backgrounds/Dest-EUR.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .europe {background-image:url(); margin-bottom:1px;}
+}
+.americas {
+    background-image:url(../images/backgrounds/Dest-AMER.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .americas {background-image:url(); margin-bottom:1px;}
+}
+.africa {
+    background-image:url(../images/backgrounds/Dest-AFR.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:96px;
+}
+@media (max-width: 765px) {
+    .africa {background-image:url(); margin-bottom:24px;}
+}
 /* FOOTER */
 
 .footer {
