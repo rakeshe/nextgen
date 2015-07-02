@@ -884,7 +884,6 @@
         },
 
         displayRegionHotelCards : function () {
-            console.log(this.rData);
             var template = HB.compile( $("#region-card-template").html() );
             $('.section .region-cards-container').append(template({regionCardData : this.rData}));
             $('.region-hotel-card-box').show();

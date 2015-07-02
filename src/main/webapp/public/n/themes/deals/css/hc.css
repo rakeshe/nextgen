@@ -1929,7 +1929,8 @@ select {
 }
 .explore li a:hover {
     color:#4f2984;
-    text-decoration:underline;
+    text-decoration:none;
+    cursor: pointer;
 }
 .explore h1 {
     font-size:30px;
