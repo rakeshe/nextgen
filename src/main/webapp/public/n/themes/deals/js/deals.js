@@ -444,6 +444,8 @@
 
           if ($.isEmptyObject(this.hData) == true) {
 
+              this.setHeroesImage(); // set heroes image
+
               if (noHData == 'true') {
                   this.displayDropDownData('value');
                   this.updatePromotion();
@@ -564,6 +566,21 @@
                 }
             }
 
+        },
+
+        setHeroesImage : function () {
+            var image = [
+                'beach_cabana.jpg',
+                'cliffside_car_ride.jpg',
+                'european_architecture.jpg',
+                'exploring_ancient_temples.jpg',
+                'mountainside_field_of_flowers.jpg',
+                'ocean_boat_ride.jpg',
+                'soccer_on_the_beach.jpg',
+                'tranquil_boat_ride.jpg'
+            ];
+            var index = Math.floor((Math.random() * 8));
+            $('.hero').css('background-image', 'url("/n/themes/deals/images/Heroes/'+image[index]+'")');
         },
 
         displayNoHotelOrbot : function() {
