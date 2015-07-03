@@ -69,7 +69,7 @@
 	@if $listVal!=0 { list-style: $listVal; }
 }
 @mixin border-bg-width-val($borderVal, $bgVal, $widthVal){
-	border:$borderVal;
+	@if $borderVal != 0{ border:$borderVal; }
 	@if $bgVal != 0{ background:$bgVal; }
 	@if $widthVal != 0{	width:$widthVal; }
 }

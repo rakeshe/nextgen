@@ -2,7 +2,7 @@
 @import "style-media.scss";
 .nav{ 
 	height:57px;
-	background:'#';
+	/*background:'#';*/
 }
 @each $logoVal in logo, logo-footer{
 	.#{$logoVal}{
@@ -185,6 +185,9 @@ select {
 	@include locale-val(400px, #d6dddc, 0, none, left, 0);
     margin-left:16px;
 }
+.select-dates-hotel-name{
+	float:left;
+}
 .select-dates-container {
     margin:16px;
 	h3 {
@@ -208,6 +211,9 @@ select {
 .add-room, .remove-room{
 	cursor:pointer;
 	text-decoration:none;
+}
+.add-remove-lable{
+	clear:both;
 }
 .select-dates-display {
 	@include text-align-val(80%, '0 10% 0 0', center);
@@ -249,6 +255,10 @@ select {
 		cursor:pointer;
 	}
 }
+.select-date-hotel-name{
+	@include font-val-2(20px, 0, 0, 0);
+	@include padd('left', '15px 0 0 15px');
+}
 .select-dates-button {
 	@include font-val(16px, 300, #FFF, 0);
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
@@ -257,8 +267,11 @@ select {
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);	
     text-decoration:none !important;
 }
+.select-dates-footer{ @include general-width(50%, 0, 'left'); }
+#promo-code-val{ @include border-bg-width-val(0, 'none', '50%'); }
 .find-btn{
 	margin-bottom:20px;
+	cursor:pointer;
 }
 /* Modal - Message pop up */
 .modal-wrapper { @include wid-pos-zindex-top-left(590px, 'absolute !important', '999 !important', 0, 0, 0); }
@@ -748,6 +761,28 @@ select {
 		}
 	}
 }
+/* EXPLORE */
+.explore {
+    text-align:center;
+    padding:32px;
+	ul {
+		@include font-val(18px, 300, 0, '100%');
+		list-style:none;
+		padding:0px;
+		margin-bottom:0px;
+	}
+	li {
+		@include locale-val(0, 0, 18px, inline, 0, 0);
+		a {	@include text-deco(#7b59ab, none);
+			&:hover {
+				@include text-deco(#4f2984, none);
+				cursor: pointer;
+			}
+		}
+	}
+	h1 { @include font-val-2(30px, 0, 0, '100%'); }	
+}
+
 /* DESTINATIONS */
 .destination { 
 	padding:16px;

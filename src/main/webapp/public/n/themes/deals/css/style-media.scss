@@ -74,11 +74,11 @@
         border-left:0px;
         border-right:0px;
     }
-	.select-dates-button { width:100%; }
+	.select-dates-button { width:45%; }
     .modal-box { width:60% !important; }
 	.modal-wrapper {
 		@include img-val('../images/assets/modal-box-arrow.png', 'bottom center', 0, 0);
-		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+		@include wid-pad-val(0, 0, 0, 0, left);
     }
     .modal-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left); }
 	.modal-input {
@@ -145,6 +145,12 @@
 		width: 100%; 
 		margin-left: 0 !important; 
 	}
+	.explore {
+        text-align:left;
+        padding:0px;
+        padding-top:32px;
+		ul { display:none; }
+    }
 }
 
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
