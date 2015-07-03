@@ -1897,7 +1897,7 @@ select {
 /* EXPLORE */
 .explore {
     text-align:center;
-    padding:32px;
+    padding: 10px 32px 32px 32px;
 }
 @media (max-width: 765px) {
     .explore {
