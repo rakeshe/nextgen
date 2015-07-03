@@ -43,9 +43,11 @@ var pcData = '{{promoCardData}}';
 </div><!-- End Section -->
 
 <!-- Upsell Recommendations -->
+{#
 <div class="section upsell" id="upsel-selection">
-
-</div><!-- End Section -->
+</div>
+#}
+<!-- End Section -->
 
 <!-- Destinations -->
 <div class="section">
