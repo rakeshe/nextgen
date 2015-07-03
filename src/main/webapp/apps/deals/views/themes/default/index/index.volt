@@ -1,7 +1,7 @@
 <script>
 var cData = '{{cityData}}', hData = '{{hData}}', uInfo = '{{userInfo}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}', noHData = '{{noHotels}}';
 var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}', sBy = '{{sortBy}}', sTy = '{{sortType}}';
-var pcData = '{{promoCardData}}';
+var pcData = '{{promoCardData}}', hImages = '{{heroImages}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->

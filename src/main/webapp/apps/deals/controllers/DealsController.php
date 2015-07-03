@@ -170,6 +170,9 @@ class DealsController extends ControllerBase {
         $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
         $docFooterAbout = $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_ABOUT, true);
 
+        $heroImage = ($this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME)) == false ? '{}'
+            : $this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME);
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -192,7 +195,8 @@ class DealsController extends ControllerBase {
                 'docFooterAbout'      => $docFooterAbout->html,
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
-                'noHotels'            => $noHotels
+                'noHotels'            => $noHotels,
+                'heroImages'          => $heroImage
             ]
         );
 
