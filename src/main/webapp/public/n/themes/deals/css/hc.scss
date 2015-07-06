@@ -216,15 +216,42 @@ select {
 	a { @include text-deco(#55337e, underline); }
 }
 .select-dates-room-val{float:left;}
-.select-dates-row { @include general-width(100%, 0, left); }
-.select-dates-in-out { @include general-width(40%, 0, left); }
+.select-dates-row {
+	@include general-width(100%, 0, left);
+	margin-top:10px;
+}
+.select-dates-in-out { @include general-width(32%, 80px, left); }
+.select-lable{
+	@include locale-val(100%, 0, '0 0 5px 0', 0, left, 0);
+	@include font-val(14px, 700, #6d6d6d, 0);
+}
 .select-dates-input, .select-dates-input-child {
-	@include img-val('../images/assets/orbot-down-arrow.png', top right, 10%, 0);
+	@include img-val('../images/assets/orbot-down-arrow.png', top right, 4%, 0);
 	@include locale-val(80%, #FFF, 0, 0, 0, 0);
 	@include browser-val(0, 0, 0px, none, none, 0);
-	@include height-width-indent-margin(37px, 80%, 0.01px, 0 10% 0 0);
-	@include height-color-border-outline(0, #999999, 0 !important, 2px solid #dddee0);
+	@include height-width-indent-margin(34px, 80%, 0.01px, 0 6% 0 0);
+	@include height-color-border-outline(0, #999999, 0, 2px solid #dddee0);
     border-radius:0px;
+    text-overflow: "";
+}
+.select-dates-in-out p, .select-dates-nights p{
+	font-weight: bold;
+	color: #6d6d6d;
+}
+.select-label-val{
+	@include font-val(11px, normal, 0, 0);
+	border: 0 !important;
+    margin-left: 3px;
+}
+.select-date-ages-label{ font-size:12px !important; }
+.select-dates-input-popup{
+@include locale-val(75%, 0, 0 0 0 15%, 0, 0, 0);
+@include browser-val(0, 0, 5px, 0, none, 0);
+@include font-val(0, 300, 0, 0);
+@include border-bg-width-val(solid 2px #dddee0, #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top, 0);
+    color: #999999;
+    height: 37px;
+    text-indent: 0.01px;
     text-overflow: "";
 }
 .add-room, .remove-room{
@@ -743,7 +770,7 @@ select {
 	margin-right: 4% !important;
 	padding-left: 4% !important;
 }
-.room-1, .room-2, .room-3, .room-4{	display:none; }
+.room-1, .room-2, .room-3, .room-4, .select-date-hotel-val{	display:none; }
 .member-{
 	&q {
 		@include locale-val(12px, #999, 0, block, right, 0);
