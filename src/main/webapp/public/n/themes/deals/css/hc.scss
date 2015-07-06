@@ -169,7 +169,7 @@ select {
 	li {
 		@include locale-val(0, 0, 12px 0 12px 14px, block, 0, none);
 		border-bottom:1px solid #c7c6c6;
-		:hover { background:#ebebeb; }
+		&:hover { background:#ebebeb; }
 	}
 	a {	@include text-deco(#333, none); }
 }
@@ -184,18 +184,27 @@ select {
 	@include locale-val(26px, 0, 0, block, right, 0);	
 	@include height-width-indent-margin(26px, 0, -9999px, -2px 0 0 0);
 }
-
+/*modal date picker*/
+#alt-check-in, #alt-check-out{
+	color: #999999;
+    margin-left: 5px;
+	width: 45% !important;
+}
 /* Date selector pop up */
 .select-dates-wrapper {
 	@include img-val('../images/assets/date-box-arrow.png', 1px 16px, 0, 0);
 	@include general-width(366px, 0, left);
 }
 .select-dates {
-	@include locale-val(400px, #d6dddc, 0, none, left, 0);
+	@include locale-val(435px, #FFF, 0, none, left, 0);
     margin-left:16px;
 }
 .select-dates-hotel-name{
 	float:left;
+}
+.select-validation-message p{
+	color: red !important;
+    font-size: 12px !important;
 }
 .select-dates-container {
     margin:16px;
@@ -206,6 +215,7 @@ select {
 	p {	@include font-val(14px, 300, #333, 0); }
 	a { @include text-deco(#55337e, underline); }
 }
+.select-dates-room-val{float:left;}
 .select-dates-row { @include general-width(100%, 0, left); }
 .select-dates-in-out { @include general-width(40%, 0, left); }
 .select-dates-input, .select-dates-input-child {

@@ -40,7 +40,7 @@
 	.locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
 	.locale-list li:hover  { @include locale-val(94%, #ebebeb, 3%, block, left, none); }
 	.currency-box {
-		@include border-bg-width-val('1px solid #999', 0,80%);
+		@include border-bg-width-val(0, 0,80%);
 		@include upsell-val(0, left, '0 0 12px 0');
 		margin-left:10%;
 		margin-right:10%;
@@ -77,7 +77,7 @@
         margin-right:10%;
     }
     .select-dates {
-		@include locale-val(100%, '#d6dddc', 0, 0, left, 0);
+		@include locale-val('65% !important', '#d6dddc', 0, 0, left, 0);
         margin-left:0px;
     }
 	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
