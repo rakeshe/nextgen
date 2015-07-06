@@ -10,21 +10,35 @@
 			padding-bottom:15px;
 		}
 	}
-	.tag-line, .member-section, .rewards {	display:none; }
+	.tag-line, .rewards {	display:none; }
+	.member-section{
+		display:block;
+		width: 95px !important;
+	}
+	.user-member-name{	font-size:12px !important;	}
 	.user {
 		@include general-width(225px, 0, right);
 		text-align:left;
 	}
+	.logged-in-user > .member-section {
+		width: 135px !important;
+		text-align:right;
+	}
 	.club-section {	@include general-width(95px, 0, left);	}
+	.locale-wrapper {
+		@include locale-val('80%', 0, '16px 0 0 0', 0, left, 0);
+        margin-left:10%;
+        margin-right:10%;
+    }
 	.locale-menu {
 		@include border-bg-width-val('1px solid #55337e', '#FFF', 80%);
 		@include float-val(left);
 		margin-left:10%;
 		margin-right:10%;
 	}
-	/* Code is Repeated for 768px - so don't include
+	/* Code is Repeated for 768px - so don't include*/
 	.locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
-	.locale-list li:hover  { @include locale-val(44%, #ebebeb, 3%, block, left, none); }*/
+	.locale-list li:hover  { @include locale-val(94%, #ebebeb, 3%, block, left, none); }
 	.currency-box {
 		@include border-bg-width-val('1px solid #999', 0,80%);
 		@include upsell-val(0, left, '0 0 12px 0');
@@ -151,6 +165,7 @@
         padding-top:32px;
 		ul { display:none; }
     }
+	.pacific, .asia-me, .europe, .americas, .africa   { @include back-margin(); }
 }
 
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }

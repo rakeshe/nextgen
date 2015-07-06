@@ -1,4 +1,5 @@
 @import "global.scss";
+@import "global.scss";
 @import "style-media.scss";
 .nav{ 
 	height:57px;
@@ -64,11 +65,19 @@
     text-indent: 0.01px;
     text-overflow: "";
     border-radius: 6px;
+	&:focus{
+		-webkit-box-shadow: 0 0 5px 2px #5ebbe0;
+		box-shadow: 0 0 5px 2px #5ebbe0;
+	}
 }
+
 select {
 	@include browser-val(0, 0, 0, none, none, none);
     text-indent: 0.01px;
     text-overflow: "";
+	&::-ms-expand {
+		display: none;
+	}
 }
 .disabled-style { color : #929292; }
 
@@ -88,8 +97,8 @@ select {
 	@include float-val(left);
 	padding-left:0px;
 	margin-bottom:0px;
-	li { @include locale-val(44%, #FFF, 3%, block, left, none); }
-	li:hover  {	@include locale-val(44%, #ebebeb, 3%, block, left, none);}
+	li { @include locale-val(46%, #FFF, 2%, block, left, none); }
+	li:hover  {	@include locale-val(46%, #ebebeb, 2%, block, left, none);}
 	li a {	@include text-deco(#333, none);}
 }
 .flag-pos {
@@ -816,10 +825,30 @@ select {
 	margin-bottom:24px;
 	text-align:center;
 }
+.pacific {
+	@include img-val('../images/backgrounds/Dest-AUNZPAC.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.asia-me {
+	@include img-val('../images/backgrounds/Dest-ASIAME.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.europe {
+	@include img-val('../images/backgrounds/Dest-EUR.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.americas {
+	@include img-val('../images/backgrounds/Dest-AMER.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
 .africa {
 	@include img-val('../images/backgrounds/destination-placeholder.jpg', top center, 0, 0);
 	background-size:cover;
-	margin-bottom:24px;
+	margin-bottom:96px;
 }
 /* FOOTER */
 .footer {

@@ -124,3 +124,7 @@
 	@if $overVal != 0{ overflow: overVal; }
 	@if $textAlignVal != 0{ text-align: textAlignVal; }
 }
+@mixin back-margin(){
+	background-image:url(); 
+	margin-bottom:1px;
+}
