@@ -458,8 +458,8 @@ select {
 .input-space { margin-bottom:16px }
 
 .register-row-button {
-	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);	
-	@include locale-val(100%, #55337e, '11px 0 10px 0', block, right, 0);
+	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
+	@include locale-val(100%, #55337e, 11px 0 10px 0, block, right, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);
     text-decoration:none !important;
@@ -467,23 +467,22 @@ select {
     margin-top:16px;
 }
 .register-drop-down {
-	
 	@include font-val(14px, 300, 0, 0);
     padding-left:0px;
 	li {
 		@include locale-val(0, 0, '12px 0 0 0px', block, left, none);
 		margin-left:0px;
 	}
-}
-.register-drop-down-fb {
-	@include height-width-indent-margin(26px, 26px, -9999px, '-2px 10px 0 0');
-	@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
-    display:block;
-}
-.register-drop-down-gp {
-	@include height-width-indent-margin(26px, 26px, -9999px, '-2px 0 0 0');
-	@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
-    display:block;
+	&-fb {
+		@include height-width-indent-margin(26px, 26px, -9999px, -2px 10px 0 0);
+		@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
+		display:block;
+	}
+	&-gp {
+		@include height-width-indent-margin(26px, 26px, -9999px, -2px 0 0 0);
+		@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
+		display:block;
+	}
 }
 .register-divide {
     border-bottom: 1px solid #ccc;
