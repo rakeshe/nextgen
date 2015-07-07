@@ -2386,11 +2386,16 @@ select {
     border-top: 1px #676665 solid;
     padding-top:24px;
 }
-
+.trademark-text{
+    clear: both;
+    padding-top: 20px;
+}
 .f-head {
     font-size:13px;
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     font-weight:300;
+    clear: both;
+    padding-top: 20px;
 }
 
 .f-box {
@@ -2589,4 +2594,12 @@ select {
 }
 .region-hotel-card-box {
     display: none;
+}
+
+ul.footer-links li{
+    float: left;
+    padding-right: 10px;
+}
+ul.footer-links{
+    float: none;
 }
