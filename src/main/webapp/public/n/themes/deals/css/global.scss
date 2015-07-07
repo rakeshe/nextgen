@@ -22,7 +22,7 @@
 @mixin font-val-2($fontSize, $fontWeight, $colorVal, $lineHeight){
 	@if $fontSize!= 0{ font-size:$fontSize; }
 	font-family: $font-family-val2;
-	font-weight:$fontWeight;
+	@if $fontWeight!= 0{ font-weight:$fontWeight; }
 	@if $colorVal!= 0{ color: $colorVal; }
 	@if $lineHeight!= 0{ line-height: $lineHeight; }
 }
@@ -69,7 +69,7 @@
 	@if $listVal!=0 { list-style: $listVal; }
 }
 @mixin border-bg-width-val($borderVal, $bgVal, $widthVal){
-	border:$borderVal;
+	@if $borderVal != 0{ border:$borderVal; }
 	@if $bgVal != 0{ background:$bgVal; }
 	@if $widthVal != 0{	width:$widthVal; }
 }
@@ -123,4 +123,8 @@
 	@if $floatVal != 0{ float: floatVal; }
 	@if $overVal != 0{ overflow: overVal; }
 	@if $textAlignVal != 0{ text-align: textAlignVal; }
+}
+@mixin back-margin(){
+	background-image:url(); 
+	margin-bottom:1px;
 }

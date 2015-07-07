@@ -1,8 +1,9 @@
 @import "global.scss";
+@import "global.scss";
 @import "style-media.scss";
 .nav{ 
 	height:57px;
-	background:'#';
+	/*background:'#';*/
 }
 @each $logoVal in logo, logo-footer{
 	.#{$logoVal}{
@@ -64,11 +65,19 @@
     text-indent: 0.01px;
     text-overflow: "";
     border-radius: 6px;
+	&:focus{
+		-webkit-box-shadow: 0 0 5px 2px #5ebbe0;
+		box-shadow: 0 0 5px 2px #5ebbe0;
+	}
 }
+
 select {
 	@include browser-val(0, 0, 0, none, none, none);
     text-indent: 0.01px;
     text-overflow: "";
+	&::-ms-expand {
+		display: none;
+	}
 }
 .disabled-style { color : #929292; }
 
@@ -88,8 +97,8 @@ select {
 	@include float-val(left);
 	padding-left:0px;
 	margin-bottom:0px;
-	li { @include locale-val(44%, #FFF, 3%, block, left, none); }
-	li:hover  {	@include locale-val(44%, #ebebeb, 3%, block, left, none);}
+	li { @include locale-val(46%, #FFF, 2%, block, left, none); }
+	li:hover  {	@include locale-val(46%, #ebebeb, 2%, block, left, none);}
 	li a {	@include text-deco(#333, none);}
 }
 .flag-pos {
@@ -160,7 +169,7 @@ select {
 	li {
 		@include locale-val(0, 0, 12px 0 12px 14px, block, 0, none);
 		border-bottom:1px solid #c7c6c6;
-		:hover { background:#ebebeb; }
+		&:hover { background:#ebebeb; }
 	}
 	a {	@include text-deco(#333, none); }
 }
@@ -175,15 +184,27 @@ select {
 	@include locale-val(26px, 0, 0, block, right, 0);	
 	@include height-width-indent-margin(26px, 0, -9999px, -2px 0 0 0);
 }
-
+/*modal date picker*/
+#alt-check-in, #alt-check-out{
+	color: #999999;
+    margin-left: 5px;
+	width: 45% !important;
+}
 /* Date selector pop up */
 .select-dates-wrapper {
 	@include img-val('../images/assets/date-box-arrow.png', 1px 16px, 0, 0);
 	@include general-width(366px, 0, left);
 }
 .select-dates {
-	@include locale-val(400px, #d6dddc, 0, none, left, 0);
+	@include locale-val(435px, #FFF, 0, none, left, 0);
     margin-left:16px;
+}
+.select-dates-hotel-name{
+	float:left;
+}
+.select-validation-message p{
+	color: red !important;
+    font-size: 12px !important;
 }
 .select-dates-container {
     margin:16px;
@@ -194,40 +215,75 @@ select {
 	p {	@include font-val(14px, 300, #333, 0); }
 	a { @include text-deco(#55337e, underline); }
 }
-.select-dates-row { @include general-width(100%, 0, left); }
-.select-dates-in-out { @include general-width(40%, 0, left); }
+.select-dates-room-val{float:left;}
+.select-dates-row {
+	@include general-width(100%, 0, left);
+	margin-top:10px;
+}
+.select-dates-in-out { @include general-width(32%, 80px, left); }
+.select-lable{
+	@include locale-val(100%, 0, '0 0 5px 0', 0, left, 0);
+	@include font-val(14px, 700, #6d6d6d, 0);
+}
 .select-dates-input, .select-dates-input-child {
-	@include img-val('../images/assets/orbot-down-arrow.png', top right, 10%, 0);
+	@include img-val('../images/assets/orbot-down-arrow.png', top right, 4%, 0);
 	@include locale-val(80%, #FFF, 0, 0, 0, 0);
 	@include browser-val(0, 0, 0px, none, none, 0);
-	@include height-width-indent-margin(37px, 80%, 0.01px, 0 10% 0 0);
-	@include height-color-border-outline(0, #999999, 0 !important, 2px solid #dddee0);
+	@include height-width-indent-margin(34px, 80%, 0.01px, 0 6% 0 0);
+	@include height-color-border-outline(0, #999999, 0, 2px solid #dddee0);
     border-radius:0px;
     text-overflow: "";
 }
+.select-dates-in-out p, .select-dates-nights p{
+	font-weight: bold;
+	color: #6d6d6d;
+}
+.select-label-val{
+	@include font-val(11px, normal, 0, 0);
+	border: 0 !important;
+    margin-left: 3px;
+}
+.select-date-ages-label{ font-size:12px !important; }
+.select-dates-input-popup{
+@include locale-val(75%, 0, 0 0 0 15%, 0, 0, 0);
+@include browser-val(0, 0, 5px, 0, none, 0);
+@include font-val(0, 300, 0, 0);
+@include border-bg-width-val(solid 2px #dddee0, #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top, 0);
+    color: #999999;
+    height: 37px;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
 .add-room, .remove-room{
-	cursor:pointer;
 	text-decoration:none;
+}
+.add-remove-lable{
+	clear:both;
+}
+.horizontal-line{
+	@include locale-val(97%, 0, 0, block, 0, 0);
+	border-top:2px solid #eee;
+	margin:5px;
+	clear:both
 }
 .select-dates-display {
 	@include text-align-val(80%, '0 10% 0 0', center);
-    height:37px;
-    color:#666;
+	@include height-color-border-outline(37px, #666, 0 !important, 0);
     background-color:#d6dddc;
     border-radius:0px;
-    border: 0 !important;  /*Removes border*/
 }
-.select-dates-nights{ @include general-width(20%, 0, left); }
-.select-dates-room {	
+.select-dates-nights { @include general-width(20%, 0, left); }
+.select-dates-room {
 	@include font-val-2(0, 300, 0, 0);
-	@include general-width(25%, 0, left);
-	p {	@include font-val-2(0, 300, 0, 0);	}
+	@include general-width(32%, 0, left);
+	p{	@include font-val-2(0, bold, #6d6d6d, 0);	}
 }
-.select-dates-humans { @include general-width(35%, 0, left); }
+.select-dates-humans { @include general-width(22%, 0, left); }
 .room-divide { border-bottom:1px solid #CCC; }
-.select-dates-add-remove {  
-	float:left;
-    margin-bottom:16px;
+.select-dates-add-remove {
+	@include general-width(68%, 0, right);
+    font-size: 14px;
+    margin-bottom: 16px;
 }
 .add-room{
 	@include locale-val(0, 0, 0, block, left, 0);
@@ -238,6 +294,9 @@ select {
 	margin-right:5px;
 }
 .select-dates-close-window{
+	background-color: #ccc;
+	border-radius: 10px 10px 0 0;
+	height: 53px;
 	a {
 		@include font-val(11px, 300, #333, 0);
 		float:right; padding:2px;
@@ -249,6 +308,10 @@ select {
 		cursor:pointer;
 	}
 }
+.select-date-hotel-name{
+	@include font-val-2(20px, 0, 0, 0);
+	@include padd('left', '15px 0 0 15px');
+}
 .select-dates-button {
 	@include font-val(16px, 300, #FFF, 0);
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
@@ -257,8 +320,11 @@ select {
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);	
     text-decoration:none !important;
 }
+.select-dates-footer{ @include general-width(50%, 0, 'left'); }
+#promo-code-val{ @include border-bg-width-val(0, 'none', '50%'); }
 .find-btn{
 	margin-bottom:20px;
+	cursor:pointer;
 }
 /* Modal - Message pop up */
 .modal-wrapper { @include wid-pos-zindex-top-left(590px, 'absolute !important', '999 !important', 0, 0, 0); }
@@ -267,10 +333,11 @@ select {
     cursor:pointer;
 }
 .modal-box {
-	@include wid-pos-zindex-top-left(590px, 'absolute', '100', 25%, 25%, 0);
+	@include wid-pos-zindex-top-left(715px, 'absolute', 15, 25%, 24%, 0);
     float: left;
     background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
 }
 .orbot-in-page{
   position: relative !important;
@@ -278,14 +345,14 @@ select {
   left:0%;
   width: 100%;
   margin-bottom: 20px;
-  height: 360px;
 }
 .parentDisable{
-	@include wid-pos-zindex-top-left(100%, 'fixed', '998', 0, 0, 0);    
+	@include wid-pos-zindex-top-left(100%, fixed, 998, "0", "0", 0);
     background:#000;
     opacity:0.8;
     height:100%;
 }
+.modal-container { margin:16px; }
 .modal-row { 
 	@include wid-pad-val(100%, 0, '0 0 16px 0', 0, left); 
 	h3 { @include font-val-2(18px, 300, #55337e, 0); margin-bottom:0px; }
@@ -293,37 +360,70 @@ select {
 	a { @include text-deco(#55337e, underline); }
 }
 .modal-input {
-	@include wid-pad-val(95%, '0 0 0 5%', 0, 0, 0);
-	@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+	@include wid-pad-val(95%, 0 0 0 5%, 0, 0, 0);
+	@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
 }
 .modal-input-date{	
-	@include height-color-border-outline(37px, '#999999', 0 none, '2px solid #dddee0');
-	@include wid-pad-val(42%, '0 0 0 6%', 0, 0, 0);
+	@include height-color-border-outline(37px, #999999, 0 none, 2px solid #dddee0);
+	@include wid-pad-val(42%, 0 0 0 6%, 0, 0, 0);
 	z-index:999 !important;
 }
 
-.modal-marker {	@include img-val('../images/assets/orbot-marker.png', '7px 9px', 0, 0); }
+.modal-marker {	@include img-val('../images/assets/orbot-marker.png', 7px 9px, 0, 0); }
 .modal-calendar { }
-.modal-dropdown-select {
-	@include height-color-border-outline(37px, '#999999', '0 !important', '2px solid #dddee0');
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 0, 0);
-	@include height-width-indent-margin(0, 100%, '0.01px', 0);
-	@include browser-val(0, 0, 0px, none, none, 0);	
-    padding-left:10%;
-    background-color:#FFF;
-    text-overflow: "";
-	&-date{
-		@include height-color-border-outline(37px, '#999999', '0 !important', '2px solid #dddee0');
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 0, 0);
-	@include height-width-indent-margin(0, 100%, '0.01px', 0);
-	@include browser-val(0, 0, 0px, none, none, 0);	
-    padding-left:10%;
-    background-color:#FFF;
-    text-overflow: "";
+.modal-dropdown {
+	&-select, &-select-child {
+		@include height-color-border-outline(37px, #999999, 0 !important, 2px solid #dddee0);
+		@include img-val('../images/assets/orbot-down-arrow.png', top right, 0, 0);
+		@include height-width-indent-margin(0, 100%, 0.01px, 0);
+		@include browser-val(0, 0, 0px, none, none, 0);
+		padding-left:10%;
+		background-color:#FFF;
+		text-overflow: "";
+	}
+	&-select-date{
+		@include height-color-border-outline(37px, #999999, 0 !important, 2px solid #dddee0);
+		@include img-val('../images/assets/orbot-down-arrow.png', top right, 0, 0);
+		@include height-width-indent-margin(0, 100%, 0.01px, 0);
+		@include browser-val(0, 0, 0px, none, none, 0);
+		padding-left:10%;
+		background-color:#FFF;
+		text-overflow: "";
 		@include font-val(14px, 300, 0, 0);
 	}
 }
-.modal-dropdown-select
+.modal-dropdown-select-child {
+    background-position: 29px 3px !important;
+    background-size: 19px 33px;
+}
+.modal-row-height{
+	display:block;
+	clear:both;
+	height:auto;
+}
+.modal-orbot-add{
+	clear: both;
+    float: right;
+    font-size: 11px;
+    width: 49%;
+}
+.room-val{ border:1px solid #000; }
+.orbot-select-rooms{
+	cursor:pointer;
+	float:left;
+	margin: 10px 2px;
+	text-decoration: underline;
+}
+.orbot-remove-rooms{
+	display: none;
+	cursor:pointer;
+	margin: 10px 2px;
+    text-decoration: underline;
+}
+.orbot-divider{
+	@include locale-val(0, 0, 0, none, left, 0);
+	margin: 10px 2px;
+}
 .modal-row-button {
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
@@ -358,8 +458,8 @@ select {
 .input-space { margin-bottom:16px }
 
 .register-row-button {
-	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);	
-	@include locale-val(100%, #55337e, '11px 0 10px 0', block, right, 0);
+	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
+	@include locale-val(100%, #55337e, 11px 0 10px 0, block, right, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);
     text-decoration:none !important;
@@ -367,23 +467,22 @@ select {
     margin-top:16px;
 }
 .register-drop-down {
-	
 	@include font-val(14px, 300, 0, 0);
     padding-left:0px;
 	li {
 		@include locale-val(0, 0, '12px 0 0 0px', block, left, none);
 		margin-left:0px;
 	}
-}
-.register-drop-down-fb {
-	@include height-width-indent-margin(26px, 26px, -9999px, '-2px 10px 0 0');
-	@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
-    display:block;
-}
-.register-drop-down-gp {
-	@include height-width-indent-margin(26px, 26px, -9999px, '-2px 0 0 0');
-	@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
-    display:block;
+	&-fb {
+		@include height-width-indent-margin(26px, 26px, -9999px, -2px 10px 0 0);
+		@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
+		display:block;
+	}
+	&-gp {
+		@include height-width-indent-margin(26px, 26px, -9999px, -2px 0 0 0);
+		@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
+		display:block;
+	}
 }
 .register-divide {
     border-bottom: 1px solid #ccc;
@@ -711,7 +810,7 @@ select {
 	margin-right: 4% !important;
 	padding-left: 4% !important;
 }
-.room-1, .room-2, .room-3, .room-4{	display:none; }
+.room-1, .room-2, .room-3, .room-4, .select-date-hotel-val{	display:none; }
 .member-{
 	&q {
 		@include locale-val(12px, #999, 0, block, right, 0);
@@ -748,6 +847,28 @@ select {
 		}
 	}
 }
+/* EXPLORE */
+.explore {
+    text-align:center;
+    padding:32px;
+	ul {
+		@include font-val(18px, 300, 0, '100%');
+		list-style:none;
+		padding:0px;
+		margin-bottom:0px;
+	}
+	li {
+		@include locale-val(0, 0, 18px, inline, 0, 0);
+		a {	@include text-deco(#7b59ab, none);
+			&:hover {
+				@include text-deco(#4f2984, none);
+				cursor: pointer;
+			}
+		}
+	}
+	h1 { @include font-val-2(30px, 0, 0, '100%'); }	
+}
+
 /* DESTINATIONS */
 .destination { 
 	padding:16px;
@@ -781,10 +902,30 @@ select {
 	margin-bottom:24px;
 	text-align:center;
 }
+.pacific {
+	@include img-val('../images/backgrounds/Dest-AUNZPAC.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.asia-me {
+	@include img-val('../images/backgrounds/Dest-ASIAME.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.europe {
+	@include img-val('../images/backgrounds/Dest-EUR.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
+.americas {
+	@include img-val('../images/backgrounds/Dest-AMER.jpg', top center, 0, 0);
+    background-size:cover;
+    margin-bottom:48px;
+}
 .africa {
 	@include img-val('../images/backgrounds/destination-placeholder.jpg', top center, 0, 0);
 	background-size:cover;
-	margin-bottom:24px;
+	margin-bottom:96px;
 }
 /* FOOTER */
 .footer {

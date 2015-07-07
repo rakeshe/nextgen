@@ -1688,7 +1688,7 @@ select {
 .new-star-sprite-1 {
 	width:75px;
 	height:14px;
-	background:url(../images/assets/star-sprite.png);
+	background:url(../images/assets/star-sprite.png?20015);
 	background-repeat:no-repeat;
 	background-position:0px 0px;
 	margin-bottom:6px;
@@ -1696,7 +1696,7 @@ select {
 .new-star-sprite-2 {
 	width:75px;
 	height:14px;
-	background:url(../images/assets/star-sprite.png);
+	background:url(../images/assets/star-sprite.png?20015);
 	background-repeat:no-repeat;
 	background-position:0px -14px;
 	margin-bottom:6px;
@@ -1704,7 +1704,7 @@ select {
 .new-star-sprite-3 {
 	width:75px;
 	height:14px;
-	background:url(../images/assets/star-sprite.png);
+	background:url(../images/assets/star-sprite.png?20015);
 	background-repeat:no-repeat;
 	background-position:0px -28px;
 	margin-bottom:6px;
@@ -1712,7 +1712,7 @@ select {
 .new-star-sprite-4 {
 	width:75px;
 	height:14px;
-	background:url(../images/assets/star-sprite.png);
+	background:url(../images/assets/star-sprite.png?20015);
 	background-repeat:no-repeat;
 	background-position:0px -42px;
 	margin-bottom:6px;
@@ -1720,7 +1720,7 @@ select {
 .new-star-sprite-5 {
 	width:75px;
 	height:14px;
-	background:url(../images/assets/star-sprite.png);
+	background:url(../images/assets/star-sprite.png?20015);
 	background-repeat:no-repeat;
 	background-position:0px -56px;
 	margin-bottom:6px;

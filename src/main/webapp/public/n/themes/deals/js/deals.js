@@ -351,6 +351,8 @@
 
             this.rData = $.parseJSON(pcData);
 
+            this.heroImages = $.parseJSON(hImages);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
@@ -613,18 +615,11 @@
         },
 
         setHeroesImage : function () {
-            var image = [
-                'beach_cabana.jpg',
-                'cliffside_car_ride.jpg',
-                'european_architecture.jpg',
-                'exploring_ancient_temples.jpg',
-                'mountainside_field_of_flowers.jpg',
-                'ocean_boat_ride.jpg',
-                'soccer_on_the_beach.jpg',
-                'tranquil_boat_ride.jpg'
-            ];
+
             var index = Math.floor((Math.random() * 8));
-            $('.hero').css('background-image', 'url("/n/themes/deals/images/Heroes/'+image[index]+'")');
+
+            if ($.isEmptyObject(this.heroImages) == false && typeof this.heroImages[index]['image'] == 'string')
+                $('.hero').css('background-image', 'url("/'+this.heroImages[index]['image']+'")');
         },
 
         displayNoHotelOrbot : function() {

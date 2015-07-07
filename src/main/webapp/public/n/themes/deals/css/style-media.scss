@@ -10,23 +10,37 @@
 			padding-bottom:15px;
 		}
 	}
-	.tag-line, .member-section, .rewards {	display:none; }
+	.tag-line, .rewards {	display:none; }
+	.member-section{
+		display:block;
+		width: 95px !important;
+	}
+	.user-member-name{	font-size:12px !important;	}
 	.user {
 		@include general-width(225px, 0, right);
 		text-align:left;
 	}
+	.logged-in-user > .member-section {
+		width: 135px !important;
+		text-align:right;
+	}
 	.club-section {	@include general-width(95px, 0, left);	}
+	.locale-wrapper {
+		@include locale-val('80%', 0, '16px 0 0 0', 0, left, 0);
+        margin-left:10%;
+        margin-right:10%;
+    }
 	.locale-menu {
 		@include border-bg-width-val('1px solid #55337e', '#FFF', 80%);
 		@include float-val(left);
 		margin-left:10%;
 		margin-right:10%;
 	}
-	/* Code is Repeated for 768px - so don't include
+	/* Code is Repeated for 768px - so don't include*/
 	.locale-list li { @include locale-val(94%, #FFF, 3%, block, left, none); }
-	.locale-list li:hover  { @include locale-val(44%, #ebebeb, 3%, block, left, none); }*/
+	.locale-list li:hover  { @include locale-val(94%, #ebebeb, 3%, block, left, none); }
 	.currency-box {
-		@include border-bg-width-val('1px solid #999', 0,80%);
+		@include border-bg-width-val(0, 0,80%);
 		@include upsell-val(0, left, '0 0 12px 0');
 		margin-left:10%;
 		margin-right:10%;
@@ -63,7 +77,7 @@
         margin-right:10%;
     }
     .select-dates {
-		@include locale-val(100%, '#d6dddc', 0, 0, left, 0);
+		@include locale-val('65% !important', '#d6dddc', 0, 0, left, 0);
         margin-left:0px;
     }
 	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
@@ -74,29 +88,34 @@
         border-left:0px;
         border-right:0px;
     }
-	.select-dates-button { width:100%; }
-    .modal-box { width:60% !important; }
+	.select-dates-button { width:45%; }
+    .modal-box {
+		@include general-width(100%, 0, left);
+        margin-bottom:15px;
+	}
 	.modal-wrapper {
 		@include img-val('../images/assets/modal-box-arrow.png', 'bottom center', 0, 0);
-		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+		@include wid-pad-val(0, 0, 0, 0, left);
     }
-    .modal-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left); }
+    .modal-box { @include wid-pad-val(100%, 0, 0 0 15px 0, 0, left); }
 	.modal-input {
-		@include wid-pad-val(90%, '0 0 0 10%', 0, 0, 0);		
-		@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+		@include wid-pad-val(90%, 0 0 0 10%, 0, 0, 0);
+		@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
+		border:0px;
     }
 	.modal-dropdown-select-date { padding-left:15%; }
 	.modal-row-button { width:100%; }
-    .modal-cancel {	@include wid-pad-val(0, 0, '5px 0 0px 0', 0, left);  }
+    .modal-cancel {	@include wid-pad-val(0, 0, 5px 0 0px 0, 0, left);  }
 	.register-wrapper {
-		@include img-val('../images/assets/register-box-arrow.png', 'bottom center', 0, 0);
-		@include wid-pad-val(80%, 0, '0 10%', 0, left);
+		@include img-val('../images/assets/register-box-arrow.png', bottom center, 0, 0);
+		@include wid-pad-val(80%, 0, 0 10%, 0, left);
     }
     .register{
-		&-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left);  }
+		&-box { @include wid-pad-val(100%, 0, 0 0 15px 0, 0, left);  }
 		&-input {
-			@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
-			width:90%;	
+			@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
+			width:90%;
+			border:0px;
 			padding-left:10%;
 		}
 	}
@@ -145,6 +164,13 @@
 		width: 100%; 
 		margin-left: 0 !important; 
 	}
+	.explore {
+        text-align:left;
+        padding:0px;
+        padding-top:32px;
+		ul { display:none; }
+    }
+	.pacific, .asia-me, .europe, .americas, .africa   { @include back-margin(); }
 }
 
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
