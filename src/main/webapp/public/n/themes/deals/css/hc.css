@@ -1139,6 +1139,7 @@ select {
     background-image:url(../../common/img/locations/509_sydney_01_desktop.jpg);
     background-position:center;
     background-size:cover;
+    height: 590px;
 }
 
 .hero-message {
