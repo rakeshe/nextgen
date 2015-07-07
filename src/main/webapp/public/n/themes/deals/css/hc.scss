@@ -255,31 +255,35 @@ select {
     text-overflow: "";
 }
 .add-room, .remove-room{
-	cursor:pointer;
 	text-decoration:none;
 }
 .add-remove-lable{
 	clear:both;
 }
+.horizontal-line{
+	@include locale-val(97%, 0, 0, block, 0, 0);
+	border-top:2px solid #eee;
+	margin:5px;
+	clear:both
+}
 .select-dates-display {
 	@include text-align-val(80%, '0 10% 0 0', center);
-    height:37px;
-    color:#666;
+	@include height-color-border-outline(37px, #666, 0 !important, 0);
     background-color:#d6dddc;
     border-radius:0px;
-    border: 0 !important;  /*Removes border*/
 }
-.select-dates-nights{ @include general-width(20%, 0, left); }
-.select-dates-room {	
+.select-dates-nights { @include general-width(20%, 0, left); }
+.select-dates-room {
 	@include font-val-2(0, 300, 0, 0);
-	@include general-width(25%, 0, left);
-	p {	@include font-val-2(0, 300, 0, 0);	}
+	@include general-width(32%, 0, left);
+	p{	@include font-val-2(0, bold, #6d6d6d, 0);	}
 }
-.select-dates-humans { @include general-width(35%, 0, left); }
+.select-dates-humans { @include general-width(22%, 0, left); }
 .room-divide { border-bottom:1px solid #CCC; }
-.select-dates-add-remove {  
-	float:left;
-    margin-bottom:16px;
+.select-dates-add-remove {
+	@include general-width(68%, 0, right);
+    font-size: 14px;
+    margin-bottom: 16px;
 }
 .add-room{
 	@include locale-val(0, 0, 0, block, left, 0);
@@ -290,6 +294,9 @@ select {
 	margin-right:5px;
 }
 .select-dates-close-window{
+	background-color: #ccc;
+	border-radius: 10px 10px 0 0;
+	height: 53px;
 	a {
 		@include font-val(11px, 300, #333, 0);
 		float:right; padding:2px;
