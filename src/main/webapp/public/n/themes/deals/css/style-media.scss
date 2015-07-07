@@ -89,21 +89,25 @@
         border-right:0px;
     }
 	.select-dates-button { width:45%; }
-    .modal-box { width:60% !important; }
+    .modal-box {
+		@include general-width(100%, 0, left);
+        margin-bottom:15px;
+	}
 	.modal-wrapper {
 		@include img-val('../images/assets/modal-box-arrow.png', 'bottom center', 0, 0);
 		@include wid-pad-val(0, 0, 0, 0, left);
     }
-    .modal-box { @include wid-pad-val(100%, 0, '0 0 15px 0', 0, left); }
+    .modal-box { @include wid-pad-val(100%, 0, 0 0 15px 0, 0, left); }
 	.modal-input {
-		@include wid-pad-val(90%, '0 0 0 10%', 0, 0, 0);		
-		@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+		@include wid-pad-val(90%, 0 0 0 10%, 0, 0, 0);
+		@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
+		border:0px;
     }
 	.modal-dropdown-select-date { padding-left:15%; }
 	.modal-row-button { width:100%; }
-    .modal-cancel {	@include wid-pad-val(0, 0, '5px 0 0px 0', 0, left);  }
+    .modal-cancel {	@include wid-pad-val(0, 0, 5px 0 0px 0, 0, left);  }
 	.register-wrapper {
-		@include img-val('../images/assets/register-box-arrow.png', 'bottom center', 0, 0);
+		@include img-val('../images/assets/register-box-arrow.png', bottom center, 0, 0);
 		@include wid-pad-val(80%, 0, '0 10%', 0, left);
     }
     .register{

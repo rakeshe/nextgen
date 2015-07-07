@@ -333,10 +333,11 @@ select {
     cursor:pointer;
 }
 .modal-box {
-	@include wid-pos-zindex-top-left(590px, 'absolute', '100', 25%, 25%, 0);
+	@include wid-pos-zindex-top-left(715px, 'absolute', 15, 25%, 24%, 0);
     float: left;
     background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
 }
 .orbot-in-page{
   position: relative !important;
@@ -344,14 +345,14 @@ select {
   left:0%;
   width: 100%;
   margin-bottom: 20px;
-  height: 360px;
 }
 .parentDisable{
-	@include wid-pos-zindex-top-left(100%, 'fixed', '998', 0, 0, 0);    
+	@include wid-pos-zindex-top-left(100%, fixed, 998, "0", "0", 0);
     background:#000;
     opacity:0.8;
     height:100%;
 }
+.modal-container { margin:16px; }
 .modal-row { 
 	@include wid-pad-val(100%, 0, '0 0 16px 0', 0, left); 
 	h3 { @include font-val-2(18px, 300, #55337e, 0); margin-bottom:0px; }
@@ -359,37 +360,70 @@ select {
 	a { @include text-deco(#55337e, underline); }
 }
 .modal-input {
-	@include wid-pad-val(95%, '0 0 0 5%', 0, 0, 0);
-	@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+	@include wid-pad-val(95%, 0 0 0 5%, 0, 0, 0);
+	@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
 }
 .modal-input-date{	
-	@include height-color-border-outline(37px, '#999999', 0 none, '2px solid #dddee0');
-	@include wid-pad-val(42%, '0 0 0 6%', 0, 0, 0);
+	@include height-color-border-outline(37px, #999999, 0 none, 2px solid #dddee0);
+	@include wid-pad-val(42%, 0 0 0 6%, 0, 0, 0);
 	z-index:999 !important;
 }
 
-.modal-marker {	@include img-val('../images/assets/orbot-marker.png', '7px 9px', 0, 0); }
+.modal-marker {	@include img-val('../images/assets/orbot-marker.png', 7px 9px, 0, 0); }
 .modal-calendar { }
-.modal-dropdown-select {
-	@include height-color-border-outline(37px, '#999999', '0 !important', '2px solid #dddee0');
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 0, 0);
-	@include height-width-indent-margin(0, 100%, '0.01px', 0);
-	@include browser-val(0, 0, 0px, none, none, 0);	
-    padding-left:10%;
-    background-color:#FFF;
-    text-overflow: "";
-	&-date{
-		@include height-color-border-outline(37px, '#999999', '0 !important', '2px solid #dddee0');
-	@include img-val('../images/assets/orbot-down-arrow.png', 'top right', 0, 0);
-	@include height-width-indent-margin(0, 100%, '0.01px', 0);
-	@include browser-val(0, 0, 0px, none, none, 0);	
-    padding-left:10%;
-    background-color:#FFF;
-    text-overflow: "";
+.modal-dropdown {
+	&-select, &-select-child {
+		@include height-color-border-outline(37px, #999999, 0 !important, 2px solid #dddee0);
+		@include img-val('../images/assets/orbot-down-arrow.png', top right, 0, 0);
+		@include height-width-indent-margin(0, 100%, 0.01px, 0);
+		@include browser-val(0, 0, 0px, none, none, 0);
+		padding-left:10%;
+		background-color:#FFF;
+		text-overflow: "";
+	}
+	&-select-date{
+		@include height-color-border-outline(37px, #999999, 0 !important, 2px solid #dddee0);
+		@include img-val('../images/assets/orbot-down-arrow.png', top right, 0, 0);
+		@include height-width-indent-margin(0, 100%, 0.01px, 0);
+		@include browser-val(0, 0, 0px, none, none, 0);
+		padding-left:10%;
+		background-color:#FFF;
+		text-overflow: "";
 		@include font-val(14px, 300, 0, 0);
 	}
 }
-.modal-dropdown-select
+.modal-dropdown-select-child {
+    background-position: 29px 3px !important;
+    background-size: 19px 33px;
+}
+.modal-row-height{
+	display:block;
+	clear:both;
+	height:auto;
+}
+.modal-orbot-add{
+	clear: both;
+    float: right;
+    font-size: 11px;
+    width: 49%;
+}
+.room-val{ border:1px solid #000; }
+.orbot-select-rooms{
+	cursor:pointer;
+	float:left;
+	margin: 10px 2px;
+	text-decoration: underline;
+}
+.orbot-remove-rooms{
+	display: none;
+	cursor:pointer;
+	margin: 10px 2px;
+    text-decoration: underline;
+}
+.orbot-divider{
+	@include locale-val(0, 0, 0, none, left, 0);
+	margin: 10px 2px;
+}
 .modal-row-button {
 	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
