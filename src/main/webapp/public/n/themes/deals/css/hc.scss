@@ -572,10 +572,27 @@ select {
 }
 /* SORT BUTTON */
 .sort{
-	&-row {	margin:24px 0; }
+	&-row {	margin:1px 0; }
+	&-control {
+		float: right;
+		margin-bottom: 0 !important;
+		padding: 0px;
+	}
+	&-list {
+		@include font-val(0, 300, #a1a1a1, 0);
+		@include locale-val(0, 0, 0, inline-block, 0, none);
+		padding-left: 14px;
+		padding-right: 0px;
+		cursor: pointer;
+		&:last-child, &:nth-last-child(2){ padding-left: 10px; }
+		&-label {
+			color: #333;
+			padding-left: 10px;
+		}
+	}
 	&-by {
 		@include general-width(10%, 0, left);
-		p {		
+		p {
 			@include padd(0, 11px 0 10px 0);
 			@include font-val(16px, normal, #55337e, 0);
 			@include locale-val(100%, #FFF, 0, block, 0, 0);
@@ -593,6 +610,17 @@ select {
 		text-align:center;
 		margin-left:10%;
 	}
+}
+.sr-space { padding-right: 10px; }
+.bc-space {  padding-left: 11px; }
+/* BREADCRUMB LINKS */
+.breadcrumbs {
+	@include font-val(0, 300, 0, 0);
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0 !important;
+	li { display: inline; }
+	a { color: #55337e; }
 }
 /* FILTER BOX */
 .filter {
