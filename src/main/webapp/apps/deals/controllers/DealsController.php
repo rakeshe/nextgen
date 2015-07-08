@@ -173,6 +173,9 @@ class DealsController extends ControllerBase {
         $heroImage = ($this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME)) == false ? '{}'
             : $this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME);
 
+        $trans = ($this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME)) == false ? '{}'
+            : $this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME);
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -196,7 +199,8 @@ class DealsController extends ControllerBase {
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
-                'heroImages'          => $heroImage
+                'heroImages'          => $heroImage,
+                'translation'                   => $trans
             ]
         );
 

@@ -19,6 +19,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
     const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
     const HEROES_IMAGE_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:heroes_images'; //sale:md5('deals'):heroes_images
+    const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):heroes_images
 
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_CITY = 'Sydney';

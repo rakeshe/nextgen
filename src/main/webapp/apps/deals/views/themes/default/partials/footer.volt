@@ -6,8 +6,8 @@
                     <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo-footer"/>
                 </a>
                 <div class="footer-intro">
-                    <p>More extraordinary with every stay.</p>
-                    <p>We’re a global online travel community dedicated to giving our members the best travel experience out there. So from the moment you book, your whole journey will be rich with travel rewards, flexibility, better benefits and greater experiences. And when you return home, it starts over, because every time you book with us, you’ll get even more.</p>
+                    <p id="footer-intro-title">More extraordinary with every stay.</p>
+                    <p id="footer-intro-text">We’re a global online travel community dedicated to giving our members the best travel experience out there. So from the moment you book, your whole journey will be rich with travel rewards, flexibility, better benefits and greater experiences. And when you return home, it starts over, because every time you book with us, you’ll get even more.</p>
                 </div>
             </div>
             <div class="four columns">

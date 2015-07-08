@@ -353,6 +353,8 @@
 
             this.heroImages = $.parseJSON(hImages);
 
+            this.trans = $.parseJSON(t);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
@@ -375,8 +377,8 @@
                 //this.displayFilter();
                 //this.displayHotelCards();
                 //self.displayRegionHotelCards();
-                //this.displayUpsell();
                 self.displayFooter();
+                self.updateFooterText();
                 //self.displayDropDownData('value');
                 //self.setCityImage();
                 //self.initURLUpdate();
@@ -785,7 +787,7 @@
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#orbot-template").html() );
-			$('body').append( template( {city : this.city} ) );//append the popup template
+			$('body').append( template( {city : this.city, trans : this.trans} ) );//append the popup template
 
             //console.log(this.city);
 			var dateToday = new Date();
@@ -869,7 +871,7 @@
 
             //console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
-            $('#header-container').append(template());
+            $('#header-container').append(template({trans: this.trans}));
         },
 
         displayFilter : function() {
@@ -878,14 +880,10 @@
             $('#filter-btn').show();
         },
 
-        displayUpsell:function() {
-            var template = HB.compile( $("#upsell-template").html() );
-            $('#upsel-selection').append(template());
-        },
 
         displaySortBox: function() {
             var template = HB.compile( $("#sort-template").html() );
-            $('.section .container #sort-row-uq').html(template());
+            $('.section .container #sort-row-uq').html(template({city : this.city, trans : this.trans}));
         },
 
         displayHotelCards : function( data ) {
@@ -900,7 +898,7 @@
 
         displayRegionHotelCards : function () {
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template({regionCardData : this.rData}));
+            $('.section .region-cards-container').append(template({regionCardData : this.rData, trans: this.trans}));
             $('.region-hotel-card-box').show();
         },
 
@@ -908,6 +906,12 @@
             var template = HB.compile( $("#footer-template").html() );
             $('.section .footer-container').append(template());
         },
+
+        updateFooterText : function() {
+            $(".footer-intro #footer-intro-title").text( this.trans['footer_intro_title']);
+            $(".footer-intro #footer-intro-text").text( this.trans['footer_intro_text']);
+        },
+
 
         getWhereDoGoText : function () {
 
@@ -928,11 +932,12 @@
         },
 
         setDropDownDefaultOption : function() {
+            var self = this;
             return {
                 dropRegion : function() {
                    return $('.dropdown-region').html('').append( $('<option>', {
                         value : '0',
-                        text : 'Where do you want to go?',
+                        text : self.trans['Where_you_want_to_go'],
                         'selected' :'selected'
                     }) );
 
@@ -941,7 +946,7 @@
                     return $('.dropdown-cities').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : 'What City?',
+                        text : self.trans['what_city'],
                         'selected' :'selected'
                     }) );
                 },
@@ -949,7 +954,7 @@
                     return $('.dropWhereDo').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : 'When do you want to go?',
+                        text : self.trans['when_want_to_go'],
                         'selected' :'selected'
                     }) );
                 }
@@ -962,7 +967,7 @@
 
                 dropWhereDo = $('.dropWhereDo').html('').append( $('<option>', {
                         value : '0',
-                        text : 'When do you want to go?',
+                        text : this.trans['when_want_to_go'],
                         'selected' :'selected'
                     }) );
             } else {
@@ -1168,7 +1173,7 @@
                     return b[fName] - a[fName];
                 }
             });
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
         },
 
         sortByText : function(fName, type) {
@@ -1203,7 +1208,7 @@
 
             });
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
         },
 
         orbotValidation : function() {

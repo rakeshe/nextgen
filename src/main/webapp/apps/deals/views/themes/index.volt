@@ -42,7 +42,6 @@
         {{ partial(theme ~ '/partials/sort') }}
         {{ partial(theme ~ '/partials/filter') }}
         {{ partial(theme ~ '/partials/hotelCard') }}
-        {{ partial(theme ~ '/partials/upsell') }}
         {{ partial(theme ~ '/partials/regionHotelCard') }}
         {{ partial(theme ~ '/partials/footer') }}
 
