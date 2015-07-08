@@ -169,6 +169,9 @@ class DealsController extends ControllerBase {
         // Get Cms Documents
         $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
         $docFooterAbout = $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_ABOUT, true);
+        $docHtmlHead = $this->model->getCmsDocument(DealsModel::DOC_HTML_HEAD, true);
+        $docHtmlBodyStart = $this->model->getCmsDocument(DealsModel::DOC_HTML_BODY_START, true);
+        $docHtmlBodyEnd = $this->model->getCmsDocument(DealsModel::DOC_HTML_BODY_END, true);
 
         $heroImage = ($this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME)) == false ? '{}'
             : $this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME);
@@ -196,7 +199,10 @@ class DealsController extends ControllerBase {
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
-                'heroImages'          => $heroImage
+                'heroImages'          => $heroImage,
+                'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
+                'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
+                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
             ]
         );
 

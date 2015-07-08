@@ -14,11 +14,16 @@ use Phalcon\Exception;
 
 class DealsModel extends \Phalcon\Mvc\Model
 {
+    /** Define Cms Content used by this app here */
     const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
     const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm'; // sale:md5(deals):promo_pm
     const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
     const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
     const HEROES_IMAGE_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:hero_images'; //sale:md5('deals'):heroes_images
+
+    const DOC_HTML_HEAD = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_head'; //sale:md5('deals'):html_head
+    const DOC_HTML_BODY_START = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_start'; //sale:md5('deals'):html_body_start
+    const DOC_HTML_BODY_END = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_end';  //sale:md5('deals'):html_body_end
 
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_CITY = 'Sydney';
