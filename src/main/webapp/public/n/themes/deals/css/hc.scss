@@ -491,7 +491,7 @@ select {
 .register-minus { margin-top:-14px; }
 /* HERO */
 .hero {
-	@include img-val('../images/backgrounds/poolside.jpg', 'top center', 0, 0);
+	@include img-val('../../common/img/locations/509_sydney_01_desktop.jpg', center, 0, 0);
 	background-size: cover;
 	h1 {
 		@include font-val(28px, normal, 0, 0);
@@ -506,14 +506,13 @@ select {
 		background-color: rgba(232, 15, 30, 0.8);	
 	}
 	&-text {
-		@include font-val(18px, 200, 0, 0);
-		@include border-bg-width-val(2px solid $cur-color, #FFF,0);
-		color:$cur-color;
-		margin:24px 0;
-		padding:16px;
-		text-align:center;
+		@include general-width(100%, 0, left);
+		@include browser-val(6px, 6px, 6px, 0, 0, 0);
+		margin: -70px 0% 24px 0%;
+		background:#f6eee7;
+		border:2px solid #FFF;
 	}
-	&-space { height:305px; }
+	&-space { height:170px; }
 	&-text-box {
 		padding: 12px 24px;
 		float:left;
@@ -533,24 +532,23 @@ select {
 		padding-right:0px;
 	}
 	&-cross {	padding-top:37px; padding-bottom:24px; }
-	&-space { height:235px; }
 }
 .mys-logo {
     text-align:center;
 }
 .search-sale-box {
     padding-top:14px;
-    padding-left:24px;
-    padding-right:24px;
-    background: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.5);
+    padding-left:22px;
+    padding-right:22px;
+    background: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
 	@include browser-val(8px, 8px, 8px, 0, 0, 0);
 }
 .find-your {
     text-align:center;
     color:#FFF;
 	h2 {
-		@include font-val-2(23px, 300, 0, 24px);
+		@include font-val-2(22px, 300, 0, 24px);
 		font-style:italic;
 		margin-top:8px;
 		margin-bottom:20px;
