@@ -33,8 +33,11 @@
         <meta name="author" content="hotel, club, hotelclub, hotelclub.net, hotels, reservation, reservations, accomodation, accomodations, rooms, lodging, service, rates, hotels, discounts, cheap, online, travel, booking, information, resorts">
         {{ partial('../../../common/views/tracking/web_trends_meta') }}
         {{ partial('../../../common/views/tracking/google_analytics') }}
+        {{ partial('../../../common/views/cms/html_head') }}
     </head>
     <body>
+        {{ partial('../../../common/views/cms/html_body_start') }}
+
         {{ content() }}
 
         {{ partial(theme ~ '/partials/header') }}
@@ -64,5 +67,6 @@
             });
          </script>
         {{ partial('../../../common/views/tracking/web_trends_data_collector') }}
+        {{ partial('../../../common/views/cms/html_body_end') }}
     </body>
 </html>
