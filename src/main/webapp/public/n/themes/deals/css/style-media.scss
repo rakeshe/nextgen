@@ -182,3 +182,7 @@
 
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
 @media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }
+@media (max-width: 767px) { 
+	.sort-row { font-size: 18px; }
+    .breadcrumbs{ padding-bottom: 15px; }
+}
