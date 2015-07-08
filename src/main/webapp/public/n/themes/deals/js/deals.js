@@ -718,7 +718,7 @@
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
-                var hclUrl = "http://www.hotelclub.com/";
+                var hclUrl = "www.hotelclub.com/";
                 //var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
