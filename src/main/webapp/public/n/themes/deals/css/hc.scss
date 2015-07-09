@@ -1035,7 +1035,6 @@ select {
 		}
 	}
 }
-.pull-right { float:right; }
 .region-card-promo-box {
 	@include img-val('../images/backgrounds/Dest-AUNZPAC.jpg', top center, 0, 0);
 	background-size:cover;
@@ -1077,6 +1076,7 @@ select {
 .footer {
 	@include font-val(11px, normal, #FFF, 16px);
 	background-color:#363636;
+    margin-top:80px;
 	ul {
 		list-style:none;
 		padding-left:0;
@@ -1098,7 +1098,7 @@ select {
 }
 .social-links {	
 	ul {}
-	li { @include upsell-val(0, right, "12px 10px 0 0");	}
+	li { @include upsell-val(0, right, 12px 10px 0 0);	}
 }
 .subscribe {
 	float:left;
@@ -1112,20 +1112,19 @@ select {
 	}
 	&-input {		
 		@include browser-val(32px, 32px, 32px, 0, 0, 0);
-		@include general-width(100%, 35px, left);
+		@include general-width(65%, 36px, left);
 		background:#545454;
 		border:0;
+		text-indent:16px;
 	}
 }
 .submit-email {
 	@include font-val(13px, 300, #333, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);
-	@include wid-pos-zindex-top-left(0, absolute, 1, 0, 0, 0);
-	margin-top:3px;
+	@include general-width(30%, 38px, right);
+    display:block;
 	background-color:#FFF;
 	border:0;
-	padding: 8px 24px; 
-    right: 20px;
 }
 .accreditation { @include upsell-val(0, left, 0 16px 16px 0); }
 /* DROP DOWN MENU CODING */
@@ -1191,7 +1190,7 @@ select {
     display: block;
 }
 #filter-btn {
-    display: none;
+    /*display: none;*/
 }
 /*date picker values*/
 .ui-datepicker{ 
@@ -1203,10 +1202,43 @@ select {
 	td span, td a{
 		text-align: center !important;
 	}
+	&-prev, &-next{
+		border:1px solid #ccc;
+		border-radius: 5px;
+		background-image: url("assets/ui-icons_cc0000_256x240.png");
+		&:hover{
+			border:1px solid #ccc;
+			border-radius: 5px;
+			/*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
+		}
+	}
+	&-prev {
+		background-image: url("../images/assets/prev.png") !important;
+		background-repeat: no-repeat;
+	}
+	&-next {
+		background-image: url("../images/assets/next.png") !important;
+		background-repeat: no-repeat;
+	}
+	.ui-datepicker-prev {
+		left: 2px;
+		&-hover {
+			left: 2px !important;
+			top: 2px !important;
+		}
+	}
+	.ui-datepicker-next {
+		right: 2px;
+		&-hover {
+			right: 2px !important;
+			top: 2px !important
+		}
+	}
 }
 #ui-datepicker-div {
     border: 1px solid #999 !important; z-index: 1; background: #FFF; background-color:#FFF;
 	border-radius: 5px;
+    z-index: 1000 !important;
 }
 .ui-widget-header{
 	color: #000;
@@ -1216,11 +1248,6 @@ select {
 .ui-state-default{
 	border:1px solid #ccc;
 	border-radius:5px;
-}
-.ui-datepicker-prev:hover, .ui-datepicker-next:hover{
-	border:1px solid #ccc;
-    border-radius: 5px;
-	background-image: url("assets/ui-icons_cc0000_256x240.png");
 }
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
 	background-image: none;
@@ -1235,15 +1262,31 @@ select {
 .ui-icon, .ui-widget-content .ui-icon{
 	background-image: url("../images/assets/ui-icons_cc0000_256x240.png");
 }
-
-.logged-in-user {
-    display: none;
+.logged {
+	&-in-user{ display: none; }
+	&-out-user {
+		float:right;
+		display:none;
+		color: #ffffff;
+		background-image : none;
+	}
 }
-.logged-out-user {
-    float:right;
-    display:none;
-    color: #ffffff;
-}
-.logged-out-user, .member-section {
+.member-section {
     background-image : none;
+}
+.err-hotel-not-found {
+    margin-left: 2%;
+    margin-bottom: 1%;
+    font-size: 15px;
+    color: #ff0000;
+}
+.breadcrumb{
+	display: inline; list-style: none;
+	&-list{ display: inline; }
+}
+.pull-right, .orb-child-age-sty { float:right; }
+.orbot-validation-message p {  color: red !important; }
+.promotion-box { display:none; }
+.region-hotel-card-box {
+    display: none;
 }
