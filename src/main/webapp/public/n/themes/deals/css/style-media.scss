@@ -154,6 +154,10 @@
         width: 100%;
         padding: 0px;
     }
+	.destination-card{
+		&-info { @include locale-val(160px, 0, 0 16px, 0, left, 0); }
+		&-city { width:75px; }
+	}
 }
 /* Two card width */
 @media (max-width:769px) { 
@@ -165,6 +169,16 @@
         width: 100%;
         padding: 20px;
     }
+	.destination-card{
+		&-img {
+			@include general-width(90px, 90px, left);
+			overflow:hidden;
+			margin-left:16px;
+			margin-bottom:16px;
+		}
+		&-info { @include locale-val(170px, 0, 0 16px, 0, left, 0); }
+		&-city { width:85px; }
+	}
 } 
 @media (max-width: 765px) {	
 	.hotelcards { 
@@ -178,6 +192,74 @@
 		ul { display:none; }
     }
 	.pacific, .asia-me, .europe, .americas, .africa   { @include back-margin(); }
+	.destination {
+		padding:0px;
+		&-info {
+			@include browser-val(0px, 0px, 0px, 0, 0, 0);
+			@include general-width(100%, auto, 0);
+			background: rgba(255, 255, 255, 1);
+			background-color: rgba(255, 255, 255, 1);
+			padding:0px;
+			margin-bottom:24px;
+			h3 { @include font-val-2(24px, 0, #333, 32px);	}
+			p { @include font-val(18px, 300, #333, 30px);	}
+			ul {
+				@include font-val(18px, 300, #4f2984, 43px);
+				list-style:none;
+				padding:0px;
+				margin-bottom:0px;
+			}
+			li {
+				display:inline-block;
+				padding-right:20px;
+				a { @include text-deco(#4f2984, none); }
+			}
+		}
+		&-image {
+			@include height-width-indent-margin(auto, 100%, 0, 0 0 24px 0);
+			display:block;
+		}
+		&-top-deals {
+			@include font-val(18px, 300, #333, 100%);
+			@include locale-val(100%, 0, 0, block, left, 0);
+			margin-top:0px;
+			margin-bottom:24px;
+			text-indent:0px;
+		}
+		&-card{
+			&-box li {
+				@include locale-val(100%, 0, 0, inline-block, left, 0);
+				margin-bottom:21px;
+				border-bottom:1px solid #CCC;
+				padding-bottom:16px;
+			}
+			&-child {	border-left:0px solid #CCC;	}
+			&-img{
+				@include general-width(90%, 90px, left);
+				overflow:hidden;
+				margin-left:0px;
+				margin-bottom:0px;
+				&-holder {	@include general-width(35%, 0, left);}
+			}
+			&-info { @include locale-val(65%, 0, 0 0px, 0, left, 0); }
+			&-title {
+				@include font-val(16px, 300, #56388b, 17px);
+				@include locale-val(0, 0, 0 0 0px 0, block, 0, 0);
+				height:38px;
+				overflow:hidden;
+				margin-bottom:2px;
+			}
+			&-city { width:99px;font-size:15px; }
+			&-offer {
+				@include font-val(16px, 300, #ed2630, 18px);
+				@include locale-val(100%, 0, 0, block, left, 0);
+				margin:0px;
+				height:37px;
+				overflow:hidden;
+			}
+		}
+	}
+	.region-card-promo-box { background-image:none !important; margin-bottom:1px; }
 }
 
 @media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }

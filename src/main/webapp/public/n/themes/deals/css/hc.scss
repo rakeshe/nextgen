@@ -199,7 +199,7 @@ select {
 	@include locale-val(435px, #FFF, 0, none, left, 0);
     margin-left:16px;
 }
-.select-dates-hotel-name{
+.select-dates-hotel-name, .pull-left{
 	float:left;
 }
 .select-validation-message p{
@@ -917,7 +917,7 @@ select {
     text-align:center;
     padding:32px;
 	ul {
-		@include font-val(18px, 300, 0, '100%');
+		@include font-val(18px, 300, 0, 0);
 		list-style:none;
 		padding:0px;
 		margin-bottom:0px;
@@ -931,12 +931,12 @@ select {
 			}
 		}
 	}
-	h1 { @include font-val-2(30px, 0, 0, '100%'); }	
+	h1 { @include font-val-2(30px, 0, 0, 100%); }	
 }
 
 /* DESTINATIONS */
 .destination { 
-	padding:16px;
+	padding:22px;
 	h3 {
 		@include font-val-2(28px, normal, #FFF, 100%);
 		padding:20px 0;
@@ -954,11 +954,92 @@ select {
 		padding: 16px 20px;
 	}
 	&-info {
-		@include font-val(14px, 300, #55337e, 18px);
-		@include border-bg-width-val(2px solid #55337e, #FFF, 0);
-		padding:16px;
-		margin-top:265px;
+		@include browser-val(4px, 4px, 4px, 0, 0, 0);
+		@include general-width(498px, 394px, 0);
+		background: rgba(0, 0, 0, 0.7);
+		background-color: rgba(0, 0, 0, 0.7);
+		padding:22px;
+		margin-top:24px;
+		h3 { @include font-val-2(24px, 0, #FFF, 100%); }
+		p { @include font-val(15px, 300, #FFF, 24px); }
+		ul {
+			@include font-val(15px, 300, #fec741, 30px);
+			list-style:none;
+			padding:0px;
+			margin-bottom:0px;
+		} 
+		li {	
+			display:inline-block;
+			padding-right:30px;
+			a { 
+				@include text-deco(#fec741, none); 
+				&:hover { text-decoration:underline; }
+			}
+		}
 	}
+	&-image { display:none; }
+	&-top-deals {
+		@include font-val(15px, 300, #FFF, 100%);
+		@include locale-val(100%, 0, 0, block, left, 0);
+		margin-top:0px;
+		margin-bottom:24px;
+		text-indent:22px;
+	}
+	&-card{
+		&-box {
+			@include browser-val(4px, 4px, 4px, 0, 0, 0);
+			@include locale-val(100%, #FFF, 0, 0, left, 0);
+			margin-bottom:24px;
+			ul {
+				@include locale-val(100%, 0, 0px, block, left, none);
+				margin-bottom:0px;
+			}
+			li {
+				@include locale-val(33%, 0, 0, inline-block, left, 0);
+				margin-bottom:16px;
+			}
+		}
+		&-container {
+			margin-top:16px;
+			margin-bottom:16px;
+		}
+		&-child {	border-left:1px solid #CCC;	}
+		&-img {
+			@include general-width(90px, 90px, left);
+			overflow:hidden;
+			margin-left:16px;
+			margin-bottom:0px;
+			 img { margin-left:-15px; }
+		}
+		&-info { @include locale-val(170px, 0, 0 16px, 0, left, 0); }
+		&-title {
+			@include font-val(15px, 300, #56388b, 17px);
+			@include locale-val(0, 0, 0 0 0px 0, block, 0, 0);
+			margin-top:0px;
+			height:34px;
+			overflow:hidden;
+			margin-bottom:4px;
+		}
+		&-city {
+			@include font-val(14px, 300, #555555, 16px);
+			@include locale-val(80px, 0, 0 0 0 10px, 0, left, 0);
+			float:left;
+			padding-left:10px;
+		}
+		&-offer {
+			@include font-val(14px, 300, #ed2630, 16px);
+			@include width-float-overflow-textAlgin(0, left, hidden, 0);
+			margin:0px;
+			display:block;
+			height:32px;
+		}
+	}
+}
+.pull-right { float:right; }
+.region-card-promo-box {
+	@include img-val('../images/backgrounds/Dest-AUNZPAC.jpg', top center, 0, 0);
+	background-size:cover;
+	margin-bottom:48px;
 }
 .temp-hotel-card {
 	@include font-val(14px, 300, #FFF, 0); 
