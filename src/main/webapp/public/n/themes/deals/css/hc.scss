@@ -686,7 +686,7 @@ select {
 		margin-bottom:0 !important;
 	}
 	&-head {
-		@include font-val(27px, 300, #55337e, 0);		
+		@include font-val-2(27px, 300, #55337e, 0);		
 		float:left;
 		margin-bottom:0 !important;
 	}
@@ -728,7 +728,7 @@ select {
 		@include general-width(100%, 210px, 0);
 		overflow:hidden;
 	}
-	&-img {	width:100%; }
+	&-img {	@include general-width(100%, 208px, 0);	}
 	&-info { margin:16px; }
 }
 @each $hotelVal in hotel-name, hotel-city, hotel-price{
@@ -757,24 +757,24 @@ select {
 
 .star-sprite{
 	&-1 {
-		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
-		@include img-val('../images/assets/star-sprite.png', 0px 0px, 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 18px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px 0px, 0, 0);
 	}
 	&-2 {
-		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
-		@include img-val('../images/assets/star-sprite.png', 0px -14px, 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 18px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -14px, 0, 0);
 	}
 	&-3 {
-		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
-		@include img-val('../images/assets/star-sprite.png', 0px -28px, 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 18px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -28px, 0, 0);
 	}
 	&-4 {
-		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
-		@include img-val('../images/assets/star-sprite.png', 0px -42px, 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 18px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -42px, 0, 0);
 	}
 	&-5 {
-		@include height-width-indent-margin(14px, 75px, 0, 0 0 12px 0);
-		@include img-val('../images/assets/star-sprite.png', 0px -56px, 0, 0);
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 18px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -56px, 0, 0);
 	}
 }
 

@@ -13,16 +13,16 @@
 	@if $floatVal != 0{	@include float-val($floatVal); }
 }
 @mixin font-val($fontSize, $fontWeight, $colorVal, $lineHeight){
-	@if $fontSize!= 0{ font-size:$fontSize; }
+	@if $fontSize !=0{ font-size:$fontSize; }
 	font-family: $font-family-val;
-	font-weight:$fontWeight;
+	@if $fontWeight !=0{ font-weight:$fontWeight; }
 	@if $colorVal!= 0{ color: $colorVal; }
 	@if $lineHeight!= 0{ line-height: $lineHeight; }
 }
 @mixin font-val-2($fontSize, $fontWeight, $colorVal, $lineHeight){
-	@if $fontSize!= 0{ font-size:$fontSize; }
+	@if $fontSize !=0{ font-size:$fontSize; }
 	font-family: $font-family-val2;
-	@if $fontWeight!= 0{ font-weight:$fontWeight; }
+	@if $fontWeight !=0{ font-weight:$fontWeight; }
 	@if $colorVal!= 0{ color: $colorVal; }
 	@if $lineHeight!= 0{ line-height: $lineHeight; }
 }
