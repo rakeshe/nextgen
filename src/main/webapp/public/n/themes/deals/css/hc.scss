@@ -686,7 +686,7 @@ select {
 		margin-bottom:0 !important;
 	}
 	&-head {
-		@include font-val-2(27px, 300, #55337e, 0);		
+		@include font-val-2(27px, 300, #55337e, 0);
 		float:left;
 		margin-bottom:0 !important;
 	}
@@ -778,17 +778,40 @@ select {
 	}
 }
 
+.new-star-sprite{
+	&-1 {
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 6px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px 0px, 0, 0);
+	}
+	&-2 {
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 6px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -14px, 0, 0);
+	}
+	&-3 {
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 6px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -28px, 0, 0);
+	}
+	&-4 {
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 6px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -42px, 0, 0);
+	}
+	&-5 {
+		@include height-width-indent-margin(14px, 75px, 0, 0 0 6px 0);
+		@include img-val('../images/assets/star-sprite.png?20015', 0px -56px, 0, 0);
+	}
+}
+
 .card{
 	&-left { @include width-float-overflow-textAlgin(60%, left, hidden, left); }
-	&-right { @include width-float-overflow-textAlgin(40%, right, hidden, right); }
+	&-right { @include width-float-overflow-textAlgin(40%, right, 0, right); }
 	&-feat-list {
-		@include font-val(16px, 300, 0, 0); 
+		@include font-val(16px, 300, 0, 119%); 
 		margin:0px;
 		padding-left:18px;
 		list-style-image:url(../images/assets/list-cross.png);
 	}
 	&-normal-list {
-		@include font-val(16px, 300, 0, 0); 
+		@include font-val(15px, 300, 0, 19px); 
 		margin:0px;
 		padding-left:18px;
 		list-style-image:url(../images/assets/list-cross-gray-new.png);
@@ -796,7 +819,7 @@ select {
 }
 .hotel{
 	&-offer {
-		@include font-val(16px, 300, #e80f1e, 120%);
+		@include font-val(16px, 300, #e80f1e, 119%);
 		margin-bottom:9px !important;
 		padding:0px;
 	}
@@ -816,8 +839,7 @@ select {
 		padding:0px;
 	}
 	&-card-button {
-		@include font-val(13px, 300, #FFF, 0);	
-		@include img-val('../images/assets/card-arrow.png', center right, 0, 6px);
+		@include font-val(13px, 300, #FFF, 0);
 		@include locale-val(100%, #55337e, 6px 0, block, 0, 0);
 		@include browser-val(32px, 32px, 32px, 0, 0, 0);
 		text-decoration:none;
@@ -828,48 +850,65 @@ select {
 	}
 }
 .add-room, .remove-room{
+	@include font-val(11px !important, 0, 0, 0);
 	cursor: pointer;
     text-decoration: underline;
 }
 .child-room{
-	width:20% !important;
-	margin-right: 4% !important;
-	padding-left: 4% !important;
+	width:25% !important;
+	margin-bottom: 5% !important;
+	margin-right: 8% !important;
+	padding-left: 5% !important;
 }
-.room-1, .room-2, .room-3, .room-4, .select-date-hotel-val{	display:none; }
+.room-1, .room-2, .room-3, .room-4, .room-5{
+	@include locale-val(68%, 0, 0, none, right,0);
+	clear:both;
+}
+.select-date-hotel-val{	display:none; }
 .member-{
 	&q {
-		@include locale-val(12px, #999, 0, block, right, 0);
-		@include browser-val(10px, 10px, 10px, 0, 0, 0);
-		@include font-val(9px, 0, #FFF, 0);			
-		height:12px;
+		@include locale-val(0, 0, 0, block, right, 0);
+		@include font-val(9px, 0, 0, 0);
 		text-align:center;
-		cursor:pointer;
 		a {	@include text-deco(#FFF, none); }
 	}
-	&info-{
-		&desc{
+	&info{
+		@include locale-val(12px, #999, 0, block, 0, 0);
+		@include browser-val(10px, 10px, 10px, 0, 0, 0);
+		height:12px;
+		color:#FFF;
+		cursor:pointer;
+		&-desc{
 			@include locale-val(200px, #999, 0, none, right, 0);
 			@include wid-pos-zindex-top-left(0, absolute, 9999, 0, 0, 0);
 			@include font-val(13px, 0, #000, 0);	
-			margin: -30px 0 0 15px;
+			margin: 40px 0 0 -280px;
 			text-align: left;
 			text-decoration: none;
 		}
-		&top{
-			@include img-val('../images/assets/top.png', 0, 0, 0);
-			@include general-width(250px, 46px, 0);
+		&-top{
+			@include img-val('../images/assets/top.png?2-1-1', 0, 0, 0);
+			@include general-width(296px, 46px, 0);
+			@include font-val(12px, 0, 0, 0);
 		}
-		&middle{
-			@include img-val('../images/assets/middle.png', 0, 0, 0);
-			@include general-width(230px, auto, 0);
+		&-close{
+			@include width-float-overflow-textAlgin(95%, 0, 0, right);
+			padding-top:20px;
+			text-decoration: underline;
+			cursor:pointer;
+		}
+		&-middle{
+			@include img-val('../images/assets/middle.png?2-1-1', 0, 0, 0);
+			@include general-width(244px, auto, 0);
+			@include font-val(12px, 0, 0, 0);
 			background-repeat: repeat-y;
-			padding: 0 20px 0 40px;
-			margin-top:-10px;
+			padding: 0 0 10px 50px;
+			margin:-3px 0 0 2px;
 		}
-		&bottom{
-			@include img-val('../images/assets/bottom.png', 0, 0, 0);
-			@include general-width(250px, auto, 0);
+		&-bottom{
+			@include img-val('../images/assets/bottom.png?2-1-1', 0, 0, 0);
+			@include general-width(291px, auto, 0);
+			margin-left: 4px;
 		}
 	}
 }
