@@ -197,6 +197,7 @@ select {
 .select-dates {
 	@include locale-val(435px, #FFF, 0, none, left, 0);
     margin-left:16px;
+	border-radius: 10px;
 }
 .select-dates-hotel-name, .pull-left{
 	float:left;
@@ -231,6 +232,7 @@ select {
 	@include height-width-indent-margin(34px, 80%, 0.01px, 0 6% 0 0);
 	@include height-color-border-outline(0, #999999, 0, 2px solid #dddee0);
     border-radius:0px;
+    border: 0;
     text-overflow: "";
 }
 .select-dates-in-out p, .select-dates-nights p{
@@ -268,8 +270,7 @@ select {
 .select-dates-display {
 	@include text-align-val(80%, 0 10% 0 0, center);
 	@include height-color-border-outline(37px, #666, 0 !important, 0);
-    background-color:#d6dddc;
-    border-radius:0px;
+    border-radius:5px !important;
 }
 .select-dates-nights { @include general-width(20%, 0, left); }
 .select-dates-room {
@@ -312,10 +313,10 @@ select {
 	@include padd(left, 15px 0 0 15px);
 }
 .select-dates-button {
-	@include font-val(16px, 300, #FFF, 0);
+	@include font-val(16px, 300, #FFF !important, 0);
 	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
 	@include text-align-val(50%, 0, center);
-	@include locale-val(0, '#55337e', 11px 0 10px 0, block, right, 0);
+	@include locale-val(0, #55337e, 11px 0 10px 0, block, right, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);	
     text-decoration:none !important;
 }
@@ -428,7 +429,7 @@ select {
 	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, none, none, 0);
-	@include locale-val(50%, #55337e, '11px 0 10px 0', block, right, 0);
+	@include locale-val(50%, #55337e, 11px 0 10px 0, block, right, 0);
     text-decoration:none !important;
     text-align:center;
 }

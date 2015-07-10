@@ -26,12 +26,12 @@
 	}
 	.club-section {	@include general-width(95px, 0, left);	}
 	.locale-wrapper {
-		@include locale-val('80%', 0, '16px 0 0 0', 0, left, 0);
+		@include locale-val(80%, 0, 16px 0 0 0, 0, left, 0);
         margin-left:10%;
         margin-right:10%;
     }
 	.locale-menu {
-		@include border-bg-width-val('1px solid #55337e', '#FFF', 80%);
+		@include border-bg-width-val('1px solid #55337e', #FFF, 80%);
 		@include float-val(left);
 		margin-left:10%;
 		margin-right:10%;
@@ -41,7 +41,7 @@
 	.locale-list li:hover  { @include locale-val(94%, #ebebeb, 3%, block, left, none); }
 	.currency-box {
 		@include border-bg-width-val(0, 0,80%);
-		@include upsell-val(0, left, '0 0 12px 0');
+		@include upsell-val(0, left, 0 0 12px 0);
 		margin-left:10%;
 		margin-right:10%;
 	}
@@ -59,7 +59,7 @@
 			@include general-width(50%, 0, left); 
 			margin-bottom:12px;
 		}
-		&-button {	@include text-align-val(90%, '0 5%', 0); }
+		&-button {	@include text-align-val(90%, 0 5%, 0); }
 	}
 	.upsell ul { float:left; }
 	.destination-info {	margin-top:26px; }
@@ -69,8 +69,8 @@
 		z-index: 1;
 	}
 	
-	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
-    .currency-box {	@include wid-pad-val(80%, '0 0 12px 0', '0 10%', 0, left); }
+	.currency-wrapper {	@include wid-pad-val(80%, 16px 0 0 0, 0 10%, 0, left); }
+    .currency-box {	@include wid-pad-val(80%, 0 0 12px 0, 0 10%, 0, left); }
     .currency-col {	@include general-width(100%, 0, left); }
     .currency-col-space { padding-left:0%; }
     .currency-col-divide {
@@ -78,17 +78,17 @@
         border-right:0px;
     }
 	.select-dates-wrapper {
-		@include img-val('../images/assets/date-box-arrow.png', '1px 16px', 0, 0);
+		@include img-val('../images/assets/date-box-arrow.png', 1px 16px, 0, 0);
 		@include general-width(80%, 0, left);
         margin-left:10%;
         margin-right:10%;
     }
     .select-dates {
-		@include locale-val('65% !important', '#d6dddc', 0, 0, left, 0);
+		@include locale-val('65% !important', #d6dddc, 0, 0, left, 0);
         margin-left:0px;
     }
-	.currency-wrapper {	@include wid-pad-val(80%, '16px 0 0 0', '0 10%', 0, left); }
-    .currency-box {	@include wid-pad-val(80%, '0 0 12px 0', '0 10%', 0, left); }
+	.currency-wrapper {	@include wid-pad-val(80%, 16px 0 0 0, 0 10%, 0, left); }
+    .currency-box {	@include wid-pad-val(80%, 0 0 12px 0, 0 10%, 0, left); }
     .currency-col {	@include general-width(100%, 0, left);   }
     .currency-col-space { padding-left:0%; }
     .currency-col-divide {
@@ -101,7 +101,7 @@
         margin-bottom:15px;
 	}
 	.modal-wrapper {
-		@include img-val('../images/assets/modal-box-arrow.png', 'bottom center', 0, 0);
+		@include img-val('../images/assets/modal-box-arrow.png', bottom center, 0, 0);
 		@include wid-pad-val(0, 0, 0, 0, left);
     }
     .modal-box { @include wid-pad-val(100%, 0, 0 0 15px 0, 0, left); }
@@ -133,11 +133,11 @@
 	.pag-links { float:left; }
 	.star-search{ 
 		li {
-			@include height-width-indent-margin(28px, 30px, '-9999px', 0);
-			@include img-val('../images/assets/rating-sprite-large.png', '0px 0px', 0, 0);
+			@include height-width-indent-margin(28px, 30px, -9999px, 0);
+			@include img-val('../images/assets/rating-sprite-large.png', 0px 0px, 0, 0);
 			float:left;
 			display:block;
-			&:hover { @include img-val('../images/assets/rating-sprite-large.png', '0px -28px', 0, 0); }
+			&:hover { @include img-val('../images/assets/rating-sprite-large.png', 0px -28px, 0, 0); }
 		}
 	}
 	.card-container { width: 95%; padding: 0px; }
@@ -147,7 +147,7 @@
 /* Three card width */
 @media (max-width:1024px) {	
 	.hotelcards	{ 
-		@include general-width('33.333333333%', 0, left);
+		@include general-width(33.333333333%, 0, left);
 		margin-left: 0;  
 	}
 	.card-container {
@@ -162,7 +162,7 @@
 /* Two card width */
 @media (max-width:769px) { 
 	.hotelcards { 
-		@include general-width('50%', 0, left);
+		@include general-width(50%, 0, left);
 		margin-left: 0;
 	}
 	.card-container {
