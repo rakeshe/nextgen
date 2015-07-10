@@ -266,7 +266,7 @@ select {
 	clear:both
 }
 .select-dates-display {
-	@include text-align-val(80%, '0 10% 0 0', center);
+	@include text-align-val(80%, 0 10% 0 0, center);
 	@include height-color-border-outline(37px, #666, 0 !important, 0);
     background-color:#d6dddc;
     border-radius:0px;
@@ -309,30 +309,30 @@ select {
 }
 .select-date-hotel-name{
 	@include font-val-2(20px, 0, 0, 0);
-	@include padd('left', '15px 0 0 15px');
+	@include padd(left, 15px 0 0 15px);
 }
 .select-dates-button {
 	@include font-val(16px, 300, #FFF, 0);
-	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
+	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
 	@include text-align-val(50%, 0, center);
-	@include locale-val(0, '#55337e', '11px 0 10px 0', block, right, 0);
+	@include locale-val(0, '#55337e', 11px 0 10px 0, block, right, 0);
 	@include browser-val(32px, 32px, 32px, 0, 0, 0);	
     text-decoration:none !important;
 }
-.select-dates-footer{ @include general-width(50%, 0, 'left'); }
-#promo-code-val{ @include border-bg-width-val(0, 'none', '50%'); }
+.select-dates-footer{ @include general-width(50%, 0, left); }
+#promo-code-val{ @include border-bg-width-val(0, none, 50%); }
 .find-btn{
 	margin-bottom:20px;
 	cursor:pointer;
 }
 /* Modal - Message pop up */
-.modal-wrapper { @include wid-pos-zindex-top-left(590px, 'absolute !important', '999 !important', 0, 0, 0); }
+.modal-wrapper { @include wid-pos-zindex-top-left(590px, absolute !important, 999 !important, 0, 0, 0); }
 .cancel-action{
     float:right;
     cursor:pointer;
 }
 .modal-box {
-	@include wid-pos-zindex-top-left(715px, 'absolute', 15, 25%, 24%, 0);
+	@include wid-pos-zindex-top-left(715px, absolute, 15, 25%, 24%, 0);
     float: left;
     background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
@@ -353,7 +353,7 @@ select {
 }
 .modal-container { margin:16px; }
 .modal-row { 
-	@include wid-pad-val(100%, 0, '0 0 16px 0', 0, left); 
+	@include wid-pad-val(100%, 0, 0 0 16px 0, 0, left); 
 	h3 { @include font-val-2(18px, 300, #55337e, 0); margin-bottom:0px; }
 	p { @include font-val(14px, 300, #333, 200%);	margin-bottom:0px; }
 	a { @include text-deco(#55337e, underline); }
@@ -361,6 +361,7 @@ select {
 .modal-input {
 	@include wid-pad-val(95%, 0 0 0 5%, 0, 0, 0);
 	@include height-color-border-outline(37px, #999999, 0px, 2px solid #dddee0);
+    border:0px;
 }
 .modal-input-date{	
 	@include height-color-border-outline(37px, #999999, 0 none, 2px solid #dddee0);
@@ -424,14 +425,14 @@ select {
 	margin: 10px 2px;
 }
 .modal-row-button {
-	@include img-val('../images/assets/next-arrow.png', 'center right', 0, 0);
+	@include img-val('../images/assets/next-arrow.png', center right, 0, 0);
 	@include font-val(16px, 300, #FFF !important, 0);
 	@include browser-val(32px, 32px, 32px, none, none, 0);
 	@include locale-val(50%, #55337e, '11px 0 10px 0', block, right, 0);
     text-decoration:none !important;
     text-align:center;
 }
-.modal-cancel {	@include wid-pad-val(0, 0, '-16px 0 0px 0', 0, left); }
+.modal-cancel {	@include wid-pad-val(0, 0, -16px 0 0px 0, 0, left); }
 
 /* register- Message pop up */
 .register-wrapper { width:300px; }
@@ -449,7 +450,7 @@ select {
 	a { @include text-deco(#55337e, underline);	}
 }
 .register-input {
-	@include height-color-border-outline(37px, '#999999', 0px, '2px solid #dddee0');
+	@include height-color-border-outline(37px, #999999, 0px, '2px solid #dddee0');
     width:95%;
     padding-left:5%;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
@@ -469,17 +470,17 @@ select {
 	@include font-val(14px, 300, 0, 0);
     padding-left:0px;
 	li {
-		@include locale-val(0, 0, '12px 0 0 0px', block, left, none);
+		@include locale-val(0, 0, 12px 0 0 0px, block, left, none);
 		margin-left:0px;
 	}
 	&-fb {
 		@include height-width-indent-margin(26px, 26px, -9999px, -2px 10px 0 0);
-		@include img-val('../images/assets/facebook-login-icon.png', 'top left', 0, 0);
+		@include img-val('../images/assets/facebook-login-icon.png', top left, 0, 0);
 		display:block;
 	}
 	&-gp {
 		@include height-width-indent-margin(26px, 26px, -9999px, -2px 0 0 0);
-		@include img-val('../images/assets/google-plus-login-icon.png', 'top left', 0, 0);
+		@include img-val('../images/assets/google-plus-login-icon.png', top left, 0, 0);
 		display:block;
 	}
 }
