@@ -56,19 +56,18 @@
 .user-space { margin-top:6px; }
 /* hotel search - Drop Down Menu */
 .hotel-dropdown-select {
-	@include img-val('../images/assets/orbot-down-arrow.png', top right, 3%, 0);
+	@include img-val('../images/assets/orbot-down-arrow.png?2-1-6', top right, 3%, 0);
 	@include font-val(15px, 300, #333, 0);
-	@include border-bg-width-val('1px solid #CCC', #FFF, 100%);
-	@include browser-val(6px, 6px, 0px, none, none, none);
-    height:37px;
-    margin-bottom:24px;
+	@include general-width(100%, 37px, 0);
+	@include browser-val(3px, 3px, 3px, none, none, none);
+    border: 1px solid #CCC;
+
+    background-color:#FFF;
+    margin-bottom:22px;
+
     text-indent: 0.01px;
     text-overflow: "";
-    border-radius: 6px;
-	&:focus{
-		-webkit-box-shadow: 0 0 5px 2px #5ebbe0;
-		box-shadow: 0 0 5px 2px #5ebbe0;
-	}
+	@include webkit-val(0.30s, ease-in-out);
 }
 
 select {
@@ -493,6 +492,7 @@ select {
 .hero {
 	@include img-val('../../common/img/locations/509_sydney_01_desktop.jpg', center, 0, 0);
 	background-size: cover;
+	height: 590px;
 	h1 {
 		@include font-val(28px, normal, 0, 0);
 		@include padd(0, '20px 0 20px 0');
@@ -1156,7 +1156,7 @@ select {
 
 		/* Styles */
 		background: white;
-		@inculde webkit-val();
+		@inculde webkit-val(0.3s, ease-out);
 		padding-left:0px;
 
 		/* Hiding */
@@ -1166,7 +1166,7 @@ select {
 	.dropdown li{
 		a {
 			@include text-deco(#333, none);
-			@inculde webkit-val();
+			@inculde webkit-val(0.3s, ease-out);
 			display: block;
 			padding: 12px;
 		}
