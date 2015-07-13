@@ -23,6 +23,10 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_URL = 'n/sale/deals';
 
+    const DEFAULT_CURR = 'AUD';
+
+    const DEFAULT_LOCALE = 'en_AU';
+
     private $cityData;
 
     /** @var  \HC\Deals\Models\DealsModel  */
@@ -45,6 +49,10 @@ class DealsController extends ControllerBase {
     private $sortType;
 
     private $hotels;
+
+    private $currency;
+
+    private $locale;
 
     public function initialize() {
 
@@ -146,6 +154,18 @@ class DealsController extends ControllerBase {
         } else {
             $this->sortType = 'asc';
         }
+
+        if ($this->request->get('curr','string') != '') {
+            $this->currency = $this->request->get('curr','string');
+        } else {
+            $this->currency = SELF::DEFAULT_CURR;
+        }
+
+        if ($this->request->get('locale') != '') {
+            $this->locale = $this->request->get('locale');
+        } else {
+            $this->locale = SELF::DEFAULT_LOCALE;
+        }
     }
 
     public function indexAction() {
@@ -200,7 +220,9 @@ class DealsController extends ControllerBase {
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
-                'translation'                   => $trans
+                'translation'         => $trans,
+                'curr'                => $this->currency,
+                'locale'              => $this->locale
             ]
         );
 

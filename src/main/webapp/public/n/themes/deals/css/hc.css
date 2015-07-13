@@ -127,6 +127,7 @@
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
 	color: #FFF;
+    cursor: pointer;
 }
 .points-token {
     background-image:url(../images/assets/Reward-Token.png);
@@ -246,6 +247,7 @@ select {
     width:46%;
     list-style:none;
     padding:2%;
+    cursor: pointer;
 
 }
 .locale-list li:hover {
@@ -278,6 +280,7 @@ select {
         width:94%;
         list-style:none;
         padding:3%;
+        cursor: pointer;
 
     }
     .locale-list li:hover {
@@ -337,6 +340,7 @@ select {
     display:block;
     width:94%;
     padding:3%;
+    cursor : pointer;
 }
 .cur-section li:hover {
     list-style:none;

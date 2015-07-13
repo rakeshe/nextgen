@@ -366,6 +366,11 @@
             $('.filter').hide();
 
             this.displayHeader();
+
+            this.setLocale();
+
+            this.setCurrency();
+
             this.updatePromotion();
 
             var self = this;
@@ -392,6 +397,32 @@
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        setLocale : function() {
+
+            if ($('a[data-locale='+locale+']').html() !== undefined) {
+                $(".club-id .locale-drop-down-arrow .user-club-info").html($('a[data-locale=' + locale + ']').html());
+                $(".locale-drop-down-arrow .flag-pos").css('float: inherit');
+                $(".locale-drop-down-arrow .flag-txt-pos").remove();
+                $(".club-id .locale-wrapper").hide();
+
+            } else {
+                    var url = updateQueryStringParameter(window.location.href, 'locale', 'en_AU');
+                    window.location.href = url;
+            }
+        },
+
+        setCurrency : function() {
+
+            var text = '';
+            if ($('span[data-curr='+curr+']').text() != '') {
+                text = $('span[data-curr='+curr+']').text().split('-')[0].trim();
+                $(".user-space .drop-down-arrow").html(text);
+            } else {
+                var url = updateQueryStringParameter(window.location.href, 'curr', 'AUD');
+                window.location.href = url;
+            }
         },
 
         setSortBy : function(sBy) {
@@ -1343,24 +1374,35 @@
             $('.member-price-title').hide();
         }*/
 		/*drop down for language selection*/
-		$(".club-id .locale-drop-down-arrow").click(function() {
-            /**
-             * disabled: Phase 1, 2
+		$(".club-id .locale-drop-down-arrow").click(function(e) {
 
+            e.preventDefault();
             $(".locale-wrapper").toggle();
-             */
+
 		});
 
-		$(".locale-wrapper ul li a").click(function() {
-			var text = $(this).html();
+		$(".locale-wrapper ul li a").click(function(e) {
+
+            e.preventDefault();
+
+            var loc = '';
+            if (location.href.indexOf('?') === -1) {
+                loc = window.location.href + '?locale=' + $(this).attr('data-locale');
+            } else {
+                //console.log(updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale')));
+                loc = updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale'));
+            }
+            window.location = loc;
+
+           // console.log(loc);
+
+/*			var text = $(this).html();
 			//console.log($(".locale-drop-down-arrow").html(text));
-			/*
-			disabled: Phase 1, 2
 			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
 			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
 			$(".locale-drop-down-arrow .flag-txt-pos").remove();
-			$(".club-id .locale-wrapper").hide();
-			*/
+			$(".club-id .locale-wrapper").hide();*/
+
 		});
 
 		$(document).bind('click', function(e) {
@@ -1395,18 +1437,27 @@
 
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
-            /**
-             * disabled: Phase 1, 2
+
             $(".currency-wrapper").toggle();
-             */
+
         });
 
 		$(".currency-box ul li ul li").click(function() {
-			var text = $(this).html();
-			//console.log(text);
-			//console.log($(".user-space .drop-down-arrow").html(text));
-			//console.log($(".user-space .drop-down-arrow .desc").remove());
-			//console.log($(".currencySelectorItem").html(text));
+            var loc = '';
+            if (location.href.indexOf('?') === -1) {
+                loc = window.location.href + '?curr=' + $(this).children().attr('data-curr')
+            } else {
+                //console.log(updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale')));
+                loc = updateQueryStringParameter(window.location.href, 'curr', $(this).children().attr('data-curr'));
+            }
+            window.location = loc;
+
+/*            var text = $(this).html();
+            //console.log(text);
+            $(".user-space .drop-down-arrow").html(text);
+            $(".user-space .drop-down-arrow .desc").remove();
+            $(".currencySelectorItem").html(text);*/
+
 		});
 		/*end drop down for currency selection*/
 
@@ -2178,6 +2229,17 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
     }
 
     $(document).ready(function(){
