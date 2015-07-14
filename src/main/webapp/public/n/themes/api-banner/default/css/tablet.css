@@ -40,23 +40,27 @@
 }
 .left_arrow_image {
     margin:80% 0 0 -50% !important;
+	height: 30px !important;
+	width: 15px !important;
 }
 .right_arrow_image {
     margin: 80% 0% 0% 50% !important;
+	height: 30px !important;
+	width: 15px !important;
 }
 
 .left_arrow_image_centre {
     margin:80% 0% 0% 38% !important;
 }
 .open_quote{
-    font-size:59px !important;
+    font-size:50px !important;
     opacity:0.6;
     float:left;
     margin: -21px -8px 0 -18px !important;
     padding:5px;
 }
 .close_quote{
-    font-size:59px !important;
+    font-size:50px !important;
     opacity:0.6;
     float:right;
     margin: -49px -4px 0 -18px !important;
@@ -73,15 +77,15 @@
 }
 .carousel-indicators li{
     background-color: #FFF !important;
-    width: 7px !important;
-    height: 7px !important;
+    width: 6px !important;
+    height: 6px !important;
     margin-right: 10px;
 }
 .carousel-indicators .active{
     background-color: #624391 !important;
     border: 1px solid #624391 !important;
-    width: 7px !important;
-    height: 7px !important;
+    width: 6px !important;
+    height: 6px !important;
     margin-right: 10px;
 }
 
