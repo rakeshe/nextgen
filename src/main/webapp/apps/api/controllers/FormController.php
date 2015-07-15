@@ -25,21 +25,21 @@ class FormController extends ControllerBase
 
     const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn';
 
-    private $whiteListUrls;
+    protected $whiteListUrls;
 
-    private $whiteListType;
+    protected $whiteListType;
 
-    private $isWhiteListed = false;
+    protected $isWhiteListed = false;
 
-    private $responseContentType = 'application/json';
+    protected $responseContentType = 'application/json';
 
-    private $validationMessages = [];
+    protected $validationMessages = [];
 
-    private $availableHosts = [];
+    protected $availableHosts = [];
 
-    private $app_id;
+    protected $app_id;
 
-    private $hostName;
+    protected $hostName;
 
     public function initialize() {
 
@@ -93,7 +93,7 @@ class FormController extends ControllerBase
     /**
      * Verify hash code
      */
-    private function verifyHash() {
+    protected  function verifyHash() {
 
         if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
 
@@ -109,7 +109,7 @@ class FormController extends ControllerBase
      * Verify request type
      * @return bool
      */
-    private function verifyRequestType() {
+    protected function verifyRequestType() {
 
         return $this->request->isGet() && true == $this->request->isAjax();
     }
@@ -117,7 +117,7 @@ class FormController extends ControllerBase
      * load whitelist url file
      */
 
-    private function loadWhiteListUrls() {
+    protected function loadWhiteListUrls() {
 
         try{
 
@@ -137,7 +137,7 @@ class FormController extends ControllerBase
      * To verify app key
      * @return bool
      */
-    private function verifyAppKey() {
+    protected function verifyAppKey() {
 
         if (null!= $this->request->getQuery('api_key') &&
             array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)) {
@@ -152,7 +152,7 @@ class FormController extends ControllerBase
      * Verify host name or IP is whitelisted or not
      * @return bool
      */
-    private function verifyHost() {
+    protected function verifyHost() {
 
         // Pass if within default hotelclub hosts
         if(in_array($this->request->getHttpHost(),explode(',', self::DEFAULT_WHITE_LIST_HOSTS))) return true;
@@ -176,10 +176,10 @@ class FormController extends ControllerBase
      * Get exception info
      * @param object $e
      */
-    private function getExceptionMessage($e) {
+    protected function getExceptionMessage($e) {
 
         if ('dev' === ORBITZ_ENV) {
-            echo "Form API Exception line no: {$e->getLine()}, Message: {$e->getMessage()}";
+//            echo "Form API Exception line no: {$e->getLine()}, Message: {$e->getMessage()}" . PHP_EOL;
         } else {
             $this->getDI()->getShared('logger')->log("Form API Exception line no: {$e->getLine()},
                     Message: {$e->getMessage()}");
@@ -187,7 +187,7 @@ class FormController extends ControllerBase
 
     }
 
-    private function sendOutput($httpCode, $content = false) {
+    protected function sendOutput($httpCode, $content = false) {
 
         $res = new Response;
         $res
