@@ -221,6 +221,8 @@ class DealsController extends ControllerBase {
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
                 'translation'         => $trans,
+                'currenciesData'      => json_encode($this->config->currencies),
+                'localeData'          => json_encode($this->config->languageOptions),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale
             ]

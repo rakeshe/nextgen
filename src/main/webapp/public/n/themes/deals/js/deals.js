@@ -330,13 +330,148 @@
 
     });
 
-    Handlebars.registerHelper('trimString', function(string, value) {
+    HB.registerHelper('trimString', function(string, value) {
 
         if (string.length > value ) {
             var string = string.substring(0, value) + '..';
         }
         return new Handlebars.SafeString( string )
     });
+
+    HB.registerHelper('displayLocaleDropDown',function(obj) {
+
+
+        var html = '<ul class="locale-list">';
+        for( key in obj) {
+            if (obj.hasOwnProperty(key)) {
+
+                html += '<li>';
+                html += '<a data-locale="'+key+'">';
+                html += '<div class="flag-pos">';
+                html += '<img src="/n/themes/deals/images/assets/blank.gif" class="flag '+obj[key].class+'" alt="'+obj[key].name+'" /></div>';
+                html += '<div class="flag-txt-pos">'+obj[key].name+'</div>';
+                html += '</a>';
+                html += '</li>';
+            }
+
+        }
+        html += '</ul>';
+
+        return new Handlebars.SafeString(html);
+    });
+
+    HB.registerHelper('displayDefaultLocale', function(obj, locale) {
+
+        var html = '<a><span class="user-club-info">',
+            l = obj[locale]
+
+            html += '<img src="/n/themes/deals/images/assets/blank.gif" class="flag '+ l.class+'" alt="'+ l.name+'" />';
+            html += '</span></a>';
+
+        return new Handlebars.SafeString(html);
+
+    });
+
+    HB.registerHelper('displayCurrencyDropDown', function(obj) {
+
+
+        var html = '<ul class="currencySelector selector multiColumn">';
+
+        var firstColl = 3,
+            secondColl = 2,
+            thirdColl = 2,
+            counter = 1,
+            tempKey = '',
+            footTag = false;
+
+        for(key in obj) {
+
+            if (obj.hasOwnProperty(key)) {
+
+
+                for(k in obj[key]) {
+
+                    if (obj.hasOwnProperty(key)) {
+
+                       // closing tags div and ul
+                        if (tempKey != key && footTag == true) {
+                            footTag = false;
+                            html += ' </ul>';
+                            html += '</div>';
+
+
+                            if (counter == 1) {
+                                html += '</li>';
+                               // console.log('1 closing => ' + counter);
+                            } else if (counter == 4) {
+                                html += '</li>';
+                               // console.log('2 closing => ' + counter);
+                            } else if (counter == 6) {
+                                html += '</li>';
+                                //console.log('3 closing => ' + counter);
+                            }
+
+                        }
+
+                        if (tempKey != key) {
+                            if (counter == 1) {
+                                html += '<li class="currency-col">';
+                                //console.log('1 => ' + counter);
+                            } else if (counter == 4) {
+                                html += '<li class="currency-col currency-col-space currency-col-divide">';
+                               // console.log('2 => ' + counter);
+                            } else if (counter == 6) {
+                                html += '<li class="currency-col currency-col-space">';
+                                //console.log('3 => ' + counter);
+                            }
+
+                            html += ' <div class="cur-section">';
+                            html += '<h5 class="Countries">'+key+'</h5>';
+                            html += '<ul>';
+                            counter++;
+                        }
+
+
+                        html += ' <li data-component="currencySelectorItem">';
+                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+obj[key][k]+'</span></span>';
+                        html += ' </li>';
+
+                        tempKey = key;
+                        footTag = true;
+
+                        //console.log(obj[key][k]);
+                        //console.log(k);
+
+
+
+                    }
+                }
+
+            }
+        }
+
+        html += '</ul>';
+
+        return new Handlebars.SafeString(html);
+
+    });
+
+    HB.registerHelper('displayDefaultCurrency', function(obj, curr) {
+
+        for(key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                for(k in obj[key]) {
+                    if (k == curr) {
+                        console.log(obj[key][curr].split('-')[0].trim());
+                        var html = '<span class="user-club-info drop-down-arrow">' + obj[key][curr].split('-')[0].trim() + '</span>';
+                        return new Handlebars.SafeString(html);
+                    }
+                }
+            }
+        }
+    });
+
+
 
 
     var Deals = {
@@ -401,7 +536,7 @@
 
         setLocale : function() {
 
-            if ($('a[data-locale='+locale+']').html() !== undefined) {
+/*            if ($('a[data-locale='+locale+']').html() !== undefined) {
                 $(".club-id .locale-drop-down-arrow .user-club-info").html($('a[data-locale=' + locale + ']').html());
                 $(".locale-drop-down-arrow .flag-pos").css('float: inherit');
                 $(".locale-drop-down-arrow .flag-txt-pos").remove();
@@ -410,19 +545,19 @@
             } else {
                     var url = updateQueryStringParameter(window.location.href, 'locale', 'en_AU');
                     window.location.href = url;
-            }
+            }*/
         },
 
         setCurrency : function() {
 
-            var text = '';
+/*            var text = '';
             if ($('span[data-curr='+curr+']').text() != '') {
                 text = $('span[data-curr='+curr+']').text().split('-')[0].trim();
                 $(".user-space .drop-down-arrow").html(text);
             } else {
                 var url = updateQueryStringParameter(window.location.href, 'curr', 'AUD');
                 window.location.href = url;
-            }
+            }*/
         },
 
         setSortBy : function(sBy) {
@@ -900,9 +1035,10 @@
 
         displayHeader : function() {
 
-            //console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
-            $('#header-container').append(template({trans: this.trans}));
+            $('#header-container').append(template(
+                {trans: this.trans, locale : locale, localOptions : $.parseJSON(lD), 'currencyOptions' : $.parseJSON(crD), curr : curr}
+            ));
         },
 
         displayFilter : function() {
