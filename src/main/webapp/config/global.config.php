@@ -64,19 +64,19 @@ function getMySqlConfigs()
         case 'fqa1':
             $config = [
                 'adapter' => 'Mysql',
-                'host' => 's1stashvip.stag.o.com',
-                'username' => 'hcnxg_service',
-                'password' => 'hcnxg_service@456',
-                'dbname' => 'hcnxg'
+                'host' => 'hcphpmsql01.qa1.orbitz.net',
+                'username' => 'htcn_service',
+                'password' => 'htcn_service@123',
+                'dbname' => 'ht_cn'
             ];
             break;
         case 'production':
             $config = [
                 'adapter' => 'Mysql',
-                'host' => 's1stashvip.stag.o.com',
-                'username' => 'hcnxg_service',
-                'password' => 'hcnxg_service@456',
-                'dbname' => 'hcnxg'
+                'host' => 'hcphpmsql01.qa1.orbitz.net',
+                'username' => 'htcn_service',
+                'password' => 'htcn_service@123',
+                'dbname' => 'ht_cn'
             ];
             break;
     }
