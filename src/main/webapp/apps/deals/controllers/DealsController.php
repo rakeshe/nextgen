@@ -161,11 +161,15 @@ class DealsController extends ControllerBase {
             $this->currency = SELF::DEFAULT_CURR;
         }
 
-        if ($this->request->get('locale') != '') {
-            $this->locale = $this->request->get('locale');
+        $uris = explode( '/', $this->request->getURI() ) ;
+
+        // detect locale based on url
+        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[1]) && array_key_exists($uris[1], $this->config->languageOptions)) {
+            $this->locale = $uris[1];
         } else {
             $this->locale = SELF::DEFAULT_LOCALE;
         }
+
     }
 
     public function indexAction() {
@@ -221,6 +225,8 @@ class DealsController extends ControllerBase {
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
                 'translation'         => $trans,
+                'currenciesData'      => json_encode($this->config->currencies),
+                'localeData'          => json_encode($this->config->languageOptions),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale
             ]
