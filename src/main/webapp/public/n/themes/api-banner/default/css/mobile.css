@@ -1,13 +1,11 @@
 #myCarousel{
 	width: 100% !important;
-	height: 80% !important;
+	height: 100% !important;
 }
 .carousel-inner>.item>img, .carousel-inner>.item>a>img{
 	width: 100% !important;
 }
 .carousel{
-    min-height: 120px;
-    min-width: 400px;
     overflow: hidden;
 }
 .carousel-inner{
