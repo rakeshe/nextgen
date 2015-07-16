@@ -1552,6 +1552,7 @@
                  * disabled: Phase 1, 2
                 $(".currency-wrapper").hide();
                 */
+                $(".currency-wrapper").hide();
 			}
 		});
 		/*end drop down for language selection*/
