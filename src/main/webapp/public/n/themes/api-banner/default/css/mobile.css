@@ -29,8 +29,8 @@
     font-weight:300;
     margin:0 10px 0 0 !important;
     line-height: 20px !important;
-    min-height: 85px;
-    max-height: 70px;
+    min-height: 70px;
+    max-height: 85px;
     /*text-shadow: none;*/
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
@@ -98,8 +98,27 @@
 .carousel-indicators.left{
     margin-left: -75%;
 }
-
-
 .hidden {
     display: none;
+}
+@media(max-width: 640px){
+	.carousel-heading-content{
+		font-size: 1em !important;
+		line-height: 15px !important;
+	}
+	.carousel-normal-text{
+		padding: 14px 5px 0 0 !important;
+	}
+}
+@media(max-width: 480px){
+	.carousel-heading-content{
+		font-size: 0.7em !important;
+		line-height: 10px !important;
+		min-height: 50px;
+		max-height: 60px;
+	}
+	.carousel-normal-text{
+		font-size: 0.5em !important;
+		padding: 2px 5px 0 0 !important;
+	}
 }
