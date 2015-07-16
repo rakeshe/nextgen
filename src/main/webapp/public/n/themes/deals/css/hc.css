@@ -2559,7 +2559,7 @@ select {
     display: none;
 }
 .logged-out-user {
-    float:left;
+    float:right;
     display:none;
     color: #ffffff;
 }
