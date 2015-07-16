@@ -502,10 +502,6 @@
 
             this.displayHeader();
 
-            this.setLocale();
-
-            this.setCurrency();
-
             this.updatePromotion();
 
             var self = this;
@@ -534,31 +530,6 @@
             })*/
         },
 
-        setLocale : function() {
-
-/*            if ($('a[data-locale='+locale+']').html() !== undefined) {
-                $(".club-id .locale-drop-down-arrow .user-club-info").html($('a[data-locale=' + locale + ']').html());
-                $(".locale-drop-down-arrow .flag-pos").css('float: inherit');
-                $(".locale-drop-down-arrow .flag-txt-pos").remove();
-                $(".club-id .locale-wrapper").hide();
-
-            } else {
-                    var url = updateQueryStringParameter(window.location.href, 'locale', 'en_AU');
-                    window.location.href = url;
-            }*/
-        },
-
-        setCurrency : function() {
-
-/*            var text = '';
-            if ($('span[data-curr='+curr+']').text() != '') {
-                text = $('span[data-curr='+curr+']').text().split('-')[0].trim();
-                $(".user-space .drop-down-arrow").html(text);
-            } else {
-                var url = updateQueryStringParameter(window.location.href, 'curr', 'AUD');
-                window.location.href = url;
-            }*/
-        },
 
         setSortBy : function(sBy) {
             this.sortBy = sBy
@@ -1521,23 +1492,33 @@
 
             e.preventDefault();
 
-            var loc = '';
-            if (location.href.indexOf('?') === -1) {
-                loc = window.location.href + '?locale=' + $(this).attr('data-locale');
+            var u = MNME.split('/'),
+                url = '';
+
+            if (u[0].match(/^([a-z]{2})+_([A-Z]{2})+$/)) {
+                u[0] = $(this).attr('data-locale');
+                $.each(u, function(index, val){
+
+                    url += val;
+                    if (u[index + 1] !== undefined)
+                        url += '/';
+                });
+
             } else {
-                //console.log(updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale')));
-                loc = updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale'));
+                url = $(this).attr('data-locale') + '/' + MNME;
             }
-            window.location = loc;
+            if (Deals.city != '')
+                url += '/' + Deals.city;
 
-           // console.log(loc);
+            if (Deals.when != '')
+                url += '/' + Deals.when   ;
 
-/*			var text = $(this).html();
-			//console.log($(".locale-drop-down-arrow").html(text));
-			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
-			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
-			$(".locale-drop-down-arrow .flag-txt-pos").remove();
-			$(".club-id .locale-wrapper").hide();*/
+            console.log(Deals.city + ' where => '+ Deals.when);
+            if (window.location.href.split('?')[1] !== undefined) {
+                url += '?' + window.location.href.split('?')[1];
+            }
+
+            window.location = window.location.protocol + '//' + window.location.host + '/' + url;
 
 		});
 
