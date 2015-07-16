@@ -21,7 +21,7 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_WHEN = '30-days';
 
-    const DEFAULT_URL = 'n/sale/deals';
+    const DEFAULT_URI = 'n/sale/deals';
 
     const DEFAULT_CURR = 'AUD';
 
@@ -53,6 +53,8 @@ class DealsController extends ControllerBase {
     private $currency;
 
     private $locale;
+
+    private $uri;
 
     public function initialize() {
 
@@ -166,8 +168,10 @@ class DealsController extends ControllerBase {
         // detect locale based on url
         if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[1]) && array_key_exists($uris[1], $this->config->languageOptions)) {
             $this->locale = $uris[1];
+            $this->uri = $this->locale .'/'. self::DEFAULT_URI;
         } else {
             $this->locale = SELF::DEFAULT_LOCALE;
+            $this->uri = self::DEFAULT_URI;
         }
 
     }
@@ -209,7 +213,7 @@ class DealsController extends ControllerBase {
                 'when'                => $this->when,
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
-                'url'                 => self::DEFAULT_URL,
+                'url'                 => $this->uri,
                 'hData'               => $this->hotels,
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
