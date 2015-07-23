@@ -25,6 +25,9 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DEFAULT_CITY = 'Sydney';
     const DEFAULT_TRAVEL_PERIOD = '30-days';
 
+    const DEFAULT_LOCALE = 'en_AU';
+    const DEFAULT_CURRENCY = 'AUD';
+
     protected $locale = 'en_AU';
 
     public function init() {
@@ -104,6 +107,7 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
     }
 
+    /** landign page Inspiration section data */
     public function getPromoCardDoc() {
 
         try{
@@ -205,13 +209,25 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     /**
      * Given document name, retrieve from Couch first, then file system if fails
-     * @param $documentName
-     * @return bool|string
+     * @param      $documentName
+     * @param bool $decode
+     * @return mixed|null
      */
     public function getCmsDocument($documentName, $decode = false) {
 
+        $return = false;
+        $cmsDocument = $this->getCmsDocumentByLocale($documentName, $this->getLocale());
+        $cmsDocument =  $cmsDocument ? $cmsDocument : $this->getCmsDocumentByLocale($documentName);
+       if($cmsDocument){
+           $return =  $decode ? json_decode($cmsDocument) : str_replace("'", "&#39;", $cmsDocument);
+
+        }
+        return $return;
+    }
+
+    public function getCmsDocumentByLocale($documentName, $locale= self::DEFAULT_LOCALE){
         try {
-            $couchDocName = ORBITZ_ENV . ':'. $documentName . ':'. $this->getLocale();
+            $couchDocName = ORBITZ_ENV . ':'. $documentName . ':'. $locale;
             $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
 
             // Try couch first
@@ -220,19 +236,17 @@ class DealsModel extends \Phalcon\Mvc\Model
 
             // try file system next
             if ($data == false) {
-
                 if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
                     $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
                 }
             }
-            return $decode ? json_decode($data) : str_replace("'", "&#39;", $data);
+
+            return $data;
 
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
-        return false;
     }
-
     /**
      * @return string
      */
