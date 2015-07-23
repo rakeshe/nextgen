@@ -1,0 +1,107 @@
+#myCarousel{
+	width: 100% !important;
+	height: 100% !important;
+}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img{
+	width: 100% !important;
+}
+.carousel{
+    min-height: 120px;
+    min-width: 400px;
+    overflow: hidden;
+}
+.carousel-inner{
+    height: 100%;
+}
+.carousel-caption{
+    left: 9% !important;
+    right: 9%  !important;
+    width: 83% !important;
+    top: 12% !important;
+}
+.carousel-heading-text{
+    font-family: "Arial", Helvetica, sans-serif;
+    font-size: 24px !important;
+    opacity: 0.95;
+}
+.carousel-heading-content{
+    font-family: "Arial", Helvetica, sans-serif !important;
+    font-size: 1.4em !important;
+    float:inherit;
+    font-weight:300;
+    margin:5px 10px 0 0 !important;
+    line-height: 30px !important;
+    min-height: 100px;
+    max-height: 110px;
+    /*text-shadow: none;*/
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+.carousel-normal-text{
+    padding:13px 5px 0 0;
+    font-weight:bolder;
+    font-size:1.0em;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+.left_arrow_image {
+    margin:80% 0 0 -50% !important;
+	height: 30px !important;
+	width: 15px !important;
+}
+.right_arrow_image {
+    margin: 80% 0% 0% 50% !important;
+	height: 30px !important;
+	width: 15px !important;
+}
+
+.left_arrow_image_centre {
+    margin:80% 0% 0% 38% !important;
+}
+.open_quote{
+    font-size:50px !important;
+    opacity:0.6;
+    float:left;
+    margin: -21px -8px 0 -18px !important;
+    padding:5px;
+}
+.close_quote{
+    font-size:50px !important;
+    opacity:0.6;
+    float:right;
+    margin: -49px -4px 0 -18px !important;
+}
+.carousel-control.right{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+}
+.carousel-control.left{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+}
+.carousel-indicators{
+    margin-bottom:0px !important;
+    left: 52% !important;
+}
+.carousel-indicators li{
+    background-color: #FFF !important;
+    width: 6px !important;
+    height: 6px !important;
+    margin-right: 8px;
+}
+.carousel-indicators .active{
+    background-color: #624391 !important;
+    border: 1px solid #624391 !important;
+    width: 6px !important;
+    height: 6px !important;
+    margin-right: 8px;
+}
+
+.carousel-indicators.right{
+    margin-left: 15%;
+}
+
+.carousel-indicators.left{
+    margin-left: -75%;
+}
+
+
+.hidden {
+    display: none;
+}
