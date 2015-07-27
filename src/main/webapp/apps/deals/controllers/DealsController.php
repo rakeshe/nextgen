@@ -162,8 +162,7 @@ class DealsController extends ControllerBase {
         } else {
             $this->currency = SELF::DEFAULT_CURR;
         }
-
-        $uris = explode( '/', $this->request->getURI() ) ;
+        $uris = explode( '/',$this->router->getRewriteUri()) ;
 
         // detect locale based on url
         if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[1]) && array_key_exists($uris[1], $this->config->languageOptions)) {
@@ -173,12 +172,21 @@ class DealsController extends ControllerBase {
             $this->locale = SELF::DEFAULT_LOCALE;
             $this->uri = self::DEFAULT_URI;
         }
+        // Set locale in model
+        $this->model->setLocale($this->locale);
 
     }
 
     public function indexAction() {
 
         $this->cityData = $this->model->getCityDocument();
+
+        // Check: if cityData is null, then get cityDocument for default locale and override locale in model
+        if($this->cityData === '{}'){
+            $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
+            $this->cityData = $this->model->getCityDocument();
+        }
+
         $noHotels = 'false';
         if ($this->city !== NULL && $this->when !== NULL) {
             $this->hotels = $this->model->getHotels('', $this->city, $this->when);
@@ -220,8 +228,8 @@ class DealsController extends ControllerBase {
                     ->setOwwPage($this->router->getRewriteUri())
                     ->getWtMetaData(),
                 'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
-                'clubPromotion'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
-                'pmPromotion'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
+                'clubPromo'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
+                'pmPromo'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
                 'docFooterSeo'        => $docFooterSeo->html,
                 'docFooterAbout'      => $docFooterAbout->html,
                 'sortBy'              => $this->sortBy,

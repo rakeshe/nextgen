@@ -1,7 +1,26 @@
 <script>
-var cData = '{{cityData}}', hData = '{{hData}}', uInfo = '{{userInfo}}', MNME = '{{url}}', city = '{{city}}', when = '{{when}}', sort = '{{sort}}', apnd = '{{appendURL}}', noHData = '{{noHotels}}';
-var clubPromo = '{{clubPromotion}}', pmPromo = '{{pmPromotion}}', sBy = '{{sortBy}}', sTy = '{{sortType}}';
-var pcData = '{{promoCardData}}', hImages = '{{heroImages}}', t = '{{translation}}', crD = '{{currenciesData}}', lD = '{{localeData}}', curr = '{{curr}}', locale = '{{locale}}';
+    var cData = '{{cityData}}',
+            hData = '{{hData}}',
+            uInfo = '{{userInfo}}',
+            MNME = '{{url}}',
+            city = '{{city}}',
+            when = '{{when}}',
+            sort = '{{sort}}',
+            apnd = '{{appendURL}}',
+            noHData = '{{noHotels}}';
+
+    var clubPromo = '{{clubPromo}}',
+            pmPromo = '{{pmPromo}}',
+            sBy = '{{sortBy}}',
+            sTy = '{{sortType}}';
+
+    var pcData = '{{promoCardData}}',
+            hImages = '{{heroImages}}',
+            t = '{{translation}}',
+            crD = '{{currenciesData}}',
+            lD = '{{localeData}}',
+            curr = '{{curr}}',
+            locale = '{{locale}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
