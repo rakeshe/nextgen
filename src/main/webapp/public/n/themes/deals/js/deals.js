@@ -1897,6 +1897,10 @@
 
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
+
+       var template = HB.compile( $("#select-popup-template").html() );
+       $('.section .hotel-cards-container').append(template({trans : Deals.trans}));
+
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
         var cityName = $('.dropdown-cities').val();
@@ -2019,7 +2023,8 @@
 
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 			//close the select-dates popup
-			$('.select-dates').css('display','none');
+
+            $('.select-dates').remove();
 			$("#overlay").remove();
 
 			//redirect to hotelclub site with the all the input value
@@ -2107,7 +2112,7 @@
     });
 
     $(document).on('click', '.close-select-dates', function (){
-        $('.select-dates').css('display','none');
+        $('.select-dates').remove();
         $("#overlay").remove();
     });
 
