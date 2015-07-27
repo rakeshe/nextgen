@@ -2024,6 +2024,8 @@
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 			//close the select-dates popup
 
+            var onegId = $('#selected-oneg').val();
+
             $('.select-dates').remove();
 			$("#overlay").remove();
 
@@ -2031,7 +2033,7 @@
 			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
-                + "&hotel.hid="+$('#selected-oneg').val()
+                + "&hotel.hid="+onegId
 				+ "&hotel.hname="+hotelName
                 + "&hsv.showDetails=true"
                 + "&hotel.type=keyword"
