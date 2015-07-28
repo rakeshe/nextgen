@@ -542,6 +542,16 @@
             })*/
         },
 
+        // get translation by key
+        t : function( key ) {
+
+            if (this.trans[key] !== undefined) {
+                return this.trans[key];
+            }
+            return key;
+
+        },
+
         getDataById : function(onegId) {
 
             if ( $.isEmptyObject(this.currDoc) && typeof this.currDoc[onegId] == 'undefined') {
@@ -1072,8 +1082,8 @@
         },
 
         updateFooterText : function() {
-            $(".footer-intro #footer-intro-title").text( this.trans['footer_intro_title']);
-            $(".footer-intro #footer-intro-text").text( this.trans['footer_intro_text']);
+            $(".footer-intro #footer-intro-title").text( this.t('footer_intro_title'));
+            $(".footer-intro #footer-intro-text").text( this.t('footer_intro_text'));
         },
 
 
@@ -1101,7 +1111,7 @@
                 dropRegion : function() {
                    return $('.dropdown-region').html('').append( $('<option>', {
                         value : '0',
-                        text : self.trans['Where_you_want_to_go'],
+                        text : self.t('Where_you_want_to_go'),
                         'selected' :'selected'
                     }) );
 
@@ -1110,7 +1120,7 @@
                     return $('.dropdown-cities').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : self.trans['what_city'],
+                        text : self.t('what_city'),
                         'selected' :'selected'
                     }) );
                 },
@@ -1118,7 +1128,7 @@
                     return $('.dropWhereDo').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : self.trans['when_want_to_go'],
+                        text : self.t('when_want_to_go'),
                         'selected' :'selected'
                     }) );
                 }
@@ -1131,7 +1141,7 @@
 
                 dropWhereDo = $('.dropWhereDo').html('').append( $('<option>', {
                         value : '0',
-                        text : this.trans['when_want_to_go'],
+                        text : this.t('when_want_to_go'),
                         'selected' :'selected'
                     }) );
             } else {
