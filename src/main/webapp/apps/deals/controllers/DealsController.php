@@ -212,6 +212,9 @@ class DealsController extends ControllerBase {
         $trans = ($this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME)) == false ? '{}'
             : $this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME);
 
+        $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME, $this->currency);
+
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -240,7 +243,8 @@ class DealsController extends ControllerBase {
                 'currenciesData'      => json_encode($this->config->currencies),
                 'localeData'          => json_encode($this->config->languageOptions),
                 'curr'                => $this->currency,
-                'locale'              => $this->locale
+                'locale'              => $this->locale,
+                'currDoc'             => $currDoc
             ]
         );
 

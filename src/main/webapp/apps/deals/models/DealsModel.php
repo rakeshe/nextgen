@@ -19,7 +19,8 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
     const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
     const HEROES_IMAGE_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:heroes_images'; //sale:md5('deals'):heroes_images
-    const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):heroes_images
+    const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):translation
+    const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency
 
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_CITY = 'Sydney';
@@ -246,6 +247,30 @@ class DealsModel extends \Phalcon\Mvc\Model
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
+    }
+
+    public function getCurrencyDocument($docName, $currency) {
+
+        try {
+            $couchDocName = ORBITZ_ENV . ':'. $docName . ':'. $currency;
+            $fsDocName = strtolower(str_replace(':','_', $docName)) .'_' .$currency .'.json';
+            // Try couch first
+            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+            $data   = $Couch->get($couchDocName);
+
+            // try file system next
+            if ($data == false) {
+                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
+                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
+                }
+            }
+
+            return $data == false ? '{}' : $data;
+
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+
     }
     /**
      * @return string

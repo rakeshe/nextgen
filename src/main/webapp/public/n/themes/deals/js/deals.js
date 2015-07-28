@@ -45,19 +45,28 @@
         })()
     }
     /* End IE 9 and below work arounds */
-    HB.registerHelper('displayPrice', function(price, MemberPrice) {
-        //return price;
-        var memB = parseInt(memberPrice);
-        if (! isNaN(memB) ) {
+    HB.registerHelper('displayPrice', function(onegId, currObj, MemberPrice) {
 
-            var total = price - parseFloat(memberPrice);
+        if (typeof currObj[onegId] !== 'undefined') {
 
-            if (total < 0)
-                return 0;
-            else
-                return Math.round(price - parseFloat(memberPrice));
-        } else
-            return Math.round(price);
+            var price = currObj[onegId]['price'],
+                memB = parseInt(memberPrice);
+
+            if (! isNaN(memB) ) {
+
+                var total = price - parseFloat(memberPrice);
+
+                if (total < 0)
+                    return 0;
+                else
+                    return currObj[onegId]['symbol'] + Math.round(price - parseFloat(memberPrice));
+            } else
+                return currObj[onegId]['symbol'] + Math.round(price);
+
+        } else {
+            return 'N/A';
+        }
+
     }),
 
     HB.registerHelper('chString', function(val, options) {
@@ -498,11 +507,14 @@
 
             this.setSortType(sTy);
 
+            this.currDoc = $.parseJSON( currD );
+
             $('.filter').hide();
 
             this.displayHeader();
 
             this.updatePromotion();
+
 
             var self = this;
             this.displayUserInfo().always(function(){
@@ -528,6 +540,19 @@
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        getDataById : function(onegId) {
+
+            if ( $.isEmptyObject(this.currDoc) && typeof this.currDoc[onegId] == 'undefined') {
+                return {
+                    currency : '',
+                    'symbol' : '',
+                    'price' : 'N/A'
+                }
+            } else {
+                return this.currDoc[onegId];
+            }
         },
 
 
@@ -1027,6 +1052,7 @@
         displayHotelCards : function( data ) {
 
             var template = HB.compile( $("#hotel-card-template").html() );
+            data['currDoc'] = this.currDoc;
             $('.section .hotel-cards-container').html(template( data ));
 
             $("img.lazy").lazyload({

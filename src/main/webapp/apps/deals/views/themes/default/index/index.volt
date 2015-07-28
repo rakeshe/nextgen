@@ -20,7 +20,8 @@
             crD = '{{currenciesData}}',
             lD = '{{localeData}}',
             curr = '{{curr}}',
-            locale = '{{locale}}';
+            locale = '{{locale}}',
+            currD = '{{currDoc}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
