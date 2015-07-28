@@ -1967,9 +1967,9 @@
                 $('#select-check-out').datepicker('option', 'minDate', date2);
 				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
+                dateCalculate();
             },
             onClose: function() {
-                dateCalculate();
             }
         });//initialize the date-picker for check-in
         $("#select-check-out").datepicker({
@@ -1987,9 +1987,9 @@
                 );
 				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
+                dateCalculate();
             },
             onClose: function() {
-                dateCalculate();
             }
         });//initialize the date-picker for check-out
 
