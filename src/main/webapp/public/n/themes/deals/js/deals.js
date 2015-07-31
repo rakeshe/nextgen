@@ -620,13 +620,15 @@
 
           if ($.isEmptyObject(this.hData) == true) {
 
-              this.setHeroesImage(); // set heroes image
+
 
               if (noHData == 'true') {
                   this.displayDropDownData('value');
+                  this.setCityImage();
                   this.updatePromotion();
                   this.displayNoHotelOrbot();
               } else {
+                  this.setHeroesImage(); // set heroes image
                   //root to landing page
                   this.displayDropDownData('default');
                   this.displayRegionHotelCards();
