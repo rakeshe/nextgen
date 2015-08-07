@@ -179,7 +179,8 @@ class WidgetController extends ControllerBase
 
         try {
             $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $var   = $Couch->get(ORBITZ_ENV . ":deals:" . md5("banner"));
+            $couchDocName = ORBITZ_ENV . ":deals:" . md5("banner");
+            $var   = $Couch->get($couchDocName);
             if (!empty($var)) {
                 $var = json_decode($var, true);
                 if (!empty($var[$this->name_seo])) {
