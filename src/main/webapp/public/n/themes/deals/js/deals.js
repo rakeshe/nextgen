@@ -47,10 +47,12 @@
     /* End IE 9 and below work arounds */
     HB.registerHelper('displayPrice', function(onegId, currObj, MemberPrice) {
 
-        if (typeof currObj[onegId] !== 'undefined') {
 
-            var price = currObj[onegId]['price'],
-                memB = parseInt(memberPrice);
+        if (typeof currObj['data'][onegId] !== 'undefined') {
+
+            var price = currObj['data'][onegId][0],
+                memB = parseInt(memberPrice),
+                symbol = currObj['symbol'];
 
             if (! isNaN(memB) ) {
 
@@ -59,9 +61,9 @@
                 if (total < 0)
                     return 0;
                 else
-                    return currObj[onegId]['symbol'] + Math.round(price - parseFloat(memberPrice));
+                    return symbol + Math.round(price - parseFloat(memberPrice));
             } else
-                return currObj[onegId]['symbol'] + Math.round(price);
+                return symbol + Math.round(price);
 
         } else {
             return 'N/A';
