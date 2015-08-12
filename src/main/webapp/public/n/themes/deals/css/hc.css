@@ -268,13 +268,13 @@ select {
         padding-top:16px;
         float:left;
         width:80%;
-        margin-left:10%;
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .locale-menu {
-        width:80%;
+       /* width:80%; */
         float:left;
-        margin-left:10%;
+       /* margin-left:10%;*/
         margin-right:10%;
     }
     .locale-list li {
@@ -396,15 +396,15 @@ select {
     .currency-wrapper {
         padding-top:16px;
         float:left;
-        width:80%;
-        margin-left:10%;
+        /*width:80%;*/
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .currency-box {
         width:80%;
         float:left;
-        padding-bottom:12px;
-        margin-left:10%;
+        /*padding-bottom:12px;*/
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .currency-col {
