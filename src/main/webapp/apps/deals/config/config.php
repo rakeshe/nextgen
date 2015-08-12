@@ -19,7 +19,7 @@ return new \Phalcon\Config ([
 		),
         'languageOptions' => array (
             'en_AU' => ['name' => 'English', 'class' => 'flag-au'],
-            'zh_TW' => ['name' => '繁體中文 (台灣)', 'class' => 'flag-tw'],
+            /*'zh_TW' => ['name' => '繁體中文 (台灣)', 'class' => 'flag-tw'],
             'zh_CN' => ['name' => '简体中文', 'class' => 'flag-cn'],
             'zh_HK' => ['name' => '繁體中文 (香港)', 'class' => 'flag-hk'],
             'ms_MY' => ['name' => 'Bahasa Melayu', 'class' => 'flag-my'],
@@ -35,7 +35,7 @@ return new \Phalcon\Config ([
             'pt_PT' => ['name' => 'Português', 'class' => 'flag-pt'],
             'ru_RU' => ['name' => 'Русский', 'class' => 'flag-ru'],
             'sv_SE' => ['name' => 'Svenska', 'class' => 'flag-se'],
-            'th_TH' => ['name' => 'ไทย', 'class' => 'flag-th'],
+            'th_TH' => ['name' => 'ไทย', 'class' => 'flag-th'],*/
         ),
 		'locales' => array (
 				'MY' => 'ms_MY',
@@ -58,7 +58,7 @@ return new \Phalcon\Config ([
                 'ID' => 'id_ID'
 		),
 		'currencies' => array (
-				'most-used-currencies' => array (
+				/*'most-used-currencies' => array (
 						'AUD' => '$AUD - Australian Dollar',
 						'CNY' => '¥CNY - Chinese Yuan',
 						'EUR' => '€EUR - Euro体中文',
@@ -109,16 +109,17 @@ return new \Phalcon\Config ([
 						'RUB' => '₽RUB - Russian Ruble',
 						'SEK' => 'krSEK - Swedish Krona',
 						'UAH' => '₴UAH - Ukrainian Hryvnia'
-				),
+				),*/
 				'oceania' => array (
 						'AUD' => '$AUD - Australian Dollar',
 						'NZD' => '$NZD - New Zealand Dollar'
 				) 
 		) ,
         'currencyGroup' => [
-           0 => ['most-used-currencies','africa', 'americas'],
-           1 => ['asia','middle-east'],
-           2 => ['europe','oceania']
+//           0 => ['most-used-currencies','africa', 'americas'],
+//           1 => ['asia','middle-east'],
+//           2 => ['europe','oceania']
+           0 => ['oceania']
         ],
         'fontStyles' => [
             'small' => ['fr_FR', 'it_IT', 'es_ES', 'de_DE', 'ru_RU', 'pt_PT', 'ms_MY', 'nl_NL', 'sv_SE'],
