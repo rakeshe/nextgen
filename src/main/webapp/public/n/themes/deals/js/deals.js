@@ -1560,7 +1560,11 @@
                 });
 
             } else {
-                url = $(this).attr('data-locale') + '/' + MNME;
+                if($(this).attr('data-locale') != 'en_AU') {
+                    url = $(this).attr('data-locale') + '/' + MNME;
+                } else {
+                    url = MNME;
+                }
             }
             if (Deals.city != '')
                 url += '/' + Deals.city;
