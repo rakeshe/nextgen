@@ -1627,6 +1627,8 @@
                 //console.log(updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale')));
                 loc = updateQueryStringParameter(window.location.href, 'curr', $(this).children().attr('data-curr'));
             }
+            // Also set cookie
+            $.cookie('curr', $(this).children().attr('data-curr'));
             window.location = loc;
 
 /*            var text = $(this).html();
