@@ -1628,7 +1628,7 @@
                 loc = updateQueryStringParameter(window.location.href, 'curr', $(this).children().attr('data-curr'));
             }
             // Also set cookie
-            $.cookie('curr', $(this).children().attr('data-curr'));
+            $.cookie('curr', $(this).children().attr('data-curr'),{ path: "/" });
             window.location = loc;
 
 /*            var text = $(this).html();
