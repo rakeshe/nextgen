@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'museo_slab500';
+  src: url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/Museo_Slab_500_2-webfont.eot");
+  src: url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/Museo_Slab_500_2-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/Museo_Slab_500_2-webfont.woff") format("woff"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/Museo_Slab_500_2-webfont.ttf") format("truetype"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/Museo_Slab_500_2-webfont.svg#museo_slab500") format("svg");
+  font-weight: normal;
+  font-style: normal; 
+}
+@font-face {
+  font-family: 'museo_sans500';
+  src: url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/MuseoSans_500-webfont.eot");
+  src: url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/MuseoSans_500-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/MuseoSans_500-webfont.woff") format("woff"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/MuseoSans_500-webfont.ttf") format("truetype"), url("http://www.hotelclub.com/blog/wp-content/themes/hcblog2014/assets/fonts/MuseoSans_500-webfont.svg#museo_sans500") format("svg");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+$color-1:#e11c2b;
+$color-2:#fff;
+$color-3:#000;
+$color-4:#241c12;
+
+$font-1:museo_slab500, Courier New, monospace;
+$font-2:museo_sans500, sans-serif;
+
+$image-background:'../images/background.jpg';
