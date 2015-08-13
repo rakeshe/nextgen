@@ -259,7 +259,7 @@ class DealsModel extends \Phalcon\Mvc\Model
 
         try {
             $couchDocName = ORBITZ_ENV . ':'. $docName . ':'. $currency;
-            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) .'.json';
+            $fsDocName = str_replace(':','_', $couchDocName) .'.json';
             // Try couch first
             $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
             $data   = $Couch->get($couchDocName);

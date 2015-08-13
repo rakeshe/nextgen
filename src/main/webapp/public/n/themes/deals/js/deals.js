@@ -48,7 +48,7 @@
     HB.registerHelper('displayPrice', function(onegId, currObj, MemberPrice) {
 
 
-        if (typeof currObj['data'][onegId] !== 'undefined') {
+        if (typeof currObj['data'] !== 'undefined' && currObj['data'].hasOwnProperty([onegId])) {
 
             var price = currObj['data'][onegId][0],
                 memB = parseInt(memberPrice),
