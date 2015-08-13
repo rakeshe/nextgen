@@ -554,6 +554,10 @@
 
         },
 
+        setCurrData : function(data) {
+            this.currDoc = data;
+        },
+
         getDataById : function(onegId) {
 
             if ( $.isEmptyObject(this.currDoc) && typeof this.currDoc[onegId] == 'undefined') {
@@ -722,10 +726,11 @@
 
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
 
-                if ($.isEmptyObject(data.responseJSON) === false) {
+                if ($.isEmptyObject(data.responseJSON['hData']) === false) {
 
                     this.displaySortBox();
-                    this.setHData(data.responseJSON);
+                    this.setHData(data.responseJSON['hData']);
+                    this.setCurrData(data.responseJSON['currData']);
 
                     //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
                     // Display hotels using sort our picks in descending order, ie deals with highest score (sortOrder) on top
@@ -1735,7 +1740,7 @@
                         Deals.sortType = sortType;
 
 
-                    Deals.hotelCardCtrl( {region : '', city : city, when: when, dropDownRefresh : true} );
+                    Deals.hotelCardCtrl( {region : '', city : city, when: when, curr: curr, dropDownRefresh : true} );
                 }
 
             }
@@ -1807,7 +1812,7 @@
                        // console.log(typeof rg, typeof cy, typeof dy);
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
-                            Deals.route({region:rg, city:cy, when:dy}, 'hotelCardCtrl');
+                            Deals.route({region:rg, city:cy, when:dy, curr : curr}, 'hotelCardCtrl');
                             Deals.setCityImage();
                             $('.region-hotel-card-box').hide();
                              Deals.updatePromotion();
