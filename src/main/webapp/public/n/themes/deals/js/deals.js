@@ -730,7 +730,8 @@
 
                     this.displaySortBox();
                     this.setHData(data.responseJSON['hData']);
-                    this.setCurrData(data.responseJSON['currData']);
+                    //this.setCurrData(data.responseJSON['currData']);
+                    this.currDoc = data.responseJSON['currData'];
 
                     //this.displayHotelCards({hData: this.hData, isLoggedIn: this.isLoggedIn});
                     // Display hotels using sort our picks in descending order, ie deals with highest score (sortOrder) on top
