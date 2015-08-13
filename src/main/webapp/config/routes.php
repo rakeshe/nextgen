@@ -11,6 +11,9 @@ define('MODULE_NAME', '/([a-z\-]+)');
 define('RE_SEOPATH_ALPHANUM', '/([a-zA-Z0-9\-]+)');
 define('RE_SEOPATH_ALPHA', '/([a-zA-Z\- ]+)');
 
+// valid locale code
+define('VALID_LOCALE', '/([a-z]{2}+_[A-Z]{2}+)');
+
 //define('RE_SEOPATH_ALPHA', '/^[\\s\\d\\p{L}]+$/u');
 define('RE_LANGUAGE_CODE', '/([a-zA-z\_]{2,5})');
 define('RE_CURRENCY_CODE', '/([A-Z]{3})');
@@ -212,6 +215,16 @@ $router->add(
         'module'       => 'deals',
         'namespace'    => 'HC\Deals\Controllers\\',
     )
+);
+
+//locale detect and route
+$router->add( VALID_LOCALE . '/n/sale/deals/:params', [
+        "params"       =>  2,
+        "controller"   => 'deals',
+        "action"       => 'index',
+        'module'       => 'deals',
+        'namespace'    => 'HC\Deals\Controllers\\',
+    ]
 );
 
 

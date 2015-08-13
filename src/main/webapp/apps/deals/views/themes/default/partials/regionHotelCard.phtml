@@ -3,7 +3,7 @@
   <div class="region-hotel-card-box">
   <div class="section">
       <div class="container explore">
-          <h1>Explore destinations</h1>
+          <h1>{{trans.explore_destinations}}</h1>
           {{regionCardExploreDestination regionCardData}}
       </div>
 	</div>
@@ -19,10 +19,10 @@
                         <h3>{{title}}</h3>
                         <img src="{{imageMobile}}" class="destination-image">
                         <p>{{description}}</p>
-                        <p><strong>TOP DESTINATIONS</strong></p>
+                        <p><strong>{{../trans.top_destinations}}</strong></p>
                         {{regionCardTopDestination topDestinations}}
                     </div>
-                    <p class="destination-top-deals"><strong>TOP DEALS</strong></p>
+                    <p class="destination-top-deals"><strong>{{../trans.top_deals}}</strong></p>
                     <div class="destination-card-box">
                     	<div class="destination-card-container">
                             {{regionCardTopHotels topDeals}}
