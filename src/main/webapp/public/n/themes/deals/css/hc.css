@@ -152,7 +152,17 @@
     color:#FFF;
 }
 
+.locale-drop-down-arrow,  .drop-down-arrow {
+    background-image: url(../images/assets/drop-down-arrow.gif);
+    background-repeat: no-repeat;
+
+    padding-left: 16px;
+}
 .locale-drop-down-arrow {
+    background-position: 0px 18px;
+}
+.drop-down-arrow {
+    background-position: 0px 6px;
 }
 .locale-drop-down-arrow > .flag-pos {
 	  float: inherit;
