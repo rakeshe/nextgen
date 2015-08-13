@@ -678,9 +678,18 @@
 
                     var host = window.location.protocol +'//'+ window.location.hostname,
                         url = host + '/' + MNME + '/' + obj.city + '/' + obj.when;
+
+                    if (getParameterByName('curr') != '') {
+                        url += '/?curr=' + getParameterByName('curr');
+                    }
+
                     if ( url !== window.location.href ) {
                         manualState = false
+                        var c ='';
+
+                        console.log(url);
                         History.pushState({url: url}, obj.city + ' Hotels', url);
+
                     }
                 }
                 this[ctrl](obj);
