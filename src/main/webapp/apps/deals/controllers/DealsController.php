@@ -61,13 +61,20 @@ class DealsController extends ControllerBase {
         $this->init();
 
         if ($this->request->isPost() && $this->request->isAjax()) {
+            $data = [];
             $hotelData = $this->model->getHotels(
                 $this->request->getPost('region', 'string'),
                 $this->request->getPost('city', 'string'),
                 $this->request->getPost('when', 'string')
             );
+            $data['hData'] = json_decode($hotelData, true);
 
-            die($hotelData);
+            $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME,
+                $this->request->getPost('curr', 'string'));
+
+            $data['currData'] = json_decode($currDoc, true);
+
+            die(json_encode($data));
         }
 
         if (NULL !== $this->userId)
