@@ -21,7 +21,11 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_WHEN = '30-days';
 
-    const DEFAULT_URL = 'n/sale/deals';
+    const DEFAULT_URI = 'n/sale/deals';
+
+    const DEFAULT_CURR = 'AUD';
+
+    const DEFAULT_LOCALE = 'en_AU';
 
     private $cityData;
 
@@ -45,6 +49,12 @@ class DealsController extends ControllerBase {
     private $sortType;
 
     private $hotels;
+
+    private $currency;
+
+    private $locale;
+
+    private $uri;
 
     public function initialize() {
 
@@ -146,11 +156,37 @@ class DealsController extends ControllerBase {
         } else {
             $this->sortType = 'asc';
         }
+
+        if ($this->request->get('curr','string') != '') {
+            $this->currency = $this->request->get('curr','string');
+        } else {
+            $this->currency = SELF::DEFAULT_CURR;
+        }
+        $uris = explode( '/',$this->router->getRewriteUri()) ;
+
+        // detect locale based on url
+        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[1]) && array_key_exists($uris[1], $this->config->languageOptions)) {
+            $this->locale = $uris[1];
+            $this->uri = $this->locale .'/'. self::DEFAULT_URI;
+        } else {
+            $this->locale = SELF::DEFAULT_LOCALE;
+            $this->uri = self::DEFAULT_URI;
+        }
+        // Set locale in model
+        $this->model->setLocale($this->locale);
+
     }
 
     public function indexAction() {
 
         $this->cityData = $this->model->getCityDocument();
+
+        // Check: if cityData is null, then get cityDocument for default locale and override locale in model
+        if($this->cityData === '{}'){
+            $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
+            $this->cityData = $this->model->getCityDocument();
+        }
+
         $noHotels = 'false';
         if ($this->city !== NULL && $this->when !== NULL) {
             $this->hotels = $this->model->getHotels('', $this->city, $this->when);
@@ -176,6 +212,12 @@ class DealsController extends ControllerBase {
         $heroImage = ($this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME)) == false ? '{}'
             : $this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME);
 
+        $trans = ($this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME)) == false ? '{}'
+            : $this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME);
+
+        $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME, $this->currency);
+
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -185,15 +227,15 @@ class DealsController extends ControllerBase {
                 'when'                => $this->when,
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
-                'url'                 => self::DEFAULT_URL,
+                'url'                 => $this->uri,
                 'hData'               => $this->hotels,
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())
                     ->getWtMetaData(),
                 'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
-                'clubPromotion'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
-                'pmPromotion'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
+                'clubPromo'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
+                'pmPromo'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
                 'docFooterSeo'        => $docFooterSeo->html,
                 'docFooterAbout'      => $docFooterAbout->html,
                 'sortBy'              => $this->sortBy,
@@ -203,6 +245,13 @@ class DealsController extends ControllerBase {
                 'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
                 'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
                 'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
+                'heroImages'          => $heroImage,
+                'translation'         => $trans,
+                'currenciesData'      => json_encode($this->config->currencies),
+                'localeData'          => json_encode($this->config->languageOptions),
+                'curr'                => $this->currency,
+                'locale'              => $this->locale,
+                'currDoc'             => $currDoc
             ]
         );
 

@@ -45,19 +45,30 @@
         })()
     }
     /* End IE 9 and below work arounds */
-    HB.registerHelper('displayPrice', function(price, MemberPrice) {
-        //return price;
-        var memB = parseInt(memberPrice);
-        if (! isNaN(memB) ) {
+    HB.registerHelper('displayPrice', function(onegId, currObj, MemberPrice) {
 
-            var total = price - parseFloat(memberPrice);
 
-            if (total < 0)
-                return 0;
-            else
-                return Math.round(price - parseFloat(memberPrice));
-        } else
-            return Math.round(price);
+        if (typeof currObj['data'][onegId] !== 'undefined') {
+
+            var price = currObj['data'][onegId][0],
+                memB = parseInt(memberPrice),
+                symbol = currObj['symbol'];
+
+            if (! isNaN(memB) ) {
+
+                var total = price - parseFloat(memberPrice);
+
+                if (total < 0)
+                    return 0;
+                else
+                    return symbol + Math.round(price - parseFloat(memberPrice));
+            } else
+                return symbol + Math.round(price);
+
+        } else {
+            return 'N/A';
+        }
+
     }),
 
     HB.registerHelper('chString', function(val, options) {
@@ -330,13 +341,148 @@
 
     });
 
-    Handlebars.registerHelper('trimString', function(string, value) {
+    HB.registerHelper('trimString', function(string, value) {
 
         if (string.length > value ) {
             var string = string.substring(0, value) + '..';
         }
         return new Handlebars.SafeString( string )
     });
+
+    HB.registerHelper('displayLocaleDropDown',function(obj) {
+
+
+        var html = '<ul class="locale-list">';
+        for( key in obj) {
+            if (obj.hasOwnProperty(key)) {
+
+                html += '<li>';
+                html += '<a data-locale="'+key+'">';
+                html += '<div class="flag-pos">';
+                html += '<img src="/n/themes/deals/images/assets/blank.gif" class="flag '+obj[key].class+'" alt="'+obj[key].name+'" /></div>';
+                html += '<div class="flag-txt-pos">'+obj[key].name+'</div>';
+                html += '</a>';
+                html += '</li>';
+            }
+
+        }
+        html += '</ul>';
+
+        return new Handlebars.SafeString(html);
+    });
+
+    HB.registerHelper('displayDefaultLocale', function(obj, locale) {
+
+        var html = '<a><span class="user-club-info">',
+            l = obj[locale]
+
+            html += '<img src="/n/themes/deals/images/assets/blank.gif" class="flag '+ l.class+'" alt="'+ l.name+'" />';
+            html += '</span></a>';
+
+        return new Handlebars.SafeString(html);
+
+    });
+
+    HB.registerHelper('displayCurrencyDropDown', function(obj) {
+
+
+        var html = '<ul class="currencySelector selector multiColumn">';
+
+        var firstColl = 3,
+            secondColl = 2,
+            thirdColl = 2,
+            counter = 1,
+            tempKey = '',
+            footTag = false;
+
+        for(key in obj) {
+
+            if (obj.hasOwnProperty(key)) {
+
+
+                for(k in obj[key]) {
+
+                    if (obj.hasOwnProperty(key)) {
+
+                       // closing tags div and ul
+                        if (tempKey != key && footTag == true) {
+                            footTag = false;
+                            html += ' </ul>';
+                            html += '</div>';
+
+
+                            if (counter == 1) {
+                                html += '</li>';
+                               // console.log('1 closing => ' + counter);
+                            } else if (counter == 4) {
+                                html += '</li>';
+                               // console.log('2 closing => ' + counter);
+                            } else if (counter == 6) {
+                                html += '</li>';
+                                //console.log('3 closing => ' + counter);
+                            }
+
+                        }
+
+                        if (tempKey != key) {
+                            if (counter == 1) {
+                                html += '<li class="currency-col">';
+                                //console.log('1 => ' + counter);
+                            } else if (counter == 4) {
+                                html += '<li class="currency-col currency-col-space currency-col-divide">';
+                               // console.log('2 => ' + counter);
+                            } else if (counter == 6) {
+                                html += '<li class="currency-col currency-col-space">';
+                                //console.log('3 => ' + counter);
+                            }
+
+                            html += ' <div class="cur-section">';
+                            html += '<h5 class="Countries">'+key+'</h5>';
+                            html += '<ul>';
+                            counter++;
+                        }
+
+
+                        html += ' <li data-component="currencySelectorItem">';
+                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+obj[key][k]+'</span></span>';
+                        html += ' </li>';
+
+                        tempKey = key;
+                        footTag = true;
+
+                        //console.log(obj[key][k]);
+                        //console.log(k);
+
+
+
+                    }
+                }
+
+            }
+        }
+
+        html += '</ul>';
+
+        return new Handlebars.SafeString(html);
+
+    });
+
+    HB.registerHelper('displayDefaultCurrency', function(obj, curr) {
+
+        for(key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                for(k in obj[key]) {
+                    if (k == curr) {
+                        console.log(obj[key][curr].split('-')[0].trim());
+                        var html = '<span class="user-club-info drop-down-arrow">' + obj[key][curr].split('-')[0].trim() + '</span>';
+                        return new Handlebars.SafeString(html);
+                    }
+                }
+            }
+        }
+    });
+
+
 
 
     var Deals = {
@@ -353,6 +499,8 @@
 
             this.heroImages = $.parseJSON(hImages);
 
+            this.trans = $.parseJSON(t);
+
             this.cityImage = new Array();
 
             this.isLoggedIn = false;
@@ -361,10 +509,14 @@
 
             this.setSortType(sTy);
 
+            this.currDoc = $.parseJSON( currD );
+
             $('.filter').hide();
 
             this.displayHeader();
+
             this.updatePromotion();
+
 
             var self = this;
             this.displayUserInfo().always(function(){
@@ -375,8 +527,8 @@
                 //this.displayFilter();
                 //this.displayHotelCards();
                 //self.displayRegionHotelCards();
-                //this.displayUpsell();
                 self.displayFooter();
+                self.updateFooterText();
                 //self.displayDropDownData('value');
                 //self.setCityImage();
                 //self.initURLUpdate();
@@ -391,6 +543,30 @@
                 //alert(data);
             })*/
         },
+
+        // get translation by key
+        t : function( key ) {
+
+            if (this.trans[key] !== undefined) {
+                return this.trans[key];
+            }
+            return key;
+
+        },
+
+        getDataById : function(onegId) {
+
+            if ( $.isEmptyObject(this.currDoc) && typeof this.currDoc[onegId] == 'undefined') {
+                return {
+                    currency : '',
+                    'symbol' : '',
+                    'price' : 'N/A'
+                }
+            } else {
+                return this.currDoc[onegId];
+            }
+        },
+
 
         setSortBy : function(sBy) {
             this.sortBy = sBy
@@ -446,13 +622,15 @@
 
           if ($.isEmptyObject(this.hData) == true) {
 
-              this.setHeroesImage(); // set heroes image
+
 
               if (noHData == 'true') {
                   this.displayDropDownData('value');
+                  this.setCityImage();
                   this.updatePromotion();
                   this.displayNoHotelOrbot();
               } else {
+                  this.setHeroesImage(); // set heroes image
                   //root to landing page
                   this.displayDropDownData('default');
                   this.displayRegionHotelCards();
@@ -785,7 +963,7 @@
 			$(".modal-wrapper").fadeIn('slow');
 			var docHeight = $(document).height();
             var template = HB.compile( $("#orbot-template").html() );
-			$('body').append( template( {city : this.city} ) );//append the popup template
+			$('body').append( template( {city : this.city, trans : this.trans} ) );//append the popup template
 
             //console.log(this.city);
 			var dateToday = new Date();
@@ -867,9 +1045,10 @@
 
         displayHeader : function() {
 
-            //console.log($.parseJSON(uInfo));
             var template = HB.compile( $("#header-template").html() );
-            $('#header-container').append(template());
+            $('#header-container').append(template(
+                {trans: this.trans, locale : locale, localOptions : $.parseJSON(lD), 'currencyOptions' : $.parseJSON(crD), curr : curr}
+            ));
         },
 
         displayFilter : function() {
@@ -878,19 +1057,16 @@
             $('#filter-btn').show();
         },
 
-        displayUpsell:function() {
-            var template = HB.compile( $("#upsell-template").html() );
-            $('#upsel-selection').append(template());
-        },
 
         displaySortBox: function() {
             var template = HB.compile( $("#sort-template").html() );
-            $('.section .container #sort-row-uq').html(template());
+            $('.section .container #sort-row-uq').html(template({city : this.city, trans : this.trans}));
         },
 
         displayHotelCards : function( data ) {
 
             var template = HB.compile( $("#hotel-card-template").html() );
+            data['currDoc'] = this.currDoc;
             $('.section .hotel-cards-container').html(template( data ));
 
             $("img.lazy").lazyload({
@@ -900,7 +1076,7 @@
 
         displayRegionHotelCards : function () {
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template({regionCardData : this.rData}));
+            $('.section .region-cards-container').append(template({regionCardData : this.rData, trans: this.trans}));
             $('.region-hotel-card-box').show();
         },
 
@@ -908,6 +1084,12 @@
             var template = HB.compile( $("#footer-template").html() );
             $('.section .footer-container').append(template());
         },
+
+        updateFooterText : function() {
+            $(".footer-intro #footer-intro-title").text( this.t('footer_intro_title'));
+            $(".footer-intro #footer-intro-text").text( this.t('footer_intro_text'));
+        },
+
 
         getWhereDoGoText : function () {
 
@@ -928,11 +1110,12 @@
         },
 
         setDropDownDefaultOption : function() {
+            var self = this;
             return {
                 dropRegion : function() {
                    return $('.dropdown-region').html('').append( $('<option>', {
                         value : '0',
-                        text : 'Where do you want to go?',
+                        text : self.t('Where_you_want_to_go'),
                         'selected' :'selected'
                     }) );
 
@@ -941,7 +1124,7 @@
                     return $('.dropdown-cities').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : 'What City?',
+                        text : self.t('what_city'),
                         'selected' :'selected'
                     }) );
                 },
@@ -949,7 +1132,7 @@
                     return $('.dropWhereDo').html('').attr('disabled','disabled').addClass('disabled-style')
                         .append( $('<option>', {
                         value : '0',
-                        text : 'When do you want to go?',
+                        text : self.t('when_want_to_go'),
                         'selected' :'selected'
                     }) );
                 }
@@ -962,7 +1145,7 @@
 
                 dropWhereDo = $('.dropWhereDo').html('').append( $('<option>', {
                         value : '0',
-                        text : 'When do you want to go?',
+                        text : this.t('when_want_to_go'),
                         'selected' :'selected'
                     }) );
             } else {
@@ -1168,7 +1351,7 @@
                     return b[fName] - a[fName];
                 }
             });
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
         },
 
         sortByText : function(fName, type) {
@@ -1203,7 +1386,7 @@
 
             });
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
         },
 
         orbotValidation : function() {
@@ -1338,24 +1521,45 @@
             $('.member-price-title').hide();
         }*/
 		/*drop down for language selection*/
-		$(".club-id .locale-drop-down-arrow").click(function() {
-            /**
-             * disabled: Phase 1, 2
+		$(".club-id .locale-drop-down-arrow").click(function(e) {
 
+            e.preventDefault();
             $(".locale-wrapper").toggle();
-             */
+
 		});
 
-		$(".locale-wrapper ul li a").click(function() {
-			var text = $(this).html();
-			//console.log($(".locale-drop-down-arrow").html(text));
-			/*
-			disabled: Phase 1, 2
-			$(".club-id .locale-drop-down-arrow .user-club-info").html(text);
-			$(".locale-drop-down-arrow .flag-pos").css('float: inherit');
-			$(".locale-drop-down-arrow .flag-txt-pos").remove();
-			$(".club-id .locale-wrapper").hide();
-			*/
+		$(".locale-wrapper ul li a").click(function(e) {
+
+            e.preventDefault();
+
+            var u = MNME.split('/'),
+                url = '';
+
+            if (u[0].match(/^([a-z]{2})+_([A-Z]{2})+$/)) {
+                u[0] = $(this).attr('data-locale');
+                $.each(u, function(index, val){
+
+                    url += val;
+                    if (u[index + 1] !== undefined)
+                        url += '/';
+                });
+
+            } else {
+                url = $(this).attr('data-locale') + '/' + MNME;
+            }
+            if (Deals.city != '')
+                url += '/' + Deals.city;
+
+            if (Deals.when != '')
+                url += '/' + Deals.when   ;
+
+            console.log(Deals.city + ' where => '+ Deals.when);
+            if (window.location.href.split('?')[1] !== undefined) {
+                url += '?' + window.location.href.split('?')[1];
+            }
+
+            window.location = window.location.protocol + '//' + window.location.host + '/' + url;
+
 		});
 
 		$(document).bind('click', function(e) {
@@ -1369,6 +1573,7 @@
                  * disabled: Phase 1, 2
                 $(".currency-wrapper").hide();
                 */
+                $(".currency-wrapper").hide();
 			}
 		});
 		/*end drop down for language selection*/
@@ -1390,18 +1595,27 @@
 
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
-            /**
-             * disabled: Phase 1, 2
+
             $(".currency-wrapper").toggle();
-             */
+
         });
 
 		$(".currency-box ul li ul li").click(function() {
-			var text = $(this).html();
-			//console.log(text);
-			//console.log($(".user-space .drop-down-arrow").html(text));
-			//console.log($(".user-space .drop-down-arrow .desc").remove());
-			//console.log($(".currencySelectorItem").html(text));
+            var loc = '';
+            if (location.href.indexOf('?') === -1) {
+                loc = window.location.href + '?curr=' + $(this).children().attr('data-curr')
+            } else {
+                //console.log(updateQueryStringParameter(window.location.href, 'locale', $(this).attr('data-locale')));
+                loc = updateQueryStringParameter(window.location.href, 'curr', $(this).children().attr('data-curr'));
+            }
+            window.location = loc;
+
+/*            var text = $(this).html();
+            //console.log(text);
+            $(".user-space .drop-down-arrow").html(text);
+            $(".user-space .drop-down-arrow .desc").remove();
+            $(".currencySelectorItem").html(text);*/
+
 		});
 		/*end drop down for currency selection*/
 
@@ -1723,6 +1937,10 @@
 
     /*display popup - on date selection starts here*/
     $( document ).on( 'click', '.hotel-card-button', function () {
+
+       var template = HB.compile( $("#select-popup-template").html() );
+       $('.section .hotel-cards-container').append(template({trans : Deals.trans}));
+
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
         var cityName = $('.dropdown-cities').val();
@@ -1789,9 +2007,9 @@
                 $('#select-check-out').datepicker('option', 'minDate', date2);
 				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
+                dateCalculate();
             },
             onClose: function() {
-                dateCalculate();
             }
         });//initialize the date-picker for check-in
         $("#select-check-out").datepicker({
@@ -1809,9 +2027,9 @@
                 );
 				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
+                dateCalculate();
             },
             onClose: function() {
-                dateCalculate();
             }
         });//initialize the date-picker for check-out
 
@@ -1845,14 +2063,17 @@
 
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 			//close the select-dates popup
-			$('.select-dates').css('display','none');
+
+            var onegId = $('#selected-oneg').val();
+
+            $('.select-dates').remove();
 			$("#overlay").remove();
 
 			//redirect to hotelclub site with the all the input value
 			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="+promoCodeVal
                 + "&locale=en_AU"
-                + "&hotel.hid="+$('#selected-oneg').val()
+                + "&hotel.hid="+onegId
 				+ "&hotel.hname="+hotelName
                 + "&hsv.showDetails=true"
                 + "&hotel.type=keyword"
@@ -1933,7 +2154,7 @@
     });
 
     $(document).on('click', '.close-select-dates', function (){
-        $('.select-dates').css('display','none');
+        $('.select-dates').remove();
         $("#overlay").remove();
     });
 
@@ -2173,6 +2394,17 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
     }
 
     $(document).ready(function(){

@@ -127,6 +127,7 @@
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
 	color: #FFF;
+    cursor: pointer;
 }
 .points-token {
     background-image:url(../images/assets/Reward-Token.png);
@@ -225,9 +226,12 @@ select {
 	display:none;
 	z-index: 999;
 	position:absolute;
+	/*margin-top:30px;*/
 }
 .locale-menu {
-    width:400px;
+    /*width:400px;*/
+	width: 100px;
+	padding: 5px;
     background: rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
     float:left;
@@ -246,6 +250,7 @@ select {
     width:46%;
     list-style:none;
     padding:2%;
+    cursor: pointer;
 
 }
 .locale-list li:hover {
@@ -263,13 +268,13 @@ select {
         padding-top:16px;
         float:left;
         width:80%;
-        margin-left:10%;
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .locale-menu {
-        width:80%;
+       /* width:80%; */
         float:left;
-        margin-left:10%;
+       /* margin-left:10%;*/
         margin-right:10%;
     }
     .locale-list li {
@@ -278,6 +283,7 @@ select {
         width:94%;
         list-style:none;
         padding:3%;
+        cursor: pointer;
 
     }
     .locale-list li:hover {
@@ -337,6 +343,7 @@ select {
     display:block;
     width:94%;
     padding:3%;
+    cursor : pointer;
 }
 .cur-section li:hover {
     list-style:none;
@@ -355,22 +362,26 @@ select {
     padding-top:16px;
     float:left;
     width:690px;
-	margin-left: -310px;
+	margin-left: -330px;
     background-image:url(../images/assets/menu-box-arrow.png);
     background-repeat:no-repeat;
     background-position:top center;
 	position:absolute;
 	display:none;
+	z-index:1;
 }
 .currency-box {
-    width:690px;
+    /*width:690px;*/
+	width:190px !important;
     float:left;
-    padding-bottom:12px;
+    /*padding-bottom:12px;*/
     background: rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
+	margin-left: 260px;
 }
 .currency-col {
-    width:30%;
+    /*width:30%;*/
+    width:100%;
     float:left;
 }
 .currency-col-space {
@@ -385,15 +396,15 @@ select {
     .currency-wrapper {
         padding-top:16px;
         float:left;
-        width:80%;
-        margin-left:10%;
+        /*width:80%;*/
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .currency-box {
         width:80%;
         float:left;
-        padding-bottom:12px;
-        margin-left:10%;
+        /*padding-bottom:12px;*/
+        /*margin-left:10%;*/
         margin-right:10%;
     }
     .currency-col {

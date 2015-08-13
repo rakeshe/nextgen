@@ -1,0 +1,106 @@
+<script id="header-template" type="text/x-handlebars-template">
+    <!-- Navigation -->
+    <div class="row">
+        <!-- Logo  -->
+        <a href="//www.hotelclub.com" title="HotelClub" target="_blank">
+            <img src="/n/themes/deals/images/assets/HotelClub-Logo.png" class="logo"/>
+        </a>
+        <!-- End Logo -->
+
+        <!-- Tagline -->
+        <span class="tag-line">{{trans.more_extraordinary_with_every_stay}}</span>
+        <!-- End Tagline -->
+        <div class="user"><!-- Fix this Div - Has witdth issues -->
+			<div class="locale-section">
+				<div class="club-id">
+					<div class="locale-drop-down-arrow">
+                        {{displayDefaultLocale localOptions locale}}
+					</div>
+					<div class="locale-wrapper">
+						<div class="locale-menu">
+                            {{displayLocaleDropDown localOptions}}
+						</div>
+					</div>
+				</div><!-- End User ID <ul> -->
+			</div><!-- End Locale -->
+			
+			<div class="currency-section">
+				<div class="club-id-currency">
+						<div class="user-space">
+                            {{displayDefaultCurrency currencyOptions curr}}
+						</div>
+					<div class="currency-wrapper">
+						<div class="currency-box">
+                            {{displayCurrencyDropDown currencyOptions}}
+				</div>
+			</div>
+				</div>
+			</div><!-- End Currency -->
+
+        </div><!-- End User -->
+		<div class="logged-in-user">
+                <div class="club-section">
+                    <div class="user-id">
+                        <a>
+                            <p><span class="user-member">Your Club</span><br/>
+                                <span class="user-club-info points-token usr-rewards-point"><span class="rewards">{{trans.member_rewards}}</span></span></p>
+                        </a>
+                    </div>
+                </div><!-- End Club -->
+
+                <div class="member-section">
+                    <div class="user-id">
+                        <a>
+                            <p><span class="user-member user-member-name"></span><br/>
+                                <span class="user-club-info user-club-info-card-type"></span></p>
+                        </a>
+                    </div>
+                </div><!-- End Members -->
+            </div>
+
+            <div class="logged-out-user">
+                <div class="member-section">
+                    <div class="user-id">
+
+                   <p><span class="user-member user-member-name">{{trans.welcome_to_hotelclub}}</span><br/>
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://hotelclub.com/n/sale/deals/">
+                        <span class="user-club-info user-club-info-card-type">{{trans.sign_in}}</span>
+                    </a> /
+                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://hotelclub.com/n/sale/deals/">
+                           <span class="user-club-info user-club-info-card-type">{{trans.register}}</span>
+                       </a>
+                   </p>
+
+                    </div>
+                </div><!-- End Members -->
+            </div>
+
+    </div> <!-- End Row -->
+    <!-- End Navigation -->
+
+    <div class="row hero-message"><a id="mid-year-sale-logo" href="/n/sale/deals/">
+        <img src="/n/themes/deals/images/assets/MYS-Logo.png" align="The extraordinary mid year sale - HotelClub" style="padding-bottom:10px;" />
+    </a>
+    </div> <!-- End Row -->
+
+    <div class="row search-sale-box">
+        <div class="row find-your">
+            <h2>{{trans.header_search_text}}</h2>
+        </div>
+        <div class="row">
+            <div class="four columns">
+               <select name="" class="hotel-dropdown-select dropdown-region input-default-value" data-rm-val="dropdown-region"></select>
+            </div> <!-- End 4 Col -->
+            <div class="four columns">
+                <select name="" class="hotel-dropdown-select dropdown-cities input-default-value" data-rm-val="dropdown-cities"></select>
+            </div> <!-- End 4 Col -->
+            <div class="four columns">
+                <select name="" class="hotel-dropdown-select dropWhereDo input-default-value" data-rm-val="dropWhereDo"></select>
+            </div> <!-- End 4 Col -->
+        </div> <!-- End Row -->
+    </div>
+
+    <div class="row hero-space">
+        &nbsp;
+    </div> <!-- End Row -->
+</script>
