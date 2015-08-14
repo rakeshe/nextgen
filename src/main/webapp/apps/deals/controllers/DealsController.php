@@ -164,11 +164,9 @@ class DealsController extends ControllerBase {
             $this->sortType = 'asc';
         }
 
-        if ($this->request->get('curr','string') != '') {
-            $this->currency = $this->request->get('curr','string');
-        } else {
-            $this->currency = SELF::DEFAULT_CURR;
-        }
+
+        $this->currency = $this->getCurrency();
+
         $uris = explode( '/',$this->router->getRewriteUri()) ;
 
         // detect locale based on url
@@ -282,5 +280,22 @@ class DealsController extends ControllerBase {
             ));
 //        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
 
+    }
+
+    /**
+     * Logic use value if set in url param, fallback to cookie then final fallback to default currecy
+     */
+    protected function getCurrency(){
+        $urlCurrency = $this->request->get('curr','string');
+        $cookieCurrency = $this->cookies->get('curr')->__toString();
+
+        if ($urlCurrency != '') {
+            $defaultCurrency = $urlCurrency;
+        } elseif($cookieCurrency != '' ){
+            $defaultCurrency = $cookieCurrency;
+        } else{
+            $defaultCurrency = SELF::DEFAULT_CURR;
+        }
+        return $defaultCurrency;
     }
 }
