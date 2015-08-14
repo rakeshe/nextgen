@@ -250,7 +250,6 @@ class DealsController extends ControllerBase {
                 'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
                 'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
                 'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
-                'heroImages'          => $heroImage,
                 'translation'         => $trans,
                 'currenciesData'      => json_encode($this->config->currencies),
                 'localeData'          => json_encode($this->config->languageOptions),
