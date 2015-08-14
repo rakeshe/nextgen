@@ -822,7 +822,7 @@
 
             $('.section .hotel-cards-container').html('').append(
                 $('<div class="err-hotel-not-found">Sorry! No deals match your selection right now. Search all of our inventory here</div>') )
-                .append(template( {city : this.city} ));
+                .append(template( {city : this.city, trans : this.trans} ));
 
             $('.modal-wrapper').addClass ('orbot-in-page');
             $('.modal-box').removeClass('modal-box');
