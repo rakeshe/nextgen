@@ -2082,6 +2082,7 @@
                 }
 			}
 
+			var currVal = location.search.split('curr=')[1]
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 			//close the select-dates popup
 
@@ -2102,7 +2103,9 @@
                 + "&hotel.chkout="+checkOut
 				+ "&hotel.keyword.key="+cityName
                 + "&search=Search"
-                + room;
+                + room
+				+ "&curr="
+				+ currVal;
 			//console.log(searchUrl);
             window.open(searchUrl, '_blank');
 		});
