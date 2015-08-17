@@ -2207,6 +2207,7 @@
             }
         }
 
+		var currVal = location.search.split('curr=')[1]
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
@@ -2228,9 +2229,13 @@
         + "&hotel.keyword.key="
         + cityName
         + "&search=Search"
-        + rooms;
+        + rooms
+		+ "&curr="
+		+ currVal;
 
-        ga('send', 'event', 'search-bar', 'orbot-select', 'search-click');
+		console.log(searchUrl);
+
+		ga('send', 'event', 'search-bar', 'orbot-select', 'search-click');
         window.open(searchUrl, '_blank');
     });
 
