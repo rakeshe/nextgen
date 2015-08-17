@@ -277,10 +277,16 @@
      HB.registerHelper('regionCardTopDestination', function(obj) {
 
          var html = '<ul>';
+		 var currVal, currValTemp;
+		 currValTemp = location.search.split('curr=')[1];
+		 if(currValTemp==""||currValTemp==undefined){ currVal = 'AUD'; }
+		 else{ currVal = currValTemp; }
+
          for (var key in obj) {
 
              if (obj.hasOwnProperty(key)) {
-                 html += '<li><a href="/'+MNME + '/' +obj[key].url+'">'+obj[key].title+'</a></li>';
+                 html += '<li><a href="/'+MNME + '/' +obj[key].url+'?curr='+currVal+'">'+obj[key].title+'</a></li>';
+				 //html += '<li><a href="/'+MNME + '/' +obj[key].url+'">'+obj[key].title+'</a></li>';
              }
 
          }
