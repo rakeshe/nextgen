@@ -1203,27 +1203,27 @@ select {
 .hero-text-box {
     padding-left:24px;
     padding-right:24px;
-    padding-top:12px;
-    padding-bottom:12px;
+    padding-top:24px;
+    padding-bottom:24px;
     float:left;
 }
 .hero-text a {
     text-decoration:underline;
-    color:#55337e;
+    color:#da291c;
 }
 .hero-text-title {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
-    color:#e61d23;
-    font-size:20px;
+    color:#333;
+    font-size:19px;
     line-height:25px;
-    margin-bottom:6px;
+    margin-bottom:0px;
 }
 .hero-text-body {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     color:#333;
-    font-size:18px;
+    font-size:16px;
     margin-bottom:0px;
-    line-height:24px;
+    line-height:21px;
 }
 .hero-image {
     float:right;
