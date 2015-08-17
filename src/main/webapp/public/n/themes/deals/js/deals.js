@@ -277,10 +277,7 @@
      HB.registerHelper('regionCardTopDestination', function(obj) {
 
          var html = '<ul>';
-		 var currVal, currValTemp;
-		 currValTemp = location.search.split('curr=')[1];
-		 if(currValTemp==""||currValTemp==undefined){ currVal = 'AUD'; }
-		 else{ currVal = currValTemp; }
+		 var currVal = checkCurrencyVal();
 
          for (var key in obj) {
 
@@ -297,6 +294,7 @@
 
      HB.registerHelper('regionCardTopHotels', function(obj) {
 
+		 var currVal = checkCurrencyVal();
          var html = '<ul>';
          var baseUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&locale=en_AU"
              + "&hsv.showDetails=true"
@@ -304,7 +302,8 @@
              + "&hotel.chkin="
              + "&hotel.chkout="
              + "&hotel.rooms[0].adlts=2"
-             + "&search=Search";
+             + "&search=Search"
+			 + "&curr="+currVal;
 
          for (var key in obj) {
 
@@ -2088,7 +2087,7 @@
                 }
 			}
 
-			var currVal = location.search.split('curr=')[1]
+			var currVal = checkCurrencyVal();
 			var hotelName = $('.select-date-hotel-name').html(), cityName = $('.dropdown-cities').val();
 			//close the select-dates popup
 
@@ -2216,7 +2215,7 @@
             }
         }
 
-		var currVal = location.search.split('curr=')[1]
+		var currVal = checkCurrencyVal();
         var checkIn  = $('#check-in').val(),
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
@@ -2441,6 +2440,15 @@
             return uri + separator + key + "=" + value;
         }
     }
+
+	//function to check currency value based on the URL
+	function checkCurrencyVal(){
+		var currVal, currValTemp;
+		currValTemp = location.search.split('curr=')[1];
+		if(currValTemp==""||currValTemp==undefined){ currVal = 'AUD'; }
+		else{ currVal = currValTemp; }
+		return currVal;
+	}
 
     $(document).ready(function(){
 
