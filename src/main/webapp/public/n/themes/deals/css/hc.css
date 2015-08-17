@@ -1233,6 +1233,7 @@ select {
 .hero-cross {
     padding-top:37px;
     padding-bottom:24px;
+    display: none;
 }
 @media (max-width: 768px) {
     .hero-cross {
@@ -1955,7 +1956,7 @@ select {
     padding:18px;
 }
 .explore li a {
-    color:#7b59ab;
+    color:#da291c;
     text-decoration:none;
 }
 .explore li a:hover {
@@ -1981,8 +1982,8 @@ select {
 .destination-info {
     width:498px;
     height:394px;
-    background: rgba(0, 0, 0, 0.7);
-    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -2046,7 +2047,7 @@ select {
 .destination-info h3 {
 	font-family:'museo_slab500',Verdana, Geneva, sans-serif;
 	font-size:24px;
-	color:#FFF;
+	color:#333;
 	line-height:100%;
 }
 @media (max-width: 765px) {
@@ -2069,7 +2070,7 @@ select {
     }
 }
 .destination-info p {
-	color:#FFF;
+	color:#333;
 	font-size:15px;
 	font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 	line-height:24px;
@@ -2085,7 +2086,7 @@ select {
 	}
 }
 .destination-info ul {
-	color:#fec741;
+	color:#da291c;
 	font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 	font-size:15px;
 	line-height:30px;
@@ -2096,7 +2097,7 @@ select {
 }
 	@media (max-width: 765px) {
 		.destination-info ul {
-			color:#4f2984;
+			color:#da291c;
 			font-family:'museo_sans300',Verdana, Geneva, sans-serif;
 			font-size:18px;
 			line-height:43px;
@@ -2117,12 +2118,12 @@ select {
 		}
 	}
 .destination-info li a {
-	color:#fec741;
+	color:#da291c;
 	text-decoration:none;
 }
 	@media (max-width: 765px) {
 		.destination-info li a {
-			color:#4f2984;
+			color:#da291c;
 			text-decoration:none;
 		}
 	}
