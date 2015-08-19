@@ -511,7 +511,7 @@
 
             this.setSortType(sTy);
 
-            this.currDoc = $.parseJSON( currD );
+            this.setCurrencyDoc();
 
             $('.filter').hide();
 
@@ -580,6 +580,15 @@
                 this.trans = false;
             }
 
+        },
+
+        setCurrencyDoc : function() {
+
+            try {
+                this.currDoc = $.parseJSON( currD );
+            } catch (e ) {
+                this.currDoc = false
+            }
         },
 
         // get translation by key
