@@ -27,7 +27,7 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_LOCALE = 'en_AU';
 
-    private $cityData;
+    private $cityList;
 
     /** @var  \HC\Deals\Models\DealsModel  */
     private $model;
@@ -54,7 +54,9 @@ class DealsController extends ControllerBase {
 
     private $locale;
 
-    private $uri;
+    private $campaignName;
+
+    private $masterData;
 
     public function initialize() {
 
@@ -82,45 +84,52 @@ class DealsController extends ControllerBase {
 
     }
 
-    public function setUserInfo() {
-
-        $uInfo = $this->model->getLoyaltyInfo('');
-        $lInfo = json_decode($this->model->getUserInfo(''), TRUE);
-
-
-        if (NULL !== $uInfo) {
-
-            foreach(json_decode($uInfo, TRUE) as $key => $val) {
-
-                if ($key == 'lite_member') {
-                    $this->userInfo['mId']   = (!isset($val['member_id'])) ? '' : $val['member_id'];
-                    $this->userInfo['name']  = (!isset($val['name'])) ? '' : $val['name'];
-                    $this->userInfo['email'] = (!isset($val['email_address'])) ? '' : $val['email_address'];
-                }
-            }
-        }
-
-        if (NULL !== $lInfo) {
-
-            $this->userInfo['mid'] = $lInfo['loyalty_member_number'];
-            $this->userInfo['tierType'] = $lInfo['tier_type'];
-            $this->userInfo['availAmount'] = $lInfo['available_amount'];
-            $this->userInfo['availAmountInUsrCurr'] = $lInfo['available_amount_in_member_currency'];
-        }
-    }
-
 
     public function init() {
 
+        $this->setParams();
+
         $this->model = new \HC\Deals\Models\DealsModel();
 
-        $this->setParams();
+        $this->model->setLocale($this->locale)
+                    ->setCampaign($this->campaignName)
+                    ->setCurrency($this->currency);
+
+        $this->model->init();
+
+        $this->validateCampaign();
+
+        //exit;
+    }
+
+    private function validateCampaign() {
+
+        $this->masterData = $this->model->getDocument( $this->model->masterDocName, true );
+
+        if (false == $this->masterData ) {
+            $this->dispatcher->forward([
+                'controller' => 'deals',
+                'action' => 'show404',
+            ]);
+
+        } else if ($this->campaignName == null ||
+            array_key_exists($this->campaignName, $this->masterData['data']) == false) {
+
+          //there is no campaign is exists
+            $this->dispatcher->forward([
+                'controller' => 'deals',
+                'action' => 'show404',
+            ]);
+
+        }
     }
 
     private function setParams() {
 
-       // var_dump($this->dispatcher->getParams());
-        //var_dump($this->request->get()); exit;
+
+        if ($this->dispatcher->getParam('campaignName') !== null) {
+            $this->campaignName = $this->dispatcher->getParam('campaignName');
+        }
 
         //if exists and should be validated
         if (isset($this->dispatcher->getParams()[0])) {
@@ -164,35 +173,99 @@ class DealsController extends ControllerBase {
             $this->sortType = 'asc';
         }
 
-
         $this->currency = $this->getCurrency();
 
         $uris = explode( '/',$this->router->getRewriteUri()) ;
-
         // detect locale based on url
-        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[1]) && array_key_exists($uris[1], $this->config->languageOptions)) {
-            $this->locale = $uris[1];
-            $this->uri = $this->locale .'/'. self::DEFAULT_URI;
+        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[2]) && array_key_exists($uris[2],
+                $this->config->languageOptions)) {
+
+            $this->locale = $uris[2];
         } else {
             $this->locale = SELF::DEFAULT_LOCALE;
-            $this->uri = self::DEFAULT_URI;
         }
-        // Set locale in model
-        $this->model->setLocale($this->locale);
-
     }
 
     public function indexAction() {
 
-        $this->cityData = $this->model->getCityDocument();
+
+/*        $this->cityData = $this->model->getCityDocument();
 
         // Check: if cityData is null, then get cityDocument for default locale and override locale in model
         if($this->cityData === '{}'){
             $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
             $this->cityData = $this->model->getCityDocument();
+        }*/
+
+        //echo  $this->model->buildUrl( $this->model->campaignDocNames['city_list']); exit;
+
+        $cityList = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
+        );
+
+        $docFooterSeo =  $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'], true )
+        );
+
+        $docFooterAbout = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'], true )
+        );
+
+        $docHtmlHead = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['html_head'], true )
+        );
+
+        $docHtmlBodyStart = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'], true )
+        );
+
+        $docHtmlBodyEnd = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'], true )
+        );
+
+        $heroImage = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['hero_images'] )
+        );
+
+        $trans = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['translation'] )
+        );
+
+        $currDoc = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['currency'], 'currency')
+        );
+
+        $clubPromo = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['promo_club'])
+        );
+
+        $pmPromo = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['promo_pm'])
+        );
+
+        $homePage = $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
+        );
+
+        $noHotels = false;
+
+        //var_dump($this->city, $this->when); exit;
+
+        $dealsData = '';
+
+        if (null != $this->city && null != $this->when) {
+            $dealsData = $this->model->getDocument( $this->model->buildDealsUrl( $this->city, $this->when ) );
+
+            if (false == $dealsData) {
+                $noHotels = 'true';
+            }
         }
 
-        $noHotels = 'false';
+        //var_dump($this->model->buildDealsUrl( $this->city, $this->when )); exit;
+
+       // var_dump($noHotels); exit;
+
+/*        $noHotels = 'false';
         if ($this->city !== NULL && $this->when !== NULL) {
             $this->hotels = $this->model->getHotels('', $this->city, $this->when);
 
@@ -202,13 +275,13 @@ class DealsController extends ControllerBase {
 
         } else {
             $this->hotels = '{}';
-        }
+        }*/
 
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
         // Get Cms Documents
-        $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
+/*        $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
         $docFooterAbout = $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_ABOUT, true);
         $docHtmlHead = $this->model->getCmsDocument(DealsModel::DOC_HTML_HEAD, true);
         $docHtmlBodyStart = $this->model->getCmsDocument(DealsModel::DOC_HTML_BODY_START, true);
@@ -220,36 +293,35 @@ class DealsController extends ControllerBase {
         $trans = ($this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME)) == false ? '{}'
             : $this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME);
 
-        $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME, $this->currency);
-
+        $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME, $this->currency);*/
 
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
-                'cityData'            => $this->cityData,
-                'promoCardData'       => $this->model->getPromoCardDoc(),
+                'cityData'            => $cityList,
+                'homePageData'        => $homePage,
                 'city'                => $this->city,
                 'when'                => $this->when,
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
-                'url'                 => $this->uri,
-                'hData'               => $this->hotels,
+                'url'                 => $this->buildSiteUrl(),
+                'hData'               => $dealsData,
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())
                     ->getWtMetaData(),
                 'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
-                'clubPromo'       => $this->model->getCmsDocument(DealsModel::PROMOTIONS_CLUB_DOC_NAME),
-                'pmPromo'         => $this->model->getCmsDocument(DealsModel::PROMOTIONS_PM_DOC_NAME),
-                'docFooterSeo'        => $docFooterSeo->html,
-                'docFooterAbout'      => $docFooterAbout->html,
+                'clubPromo'           => $clubPromo,
+                'pmPromo'             => $pmPromo,
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
-                'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
-                'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
-                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
+                'docFooterSeo'        => !empty($docFooterSeo['html']) ? $docFooterSeo['htm'] : '',
+                'docFooterAbout'      => !empty($docFooterAbout['html']) ? $docFooterAbout['htm'] : '',
+                'docHtmlHead'         => !empty($docHtmlHead['html']) ? $docHtmlHead['htm'] : '',
+                'docHtmlBodyStart'    => !empty($docHtmlBodyStart['html']) ? $docHtmlBodyStart['html'] : '',
+                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd['html']) ? $docHtmlBodyEnd['html'] : '',
                 'translation'         => $trans,
                 'currenciesData'      => json_encode($this->config->currencies),
                 'localeData'          => json_encode($this->config->languageOptions),
@@ -262,6 +334,33 @@ class DealsController extends ControllerBase {
         $this->view->pick('default/index/index');
     }
 
+    public function setUserInfo() {
+
+        $uInfo = $this->model->getLoyaltyInfo('');
+        $lInfo = json_decode($this->model->getUserInfo(''), TRUE);
+
+
+        if (NULL !== $uInfo) {
+
+            foreach(json_decode($uInfo, TRUE) as $key => $val) {
+
+                if ($key == 'lite_member') {
+                    $this->userInfo['mId']   = (!isset($val['member_id'])) ? '' : $val['member_id'];
+                    $this->userInfo['name']  = (!isset($val['name'])) ? '' : $val['name'];
+                    $this->userInfo['email'] = (!isset($val['email_address'])) ? '' : $val['email_address'];
+                }
+            }
+        }
+
+        if (NULL !== $lInfo) {
+
+            $this->userInfo['mid'] = $lInfo['loyalty_member_number'];
+            $this->userInfo['tierType'] = $lInfo['tier_type'];
+            $this->userInfo['availAmount'] = $lInfo['available_amount'];
+            $this->userInfo['availAmountInUsrCurr'] = $lInfo['available_amount_in_member_currency'];
+        }
+    }
+
     protected function getWtMetaData(){
         return [
             'DCSext.LNG' => null === $this->languageCode ? 'en_AU' : $this->languageCode ,
@@ -272,14 +371,28 @@ class DealsController extends ControllerBase {
 
     }
 
+    private function buildSiteUrl() {
+        $url = 'n';
+        if ($this->locale != self::DEFAULT_LOCALE) {
+            $url .= '/' . $this->locale;
+        }
+        $url .= '/sale/' . $this->campaignName;
+
+        return $url;
+    }
+
     public function show404Action() {
-        $this->dispatcher->forward(array(
+
+        exit('404');
+
+/*        $this->dispatcher->forward(array(
                 'controller' => 'deals',
                 'action' => 'index'
-            ));
+            ));*/
 //        $this->response->redirect ( 'merch/' . $this->languageCode . '/' . $this->campaignName );
 
     }
+
 
     /**
      * Logic use value if set in url param, fallback to cookie then final fallback to default currecy

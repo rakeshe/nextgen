@@ -14,7 +14,7 @@
             sBy = '{{sortBy}}',
             sTy = '{{sortType}}';
 
-    var pcData = '{{promoCardData}}',
+    var hPageData = '{{homePageData}}',
             hImages = '{{heroImages}}',
             t = '{{translation}}',
             crD = '{{currenciesData}}',

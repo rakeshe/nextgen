@@ -209,7 +209,8 @@ $router->add(
      '/n/sale' . RE_SEOPATH_ALPHANUM . '/:params',
     //'/n/sales/:params',
     array(
-        "params"       =>  2,
+        "params"       => 2,
+        "campaignName" => 1,
         "controller"   => 'deals',
         "action"       => 'index',
         'module'       => 'deals',
@@ -217,9 +218,22 @@ $router->add(
     )
 );
 
-//locale detect and route
-$router->add( VALID_LOCALE . '/n/sale/deals/:params', [
-        "params"       =>  2,
+/*// [locale]/n/sale/[campaign name]/*
+$router->add( VALID_LOCALE . '/n/sale'. RE_SEOPATH_ALPHANUM .'/:params', [
+        "params"       => 3,
+        "campaignName" => 2,
+        "controller"   => 'deals',
+        "action"       => 'index',
+        'module'       => 'deals',
+        'namespace'    => 'HC\Deals\Controllers\\',
+    ]
+);*/
+
+// /n/[locale]/sale/[campaign name]/*
+$router->add('/n'. VALID_LOCALE .'/sale'. RE_SEOPATH_ALPHANUM .'/:params', [
+        "params"       => 3,
+        "campaignName" => 2,
+        "locale"       => 1,
         "controller"   => 'deals',
         "action"       => 'index',
         'module'       => 'deals',

@@ -490,16 +490,18 @@
         init : function() {
 
             this.city = city;
+
             this.region = '';
+
             this.when = when;
 
-            this.hData = $.parseJSON(hData);
+            this.setDealData();
 
-            this.rData = $.parseJSON(pcData);
+            this.setHomePageData();
 
-            this.heroImages = $.parseJSON(hImages);
+            this.setHeroImages();
 
-            this.trans = $.parseJSON(t);
+            this.setTranslation();
 
             this.cityImage = new Array();
 
@@ -542,6 +544,42 @@
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        setDealData : function() {
+
+            try {
+                this.hData = $.parseJSON(hData);
+            } catch (e ) {
+                this.hData = false;
+            }
+        },
+
+        setHomePageData : function() {
+
+            try {
+                this.hPageData = $.parseJSON(hPageData);
+            } catch (e ) {
+                this.hPageData = false;
+            }
+        },
+
+        setHeroImages : function() {
+            try {
+                this.heroImages = $.parseJSON(hImages);
+            } catch (e ) {
+                this.heroImages = false
+            }
+        },
+
+        setTranslation : function() {
+
+            try {
+                this.trans = $.parseJSON(t);
+            } catch (e ) {
+                this.trans = false;
+            }
+
         },
 
         // get translation by key
@@ -1091,7 +1129,7 @@
 
         displayRegionHotelCards : function () {
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template({regionCardData : this.rData, trans: this.trans}));
+            $('.section .region-cards-container').append(template({regionCardData : this.hPageData, trans: this.trans}));
             $('.region-hotel-card-box').show();
         },
 
