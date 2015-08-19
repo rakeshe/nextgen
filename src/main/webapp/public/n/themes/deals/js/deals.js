@@ -1268,9 +1268,9 @@
 
             var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
 
+            if (typeof this.cityData != 'undefined') {
 
-            if (this.getCityData() !== undefined) {
-                $.each(this.getCityData(), function (key, val) {
+                $.each(this.cityData, function (key, val) {
 
                     var RegionOpt = {
                         value: key,
