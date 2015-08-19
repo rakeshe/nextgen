@@ -1269,47 +1269,49 @@
             var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
 
 
-            $.each(this.getCityData(), function(key, val){
+            if (this.getCityData() !== undefined) {
+                $.each(this.getCityData(), function (key, val) {
 
-                var RegionOpt = {
-                    value : key,
-                    text : val.nameUtf8
-                };
-                dropRegion.append( $('<option>', RegionOpt) );
+                    var RegionOpt = {
+                        value: key,
+                        text: val.nameUtf8
+                    };
+                    dropRegion.append($('<option>', RegionOpt));
 
-                if (typeof val.cities === 'object' && loopThrough !== false) {
+                    if (typeof val.cities === 'object' && loopThrough !== false) {
 
 
-                    $.each(val.cities, function (k, v) {
+                        $.each(val.cities, function (k, v) {
 
-                        if (regionFlag === key) {
+                            if (regionFlag === key) {
 
-                        } else {
-                           // console.log('city flag ' + cityFlag);
-                            if (cityFlag == true) {
-                               //console.log(chopArr);
-                                //console.log('re val' + key);
-                                loopThrough = false;
-                                return false;
-                                //console.log('working..');
                             } else {
-                                chopArr.length = 0;
-                                regionVal = '';
+                                // console.log('city flag ' + cityFlag);
+                                if (cityFlag == true) {
+                                    //console.log(chopArr);
+                                    //console.log('re val' + key);
+                                    loopThrough = false;
+                                    return false;
+                                    //console.log('working..');
+                                } else {
+                                    chopArr.length = 0;
+                                    regionVal = '';
+                                }
+                                regionFlag = key;
                             }
-                            regionFlag = key;
-                        }
 
-                        if (k === self.city) {
-                            cityFlag = true;
-                            regionVal = key;
-                            //console.log('found ' + self.city);
-                        }
-                        chopArr.push(v);
-                       // dropCities.append( $('<option>', opt ) );
+                            if (k === self.city) {
+                                cityFlag = true;
+                                regionVal = key;
+                                //console.log('found ' + self.city);
+                            }
+                            chopArr.push(v);
+                            // dropCities.append( $('<option>', opt ) );
 
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
 
             // display city
             var sortable = [];
