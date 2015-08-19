@@ -21,7 +21,8 @@
             lD = '{{localeData}}',
             curr = '{{curr}}',
             locale = '{{locale}}',
-            currD = '{{currDoc}}';
+            currD = '{{currDoc}}',
+            cName = '{{campaignName}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->

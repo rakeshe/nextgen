@@ -62,26 +62,10 @@ class DealsController extends ControllerBase {
 
         $this->init();
 
-        if ($this->request->isPost() && $this->request->isAjax()) {
-            $data = [];
-            $hotelData = $this->model->getHotels(
-                $this->request->getPost('region', 'string'),
-                $this->request->getPost('city', 'string'),
-                $this->request->getPost('when', 'string')
-            );
-            $data['hData'] = json_decode($hotelData, true);
-
-            $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME,
-                $this->request->getPost('curr', 'string'));
-
-            $data['currData'] = json_decode($currDoc, true);
-
-            die(json_encode($data));
-        }
+        $this->sendAjaxResponse();
 
         if (NULL !== $this->userId)
             $this->setUserInfo();
-
     }
 
 
@@ -100,6 +84,33 @@ class DealsController extends ControllerBase {
         $this->validateCampaign();
 
         //exit;
+    }
+
+    private function sendAjaxResponse() {
+
+        if ($this->request->isPost() && $this->request->isAjax()) {
+
+            $this->model->currency      = $this->request->getPost('curr', 'string');
+            $this->model->campaignName  = $this->request->getPost('cname', 'string');
+
+            $data = [];
+
+            $hotelData = $this->model->getDocument(
+                $this->model->buildDealsUrl(
+                    $this->request->getPost('city', 'string'),
+                    $this->request->getPost('when', 'string')
+                ) );
+
+            $data['hData'] = json_decode($hotelData, true);
+
+            $currDoc = $this->model->getDocument(
+                $this->model->buildUrl( $this->model->campaignDocNames['currency'], 'currency')
+            );
+
+            $data['currData'] = json_decode($currDoc, true);
+
+            die(json_encode($data));
+        }
     }
 
     private function validateCampaign() {
@@ -327,12 +338,14 @@ class DealsController extends ControllerBase {
                 'localeData'          => json_encode($this->config->languageOptions),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale,
-                'currDoc'             => $currDoc
+                'currDoc'             => $currDoc,
+                'campaignName'        => $this->campaignName
             ]
         );
 
         $this->view->pick('default/index/index');
     }
+
 
     public function setUserInfo() {
 

@@ -768,8 +768,9 @@
             if (typeof obj == 'object') {
 
                 this.city = obj.city,
-                this.region = obj.region,
+                this.cname = obj.region,
                 this.when = obj.when;
+                obj['cname'] = cName;
 
                 var data = this.doRequest( {url:window.location.origin + '/' + MNME + '/', data: $.param(obj) } );
 
