@@ -75,6 +75,10 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
     public $currency;
 
+    /**
+     * initialize stuffs
+     */
+
     public function init() {
 
         $this->setDocumentNames();
@@ -82,242 +86,20 @@ class DealsModel extends \Phalcon\Mvc\Model
         $this->dataCacheFilePath = __DIR__ . '/../data/one/';
     }
 
+    /**
+     * set couch document names
+     */
     public function setDocumentNames() {
 
         $this->masterDocName =  ORBITZ_ENV . ':sale:'. md5(self::MASTER_DOC_NAME) . ':' . strtolower($this->getLocale());
     }
 
-
-    public function getCityDocument() {
-
-/*        try{
-            $data = file_get_contents( __DIR__ . '/../data/city.json');
-            return $data;
-        }catch (\Exception $e) {
-
-        }*/
-        try{
-            //var_dump(\Phalcon\DI::getDefault()->getService('config')); exit;
-            // format: production:sale:md5(deals/city):en_AU
-            $docUrl = 'deals/city';
-            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
-            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
-
-            // Try couch first
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get($couchDocName);
-
-            // try file system next
-            if ($data == false) {
-
-                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
-                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
-                }
-            }
-            $data = null == $data ? '{}' : $data;
-            return $data;
-        }catch (\Exception $e) {
-
-        }
-    }
-
-    public function getHotels($region=self::DEFAULT_REGION, $city=self::DEFAULT_CITY, $when = self::DEFAULT_TRAVEL_PERIOD) {
-
-        try{
-            // format: production:sale:md5(deals/Sydney/30-days):en_AU
-            $cityName = strtolower(str_replace([' ',',','\''], '_', $city));
-            $docUrl = 'deals/'. $cityName .'/'. $when;
-            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
-            echo $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json'; exit;
-
-            // Try couch first
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get($couchDocName);
-
-            // try file system next
-            if ($data == false) {
-
-                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
-                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
-                }
-            }
-            $data = null == $data ? '{}' : str_replace("'", "&#39;", $data);
-            /*$cityName = strtolower(str_replace([' ',',','\''], '_', $city));
-            $dataFile = $cityName.'.json';
-            $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
-                file_get_contents(__DIR__ .'/../data/'. $dataFile) :
-                '{}';*/
-            //file_get_contents( __DIR__ . '/../data/deals.json');
-            return $data;
-        }catch (\Exception $e) {
-
-        }
-    }
-
-    /** landign page Inspiration section data */
-    public function getPromoCardDoc() {
-
-        try{
-            // format: production:sale:md5(deals/promoCardDoc):en_AU
-            $docUrl = 'deals/promoCardDoc';
-            $couchDocName = ORBITZ_ENV . ':sale:'. md5($docUrl) . ':' . $this->getLocale();
-            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
-            //dev_sale_7c6fa5c0ad27c0a6ffbed17f23b644d8_en_au.json
-
-            // Try couch first
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get($couchDocName);
-
-            // try file system next
-            if ($data == false) {
-
-                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
-                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
-                }
-            }
-            $data = null == $data ? '{}' : trim(str_replace("'", "&#39;", $data));
-            //echo json_encode(json_decode($data)); exit;
-            /*$cityName = strtolower(str_replace([' ',',','\''], '_', $city));
-            $dataFile = $cityName.'.json';
-            $data = file_exists(__DIR__ .'/../data/'. $dataFile) ?
-                file_get_contents(__DIR__ .'/../data/'. $dataFile) :
-                '{}';*/
-            //file_get_contents( __DIR__ . '/../data/deals.json');
-            return $data;
-        }catch (\Exception $e) {
-
-        }
-    }
-
-    public function getUserInfo($memberId) {
-
-        try{
-            $data = file_get_contents( __DIR__ . '/../data/loyalty_member.json');
-            return $data;
-        }catch (\Exception $e) {
-
-        }
-    }
-
-    public function getLoyaltyInfo($memberId) {
-
-        try{
-            $data = file_get_contents( __DIR__ . '/../data/user-info.json');
-            return $data;
-        }catch (\Exception $e) {
-
-        }
-
-    }
-
-    public function getClubPromotions() {
-
-        try {
-
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get(ORBITZ_ENV . self::PROMOTIONS_CLUB_DOC_NAME);
-
-            if ($data == false) {
-
-                if(file_exists( __DIR__ . '/../data/club-promotion.json')) {
-                    return file_get_contents( __DIR__ . '/../data/club-promotion.json');
-                }
-                return false;
-            }
-            return $data;
-
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
-        }
-        return false;
-    }
-
-    public function getPMPromotions() {
-
-        try {
-
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get(ORBITZ_ENV . self::PROMOTIONS_PM_DOC_NAME);
-
-            if ($data == false) {
-
-                if(file_exists( __DIR__ . '/../data/pm-promotion.json')) {
-                    return file_get_contents( __DIR__ . '/../data/pm-promotion.json');
-                }
-                return false;
-            }
-            return $data;
-
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
-        }
-        return false;
-    }
-
-    /**
-     * Given document name, retrieve from Couch first, then file system if fails
-     * @param      $documentName
+    /** Get document form couch, if it's not exists, this ll load form file system
+     *
+     * @param $docName string
      * @param bool $decode
-     * @return mixed|null
+     * @return bool|mixed|string
      */
-    public function getCmsDocument($documentName, $decode = false) {
-
-        $return = false;
-        $cmsDocument = $this->getCmsDocumentByLocale($documentName, $this->getLocale());
-        $cmsDocument =  $cmsDocument ? $cmsDocument : $this->getCmsDocumentByLocale($documentName);
-       if($cmsDocument){
-           $return =  $decode ? json_decode($cmsDocument) : str_replace("'", "&#39;", $cmsDocument);
-
-        }
-        return $return;
-    }
-
-    public function getCmsDocumentByLocale($documentName, $locale= self::DEFAULT_LOCALE){
-        try {
-            $couchDocName = ORBITZ_ENV . ':'. $documentName . ':'. $locale;
-            $fsDocName = strtolower(str_replace(':','_', $couchDocName)) . '.json';
-
-            // Try couch first
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get($couchDocName);
-
-            // try file system next
-            if ($data == false) {
-                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
-                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
-                }
-            }
-
-            return $data;
-
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
-        }
-    }
-
-    public function getCurrencyDocument($docName, $currency) {
-
-        try {
-            $couchDocName = ORBITZ_ENV . ':'. $docName . ':'. $currency;
-            $fsDocName = str_replace(':','_', $couchDocName) .'.json';
-            // Try couch first
-            $Couch  = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
-            $data   = $Couch->get($couchDocName);
-
-            // try file system next
-            if ($data == false) {
-                if(file_exists( __DIR__ . '/../data/' . $fsDocName)) {
-                    $data =  file_get_contents( __DIR__ . '/../data/' . $fsDocName);
-                }
-            }
-
-            return $data == false ? '{}' : $data;
-
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
-        }
-
-    }
 
     public function getDocument($docName, $decode = false) {
         try {
@@ -420,6 +202,27 @@ class DealsModel extends \Phalcon\Mvc\Model
     public function setCurrency($currency) {
         $this->currency = $currency;
         return $this;
+    }
+
+    public function getUserInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/loyalty_member.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+    }
+
+    public function getLoyaltyInfo($memberId) {
+
+        try{
+            $data = file_get_contents( __DIR__ . '/../data/user-info.json');
+            return $data;
+        }catch (\Exception $e) {
+
+        }
+
     }
 
 

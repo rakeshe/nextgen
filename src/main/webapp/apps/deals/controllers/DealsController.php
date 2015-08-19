@@ -83,7 +83,6 @@ class DealsController extends ControllerBase {
 
         $this->validateCampaign();
 
-        //exit;
     }
 
     private function sendAjaxResponse() {
@@ -200,16 +199,6 @@ class DealsController extends ControllerBase {
     public function indexAction() {
 
 
-/*        $this->cityData = $this->model->getCityDocument();
-
-        // Check: if cityData is null, then get cityDocument for default locale and override locale in model
-        if($this->cityData === '{}'){
-            $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
-            $this->cityData = $this->model->getCityDocument();
-        }*/
-
-        //echo  $this->model->buildUrl( $this->model->campaignDocNames['city_list']); exit;
-
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
@@ -258,11 +247,9 @@ class DealsController extends ControllerBase {
             $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
         );
 
-        $noHotels = false;
+        $noHotels = '';
 
-        //var_dump($this->city, $this->when); exit;
-
-        $dealsData = '';
+        $dealsData = false;
 
         if (null != $this->city && null != $this->when) {
             $dealsData = $this->model->getDocument( $this->model->buildDealsUrl( $this->city, $this->when ) );
@@ -272,39 +259,8 @@ class DealsController extends ControllerBase {
             }
         }
 
-        //var_dump($this->model->buildDealsUrl( $this->city, $this->when )); exit;
-
-       // var_dump($noHotels); exit;
-
-/*        $noHotels = 'false';
-        if ($this->city !== NULL && $this->when !== NULL) {
-            $this->hotels = $this->model->getHotels('', $this->city, $this->when);
-
-            if ($this->hotels == '{}') {
-                $noHotels = 'true';
-            }
-
-        } else {
-            $this->hotels = '{}';
-        }*/
-
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
-
-        // Get Cms Documents
-/*        $docFooterSeo =  $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_SEO_LINKS, true);
-        $docFooterAbout = $this->model->getCmsDocument(DealsModel::DOC_NAME_FOOTER_ABOUT, true);
-        $docHtmlHead = $this->model->getCmsDocument(DealsModel::DOC_HTML_HEAD, true);
-        $docHtmlBodyStart = $this->model->getCmsDocument(DealsModel::DOC_HTML_BODY_START, true);
-        $docHtmlBodyEnd = $this->model->getCmsDocument(DealsModel::DOC_HTML_BODY_END, true);
-
-        $heroImage = ($this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME)) == false ? '{}'
-            : $this->model->getCmsDocument(DealsModel::HEROES_IMAGE_DOC_NAME);
-
-        $trans = ($this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME)) == false ? '{}'
-            : $this->model->getCmsDocument(DealsModel::DEALS_TRANSLATION_DOC_NAME);
-
-        $currDoc = $this->model->getCurrencyDocument(DealsModel::DEALS_CURRENCY_DOC_NAME, $this->currency);*/
 
         $this->view->setVars(
             [
