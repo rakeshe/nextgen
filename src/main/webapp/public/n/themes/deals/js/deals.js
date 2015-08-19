@@ -495,6 +495,8 @@
 
             this.when = when;
 
+            this.setCityData();
+
             this.setDealData();
 
             this.setHomePageData();
@@ -530,6 +532,7 @@
                 //this.displayHotelCards();
                 //self.displayRegionHotelCards();
                 self.displayFooter();
+
                 self.updateFooterText();
                 //self.displayDropDownData('value');
                 //self.setCityImage();
@@ -912,16 +915,20 @@
         },
 
         updatePromotion : function() {
-          var club = $.parseJSON(clubPromo),
-              pm = $.parseJSON(pmPromo);
 
-            $('.promotion-box').show();
-            $('.promo-one-title').html(club.title);
-            $('.promo-one-body').html(club.text);
-            $('.promo-two-title').html(pm.title);
-            $('.promo-two-dody').html(pm.text);
-            $('.promo-two-img').attr('src', pm.image);
+            try {
+               var club = $.parseJSON(clubPromo),
+                   pm = $.parseJSON(pmPromo);
+                $('.promotion-box').show();
+                $('.promo-one-title').html(club.title);
+                $('.promo-one-body').html(club.text);
+                $('.promo-two-title').html(pm.title);
+                $('.promo-two-dody').html(pm.text);
+                $('.promo-two-img').attr('src', pm.image);
 
+            } catch(e) {
+
+            }
         },
 
         displayUserInfo : function() {
@@ -1108,9 +1115,16 @@
 
         displayHeader : function() {
 
+            var ldin, crdin;
+            try {
+                ldin = $.parseJSON(lD);
+                crdin = $.parseJSON(crD);
+            } catch(e) {
+
+            }
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template(
-                {trans: this.trans, locale : locale, localOptions : $.parseJSON(lD), 'currencyOptions' : $.parseJSON(crD), curr : curr}
+                {trans: this.trans, locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr}
             ));
         },
 
@@ -1168,8 +1182,17 @@
             return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
         },
 
+        setCityData : function() {
+
+            try{
+                this.cityData = $.parseJSON(cData);
+            } catch(e) {
+                this.cityData = false
+            }
+        },
+
         getCityData : function() {
-            return $.parseJSON(cData);
+            this.cityData;
         },
 
         setDropDownDefaultOption : function() {
@@ -1600,10 +1623,11 @@
             e.preventDefault();
 
             var u = MNME.split('/'),
-                url = '';
+                url = '',
+                cLocale = $(this).attr('data-locale');
 
-            if (u[0].match(/^([a-z]{2})+_([A-Z]{2})+$/)) {
-                u[0] = $(this).attr('data-locale');
+            if (u[1].match(/^([a-z]{2})+_([A-Z]{2})+$/)) {
+                u[1] = $(this).attr('data-locale');
                 $.each(u, function(index, val){
 
                     url += val;
@@ -1613,7 +1637,16 @@
 
             } else {
                 if($(this).attr('data-locale') != 'en_AU') {
-                    url = $(this).attr('data-locale') + '/' + MNME;
+                    url = '';
+                    var uArr = MNME.split('/');
+                    $.each(uArr, function(index, val) {
+                        if (index == 0) {
+                            url += uArr[0] + '/' + cLocale;
+                        } else {
+                            url += '/' + uArr[index];
+                        }
+                    });
+                    //console.log(url); return;
                 } else {
                     url = MNME;
                 }
