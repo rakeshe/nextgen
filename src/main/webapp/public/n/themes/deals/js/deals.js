@@ -1663,6 +1663,9 @@
                 url += '?' + window.location.href.split('?')[1];
             }
 
+            // Also set cookie
+            $.cookie('AustinLocale', cLocale,{ path: "/" });
+
             window.location = window.location.protocol + '//' + window.location.host + '/' + url;
 
 		});
