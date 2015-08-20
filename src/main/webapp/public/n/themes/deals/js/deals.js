@@ -1368,9 +1368,9 @@
 
         displayDropDownCity : function(region) {
 
-            //console.log(typeof this.getCityData()[region] == "object");
             if(undefined === self.cityImage || null === self.cityImage ) self.cityImage = '';
-            if (typeof this.getCityData()[region] == "object") {
+
+            if (typeof this.cityData[region] == "object") {
 
                 this.cityImage.length = 0;
                 self = this;
@@ -1381,7 +1381,7 @@
 
                 var sortable = [];
 
-                $.each(this.getCityData()[region], function (k, v) {
+                $.each(this.cityData[region], function (k, v) {
 
                     if (typeof v === "object") {
 
@@ -1589,7 +1589,6 @@
     }
 
     Deals.init();
-   // console.log(deals.getCityData());
 
     $(document).on('click', '.filter-button', function(e) {
         $('.filter').slideToggle();
