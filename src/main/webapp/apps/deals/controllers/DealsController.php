@@ -199,10 +199,12 @@ class DealsController extends ControllerBase {
     public function indexAction() {
 
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:en_au
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         $docFooterSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'], true )
         );
@@ -227,10 +229,12 @@ class DealsController extends ControllerBase {
             $this->model->buildUrl( $this->model->campaignDocNames['hero_images'] )
         );
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:translation:en_au
         $trans = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['translation'] )
         );
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:currency:aud
         $currDoc = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['currency'], 'currency')
         );
@@ -243,6 +247,7 @@ class DealsController extends ControllerBase {
             $this->model->buildUrl( $this->model->campaignDocNames['promo_pm'])
         );
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:homepage:en_au
         $homePage = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
         );
