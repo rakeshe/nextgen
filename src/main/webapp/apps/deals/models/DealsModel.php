@@ -17,9 +17,24 @@ class DealsModel extends \Phalcon\Mvc\Model
     /** Define Cms Content used by this app here */
     const DOC_PREFIX = 'sale';
 
-    const MASTER_DOC_NAME = 'master_document';
+    /** define frame work documents names */
+    const DOC_NAME_MASTER = 'campaigns';
+    const DOC_NAME_HOMEPAGE = 'homepage';
+    const DOC_NAME_HERO_IMAGES = 'hero_images';
+    const DOC_NAME_CITY_LIST = 'city_list';
+    const DOC_NAME_CURRENCY = 'currency';
+    const DOC_NAME_TRANSLATION = 'translation';
 
-    const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
+    /** define cms document names */
+    const DOC_NAME_PROMO_CLUB = 'promo_club';
+    const DOC_NAME_PROMO_PM = 'promo_pm';
+    const DOC_NAME_FOOTER_SEO = 'footer_seo';
+    const DOC_NAME_FOOTER_ABOUT = 'footer_about';
+    const DOC_NAME_HTML_HEAD = 'html_head';
+    const DOC_NAME_HTML_BODY_START = 'html_body_start';
+    const DOC_NAME_HTML_BODY_END = 'html_body_end';
+
+   /* const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
     const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm'; // sale:md5(deals):promo_pm
     const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
     const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
@@ -30,7 +45,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_HTML_BODY_END = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_end';  //sale:md5('deals'):html_body_end
     
     const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):translation
-    const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency
+    const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency*/
 
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_CITY = 'Sydney';
@@ -91,7 +106,7 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
     public function setDocumentNames() {
 
-        $this->masterDocName =  ORBITZ_ENV . ':sale:'. md5(self::MASTER_DOC_NAME) . ':' . strtolower($this->getLocale());
+        $this->masterDocName =  ORBITZ_ENV . ':sale:'. self::DOC_NAME_MASTER ; //. ':' . strtolower($this->getLocale());
     }
 
     /** Get document form couch, if it's not exists, this ll load form file system
