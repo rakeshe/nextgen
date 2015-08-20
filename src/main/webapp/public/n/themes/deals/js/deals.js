@@ -1124,7 +1124,7 @@
             }
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template(
-                {trans: this.trans, locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr}
+                {trans: $.extend({}, this.trans, this.hPageData['translation']), locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr}
             ));
         },
 
@@ -1153,7 +1153,7 @@
 
         displayRegionHotelCards : function () {
             var template = HB.compile( $("#region-card-template").html() );
-            $('.section .region-cards-container').append(template({regionCardData : this.hPageData, trans: this.trans}));
+            $('.section .region-cards-container').append(template({regionCardData : this.hPageData['data'], trans: $.extend({}, this.trans, this.hPageData['translation'])}));
             $('.region-hotel-card-box').show();
         },
 
