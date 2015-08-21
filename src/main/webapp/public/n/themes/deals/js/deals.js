@@ -484,7 +484,7 @@
 
     HB.registerHelper('t', function(obj, value) {
 
-        if (typeof obj[value] != 'undefined') {
+        if (typeof obj[value] !== 'undefined') {
 
             return new Handlebars.SafeString(obj[value]);
         }
@@ -708,6 +708,8 @@
               this.updatePromotion();
               $('#breadcrumb-city').html(city); // Set breadcrumb
               this.hotelCardCtrl();
+
+              console.log(this.cityData);
 
           }
         },
@@ -1183,10 +1185,10 @@
         getWhereDoGoText : function () {
 
             return {
-                '7-days' : 'in the next 7 days',
-                '30-days' : 'in the next 30 days',
-                '30-beyond' : '30 days and beyond',
-                ':robot' : 'exact dates'
+                '7-days' : this.t('in_the_next_7_days'),
+                '30-days' : this.t('in_the_next_30_days'),
+                '30-beyond' : this.t('30_days_and_ beyond'),
+                ':robot' : this.t('exact_dates')
             }
         },
 
