@@ -1386,7 +1386,7 @@
                     if (typeof v === "object") {
 
                         $.each(v, function (k1, v1) {
-                           sortable.push([ v1['code'], v1['image'], v1['nameUtf8'] ]);
+                           sortable.push([ v1['code'], v1['image'], v1['name_en'], v1['nameUtf8'] ]);
                         });
                     }
                 });
@@ -1406,7 +1406,7 @@
 
                     var opt =  opt = {
                         value : val[2],
-                        text : val[2]
+                        text : val[3]
                     };
                     self.cityImage[val[2]] = val[1];
                     dropCities.append( $('<option>', opt ) );
