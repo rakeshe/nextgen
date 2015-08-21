@@ -1148,9 +1148,8 @@
 
 
         displaySortBox: function() {
-            console.log(this.cityNameUtf);
             var template = HB.compile( $("#sort-template").html() );
-            $('.section .container #sort-row-uq').html(template({city : this.city, trans : this.trans}));
+            $('.section .container #sort-row-uq').html(template({city : this.cityNameUtf, trans : this.trans}));
         },
 
         displayHotelCards : function( data ) {
@@ -1356,6 +1355,7 @@
 
                 if (selectType == 'value' && val[3] == self.city) {
                     opt.selected = "selected";
+                    self.cityNameUtf = val[2];
 
                 }
                 dropCities.append( $('<option>', opt ) );
@@ -1671,7 +1671,7 @@
             if (Deals.when != '')
                 url += '/' + Deals.when   ;
 
-            console.log(Deals.city + ' where => '+ Deals.when);
+            //console.log(Deals.city + ' where => '+ Deals.when);
             if (window.location.href.split('?')[1] !== undefined) {
                 url += '?' + window.location.href.split('?')[1];
             }
@@ -1879,6 +1879,8 @@
             Deals.setCity(cy);
             Deals.setWhen(dy);
 
+            Deals.cityNameUtf = $(".dropdown-cities option:selected").text();
+
             //release disable
             switch (className) {
                 case 'dropdown-region' :
@@ -1899,6 +1901,7 @@
 							return false;
 						}
                         Deals.setCity('');
+                        Deals.cityNameUtf = '';
                         Deals.displayOrbot();
                     } else if (dy != 0) {
                         Deals.displayWhenGo(true);
@@ -1922,6 +1925,7 @@
 						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
+                            Deals.cityNameUtf = '';
 							Deals.displayOrbot();
 
                         ga('send', 'event', 'search-bar', 'date.range-select', 'exact date');
@@ -1935,7 +1939,7 @@
                             $('.region-hotel-card-box').hide();
                              Deals.updatePromotion();
                             // Set breadcrumb
-                            $('#breadcrumb-city').html(cy);
+                            $('#breadcrumb-city').html( Deals.cityNameUtf );
 
                             var tVal = '';
                             if (dy == '7-days')
