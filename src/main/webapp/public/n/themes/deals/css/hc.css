@@ -240,7 +240,7 @@ select {
 }
 .locale-menu {
     /*width:400px;*/
-	width: 100px;
+	width: 160px;
 	padding: 5px;
     background: rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
@@ -257,7 +257,7 @@ select {
 .locale-list li {
     display:block;
     float:left;
-    width:46%;
+    width:100%;
     list-style:none;
     padding:2%;
     cursor: pointer;
@@ -266,7 +266,7 @@ select {
 .locale-list li:hover {
     display:block;
     float:left;
-    width:46%;
+    width:98%;
     list-style:none;
     background-color:#ebebeb;
     padding:2%;
