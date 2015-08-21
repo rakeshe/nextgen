@@ -505,6 +505,8 @@
 
             this.when = when;
 
+            this.cityNameUtf;
+
             this.setCityData();
 
             this.setDealData();
@@ -1146,6 +1148,7 @@
 
 
         displaySortBox: function() {
+            console.log(this.cityNameUtf);
             var template = HB.compile( $("#sort-template").html() );
             $('.section .container #sort-row-uq').html(template({city : this.city, trans : this.trans}));
         },
@@ -1325,10 +1328,9 @@
 
             // display city
             var sortable = [];
-            for (var city in chopArr)
-                sortable.push([ chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'] ]);
-
-            //console.log(sortable);
+            for (var city in chopArr) {
+                sortable.push([chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'], chopArr[city]['name_en']]);
+            }
 
             sortable.sort(function(a, b) {
 
@@ -1341,19 +1343,20 @@
                 return 0;
             });
 
-           // console.log(sortable);
+            //console.log(sortable);
 
             $.each(sortable, function (key, val) {
 
                 var opt =  opt = {
-                    value : val[2],
+                    value : val[3],
                     text : val[2]
                 };
 
                 self.cityImage[val[2]] = val[1];
 
-                if (selectType == 'value' && val[2] == self.city) {
+                if (selectType == 'value' && val[3] == self.city) {
                     opt.selected = "selected";
+
                 }
                 dropCities.append( $('<option>', opt ) );
             });
