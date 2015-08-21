@@ -200,11 +200,13 @@ class DealsController extends ControllerBase {
 
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:en_au
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:zh_cn
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
         $docFooterSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'], true )
         );
@@ -225,6 +227,8 @@ class DealsController extends ControllerBase {
             $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'], true )
         );
 
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
         $heroImage = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['hero_images'] )
         );
