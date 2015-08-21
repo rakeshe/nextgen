@@ -3,34 +3,34 @@
         <div class="modal-box">
             <div class="modal-container">
                 <div class="modal-row">
-                    <p class="cancel-action"><small>{{trans.close}}</small></p>
-                    <h3>{{trans.search_all_of_hc}}</h3>
+                    <p class="cancel-action"><small>{{t trans 'close'}}</small></p>
+                    <h3>{{t trans 'search_all_of_hc'}}</h3>
                 </div>
                 <div class="modal-row orbot-validation-message" style="color:red !important;"></div>
                 <div class="modal-row">
-                    <p>{{trans.where_would_like_to_go}}<br />
+                    <p>{{t trans 'where_would_like_to_go'}}<br />
                         <input name="" type="text" class="modal-input modal-marker robot-city-name" value="{{city}}"/></p>
                 </div>
 				<div class="modal-row-height">
 					<div class="modal-row orb-rooms-dy" data-row="1">
 						<div class="six columns">
-							<p>Check-in and Check-out<br />
+                                <p>{{t trans 'checkin_and_checkout'}}<br />
 							<div class="modal-calendar">
 								<!--<select name="" class="modal-dropdown-select-date">
 									<option>JQuery date picker</option>
 								</select>-->
-								<input name="check-in" type="text" class="modal-input-date" id="check-in" value="{{trans.select_date_format}}"/>&nbsp;
-								<input name="check-out" type="text" class="modal-input-date" id="check-out" value="{{trans.select_date_format}}"/><br/>
+								<input name="check-in" type="text" class="modal-input-date" id="check-in" value="{{t trans 'select_date_format'}}"/>&nbsp;
+								<input name="check-out" type="text" class="modal-input-date" id="check-out" value="{{t trans 'select_date_format'}}"/><br/>
 								<input type="text" id="alt-check-in" class="select-label-val" readonly/>&nbsp;
 								<input type="text" id="alt-check-out" class="select-label-val" readonly/>
 							</div></p>
 						</div>
 						<div class="six columns" data-row="1">
 							<div class="four columns">
-								<p>{{trans.rooms}}<br /> {{trans.room}} 1</p>
+								<p>{{t trans 'rooms'}}<br /> {{t trans 'room'}} 1</p>
 							</div>
 							<div class="four columns">
-								<p>{{trans.adult}} (18+)<br />
+								<p>{{t trans 'adult'}} (18+)<br />
 									<select name="" class="modal-dropdown-select orbot-select-adult orb-adults-0">
 										<option>1</option>
 										<option selected>2</option>
@@ -41,7 +41,7 @@
 									</select></p>
 							</div>
 							<div class="four columns">
-								<p>{{trans.child}} (0-17)<br />
+								<p>{{t trans 'child'}} (0-17)<br />
 									<select name="" class="modal-dropdown-select orbot-select-children orb-child-0">
 										<option>--</option>
 										<option>1</option>
@@ -55,21 +55,21 @@
 					</div>
 				</div>
 				<div class="modal-orbot-add">
-					<span class="orbot-select-rooms"> {{trans.add_room}} </span><span class="orbot-divider"> | </span><span class="orbot-remove-rooms"> {{trans.remove_room}} </span>
+					<span class="orbot-select-rooms"> {{t trans 'add_room'}} </span><span class="orbot-divider"> | </span><span class="orbot-remove-rooms"> {{t trans 'remove_room'}} </span>
 				</div>
                 <div class="modal-row">
                     <div class="six columns">
-                        <p>{{trans.search_hotel_name}}<br />
-                            <input name="" type="text" class="modal-input search-hotel-name" data-value="e.g. Sydney Hilton" value="e.g. Sydney Hilton"/></p>
+                        <p>{{t trans 'search_hotel_name'}}<br />
+                            <input name="" type="text" class="modal-input search-hotel-name" data-value="{{t trans 'eg_sydney_hilton'}}" value="{{t trans 'eg_sydney_hilton'}}"/></p>
                     </div>
                     <div class="six columns">
-                        <p>{{trans.applay_promo_code}}<br />
-                            <input name="" type="text" class="modal-input search-promo-code" data-value="Enter code" value="Enter code"/></p>
+                        <p>{{t trans 'applay_promo_code'}}<br />
+                            <input name="" type="text" class="modal-input search-promo-code" data-value="{{t trans 'enter_code'}}" value="{{t trans 'enter_code'}}"/></p>
                     </div>
                 </div>
                 <div class="modal-row">
                     <div class="twelve columns">
-                        <a href="" title="Search" class="modal-row-button">{{trans.search_hotels}}</a>
+                        <a href="" title="Search" class="modal-row-button">{{t trans 'search_hotels'}}</a>
                     </div>
                     <div class="twelve columns">
                     </div>

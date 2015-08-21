@@ -482,6 +482,16 @@
         }
     });
 
+    HB.registerHelper('t', function(obj, value) {
+
+        if (typeof obj[value] != 'undefined') {
+
+            return new Handlebars.SafeString(obj[value]);
+        }
+
+        return new Handlebars.SafeString(value);
+    });
+
 
 
 
@@ -1179,7 +1189,7 @@
         },
 
         getLastDestination : function() {
-            return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
+            return $('<option>', { value : ":orbot-dest", text : this.t('all_other_destinations')} );
         },
 
         setCityData : function() {
@@ -1762,7 +1772,7 @@
 			$('.roomVal').remove();
 			$(".room").css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
+			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*' + Deals.t('ages_of_children_at_time_of_trip_note') + '</div>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
@@ -1985,7 +1995,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 		var child = '',
             option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
-            text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
+            text = '<p style="font-size:12px;text-align: right;">' + Deals.t('ages_of_children_at_time_of_trip_note') + '</p>',
 			dataRow1 = $(this).parents('div.six.columns').attr('class'),
 			dataRow2 = parseInt($(this).parents('div.six.columns').attr('data-row'));
 			ga('send', 'event', 'search-bar', 'orbot-select', 'children', {dataRow2:$(this).val()});
@@ -2025,7 +2035,7 @@
 
             child += '<div data-row="'+(i+1)+'" class="modal-row orb-rooms-dy"><div class="six columns">&nbsp;</div><div class="six columns" data-row="'+(i+1)+'">';
 
-            child += '<div class="four columns">Room '+(i+1)+'</div>';
+            child += '<div class="four columns">'+ Deals.t('room') +' '+(i+1)+'</div>';
             child += '<div class="four columns">';
             child += '<select class="modal-dropdown-select orbot-select-adult orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
@@ -2220,7 +2230,7 @@
  			}
 			selectDateScroll('add', roomVal);
             var roomCompVal='';
-			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>"+ Deals.t('room') + " " +roomVal+"</p></div><div class='select-dates-humans'><p>"+ Deals.t('adult') +" <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
@@ -2453,7 +2463,7 @@
 			$('.roomVal-'+roomChild).remove();
 			$(".room-"+roomChild).css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
+			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*' + Deals.t('ages_of_children_at_time_of_trip_note') + '</div>';
 			for(i=1;i<=roomChildVal;i++){
 				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
