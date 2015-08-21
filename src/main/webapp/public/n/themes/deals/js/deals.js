@@ -881,7 +881,6 @@
         },
 
         displayNoHotelOrbot : function() {
-
             $('#sort-row-uq').html(''); // remove all content in sort box
             var template = HB.compile( $("#orbot-template").html() );
 
@@ -904,7 +903,8 @@
                 firstDay : 0,
 				altField: "#alt-check-in",
 				altFormat: "D,d M yy",
-                dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+                dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
                 onSelect : function(dateText, inst) {
                     var date2 = $('#check-in').datepicker('getDate');
                     date2.setDate(date2.getDate() + 1);
@@ -1037,8 +1037,7 @@
         },
 
         displayOrbot : function() {
-
-            // Check if on page orbot is exists
+			// Check if on page orbot is exists
             if ($('.orbot-in-page').length > 0) {
                 $('.section .hotel-cards-container').html('');
             }
@@ -1060,7 +1059,8 @@
 				firstDay : 0,
 				altField: "#alt-check-in",
 				altFormat: "D,d M yy",
-				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
 					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
@@ -1080,6 +1080,8 @@
 				dateFormat: 'dd/mm/y',
 				altField: "#alt-check-out",
 				altFormat: "D,d M yy",
+				dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
 				onSelect : function(dateText, inst) {
 					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
 					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());
@@ -2130,6 +2132,7 @@
             'display':'block',
             'z-index': 999
         });
+
         $("#select-check-in").datepicker({
             inline : true,
             minDate : 0,
@@ -2138,7 +2141,8 @@
             dateFormat: 'dd/mm/y',
 			altField: "#alternate-check-in",
 			altFormat: "D,d M yy",
-            dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+			dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+			monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
                 var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
@@ -2160,6 +2164,8 @@
             dateFormat: 'dd/mm/y',
 			altField: "#alternate-check-out",
 			altFormat: "D,d M yy",
+			dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+			monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
             onSelect : function(dateText, inst) {
                 var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
