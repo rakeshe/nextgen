@@ -77,19 +77,21 @@ return new \Phalcon\Config ([
 						'MXN' => '$MXN - Mexican Peso',
 						'USD' => '$USD - US Dollar'
 				),
+				*/
 				'asia' => array (
 						'CNY' => '¥CNY - Chinese Yuan',
 						'HKD' => '$HKD - Hong Kong Dollar',
-						'IDR' => 'RpIDR - Indonesia Rupiah',
-						'INR' => '₹INR - Indian Rupee',
+//						'IDR' => 'RpIDR - Indonesia Rupiah',
+//						'INR' => '₹INR - Indian Rupee',
 						'JPY' => '¥JPY - Japanese Yen',
-						'KRW' => '₩KRW - South Korean Won',
+//						'KRW' => '₩KRW - South Korean Won',
 						'MYR' => 'RM MYR - Malaysian Ringgit',
-						'PHP' => '₱PHP - Philippine Peso',
+//						'PHP' => '₱PHP - Philippine Peso',
 						'SGD' => '$SGD - Singapore Dollar',
-						'THB' => '฿THB - Thai Baht',
+//						'THB' => '฿THB - Thai Baht',
 						'TWD' => '$TWD - New Taiwan Dollar'
 				),
+                /*
 				'middle-east' => array (
 						'AED' => 'د.إAED - UAE Dirham',
 						'ILS' => '₪ILS - Israeli New Sheqel',
@@ -112,8 +114,8 @@ return new \Phalcon\Config ([
 				),*/
 				'oceania' => array (
 						'AUD' => '$AUD - Australian Dollar',
-						'NZD' => '$NZD - New Zealand Dollar'
-				) 
+//						'NZD' => '$NZD - New Zealand Dollar'
+				)
 		) ,
         'currencyGroup' => [
 //           0 => ['most-used-currencies','africa', 'americas'],
