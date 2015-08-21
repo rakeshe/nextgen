@@ -1527,7 +1527,7 @@
 
             if ($.trim(cityName.val()) == '') {
                 cityName.css('outline',' 1px solid red');
-                valMessage.append('<p>'+Deals.t('city_name_validation')+'</p>';
+                valMessage.append('<p>'+Deals.t('city_name_validation')+'</p>')
                 validForm = false;
             }
 
