@@ -1527,19 +1527,19 @@
 
             if ($.trim(cityName.val()) == '') {
                 cityName.css('outline',' 1px solid red');
-                valMessage.append('<p>City name should not be blank</p>');
+                valMessage.append('<p>'+Deals.t('city_name_validation')+'</p>';
                 validForm = false;
             }
 
             if ($.trim(checkInDate) == '') {
                 checkIn.css('outline',' 1px solid red');
-                valMessage.append('<p>Check-in date should not be blank</p>')
+                valMessage.append('<p>'+Deals.t('check_in_validation')+'</p>')
                 validForm = false;
             }
 
             if ($.trim(checkoutDate) == '') {
                 checkOut.css('outline',' 1px solid red');
-                valMessage.append('<p>Check-out date should not be blank</p>')
+                valMessage.append('<p>'+Deals.t('check_out_validation')+'</p>')
                 validForm = false;
                 return false;
             }
@@ -1592,13 +1592,13 @@
 
 			if ($.trim(selectCheckInDate) == '') {
                 selectCheckIn.css('outline',' 1px solid red');
-                selectValMessage.append('<p>Check-in date should not be blank</p>');
+                selectValMessage.append('<p>'+Deals.t('check_in_validation')+'</p>');
 				$('#alternate-check-in').val('');
                 validSelectForm = false;
             }
 			if ($.trim(selectCheckOutDate) == '') {
                 selectCheckOut.css('outline',' 1px solid red');
-                selectValMessage.append('<p>Check-out date should not be blank</p>');
+                selectValMessage.append('<p>'+Deals.t('check_out_validation')+'</p>');
 				$('#alternate-check-out').val('');
                 validSelectForm = false;
             }
