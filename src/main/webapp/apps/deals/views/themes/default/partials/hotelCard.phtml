@@ -12,18 +12,18 @@
     <div class="select-dates-row">
     <div class="select-validation-message"></div>
     <div class="select-dates-in-out">
-    <p>Check in<br />
+    <p>{{trans.check_in}}<br />
     <input name="" type="text" class="select-dates-input" id="select-check-in" value="{{trans.select_date_format}}"/>
     <input type="text" id="alternate-check-in" class="select-label-val" readonly/></p>
     </div>
     <div class="select-dates-in-out">
-    <p>Check out<br />
+    <p>{{trans.check_out}}<br />
     <input name="" type="text" class="select-dates-input" id="select-check-out" value="{{trans.select_date_format}}"/>
     <input type="text" id="alternate-check-out" class="select-label-val" readonly/></p>
     </p>
     </div>
     <div class="select-dates-nights">
-    <p>Nights<br />
+    <p>{{trans.nights}}<br />
     <input name="" type="text" class="select-dates-display" value="0"/></p>
     </div>
     </div><!-- End row -->
@@ -111,8 +111,8 @@
                         {{/isTrue}}
 
 						<p class="hotel-price">{{displayPrice hotelId ../currDoc ../memberPrice}}</p>
-						<p class="hotel-avg">avg/night</p>
-						<span class="hotel-card-button" data-onegid="{{hotelId}}" data-hotel='{{{hotelNameUtf8}}}'>Select dates &gt;</span>
+						<p class="hotel-avg">avg/night{{trans.avg_night}}</p>
+						<span class="hotel-card-button" data-onegid="{{hotelId}}" data-hotel='{{{hotelNameUtf8}}}'>Select dates >{{trans.select_dates}}</span>
 					</div>
 				</div>
             </div>

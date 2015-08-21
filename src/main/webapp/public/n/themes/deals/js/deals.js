@@ -121,9 +121,9 @@
     HB.registerHelper('displayExclusiveBanner', function(promotion, logged, options) {
 
         if (promotion.length > 1 && logged == true) {
-            return new Handlebars.SafeString('<div class="card-member">Member Exclusive Offer</div>');
+            return new Handlebars.SafeString('<div class="card-member">'+ Deals.t('member_exclusive_offer') + '</div>');
         } else if (promotion.length > 1 && logged == false) {
-            return new Handlebars.SafeString('<div class="card-non-member">Member Exclusive Offer Available</div>');
+            return new Handlebars.SafeString('<div class="card-non-member">'+ Deals.t('member_exclusive_offer_available') + '</div>');
         }
     });
 
@@ -1443,7 +1443,7 @@
                     return b[fName] - a[fName];
                 }
             });
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
         },
 
         sortByText : function(fName, type) {
@@ -1478,7 +1478,7 @@
 
             });
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : this.trans});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans :$.extend({}, this.trans, this.hPageData['translation']) });
         },
 
         orbotValidation : function() {
