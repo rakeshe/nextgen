@@ -1444,9 +1444,19 @@
 
         sortByNumber : function(fName, type) {
 
-            var newArr = Array();
+            var newArr = Array(),
+                self = this;
 
             $.each(this.hData, function (key, val) {
+
+                //only for sort by price
+                if (fName == 'price') {
+
+                    //get the price from currency document and update to deals price value
+                    if (typeof self.currDoc['data'][key] !== 'undefined') {
+                        val['price'] = self.currDoc['data'][key][0];
+                    }
+                }
                 newArr.push(val);
             });
 
@@ -1458,6 +1468,8 @@
                     return b[fName] - a[fName];
                 }
             });
+            //console.log(newArr);
+
             this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
         },
 
