@@ -268,6 +268,14 @@ class DealsController extends ControllerBase {
             }
         }
 
+        if (array_key_exists($this->locale, $this->config->dateFormat->locale)) {
+            $dateFormat = $this->config->dateFormat->locale[$this->locale]['value'];
+            $dateFormatPlaceHolder = $this->config->dateFormat->locale[$this->locale]['placeholder'];
+        } else {
+            $dateFormat = $this->config->dateFormat->default['value'];
+            $dateFormatPlaceHolder = $this->config->dateFormat->default['placeholder'];
+        }
+
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
@@ -304,7 +312,9 @@ class DealsController extends ControllerBase {
                 'curr'                => $this->currency,
                 'locale'              => $this->locale,
                 'currDoc'             => $currDoc,
-                'campaignName'        => $this->campaignName
+                'campaignName'        => $this->campaignName,
+                'dFormat'             => $dateFormat,
+                'dFormatPl'           => $dateFormatPlaceHolder,
             ]
         );
 

@@ -482,6 +482,16 @@
         }
     });
 
+    HB.registerHelper('t', function(obj, value) {
+
+        if (typeof obj[value] !== 'undefined') {
+
+            return new Handlebars.SafeString(obj[value]);
+        }
+
+        return new Handlebars.SafeString(value);
+    });
+
 
 
 
@@ -494,6 +504,8 @@
             this.region = '';
 
             this.when = when;
+
+            this.cityNameUtf;
 
             this.setCityData();
 
@@ -697,6 +709,8 @@
               $('#breadcrumb-city').html(city); // Set breadcrumb
               this.hotelCardCtrl();
 
+              console.log(this.cityData);
+
           }
         },
 
@@ -867,7 +881,6 @@
         },
 
         displayNoHotelOrbot : function() {
-
             $('#sort-row-uq').html(''); // remove all content in sort box
             var template = HB.compile( $("#orbot-template").html() );
 
@@ -886,11 +899,12 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/y',
+                dateFormat: dFormat,
                 firstDay : 0,
 				altField: "#alt-check-in",
 				altFormat: "D,d M yy",
-                dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+                dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
                 onSelect : function(dateText, inst) {
                     var date2 = $('#check-in').datepicker('getDate');
                     date2.setDate(date2.getDate() + 1);
@@ -902,7 +916,7 @@
                 inline : true,
                 minDate : 0,
                 showCurrentAtPos : 0,
-                dateFormat: 'dd/mm/y',
+                dateFormat: dFormat,
 				altField: "#alt-check-out",
 				altFormat: "D,d M yy",
                 onSelect : function(dateText, inst) {
@@ -1023,8 +1037,7 @@
         },
 
         displayOrbot : function() {
-
-            // Check if on page orbot is exists
+			// Check if on page orbot is exists
             if ($('.orbot-in-page').length > 0) {
                 $('.section .hotel-cards-container').html('');
             }
@@ -1042,20 +1055,21 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				dateFormat: 'dd/mm/y',
+				dateFormat: dFormat,
 				firstDay : 0,
 				altField: "#alt-check-in",
 				altFormat: "D,d M yy",
-				dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+				dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
 				onSelect : function(dateText, inst) {
 					var date2 = $('#check-in').datepicker('getDate');
-					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', dFormat);
 					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());					
 					date2.setDate(date2.getDate() + 1);
 
 					$('#check-out').datepicker('setDate', date2);
 					$('#check-out').datepicker('option', 'minDate', date2);
-					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', dFormat);
 					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());				
 				}
 			});//initialize the date-picker for check-in
@@ -1063,16 +1077,18 @@
 				inline : true,
 				minDate : 0,
 				showCurrentAtPos : 0,
-				dateFormat: 'dd/mm/y',
+				dateFormat: dFormat,
 				altField: "#alt-check-out",
 				altFormat: "D,d M yy",
+				dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+				monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
 				onSelect : function(dateText, inst) {
-					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					var gaCheckOutDate = $('#check-out').datepicker('option', 'dateFormat', dFormat);
 					ga('send', 'event', 'search-bar', 'orbot-select', 'check-out', gaCheckOutDate.val());
 					$('#check-in').datepicker("option", "maxDate",
 						$('#check-out').val()
 					);
-					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+					var gaCheckInDate = $('#check-in').datepicker('option', 'dateFormat', dFormat);
 					ga('send', 'event', 'search-bar', 'orbot-select', 'check-in', gaCheckInDate.val());				
 				}
 			});//initialize the date-picker for check-out
@@ -1137,7 +1153,7 @@
 
         displaySortBox: function() {
             var template = HB.compile( $("#sort-template").html() );
-            $('.section .container #sort-row-uq').html(template({city : this.city, trans : this.trans}));
+            $('.section .container #sort-row-uq').html(template({city : this.cityNameUtf, trans : this.trans}));
         },
 
         displayHotelCards : function( data ) {
@@ -1171,15 +1187,15 @@
         getWhereDoGoText : function () {
 
             return {
-                '7-days' : 'in the next 7 days',
-                '30-days' : 'in the next 30 days',
-                '30-beyond' : '30 days and beyond',
-                ':robot' : 'exact dates'
+                '7-days' : this.t('in_the_next_7_days'),
+                '30-days' : this.t('in_the_next_30_days'),
+                '30-beyond' : this.t('30_days_and_ beyond'),
+                ':robot' : this.t('exact_dates')
             }
         },
 
         getLastDestination : function() {
-            return $('<option>', { value : ":orbot-dest", text : "All other destinations"} );
+            return $('<option>', { value : ":orbot-dest", text : this.t('all_other_destinations')} );
         },
 
         setCityData : function() {
@@ -1315,10 +1331,9 @@
 
             // display city
             var sortable = [];
-            for (var city in chopArr)
-                sortable.push([ chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'] ]);
-
-            //console.log(sortable);
+            for (var city in chopArr) {
+                sortable.push([chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'], chopArr[city]['name_en']]);
+            }
 
             sortable.sort(function(a, b) {
 
@@ -1331,19 +1346,21 @@
                 return 0;
             });
 
-           // console.log(sortable);
+            //console.log(sortable);
 
             $.each(sortable, function (key, val) {
 
                 var opt =  opt = {
-                    value : val[2],
+                    value : val[3],
                     text : val[2]
                 };
 
                 self.cityImage[val[2]] = val[1];
 
-                if (selectType == 'value' && val[2] == self.city) {
+                if (selectType == 'value' && val[3] == self.city) {
                     opt.selected = "selected";
+                    self.cityNameUtf = val[2];
+
                 }
                 dropCities.append( $('<option>', opt ) );
             });
@@ -1429,9 +1446,19 @@
 
         sortByNumber : function(fName, type) {
 
-            var newArr = Array();
+            var newArr = Array(),
+                self = this;
 
             $.each(this.hData, function (key, val) {
+
+                //only for sort by price
+                if (fName == 'price') {
+
+                    //get the price from currency document and update to deals price value
+                    if (typeof self.currDoc['data'][key] !== 'undefined') {
+                        val['price'] = self.currDoc['data'][key][0];
+                    }
+                }
                 newArr.push(val);
             });
 
@@ -1443,6 +1470,8 @@
                     return b[fName] - a[fName];
                 }
             });
+            //console.log(newArr);
+
             this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
         },
 
@@ -1498,19 +1527,19 @@
 
             if ($.trim(cityName.val()) == '') {
                 cityName.css('outline',' 1px solid red');
-                valMessage.append('<p>City name should not be blank</p>');
+                valMessage.append('<p>'+Deals.t('city_name_validation')+'</p>')
                 validForm = false;
             }
 
             if ($.trim(checkInDate) == '') {
                 checkIn.css('outline',' 1px solid red');
-                valMessage.append('<p>Check-in date should not be blank</p>')
+                valMessage.append('<p>'+Deals.t('check_in_validation')+'</p>')
                 validForm = false;
             }
 
             if ($.trim(checkoutDate) == '') {
                 checkOut.css('outline',' 1px solid red');
-                valMessage.append('<p>Check-out date should not be blank</p>')
+                valMessage.append('<p>'+Deals.t('check_out_validation')+'</p>')
                 validForm = false;
                 return false;
             }
@@ -1522,7 +1551,7 @@
             if (isNaN(cInTimestamp) == true) {
                 checkIn.css('outline',' 1px solid red');
                 valMessage.append('<p>Please enter valid Check-in date</p>')
-                validForm = false;
+                validForm = true;
             }
 
             var chOD = checkoutDate.split('/'),
@@ -1541,7 +1570,7 @@
             if ( obj.getTime() > new Date(chD).getTime() ) {
                 checkIn.css('outline',' 1px solid red');
                 valMessage.append('<p>Please enter valid Check-in date</p>')
-                validForm = false;
+                validForm = true;
             }
 
             if ( cInTimestamp >= cOutTimestamp ) {
@@ -1563,13 +1592,13 @@
 
 			if ($.trim(selectCheckInDate) == '') {
                 selectCheckIn.css('outline',' 1px solid red');
-                selectValMessage.append('<p>Check-in date should not be blank</p>');
+                selectValMessage.append('<p>'+Deals.t('check_in_validation')+'</p>');
 				$('#alternate-check-in').val('');
                 validSelectForm = false;
             }
 			if ($.trim(selectCheckOutDate) == '') {
                 selectCheckOut.css('outline',' 1px solid red');
-                selectValMessage.append('<p>Check-out date should not be blank</p>');
+                selectValMessage.append('<p>'+Deals.t('check_out_validation')+'</p>');
 				$('#alternate-check-out').val('');
                 validSelectForm = false;
             }
@@ -1658,7 +1687,7 @@
             if (Deals.when != '')
                 url += '/' + Deals.when   ;
 
-            console.log(Deals.city + ' where => '+ Deals.when);
+            //console.log(Deals.city + ' where => '+ Deals.when);
             if (window.location.href.split('?')[1] !== undefined) {
                 url += '?' + window.location.href.split('?')[1];
             }
@@ -1762,7 +1791,7 @@
 			$('.roomVal').remove();
 			$(".room").css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
+			cntVal = '<div class="roomVal"><div class="select-date-ages-label">*' + Deals.t('ages_of_children_at_time_of_trip_note') + '</div>';
 			for(i=0;i<this.value;i++){
 				cntVal+="<select name='room-1-child-"+i+"' class='select-dates-input child-room' id='room-1-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}
@@ -1866,6 +1895,8 @@
             Deals.setCity(cy);
             Deals.setWhen(dy);
 
+            Deals.cityNameUtf = $(".dropdown-cities option:selected").text();
+
             //release disable
             switch (className) {
                 case 'dropdown-region' :
@@ -1886,6 +1917,7 @@
 							return false;
 						}
                         Deals.setCity('');
+                        Deals.cityNameUtf = '';
                         Deals.displayOrbot();
                     } else if (dy != 0) {
                         Deals.displayWhenGo(true);
@@ -1909,6 +1941,7 @@
 						}
                         if (cy == ":orbot-dest")
                             Deals.setCity('');
+                            Deals.cityNameUtf = '';
 							Deals.displayOrbot();
 
                         ga('send', 'event', 'search-bar', 'date.range-select', 'exact date');
@@ -1922,7 +1955,7 @@
                             $('.region-hotel-card-box').hide();
                              Deals.updatePromotion();
                             // Set breadcrumb
-                            $('#breadcrumb-city').html(cy);
+                            $('#breadcrumb-city').html( Deals.cityNameUtf );
 
                             var tVal = '';
                             if (dy == '7-days')
@@ -1985,7 +2018,7 @@
     $(document).on('change', '.orbot-select-children', function(){
 		var child = '',
             option = '<option value="00"><1</option><option value="01">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option>',
-            text = '<p style="font-size:12px;text-align: right;">Ages of children at time of trip (for pricing, discounts)</p>',
+            text = '<p style="font-size:12px;text-align: right;">' + Deals.t('ages_of_children_at_time_of_trip_note') + '</p>',
 			dataRow1 = $(this).parents('div.six.columns').attr('class'),
 			dataRow2 = parseInt($(this).parents('div.six.columns').attr('data-row'));
 			ga('send', 'event', 'search-bar', 'orbot-select', 'children', {dataRow2:$(this).val()});
@@ -2025,7 +2058,7 @@
 
             child += '<div data-row="'+(i+1)+'" class="modal-row orb-rooms-dy"><div class="six columns">&nbsp;</div><div class="six columns" data-row="'+(i+1)+'">';
 
-            child += '<div class="four columns">Room '+(i+1)+'</div>';
+            child += '<div class="four columns">'+ Deals.t('room') +' '+(i+1)+'</div>';
             child += '<div class="four columns">';
             child += '<select class="modal-dropdown-select orbot-select-adult orb-adults-'+i+'">'+ optionAdult + '</select>';
             child += '</div>';
@@ -2099,23 +2132,25 @@
             'display':'block',
             'z-index': 999
         });
+
         $("#select-check-in").datepicker({
             inline : true,
             minDate : 0,
             showCurrentAtPos : 0,
             firstDay : 0,
-            dateFormat: 'dd/mm/y',
+            dateFormat: dFormat,
 			altField: "#alternate-check-in",
 			altFormat: "D,d M yy",
-            dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+			dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+			monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
             onSelect : function(dateText, inst) {
                 var date2 = $('#select-check-in').datepicker('getDate');
-                var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+                var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', dFormat);
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
                 date2.setDate(date2.getDate() + 1);
                 $('#select-check-out').datepicker('setDate', date2);
                 $('#select-check-out').datepicker('option', 'minDate', date2);
-				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', dFormat);
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
                 dateCalculate();
             },
@@ -2126,16 +2161,18 @@
             inline : true,
             minDate : 0,
             showCurrentAtPos : 0,
-            dateFormat: 'dd/mm/y',
+            dateFormat: dFormat,
 			altField: "#alternate-check-out",
 			altFormat: "D,d M yy",
+			dayNamesMin : [ Deals.t('sunday'), Deals.t('monday'), Deals.t('tuesday'), Deals.t('wednesday'), Deals.t('thursday'), Deals.t('friday'), Deals.t('saturday') ],
+			monthNames: [Deals.t('january'), Deals.t('february'), Deals.t('march'), Deals.t('april'), Deals.t('may'), Deals.t('june'), Deals.t('july'), Deals.t('august'), Deals.t('september'), Deals.t('october'), Deals.t('november'), Deals.t('december')],
             onSelect : function(dateText, inst) {
-                var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', 'dd/mm/yy');
+                var gaCheckOutDate = $('#select-check-out').datepicker('option', 'dateFormat', dFormat);
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-out', gaCheckOutDate.val());
 				$('#select-check-in').datepicker("option", "maxDate",
                     $('#select-check-out').val()
                 );
-				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', 'dd/mm/yy');
+				var gaCheckInDate = $('#select-check-in').datepicker('option', 'dateFormat', dFormat);
 				ga('send', 'event', 'hotel-card', 'orbot-select', 'check-in', gaCheckInDate.val());
                 dateCalculate();
             },
@@ -2220,7 +2257,7 @@
  			}
 			selectDateScroll('add', roomVal);
             var roomCompVal='';
-			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>Room "+roomVal+"</p></div><div class='select-dates-humans'><p>Adult <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
+			roomCompVal="<div class='select-dates-row room-divide"+roomVal+"'><div class='horizontal-line'></div><div class='select-dates-room'><p>"+ Deals.t('room') + " " +roomVal+"</p></div><div class='select-dates-humans'><p>"+ Deals.t('adult') +" <small>(18+)</small><br /><select name='adult-input-"+roomVal+"' class='select-dates-input-popup' id='adult-input-"+roomVal+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select></p></div><div class='select-dates-humans room"+roomVal+"'><p>Child <small>(0-17)</small><br /><select name='child-input-"+roomVal+"' class='select-dates-input-child' id='child-input-"+roomVal+"'><option value='0'>---</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></p></div><div class='room-"+roomVal+"'></div></div>";
             $(".room-divide"+(roomVal-1)).append(roomCompVal).html();
         });
 
@@ -2453,7 +2490,7 @@
 			$('.roomVal-'+roomChild).remove();
 			$(".room-"+roomChild).css("display","block");
 			var cntVal, i;
-			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*Ages of children at time of trip (for pricing, discounts)</div>';
+			cntVal = '<div class="roomVal-'+roomChild+'"><div class="select-date-ages-label">*' + Deals.t('ages_of_children_at_time_of_trip_note') + '</div>';
 			for(i=1;i<=roomChildVal;i++){
 				cntVal+="<select name='room-"+roomChild+"-child-"+i+"' class='select-dates-input child-room' id='room-"+roomChild+"-child-"+i+"'><option value='00'><1</option><option value='01'>1</option><option>2</option><option>3</option><option>4</option> <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option></select>";
 			}

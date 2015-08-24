@@ -22,7 +22,9 @@
             curr = '{{curr}}',
             locale = '{{locale}}',
             currD = '{{currDoc}}',
-            cName = '{{campaignName}}';
+            cName = '{{campaignName}}',
+            dFormat = '{{dFormat}}',
+            dFormatPl = '{{dFormatPl}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
