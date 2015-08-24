@@ -1562,8 +1562,9 @@ select {
 
 .card-desc{
     display: block;
-    height: 163px;
+    height: 142px;
     width: 100%;
+    overflow: hidden;
 }
 /* For devices smaller than 768px */
 @media (max-width: 768px) {
@@ -1609,7 +1610,7 @@ select {
     margin-top:24px;
     border:1px solid #d0d9d7;
     float:left;
-    height:465px;
+    height:435px;
     overflow:hidden;
 }
 .card-member {
@@ -1648,14 +1649,14 @@ select {
     margin:16px;
 }
 .hotel-name {
-    font-size:24px;
-    line-height:25px;
+    font-size:19px;
+    line-height:22px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#55337e;
     display:block;
     width:100%;
-    height:64px;
+    height:48px;
     overflow:hidden;
 }
 .hotel-name a{
@@ -1772,7 +1773,7 @@ select {
     margin:0px;
     padding-left:18px;
     list-style-image:url(../images/assets/list-cross.png);
-    font-size:16px;
+    font-size:14px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     line-height: 119%;
@@ -1781,7 +1782,7 @@ select {
     margin:0px;
     padding-left:18px;
     list-style-image:url(../images/assets/list-cross-gray-new.png);
-    font-size:15px;
+    font-size:14px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     line-height: 19px;
@@ -1791,21 +1792,22 @@ select {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#e80f1e;
-    margin-bottom:9px !important;
+    margin-bottom:7px !important;
     padding:0px;
-    line-height:119%;
+    line-height:135%;
 }
 .hotel-member {
-    font-size:12px;
+    font-size:11px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#e80f1e;
     margin-bottom:0px !important;
+    margin-top: 2px;
     padding:0px;
     line-height:120%;
 }
 .hotel-price {
-    font-size:30px;
+    font-size:28px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
     color:#e80f1e;
@@ -1840,7 +1842,7 @@ select {
     -moz-border-radius: 32px;
     border-radius: 32px;
     float:right;
-    margin-top:48px;
+    margin-top:50px;
 	cursor:pointer;
 }
 .add-room, .remove-room{
