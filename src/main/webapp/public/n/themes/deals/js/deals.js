@@ -873,10 +873,12 @@
         },
 
         setHeroesImage : function () {
-
-            var index = Math.floor((Math.random() * 8));
-            if ($.isEmptyObject(this.heroImages) == false && typeof this.heroImages[index]['image'] == 'string') {
-                $('.hero').css('background-image', 'url("/' + this.heroImages[index]['image'] + '")');
+            if ($.isEmptyObject(this.heroImages) == false){
+                var heroImageCount = this.heroImages.length;
+                var index = Math.floor((Math.random() * heroImageCount));
+                if (typeof this.heroImages[index]['image'] == 'string') {
+                    $('.hero').css('background-image', 'url("/' + this.heroImages[index]['image'] + '")');
+                }
             }
         },
 
