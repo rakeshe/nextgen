@@ -728,8 +728,15 @@
         setMetadata : function(type) {
 
             try {
+                var dest = '';
+                if (this.city != '') {
+                    dest = this.seoData[type]['description'].replace('[Destination]', this.city);
+                } else {
+                    dest = this.seoData[type]['description'];
+                }
+
                 document.title = this.seoData[type]['title'];
-                $('meta[name="description"]').attr('content', this.seoData[type]['description']);
+                $('meta[name="description"]').attr('content', dest);
                 $('meta[name="robots"]').attr('content', this.seoData[type]['robot']);
 
             } catch(e) {
