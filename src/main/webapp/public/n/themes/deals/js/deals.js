@@ -818,7 +818,7 @@
                     } else if (this.sortBy == 'name') {
                         Deals.sortByText('hotelNameUtf8', this.sortType);
                     } else if (this.sortBy == 'rating') {
-                        Deals.sortByNumber('starRating', this.sortType);
+                        Deals.sortByNumber('starRatingiu', this.sortType);
                     }
 
                     var desIcon = ' &or;',
@@ -851,7 +851,7 @@
                      } else if (this.sortBy == 'name') {
                         Deals.sortByText('hotelNameUtf8', this.sortType);
                      } else if (this.sortBy == 'rating') {
-                        Deals.sortByNumber('starRating', this.sortType);
+                        Deals.sortByNumber('starRatingiu', this.sortType);
                      }
 
                     var desIcon = ' &or;',
@@ -2410,7 +2410,7 @@
 
         } else if ($(this).data('sort') == 'rating') {
 
-            Deals.sortByNumber('starRating', type);
+            Deals.sortByNumber('starRatingiu', type);
             ga('send', 'event', 'sort', 'sort-rating-activate', '');
         }
 
