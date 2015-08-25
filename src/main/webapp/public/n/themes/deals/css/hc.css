@@ -1226,6 +1226,11 @@ select {
     margin-bottom:0px;
     line-height:21px;
 }
+@media (max-width: 480px) {
+	.hero-text-body {
+		margin-bottom:30px;
+	}
+}
 .hero-image {
     float:right;
     padding-left:24px;
