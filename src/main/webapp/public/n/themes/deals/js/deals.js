@@ -1222,7 +1222,7 @@
             return {
                 '7-days' : this.t('in_the_next_7_days'),
                 '30-days' : this.t('in_the_next_30_days'),
-                '30-beyond' : this.t('30_days_and_ beyond'),
+                '30-beyond' : this.t('30_days_and_beyond'),
                 ':robot' : this.t('exact_dates')
             }
         },
