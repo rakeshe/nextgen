@@ -1548,19 +1548,41 @@
                 return false;
             }
 
-            var chD = checkInDate.split('/'),
-                chD = chD[1]+'/'+chD[0]+'/'+chD[2],
-                cInTimestamp = new Date(chD).getTime();
+            if (dFormat == 'y/mm/dd') {
+
+                var chD = checkInDate.split('/'),
+                    chD = chD[1]+'/'+chD[2]+'/'+chD[0],
+
+                    chOD = checkoutDate.split('/'),
+                    chOD = chOD[1]+'/'+chOD[2]+'/'+chOD[0];
+
+            } else if (dFormat == 'yy-mm-dd') {
+
+                var chD = checkInDate.split('-'),
+                    chD = chD[1]+'/'+chD[2]+'/'+chD[0],
+
+                    chOD = checkoutDate.split('/'),
+                    chOD = chOD[1]+'/'+chOD[2]+'/'+chOD[0];
+
+            } else if (dFormat == 'dd/mm/y') {
+                var chD = checkInDate.split('/'),
+                    chD = chD[1]+'/'+chD[0]+'/'+chD[2],
+
+                    chOD = checkoutDate.split('/'),
+                    chOD = chOD[1]+'/'+chOD[0]+'/'+chOD[2];
+            } else {
+                var chD = '',
+                    chOD = '';
+            }
+
+            var  cInTimestamp  = new Date(chD).getTime(),
+                 cOutTimestamp = new Date(chOD).getTime();
 
             if (isNaN(cInTimestamp) == true) {
                 checkIn.css('outline',' 1px solid red');
                 valMessage.append('<p>Please enter valid Check-in date</p>')
                 validForm = true;
             }
-
-            var chOD = checkoutDate.split('/'),
-                chOD = chOD[1]+'/'+chOD[0]+'/'+chOD[2],
-                cOutTimestamp = new Date(chOD).getTime();
 
             if (isNaN(cOutTimestamp) == true) {
                 checkOut.css('outline',' 1px solid red');
