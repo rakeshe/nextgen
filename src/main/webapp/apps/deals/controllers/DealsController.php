@@ -208,29 +208,22 @@ class DealsController extends ControllerBase {
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
         $docFooterSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'], true )
-        );
-        $docFooterSeo = json_decode($docFooterSeo);
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true );
+
+        $docSeo =  $this->model->getDocument(
+            $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
 
         $docFooterAbout = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'], true )
-        );
-        $docFooterAbout = json_decode($docFooterAbout);
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true );
 
         $docHtmlHead = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_head'], true )
-        );
-        $docHtmlHead = json_decode($docHtmlHead);
+            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] ), true );
 
         $docHtmlBodyStart = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'], true )
-        );
-        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] ), true );
 
         $docHtmlBodyEnd = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'], true )
-        );
-        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] ), true );
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
@@ -311,6 +304,7 @@ class DealsController extends ControllerBase {
                 'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
                 'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
                 'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
+                'docSeo'              => $docSeo,
                 'translation'         => $trans,
                 'currenciesData'      => json_encode($this->config->currencies),
                 'localeData'          => json_encode($this->config->languageOptions),

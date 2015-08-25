@@ -507,6 +507,8 @@
 
             this.cityNameUtf;
 
+            this.setSeoData();
+
             this.setCityData();
 
             this.setDealData();
@@ -567,6 +569,15 @@
                 this.hData = $.parseJSON(hData);
             } catch (e ) {
                 this.hData = false;
+            }
+        },
+
+        setSeoData : function() {
+
+            try {
+                this.seoData = $.parseJSON(docSeo);
+            } catch (e ) {
+                this.seoData = false;
             }
         },
 
@@ -688,7 +699,7 @@
 
           if ($.isEmptyObject(this.hData) == true) {
 
-
+              this.setMetadata('home');
 
               if (noHData == 'true') {
                   this.displayDropDownData('value');
@@ -702,6 +713,8 @@
                   this.displayRegionHotelCards();
               }
           } else {
+
+              this.setMetadata('destination');
               // root to second page
               this.displayDropDownData('value');
               this.setCityImage();
@@ -709,9 +722,19 @@
               $('#breadcrumb-city').html(city); // Set breadcrumb
               this.hotelCardCtrl();
 
-              console.log(this.cityData);
-
           }
+        },
+
+        setMetadata : function(type) {
+
+            try {
+                document.title = this.seoData[type]['title'];
+                $('meta[name="description"]').attr('content', this.seoData[type]['description']);
+                $('meta[name="robots"]').attr('content', this.seoData[type]['robot']);
+
+            } catch(e) {
+                console.log('meta type is unknown');
+            }
         },
 
         reLoadLandingPage: function() {
@@ -753,6 +776,7 @@
 
                         console.log(url);
                         History.pushState({url: url}, obj.city + ' Hotels', url);
+
 
                     }
                 }
@@ -1879,7 +1903,7 @@
                 Deals.setCity(city);
                 Deals.setWhen(city);
 
-                console.log('city => '+city + ' when=> '+when);
+                //console.log('city => '+city + ' when=> '+when);
 
                 if (when == '' || city == '' || typeof Deals.getWhereDoGoText()[when] == "undefined") {
 
@@ -1888,6 +1912,8 @@
                     } else {
                         Deals.defaultCtrl(false);
                     }
+
+                    Deals.setMetadata('home');
 
                 } else {
                     var sortBy = getParameterByName('sort'),
@@ -1899,7 +1925,7 @@
                     if (sortType != '')
                         Deals.sortType = sortType;
 
-
+                    Deals.setMetadata('destination');
                     Deals.hotelCardCtrl( {region : '', city : city, when: when, curr: curr, dropDownRefresh : true} );
                 }
 
@@ -1976,6 +2002,7 @@
                        // console.log(typeof rg, typeof cy, typeof dy);
                         if (typeof rg == "string" && typeof cy == "string" && typeof dy == "string") {
                             //start routing ..
+                            Deals.setMetadata('destination');
                             Deals.route({region:rg, city:cy, when:dy, curr : curr}, 'hotelCardCtrl');
                             Deals.setCityImage();
                             $('.region-hotel-card-box').hide();
