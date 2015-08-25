@@ -79,17 +79,17 @@ return new \Phalcon\Config ([
 				),
 				*/
 				'asia' => array (
-						'CNY' => '¥CNY - Chinese Yuan',
-						'HKD' => '$HKD - Hong Kong Dollar',
+						'CNY' => 'CNY - Chinese Yuan',
+						'HKD' => 'HKD - Hong Kong Dollar',
 //						'IDR' => 'RpIDR - Indonesia Rupiah',
 //						'INR' => '₹INR - Indian Rupee',
-						'JPY' => '¥JPY - Japanese Yen',
+						'JPY' => 'JPY - Japanese Yen',
 //						'KRW' => '₩KRW - South Korean Won',
-						'MYR' => 'RM MYR - Malaysian Ringgit',
+						'MYR' => 'MYR - Malaysian Ringgit',
 //						'PHP' => '₱PHP - Philippine Peso',
-						'SGD' => '$SGD - Singapore Dollar',
+						'SGD' => 'SGD - Singapore Dollar',
 //						'THB' => '฿THB - Thai Baht',
-						'TWD' => '$TWD - New Taiwan Dollar'
+						'TWD' => 'TWD - New Taiwan Dollar'
 				),
                 /*
 				'middle-east' => array (
@@ -113,7 +113,7 @@ return new \Phalcon\Config ([
 						'UAH' => '₴UAH - Ukrainian Hryvnia'
 				),*/
 				'oceania' => array (
-						'AUD' => '$AUD - Australian Dollar',
+						'AUD' => 'AUD - Australian Dollar',
 //						'NZD' => '$NZD - New Zealand Dollar'
 				)
 		) ,
