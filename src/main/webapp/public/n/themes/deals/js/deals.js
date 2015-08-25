@@ -46,7 +46,7 @@
     }
     /* End IE 9 and below work arounds */
     HB.registerHelper('displayPrice', function(onegId, currObj, MemberPrice) {
-
+ 
 
         if (typeof currObj['data'] !== 'undefined' && currObj['data'].hasOwnProperty([onegId])) {
 
@@ -2087,6 +2087,9 @@
 		var hotelId = $(this).attr('data-onegid');
         var hotelName = $(this).attr('data-hotel');
         var cityName = $('.dropdown-cities').val();
+		var date = new Date();
+		var dropWhereDoVal = (($('.dropWhereDo').val()) == '30-beyond') ? 1:0;
+		var minDate = new Date(date.getFullYear(), date.getMonth()+ dropWhereDoVal, date.getDate());
 
         ga('send', 'event', 'hotel-card', 'orbot-activate', hotelName);
 
@@ -2132,10 +2135,9 @@
             'display':'block',
             'z-index': 999
         });
-
         $("#select-check-in").datepicker({
             inline : true,
-            minDate : 0,
+            minDate : minDate,
             showCurrentAtPos : 0,
             firstDay : 0,
             dateFormat: dFormat,
@@ -2159,7 +2161,7 @@
         });//initialize the date-picker for check-in
         $("#select-check-out").datepicker({
             inline : true,
-            minDate : 0,
+            minDate : minDate,
             showCurrentAtPos : 0,
             dateFormat: dFormat,
 			altField: "#alternate-check-out",
