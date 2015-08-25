@@ -49,7 +49,7 @@
                         <img src="/n/themes/deals/images/assets/plus-cross.png" class="hero-cross"/>
                     </div>
                     <div class="six columns">
-                        <img src="" class="promo-two-img" style="float:right; padding-left:0px; padding-right:0px;"/>
+                        <img src="" class="promo-two-img" style="float:left; margin-left: -15px; padding-left:0px; padding-right:15px;"/>
                         <p class="hero-text-title promo-two-title"></p>
                         <p class="hero-text-body promo-two-dody"></p>
                     </div>
