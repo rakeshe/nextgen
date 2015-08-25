@@ -24,7 +24,8 @@
             currD = '{{currDoc}}',
             cName = '{{campaignName}}',
             dFormat = '{{dFormat}}',
-            dFormatPl = '{{dFormatPl}}';
+            dFormatPl = '{{dFormatPl}}',
+            docSeo = '{{docSeo}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->

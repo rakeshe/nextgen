@@ -71,6 +71,7 @@ class DealsModel extends \Phalcon\Mvc\Model
         'html_body_end' => 'html_body_end',
         'translation'   => 'translation',
         'currency'      => 'currency',
+        'seo'           => 'seo'
     ];
 
     public $campaignName;
