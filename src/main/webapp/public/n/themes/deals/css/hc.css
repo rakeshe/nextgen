@@ -1215,10 +1215,16 @@ select {
 .hero-text-title {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     color:#333;
-    font-size:19px;
+    font-size:20px;
     line-height:25px;
     margin-bottom:0px;
 }
+@media (max-width: 480px) {
+    .hero-text-title {
+        width: 290px;
+    }
+}
+
 .hero-text-body {
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     color:#333;
@@ -1229,6 +1235,7 @@ select {
 @media (max-width: 480px) {
 	.hero-text-body {
 		margin-bottom:30px;
+        width: 290px;
 	}
 }
 .hero-image {
@@ -1287,6 +1294,12 @@ select {
     margin-top:8px;
     margin-bottom:20px;
 }
+@media (max-width: 480px) {
+    .find-your h2 {
+        font-size: 26px;
+    }
+}
+
 /* Pagination */
 
 .pag-city {
