@@ -210,22 +210,27 @@ class DealsController extends ControllerBase {
         $docFooterSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'], true )
         );
+        $docFooterSeo = json_decode($docFooterSeo);
 
         $docFooterAbout = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_about'], true )
         );
+        $docFooterAbout = json_decode($docFooterAbout);
 
         $docHtmlHead = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['html_head'], true )
         );
+        $docHtmlHead = json_decode($docHtmlHead);
 
         $docHtmlBodyStart = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'], true )
         );
+        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
 
         $docHtmlBodyEnd = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'], true )
         );
+        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
@@ -301,11 +306,11 @@ class DealsController extends ControllerBase {
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
-                'docFooterSeo'        => !empty($docFooterSeo['html']) ? $docFooterSeo['htm'] : '',
-                'docFooterAbout'      => !empty($docFooterAbout['html']) ? $docFooterAbout['htm'] : '',
-                'docHtmlHead'         => !empty($docHtmlHead['html']) ? $docHtmlHead['htm'] : '',
-                'docHtmlBodyStart'    => !empty($docHtmlBodyStart['html']) ? $docHtmlBodyStart['html'] : '',
-                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd['html']) ? $docHtmlBodyEnd['html'] : '',
+                'docFooterSeo'        => !empty($docFooterSeo->html) ? $docFooterSeo->html : '',
+                'docFooterAbout'      => !empty($docFooterAbout->html) ? $docFooterAbout->html : '',
+                'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
+                'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
+                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
                 'translation'         => $trans,
                 'currenciesData'      => json_encode($this->config->currencies),
                 'localeData'          => json_encode($this->config->languageOptions),

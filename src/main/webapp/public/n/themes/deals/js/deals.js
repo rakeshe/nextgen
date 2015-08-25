@@ -292,7 +292,7 @@
      HB.registerHelper('regionCardTopHotels', function(obj) {
 
          var html = '<ul>';
-         var baseUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&locale=en_AU"
+         var baseUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&locale=" + locale
              + "&hsv.showDetails=true"
              + "&hotel.type=keyword"
              + "&hotel.chkin="
@@ -818,7 +818,7 @@
                     } else if (this.sortBy == 'name') {
                         Deals.sortByText('hotelNameUtf8', this.sortType);
                     } else if (this.sortBy == 'rating') {
-                        Deals.sortByNumber('starRating', this.sortType);
+                        Deals.sortByNumber('starRatingiu', this.sortType);
                     }
 
                     var desIcon = ' &or;',
@@ -851,7 +851,7 @@
                      } else if (this.sortBy == 'name') {
                         Deals.sortByText('hotelNameUtf8', this.sortType);
                      } else if (this.sortBy == 'rating') {
-                        Deals.sortByNumber('starRating', this.sortType);
+                        Deals.sortByNumber('starRatingiu', this.sortType);
                      }
 
                     var desIcon = ' &or;',
@@ -873,10 +873,12 @@
         },
 
         setHeroesImage : function () {
-
-            var index = Math.floor((Math.random() * 8));
-            if ($.isEmptyObject(this.heroImages) == false && typeof this.heroImages[index]['image'] == 'string') {
-                $('.hero').css('background-image', 'url("/' + this.heroImages[index]['image'] + '")');
+            if ($.isEmptyObject(this.heroImages) == false){
+                var heroImageCount = this.heroImages.length;
+                var index = Math.floor((Math.random() * heroImageCount));
+                if (typeof this.heroImages[index]['image'] == 'string') {
+                    $('.hero').css('background-image', 'url("/' + this.heroImages[index]['image'] + '")');
+                }
             }
         },
 
@@ -1355,7 +1357,7 @@
                     text : val[2]
                 };
 
-                self.cityImage[val[2]] = val[1];
+                self.cityImage[val[3]] = val[1];
 
                 if (selectType == 'value' && val[3] == self.city) {
                     opt.selected = "selected";
@@ -1431,6 +1433,8 @@
 
                 dropCities.append( this.getLastDestination() );
             }
+
+
         },
 
         setCityImage : function() {
@@ -2097,7 +2101,7 @@
 		if(browserWidth<768){
             /* This use-case is for mobile device: setup redirect url and bypass pop up */
             var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
-                + "&locale=en_AU"
+                + "&locale=" + locale
                 + "&hotel.hid="+ hotelId
                 + "&hotel.hname="+hotelName
                 + "&hsv.showDetails=true"
@@ -2221,7 +2225,7 @@
 			//redirect to hotelclub site with the all the input value
 			var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel"
                 + "&hotel.couponCode="+promoCodeVal
-                + "&locale=en_AU"
+                + "&locale=" + locale
                 + "&hotel.hid="+onegId
 				+ "&hotel.hname="+hotelName
                 + "&hsv.showDetails=true"
@@ -2339,7 +2343,7 @@
             checkOut = $('#check-out').val(),
             hotelName = $('.search-hotel-name').val() == 'e.g. Sydney Hilton' ? '' : $('.search-hotel-name').val(),
             promo = ($(".search-promo-code").val() == $(".search-promo-code").attr('data-value')) ? '' : $.trim($(".search-promo-code").val()),
-            local = 'en_AU',
+            local = locale,
             cityName = $('.robot-city-name').val();
 
         var searchUrl = "//www.hotelclub.com/shop/hotelsearch?type=hotel&hotel.couponCode="
@@ -2410,7 +2414,7 @@
 
         } else if ($(this).data('sort') == 'rating') {
 
-            Deals.sortByNumber('starRating', type);
+            Deals.sortByNumber('starRatingiu', type);
             ga('send', 'event', 'sort', 'sort-rating-activate', '');
         }
 
