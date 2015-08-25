@@ -208,22 +208,32 @@ class DealsController extends ControllerBase {
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
         $docFooterSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true );
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] )
+        );
+        $docFooterSeo = json_decode($docFooterSeo);
 
         $docSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
 
         $docFooterAbout = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true );
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] )
+        );
+        $docFooterAbout = json_decode($docFooterAbout);
 
         $docHtmlHead = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] ), true );
+            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] )
+        );
+        $docHtmlHead = json_decode($docHtmlHead);
 
         $docHtmlBodyStart = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] ), true );
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] )
+        );
+        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
 
         $docHtmlBodyEnd = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] ), true );
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] )
+        );
+        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
