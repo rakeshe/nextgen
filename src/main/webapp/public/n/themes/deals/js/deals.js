@@ -1355,7 +1355,7 @@
                     text : val[2]
                 };
 
-                self.cityImage[val[2]] = val[1];
+                self.cityImage[val[3]] = val[1];
 
                 if (selectType == 'value' && val[3] == self.city) {
                     opt.selected = "selected";
@@ -1431,6 +1431,8 @@
 
                 dropCities.append( this.getLastDestination() );
             }
+
+
         },
 
         setCityImage : function() {
