@@ -439,10 +439,12 @@ class DealsController extends ControllerBase {
      * @return array|null
      */
     protected function getContentByScope($content){
-        if(!empty($content) && is_array($content)){
         $contentScope = null != $this->city && null != $this->when ? self::CONTENT_SCOPE_DESTINATION : self::CONTENT_SCOPE_HOME;
         $contentScopeDefault = self::CONTENT_SCOPE_DEFAULT;
         $parsedContent = null;
+
+        if(!empty($content) && is_array($content)){
+
             $parsedContent = !empty($content[$contentScope]) ? $content[$contentScope] : null;
 
             // If null attempt o extract default scope as fallback
@@ -450,6 +452,10 @@ class DealsController extends ControllerBase {
         } else {
             $parsedContent = '';
         }
-        return null === $parsedContent ? $content : $parsedContent;
+        // if parsed is still null but content is not empty then we have content with scope other than home, city or default, get the first one
+        if(null === $parsedContent && !empty($content) && is_array($content)){
+            $parsedContent = array_values($content)[0];
+        }
+        return $parsedContent;
     }
 }
