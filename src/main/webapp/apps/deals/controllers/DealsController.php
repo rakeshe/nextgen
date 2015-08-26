@@ -27,6 +27,10 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_LOCALE = 'en_AU';
 
+    const CONTENT_SCOPE_HOME = 'home';
+    const CONTENT_SCOPE_DESTINATION = 'destination';
+    const CONTENT_SCOPE_DEFAULT = 'default';
+
     private $cityList;
 
     /** @var  \HC\Deals\Models\DealsModel  */
@@ -208,32 +212,32 @@ class DealsController extends ControllerBase {
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
         $docFooterSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true
         );
-        $docFooterSeo = json_decode($docFooterSeo);
+//        $docFooterSeo = json_decode($docFooterSeo);
 
         $docSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
 
         $docFooterAbout = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true
         );
-        $docFooterAbout = json_decode($docFooterAbout);
+//        $docFooterAbout = json_decode($docFooterAbout);
 
         $docHtmlHead = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] ), true
         );
-        $docHtmlHead = json_decode($docHtmlHead);
+//        $docHtmlHead = json_decode($docHtmlHead);
 
         $docHtmlBodyStart = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] ), true
         );
-        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
+//        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
 
         $docHtmlBodyEnd = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] ), true
         );
-        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
+//        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
@@ -331,11 +335,11 @@ class DealsController extends ControllerBase {
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
-                'docFooterSeo'        => !empty($docFooterSeo->html) ? $docFooterSeo->html : '',
-                'docFooterAbout'      => !empty($docFooterAbout->html) ? $docFooterAbout->html : '',
-                'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
-                'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
-                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
+                'docFooterSeo'        => $this->getContentByScope($docFooterSeo),
+                'docFooterAbout'      => $this->getContentByScope($docFooterAbout),
+                'docHtmlHead'         => $this->getContentByScope($docHtmlHead),
+                'docHtmlBodyStart'    => $this->getContentByScope($docHtmlBodyStart),
+                'docHtmlBodyEnd'      => $this->getContentByScope($docHtmlBodyEnd),
                 'docSeo'              => $docSeo,
                 'translation'         => $trans,
                 'currenciesData'      => json_encode($c),
@@ -428,5 +432,24 @@ class DealsController extends ControllerBase {
             $defaultCurrency = SELF::DEFAULT_CURR;
         }
         return $defaultCurrency;
+    }
+
+    /**
+     * @param $content
+     * @return array|null
+     */
+    protected function getContentByScope($content){
+        if(!empty($content) && is_array($content)){
+        $contentScope = null != $this->city && null != $this->when ? self::CONTENT_SCOPE_DESTINATION : self::CONTENT_SCOPE_HOME;
+        $contentScopeDefault = self::CONTENT_SCOPE_DEFAULT;
+        $parsedContent = null;
+            $parsedContent = !empty($content[$contentScope]) ? $content[$contentScope] : null;
+
+            // If null attempt o extract default scope as fallback
+            $parsedContent = null === $parsedContent && !empty($content[$contentScopeDefault]) ? $content[$contentScopeDefault] : $parsedContent;
+        } else {
+            $parsedContent = '';
+        }
+        return null === $parsedContent ? $content : $parsedContent;
     }
 }
