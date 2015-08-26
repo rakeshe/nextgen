@@ -1030,19 +1030,24 @@
                     var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
                     var userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
                     var userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
-                    userName = userName.replace('Welcome ', '');
-                    userTier = userTier.replace(':', '');
+                    if(null != userBalance) userName = userName.replace('Welcome ', '');
+                    if(null != userTier) userTier = userTier.replace(':', '');
 
                     var UserBalanceRegx = new RegExp('.*?(\\(.*\\))',["i"]);
                     var m = UserBalanceRegx.exec(userBalance);
-                    userBalance = m[1];
-                    userBalance = userBalance.replace('(','');
-                    userBalance = userBalance.replace(')','');
-                    memberPrice = userBalance.replace('$', '');
-
+                    if(null != m) {
+                        userBalance = m[1];
+                        userBalance = userBalance.replace('(', '');
+                        userBalance = userBalance.replace(')', '');
+                        memberPrice = userBalance.replace('$', '');
+                    }
+                    userName = undefined == userName ? '' : userName;
+                    userBalance = undefined == userBalance ? 0 : userBalance;
+                    userTier = undefined == userTier ? '' : userTier;
                     //var userBalance = htmlObject.find('.userBalance').html();
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
+
                     $('.user-member-name').html(userName);
                     $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/'+ MNME +'">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
