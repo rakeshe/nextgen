@@ -1044,7 +1044,7 @@
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/"'+ MNME +'>Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/'+ MNME +'">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
