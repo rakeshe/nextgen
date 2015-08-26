@@ -1206,7 +1206,7 @@ select {
     padding-top:24px;
     padding-bottom:24px;
     float:left;
-	width:100%;
+	width:98%;
 }
 .hero-text a {
     text-decoration:underline;
@@ -1236,6 +1236,9 @@ select {
 	.hero-text-body {
 		margin-bottom:30px;
         width: 290px;
+	}
+	.hero-text-box {
+		width:88% !important;
 	}
 }
 .hero-image {

@@ -1044,7 +1044,7 @@
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/n/sale/deals/">Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/'+ MNME +'">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
@@ -1173,7 +1173,7 @@
             }
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template(
-                {trans: $.extend({}, this.trans, this.hPageData['translation']), locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr}
+                {trans: $.extend({}, this.trans, this.hPageData['translation']), locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr, defaultUrl : MNME}
             ));
         },
 

@@ -287,6 +287,28 @@ class DealsController extends ControllerBase {
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
+
+        $locale = $this->masterData['data'][$this->campaignName]['locales'];
+        $l = [];
+        foreach(explode(',', $locale) as $loc) {
+
+            if (array_key_exists($loc, $this->config->languageOptions)) {
+                $l[$loc] = $this->config->languageOptions[$loc];
+            }
+         }
+
+        $currencies = $this->masterData['data'][$this->campaignName]['currencies'];
+        $c = [];
+        foreach(explode(',', $currencies) as  $cur) {
+
+            foreach($this->config->currencies as  $key => $cr) {
+
+                if (array_key_exists($cur, $cr)) {
+                    $c[$key][$cur] = $cr[$cur];
+                }
+            }
+        }
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -316,8 +338,8 @@ class DealsController extends ControllerBase {
                 'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
                 'docSeo'              => $docSeo,
                 'translation'         => $trans,
-                'currenciesData'      => json_encode($this->config->currencies),
-                'localeData'          => json_encode($this->config->languageOptions),
+                'currenciesData'      => json_encode($c),
+                'localeData'          => json_encode($l),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale,
                 'currDoc'             => $currDoc,

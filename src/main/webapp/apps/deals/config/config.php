@@ -23,7 +23,7 @@ return new \Phalcon\Config ([
             'zh_CN' => ['name' => '简体中文', 'class' => 'flag-cn'],
             'zh_HK' => ['name' => '繁體中文 (香港)', 'class' => 'flag-hk'],
             'ja_JP' => ['name' => '日本語', 'class' => 'flag-jp'],
-            /*'ms_MY' => ['name' => 'Bahasa Melayu', 'class' => 'flag-my'],
+            'ms_MY' => ['name' => 'Bahasa Melayu', 'class' => 'flag-my'],
             'de_DE' => ['name' => 'Deutsch', 'class' => 'flag-de'],
             'es_ES' => ['name' => 'Español', 'class' => 'flag-es'],
             'fr_FR' => ['name' => 'Français', 'class' => 'flag-fr'],
@@ -35,7 +35,7 @@ return new \Phalcon\Config ([
             'pt_PT' => ['name' => 'Português', 'class' => 'flag-pt'],
             'ru_RU' => ['name' => 'Русский', 'class' => 'flag-ru'],
             'sv_SE' => ['name' => 'Svenska', 'class' => 'flag-se'],
-            'th_TH' => ['name' => 'ไทย', 'class' => 'flag-th'],*/
+            'th_TH' => ['name' => 'ไทย', 'class' => 'flag-th'],
         ),
 		'locales' => array (
 				'MY' => 'ms_MY',
@@ -58,7 +58,7 @@ return new \Phalcon\Config ([
                 'ID' => 'id_ID'
 		),
 		'currencies' => array (
-				/*'most-used-currencies' => array (
+				'most-used-currencies' => array (
 						'AUD' => '$AUD - Australian Dollar',
 						'CNY' => '¥CNY - Chinese Yuan',
 						'EUR' => '€EUR - Euro体中文',
@@ -77,21 +77,21 @@ return new \Phalcon\Config ([
 						'MXN' => '$MXN - Mexican Peso',
 						'USD' => '$USD - US Dollar'
 				),
-				*/
+
 				'asia' => array (
-						'CNY' => 'CNY - Chinese Yuan',
-						'HKD' => 'HKD - Hong Kong Dollar',
-//						'IDR' => 'RpIDR - Indonesia Rupiah',
-//						'INR' => '₹INR - Indian Rupee',
-						'JPY' => 'JPY - Japanese Yen',
-//						'KRW' => '₩KRW - South Korean Won',
-						'MYR' => 'MYR - Malaysian Ringgit',
-//						'PHP' => '₱PHP - Philippine Peso',
-						'SGD' => 'SGD - Singapore Dollar',
-//						'THB' => '฿THB - Thai Baht',
-						'TWD' => 'TWD - New Taiwan Dollar'
+						'CNY' => '¥CNY - Chinese Yuan',
+						'HKD' => '$HKD - Hong Kong Dollar',
+						'IDR' => 'RpIDR - Indonesia Rupiah',
+						'INR' => '₹INR - Indian Rupee',
+						'JPY' => '¥JPY - Japanese Yen',
+						'KRW' => '₩KRW - South Korean Won',
+						'MYR' => 'RM MYR - Malaysian Ringgit',
+						'PHP' => '₱PHP - Philippine Peso',
+						'SGD' => '$SGD - Singapore Dollar',
+						'THB' => '฿THB - Thai Baht',
+						'TWD' => '$TWD - New Taiwan Dollar'
 				),
-                /*
+
 				'middle-east' => array (
 						'AED' => 'د.إAED - UAE Dirham',
 						'ILS' => '₪ILS - Israeli New Sheqel',
@@ -111,10 +111,10 @@ return new \Phalcon\Config ([
 						'RUB' => '₽RUB - Russian Ruble',
 						'SEK' => 'krSEK - Swedish Krona',
 						'UAH' => '₴UAH - Ukrainian Hryvnia'
-				),*/
+				),
 				'oceania' => array (
-						'AUD' => 'AUD - Australian Dollar',
-//						'NZD' => '$NZD - New Zealand Dollar'
+						'AUD' => '$AUD - Australian Dollar',
+						'NZD' => '$NZD - New Zealand Dollar'
 				)
 		) ,
         'currencyGroup' => [
