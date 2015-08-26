@@ -1013,7 +1013,7 @@
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
-                var hclUrl = "http://www.hotelclub.com/";
+                var hclUrl = "http://www.hotelclub.com/?locale=en_AU";
                 //var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
