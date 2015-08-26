@@ -1230,6 +1230,9 @@ select {
 	.hero-text-body {
 		margin-bottom:30px;
 	}
+	.hero-text-box {
+		width:88% !important;
+	}
 }
 .hero-image {
     float:right;
