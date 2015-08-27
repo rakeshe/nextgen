@@ -1013,7 +1013,7 @@
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
-                var hclUrl = "http://www.hotelclub.com/?locale=en_AU";
+                var hclUrl = "http://www.hotelclub.com/?locale=en_AU&curr=" + curr;
                 //var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
@@ -1030,6 +1030,7 @@
                     var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
                     var userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
                     var userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+                    //console.log('userBalance raw' + userBalance);
                     if(null != userBalance) userName = userName.replace('Welcome ', '');
                     if(null != userTier) userTier = userTier.replace(':', '');
 
@@ -1039,7 +1040,9 @@
                         userBalance = m[1];
                         userBalance = userBalance.replace('(', '');
                         userBalance = userBalance.replace(')', '');
-                        memberPrice = userBalance.replace('$', '');
+                        var memberPriceRegx = new RegExp('\\d*[,.]?\\d+',["i"]);
+                        var n = memberPriceRegx.exec(userBalance);
+                        memberPrice = n= undefined !== n[0] ? n[0] : 0;
                     }
                     userName = undefined == userName ? '' : userName;
                     userBalance = undefined == userBalance ? 0 : userBalance;
@@ -1047,6 +1050,7 @@
                     //var userBalance = htmlObject.find('.userBalance').html();
                     //var userName = htmlObject.find('.userName').html();
                     //var userTier = htmlObject.find('.userTier').html();
+                    console.log('memberPrice:' +memberPrice);
 
                     $('.user-member-name').html(userName);
                     $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/'+ MNME +'">Sign out</a>');
