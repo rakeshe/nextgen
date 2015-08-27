@@ -383,8 +383,7 @@
 
     });
 
-    HB.registerHelper('displayCurrencyDropDown', function(obj) {
-
+    HB.registerHelper('displayCurrencyDropDown', function(obj, trans) {
 
         var html = '<ul class="currencySelector selector multiColumn">';
 
@@ -437,24 +436,19 @@
                             }
 
                             html += ' <div class="cur-section">';
-                            html += '<h5 class="Countries">'+key+'</h5>';
+                            html += '<h5 class="Countries">'+ Handlebars.helpers.t( trans, key )['string'] +'</h5>';
                             html += '<ul>';
                             counter++;
                         }
 
 
                         html += ' <li data-component="currencySelectorItem">';
-                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+obj[key][k]+'</span></span>';
+                        //console.log(obj[key][k].split('-')[1].trim());
+                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+ Handlebars.helpers.t( trans, obj[key][k].split('-')[1].trim() )['string'] +'</span></span>';
                         html += ' </li>';
 
                         tempKey = key;
                         footTag = true;
-
-                        //console.log(obj[key][k]);
-                        //console.log(k);
-
-
-
                     }
                 }
 

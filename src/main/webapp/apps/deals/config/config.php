@@ -59,62 +59,62 @@ return new \Phalcon\Config ([
 		),
 		'currencies' => array (
 				'most-used-currencies' => array (
-						'AUD' => '$AUD - Australian Dollar',
-						'CNY' => '¥CNY - Chinese Yuan',
-						'EUR' => '€EUR - Euro体中文',
-						'GBP' => '£GBP - British Pound Sterling',
-						'INR' => '₹INR - Indian Rupee',
-						'NZD' => '$NZD - New Zealand Dollar',
-						'USD' => '$USD - US Dollar'
+						'AUD' => 'AUD - australian_dollar',
+						'CNY' => 'CNY - chinese_yuan',
+						'EUR' => 'EUR - euro_eur',
+						'GBP' => 'GBP - british_pound_sterling',
+						'INR' => 'INR - indian_rupee',
+						'NZD' => 'NZD - new_zealand_dollar',
+						'USD' => 'USD - us_dollar'
 				),
 				'africa' => array (
-						'ZAR' => 'R ZAR - South African Rand'
+						'ZAR' => 'ZAR - south_african_rand'
 				),
 				'americas' => array (
-						'BRL' => 'R$BRL - Brazilian Real',
-						'CAD' => '$CAD - Canadian Dollar',
-						'COP' => '$COP - Colombia Peso',
-						'MXN' => '$MXN - Mexican Peso',
-						'USD' => '$USD - US Dollar'
+						'BRL' => 'BRL - brazilian_real',
+						'CAD' => 'CAD - canadian_dollar',
+						'COP' => 'COP - colombia_peso',
+						'MXN' => 'MXN - mexican_peso',
+						'USD' => 'USD - us_dollar'
 				),
 
 				'asia' => array (
-						'CNY' => '¥CNY - Chinese Yuan',
-						'HKD' => '$HKD - Hong Kong Dollar',
-						'IDR' => 'RpIDR - Indonesia Rupiah',
-						'INR' => '₹INR - Indian Rupee',
-						'JPY' => '¥JPY - Japanese Yen',
-						'KRW' => '₩KRW - South Korean Won',
-						'MYR' => 'RM MYR - Malaysian Ringgit',
-						'PHP' => '₱PHP - Philippine Peso',
-						'SGD' => '$SGD - Singapore Dollar',
-						'THB' => '฿THB - Thai Baht',
-						'TWD' => '$TWD - New Taiwan Dollar'
+						'CNY' => 'CNY - chinese_yuan',
+						'HKD' => 'HKD - hong_kong_dollar',
+						'IDR' => 'IDR - indonesia_rupiah',
+						'INR' => 'INR - indian_rupee',
+						'JPY' => 'JPY - japanese_yen',
+						'KRW' => 'KRW - south_korean_won',
+						'MYR' => 'MYR - malaysian_ringgit',
+						'PHP' => 'PHP - philippine_peso',
+						'SGD' => 'SGD - singapore_dollar',
+						'THB' => 'THB - thai_baht',
+						'TWD' => 'TWD - new_taiwan_dollar'
 				),
 
-				'middle-east' => array (
-						'AED' => 'د.إAED - UAE Dirham',
-						'ILS' => '₪ILS - Israeli New Sheqel',
-						'QAR' => 'ر.قQAR - Qatar Rial',
-						'SAR' => 'ر.سSAR - Saudi Arabia Riyal',
-						'TRY' => 'TRY - Turkish Lira'
+				'middle_east' => array (
+						'AED' => 'AED - uae_dirham',
+						'ILS' => 'ILS - israeli_new_sheqel',
+						'QAR' => 'QAR - qatar_rial',
+						'SAR' => 'SAR - Saudi Arabia Riyal',
+						'TRY' => 'TRY - turkish-lira'
 				),
 				'europe' => array (
-						'CHF' => 'FrCHF - Swiss Franc',
-						'CZK' => 'KčCZK - Czech Republic Koruna',
-						'DKK' => 'krDKK - Danish Krone',
-						'EUR' => '€EUR - Euro',
-						'GBP' => '£GBP - British Pound Sterling',
-						'HUF' => 'FtHUF - Hungary Forint',
-						'NOK' => 'krNOK - Norwegian Krone',
-						'PLN' => 'złPLN - Polish Zloty',
-						'RUB' => '₽RUB - Russian Ruble',
-						'SEK' => 'krSEK - Swedish Krona',
-						'UAH' => '₴UAH - Ukrainian Hryvnia'
+						'CHF' => 'CHF - swiss_franc',
+						'CZK' => 'CZK - Czech Republic Koruna',
+						'DKK' => 'DKK - Danish Krone',
+						'EUR' => 'EUR - euro_eur',
+						'GBP' => 'GBP - british_pound_sterling',
+						'HUF' => 'HUF - hungary_forint',
+						'NOK' => 'NOK - Norwegian Krone',
+						'PLN' => 'PLN - polish_zloty',
+						'RUB' => 'RUB - russian_ruble',
+						'SEK' => 'SEK - Swedish Krona',
+						'UAH' => 'UAH - Ukrainian Hryvnia'
 				),
 				'oceania' => array (
-						'AUD' => '$AUD - Australian Dollar',
-						'NZD' => '$NZD - New Zealand Dollar'
+						'AUD' => 'AUD - australian_dollar',
+						'NZD' => 'NZD - new_zealand_dollar'
 				)
 		) ,
         'currencyGroup' => [
