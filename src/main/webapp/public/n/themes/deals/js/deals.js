@@ -484,7 +484,7 @@
 
     HB.registerHelper('t', function(obj, value) {
 
-        if (typeof obj[value] !== 'undefined') {
+        if (obj &&  typeof obj[value] !== 'undefined') {
 
             return new Handlebars.SafeString(obj[value]);
         }
@@ -1008,13 +1008,13 @@
             var df = $.Deferred();
 
             // Check cookie for logged in state
-            var cookieset =  $.cookie('mid'); // get cookie tmid value
-            //var cookieset = '266414671';  // use mine
+            //var cookieset =  $.cookie('mid'); // get cookie tmid value
+            var cookieset = '266414671';  // use mine
             if (cookieset != '' && cookieset != null) {
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
-                var hclUrl = "http://www.hotelclub.com/?locale=en_AU&curr=" + curr;
-                //var hclUrl = "/n/logged-in.html";
+                //var hclUrl = "http://www.hotelclub.com/?locale=en_AU&curr=" + curr;
+                var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
                     url : hclUrl,
