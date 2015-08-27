@@ -5,6 +5,12 @@
 {% if theme is not defined %}
 {% set theme = 'default' %}
 {% endif %}
+
+{% if locale == 'ja_JP' %}
+{% set hotelCssFile = 'hc-ja.css' %}
+{% else %}
+{% set hotelCssFile = 'hc.css' %}
+{% endif %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +18,7 @@
         {{ get_title() }}
         {{ stylesheet_link('themes/deals/css/normalize.css?' ~ appVersion ) }}
         {{ stylesheet_link('themes/deals/css/skeleton.css?' ~ appVersion ) }}
-        {{ stylesheet_link('themes/deals/css/hc.css?' ~ appVersion ) }}
+        {{ stylesheet_link('themes/deals/css/' ~ hotelCssFile ~ '?' ~ appVersion ) }}
         {{ stylesheet_link('themes/deals/css/font.css?' ~ appVersion ) }}
         {{ stylesheet_link('themes/deals/css/flags.css?' ~ appVersion ) }}
         {{ stylesheet_link('themes/deals/css/jquery-ui.css?' ~ appVersion ) }}
@@ -29,7 +35,6 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="robots" content="index, follow">
         <meta name="description" content="Great hotel deals, no booking fees & member rewards. Cheap hotels in over 74,000 hotels worldwide. Get more from your holiday. Join us at hotelclub.com.">
-        <meta name="author" content="hotel, club, hotelclub, hotelclub.net, hotels, reservation, reservations, accomodation, accomodations, rooms, lodging, service, rates, hotels, discounts, cheap, online, travel, booking, information, resorts">
         {{ partial('../../../common/views/tracking/web_trends_meta') }}
         {{ partial('../../../common/views/tracking/google_analytics') }}
         {{ partial('../../../common/views/cms/html_head') }}

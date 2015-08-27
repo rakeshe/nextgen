@@ -1,0 +1,2663 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* NAVIGATION */
+.nav {
+    height:57px;
+    /*background:#;*/
+}
+
+.logo {
+    float:left;
+    padding-right:25px;
+    padding-bottom:15px;
+}
+@media (max-width: 768px) {
+    .logo {
+        float:left;
+        width:46px;
+        height:auto;
+        padding-right:0px;
+        padding-bottom:15px;
+    }
+}
+
+.logo-footer {
+    float:left;
+    padding-right:25px;
+    padding-bottom:15px;
+}
+@media (max-width: 768px) {
+    .logo-footer {
+        float:left;
+        width:50px;
+        height:auto;
+        padding-right:25px;
+        padding-bottom:15px;
+    }
+}
+
+.tag-line {
+    font-size:16px;
+    padding-top:15px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#FFF;
+    float:left;
+}
+@media (max-width: 768px) {
+    .tag-line {
+        display:none;
+    }
+}
+
+.user {
+    float:right;
+    width:490px;
+    text-align:left;
+    padding-top:12px;
+}
+
+@media (max-width: 768px) {
+    .user {
+        float:right;
+        width:225px;
+        /*width:300px;*/
+        text-align:left;
+    }
+}
+
+.member-section {
+    float:left;
+    width:180px;
+    background-image:url(../images/assets/nav-arrow-drop-down.png);
+    background-repeat:no-repeat;
+    background-position:140px 10px;
+}
+@media (max-width: 768px) {
+	.member-section {
+        display:block;
+		width: 95px !important;
+    }
+	.user-member-name{
+		font-size:12px !important;
+	}
+	.logged-in-user > .member-section {
+		width: 135px !important;
+		text-align:right;
+	}
+}
+.club-section {
+    float:left;
+    width:180px;
+}
+@media (max-width: 768px) {
+    .club-section {
+        float:left;
+        width:95px;
+    }
+    .rewards {
+        display:none;
+    }
+}
+.currency-section {
+    float:left;
+    width:65px;
+}
+.locale-section {
+    float:left;
+    width:65px;
+}
+
+.user-id p {
+    line-height:100%;
+    margin-bottom:0px;
+}
+.user-id a {
+    text-decoration:none;
+    color:#FFF;
+}
+.user-member {
+    font-size:15px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.user-club-info {
+    font-size:12px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+	color: #FFF;
+    cursor: pointer;
+}
+.points-token {
+    background-image:url(../images/assets/Reward-Token.png);
+    background-repeat:no-repeat;
+    background-position:0px 1px;
+    padding-left:16px;
+}
+.club-id p {
+    line-height:100%;
+    margin-bottom:0px;
+}
+.club-id a {
+    text-decoration:none;
+    color:#FFF;
+}
+.club-id-currency p {
+    line-height:100%;
+    margin-bottom:0px;
+}
+.club-id-currency a {
+    text-decoration:none;
+    color:#FFF;
+}
+
+.locale-drop-down-arrow,  .drop-down-arrow {
+    background-image: url(../images/assets/drop-down-arrow.gif);
+    background-repeat: no-repeat;
+
+    padding-left: 16px;
+}
+.locale-drop-down-arrow {
+    background-position: 0px 18px;
+}
+.drop-down-arrow {
+    background-position: 0px 6px;
+}
+.locale-drop-down-arrow > .flag-pos {
+	  float: inherit;
+}
+.user-space {
+    margin-top:6px;
+}
+/* hotel search - Drop Down Menu */
+
+.hotel-dropdown-select {
+    width:100%;
+    padding-left:3%;
+    height:37px;
+    color:#333;
+    border-radius:0px;
+    border: 1px solid #CCC;  /*Removes border */
+    /*outline:1px solid #CCC;*/
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    appearance:none;
+    background: url('../images/assets/orbot-down-arrow.png?2-1-6');
+    background-position:top right;
+    background-repeat:no-repeat;
+    background-color:#FFF;
+    margin-bottom:22px;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+
+    font-size:15px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
+.hotel-dropdown-select:focus{
+    -webkit-box-shadow: 0 0 5px 2px #5ebbe0;
+    box-shadow: 0 0 5px 2px #5ebbe0;
+
+}
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    appearance:none;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+
+.disabled-style {
+    color : #929292;
+}
+
+/* NAVIGATION - Locale Drop Down Menu */
+.locale-wrapper {
+    padding-top:16px;
+    float:left;
+    width:400px;
+    background-image:url(../images/assets/menu-box-arrow.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+	display:none;
+	z-index: 999;
+	position:absolute;
+	/*margin-top:30px;*/
+}
+.locale-menu {
+    /*width:400px;*/
+	width: 160px;
+	padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+    float:left;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+	display:block;
+}
+.locale-list {
+    float:left;
+    padding-left:0px;
+    margin-bottom:0px;
+}
+.locale-list li {
+    display:block;
+    float:left;
+    width:100%;
+    list-style:none;
+    padding:2%;
+    cursor: pointer;
+
+}
+.locale-list li:hover {
+    display:block;
+    float:left;
+    width:98%;
+    list-style:none;
+    background-color:#ebebeb;
+    padding:2%;
+
+}
+
+@media (max-width: 768px) {
+    .locale-wrapper {
+        padding-top:16px;
+        float:left;
+        width:80%;
+        /*margin-left:10%;*/
+        margin-right:10%;
+    }
+    .locale-menu {
+       /* width:80%; */
+        float:left;
+       /* margin-left:10%;*/
+        margin-right:10%;
+    }
+    .locale-list li {
+        display:block;
+        float:left;
+        width:94%;
+        list-style:none;
+        padding:3%;
+        cursor: pointer;
+
+    }
+    .locale-list li:hover {
+        display:block;
+        float:left;
+        width:94%;
+        list-style:none;
+        background-color:#ebebeb;
+        padding:3%;
+
+    }
+}
+
+.locale-list li a {
+    text-decoration:none;
+    color:#333;
+}
+.flag-pos {
+    float:left;
+    width:32px;
+    height:32px;
+    padding-right:10px;
+}
+.flag-txt-pos {
+    padding-top:4px;
+}
+
+/* NAVIGATION - Currency Drop Down Menu */
+
+.Countries {
+    font-size:16px;
+    margin-bottom:0px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#55337e;
+}
+.currencySelector {
+    padding:12px;
+
+}
+.currencySelector ul {
+    margin-bottom:0px;
+}
+.currencySelector li {
+    list-style:none;
+}
+
+.cur-section ul {
+    padding-left:0px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    margin-bottom:16px;
+}
+.cur-section li {
+    list-style:none;
+    font-size:12px;
+    display:block;
+    width:94%;
+    padding:3%;
+    cursor : pointer;
+}
+.cur-section li:hover {
+    list-style:none;
+    font-size:12px;
+    display:block;
+    width:94%;
+    padding:3%;
+    background-color:#ebebeb;
+    color:#55337e;
+}
+.cur-section a {
+    text-decoration:none;
+    color:#333;
+}
+.currency-wrapper {
+    padding-top:16px;
+    float:left;
+    width:690px;
+	margin-left: -330px;
+    background-image:url(../images/assets/menu-box-arrow.png);
+    background-repeat:no-repeat;
+    background-position:top center;
+	position:absolute;
+	display:none;
+	z-index:1;
+}
+.currency-box {
+    /*width:690px;*/
+	width:190px !important;
+    float:left;
+    /*padding-bottom:12px;*/
+    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+	margin-left: 260px;
+}
+.currency-col {
+    /*width:30%;*/
+    width:100%;
+    float:left;
+}
+.currency-col-space {
+    padding-left:3%;
+}
+.currency-col-divide {
+    border-left:1px solid #aa99be;
+    border-right:1px solid #aa99be;
+}
+
+@media (max-width: 768px) {
+    .currency-wrapper {
+        padding-top:16px;
+        float:left;
+        /*width:80%;*/
+        /*margin-left:10%;*/
+        margin-right:10%;
+    }
+    .currency-box {
+        width:80%;
+        float:left;
+        /*padding-bottom:12px;*/
+        /*margin-left:10%;*/
+        margin-right:10%;
+    }
+    .currency-col {
+        width:100%;
+        float:left;
+    }
+    .currency-col-space {
+        padding-left:0%;
+    }
+    .currency-col-divide {
+        border-left:0px;
+        border-right:0px;
+    }
+}
+.mostUsed li {
+    font-weight:500;
+}
+
+/* NAVIGATION - Member Drop Down Menu */
+.member-drop-down-wrap {
+    padding-top:16px;
+    width:180px;
+    background-image:url(../images/assets/menu-box-arrow.png);
+    background-repeat:no-repeat;
+    background-position:top center;
+}
+.member-drop-down {
+    width:180px;
+    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.member-drop-down ul {
+    padding-left:0px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    font-size:14px;
+    width:180px;
+}
+.member-drop-down li {
+    list-style:none;
+    display:block;
+    border-bottom:1px solid #c7c6c6;
+    padding-left:14px;
+    padding-top:12px;
+    padding-bottom:12px;
+}
+.member-drop-down li:hover {
+    background:#ebebeb;
+}
+.member-drop-down a {
+    text-decoration:none;
+    color:#333;
+}
+.member-drop-down-social {
+    float:right;
+    padding-right:14px;
+}
+.member-drop-down-fb {
+    display:block;
+    float:right;
+    width:26px;
+    height:26px;
+    text-indent:-9999px;
+    margin-right:10px;
+    margin-top:-2px;
+    background-image:url(../images/assets/facebook-login-icon.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+.member-drop-down-gp {
+    display:block;
+    float:right;
+    width:26px;
+    height:26px;
+    text-indent:-9999px;
+    margin-top:-2px;
+    background-image:url(../images/assets/google-plus-login-icon.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+/*modal date picker*/
+#alt-check-in, #alt-check-out{
+	color: #999999;
+    margin-left: 5px;
+	width: 45% !important;
+}
+
+/* Date selector pop up */
+.select-dates-wrapper {
+    background-image:url(../images/assets/date-box-arrow.png);
+    background-position:1px 16px;
+    background-repeat:no-repeat;
+    float:left;
+    width:366px;
+}
+.select-dates {
+    background-color:#FFF;
+    /*width:350px;*/
+	width:435px;
+    float:left;
+    margin-left:16px;
+	display:none;
+	border-radius: 10px;
+}
+.select-dates-hotel-name{
+	float:left;
+}
+.select-validation-message p{
+	color: red !important;
+    font-size: 12px !important;
+}
+@media (max-width: 768px) {
+    .select-dates-wrapper {
+        /*background-image:url();*/
+        background-position:1px 16px;
+        background-repeat:no-repeat;
+        float:left;
+        width:80%;
+        margin-left:10%;
+        margin-right:10%;
+    }
+    .select-dates {
+        width:65% !important;
+        /*width:100%;*/
+        float:left;
+        margin-left:0px;
+    }
+}
+.select-dates-container {
+	margin:16px;
+}
+.select-dates-container h3 {
+	font-size:18px;
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-weight:300;
+	color:#55337e;
+	margin-bottom:8px;
+}
+.select-dates-container p {
+	font-size:14px;
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-weight:300;
+	color:#333;
+}
+.select-dates-room-val{
+	float:left;
+}
+.select-dates-container a {
+	color:#55337e;
+	text-decoration:underline;
+}
+.select-dates-row {
+	float:left;
+	width:100%;
+	margin-top:10px;
+}
+.select-dates-in-out {
+	float:left;
+	width:32%;
+	height:80px;
+}
+.select-date-hotel-val{
+	display:none;
+}
+.select-lable{
+	padding: 0 0 5px 0;
+	font-weight:700;
+	color:#6d6d6d;
+	width: 100%;
+	float: left;
+	font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+.select-dates-in-out p, .select-dates-nights p{
+	font-weight: bold;
+	color: #6d6d6d;
+}
+.select-label-val{
+	border: 0 !important;
+    font-size: 11px;
+    font-weight: normal;
+    margin-left: 3px;
+}
+.select-dates-input, .select-dates-input-child {
+    width:80%;
+    margin-right:6%;
+    padding-left:4%;
+    height:34px;
+    color:#999999;
+    border-radius:0px;
+    border: 0;  /*Removes border*/
+    /*outline:2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    background: url('../images/assets/orbot-down-arrow.png');
+    background-position:top right;
+    background-repeat:no-repeat;
+    background-color:#FFF;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+	font-weight:300;
+}
+.select-date-ages-label{
+	font-size:12px !important;
+}
+.select-dates-input-popup{
+    -moz-appearance: none;
+    background: #fff url("../images/assets/orbot-down-arrow.png") no-repeat scroll right top;
+    border: 0;
+    border-radius: 0;
+    color: #999999;
+    font-weight: 300;
+    height: 37px;
+    /*outline: 2px solid #dddee0;*/
+	border:solid 2px #dddee0;
+    border-radius: 5px;
+    padding-left: 15%;
+    text-indent: 0.01px;
+    text-overflow: "";
+    width: 75%;
+}
+.add-room, .remove-room{
+	cursor:pointer;
+	text-decoration:none;
+}
+.add-remove-lable{
+	clear:both;
+}
+.horizontal-line{
+	width:97%;
+	border-top:2px solid #eee;
+	display:block;
+	margin:5px;
+	clear:both
+}
+.select-dates-display {
+    width:80%;
+    margin-right:10%;
+    height:37px;
+    text-align:center;
+    color:#666;
+    border-radius:0px;
+    border: 0 !important;  /*Removes border*/
+}
+.select-dates-nights{
+    float:left;
+    width:20%;
+}
+.select-dates-room {
+    float:left;
+    width:32%;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.select-dates-room p {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:bold;
+	color: #6d6d6d;
+}
+.select-dates-humans {
+    float:left;
+    width:22%;
+}
+.room-divide {
+    border-bottom:1px solid #CCC;
+}
+.select-dates-add-remove {
+    float: right;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 68%;
+}
+.add-room{
+	display:block;
+	float:left;
+	margin-right:5px;
+}
+.divider-room{
+	display:none;
+	float:left;
+	margin-right:5px;
+}
+.remove-room{
+	display:none;
+	float:left;
+	margin-right:5px;
+}
+.select-dates-close-window a {
+    float:right;
+    font-size:11px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+	background-color:#ccc;
+}
+.select-dates-close-window{
+	background-color: #ccc;
+    border-radius: 10px 10px 0 0;
+    height: 53px;
+}
+.select-date-hotel-name{
+	float: left;
+    padding: 15px 0 0 15px;
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:20px;
+}
+.select-dates-close-window span {
+    color: #333;
+    cursor: pointer;
+    float: right;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    padding: 15px 10px 0 0;
+    text-decoration: underline;
+}
+.select-dates-button {
+    background-color:#55337e;
+    background-image:url(../images/assets/next-arrow.png);
+    background-repeat:no-repeat;
+    background-position:center right;
+    color:#FFF !important;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration:none !important;
+    display:block;
+    float:right;
+    font-size:16px;
+    text-align:center;
+    width:50%;
+    padding-top:11px;
+    padding-bottom:10px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+}
+.select-dates-footer{
+	float:left;
+	width:50%;
+}
+#promo-code-val{
+	width: 50% !important;
+	 background:none !important;
+}
+.find-btn{
+	margin-bottom:20px;
+	cursor:pointer;
+}
+@media (max-width: 768px) {
+    .select-dates-button {
+        width:45%;
+    }
+}
+/* Modal - Message pop up */
+.modal-wrapper {
+    width:590px;
+	position: absolute !important;
+	z-index:999 !important;
+}
+.cancel-action{
+    float:right;
+    cursor:pointer;
+}
+.modal-box {
+    #float: left;
+    width: 715px;
+    background: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 25%;
+    left: 24%;
+    z-index: 15;
+    margin: 0 auto;
+}
+.orbot-in-page{
+    position: relative !important;
+    z-index: 0;
+    left:0%;
+    width: 100%;
+    margin-bottom: 20px;
+    /*height: 360px;*/
+}
+.parentDisable{
+    position:fixed;
+    top:0;
+    left:0;
+    background:#000;
+    opacity:0.8;
+    z-index:998;
+    height:100%;
+    width:100%;
+}
+@media (max-width: 768px) {
+    .modal-wrapper {
+        float:left;
+        background-image:url(../images/assets/modal-box-arrow.png);
+        background-repeat:no-repeat;
+        background-position:bottom center;
+    }
+    .modal-box {
+        float:left;
+        width:100%;
+        margin-bottom:15px;
+    }
+}
+.modal-container {
+    margin:16px;
+}
+.modal-row {
+    float:left;
+    width:100%;
+    margin-bottom:16px;
+}
+.modal-row h3 {
+    font-size:18px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#55337e;
+    margin-bottom:0px;
+}
+.modal-row p {
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+    margin-bottom:0px;
+    line-height:200%;
+}
+.modal-row a {
+    color:#55337e;
+    text-decoration:underline;
+}
+.modal-input {
+    width:95%;
+    padding-left:5%;
+    height:37px;
+    outline:2px solid #dddee0;
+    border:0px;
+    color:#999999;
+}
+@media (max-width: 768px) {
+    .modal-input {
+        width:90%;
+        padding-left:10%;
+        height:37px;
+        outline:2px solid #dddee0;
+        border:0px;
+        color:#999999;
+    }
+}
+.modal-input-date{
+    border: 0 none;
+    color: #999999;
+    height: 37px;
+    outline: 2px solid #dddee0;
+    padding-left: 6%;
+    width: 42%;
+	z-index:999 !important;
+}
+@media (max-width: 768px) {
+    .modal-input {
+        width:90%;
+        padding-left:10%;
+        height:37px;
+        outline:2px solid #dddee0;
+        border:0px;
+        color:#999999;
+    }
+}
+.modal-marker {
+    background-image:url(../images/assets/orbot-marker.png);
+    background-repeat:no-repeat;
+    background-position:7px 9px;
+}
+.modal-calendar {
+    /*background-image:url(../images/assets/orbot-calendar.png);
+    background-repeat:no-repeat;
+    background-position:7px 9px;
+    background-color:#FFF;*/
+}
+.modal-dropdown-select, .modal-dropdown-select-child {
+    width:100%;
+    padding-left:10%;
+    height:37px;
+    color:#999999;
+    border-radius:0px;
+    border: 0 !important;  /*Removes border*/
+    outline:2px solid #dddee0;
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    background: url('../images/assets/orbot-down-arrow.png');
+    background-position:top right;
+    background-repeat:no-repeat;
+    background-color:#FFF;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+.modal-dropdown-select-child {
+    background-position: 29px 3px !important;
+    background-size: 19px 33px;
+}
+.modal-row-height{
+	display:block;
+	clear:both;
+	height:auto;
+}
+.modal-dropdown-select-date {
+    width:100%;
+    padding-left:10%;
+    height:37px;
+    color:#999999;
+    border-radius:0px;
+    border: 0 !important;  /*Removes border*/
+    outline:2px solid #dddee0;
+    -webkit-appearance: none;  /*Removes default chrome and safari style*/
+    -moz-appearance: none;  /*Removes default style Firefox*/
+    background: url('../images/assets/orbot-down-arrow.png');
+    background-position:top right;
+    background-repeat:no-repeat;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.modal-orbot-add{
+	clear: both;
+    float: right;
+    font-size: 11px;
+    width: 49%;
+}
+.room-val{
+	border:1px solid #000;
+}
+.orbot-select-rooms{
+	cursor:pointer;
+	float:left;
+	margin: 10px 2px;
+	text-decoration: underline;
+}
+.orbot-remove-rooms{
+	display: none;
+	cursor:pointer;
+	margin: 10px 2px;
+    text-decoration: underline;
+}
+.orbot-divider{
+	display:none;
+	float:left;
+	margin: 10px 2px;
+}
+@media (max-width: 768px) {
+    .modal-dropdown-select-date {
+        padding-left:15%;
+    }
+}
+.modal-row-button {
+    background-color:#55337e;
+    background-image:url(../images/assets/next-arrow.png);
+    background-repeat:no-repeat;
+    background-position:center right;
+    color:#FFF !important;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration:none !important;
+    display:block;
+    float:right;
+    font-size:16px;
+    text-align:center;
+    width:50%;
+    padding-top:11px;
+    padding-bottom:10px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+}
+
+.modal-cancel {
+    float:left;
+    margin-top:-16px;
+    margin-bottom:0px !important;
+}
+@media (max-width: 768px) {
+    .modal-row-button {
+        width:100%;
+    }
+    .modal-cancel {
+        float:left;
+        margin-top:5px;
+        margin-bottom:0px !important;
+    }
+}
+
+/* register- Message pop up */
+
+.register-wrapper {
+
+    width:300px;
+}
+.register-box {
+    float:left;
+    width:300px;
+    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+@media (max-width: 768px) {
+    .register-wrapper {
+        float:left;
+        width:80%;
+        margin-left:10%;
+        margin-right:10%;
+        background-image:url(../images/assets/register-box-arrow.png);
+        background-repeat:no-repeat;
+        background-position:bottom center;
+    }
+    .register-box {
+        float:left;
+        width:100%;
+        margin-bottom:15px;
+    }
+}
+.register-container {
+    margin:16px;
+}
+
+.register-row {
+    float:left;
+    width:100%;
+    margin-bottom:16px;
+}
+.register-row h3 {
+    font-size:18px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#55337e;
+    margin-bottom:0px;
+}
+.register-row p {
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+    margin-bottom:0px;
+    line-height:200%;
+}
+.register-row a {
+    color:#55337e;
+    text-decoration:underline;
+}
+.register-input {
+    width:95%;
+    padding-left:5%;
+    height:37px;
+    outline:2px solid #dddee0;
+    border:0px;
+    color:#999999;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+@media (max-width: 768px) {
+    .register-input {
+        width:90%;
+        padding-left:10%;
+        height:37px;
+        outline:2px solid #dddee0;
+        border:0px;
+        color:#999999;
+    }
+}
+.input-space {
+    margin-bottom:16px
+}
+
+.register-row-button {
+    background-color:#55337e;
+    background-image:url(../images/assets/next-arrow.png);
+    background-repeat:no-repeat;
+    background-position:center right;
+    color:#FFF !important;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration:none !important;
+    display:block;
+    float:right;
+    font-size:16px;
+    text-align:center;
+    width:100%;
+    padding-top:11px;
+    padding-bottom:10px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    margin-top:16px;
+}
+
+.register-drop-down {
+    padding-left:0px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    font-size:14px;
+}
+.register-drop-down li {
+    list-style:none;
+    display:block;
+    float:left;
+    padding-top:12px;
+    padding-left:0px;
+    margin-left:0px;
+}
+.register-drop-down-fb {
+    display:block;
+    width:26px;
+    height:26px;
+    text-indent:-9999px;
+    margin-right:10px;
+    margin-top:-2px;
+    background-image:url(../images/assets/facebook-login-icon.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+.register-drop-down-gp {
+    display:block;
+    width:26px;
+    height:26px;
+    text-indent:-9999px;
+    margin-top:-2px;
+    background-image:url(../images/assets/google-plus-login-icon.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+.register-divide {
+    border-bottom: 1px solid #ccc;
+    padding-bottom:16px;
+}
+.register-minus {
+    margin-top:-14px;
+}
+
+/* HERO */
+.hero {
+    /*background-image:url(../../common/img/locations/509_sydney_01_desktop.jpg);*/
+    background-position:center;
+    background-size:cover;
+    height: 590px;
+}
+
+.hero-message {
+    text-align:center;
+}
+@media (max-width: 700px) {
+    .hero-message {
+        padding-top:px;
+    }
+    .hero-message img {
+        width:90%;
+        margin-left:5%;
+        margin-right:5%;
+    }
+}
+
+.hero h1 {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:normal;
+    font-size:28px;
+    color:#FFF;
+    padding-top:20px;
+    padding-bottom:20px;
+    line-height:100%
+}
+.hero-text {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: -70px;
+    margin-bottom: 24px;
+    background: #efefef;
+    /* border: 2px solid #FFF; */
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 5px;
+
+}
+.hero-text-box {
+    padding-left:24px;
+    padding-right:24px;
+    padding-top:24px;
+    padding-bottom:24px;
+    float:left;
+	width:98%;
+}
+.hero-text a {
+    text-decoration:underline;
+    color:#da291c;
+}
+.hero-text-title {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    color:#333;
+    font-size:20px;
+    line-height:25px;
+    margin-bottom:0px;
+}
+@media (max-width: 480px) {
+    .hero-text-title {
+        width: 290px;
+    }
+}
+
+.hero-text-body {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    color:#333;
+    font-size:16px;
+    margin-bottom:0px;
+    line-height:21px;
+}
+@media (max-width: 480px) {
+	.hero-text-body {
+		margin-bottom:30px;
+        width: 290px;
+	}
+	.hero-text-box {
+		width:88% !important;
+	}
+}
+.hero-image {
+    float:right;
+    padding-left:24px;
+    padding-right:0px;
+}
+.hero-cross {
+    padding-top:37px;
+    padding-bottom:24px;
+    display: none;
+}
+@media (max-width: 768px) {
+    .hero-cross {
+        padding-top:4px;
+        padding-bottom:24px;
+    }
+}
+
+
+.hero-space {
+    height:170px;
+}
+.mys-logo {
+    text-align:center;
+}
+@media (max-width: 765px) {
+    .search-sale-box {
+        margin-top: 40%;
+    }
+}
+@media (min-width: 769px) {
+    .search-sale-box {
+        margin-top: 253px;
+    }
+}
+.search-sale-box {
+    padding-top: 14px;
+    padding-left: 22px;
+    padding-right: 22px;
+    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 5px;
+}
+.find-your {
+    text-align:left;
+    color:#333;
+}
+.find-your h2 {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    font-size:28px;
+    line-height:24px;
+    margin-top:8px;
+    margin-bottom:20px;
+}
+@media (max-width: 480px) {
+    .find-your h2 {
+        font-size: 26px;
+    }
+}
+
+/* Pagination */
+
+.pag-city {
+    float:left;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    font-size:17px;
+    color:#666666;
+}
+.pag-destination {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+.pag-links {
+    float:right;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    font-size:17px;
+    color:#666666;
+}
+@media (max-width: 768px) {
+    .pag-links {
+        float:left;
+    }
+}
+.pag-links a {
+    color:#666666;
+    text-decoration:underline;
+}
+.pag-links a:hover {
+    color:#55337e;
+    text-decoration:underline;
+}
+
+@media (max-width: 767px) {
+    .sort-row {
+        font-size: 18px;
+    }
+    .breadcrumbs{
+        padding-bottom: 15px;
+    }
+}
+/* SORT BUTTON */
+.sort-row {
+    margin-top:1px;
+    margin-bottom:1px;
+}
+
+
+.sort-control {
+    float: right;
+    margin-bottom: 0 !important;
+    padding: 0px;
+}
+.sort-list {
+    display: inline-block;
+    list-style: none;
+    padding-left: 14px;
+    padding-right: 0px;
+    cursor: pointer;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color: #a1a1a1;
+}
+.sort-list:last-child, .sort-list:nth-last-child(2){
+    padding-left: 10px;
+}
+.sort-list-label {
+    color: #333;
+    padding-left: 10px;
+}
+.sr-space {
+    padding-right: 10px;
+}
+
+/* BREADCRUMB LINKS */
+.breadcrumbs {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0 !important;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    /*padding-bottom: 10px;*/
+}
+.breadcrumbs li {
+    display: inline;
+}
+.breadcrumbs a {
+    color: #55337e;
+}
+.bc-space {
+    padding-left: 11px;
+}
+
+
+/* FILTER BUTTON */
+
+.filter-button {
+    background-color:#edac12;
+    background-image:url(../images/assets/down-arrow.png);
+    background-repeat:no-repeat;
+    background-position:center right;
+    color:#000;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration:none;
+    display:block;
+    font-size:16px;
+    text-align:center;
+    width:100%;
+    padding-top:11px;
+    padding-bottom:10px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+}
+
+/* FILTER BOX */
+.filter {
+    padding-top:4px;
+    background-image:url(../images/assets/filter-box-arrow.png);
+    background-repeat:no-repeat;
+    background-position:30px 0px;
+}
+.filter-box {
+    background-color:#ebebeb;
+    padding-top:12px;
+    margin-top:12px;
+    overflow:visible;
+}
+.filter-container {
+    margin-top:0px;
+    margin-left:12px;
+    margin-right:12px;
+    margin-bottom:0px;
+}
+.filter-container h3 {
+    font-size:18px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#55337e;
+    margin-bottom:8px;
+}
+.filter-container p {
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+}
+.filter-list {
+    list-style:none;
+    padding:0px;
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+}
+.filter-list li {
+    padding-bottom:16px;
+}
+.filter-list li:last-child {
+    padding-bottom:0px;
+}
+
+.range {
+    width:100%;
+    margin-bottom:16px;
+    text-align:center;
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.range-input {
+    width:40px;
+    margin:8px;
+    text-align:center;
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.star-search {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+    margin-bottom:24px;
+}
+.star-search li {
+    float:left;
+    display:block;
+    width:15px;
+    height:14px;
+    text-indent:-9999px;
+    background-image:url(../images/assets/rating-sprite.png?20015);
+    background-position:0px 0px;
+    background-repeat:no-repeat;
+}
+.star-search li:hover {
+    background-image:url(../images/assets/rating-sprite.png?20015);
+    background-position:0px -14px;
+    background-repeat:no-repeat;
+}
+
+@media (max-width: 768px) {
+    .star-search li {
+        float:left;
+        display:block;
+        width:30px;
+        height:28px;
+        text-indent:-9999px;
+        background-image:url(../images/assets/rating-sprite-large.png);
+        background-position:0px 0px;
+        background-repeat:no-repeat;
+    }
+    .star-search li:hover {
+        background-image:url(../images/assets/rating-sprite-large.png);
+        background-position:0px -28px;
+        background-repeat:no-repeat;
+    }
+}
+
+/* UPSELL */
+.upsell {
+    margin-top:24px;
+    margin-bottom:24px;
+}
+
+.upsell-head {
+    float:left;
+    color:#55337e;
+    font-size:27px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    margin-bottom:0 !important;
+}
+
+.upsell ul {
+    list-style:none;
+    float:right;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:200;
+    font-size:14px;
+    padding-top:14px;
+    padding-left:0px;
+    margin-bottom:0 !important;
+}
+
+@media (max-width: 768px) {
+    .upsell ul {
+        float:left;
+    }
+}
+
+.upsell li {
+    list-style:none;
+    float:left;
+    padding-left:10px;
+}
+
+.upsell a {
+    color:#000;
+    text-decoration:underline;
+}
+
+
+/* HOTEL CARDS */
+
+.card-container {
+    position: relative;
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    padding: 0 0px;
+    box-sizing: border-box;
+}
+
+/* Self Clearing Goodness */
+.card-container:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.card-desc{
+    display: block;
+    height: 142px;
+    width: 100%;
+    overflow: hidden;
+}
+/* For devices smaller than 768px */
+@media (max-width: 768px) {
+    .card-container {
+        width: 95%;
+        padding: 0px; }
+}
+
+@media (min-width: 769px) {
+    .card-container {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .card-container {
+        width: 100%;
+        padding: 0px;
+    }
+}
+
+/* Four card width */
+.hotelcards	{ width: 33.333333333%; float:left; margin-left: 0;}
+
+/* Three card width */
+@media (max-width:1024px) {
+    .hotelcards	{ width: 33.333333333%; float:left; margin-left: 0;}
+}
+
+/* Two card width */
+@media (max-width:769px) {
+    .hotelcards	{ width: 50%; float:left; margin-left: 0;}
+}
+
+@media (max-width: 765px) {
+    .hotelcards { width: 100%; margin-left: 0 !important;}
+}
+
+.card {
+    width:94%;
+    margin-left:3%;
+    margin-top:24px;
+    border:1px solid #d0d9d7;
+    float:left;
+    height:435px;
+    overflow:hidden;
+}
+.card-member {
+    display:block;
+    width:100%;
+    background-color:#e80f1e;
+    text-align:center;
+    color:#FFF;
+    padding-top:1px;
+    padding-bottom:1px;
+    font-size:15px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+.card-non-member {
+    display:block;
+    width:100%;
+    background-color:#959595;
+    text-align:center;
+    color:#d9d9d9;
+    padding-top:1px;
+    padding-bottom:1px;
+    font-size:15px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+
+.card-image {
+    width:100%;
+    height:210px;
+    overflow:hidden;
+}
+.card-img {
+    width:100%;
+    height:208px;
+}
+.card-info {
+    margin:16px;
+}
+.hotel-name {
+    font-size:19px;
+    line-height:22px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#55337e;
+    display:block;
+    width:100%;
+    height:48px;
+    overflow:hidden;
+}
+.hotel-name a{
+	text-decoration:none;
+    color:#55337e;
+}
+.hotel-name a:hover{
+	text-decoration: none;
+    color:#e80f1e;
+}
+.hotel-city {
+    font-size:20px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+    display:block;
+    width:100%;
+    height:32px;
+    overflow:hidden;
+}
+.star-sprite-1 {
+    width:75px;
+    height:14px;
+    background:url(../images/assets/star-sprite.png?20015);
+    background-repeat:no-repeat;
+    background-position:0px 0px;
+    margin-bottom:18px;
+}
+.star-sprite-2 {
+    width:75px;
+    height:14px;
+    background:url(../images/assets/star-sprite.png?20015);
+    background-repeat:no-repeat;
+    background-position:0px -14px;
+    margin-bottom:18px;
+}
+.star-sprite-3 {
+    width:75px;
+    height:14px;
+    background:url(../images/assets/star-sprite.png?20015);
+    background-repeat:no-repeat;
+    background-position:0px -28px;
+    margin-bottom:18px;
+}
+.star-sprite-4 {
+    width:75px;
+    height:14px;
+    background:url(../images/assets/star-sprite.png?20015);
+    background-repeat:no-repeat;
+    background-position:0px -42px;
+    margin-bottom:18px;
+}
+.star-sprite-5 {
+    width:75px;
+    height:14px;
+    background:url(../images/assets/star-sprite.png?20015);
+    background-repeat:no-repeat;
+    background-position:0px -56px;
+    margin-bottom:18px;
+}
+.new-star-sprite-1 {
+	width:75px;
+	height:14px;
+	background:url(../images/assets/star-sprite.png?20015);
+	background-repeat:no-repeat;
+	background-position:0px 0px;
+	margin-bottom:6px;
+}
+.new-star-sprite-2 {
+	width:75px;
+	height:14px;
+	background:url(../images/assets/star-sprite.png?20015);
+	background-repeat:no-repeat;
+	background-position:0px -14px;
+	margin-bottom:6px;
+}
+.new-star-sprite-3 {
+	width:75px;
+	height:14px;
+	background:url(../images/assets/star-sprite.png?20015);
+	background-repeat:no-repeat;
+	background-position:0px -28px;
+	margin-bottom:6px;
+}
+.new-star-sprite-4 {
+	width:75px;
+	height:14px;
+	background:url(../images/assets/star-sprite.png?20015);
+	background-repeat:no-repeat;
+	background-position:0px -42px;
+	margin-bottom:6px;
+}
+.new-star-sprite-5 {
+	width:75px;
+	height:14px;
+	background:url(../images/assets/star-sprite.png?20015);
+	background-repeat:no-repeat;
+	background-position:0px -56px;
+	margin-bottom:6px;
+}
+.card-left {
+    width:60%;
+    float:left;
+    overflow:hidden;
+    text-align:left;
+}
+.card-right {
+    width:40%;
+    float:right;
+    /*overflow:hidden;*/
+    text-align:right;
+}
+.card-feat-list {
+    margin:0px;
+    padding-left:18px;
+    list-style-image:url(../images/assets/list-cross.png);
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    line-height: 119%;
+}
+.card-normal-list {
+    margin:0px;
+    padding-left:18px;
+    list-style-image:url(../images/assets/list-cross-gray-new.png);
+    font-size:14px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    line-height: 19px;
+}
+.hotel-offer {
+    font-size:16px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#e80f1e;
+    margin-bottom:7px !important;
+    padding:0px;
+    line-height:135%;
+}
+.hotel-member {
+    font-size:11px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#e80f1e;
+    margin-bottom:0px !important;
+    margin-top: 2px;
+    padding:0px;
+    line-height:120%;
+}
+.hotel-price {
+    font-size:28px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#e80f1e;
+    margin-bottom:0px !important;
+    padding:0px;
+    line-height:120%;
+}
+.hotel-avg {
+    font-size:12px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    color:#333;
+    margin-bottom:0px !important;
+    padding:0px;
+    line-height:100%;
+}
+.hotel-card-button {
+    background-color:#55337e;
+    /*background-image:url(../images/assets/card-arrow.png);
+    background-repeat:no-repeat;
+    background-position:center right;*/
+    color:#FFF;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration:none;
+    display:block;
+    font-size:13px;
+    text-align:center;
+    width:100%;
+    padding-top:6px;
+    padding-bottom:6px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    float:right;
+    margin-top:50px;
+	cursor:pointer;
+}
+.add-room, .remove-room{
+	cursor: pointer;
+    font-family: museo_sans300;
+    font-size: 11px !important;
+    text-decoration: underline;
+}
+.child-room{
+	margin-bottom: 5% !important;
+	margin-right: 8% !important;
+    padding-left: 5% !important;
+    width: 25% !important;
+}
+.room-1, .room-2, .room-3, .room-4, .room-5{
+	display:none;
+	clear:both;
+	float: right;
+    width: 68%;
+}
+.member-q {
+    display:block;
+    float:right;
+    text-align:center;
+    font-size:9px;
+}
+.member-q a {
+    color:#FFF;
+    text-decoration:none;
+}
+.member-info{
+	display:block;
+    width:12px;
+    height:12px;
+    background-color:#999;
+    color:#FFF;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+	cursor:pointer;
+}
+.member-info-desc{
+	display: none;
+	width: 200px;
+	z-index: 99999;
+    position: absolute;
+	margin: 40px 0 0 -280px;
+	color: #000;
+	text-align: left;
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    text-decoration: none;
+    font-size: 13px;
+}
+.member-info-top{
+	width:296px;
+	background-image: url("../images/assets/top.png?2-1-1");
+	background-repeat: no-repeat;
+	height:46px;
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-size: 12px;
+}
+.member-info-close{
+	width:95%;
+	text-align: right;
+	padding-top:20px;
+	text-decoration: underline;
+	cursor:pointer;
+}
+.member-info-middle{
+	width:244px;
+	background-image: url("../images/assets/middle.png?2-1-1");
+	background-repeat: repeat-y;
+	padding: 0 0 10px 50px;
+	margin: -3px 0 0 2px;
+	height:auto;
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-size: 12px;
+}
+.member-info-bottom{
+	width:291px;
+	background-image: url("../images/assets/bottom.png?2-1-1");
+	background-repeat: no-repeat;
+	height:auto;
+	margin-left: 4px;
+}
+/* EXPLORE */
+.explore {
+    text-align:center;
+    padding: 10px 32px 32px 32px;
+}
+@media (max-width: 765px) {
+    .explore {
+        text-align:left;
+        padding:0px;
+        padding-top:32px;
+    }
+}
+.explore ul {
+    list-style:none;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-size:18px;
+    font-weight:300;
+    padding:0px;
+    margin-bottom:0px;
+}
+@media (max-width: 765px) {
+    .explore ul {
+        display:none;
+    }
+}
+.explore li {
+    display:inline;
+    padding:18px;
+}
+.explore li a {
+    color:#da291c;
+    text-decoration:none;
+}
+.explore li a:hover {
+    color:#4f2984;
+    text-decoration:none;
+    cursor: pointer;
+}
+.explore h1 {
+    font-size:30px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    line-height:100%;
+}
+/* DESTINATIONS */
+.destination {
+    padding:22px;
+}
+@media (max-width: 765px) {
+    .destination {
+        padding:0px;
+    }
+}
+
+.destination-info {
+    width:498px;
+    height:394px;
+    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding:22px;
+    margin-bottom:24px;
+}
+@media (max-width: 765px) {
+    .destination-info {
+        width:100%;
+        height:auto;
+        background: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, 1);
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        padding:0px;
+        margin-bottom:24px;
+    }
+}
+.pull-left {
+    float:left;
+}
+.pull-right {
+    float:right;
+}
+/*.destination h3 {
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:normal;
+    font-size:28px;
+    color:#FFF;
+    padding-top:20px;
+    padding-bottom:20px;
+    line-height:100%
+}*/
+.destination-txt-bg {
+    background: rgba(232, 15, 30, 0.8);
+    background-color: rgba(232, 15, 30, 0.8);
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:16px;
+    padding-bottom:16px;
+}
+.destination h4 {
+    color:#FFF;
+    font-size:18px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.destination ol {
+    padding-left:16px;
+    margin-top:0px;
+    color:#FFF;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    line-height:100%;
+}
+.destination ol li {
+    padding-left:8px;
+    padding-bottom:24px;
+}
+.destination-info h3 {
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:24px;
+	color:#333;
+	line-height:100%;
+}
+@media (max-width: 765px) {
+	.destination-info h3 {
+		font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+		font-size:24px;
+		color:#333;
+		line-height:32px;
+	}
+}
+.destination-image {
+    display:none;
+}
+@media (max-width: 765px) {
+    .destination-image {
+        display:block;
+        width:100%;
+        height:auto;
+        margin-bottom:24px;
+    }
+}
+.destination-info p {
+	color:#333;
+	font-size:15px;
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	line-height:24px;
+	font-weight:300;
+}
+@media (max-width: 765px) {
+	.destination-info p {
+		color:#333;
+		font-size:18px;
+		font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+		line-height:30px;
+		font-weight:300;
+	}
+}
+.destination-info ul {
+	color:#da291c;
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:15px;
+	line-height:30px;
+	font-weight:300;
+	list-style:none;
+	padding:0px;
+	margin-bottom:0px;
+}
+	@media (max-width: 765px) {
+		.destination-info ul {
+			color:#da291c;
+			font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+			font-size:18px;
+			line-height:43px;
+			font-weight:300;
+			list-style:none;
+			padding:0px;
+			margin-bottom:0px;
+		}
+	}
+.destination-info li {	
+	display:inline-block;
+	padding-right:30px;
+}
+	@media (max-width: 765px) {
+		.destination-info li {
+			display:inline-block;
+			padding-right:20px;
+		}
+	}
+.destination-info li a {
+	color:#da291c;
+	text-decoration:none;
+}
+	@media (max-width: 765px) {
+		.destination-info li a {
+			color:#da291c;
+			text-decoration:none;
+		}
+	}
+.destination-info li a:hover {
+	text-decoration:underline;
+}
+.destination-top-deals {
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:15px;
+	line-height:100%;
+	font-weight:300;
+	margin-top:0px;
+	margin-bottom:24px;
+	color:#FFF;
+	display:block;
+	width:100%;
+	float:left;
+	text-indent:22px;
+}
+	@media (max-width: 765px) {
+		.destination-top-deals {
+			font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+			font-size:18px;
+			line-height:100%;
+			font-weight:300;
+			margin-top:0px;
+			margin-bottom:24px;
+			color:#333;
+			display:block;
+			width:100%;
+			float:left;
+			text-indent:0px;
+		}
+	}
+.destination-card-box {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-bottom:24px;
+	background-color:#FFF;
+	float:left;
+	width:100%;
+}
+.destination-card-container {
+	margin-top:16px;
+	margin-bottom:16px;
+}
+.destination-card-box ul {
+	list-style:none;
+	padding:0px;
+	float:left;
+	width:100%;
+	display:block;
+	margin-bottom:0px;
+}
+.destination-card-box li {
+	float:left;
+	display:inline-block;
+	width:33%;
+	margin-bottom:16px;
+}
+	@media (max-width: 765px) {
+		.destination-card-box li { float:left; display:inline-block; width:100%; margin-bottom:21px; border-bottom:1px solid #CCC; padding-bottom:16px;}
+	}
+	
+.destination-card-child {
+	border-left:1px solid #CCC;
+}
+	@media (max-width: 765px) {
+		.destination-card-child {
+			border-left:0px solid #CCC;
+		}
+	}
+.destination-card-img-holder {
+}
+	@media (max-width:769px) {
+		.destination-card-img-holder {
+			float:left;
+			width:35%;
+		}
+	}
+.destination-card-img {
+	width:90px;
+	height:90px;
+	overflow:hidden;
+	float:left;
+	margin-left:16px;
+	margin-bottom:0px;
+}
+	@media (max-width:769px) {
+		.destination-card-img {
+			width:90px;
+			height:90px;
+			overflow:hidden;
+			float:left;
+			margin-left:16px;
+			margin-bottom:16px;
+		}
+	}
+	@media (max-width: 765px) {
+		.destination-card-img {
+			width:90%;
+			height:90px;
+			overflow:hidden;
+			float:left;
+			margin-left:0px;
+			margin-bottom:0px;
+		}
+	}
+.destination-card-img img {
+	margin-left:-15px;
+}
+.destination-card-info {
+	float:left;
+	width:170px;
+	padding-left:16px;
+	padding-right:16px;
+}
+	@media (max-width:1024px) {
+		.destination-card-info { float:left; width:160px; padding-left:16px; padding-right:16px; }
+	}
+	
+	/* Two card width */
+	@media (max-width:769px) {
+		.destination-card-info { float:left; width:170px; padding-left:16px; padding-right:16px; }
+	}
+	 
+	@media (max-width: 765px) {
+		.destination-card-info { float:left; width:65%; padding-left:0px; padding-right:0px; }
+	}
+	
+.destination-card-title {
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:15px;
+	line-height:17px;
+	font-weight:300;
+	color:#56388b;
+	margin-top:0px;
+	padding-bottom:0px;
+	display:block;
+	height:34px;
+	overflow:hidden;
+	margin-bottom:4px;
+}
+	@media (max-width: 765px) {
+		.destination-card-title {
+			font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+			font-size:16px;
+			line-height:18px;
+			font-weight:300;
+			color:#56388b;
+			margin-top:-3px;
+			padding-bottom:0px;
+			display:block;
+			height:38px;
+			overflow:hidden;
+			margin-bottom:2px;
+		}
+	}
+.destination-card-city {
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:14px;
+	line-height:16px;
+	font-weight:300;
+	color:#555555;
+	width:80px;
+	float:left;
+	padding-left:10px;
+}
+	@media (max-width:1024px) {
+		.destination-card-city { width:75px; }
+	}
+	
+	/* Two card width */
+	@media (max-width:769px) {
+		.destination-card-city { width:85px; }
+	}
+	 
+	@media (max-width: 765px) {
+		.destination-card-city { width:99px;font-size:15px; }
+	}
+.destination-card-offer {
+	font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+	font-size:14px;
+	line-height:16px;
+	font-weight:300;
+	color:#ed2630;
+	margin:0px;
+	float:left;
+	display:block;
+	height:32px;
+	overflow:hidden;
+}
+	@media (max-width: 765px) {
+		.destination-card-offer {
+			font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+			font-size:16px;
+			line-height:18px;
+			font-weight:300;
+			color:#ed2630;
+			margin:0px;
+			float:left;
+			display:block;
+			width:100%;
+			height:37px;
+			overflow:hidden;
+		}
+	}
+	
+.region-card-promo-box {
+	background-image:url(../images/backgrounds/Dest-AUNZPAC.jpg);
+	background-position:top center;
+	background-size:cover;
+	margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .region-card-promo-box {background-image:none !important; margin-bottom:1px;}
+}
+.pacific {
+    background-image:url(../images/backgrounds/Dest-AUNZPAC.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .pacific {background-image:url(); margin-bottom:1px;}
+}
+.asia-me {
+    background-image:url(../images/backgrounds/Dest-ASIAME.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .asia-me {background-image:url(); margin-bottom:1px;}
+}
+.europe {
+    background-image:url(../images/backgrounds/Dest-EUR.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .europe {background-image:url(); margin-bottom:1px;}
+}
+.americas {
+    background-image:url(../images/backgrounds/Dest-AMER.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:48px;
+}
+@media (max-width: 765px) {
+    .americas {background-image:url(); margin-bottom:1px;}
+}
+.africa {
+    background-image:url(../images/backgrounds/Dest-AFR.jpg);
+    background-position:top center;
+    background-size:cover;
+    margin-bottom:96px;
+}
+@media (max-width: 765px) {
+    .africa {background-image:url(); margin-bottom:24px;}
+}
+/* FOOTER */
+
+.footer {
+    background-color:#363636;
+    color:#FFF;
+    font-size:11px;
+    line-height:16px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    margin-top:80px;
+}
+
+.footer-intro {
+    padding-top:18px;
+    padding-bottom:12px;
+}
+
+.footer ul {
+    list-style:none;
+    padding-left:0;
+    margin-bottom:24px;
+}
+
+.footer a {
+    color:#FFF;
+}
+
+.f-divide {
+    border-top: 1px #676665 solid;
+    padding-top:24px;
+}
+.trademark-text{
+    clear: both;
+    padding-top: 20px;
+}
+.f-head {
+    font-size:13px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+    clear: both;
+    padding-top: 20px;
+}
+
+.f-box {
+    float:left;
+    width:50%;
+}
+
+.social-links ul {
+}
+
+.social-links li {
+    float:right;
+    padding-right:10px;
+    padding-top:12px;
+}
+
+.subscribe {
+    float:left;
+    width:100%;
+    margin-top:12px;
+    margin-bottom:24px;
+}
+
+.subscribe-box {
+    width:100%;
+    height:38px;
+    float:left;
+    background:#545454;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    border:0;
+}
+
+.subscribe-input {
+    width:65%;
+    height:36px;
+    float:left;
+    background:#545454;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    border:0;
+    text-indent:16px;
+}
+
+.submit-email {
+    width:30%;
+    display:block;
+    float:right;
+    height:38px;
+    background-color:#FFF;
+    color:#333;
+    border:0;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+    font-size:13px;
+    font-family:"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+    font-weight:300;
+}
+.accreditation {
+    float:left;
+    padding-right:16px;
+    padding-bottom:16px;
+}
+#filter-btn {
+    /*display:none;*/
+}
+/*date picker values*/
+.ui-datepicker{ width: 20% !important; }
+#ui-datepicker-div {
+    border: 1px solid #999 !important; z-index: 1; background: #FFF; background-color:#FFF;
+	border-radius: 5px;
+}
+.ui-widget-header{
+	color: #000;
+	font-weight: 700 !important;
+    text-align: center !important;
+}
+.ui-datepicker th {
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+.ui-datepicker td span, .ui-datepicker td a{
+    text-align: center !important;
+}
+.ui-state-default{
+	border:1px solid #ccc;
+	border-radius:5px;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    border:1px solid #ccc;
+    border-radius: 5px;
+    /*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
+}
+.ui-datepicker-prev {
+    background-image: url("../images/assets/prev.png") !important;
+    background-repeat: no-repeat;
+}
+.ui-datepicker-next {
+    background-image: url("../images/assets/next.png") !important;
+    background-repeat: no-repeat;
+}
+.ui-datepicker .ui-datepicker-prev {
+    left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+    right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+    left: 2px !important;
+    top: 2px !important;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+    right: 2px !important;
+    top: 2px !important
+}
+
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover{
+	border:1px solid #ccc;
+    border-radius: 5px;
+	/*background-image: url("assets/ui-icons_cc0000_256x240.png");*/
+}
+.ui-datepicker-prev{
+	background-image: url("../images/assets/prev.png") !important;
+	background-repeat: no-repeat;
+}
+.ui-datepicker-next{
+	background-image: url("../images/assets/next.png") !important;
+	background-repeat: no-repeat;
+}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+	background-image: none;
+	opacity:0.35;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #eee url("images/ui-bg_highlight-hard_100_eeeeee_1x100.png") repeat-x scroll 50% 50%;
+    border: 1px solid #d8dcdf;
+    color: #004276;
+    font-weight: bold;
+}
+.ui-icon, .ui-widget-content .ui-icon{
+	background-image: url("../images/assets/ui-icons_cc0000_256x240.png");
+}
+@media (max-width: 768px) { .ui-datepicker{ width: 26% !important; } }
+@media (max-width: 640px) { .ui-datepicker{ width: 35% !important;  } }
+@media (max-width: 480px) { .ui-datepicker{ width: 50% !important;  } }
+
+/*drop down for language selection*/
+/*.dropdown, .dropdown ul { margin:8px 0px 4px; padding:0px; }
+.dropdown a { background:url("../images/assets/drop-down-arrow.gif") no-repeat scroll left center; display:block; width:70px; }
+.dropdown ul li a { background:none no-repeat scroll left center; display:block; width:70px; }
+.dropdown a span { cursor:pointer; display:block; }
+.dropdown ul { color:#C5C0B0; display:none;  position:absolute; width:auto; min-width:90px; list-style:none; }
+.dropdown span.value { display:none; }
+.dropdown img.flag { margin-left:15px; width:20px !important; height: 15px !important; }*/
+/*drop down for language selection*/
+
+.logged-in-user {
+    display: none;
+}
+.logged-out-user {
+    float:right;
+    display:none;
+    color: #ffffff;
+}
+.logged-out-user, .member-section {
+    background-image : none;
+}
+
+.err-hotel-not-found {
+    margin-left: 2%;
+    margin-bottom: 1%;
+    font-size: 15px;
+    color: #ff0000;
+}
+.breadcrumb{ display: inline; list-style: none;}
+.breadcrumb-list{ display: inline;}
+
+.orb-child-age-sty {
+    float:right;
+}
+
+.orbot-validation-message p {
+    color: red !important;
+}
+
+#ui-datepicker-div {
+    z-index: 1000 !important;
+}
+
+.promotion-box {
+    display:none;
+}
+.region-hotel-card-box {
+    display: none;
+}
+
+ul.footer-links li{
+    float: left;
+    padding-right: 10px;
+}
+ul.footer-links{
+    float: none;
+}
+#mid-year-sale-logo {
+    display: none;
+}
