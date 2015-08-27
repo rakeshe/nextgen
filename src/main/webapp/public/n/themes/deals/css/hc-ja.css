@@ -1869,7 +1869,7 @@ select {
 }
 .add-room, .remove-room{
 	cursor: pointer;
-    font-family: museo_sans300;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, Meiryo, "メイリオ", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
     font-size: 11px !important;
     text-decoration: underline;
 }
