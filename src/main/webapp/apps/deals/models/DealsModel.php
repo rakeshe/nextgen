@@ -132,7 +132,7 @@ class DealsModel extends \Phalcon\Mvc\Model
                     $data = file_get_contents( $this->dataCacheFilePath . $fsDocName);
                 }
             }
-            $data = str_replace("'", "&#39;", $data);
+//            $data = str_replace("'", "&#39;", $data);
 
             if ($decode == true) {
                 return $data != false ? json_decode($data, true) : false;

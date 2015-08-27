@@ -27,6 +27,10 @@ class DealsController extends ControllerBase {
 
     const DEFAULT_LOCALE = 'en_AU';
 
+    const CONTENT_SCOPE_HOME = 'home';
+    const CONTENT_SCOPE_DESTINATION = 'destination';
+    const CONTENT_SCOPE_DEFAULT = 'default';
+
     private $cityList;
 
     /** @var  \HC\Deals\Models\DealsModel  */
@@ -208,32 +212,32 @@ class DealsController extends ControllerBase {
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
         $docFooterSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true
         );
-        $docFooterSeo = json_decode($docFooterSeo);
+//        $docFooterSeo = json_decode($docFooterSeo);
 
         $docSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
 
         $docFooterAbout = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true
         );
-        $docFooterAbout = json_decode($docFooterAbout);
+//        $docFooterAbout = json_decode($docFooterAbout);
 
         $docHtmlHead = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] ), true
         );
-        $docHtmlHead = json_decode($docHtmlHead);
+//        $docHtmlHead = json_decode($docHtmlHead);
 
         $docHtmlBodyStart = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] ), true
         );
-        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
+//        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
 
         $docHtmlBodyEnd = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] )
+            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] ), true
         );
-        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
+//        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
@@ -287,6 +291,28 @@ class DealsController extends ControllerBase {
         // Add Webtrends tracking
         $webTrends = new \HC\Common\Helpers\WebtrendsHelper();
 
+
+        $locale = $this->masterData['data'][$this->campaignName]['locales'];
+        $l = [];
+        foreach(explode(',', $locale) as $loc) {
+
+            if (array_key_exists($loc, $this->config->languageOptions)) {
+                $l[$loc] = $this->config->languageOptions[$loc];
+            }
+         }
+
+        $currencies = $this->masterData['data'][$this->campaignName]['currencies'];
+        $c = [];
+        foreach(explode(',', $currencies) as  $cur) {
+
+            foreach($this->config->currencies as  $key => $cr) {
+
+                if (array_key_exists($cur, $cr)) {
+                    $c[$key][$cur] = $cr[$cur];
+                }
+            }
+        }
+
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -309,15 +335,15 @@ class DealsController extends ControllerBase {
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
                 'heroImages'          => $heroImage,
-                'docFooterSeo'        => !empty($docFooterSeo->html) ? $docFooterSeo->html : '',
-                'docFooterAbout'      => !empty($docFooterAbout->html) ? $docFooterAbout->html : '',
-                'docHtmlHead'         => !empty($docHtmlHead->html) ? $docHtmlHead->html : '',
-                'docHtmlBodyStart'    => !empty($docHtmlBodyStart->html) ? $docHtmlBodyStart->html : '',
-                'docHtmlBodyEnd'      => !empty($docHtmlBodyEnd->html) ? $docHtmlBodyEnd->html : '',
+                'docFooterSeo'        => $this->getContentByScope($docFooterSeo),
+                'docFooterAbout'      => $this->getContentByScope($docFooterAbout),
+                'docHtmlHead'         => $this->getContentByScope($docHtmlHead),
+                'docHtmlBodyStart'    => $this->getContentByScope($docHtmlBodyStart),
+                'docHtmlBodyEnd'      => $this->getContentByScope($docHtmlBodyEnd),
                 'docSeo'              => $docSeo,
                 'translation'         => $trans,
-                'currenciesData'      => json_encode($this->config->currencies),
-                'localeData'          => json_encode($this->config->languageOptions),
+                'currenciesData'      => json_encode($c),
+                'localeData'          => json_encode($l),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale,
                 'currDoc'             => $currDoc,
@@ -406,5 +432,30 @@ class DealsController extends ControllerBase {
             $defaultCurrency = SELF::DEFAULT_CURR;
         }
         return $defaultCurrency;
+    }
+
+    /**
+     * @param $content
+     * @return array|null
+     */
+    protected function getContentByScope($content){
+        $contentScope = null != $this->city && null != $this->when ? self::CONTENT_SCOPE_DESTINATION : self::CONTENT_SCOPE_HOME;
+        $contentScopeDefault = self::CONTENT_SCOPE_DEFAULT;
+        $parsedContent = null;
+
+        if(!empty($content) && is_array($content)){
+
+            $parsedContent = !empty($content[$contentScope]) ? $content[$contentScope] : null;
+
+            // If null attempt o extract default scope as fallback
+            $parsedContent = null === $parsedContent && !empty($content[$contentScopeDefault]) ? $content[$contentScopeDefault] : $parsedContent;
+        } else {
+            $parsedContent = '';
+        }
+        // if parsed is still null but content is not empty then we have content with scope other than home, city or default, get the first one
+        if(null === $parsedContent && !empty($content) && is_array($content)){
+            $parsedContent = array_values($content)[0];
+        }
+        return $parsedContent;
     }
 }

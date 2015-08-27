@@ -63,10 +63,10 @@
                     <div class="user-id">
 
                    <p><span class="user-member user-member-name">{{trans.welcome_to_hotelclub}}</span><br/>
-                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://hotelclub.com/n/sale/deals/">
+                    <a id="sign-in" href="https://www.hotelclub.com/account/login?destinationUrl=http://hotelclub.com/{{defaultUrl}}">
                         <span class="user-club-info user-club-info-card-type">{{trans.sign_in}}</span>
                     </a> /
-                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://hotelclub.com/n/sale/deals/">
+                       <a id="register" href="https://www.hotelclub.com/account/registration?destinationUrl=http://hotelclub.com/{{defaultUrl}}">
                            <span class="user-club-info user-club-info-card-type">{{trans.register}}</span>
                        </a>
                    </p>
@@ -78,7 +78,7 @@
     </div> <!-- End Row -->
     <!-- End Navigation -->
 
-    <div class="row hero-message"><a id="mid-year-sale-logo" href="/n/sale/deals/">
+    <div class="row hero-message"><a id="mid-year-sale-logo" href="{{defaultUrl}}">
         <img src="/n/themes/deals/images/assets/MYS-Logo.png" align="The extraordinary mid year sale - HotelClub" style="padding-bottom:10px;" />
     </a>
     </div> <!-- End Row -->
