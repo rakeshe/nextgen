@@ -498,7 +498,7 @@
     var Deals = {
 
         init : function() {
-
+            this.locale = locale;
             this.city = city;
 
             this.region = '';
@@ -1516,7 +1516,7 @@
             });
             //console.log(newArr);
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, locale : this.locale, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
         },
 
         sortByText : function(fName, type) {
