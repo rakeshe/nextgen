@@ -96,21 +96,21 @@ return new \Phalcon\Config ([
 						'AED' => 'AED - uae_dirham',
 						'ILS' => 'ILS - israeli_new_sheqel',
 						'QAR' => 'QAR - qatar_rial',
-						'SAR' => 'SAR - Saudi Arabia Riyal',
-						'TRY' => 'TRY - turkish-lira'
+						'SAR' => 'SAR - saudi_arabia_riyal',
+						'TRY' => 'TRY - turkish_lira'
 				),
 				'europe' => array (
 						'CHF' => 'CHF - swiss_franc',
-						'CZK' => 'CZK - Czech Republic Koruna',
-						'DKK' => 'DKK - Danish Krone',
+						'CZK' => 'CZK - czech_republic_koruna',
+						'DKK' => 'DKK - danish_krone',
 						'EUR' => 'EUR - euro_eur',
 						'GBP' => 'GBP - british_pound_sterling',
 						'HUF' => 'HUF - hungary_forint',
-						'NOK' => 'NOK - Norwegian Krone',
+						'NOK' => 'NOK - norwegian_krone',
 						'PLN' => 'PLN - polish_zloty',
 						'RUB' => 'RUB - russian_ruble',
-						'SEK' => 'SEK - Swedish Krona',
-						'UAH' => 'UAH - Ukrainian Hryvnia'
+						'SEK' => 'SEK - swedish_krona',
+						'UAH' => 'UAH - ukrainian_hryvnia'
 				),
 				'oceania' => array (
 						'AUD' => 'AUD - australian_dollar',
