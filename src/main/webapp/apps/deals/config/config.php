@@ -58,7 +58,7 @@ return new \Phalcon\Config ([
                 'ID' => 'id_ID'
 		),
 		'currencies' => array (
-				'most-used-currencies' => array (
+				'most_used_currencies' => array (
 						'AUD' => 'AUD - australian_dollar',
 						'CNY' => 'CNY - chinese_yuan',
 						'EUR' => 'EUR - euro_eur',
