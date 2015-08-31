@@ -965,8 +965,10 @@
                 $('.promo-one-body').html(club.text);
                 $('.promo-two-title').html(pm.title);
                 $('.promo-two-dody').html(pm.text);
-                $('.promo-one-img').attr('src', club.image);
-                $('.promo-two-img').attr('src', pm.image);
+				//$('.promo-one-img').attr('src', club.image)
+				//$('.promo-two-img').attr('src', pm.image)
+                (club.image!='') ? $('.promo-one-img').attr('src', club.image) : $('.promo-one-img').hide();
+				(pm.image!='') ? $('.promo-two-img').attr('src', pm.image) : $('.promo-two-img').hide();
 
             } catch(e) {
 
