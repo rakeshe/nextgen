@@ -444,7 +444,7 @@
 
                         html += ' <li data-component="currencySelectorItem">';
                         //console.log(obj[key][k].split('-')[1].trim());
-                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+ Handlebars.helpers.t( trans, obj[key][k].split('-')[1].trim() )['string'] +'</span></span>';
+                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> ' + k + ' - ' + Handlebars.helpers.t( trans, obj[key][k].split('-')[1].trim() )['string'] +'</span></span>';
                         html += ' </li>';
 
                         tempKey = key;
