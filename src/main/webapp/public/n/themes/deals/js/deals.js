@@ -912,7 +912,7 @@
             var template = HB.compile( $("#orbot-template").html() );
 
             $('.section .hotel-cards-container').html('').append(
-                $('<div class="err-hotel-not-found">'+ this.t('no_deals_found') +'</div>') )
+                $('<div class="err-hotel-not-found">'+ this.t('sorry_no_deals') +'<br /><br />' + this.t('search_all_of_our_inventory_here') + '</div>') )
                 .append(template( {city : this.city, trans : this.trans} ));
 
             $('.modal-wrapper').addClass ('orbot-in-page');
