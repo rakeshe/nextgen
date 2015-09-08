@@ -444,7 +444,7 @@
 
                         html += ' <li data-component="currencySelectorItem">';
                         //console.log(obj[key][k].split('-')[1].trim());
-                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> '+ Handlebars.helpers.t( trans, obj[key][k].split('-')[1].trim() )['string'] +'</span></span>';
+                        html += '<span class="current" title="'+obj[key][k]+'" data-curr="'+k+'"><span class="desc"> ' + k + ' - ' + Handlebars.helpers.t( trans, obj[key][k].split('-')[1].trim() )['string'] +'</span></span>';
                         html += ' </li>';
 
                         tempKey = key;
@@ -492,7 +492,7 @@
     var Deals = {
 
         init : function() {
-
+            this.locale = locale;
             this.city = city;
 
             this.region = '';
@@ -912,7 +912,7 @@
             var template = HB.compile( $("#orbot-template").html() );
 
             $('.section .hotel-cards-container').html('').append(
-                $('<div class="err-hotel-not-found">'+ this.t('no_deals_found') +'</div>') )
+                $('<div class="err-hotel-not-found">'+ this.t('sorry_no_deals') +'<br /><br />' + this.t('search_all_of_our_inventory_here') + '</div>') )
                 .append(template( {city : this.city, trans : this.trans} ));
 
             $('.modal-wrapper').addClass ('orbot-in-page');
@@ -965,7 +965,10 @@
                 $('.promo-one-body').html(club.text);
                 $('.promo-two-title').html(pm.title);
                 $('.promo-two-dody').html(pm.text);
-                $('.promo-two-img').attr('src', pm.image);
+				//$('.promo-one-img').attr('src', club.image)
+				//$('.promo-two-img').attr('src', pm.image)
+                (club.image!='') ? $('.promo-one-img').attr('src', club.image) : $('.promo-one-img').hide();
+				(pm.image!='') ? $('.promo-two-img').attr('src', pm.image) : $('.promo-two-img').hide();
 
             } catch(e) {
 
@@ -1510,7 +1513,7 @@
             });
             //console.log(newArr);
 
-            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
+            this.displayHotelCards( { hData : newArr, isLoggedIn : this.isLoggedIn, locale : this.locale, memBalance : memberPrice, trans : $.extend({}, this.trans, this.hPageData['translation'])});
         },
 
         sortByText : function(fName, type) {

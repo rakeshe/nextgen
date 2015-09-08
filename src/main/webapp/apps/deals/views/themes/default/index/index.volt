@@ -42,6 +42,7 @@
             <div class="hero-text">
                 <div class="hero-text-box">
                     <div class="five columns">
+                        <img src="" class="promo-one-img" style="float:left; margin-left: -5px; padding-left:0px; padding-right:15px;"/>
                         <p class="hero-text-title promo-one-title"></p>
                         <p class="hero-text-body promo-one-body"></p>
                     </div>
@@ -49,7 +50,7 @@
                         <img src="/n/themes/deals/images/assets/plus-cross.png" class="hero-cross"/>
                     </div>
                     <div class="six columns">
-                        <img src="" class="promo-two-img" style="float:left; margin-left: -15px; padding-left:0px; padding-right:15px;"/>
+                        <img src="" class="promo-two-img" style="float:left; margin-left: -5px; padding-left:0px; padding-right:15px;"/>
                         <p class="hero-text-title promo-two-title"></p>
                         <p class="hero-text-body promo-two-dody"></p>
                     </div>
