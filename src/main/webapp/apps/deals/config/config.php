@@ -11,6 +11,7 @@ return new \Phalcon\Config ([
 				'controllersDir' => 'controllers/',
 				'modelsDir' => 'models/',
 				'viewsDir' => 'views/themes/',
+                'libraryDir' => 'library/'
 		),
 		'metadata' => array (
 				'adapter' => 'Apc',
