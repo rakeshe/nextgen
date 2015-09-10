@@ -49,14 +49,15 @@
     font-size:59px !important;
     opacity:0.6;
     float:left;
-    margin: -21px -8px 0 -18px !important;
+    /*margin: -21px -8px 0 -18px !important;*/
     padding:5px;
+
 }
 .close_quote{
     font-size:59px !important;
     opacity:0.6;
     float:right;
-    margin: -49px -4px 0 -18px !important;
+    margin: 10px -4px 0 0px !important;
 }
 .carousel-control.right{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);

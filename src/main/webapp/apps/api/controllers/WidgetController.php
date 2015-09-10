@@ -33,6 +33,10 @@ class WidgetController extends ControllerBase
     const DEFAULT_SHOW_NAV_DOTS = '1';
     const DEFAULT_SHOW_CAPTION_QUOTE = '1';
 
+    const QUOTE_OPEN_DEFAULT = '“';
+    const QUOTE_CLOSE_DEFAULT = '”';
+    const QUOTE_OPEN_CJ = '「';
+    const QUOTE_CLOSE_CJ = '」';
 
     private $locale;
 
@@ -151,6 +155,8 @@ class WidgetController extends ControllerBase
                 'pos_nav_dots'   => $this->navDotsPos,
                 'data'           => $this->widgetData,
                 'caption_quote'           => $this->captionQuote,
+                'quoteOpenChar'  => $this->getQuoteChar('open'),
+                'quoteCloseChar'  => $this->getQuoteChar('close'),
                 'locale'         => $this->locale,
                 'width'          => null === $this->widgetWidth ? $this->widgetData['width'] : $this->widgetWidth,
                 'height'         => null === $this->widgetHeight ? $this->widgetData['height'] : $this->widgetHeight
@@ -211,6 +217,17 @@ class WidgetController extends ControllerBase
             'requesting server' => $this->request->getHttpHost(),
             'white lists'       => $this->availableHosts
         ];
+    }
+
+    protected function getQuoteChar($position = 'open')
+    {
+        $locale = null=== $this->locale ? self::DEFAULT_LOCALE : $this->locale;
+        if($position == 'open'){
+            return $locale == 'ja_JP' || $locale == 'zh_HK' || $locale == 'zh_TW' ? self::QUOTE_OPEN_CJ : self::QUOTE_OPEN_DEFAULT;
+        }
+        if($position == 'close'){
+            return $locale == 'ja_JP' || $locale == 'zh_HK' || $locale == 'zh_TW' ? self::QUOTE_CLOSE_CJ : self::QUOTE_CLOSE_DEFAULT;
+        }
     }
 
     public function printHostInfoAction()

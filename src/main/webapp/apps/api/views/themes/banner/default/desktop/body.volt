@@ -52,15 +52,12 @@ if scope is partial return only body (<body>) part
                 </a>
                 {% if not(val['h1'] is empty) %}
                 <div class="carousel-caption">
-                    {% if caption_quote == '1' %}
-                    <div class="open_quote">“</div>
-                    {% endif %}
+
                     <div class="carousel-heading-content">
+                        {% if caption_quote == '1' %}<div class="open_quote">{{ quoteOpenChar }}</div>{% endif %}
                         {{ val['h1'] }}
+                        {% if caption_quote == '1' %}<div class="close_quote">{{ quoteCloseChar }}</div>{% endif %}
                     </div>
-                    {% if caption_quote == '1' %}
-                    <div class="close_quote">”</div>
-                    {% endif %}
                     <p class="carousel-normal-text">
                         {{ val['h3'] }}
                     </p>
