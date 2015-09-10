@@ -125,7 +125,7 @@ class WidgetController extends ControllerBase
         $this->widgetWidth  = $this->request->getQuery('width');
         $this->navDotsPos   = $this->request->getQuery('pos_nav_dots');
         $this->navArrowsPos = $this->request->getQuery('pos_nav_arrows');
-        $this->captionQuote = null === $this->request->getQuery('quote') ? self::DEFAULT_SHOW_CAPTION_QUOTE : $this->request->getQuery('quote');
+        $this->captionQuote = null === $this->request->getQuery('showQuote') ? self::DEFAULT_SHOW_CAPTION_QUOTE : $this->request->getQuery('showQuote');
     }
 
     /**
