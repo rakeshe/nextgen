@@ -1050,7 +1050,7 @@
                     //console.log('memberPrice:' +userTier);
 
                     $('.user-member-name').html(userName);
-                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=http://hotelclub.com/'+ MNME +'">Sign out</a>');
+                    $('.user-club-info-card-type').html(userTier + '<br /><a class="sign-out" href="https://www.hotelclub.com/account/logout?destinationUrl=">Sign out</a>');
                     $('.usr-rewards-point').html(userBalance);
                     $('.logged-in-user').show();
 
@@ -1179,7 +1179,7 @@
             }
             var template = HB.compile( $("#header-template").html() );
             $('#header-container').append(template(
-                {trans: $.extend({}, this.trans, this.hPageData['translation']), locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr, defaultUrl : MNME}
+                {trans: $.extend({}, this.trans, this.hPageData['translation']), locale : locale, localOptions : ldin, 'currencyOptions' : crdin, curr : curr, defaultUrl : MNME, currentURL : location.href }
             ));
         },
 
@@ -2634,13 +2634,13 @@
         $('#sign-in').on('click', function(e) {
             e.preventDefault();
             ga('send', 'event', 'header', 'sign-in', '');
-            window.location.href = $(this).attr('href');
+            window.location.href = $(this).attr('href') + window.location.href;
         });
 
         $('#register').on('click', function(e) {
             e.preventDefault();
             ga('send', 'event', 'header', 'join', '');
-            window.location.href = $(this).attr('href');
+            window.location.href = $(this).attr('href') + window.location.href;
         });
 
         $('.dropdown-region').on('focus', function() {
@@ -2665,7 +2665,7 @@
     $(document).on('click', '.sign-out', function(e) {
         e.preventDefault();
         ga('send', 'event', 'header', 'sign-out', '');
-        window.location.href = $(this).attr('href');
+        window.location.href = $(this).attr('href') + window.location.href;
     });
 
     $(document).on('click', '#my-bookings', function(e) {
