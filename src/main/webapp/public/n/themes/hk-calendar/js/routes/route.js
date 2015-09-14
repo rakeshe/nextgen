@@ -1,10 +1,17 @@
 var app = app || {};
 
+// Calculating today's month and year for initial route
+var months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+var now = new Date();
+var month = now.getMonth();
+var year = now.getFullYear();
+month = months[month];
+
 app.Router = Backbone.Router.extend({
 
 	once: false,
 
-	initUrl: '#month/january/2015',
+		initUrl: '#month/'+month+'/' + year,
 
 	routes: {
 		"": "start",
