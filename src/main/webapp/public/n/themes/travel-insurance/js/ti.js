@@ -231,7 +231,7 @@ var SearchBox = {
         'getPriceDetails': function() {
             this.startLoadin();
             return $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     dataType: 'json',
                     url: '/n/travel-insurance',
                     async: false,
