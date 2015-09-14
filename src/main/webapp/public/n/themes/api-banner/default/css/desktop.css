@@ -46,7 +46,7 @@
     margin:80% 0% 0% 38% !important;
 }
 .open_quote{
-    font-size:59px !important;
+    font-size:39px !important;
     opacity:0.6;
     float:left;
     /*margin: -21px -8px 0 -18px !important;*/
@@ -54,10 +54,10 @@
 
 }
 .close_quote{
-    font-size:59px !important;
+    font-size:39px !important;
     opacity:0.6;
     float:right;
-    margin: 10px -4px 0 0px !important;
+    margin: 10px 10px 0 0px !important;
 }
 .carousel-control.right{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
