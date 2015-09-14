@@ -71,10 +71,7 @@
     <section class="back month one">
         <nav id="menu">
             <ul>
-                <li class="active"><a class="mth" href="#month/january/2015">Jan / 15</a></li>
-                <li><a class="mth" href="#month/february/2015">Feb / 15</a></li>
-                <li><a class="mth" href="#month/march/2015">Mar / 15</a></li>
-                <li><a class="mth" href="#month/april/2015">Apr / 15</a></li>
+                <li class="active"><a class="mth" href="#month/april/2015">Apr / 15</a></li>
                 <li><a class="mth" href="#month/may/2015">May / 15</a></li>
                 <li><a class="mth" href="#month/june/2015">Jun / 15</a></li>
                 <li><a class="mth" href="#month/july/2015">Jul / 15</a></li>
@@ -83,6 +80,9 @@
                 <li><a class="mth" href="#month/october/2015">Oct / 15</a></li>
                 <li><a class="mth" href="#month/november/2015">Nov / 15</a></li>
                 <li><a class="mth" href="#month/december/2015">Dec / 15</a></li>
+                <li><a class="mth" href="#month/january/2016">Jan / 16</a></li>
+                <li><a class="mth" href="#month/february/2016">Feb / 16</a></li>
+                <li><a class="mth" href="#month/march/2016">Mar / 16</a></li>
             </ul>
         </nav>
         <div class="month-container">
