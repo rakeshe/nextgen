@@ -2,7 +2,20 @@ var header = new app.MenuView();
 var collect = new app.monthCollection();
 
 var route = new app.Router();
+
+
 var app = app || {};
+
+
+function loop() {
+    $('.main .arrow').animate({'bottom': 33}, {
+        duration: 1000, 
+        complete: function() {
+            $('.main .arrow').animate({bottom: 13}, {
+                duration: 1000, 
+                complete: loop});
+        }});
+}
 
 function sh() {
 	var name = 'Experience Hong Kong | The Unmissable Events';
@@ -32,7 +45,7 @@ $(document).on('click', '.month-arrow,.mth,.arrow', function() {
 });
 
 $(document).ready(function(){
-
+	loop();
 /*    //if browser supports pushState, remove # from the url
     if (typeof history.pushState != 'undefined') {
 
@@ -46,7 +59,7 @@ $(document).ready(function(){
         Backbone.history.start({pushState:false});
     //}
 
-    route.loop();
+    // route.loop();
 
     $('section.main').css('height', route.height);
 
