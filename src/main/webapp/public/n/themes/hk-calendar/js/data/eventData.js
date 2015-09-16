@@ -1,389 +1,5 @@
 var eventData = [
-    {
-        id: 3,
-        name: 'january 2016',
-        image: 'img/month/january1.jpg',
-        weather: {
-            icon: 'sun',
-            temp: 16
-        },
-        tip: 'In the run up to Chinese New Year January is prime time for shopping, expect to see sales and shoppers around every corner you turn.  Causeway Bay and Tsim Sha Tsui are popular shopping destinations; for more information about Hong Kong’s shopping offerings visit <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/frequently-asked-questions.jsp" target="_blank">Hong Kong’s tourism board</a>',
-        events: [
-            {
-                id: 1,
-                name: 'Western New Year',
-                date: '1st January 2016',
-                price: '',
-                text: 'Unlike the rest of China, Hong Kong observes Western New Year as a public holiday. While plenty of venues will keep their doors open, the whole city tends to wind down a bit and relax after the fireworks extravaganza of the night before. All in all, it’s a perfect day for exploring on foot, or simply recovering from the previous day’s festivities.',
-                link: '',
-                map: {
-                    'long': 22.2824605,
-                    'lat': 114.1615709
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/western-ny-16_min.jpg',
-                        full: 'img/events/jan/western-ny-16_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Hong Kong Toys and Game Fair',
-                date: '11th - 14th January 2016',
-                price: 'HK$100',
-                text: 'Describing itself as “Asia’s biggest toys event” and the “world’s second largest toys event”, the Hong Kong Toys and Games Fair is the sort of thing exhibitors dream about. Featuring nearly 2,000 exhibitors and over 42,000 buyers from 126 countries and regions, the fair is the place for traders looking to gain wider exposure or simply network within a blooming Asian marketplace. Please note that this event is solely for traders/buyers only and members of the general public will not be admitted.<br/>Free admission is available provided you pre-register.<br/>Online pre-registration is only available for trade visitors 18 or over, <a href="http://www.hktdc.com/fair/hktoyfair-en/">for more information visit their website here</a>.',
-                link: 'http://www.hktdc.com/fair/hktoyfair-en/',
-                map: {
-                    'long': 22.281286,
-                    'lat': 114.1615709
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/toys-games_min.jpg',
-                        full: 'img/events/jan/toys-games_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Hong Kong International Stationery Fair',
-                date: '11th - 14th January 2016',
-                price: 'Free admission',
-                text: 'Bringing together DIY, office and school supplies in abundance, the Hong Kong Stationary Fair is a minor highlight in the industry’s calendar. Those looking to expand into the Asian market should take careful note: With over 20,000 buyers and 225 exhibitions covering a full 4,500 square km, this is one of the biggest trade fairs of its kind.<br/>Admission is free. Please note that attendance is for trade visitors only. Children under the age of 18 will not be admitted. For further information visit the fair’s website.',
-                link: 'http://www.hktdc.com/fair/hkstationeryfair-en/Hong-Kong-International-Stationery-Fair.html',
-                map: {
-                    'long': 22.283219,
-                    'lat': 114.173103
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/stationery-fair_min.jpg',
-                        full: 'img/events/jan/stationery-fair_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: '20th Standard Chartered Hong Kong Marathon',
-                date: '17th January 2016',
-                price: '',
-                text: 'With 15,000 runners participating annually, the Hong Kong Marathon lives up to its claim of being “HK’s biggest sporting event.” A 42.195km route that takes in huge swathes of the territory – ranging from the scenic outskirts to the inner-city – the Marathon is an annual institution enjoyed by everyone in the area. Pick a spot along the route and stand and cheer, or simply follow proceedings from the window of your hotel. 2016 marks the 20th anniversary of the Standard Chartered Hong Kong marathon thus however you choose to spend the day, it’ll doubtless be a memorable one.<br/> Should you wish to participate keep a close eye on <a href="http://www.hkmarathon.com/">their website</a>. Spectators won’t need to pay a penny, but make sure you get to your chosen spot early to avoid your view being blocked by the crowds.',
-                link: 'http://www.hkmarathon.com/',
-                map: {
-                    'long': 22.2824605,
-                    'lat': 114.1615709
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/marathon-cup_min.jpg',
-                        full: 'img/events/jan/marathon-cup_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 5,
-                name: 'Hong Kong Fashion Week: Fall/Winter',
-                date: '18th - 21st January 2016',
-                price: '',
-                text: 'A trade fair very much for industry insiders only (there is no admittance to the general public) Hong Kong Fashion Week for Fall/Winter brings together over 1,450 exhibitors and 22,000 visitors from around the world. With an emphasis on professionalism and networking, the fair facilitates those wishing to invest in new products, discover new niches or simply take part in one of the many meetings/seminars that sprout up around the main action like mushrooms. <br/> Attendance is free, but solely for those working within the fashion industry. However, you must pre-register to be eligible. Please also note that under-18s will strictly not be admitted.',
-                link: 'http://www.hktdc.com/fair/hkfashionweekfw-en/HKTDC-Hong-Kong-Fashion-Week-For-Fall-Winter.html',
-                map: {
-                    'long': 22.283219,
-                    'lat': 114.173103
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/fashion_min.jpg',
-                        full: 'img/events/jan/fashion_big.jpg'
-                    },
-                    {
-                        min: 'img/events/jan/fashion2_min.jpg',
-                        full: 'img/events/jan/fashion2_big.jpg'
-                    }
-                ]
-            }
 
-        ]
-    },
-    {
-        id: 4,
-        name: 'february 2016',
-        image: 'img/month/february1.jpg',
-        weather: {
-            icon: 'sun',
-            temp: 16
-        },
-        tip: 'With Chinese New Year at the end of the month, February is home to one of the most important traditional Chinese holidays. Red Jianzhi (Chinese paper cuttings), Chinese poetry couplets and firecrackers are commonplace around this time of year. Please visit <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/frequently-asked-questions.jsp" target="_blank">Hong Kong’s tourism board</a> for more information. ',
-        events: [
-            {
-                id: 1,
-                name: 'Chinese New Year',
-                date: '8th February 2016',
-                price: '',
-                text: '8th February 2016 sees the Chinese calendar tick forward to the year of the Monkey, with over a billion people expected to celebrate the changeover worldwide. Across the Chinese world, normal life will be put on hold in favour of spectacle and parties, and Hong Kong is no different. Although the city has yet to confirm exact dates and plans for celebrations, expect vibrant night parades, bustling flower markets and pyrotechnics galore. With the celebrations lasting a full 15 days, don’t be surprised if you find yourself getting swept up in the occasion.<br/>With multiple venues staging multiple events across the city, it’s impossible to list all ticketing options here. Those who want to can join large parties at exclusive clubs, while others will enjoy simply attending the free fireworks displays and flower markets. Please note that many government buildings, offices and shops will shut for Chinese New Year. However, major attractions and popular restaurants/bars will remain open.',
-                link: '',
-                map: {
-                    'long': 22.2824605,
-                    'lat': 114.1615709
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/chinese-ny-16_min.jpg',
-                        full: 'img/events/feb/chinese-ny-16_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Birthday of Che Kung',
-                date: '9th February 2016',
-                price: '',
-                text: 'A former military commander of the Song Dynasty who was elevated to godhood after his death, Che Kung is now revered as a deity capable of bringing immense fortune and luck to his devotees. Many in Hong Kong choose to celebrate his birthday by having a flutter at their local track, but to really get into the spirit of things visitors should make their way out to his temple in the New Territories. Around 100,000 people usually attend, giving the whole thing a sombre, festival-like atmosphere. Fans are turned, drums are beaten and luck prayed for over the coming year. Attendance is free, however keep in mind the religious significance of the rituals and treat everything with the same respect you’d show in a church or mosque.',
-                link: '',
-                map: {
-                    'long': 22.382251,
-                    'lat': 114.196175
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/chekung_min.jpg',
-                        full: 'img/events/feb/chekung_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Hong Kong Pulse 3D Light Show',
-                date: '10th - 29th February 2016',
-                price: 'Free admission',
-                text: 'HK Pulse 3D light show returns to celebrate Chinese New Year. A spectacular light show, even by the standards of a city forever drenched in throbbing neon, HKPulse 3D is a guaranteed thrill for kids and the perennially young-at-heart. Taking place nightly throughout Chinese New Year celebrations (10th– 29th February),it makes inventive use of the outside of the Cultural Centre – turning it into a vast screen to unfold the magic on. For between eight and ten minutes, thebuilding’s shell becomes a canvas, as light drips down like water, forms into little runnels, and cascades away into a multicolour explosion. The eerilyconvincing 3D effects have to be seen to be believed.<br/>Admission is free, with light shows starting at 8.30pm, 9pm, 9.30pm and 10pm. Each performance lastapproximately 8-10 minutes. The content of the display changes frequently, if you’re in town for more than a week, it can be worth making the trek out there twice.',
-                link: '',
-                map: {
-                    'long': 22.294085,
-                    'lat': 114.170566
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/pulse-show_min.jpg',
-                        full: 'img/events/feb/pulse-show_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: 'Hong Kong Masters Grand Slam',
-                date: '19th - 21st February 2016',
-                price: 'HK$330 - HK$980',
-                text: 'One of the largest equestrian events in Asia, the Hong Kong Masters Grand Slam brings together the global elite of horse racing: from jockeys to owners and promoters. Over the course of a heady weekend, horses and jockeys get to strut their stuff across numerous dressage and racing events, culminating in the Longines Speed Challenge and Grand Prix. Taking place on Friday afternoon and Sunday, respectively, these two world-famous races act as the perfect culmination of a perfect weekend. Expect plenty of upsets, surprises and ill-concealed delight from the attendant punters.<br/>For ticket information and further event details visit <a href="http://www.mastersgrandslam.com/en/longines_masters_hong_kong">the website</a>.',
-                link: '',
-                map: {
-                    'long': 22.314836,
-                    'lat': 113.937583
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/hk-masters_min.jpg',
-                        full: 'img/events/feb/hk-masters_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 5,
-                name: 'Spring Lantern Festival',
-                date: '22nd February 2016',
-                price: '',
-                text: 'The last day of Chinese New Year is also the unofficial “Chinese Valentine’s Day”, when couples get together to express their love and stroll arm-in-arm through the city parks. Unlike in the West, though, this is a day that can be enjoyed by singletons too, thanks to the impressive lantern displays that crop up throughout the city. For one night only, parks, trees, houses and restaurants are festooned with intricate paper lanterns, lending the whole city a magic, ethereal glow. Skip the restaurants and head out for a contemplative walk across the region, and soak up the atmosphere of this beautiful one-off night.',
-                link: '',
-                map: {
-                    'long': 22.2824605,
-                    'lat': 114.1615709
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/lantern_min.jpg',
-                        full: 'img/events/feb/lantern_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 6,
-                name: 'Hong Kong International Fur and Fashion Fair',
-                date: '25th - 28th February 2016',
-                price: '',
-                text: 'A grand showcase celebrating all things fur-related, from pelts and accessories to furrier’s tools and machinery, this 4-day expo is strictly open to traders only. Industry insiders who wish to attend should contact the organisers directly at fur@hkff.org.',
-                link: '',
-                map: {
-                    'long': 22.281286,
-                    'lat': 114.17209
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/fur_min.jpg',
-                        full: 'img/events/feb/fur_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 7,
-                name: 'Chinese New Year Race Meeting',
-                date: 'February 2016 (Exact dates TBC)',
-                price: '',
-                text: 'The self-styled “most popular horse racing event” in Hong Kong, the Chinese New Year race meeting is a barnstorming event guaranteed to satisfy all horse fanciers. Opening with a dizzying display of on-course festivities, ranging from dancing dragons to an opening show that could rival the Super Bowl, the day culminates in a series of events designed to set the pulse pounding. Highlights of the day include the jockeys mixing with the crowd to receive good-luck messages and the always-intriguing fringe events. Less a simple race day than a full-blown party, the New Year race meeting is perhaps the best introduction to Hong Kong’s racing scene you’ll find. <br/>Information on tickets and race details have yet to be released, but it’s a fair bet that they’ll be available soon. <a href="http://www.hkjc.com/home/english/index.asp">Keep checking back online for more details</a>.',
-                link: 'http://www.hkjc.com/home/english/index.asp',
-                map: {
-                    'long': 22.3771304,
-                    'lat': 114.1974398
-                },
-                photos: [
-                    {
-                        min: 'img/events/feb/ny-race-mtg_min.jpg',
-                        full: 'img/events/feb/ny-race-mtg_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 8,
-                name: 'Lunar New Year Cup',
-                date: 'February (Exact dates TBC)',
-                price: '',
-                text: 'A delightfully Hong Kong tradition, the Lunar New Year Cup sees HK ring in the Chinese New Year with a hefty dose of football. If previous years are anything to go by, expect three big-name international teams to make their way to HK for a friendly kick-around with the local squad, in an event dubbed “one of HK’s sporting highlights.” At the time of writing, details are still scarce, but keep checking back with the website for more information nearer to the time. ',
-                link: 'https://www.hkfa.com/en/index.php',
-                map: {
-                    'long': 22.272787,
-                    'lat': 114.188251
-                },
-                photos: [
-                    {
-                        min: 'img/events/jan/lunar_min.jpg',
-                        full: 'img/events/jan/lunar_big.jpg'
-                    }
-                ]
-            }
-
-
-        ]
-    },
-    {
-        id: 5,
-        name: 'march 2016',
-        image: 'img/month/march1.jpg',
-        weather: {
-            icon: 'sun',
-            temp: 17
-        },
-        tip: 'Hong Kong’s streets are inundated with many beautiful and intricate lanterns in celebration of the Spring Lantern festival or last day of Chinese New Year which this year falls in the month of March. Temperatures gradually begin to rise as does Hong Kong’s rainfall, click <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/climate.jsp" target="_blank">here</a> for further climate information.',
-        events: [
-            {
-                id: 1,
-                name: 'Hong Kong International Jewellery Show',
-                date: '3rd - 7th March 2016',
-                price: 'HK$100',
-                text: 'The self-styled World’s Largest Jewellery Marketplace returns for another year of precious stones, expensive trade deals and enough seminars to raise the spirits of even the most jet-lagged buyers. 2015 saw 2,491 exhibitors connect with 47,028 buyers across 78,800 sq miles of space, trading everything from antique jewellery to watches and clocks. At time of writing, little specific information is available about what side events to expect, but previous years suggest there will be a plethora of opportunities for learning and networking.<br/>Tickets cost HK$100. Please note that this is a trade-only fair and is not open to the general public. Visitors under 18 will strictly not be admitted.',
-                link: '',
-                map: {
-                    'long': 22.2783151,
-                    'lat': 114.174695
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/jewellery-16_min.jpg',
-                        full: 'img/events/mar/jewellery-16_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Chinese Groundhog Day',
-                date: '5th March 2016',
-                price: '',
-                text: 'Also known as Chinese Insects Awake Day or Excited Insects Day, Chinese Groundhog Day marks the moment the bugs start squirming back to life after a long winter, bringing with them the arrival of spring. Although you’re unlikely to notice the winter much in Hong Kong (temperatures rarely drop below 20C), the festival still makes for a welcome party. Do as the locals do and head down to Canal Street in Wanchai, to witness a delightfully idiosyncratic custom. For HK$50, the old ladies will sell you a paper tiger to inscribe your enemy’s name on then beat it senseless with a shoe while cursing them. If that strikes you as too negative, you can alternatively ask her to pray your family’s misfortunes away instead.<br/> The festival takes place across Hong Kong and China, and different venues will celebrate in different ways. Check your local watering hole to see if they’re doing anything special, or simply take HK$50 down to Canal Street and get the old ladies to curse your enemies senseless.',
-                link: '',
-                map: {
-                    'long': 22.2783151,
-                    'lat': 114.174695
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/groundhog-16_min.jpg',
-                        full: 'img/events/mar/groundhog-16_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Hong Kong International Film and TV Market (Filmart)',
-                date: '14th - 17th March 2016',
-                price: '',
-                text: 'A traders-only event aimed at bringing together the great and good of world cinema, the Hong Kong International Film and TV Market promises buying and selling opportunities galore, not to mention a plethora of networking events. This is a strictly closed shop, and off-limits to members of the general public. Industry insiders who haven’t already done so should make sure to pre-register beforehand via the website. Please note that no under-18s will be admitted.',
-                link: 'http://www.hktdc.com/fair/hkfilmart-en/s/4315-For_Visitor/Hong-Kong-International-Film%20-TV-Market%20FILMART-/Visitor-Pre-registration-soon.html',
-                map: {
-                    'long': 22.272787,
-                    'lat': 114.188251
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/filmart-16_min.jpg',
-                        full: 'img/events/mar/filmart-16_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: 'Hung Shing Festival',
-                date: '21st March 2016',
-                price: '',
-                text: 'A minor deity venerated by (among others) fishermen; Hung Shing celebrates his birthday today with not one but two minor festivals in different parts of the region. Out in the New Territories, the ancient village of Ho Sheung Heung marks the date with a traditional procession, some Chinese opera and a whole lot of joviality. Alternatively, visitors can set their sights on the more central neighbourhood of Ap Lei Chau, where dragon dances are performed in Hung Shing’s honour. Although the festivities are minor compared to other holidays in the HK calendar, they’re still worth seeing, especially if you combine them with a day trip to lesser-visited parts of the island.<br />Attendance is free, however keep in mind the religious significance of the rituals and treat everything with the same respect you’d show in a church or mosque.',
-                link: '',
-                map: {
-                    'long': 22.2446072,
-                    'lat': 114.1560006
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/hung-shing_min.jpg',
-                        full: 'img/events/mar/hung-shing_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 5,
-                name: 'Art Basel Show Hong Kong',
-                date: '24th - 26th March 2016',
-                price: '',
-                text: 'The HK art show to end all art shows, Art Basel Hong Kong brings together more than 3,000 artists from around the globe in this stunning, three day showcase. With over half of all artists coming from Asia, the show, not without justification, bills itself as “a portal to the region’s artists.” Divided into sectors ranging from ‘film’ through to ‘discoveries’ and ‘magazines’, Art Basel brings together work usually only seen in museums, and ostentatiously hangs it right next to the passionate canvas of an up-and-coming youngster. Although the line-up for the 2016 show has yet to be announced, we can confidently predict that it will be challenging, thought-provoking and deliciously transgressive. <br/>Tickets are not yet on sale, and final details have yet to be confirmed. Those interested in attending should check back online for further updates and announcements. ',
-                link: 'https://www.artbasel.com/hong-kong ',
-                map: {
-                    'long': 22.2831789,
-                    'lat': 114.1730822
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/basel_min.jpg',
-                        full: 'img/events/mar/basel_big.jpg'
-                    }
-                ]
-            },
-            {
-                id: 6,
-                name: 'Hong Kong Flower Show',
-                date: 'March 2016 (TBC)',
-                price: '',
-                text: 'For a few days each year, Hong Kong’s Victoria Park is transformed into a colourful floral explosion. Horticulturalists from across the city and international participants from across the globe gather to turn a tiny corner of HK into a slice of heaven. Showcasing blooms from around the world, the show is a must for those with a green thumb, and a very worthwhile way to spend an afternoon for the rest of us as well. The highlights are the fantastically intricate arrangements made for the competition entries and the vibrant landscape displays. However, the photographic displays and student art competitions should not be missed. <br/> Details are scarce at the moment, but expect information to be forthcoming soon. Those interested in attending should periodically check online for their 2016 website.',
-                link: 'http://www.discoverhongkong.com/eng/see-do/events-festivals/exhibitions-and-consumer-fairs/hong-kong-flower-show.jsp',
-                map: {
-                    'long': 22.282852,
-                    'lat': 114.189266
-                },
-                photos: [
-                    {
-                        min: 'img/events/mar/flower_min.jpg',
-                        full: 'img/events/mar/flower_big.jpg'
-                    }
-                ]
-            }
-        ]
-    },
     {
         id: 6,
         name: 'april 2015',
@@ -1396,7 +1012,393 @@ var eventData = [
 
 
         ]
-    }
+    },
+    {
+        id: 3,
+        name: 'january 2016',
+        image: 'img/month/january1.jpg',
+        weather: {
+            icon: 'sun',
+            temp: 16
+        },
+        tip: 'In the run up to Chinese New Year January is prime time for shopping, expect to see sales and shoppers around every corner you turn.  Causeway Bay and Tsim Sha Tsui are popular shopping destinations; for more information about Hong Kong’s shopping offerings visit <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/frequently-asked-questions.jsp" target="_blank">Hong Kong’s tourism board</a>',
+        events: [
+            {
+                id: 1,
+                name: 'Western New Year',
+                date: '1st January 2016',
+                price: '',
+                text: 'Unlike the rest of China, Hong Kong observes Western New Year as a public holiday. While plenty of venues will keep their doors open, the whole city tends to wind down a bit and relax after the fireworks extravaganza of the night before. All in all, it’s a perfect day for exploring on foot, or simply recovering from the previous day’s festivities.',
+                link: '',
+                map: {
+                    'long': 22.2824605,
+                    'lat': 114.1615709
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/western-ny-16_min.jpg',
+                        full: 'img/events/jan/western-ny-16_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Hong Kong Toys and Game Fair',
+                date: '11th - 14th January 2016',
+                price: 'HK$100',
+                text: 'Describing itself as “Asia’s biggest toys event” and the “world’s second largest toys event”, the Hong Kong Toys and Games Fair is the sort of thing exhibitors dream about. Featuring nearly 2,000 exhibitors and over 42,000 buyers from 126 countries and regions, the fair is the place for traders looking to gain wider exposure or simply network within a blooming Asian marketplace. Please note that this event is solely for traders/buyers only and members of the general public will not be admitted.<br/>Free admission is available provided you pre-register.<br/>Online pre-registration is only available for trade visitors 18 or over, <a href="http://www.hktdc.com/fair/hktoyfair-en/">for more information visit their website here</a>.',
+                link: 'http://www.hktdc.com/fair/hktoyfair-en/',
+                map: {
+                    'long': 22.281286,
+                    'lat': 114.1615709
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/toys-games_min.jpg',
+                        full: 'img/events/jan/toys-games_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Hong Kong International Stationery Fair',
+                date: '11th - 14th January 2016',
+                price: 'Free admission',
+                text: 'Bringing together DIY, office and school supplies in abundance, the Hong Kong Stationary Fair is a minor highlight in the industry’s calendar. Those looking to expand into the Asian market should take careful note: With over 20,000 buyers and 225 exhibitions covering a full 4,500 square km, this is one of the biggest trade fairs of its kind.<br/>Admission is free. Please note that attendance is for trade visitors only. Children under the age of 18 will not be admitted. For further information visit the fair’s website.',
+                link: 'http://www.hktdc.com/fair/hkstationeryfair-en/Hong-Kong-International-Stationery-Fair.html',
+                map: {
+                    'long': 22.283219,
+                    'lat': 114.173103
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/stationery-fair_min.jpg',
+                        full: 'img/events/jan/stationery-fair_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: '20th Standard Chartered Hong Kong Marathon',
+                date: '17th January 2016',
+                price: '',
+                text: 'With 15,000 runners participating annually, the Hong Kong Marathon lives up to its claim of being “HK’s biggest sporting event.” A 42.195km route that takes in huge swathes of the territory – ranging from the scenic outskirts to the inner-city – the Marathon is an annual institution enjoyed by everyone in the area. Pick a spot along the route and stand and cheer, or simply follow proceedings from the window of your hotel. 2016 marks the 20th anniversary of the Standard Chartered Hong Kong marathon thus however you choose to spend the day, it’ll doubtless be a memorable one.<br/> Should you wish to participate keep a close eye on <a href="http://www.hkmarathon.com/">their website</a>. Spectators won’t need to pay a penny, but make sure you get to your chosen spot early to avoid your view being blocked by the crowds.',
+                link: 'http://www.hkmarathon.com/',
+                map: {
+                    'long': 22.2824605,
+                    'lat': 114.1615709
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/marathon-cup_min.jpg',
+                        full: 'img/events/jan/marathon-cup_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Hong Kong Fashion Week: Fall/Winter',
+                date: '18th - 21st January 2016',
+                price: '',
+                text: 'A trade fair very much for industry insiders only (there is no admittance to the general public) Hong Kong Fashion Week for Fall/Winter brings together over 1,450 exhibitors and 22,000 visitors from around the world. With an emphasis on professionalism and networking, the fair facilitates those wishing to invest in new products, discover new niches or simply take part in one of the many meetings/seminars that sprout up around the main action like mushrooms. <br/> Attendance is free, but solely for those working within the fashion industry. However, you must pre-register to be eligible. Please also note that under-18s will strictly not be admitted.',
+                link: 'http://www.hktdc.com/fair/hkfashionweekfw-en/HKTDC-Hong-Kong-Fashion-Week-For-Fall-Winter.html',
+                map: {
+                    'long': 22.283219,
+                    'lat': 114.173103
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/fashion_min.jpg',
+                        full: 'img/events/jan/fashion_big.jpg'
+                    },
+                    {
+                        min: 'img/events/jan/fashion2_min.jpg',
+                        full: 'img/events/jan/fashion2_big.jpg'
+                    }
+                ]
+            }
+
+        ]
+    },
+    {
+        id: 4,
+        name: 'february 2016',
+        image: 'img/month/february1.jpg',
+        weather: {
+            icon: 'sun',
+            temp: 16
+        },
+        tip: 'With Chinese New Year at the end of the month, February is home to one of the most important traditional Chinese holidays. Red Jianzhi (Chinese paper cuttings), Chinese poetry couplets and firecrackers are commonplace around this time of year. Please visit <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/frequently-asked-questions.jsp" target="_blank">Hong Kong’s tourism board</a> for more information. ',
+        events: [
+            {
+                id: 1,
+                name: 'Chinese New Year',
+                date: '8th February 2016',
+                price: '',
+                text: '8th February 2016 sees the Chinese calendar tick forward to the year of the Monkey, with over a billion people expected to celebrate the changeover worldwide. Across the Chinese world, normal life will be put on hold in favour of spectacle and parties, and Hong Kong is no different. Although the city has yet to confirm exact dates and plans for celebrations, expect vibrant night parades, bustling flower markets and pyrotechnics galore. With the celebrations lasting a full 15 days, don’t be surprised if you find yourself getting swept up in the occasion.<br/>With multiple venues staging multiple events across the city, it’s impossible to list all ticketing options here. Those who want to can join large parties at exclusive clubs, while others will enjoy simply attending the free fireworks displays and flower markets. Please note that many government buildings, offices and shops will shut for Chinese New Year. However, major attractions and popular restaurants/bars will remain open.',
+                link: '',
+                map: {
+                    'long': 22.2824605,
+                    'lat': 114.1615709
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/chinese-ny-16_min.jpg',
+                        full: 'img/events/feb/chinese-ny-16_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Birthday of Che Kung',
+                date: '9th February 2016',
+                price: '',
+                text: 'A former military commander of the Song Dynasty who was elevated to godhood after his death, Che Kung is now revered as a deity capable of bringing immense fortune and luck to his devotees. Many in Hong Kong choose to celebrate his birthday by having a flutter at their local track, but to really get into the spirit of things visitors should make their way out to his temple in the New Territories. Around 100,000 people usually attend, giving the whole thing a sombre, festival-like atmosphere. Fans are turned, drums are beaten and luck prayed for over the coming year. Attendance is free, however keep in mind the religious significance of the rituals and treat everything with the same respect you’d show in a church or mosque.',
+                link: '',
+                map: {
+                    'long': 22.382251,
+                    'lat': 114.196175
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/chekung_min.jpg',
+                        full: 'img/events/feb/chekung_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Hong Kong Pulse 3D Light Show',
+                date: '10th - 29th February 2016',
+                price: 'Free admission',
+                text: 'HK Pulse 3D light show returns to celebrate Chinese New Year. A spectacular light show, even by the standards of a city forever drenched in throbbing neon, HKPulse 3D is a guaranteed thrill for kids and the perennially young-at-heart. Taking place nightly throughout Chinese New Year celebrations (10th– 29th February),it makes inventive use of the outside of the Cultural Centre – turning it into a vast screen to unfold the magic on. For between eight and ten minutes, thebuilding’s shell becomes a canvas, as light drips down like water, forms into little runnels, and cascades away into a multicolour explosion. The eerilyconvincing 3D effects have to be seen to be believed.<br/>Admission is free, with light shows starting at 8.30pm, 9pm, 9.30pm and 10pm. Each performance lastapproximately 8-10 minutes. The content of the display changes frequently, if you’re in town for more than a week, it can be worth making the trek out there twice.',
+                link: '',
+                map: {
+                    'long': 22.294085,
+                    'lat': 114.170566
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/pulse-show_min.jpg',
+                        full: 'img/events/feb/pulse-show_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Hong Kong Masters Grand Slam',
+                date: '19th - 21st February 2016',
+                price: 'HK$330 - HK$980',
+                text: 'One of the largest equestrian events in Asia, the Hong Kong Masters Grand Slam brings together the global elite of horse racing: from jockeys to owners and promoters. Over the course of a heady weekend, horses and jockeys get to strut their stuff across numerous dressage and racing events, culminating in the Longines Speed Challenge and Grand Prix. Taking place on Friday afternoon and Sunday, respectively, these two world-famous races act as the perfect culmination of a perfect weekend. Expect plenty of upsets, surprises and ill-concealed delight from the attendant punters.<br/>For ticket information and further event details visit <a href="http://www.mastersgrandslam.com/en/longines_masters_hong_kong">the website</a>.',
+                link: '',
+                map: {
+                    'long': 22.314836,
+                    'lat': 113.937583
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/hk-masters_min.jpg',
+                        full: 'img/events/feb/hk-masters_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Spring Lantern Festival',
+                date: '22nd February 2016',
+                price: '',
+                text: 'The last day of Chinese New Year is also the unofficial “Chinese Valentine’s Day”, when couples get together to express their love and stroll arm-in-arm through the city parks. Unlike in the West, though, this is a day that can be enjoyed by singletons too, thanks to the impressive lantern displays that crop up throughout the city. For one night only, parks, trees, houses and restaurants are festooned with intricate paper lanterns, lending the whole city a magic, ethereal glow. Skip the restaurants and head out for a contemplative walk across the region, and soak up the atmosphere of this beautiful one-off night.',
+                link: '',
+                map: {
+                    'long': 22.2824605,
+                    'lat': 114.1615709
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/lantern_min.jpg',
+                        full: 'img/events/feb/lantern_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Hong Kong International Fur and Fashion Fair',
+                date: '25th - 28th February 2016',
+                price: '',
+                text: 'A grand showcase celebrating all things fur-related, from pelts and accessories to furrier’s tools and machinery, this 4-day expo is strictly open to traders only. Industry insiders who wish to attend should contact the organisers directly at fur@hkff.org.',
+                link: '',
+                map: {
+                    'long': 22.281286,
+                    'lat': 114.17209
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/fur_min.jpg',
+                        full: 'img/events/feb/fur_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 7,
+                name: 'Chinese New Year Race Meeting',
+                date: 'February 2016 (Exact dates TBC)',
+                price: '',
+                text: 'The self-styled “most popular horse racing event” in Hong Kong, the Chinese New Year race meeting is a barnstorming event guaranteed to satisfy all horse fanciers. Opening with a dizzying display of on-course festivities, ranging from dancing dragons to an opening show that could rival the Super Bowl, the day culminates in a series of events designed to set the pulse pounding. Highlights of the day include the jockeys mixing with the crowd to receive good-luck messages and the always-intriguing fringe events. Less a simple race day than a full-blown party, the New Year race meeting is perhaps the best introduction to Hong Kong’s racing scene you’ll find. <br/>Information on tickets and race details have yet to be released, but it’s a fair bet that they’ll be available soon. <a href="http://www.hkjc.com/home/english/index.asp">Keep checking back online for more details</a>.',
+                link: 'http://www.hkjc.com/home/english/index.asp',
+                map: {
+                    'long': 22.3771304,
+                    'lat': 114.1974398
+                },
+                photos: [
+                    {
+                        min: 'img/events/feb/ny-race-mtg_min.jpg',
+                        full: 'img/events/feb/ny-race-mtg_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 8,
+                name: 'Lunar New Year Cup',
+                date: 'February (Exact dates TBC)',
+                price: '',
+                text: 'A delightfully Hong Kong tradition, the Lunar New Year Cup sees HK ring in the Chinese New Year with a hefty dose of football. If previous years are anything to go by, expect three big-name international teams to make their way to HK for a friendly kick-around with the local squad, in an event dubbed “one of HK’s sporting highlights.” At the time of writing, details are still scarce, but keep checking back with the website for more information nearer to the time. ',
+                link: 'https://www.hkfa.com/en/index.php',
+                map: {
+                    'long': 22.272787,
+                    'lat': 114.188251
+                },
+                photos: [
+                    {
+                        min: 'img/events/jan/lunar_min.jpg',
+                        full: 'img/events/jan/lunar_big.jpg'
+                    }
+                ]
+            }
+
+
+        ]
+    },
+    {
+        id: 5,
+        name: 'march 2016',
+        image: 'img/month/march1.jpg',
+        weather: {
+            icon: 'sun',
+            temp: 17
+        },
+        tip: 'Hong Kong’s streets are inundated with many beautiful and intricate lanterns in celebration of the Spring Lantern festival or last day of Chinese New Year which this year falls in the month of March. Temperatures gradually begin to rise as does Hong Kong’s rainfall, click <a href="http://www.discoverhongkong.com/eng/plan-your-trip/know-hong-kong/climate.jsp" target="_blank">here</a> for further climate information.',
+        events: [
+            {
+                id: 1,
+                name: 'Hong Kong International Jewellery Show',
+                date: '3rd - 7th March 2016',
+                price: 'HK$100',
+                text: 'The self-styled World’s Largest Jewellery Marketplace returns for another year of precious stones, expensive trade deals and enough seminars to raise the spirits of even the most jet-lagged buyers. 2015 saw 2,491 exhibitors connect with 47,028 buyers across 78,800 sq miles of space, trading everything from antique jewellery to watches and clocks. At time of writing, little specific information is available about what side events to expect, but previous years suggest there will be a plethora of opportunities for learning and networking.<br/>Tickets cost HK$100. Please note that this is a trade-only fair and is not open to the general public. Visitors under 18 will strictly not be admitted.',
+                link: '',
+                map: {
+                    'long': 22.2783151,
+                    'lat': 114.174695
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/jewellery-16_min.jpg',
+                        full: 'img/events/mar/jewellery-16_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Chinese Groundhog Day',
+                date: '5th March 2016',
+                price: '',
+                text: 'Also known as Chinese Insects Awake Day or Excited Insects Day, Chinese Groundhog Day marks the moment the bugs start squirming back to life after a long winter, bringing with them the arrival of spring. Although you’re unlikely to notice the winter much in Hong Kong (temperatures rarely drop below 20C), the festival still makes for a welcome party. Do as the locals do and head down to Canal Street in Wanchai, to witness a delightfully idiosyncratic custom. For HK$50, the old ladies will sell you a paper tiger to inscribe your enemy’s name on then beat it senseless with a shoe while cursing them. If that strikes you as too negative, you can alternatively ask her to pray your family’s misfortunes away instead.<br/> The festival takes place across Hong Kong and China, and different venues will celebrate in different ways. Check your local watering hole to see if they’re doing anything special, or simply take HK$50 down to Canal Street and get the old ladies to curse your enemies senseless.',
+                link: '',
+                map: {
+                    'long': 22.2783151,
+                    'lat': 114.174695
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/groundhog-16_min.jpg',
+                        full: 'img/events/mar/groundhog-16_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Hong Kong International Film and TV Market (Filmart)',
+                date: '14th - 17th March 2016',
+                price: '',
+                text: 'A traders-only event aimed at bringing together the great and good of world cinema, the Hong Kong International Film and TV Market promises buying and selling opportunities galore, not to mention a plethora of networking events. This is a strictly closed shop, and off-limits to members of the general public. Industry insiders who haven’t already done so should make sure to pre-register beforehand via the website. Please note that no under-18s will be admitted.',
+                link: 'http://www.hktdc.com/fair/hkfilmart-en/s/4315-For_Visitor/Hong-Kong-International-Film%20-TV-Market%20FILMART-/Visitor-Pre-registration-soon.html',
+                map: {
+                    'long': 22.272787,
+                    'lat': 114.188251
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/filmart-16_min.jpg',
+                        full: 'img/events/mar/filmart-16_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Hung Shing Festival',
+                date: '21st March 2016',
+                price: '',
+                text: 'A minor deity venerated by (among others) fishermen; Hung Shing celebrates his birthday today with not one but two minor festivals in different parts of the region. Out in the New Territories, the ancient village of Ho Sheung Heung marks the date with a traditional procession, some Chinese opera and a whole lot of joviality. Alternatively, visitors can set their sights on the more central neighbourhood of Ap Lei Chau, where dragon dances are performed in Hung Shing’s honour. Although the festivities are minor compared to other holidays in the HK calendar, they’re still worth seeing, especially if you combine them with a day trip to lesser-visited parts of the island.<br />Attendance is free, however keep in mind the religious significance of the rituals and treat everything with the same respect you’d show in a church or mosque.',
+                link: '',
+                map: {
+                    'long': 22.2446072,
+                    'lat': 114.1560006
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/hung-shing_min.jpg',
+                        full: 'img/events/mar/hung-shing_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Art Basel Show Hong Kong',
+                date: '24th - 26th March 2016',
+                price: '',
+                text: 'The HK art show to end all art shows, Art Basel Hong Kong brings together more than 3,000 artists from around the globe in this stunning, three day showcase. With over half of all artists coming from Asia, the show, not without justification, bills itself as “a portal to the region’s artists.” Divided into sectors ranging from ‘film’ through to ‘discoveries’ and ‘magazines’, Art Basel brings together work usually only seen in museums, and ostentatiously hangs it right next to the passionate canvas of an up-and-coming youngster. Although the line-up for the 2016 show has yet to be announced, we can confidently predict that it will be challenging, thought-provoking and deliciously transgressive. <br/>Tickets are not yet on sale, and final details have yet to be confirmed. Those interested in attending should check back online for further updates and announcements. ',
+                link: 'https://www.artbasel.com/hong-kong ',
+                map: {
+                    'long': 22.2831789,
+                    'lat': 114.1730822
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/basel_min.jpg',
+                        full: 'img/events/mar/basel_big.jpg'
+                    }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Hong Kong Flower Show',
+                date: 'March 2016 (TBC)',
+                price: '',
+                text: 'For a few days each year, Hong Kong’s Victoria Park is transformed into a colourful floral explosion. Horticulturalists from across the city and international participants from across the globe gather to turn a tiny corner of HK into a slice of heaven. Showcasing blooms from around the world, the show is a must for those with a green thumb, and a very worthwhile way to spend an afternoon for the rest of us as well. The highlights are the fantastically intricate arrangements made for the competition entries and the vibrant landscape displays. However, the photographic displays and student art competitions should not be missed. <br/> Details are scarce at the moment, but expect information to be forthcoming soon. Those interested in attending should periodically check online for their 2016 website.',
+                link: 'http://www.discoverhongkong.com/eng/see-do/events-festivals/exhibitions-and-consumer-fairs/hong-kong-flower-show.jsp',
+                map: {
+                    'long': 22.282852,
+                    'lat': 114.189266
+                },
+                photos: [
+                    {
+                        min: 'img/events/mar/flower_min.jpg',
+                        full: 'img/events/mar/flower_big.jpg'
+                    }
+                ]
+            }
+        ]
+    },
+
 ];
 
 
