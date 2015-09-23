@@ -1815,63 +1815,63 @@ var specialEvents = {
 
 
 //April 2015
+eventData[0].events.push(specialEvents['brucelee']);
+eventData[0].events.push(specialEvents['stories']);
+eventData[0].events.push(specialEvents['onepiece']);
+
+//May 2015
+eventData[1].events.push(specialEvents['brucelee']);
+eventData[1].events.push(specialEvents['stories']);
+eventData[1].events.push(specialEvents['onepiece']);
+
+//June 2015
+eventData[2].events.push(specialEvents['brucelee']);
+eventData[2].events.push(specialEvents['stories']);
+eventData[2].events.push(specialEvents['onepiece']);
+
+//July 2015
 eventData[3].events.push(specialEvents['brucelee']);
 eventData[3].events.push(specialEvents['stories']);
 eventData[3].events.push(specialEvents['onepiece']);
+eventData[3].events.push(specialEvents['artscarnival']);
 
-//May 2015
+//August 2015
 eventData[4].events.push(specialEvents['brucelee']);
 eventData[4].events.push(specialEvents['stories']);
 eventData[4].events.push(specialEvents['onepiece']);
+eventData[4].events.push(specialEvents['artscarnival']);
 
-//June 2015
+//September 2015
 eventData[5].events.push(specialEvents['brucelee']);
 eventData[5].events.push(specialEvents['stories']);
 eventData[5].events.push(specialEvents['onepiece']);
 
-//July 2015
-eventData[6].events.push(specialEvents['brucelee']);
-eventData[6].events.push(specialEvents['stories']);
-eventData[6].events.push(specialEvents['onepiece']);
-eventData[6].events.push(specialEvents['artscarnival']);
-
-//August 2015
-eventData[7].events.push(specialEvents['brucelee']);
-eventData[7].events.push(specialEvents['stories']);
-eventData[7].events.push(specialEvents['onepiece']);
-eventData[7].events.push(specialEvents['artscarnival']);
-
-//September 2015
-eventData[8].events.push(specialEvents['brucelee']);
-eventData[8].events.push(specialEvents['stories']);
-eventData[8].events.push(specialEvents['onepiece']);
-
 //October 2015
-eventData[9].events.push(specialEvents['brucelee']);
-eventData[9].events.push(specialEvents['onepiece']);
+eventData[6].events.push(specialEvents['brucelee']);
+eventData[6].events.push(specialEvents['onepiece']);
 
 //November 2015
-eventData[10].events.push(specialEvents['brucelee']);
-eventData[10].events.push(specialEvents['detour']);
-eventData[10].events.push(specialEvents['design']);
+eventData[7].events.push(specialEvents['brucelee']);
+eventData[7].events.push(specialEvents['detour']);
+eventData[7].events.push(specialEvents['design']);
 
 //December 2015
-eventData[11].events.push(specialEvents['inspector']);
-eventData[11].events.push(specialEvents['brucelee']);
-eventData[11].events.push(specialEvents['detour']);
-eventData[11].events.push(specialEvents['design']);
-eventData[11].events.push(specialEvents['brandsproducts']);
+eventData[8].events.push(specialEvents['inspector']);
+eventData[8].events.push(specialEvents['brucelee']);
+eventData[8].events.push(specialEvents['detour']);
+eventData[8].events.push(specialEvents['design']);
+eventData[8].events.push(specialEvents['brandsproducts']);
 
 //January 2016
-eventData[0].events.push(specialEvents['brucelee']);
-eventData[0].events.push(specialEvents['inspector']);
-eventData[0].events.push(specialEvents['brandsproducts']);
+eventData[9].events.push(specialEvents['brucelee']);
+eventData[9].events.push(specialEvents['inspector']);
+eventData[9].events.push(specialEvents['brandsproducts']);
 
 //February 2016
-eventData[1].events.push(specialEvents['brucelee']);
-eventData[1].events.push(specialEvents['artsfest']);
+eventData[10].events.push(specialEvents['brucelee']);
+eventData[10].events.push(specialEvents['artsfest']);
 
 //March 2016
-eventData[2].events.push(specialEvents['brucelee']);
-eventData[2].events.push(specialEvents['artsfest']);
-eventData[2].events.push(specialEvents['internationalfilm']);
+eventData[11].events.push(specialEvents['brucelee']);
+eventData[11].events.push(specialEvents['artsfest']);
+eventData[11].events.push(specialEvents['internationalfilm']);
