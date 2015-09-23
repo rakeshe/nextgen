@@ -343,14 +343,14 @@ nav#menu ul a {
 }
 @media screen and (max-width: 640px) {
   .main {
-    background: url('../img/mobile-cover.jpg') no-repeat;
+    background: url('../img/mobile-cover.jpg?2-2-25') no-repeat;
     background-size: auto 100%;
     background-size: cover;
   }
 }
 @media screen and (min-width: 641px) {
   .main {
-    background: url('../img/cover.jpg') no-repeat;
+    background: url('../img/cover.jpg?2-2-25') no-repeat;
     background-size: auto 100%;
     background-size: cover;
   }
