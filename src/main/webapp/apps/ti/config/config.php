@@ -173,7 +173,7 @@ return new \Phalcon\Config(array(
             'AllianzPurchasingGatewayForNZ' => "https://uat.magroup-online.com/HTC/NZ?restart=",
         ),
         'liveGateWay' => array(
-            'AllianzPricingGateway' => "http://www.magroup-webservice.com/gateway/pricing",
+            'AllianzPricingGateway' => "https://www.magroup-webservice.com/gateway/pricing",
             'AllianzPurchasingGatewayForAU' => "https://www.magroup-online.com/htc/au?restart=1",
             'AllianzPurchasingGatewayForNZ' => "https://www.magroup-online.com/htc/nz?restart=1",
         ),
