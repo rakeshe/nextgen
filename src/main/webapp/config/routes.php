@@ -270,6 +270,20 @@ $router->add(
     )
 );
 
+/**
+ * api/recommend
+ */
+$router->add(
+    '/n/hcfa/register/:params',
+    array(
+        'params'       => 1,
+        'controller'   => 'register',
+        'action'       => 'index',
+        'module'       => 'hcfa',
+        'namespace'    => 'HC\HCFA\Controllers\\',
+    )
+);
+
 
 
 /**
