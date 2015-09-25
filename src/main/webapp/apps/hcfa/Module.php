@@ -7,7 +7,7 @@
  * @version    1.0
  */
 
-namespace HC\Deals;
+namespace HC\HCFA;
 
 
 class Module {
@@ -17,10 +17,8 @@ class Module {
         $loader = new \Phalcon\Loader();
 
         $loader->registerNamespaces([
-            'HC\Deals\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
-            'HC\Deals\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,
-            'HC\Deals\Library' => __DIR__ . '/'.static::getConfig()->application->libraryDir,
-            'HC\Common\Helpers' => __DIR__ . '/../common/helpers/',
+            'HC\HCFA\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
+            'HC\HCFA\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,
             'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
         ]);
 

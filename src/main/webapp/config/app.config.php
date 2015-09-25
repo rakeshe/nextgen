@@ -31,4 +31,8 @@ return [
         'className' => 'HC\Deals\Module',
         'path' => '../apps/deals/Module.php'
     ],
+    'hcfa' => [
+        'className' => 'HC\HCFA\Module',
+        'path' => '../apps/hcfa/Module.php'
+    ],
 ];
