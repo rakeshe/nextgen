@@ -26,13 +26,7 @@
         <link rel="icon" type="image/png" href="images/assets/favicon.png">
     </head>
     <body>
-
         {{ content() }}
-
-        {{ partial(theme ~ '/partials/header') }}
-        {{ partial(theme ~ '/partials/body') }}
-        {{ partial(theme ~ '/partials/footer') }}
-
         {{ javascript_include('themes/hcfa/js/jquery.js?' ~ appVersion ) }}
         {{ javascript_include('themes/hcfa/js/app.js?' ~ appVersion ) }}
     </body>
