@@ -24,7 +24,7 @@
                            <div class="row" style="color:#ff0000;"> {{ m }} </div>
                         {% endfor  %}
 
-                        <form action="index" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
+                        <form action="register" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
                             <input class="u-full-width" type="text"  name="TA_NAME"  placeholder="Travel agency name" id="AgencyInput">
                             <input class="u-full-width" type="text" name="FNAME" placeholder="Your name" id="NameInput">
                             <input class="u-full-width" type="text" name="TA_ID" placeholder="Travel agent ID" id="IDInput">
@@ -48,24 +48,24 @@
                             <h3>Terms and Conditions</h3>
                         </div>
 
-                            <div class="modal-row">
-                                *Only bookings made on the HotelClubforagents.com website between and including the 1st October and 31st December 2015 will be eligible to earn 1% of the gross booking value in HotelClub Member Rewards under the offer in this email.
-                            </div>
-                            <div class="modal-row">
-                                *This offer is only open to travel agents who are registered users of the HotelClubforagents.com website, who also have a registered membership account on Hotelclub.com and who are located outside of Asia.
-                            </div>
-                            <div class="modal-row">
-                                *Within 30 days of 31st December 2015, HotelClub will calculate and credit the amount of Member Rewards to the eligible Member Rewards account holder you nominated when registering for this offer.
-                            </div>
-                            <div class="modal-row">
-                                *The value of any bookings that are cancelled within this offer period shall be deducted from the total of gross booking value for the purpose of calculating the Member Rewards, and no Member Rewards will be provided in respect of such cancelled bookings.
-                            </div>
-                            <div class="modal-row">
-                                *HotelClub reserves the right to withdraw this offer and cancel any Member Rewards due or that have been provided, if there are signs of fraud, abuse or suspicious activity.
-                            </div>
-                            <div class="modal-row">
-                                *Member Rewards granted pursuant to this offer shall be subject to the HotelClub Membership Terms and Conditions.
-                            </div>
+                        <div class="modal-row">
+                            *Only bookings made on the HotelClubforagents.com website between and including the 1st October and 31st December 2015 will be eligible to earn 1% of the gross booking value in HotelClub Member Rewards under the offer in this email.
+                        </div>
+                        <div class="modal-row">
+                            *This offer is only open to travel agents who are registered users of the HotelClubforagents.com website, who also have a registered membership account on Hotelclub.com and who are located outside of Asia.
+                        </div>
+                        <div class="modal-row">
+                            *Within 30 days of 31st December 2015, HotelClub will calculate and credit the amount of Member Rewards to the eligible Member Rewards account holder you nominated when registering for this offer.
+                        </div>
+                        <div class="modal-row">
+                            *The value of any bookings that are cancelled within this offer period shall be deducted from the total of gross booking value for the purpose of calculating the Member Rewards, and no Member Rewards will be provided in respect of such cancelled bookings.
+                        </div>
+                        <div class="modal-row">
+                            *HotelClub reserves the right to withdraw this offer and cancel any Member Rewards due or that have been provided, if there are signs of fraud, abuse or suspicious activity.
+                        </div>
+                        <div class="modal-row">
+                            *Member Rewards granted pursuant to this offer shall be subject to the HotelClub Membership Terms and Conditions.
+                        </div>
                     </div>
                 </div>
             </div>
