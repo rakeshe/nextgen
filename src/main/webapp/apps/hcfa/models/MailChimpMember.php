@@ -10,6 +10,9 @@ namespace HC\HCFA\Models;
 
 class MailChimpMember
 {
+    const DEFAULT_ERROR_MESSAGE = 'Error. Agent ID and email address do not match. Please try again.';
+    const RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST = 'The email address passed does not exist on this list';
+    const ERROR_MESSAGE_EMAIL_NOT_IN_LIST = 'That email address does not exist on our file, please use the email address where you received this registration invite.';
 
     protected $success;
     protected $errors;
@@ -375,19 +378,26 @@ class MailChimpMember
     }
 
 
-    public  function isUpdateAllowed($email, $id, $uidName){
+    public function getParsedErrorMessage()
+    {
+        return $this->getError(
+        ) === self::RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST ? self::ERROR_MESSAGE_EMAIL_NOT_IN_LIST : self::DEFAULT_ERROR_MESSAGE;
+    }
+
+    public function isUpdateAllowed($email, $id, $uidName)
+    {
 
         $customInfo = $this->getMerges();
-        $uid = empty($customInfo[$uidName]) ? null : $customInfo[$uidName];
+        $uid        = empty($customInfo[$uidName]) ? null : $customInfo[$uidName];
 
         if ($this->getSuccess() && $this->getErrors() == 0) {
 
             // New rego is when only email is known and Agent Id is not known
-            if($this->getEmail() == $email && null == $customInfo){
+            if ($this->getEmail() == $email && null == $customInfo) {
                 return true;
             }
             // Update is when both agent id and email is known
-            if($this->getEmail() == $email && null !== $uid && $uid == $id){
+            if ($this->getEmail() == $email && null !== $uid && $uid == $id) {
                 return true;
             }
         }

@@ -15,9 +15,7 @@ use HC\HCFA\Models\MailChimpMember;
 class RegisterController extends ControllerBase {
 
     private $errorMessage = [];
-    const DEFAULT_ERROR_MESSAGE = 'Error. Agent ID and email address do not match. Please try again.';
-    const RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST = 'The email address passed does not exist on this list';
-    const ERROR_MESSAGE_EMAIL_NOT_IN_LIST = 'That email address does not exist on our file, please use the email address where you received this registration invite.';
+
 
     /** @var  MailChimpMember */
     protected $mailChimpMember;
@@ -57,10 +55,10 @@ class RegisterController extends ControllerBase {
                     if ( $data == true ) {
                         //load success page
                     } else {
-                        $this->errorMessage[] = self::DEFAULT_ERROR_MESSAGE;
+                        $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
                     }
                 } else {
-                    $this->errorMessage[] = $this->mailChimpMember->getError() === self::RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST ? self::ERROR_MESSAGE_EMAIL_NOT_IN_LIST : self::DEFAULT_ERROR_MESSAGE;
+                    $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
                 }
 
             }
