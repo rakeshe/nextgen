@@ -20,13 +20,43 @@ class RegisterController extends ControllerBase {
     /** @var  MailChimpMember */
     protected $mailChimpMember;
 
+    /** @var  HCFAModel */
+    protected $hcfaModel;
+
+    /** @var  page text */
+    private $cmsContent;
+
+    /** @var  app config */
+    private $appConfig;
+
+
     public function initialize() {
 
+        $this->hcfaModel = new \HC\HCFA\Models\HCFAModel();
+
+        $this->setUpData();
+    }
+
+    public function setUpData() {
+
+        $this->cmsContent = $this->hcfaModel->getDocument( \HC\HCFA\Models\HCFAModel::DOC_NAME_CMS );
+
+        $configData = $this->hcfaModel->getDocument( \HC\HCFA\Models\HCFAModel::DOC_NAME_CONFIG, true );
+
+        $localConfig = $this->config->mailchimp;
+
+        //update local config with couch document
+        if (isset($configData['mailchimp'])) {
+
+            foreach ($configData['mailchimp'] as $key => $value) {
+                $localConfig[$key] = $value;
+            }
+        }
+
+        $this->appConfig = $localConfig;
     }
 
     public function indexAction() {
-
-
 
         if ($this->request->isPost()) {
 
@@ -67,7 +97,8 @@ class RegisterController extends ControllerBase {
 
         $this->view->setVars([
             'appVersion'   => APPLICATION_VERSION,
-            'msg'          => $this->errorMessage
+            'msg'          => $this->errorMessage,
+            'cms'          => json_decode( $this->cmsContent, true ),
         ]);
     }
 }
