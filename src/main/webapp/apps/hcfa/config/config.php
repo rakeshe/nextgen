@@ -18,7 +18,8 @@ return new \Phalcon\Config ([
 				'controllersDir' => 'controllers/',
 				'modelsDir' => 'models/',
 				'viewsDir' => 'views/themes/',
-                'libraryDir' => 'library/'
+                'libraryDir' => 'library/',
+                'formsDir' => 'forms/'
 		),
 		'metadata' => array (
 				'adapter' => 'Apc',

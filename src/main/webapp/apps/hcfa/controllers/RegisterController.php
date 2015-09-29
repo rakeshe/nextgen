@@ -30,12 +30,16 @@ class RegisterController extends ControllerBase {
     /** @var  app config */
     private $appConfig;
 
+    private $registerForm;
+
 
     public function initialize() {
 
         $this->hcfaModel = new \HC\HCFA\Models\HCFAModel();
 
         $this->setUpData();
+
+        $this->registerForm = new \HC\HCFA\Forms\RegisterForm();
     }
 
     public function setUpData() {
@@ -61,50 +65,58 @@ class RegisterController extends ControllerBase {
 
         if ($this->request->isPost()) {
 
-            $api = new \MCAPI($this->config->mailchimp->apikey);
+            if ($this->registerForm->isValid($this->request->getPost()) == false) {
 
-            if ( !$api->errorCode ) {
+                foreach ($this->registerForm->getMessages() as $message)
+                    $this->errorMessage[] = $message->getMessage();
 
-                $this->mailChimpMember = new MailChimpMember();
-                $return = $api->listMemberInfo($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'));
+            } else {
 
-                if ($return) {
+                $api = new \MCAPI($this->config->mailchimp->apikey);
 
-                    $this->mailChimpMember->init($return);
+                if (!$api->errorCode) {
+
+                    $this->mailChimpMember = new MailChimpMember();
+                    $return = $api->listMemberInfo($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'));
+
+                    if ($return) {
+
+                        $this->mailChimpMember->init($return);
 
 
-                    $postedEmail = $this->request->getPost('EMAIL');
-                    $postedUid = $this->request->getPost('TA_ID');
+                        $postedEmail = $this->request->getPost('EMAIL');
+                        $postedUid = $this->request->getPost('TA_ID');
 
-                    if ($this->mailChimpMember->isUpdateAllowed($postedEmail, $postedUid, 'TA_ID')) {
-                        //update member info
-                        $inputVars = [
-                            'TA_NAME' => $this->request->getPost('TA_NAME'),
-                            'FNAME' => $this->request->getPost('FNAME'),
-                            'TA_ID' => $postedUid,
-                            'EMAIL' => $postedEmail,
-                            'PHONE' => $this->request->getPost('PHONE'),
-                        ];
+                        if ($this->mailChimpMember->isUpdateAllowed($postedEmail, $postedUid, 'TA_ID')) {
+                            //update member info
+                            $inputVars = [
+                                'TA_NAME' => $this->request->getPost('TA_NAME'),
+                                'FNAME' => $this->request->getPost('FNAME'),
+                                'TA_ID' => $postedUid,
+                                'EMAIL' => $postedEmail,
+                                'PHONE' => $this->request->getPost('PHONE'),
+                            ];
 
-                        $data = $api->listUpdateMember($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'), $inputVars, 'html', false);
+                            $data = $api->listUpdateMember($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'), $inputVars, 'html', false);
 
-                        if ($data == true) {
-                            //load success page
-                            //there is no campaign is exists
-                            $this->dispatcher->forward([
-                                'controller' => 'register',
-                                'action' => 'success',
-                            ]);
+                            if ($data == true) {
+                                //load success page
+                                //there is no campaign is exists
+                                $this->dispatcher->forward([
+                                    'controller' => 'register',
+                                    'action' => 'success',
+                                ]);
+                            } else {
+                                $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
+                            }
                         } else {
                             $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
                         }
-                    } else {
-                        $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
-                    }
 
+                    }
+                } else {
+                    $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
                 }
-            } else {
-                $this->errorMessage[] = $this->mailChimpMember->getParsedErrorMessage();
             }
         }
 
@@ -113,7 +125,8 @@ class RegisterController extends ControllerBase {
             'appVersion'   => APPLICATION_VERSION,
             'msg'          => $this->errorMessage,
             'cms'          => json_decode( $this->cmsContent, true ),
-            'theme'        => self::THEME_NAME
+            'theme'        => self::THEME_NAME,
+            'form'         => $this->registerForm,
         ]);
 
         $this->view->pick( self::THEME_NAME . '/index/index');
@@ -125,7 +138,7 @@ class RegisterController extends ControllerBase {
             'appVersion'   => APPLICATION_VERSION,
             'msg'          => $this->errorMessage,
             'cms'          => json_decode( $this->cmsContent, true ),
-            'theme'        => self::THEME_NAME
+            'theme'        => self::THEME_NAME,
         ]);
 
         $this->view->pick( self::THEME_NAME . '/index/success');

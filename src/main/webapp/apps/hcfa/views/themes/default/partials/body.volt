@@ -20,14 +20,11 @@
                         {% endfor  %}
 
                         <form action="register" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
-                            <input class="u-full-width" type="text"  name="TA_NAME"  placeholder="Travel agency name" id="AgencyInput">
-                            <input class="u-full-width" type="text" name="FNAME" placeholder="Your name" id="NameInput">
-                            <input class="u-full-width" type="text" name="TA_ID" placeholder="Travel agent ID" id="IDInput">
-                            <input class="u-full-width" type="email" name="EMAIL" placeholder="Your email" id="EmailInput">
-                            <input class="u-full-width" type="text" name="PHONE" placeholder="Your phone" id="PhoneInput">
-                            <input class="button-primary" type="submit" value="Register now">
+                            {% for element in form %}
+                                    {{ element }}
+                            {% endfor %}
+                            {{ submit_button("Register now", "class": "button-primary") }}
                         </form>
-
                         <!--End mc_embed_signup-->
                     </div><!-- End Content Display -->
                 </div><!-- End Five -->

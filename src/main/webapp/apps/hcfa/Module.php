@@ -19,7 +19,8 @@ class Module {
         $loader->registerNamespaces([
             'HC\HCFA\Controllers' => __DIR__ . '/'.static::getConfig()->application->controllersDir,
             'HC\HCFA\Models' => __DIR__ . '/'. static::getConfig()->application->modelsDir,
-            'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
+            'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/',
+            'HC\HCFA\Forms' => __DIR__ . '/'. static::getConfig()->application->formsDir,
         ]);
 
         $loader->registerClasses(
