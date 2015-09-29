@@ -22,6 +22,12 @@ class Module {
             'Phalcon' => __DIR__ .  '/../../vendor/incubator/Library/Phalcon/'
         ]);
 
+        $loader->registerClasses(
+            array(
+                "MCAPI" => __DIR__ . "/../../vendor/library/MCAPI.class.php"
+            )
+        );
+
         $loader->register();
     }
 
