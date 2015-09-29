@@ -2,6 +2,8 @@
 
 namespace HC\HCFA\Controllers;
 
+use HC\HCFA\Models\MailChimpMember;
+
 /**
  *
  * @package    RegisterController.php
@@ -13,6 +15,12 @@ namespace HC\HCFA\Controllers;
 class RegisterController extends ControllerBase {
 
     private $errorMessage = [];
+    const DEFAULT_ERROR_MESSAGE = 'Error. Agent ID and email address do not match. Please try again.';
+    const RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST = 'The email address passed does not exist on this list';
+    const ERROR_MESSAGE_EMAIL_NOT_IN_LIST = 'That email address does not exist on our file, please use the email address where you received this registration invite.';
+
+    /** @var  MailChimpMember */
+    protected $mailChimpMember;
 
     public function initialize() {
 
@@ -28,25 +36,33 @@ class RegisterController extends ControllerBase {
 
             if ( !$api->errorCode ) {
 
+                $this->mailChimpMember = new MailChimpMember();
                 $return = $api->listMemberInfo($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'));
+                $this->mailChimpMember->init($return);
 
-                if ( $return['success'] == 1 && $return['errors'] == 0) {
+                $postedEmail = $this->request->getPost('EMAIL');
+                $postedUid = $this->request->getPost('TA_ID');
+
+                if ( $this->mailChimpMember->isUpdateAllowed($postedEmail, $postedUid, 'TA_ID')) {
                     //update member info
                     $inputVars = [
                       'TA_NAME' => $this->request->getPost('TA_NAME'),
                       'FNAME' => $this->request->getPost('FNAME'),
-                      'TA_ID' => $this->request->getPost('TA_ID'),
-                      'EMAIL' => $this->request->getPost('EMAIL'),
+                      'TA_ID' => $postedUid,
+                      'EMAIL' => $postedEmail,
                       'PHONE' => $this->request->getPost('PHONE'),
                     ];
+
                     $data = $api->listUpdateMember($this->config->mailchimp->listId, $this->request->getPost('EMAIL', 'email'), $inputVars, 'html', false);
                     if ( $data == true ) {
                         //load success page
                     } else {
-                        $this->errorMessage[] = 'There is some technical problem, please thy again!!';
+                        $this->errorMessage[] = self::DEFAULT_ERROR_MESSAGE;
                     }
                 } else {
-                    $this->errorMessage[] = 'There is some technical problem, please thy again!!';
+                    $errorMessage = !empty($return['data'][0]['error']) ? $return['data'][0]['error'] : self::DEFAULT_ERROR_MESSAGE;
+                    $errorMessage = $errorMessage === self::RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST ? self::ERROR_MESSAGE_EMAIL_NOT_IN_LIST : $errorMessage;
+                    $this->errorMessage[] = $errorMessage;
                 }
 
             }
@@ -58,5 +74,4 @@ class RegisterController extends ControllerBase {
             'msg'          => $this->errorMessage
         ]);
     }
-
 }
