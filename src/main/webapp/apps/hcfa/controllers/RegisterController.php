@@ -60,9 +60,7 @@ class RegisterController extends ControllerBase {
                         $this->errorMessage[] = self::DEFAULT_ERROR_MESSAGE;
                     }
                 } else {
-                    $errorMessage = !empty($return['data'][0]['error']) ? $return['data'][0]['error'] : self::DEFAULT_ERROR_MESSAGE;
-                    $errorMessage = $errorMessage === self::RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST ? self::ERROR_MESSAGE_EMAIL_NOT_IN_LIST : $errorMessage;
-                    $this->errorMessage[] = $errorMessage;
+                    $this->errorMessage[] = $this->mailChimpMember->getError() === self::RESPONSE_MESSAGE_EMAIL_NOT_IN_LIST ? self::ERROR_MESSAGE_EMAIL_NOT_IN_LIST : self::DEFAULT_ERROR_MESSAGE;
                 }
 
             }
