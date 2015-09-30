@@ -72,7 +72,8 @@ class RegisterForm extends Form
         $email = new Text('EMAIL');
         $email->setAttributes([
             'placeholder' => 'Your email',
-            'class' => 'u-full-width'
+            'class' => 'u-full-width',
+            'value' => $this->request->get('email'),
         ]);
         $email->setFilters('email');
         $email->addValidators(array(
