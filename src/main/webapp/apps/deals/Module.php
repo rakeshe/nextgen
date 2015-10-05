@@ -9,6 +9,10 @@
 
 namespace HC\Deals;
 
+require_once '../vendor/autoload.php';
+use GeoIp2\Database\Reader;
+use GeoIp2\Exception\AddressNotFoundException;
+
 
 class Module {
 
@@ -87,6 +91,15 @@ class Module {
                );
                $couch->setTimeout(60 * 10000000);
                return $couch;
+       });
+
+	   //set geo-ip object to di
+       $di->set('geoIP',function(){
+           try {
+               return new \GeoIp2\Database\Reader(__DIR__ . '/../../data/DB/GeoLite2-Country.mmdb');
+           } catch (\Exception $e) {
+               echo $e->getMessage();
+           }
        });
 
     }

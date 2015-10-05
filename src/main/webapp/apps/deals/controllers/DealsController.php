@@ -201,16 +201,25 @@ class DealsController extends ControllerBase {
     }
 
     public function indexAction() {
+		//128.101.101.101 -- US
+		//1.0.16.0 -- jp
+		//37.49.128.0 --dk
+		//5.10.160.0 --de
+		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
 
+        $clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
+		$clientIp = '5.10.160.0';//default Ipaddress for DE
 
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:en_au
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:zh_cn
+		$record = $reader->country($clientIp);
+		//echo $record->raw['country']['iso_code'];/fetching
+
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
+
         $docFooterSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true
         );
