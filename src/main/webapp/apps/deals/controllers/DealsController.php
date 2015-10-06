@@ -201,17 +201,24 @@ class DealsController extends ControllerBase {
     }
 
     public function indexAction() {
+		//IP address for particular countries
+		//110.33.122.75 -- AU
+		//219.93.183.103 --MY
+		//81.201.86.45 -- HK
 		//128.101.101.101 -- US
 		//1.0.16.0 -- jp
 		//37.49.128.0 --dk
 		//5.10.160.0 --de
+
 		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
-
         $clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
-		$clientIp = '5.10.160.0';//default Ipaddress for DE
-
+		$clientIp = '81.201.86.45';//default Ipaddress for DE
 		$record = $reader->country($clientIp);
-		//echo $record->raw['country']['iso_code'];/fetching
+		//echo '<pre>';print_r($config);print_r($record);echo '</pre>';
+		//echo $record->raw['country']['iso_code'];//fetching
+		//$localeVal = strtoupper($record->locales[0]);
+		$localeVal = $record->raw['country']['iso_code'];
+		echo $this->locale = $this->config->locales->$localeVal;
 
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
@@ -227,6 +234,7 @@ class DealsController extends ControllerBase {
 
         $docSeo =  $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
+
 
         $docFooterAbout = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true
@@ -271,7 +279,6 @@ class DealsController extends ControllerBase {
         $pmPromo = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['promo_pm'])
         );
-
         // dev:sale:773417b30e69f2511c9afda61c8d936e:homepage:en_au
         $homePage = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
@@ -321,6 +328,7 @@ class DealsController extends ControllerBase {
                 }
             }
         }
+
 
         $this->view->setVars(
             [

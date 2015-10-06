@@ -11,6 +11,7 @@
 namespace HC\Deals\Models;
 
 use Phalcon\Exception;
+use Phalcon\Http\Request;
 
 class DealsModel extends \Phalcon\Mvc\Model
 {
@@ -153,9 +154,8 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
 
     public function buildUrl($suffix, $postFixType = 'locale') {
-
+		$this->getUrl('HK');
         $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
-
         if ($postFixType == 'locale') {
             $couchDocName .=  ':'. strtolower($this->locale);
         } else if ($postFixType == 'currency') {
@@ -241,5 +241,15 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     }
 
+	public function getUrl($ipCountry){
+		echo "<br>".$ipCountry."-".$this->locale."-".$this->currency."</br>";
+		//echo '<pre>';print_r($this->userInfo);echo '</pre>';
+		if($ipCountry=='HK'){
+			//echo "Checking inside the HK (Hong Kong) value";
+			echo $url = '/n/'.$this->locale.'/sale/asia-deals&curr='.$this->currency;
+		}
+		exit;
+		return $url;
+	}
 
 }
