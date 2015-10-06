@@ -242,10 +242,9 @@ class DealsModel extends \Phalcon\Mvc\Model
     }
 
 	public function getUrl($ipCountry){
-		echo "<br>".$ipCountry."-".$this->locale."-".$this->currency."</br>";
-		//echo '<pre>';print_r($this->userInfo);echo '</pre>';
-		if($ipCountry=='HK'){
+		if($ipCountry=='HK'&&isset($this->userInfo)){
 			//echo "Checking inside the HK (Hong Kong) value";
+			//echo $this->userInfo;
 			echo $url = '/n/'.$this->locale.'/sale/asia-deals&curr='.$this->currency;
 		}
 		exit;
