@@ -74,7 +74,6 @@ class DealsController extends ControllerBase {
 
 
     public function init() {
-
         $this->setParams();
 
         $this->model = new \HC\Deals\Models\DealsModel();
@@ -201,10 +200,6 @@ class DealsController extends ControllerBase {
     }
 
     public function indexAction() {
-		$localeVal = $this->model->getDealInfo();
-		$this->locale = $localeVal['locale'];
-		$this->currency = $localeVal['currency'];
-
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
@@ -268,7 +263,6 @@ class DealsController extends ControllerBase {
         $homePage = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
         );
-
         $noHotels = '';
 
         $dealsData = false;

@@ -154,6 +154,10 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
 
     public function buildUrl($suffix, $postFixType = 'locale') {
+		$localeVal = $this->getDealInfo();
+		$this->locale = $localeVal['locale'];
+		$this->currency = $localeVal['currency'];
+
         $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
         if ($postFixType == 'locale') {
             $couchDocName .=  ':'. strtolower($this->locale);
@@ -252,7 +256,7 @@ class DealsModel extends \Phalcon\Mvc\Model
 
 		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP']; //Fetching Ipaddress and there values
         //$clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
-		$clientIp = '110.33.122.75';//default Ipaddress for DE
+		$clientIp = '81.201.86.45';//default Ipaddress for HK (Hong Kong)
 		$record = $reader->country($clientIp);
 
 		$localeVal = $record->raw['country']['iso_code'];
