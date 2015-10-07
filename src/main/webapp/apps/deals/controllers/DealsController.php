@@ -201,24 +201,9 @@ class DealsController extends ControllerBase {
     }
 
     public function indexAction() {
-		//IP address for particular countries
-		//110.33.122.75 -- AU
-		//219.93.183.103 --MY
-		//81.201.86.45 -- HK
-		//128.101.101.101 -- US
-		//1.0.16.0 -- jp
-		//37.49.128.0 --dk
-		//5.10.160.0 --de
-
-		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP'];
-        $clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
-		$clientIp = '81.201.86.45';//default Ipaddress for DE
-		$record = $reader->country($clientIp);
-		//echo '<pre>';print_r($config);print_r($record);echo '</pre>';
-		//echo $record->raw['country']['iso_code'];//fetching
-		//$localeVal = strtoupper($record->locales[0]);
-		$localeVal = $record->raw['country']['iso_code'];
-		echo $this->locale = $this->config->locales->$localeVal;
+		$localeVal = $this->model->getDealInfo();
+		$this->locale = $localeVal['locale'];
+		$this->currency = $localeVal['currency'];
 
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
@@ -328,7 +313,6 @@ class DealsController extends ControllerBase {
                 }
             }
         }
-
 
         $this->view->setVars(
             [

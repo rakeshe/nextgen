@@ -154,7 +154,6 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
 
     public function buildUrl($suffix, $postFixType = 'locale') {
-		$this->getUrl('HK');
         $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
         if ($postFixType == 'locale') {
             $couchDocName .=  ':'. strtolower($this->locale);
@@ -241,14 +240,41 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     }
 
-	public function getUrl($ipCountry){
-		if($ipCountry=='HK'&&isset($this->userInfo)){
-			//echo "Checking inside the HK (Hong Kong) value";
-			//echo $this->userInfo;
-			echo $url = '/n/'.$this->locale.'/sale/asia-deals&curr='.$this->currency;
+	public function getDealInfo(){
+		$this->userId = '';//making userId NULL
+		//IP address for particular countries
+		//81.201.86.45 -- HK
+		//110.33.122.75 -- AU
+		//178.32.63.223 -- UK (GB)
+		//128.101.101.101 -- US
+		//219.93.183.103 --MY
+		//1.0.16.0 -- JP
+
+		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP']; //Fetching Ipaddress and there values
+        //$clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
+		$clientIp = '110.33.122.75';//default Ipaddress for DE
+		$record = $reader->country($clientIp);
+
+		$localeVal = $record->raw['country']['iso_code'];
+		$reader = \Phalcon\DI\FactoryDefault::getDefault()['config'];
+
+		if($localeVal=='HK'&&$this->userId==NULL){
+			$locale['locale'] = $reader->locales->$localeVal;
+			$locale['currency'] = 'HKD';
 		}
-		exit;
-		return $url;
+		elseif($localeVal=='AU'&&$this->userId==NULL){
+			$locale['locale'] = 'en_AU';
+			$locale['currency'] = 'AUD';
+		}
+		elseif($localeVal=='GB'&&$this->userId==NULL){
+			$locale['locale'] = 'en_AU';
+			$locale['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
+		}
+		elseif($localeVal=='US'&&$this->userId==NULL){
+			$locale['locale'] = 'en_AU';
+			$locale['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
+		}
+		return $locale;
 	}
 
 }
