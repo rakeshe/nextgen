@@ -255,30 +255,36 @@ class DealsModel extends \Phalcon\Mvc\Model
 		//1.0.16.0 -- JP
 
 		$reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP']; //Fetching Ipaddress and there values
+
         //$clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
 		$clientIp = '81.201.86.45';//default Ipaddress for HK (Hong Kong)
+
 		$record = $reader->country($clientIp);
 
 		$localeVal = $record->raw['country']['iso_code'];
-		$reader = \Phalcon\DI\FactoryDefault::getDefault()['config'];
+		$reader = \Phalcon\DI\FactoryDefault::getDefault()['config'];//fetch config details
 
-		if($localeVal=='HK'&&$this->userId==NULL){
-			$locale['locale'] = $reader->locales->$localeVal;
-			$locale['currency'] = 'HKD';
+		//Condition to check the locale cookie
+		if($localeVal=='HK'&&($this->locale=='en_AU')){
+			$localeTemp['locale'] = $reader->locales->$localeVal;
+			$localeTemp['currency'] = 'HKD';
 		}
-		elseif($localeVal=='AU'&&$this->userId==NULL){
-			$locale['locale'] = 'en_AU';
-			$locale['currency'] = 'AUD';
+		elseif($localeVal=='AU'&&($this->locale=='en_AU')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'AUD';
 		}
-		elseif($localeVal=='GB'&&$this->userId==NULL){
-			$locale['locale'] = 'en_AU';
-			$locale['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
+		elseif($localeVal=='GB'&&($this->locale=='en_AU')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
 		}
-		elseif($localeVal=='US'&&$this->userId==NULL){
-			$locale['locale'] = 'en_AU';
-			$locale['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
+		elseif($localeVal=='US'&&($this->locale=='en_AU')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
 		}
-		return $locale;
+		else{
+			$localeTemp['locale'] = $this->locale;
+			$localeTemp['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
+		}
+		return $localeTemp;
 	}
-
 }
