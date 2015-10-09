@@ -17,6 +17,7 @@ class ModelFactory
         $apiModelName = __NAMESPACE__ . '\\' . ucfirst($model) . 'Model';
         if (class_exists($apiModelName)) {
             $apiModel = new $apiModelName();
+            $apiModel->setControllerName($model);
 
         } else {
             $apiModel = new ApiModel();
