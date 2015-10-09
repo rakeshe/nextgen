@@ -19,6 +19,9 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     const DEFAULT_WHITE_LIST_HOSTS = 'www.hotelclub.com, www.hotelclub.cn, cmsref.hotelclub.com, hotelclub.com';
 
+    const DEFAULT_VIEW_PARTIAL = 'body';
+    const DEFAULT_VIEW_DEVICE = 'desktop';
+
     protected $whiteListUrls;
 
     protected $whiteListType;
@@ -31,25 +34,35 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     protected $hostName;
 
+    protected $params;
+
     /** @var  \HC\Api\Models\ApiModel */
     protected $apiModel;
 
-    protected function initialize() {
+    protected $viewDevice;
+
+
+    protected function initialize()
+    {
 
         $this->view->disable();
         $this->apiModel = ModelFactory::build($this->router->getControllerName());
+        $this->apiModel->setActionName($this->router->getActionName());
         $this->apiModel->init($this->request);
+        $this->apiModel->setParams($this->getParams());
     }
 
     /**
      * Verify hash code
      */
-    protected function verifyHash() {
+    protected function verifyHash()
+    {
 
         if (isset(getallheaders()['Authorization']) && null != getallheaders()['Authorization']) {
 
             if (isset($this->availableHosts[$this->hostName])
-                && getallheaders()['Authorization'] === $this->availableHosts[$this->hostName]) {
+                && getallheaders()['Authorization'] === $this->availableHosts[$this->hostName]
+            ) {
                 return true;
             }
         }
@@ -58,40 +71,50 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     /**
      * Verify request type
+     *
      * @return bool
      */
-    protected function verifyRequestType() {
+    protected function verifyRequestType()
+    {
 
         return $this->request->isGet() && true == $this->request->isAjax();
     }
+
     /**
      * load whitelist url file
      */
 
-    protected function loadWhiteListUrls() {
+    protected function loadWhiteListUrls()
+    {
 
-        try{
+        try {
 
             if (file_exists(__DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE)) {
                 //require_once __DIR__ . '/../config/' . self::WHITE_LIST_URL_FILE;
-                $this->whiteListUrls = json_decode(file_get_contents(__DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE), true);
+                $this->whiteListUrls = json_decode(
+                    file_get_contents(__DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE),
+                    true
+                );
             } else {
                 throw new Exception('required file does not exists');
             }
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->getExceptionMessage($e);
         }
     }
 
     /**
      * To verify app key
+     *
      * @return bool
      */
-    protected function verifyAppKey() {
+    protected function verifyAppKey()
+    {
 
-        if (null!= $this->request->getQuery('api_key') &&
-            array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)) {
+        if (null != $this->request->getQuery('api_key') &&
+            array_key_exists($this->request->getQuery('api_key'), $this->whiteListUrls)
+        ) {
 
             $this->availableHosts = $this->whiteListUrls[$this->request->getQuery('api_key')];
             return true;
@@ -101,18 +124,22 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     /**
      * Verify host name or IP is whitelisted or not
+     *
      * @return bool
      * @todo, verify host logic, check md5(getHttpHost().':'.secret_salt) againsts api_key
      */
-    protected function verifyHost() {
+    protected function verifyHost()
+    {
 
         $model = $this->apiModel;
-        if($model->getApiId() && $model->getApiKey()){
+        if ($model->getApiId() && $model->getApiKey()) {
 
             // Allow all from white listed
-            if(in_array($model->getRequestHost(),$this->config->whiteListDomains)) return true;
+            if (in_array($model->getRequestHost(), $this->config->whiteListDomains)) {
+                return true;
+            }
 
-            $hostKey = md5($model->getRequestHost() .':' . $this->config->secretKey->salt);
+            $hostKey = md5($model->getRequestHost() . ':' . $this->config->secretKey->salt);
             return $hostKey === $model->getApiKey();
 
         }
@@ -137,10 +164,13 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     /**
      * Get exception info
+     *
      * @param object $e
      */
-    protected function getExceptionMessage($e) {
-        $exceptionMessage = "API Exception Message: " .$e->getMessage() . PHP_EOL . "Stack:" . PHP_EOL .$e->getTraceAsString();
+    protected function getExceptionMessage($e)
+    {
+        $exceptionMessage = "API Exception Message: " . $e->getMessage(
+            ) . PHP_EOL . "Stack:" . PHP_EOL . $e->getTraceAsString();
         if ('dev' === ORBITZ_ENV) {
             echo $exceptionMessage;
         } else {
@@ -149,66 +179,126 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
     }
 
-    protected function sendOutput($httpCode, $content = false) {
+    protected function sendOutput($httpCode, $content = false)
+    {
 
         $res = new Response;
         $res
             ->setHeader("Content-Type", "{$this->responseContentType}; charset=UTF-8")
             ->setRawHeader("HTTP/1.1 {$httpCode}")
-            ->setStatusCode($httpCode,'')
+            ->setStatusCode($httpCode, '')
             ->setContent($content)
             ->send();
         die();
     }
 
-    protected function forward($uri){
-    	$uriParts = explode('/', $uri);
-        if ($uriParts[1] == 'show404')
+    protected function forward($uri)
+    {
+        $uriParts = explode('/', $uri);
+        if ($uriParts[1] == 'show404') {
             $this->show404();
-        else
+        } else {
             return $this->dispatcher->forward(
-    		array(
-    			'controller' => $uriParts[0], 
-    			'action' => $uriParts[1]
-    		)
+                array(
+                    'controller' => $uriParts[0],
+                    'action'     => $uriParts[1]
+                )
             );
+        }
     }
 
-    protected function updateWhiteListFile(){
+    protected function updateWhiteListFile()
+    {
 
         $filePath = __DIR__ . '/../../../data/' . self::WHITE_LIST_URL_FILE;
 
         $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
 
-        $cacheData   = $Couch->get( ORBITZ_ENV .':' . self::WHITE_LIST_DOCUMENT_FILE);
+        $cacheData = $Couch->get(ORBITZ_ENV . ':' . self::WHITE_LIST_DOCUMENT_FILE);
 
         if (null != $cacheData) {
 
             $storeFile = true;
 
-            if(file_exists($filePath) ){
+            if (file_exists($filePath)) {
                 $interval = strtotime('-24 hours');
-                if (filemtime($filePath) <= $interval ){
+                if (filemtime($filePath) <= $interval) {
                     $storeFile = true;
-                } else{
+                } else {
                     $storeFile = false;
                 }
             }
             $request = new \Phalcon\Http\Request();
             $forceWrite = $request->getQuery('reload-whitelist-cache');
-            if($forceWrite == 'yes') {
+            if ($forceWrite == 'yes') {
                 $storeFile = true;
             }
-            if($storeFile){
+            if ($storeFile) {
                 $file = fopen($filePath, 'w');
                 fputs($file, $cacheData);
                 fclose($file);
             }
         }
     }
-    
-    protected function show404() {
-      header("HTTP/1.0 404 Not Found");
-      die();
+
+    protected function show404()
+    {
+        header("HTTP/1.0 404 Not Found");
+        die();
     }
+
+    /**
+     * Enable view
+     */
+    protected function enableView()
+    {
+        $di = $this->getDI();
+        $di['view']->enable();
+    }
+
+    protected function renderView($partial = self::DEFAULT_VIEW_PARTIAL, $path=null)
+    {
+        $path = null === $path ? $this->router->getControllerName() : $path;
+        $this->view->render( $path .'/' . $this->getViewDevice(), $partial);
+    }
+
+    /**
+     * @return null
+     */
+    public function getParams()
+    {
+        if ($this->params === null) {
+            $this->setParams();
+        }
+        return $this->params;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setParams()
+    {
+        $this->params = $this->dispatcher->getParams();
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getViewDevice()
+    {
+       if(null === $this->viewDevice) $this->setViewDevice();
+        return $this->viewDevice;
+    }
+
+    /**
+     * @param mixed $viewDevice
+     */
+    public function setViewDevice($viewDevice = self::DEFAULT_VIEW_DEVICE)
+    {
+        $this->viewDevice = $viewDevice;
+    }
+
+
+
 }

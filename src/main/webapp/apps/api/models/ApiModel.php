@@ -16,7 +16,10 @@ class ApiModel
     const   REQUEST_METHOD_GET = 'GET';
     const   REQUEST_METHOD_POST = 'POST';
     const   REQUEST_METHOD_AJAX = 'AJAX';
-
+    const DEFAULT_LOCALE = 'en_AU';
+    const FILE_CACHE_PATH = '/../../../data/';
+    protected $controllerName;
+    protected $actionName;
     protected $apiId;
 
     protected $apiKey;
@@ -34,6 +37,13 @@ class ApiModel
 
     protected $requestPayload;
 
+    protected $paramKeys;
+    protected $params;
+    protected $locale;
+    protected $cacheData;
+    protected $cacheDocumentName;
+    protected $cacheFileName;
+
     public function init(\Phalcon\Http\Request $request)
     {
         $this->setRequest($request)
@@ -43,11 +53,13 @@ class ApiModel
             ->setRequestMethod()
             ->setRequestPayload()
             ->setApiId()
-            ->setApiKey();
+            ->setApiKey()
+            ->setCacheDocumentName()
+            ->setCacheFileName();
     }
 
     /**
-     * @return mixed
+     * @return \Phalcon\Http\Request
      */
     public function getRequest()
     {
@@ -120,12 +132,11 @@ class ApiModel
     public function setRequestHttpRefererHost()
     {
         if ($this->request) {
-            $referer = parse_url($this->request->getHTTPReferer());
+            $referer                      = parse_url($this->request->getHTTPReferer());
             $this->requestHttpRefererHost = !empty($referer['host']) ? $referer['host'] : null;
         }
         return $this;
     }
-
 
 
     /**
@@ -223,5 +234,191 @@ class ApiModel
             );
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
+     * @param mixed $params
+     */
+    public function setParams($params)
+    {
+        $this->params = $params;
+        if (!empty($params)) {
+            foreach ($params as $index => $paramValue) {
+                if (!empty($this->paramKeys[$index])) {
+                    $paramKey        = $this->paramKeys[$index];
+                    $this->$paramKey = $paramValue;
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCacheDocumentName()
+    {
+        if(null === $this->cacheDocumentName) $this->setCacheDocumentName();
+        return $this->cacheDocumentName;
+    }
+
+    /**
+     *
+     */
+    public function setCacheDocumentName()
+    {
+        $this->cacheDocumentName = $this->getControllerName() . ':' . $this->getActionName();
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCacheFileName()
+    {
+        if(null === $this->cacheFileName) $this->setCacheFileName();
+        return $this->cacheFileName;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setCacheFileName()
+    {
+        $cacheFilePath       = __DIR__ . self::FILE_CACHE_PATH;
+        $this->cacheFileName = $cacheFilePath . 'api-'
+            . str_replace(':','_',$this->getCacheDocumentName())
+            . '_' . $this->getLocale() . '.json';
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getCacheData()
+    {
+        if (null === $this->cacheData) {
+            $this->setCacheData();
+        }
+        return $this->cacheData;
+    }
+
+    /**
+     */
+    public function setCacheData()
+    {
+        $Couch = \Phalcon\DI\FactoryDefault::getDefault()['Couch'];
+        $couchDocumentName = ORBITZ_ENV . ':api:' . md5($this->getCacheDocumentName()) . ':' . strtolower($this->getLocale());
+
+        $cacheData = $Couch->get($couchDocumentName);
+
+        if (null != $cacheData) {
+            $this->setFileData($cacheData);
+        } else {
+            $cacheData = $this->getFileData();
+        }
+        $this->cacheData =  $cacheData;
+        return $this;
+    }
+
+
+    protected function setFileData($fileData)
+    {
+        $filePath = $this->getCacheFileName();
+        $setFile  = true;
+
+        if (file_exists($filePath)) {
+            $interval = strtotime('-24 hours');
+            if (filemtime($filePath) <= $interval) {
+                $setFile = true;
+            } else {
+                $setFile = false;
+            }
+        }
+        $request    = new \Phalcon\Http\Request();
+        $forceWrite = $request->getQuery('cacherefresh');
+        if ($forceWrite == 'yes') {
+            $setFile = true;
+        }
+        if ($setFile) {
+            $file = fopen($filePath, 'w');
+            fputs($file, json_encode($fileData));
+            fclose($file);
+        }
+
+    }
+
+    protected function getFileData()
+    {
+
+        $filePath = $this->getCacheFileName();
+
+        if (file_exists($filePath)) {
+            $stream = fopen($filePath, "r");
+            $return = stream_get_contents($stream);
+            fclose($stream);
+            return $return;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        if(null== $this->locale) $this->setLocale();
+        return $this->locale;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale = self::DEFAULT_LOCALE)
+    {
+        $this->locale = $locale;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getActionName()
+    {
+        return $this->actionName;
+    }
+
+    /**
+     * @param mixed $actionName
+     */
+    public function setActionName($actionName)
+    {
+        $this->actionName = $actionName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getControllerName()
+    {
+        return $this->controllerName;
+    }
+
+    /**
+     * @param mixed $controllerName
+     */
+    public function setControllerName($controllerName)
+    {
+        $this->controllerName = $controllerName;
+    }
+
 
 }
