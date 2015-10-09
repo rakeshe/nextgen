@@ -264,21 +264,26 @@ class DealsModel extends \Phalcon\Mvc\Model
 
 		$localeVal = $record->raw['country']['iso_code'];
 		$reader = \Phalcon\DI\FactoryDefault::getDefault()['config'];//fetch config details
+		$urlTemp = explode('/',$_REQUEST['_url']);//spliting fetched URL
 
 		//Condition to check the locale cookie
-		if($localeVal=='HK'&&($this->locale=='en_AU')){
+		if($localeVal=='HK'&&($urlTemp[2]!='en_AU')){
 			$localeTemp['locale'] = $reader->locales->$localeVal;
 			$localeTemp['currency'] = 'HKD';
 		}
-		elseif($localeVal=='AU'&&($this->locale=='en_AU')){
+		elseif($localeVal=='HK'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
 			$localeTemp['currency'] = 'AUD';
 		}
-		elseif($localeVal=='GB'&&($this->locale=='en_AU')){
+		elseif($localeVal=='AU'&&($urlTemp[2]=='en_AU')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'AUD';
+		}
+		elseif($localeVal=='GB'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
 			$localeTemp['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
 		}
-		elseif($localeVal=='US'&&($this->locale=='en_AU')){
+		elseif($localeVal=='US'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
 			$localeTemp['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
 		}
