@@ -200,16 +200,6 @@ class WidgetController extends ControllerBase
         }
     }
 
-    /**
-     * Enable view
-     */
-    private function enableView()
-    {
-
-        $di = $this->getDI();
-        $di['view']->enable();
-    }
-
     protected function getHostsInfo()
     {
         return [
