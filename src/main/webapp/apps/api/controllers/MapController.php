@@ -38,7 +38,6 @@ class MapController extends ControllerBase
     protected $apiModel;
     protected $apiUrl;
 
-    protected $params;
     protected $longitute;
     protected $latitude;
     protected $mapWidth;
@@ -128,27 +127,7 @@ class MapController extends ControllerBase
         return $this;
     }
 
-    /**
-     * @return null
-     */
-    public function getParams()
-    {
-        if ($this->params === null) {
-            $this->setParams();
-        }
-        return $this->params;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setParams()
-    {
-        $this->params = $this->dispatcher->getParams();
-        return $this;
-    }
-
-    /**
+       /**
      * @return mixed
      */
     public function getMapHeight()
