@@ -154,6 +154,12 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
 
     public function buildUrl($suffix, $postFixType = 'locale') {
+		$localeVal = $this->getDealInfo();
+		if($localeVal['locale']!='en_AU'){
+			$this->locale = $localeVal['locale'];
+			$this->currency = $localeVal['currency'];
+		}
+
         $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
         if ($postFixType == 'locale') {
             $couchDocName .=  ':'. strtolower($this->locale);
