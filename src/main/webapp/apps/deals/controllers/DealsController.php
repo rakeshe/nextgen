@@ -200,6 +200,10 @@ class DealsController extends ControllerBase {
     }
 
     public function indexAction() {
+		$localeVal = $this->model->getDealInfo();
+		$this->locale = $localeVal['locale'];
+		$this->currency = $localeVal['currency'];
+
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
@@ -307,7 +311,6 @@ class DealsController extends ControllerBase {
                 }
             }
         }
-
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -394,8 +397,7 @@ class DealsController extends ControllerBase {
         if ($this->locale != self::DEFAULT_LOCALE) {
             $url .= '/' . $this->locale;
         }
-        $url .= '/sale/' . $this->campaignName;
-
+		$url .= '/sale/' . $this->campaignName;
         return $url;
     }
 
