@@ -1,0 +1,161 @@
+#offer-overlay {
+    opacity: 80;
+    position: absolute;
+    filter: alpha(opacity=80);
+    display: block;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+.card-container{
+    display: table;
+    width: 98%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 5px;
+    z-index: 50;
+}
+.your-benefits{
+    background-color: #fbf1e8;
+    background-image: url('http://www.tnetnoc.com/flexmanager/images/2015/07/13/line-white-to-purple.gif');
+    background-repeat: no-repeat;
+}
+
+.your-offers{
+    background-color: #ffffff;
+    background-image: url('http://www.tnetnoc.com/flexmanager/images/2015/07/13/line-purple-to-white.gif');
+    background-repeat: no-repeat;
+}
+
+.card-container h2{
+    font-size: 30px;
+    font-style: bold;
+    margin: 20px 0px 15px 15px;
+    line-height: 24px;
+}
+.offer-card{
+    /*min-height: 305px;*/
+    width: 205px;
+    /*overflow: hidden;*/
+    float: left;
+    margin: 15px 10px;
+    border: 1px solid #d9d9d9;
+
+}
+
+.card-image{
+    height: 127px;
+    overflow: hidden;
+}
+.offer-card-image{
+    width: 100%;
+    height: auto;
+    border : 0;
+    }
+.icon{
+    width: 41px;
+    height: 41px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0px 12px;
+}
+
+.silver .icon, .silver .tier-info{
+background-color: #d2d2d2;
+}
+.gold .icon, .gold .tier-info {
+    background-color: #fece2f;
+}
+.platinum .icon, .platinum .tier-info {
+    background-color: #b1aba8;
+}
+.all .icon  {
+    background-color: #ffffff;
+}
+
+/** Icon sprites **/
+.sprite-icons-your-benefits{
+    background: url(../../../common/img/sprite-icons-your-benefits.png);
+    background-repeat: no-repeat;
+}
+.great-earning-potential{background-position:-0px 0; }
+.before-you-leave-checklist{background-position:-123px 0; }
+.en-route{background-position:-164px 0; }
+.during-your-stay{background-position:-205px 0; }
+.exclusive-offers{background-position:-246px 0; }
+.tailored-recommendations{background-position:-287px 0; }
+.travel-support{background-position:-328px 0; }
+.best-price-assurance{background-position:-369px 0; }
+.airport-lounges{background-position:-410px 0; }
+.member-rewards{background-position:-41px 0; }
+.travel-in-style{background-position:-451px 0; }
+.destination-guide{background-position:-492px 0; }
+.room-upgrade{background-position:-533px 0; }
+.club-lounge-access{background-position:-574px 0; }
+.late-check-outs{background-position:-615px 0; }
+.free-breakfast{background-position:-656px 0; }
+.free-wifi{background-position:-697px 0; }
+.lifestyle-bonuses{background-position:-738px 0; }
+.events{background-position:-779px 0; }
+.entertainment{background-position:-820px 0; }
+.spend-when-it-suits-you{background-position:-82px 0; }
+.status-match{background-position:-861px 0; }
+.club-benefits{background-position:-902px 0; }
+
+.sprite-icons-your-offers{
+    background: url(../../../common/img/sprite-icons-your-offers.png);
+}
+.member-rewards-plus{background-position: 0 0; }
+.member-rewards-2x{background-position:-41px 0; }
+.member-rewards-3x{background-position:-82px 0; }
+.member-rewards{background-position:-123px 0; }
+
+
+.card-text{
+    height: 173px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 205px;
+    text-align: center;
+}
+.tier-info{
+    color: rgb(0, 0, 0);
+    font-size: 11px;
+    height: 25px;
+    line-height: 25px;
+    list-style-type: none;
+    padding: 0px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-bottom: 13px;
+}
+
+.title{
+    color: #858585;
+    font-size: 11px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 34px;
+    line-height: 17px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    display: block;
+    padding: 0px 10px;
+}
+
+
+
+ .cta{
+     margin-bottom: 25px;
+ }
