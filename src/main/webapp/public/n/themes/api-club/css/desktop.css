@@ -44,6 +44,11 @@
 
 }
 
+@media(max-width: 480px){
+    .offer-card{
+        width: 270px;
+    }
+}
 .card-image{
     height: 127px;
     overflow: hidden;
@@ -117,7 +122,7 @@ background-color: #d2d2d2;
     height: 173px;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
-    width: 205px;
+    width: 100%;
     text-align: center;
 }
 .tier-info{
