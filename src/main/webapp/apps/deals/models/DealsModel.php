@@ -266,26 +266,55 @@ class DealsModel extends \Phalcon\Mvc\Model
 		$reader = \Phalcon\DI\FactoryDefault::getDefault()['config'];//fetch config details
 		$urlTemp = explode('/',$_REQUEST['_url']);//spliting fetched URL
 
+		//setting cookie values
+		$_COOKIE['AustinLocale'] = 'zh_hk';
+		$_COOKIE['curr'] = 'HKD';
+		$cookie_locale = $_COOKIE['AustinLocale'];
+		$cookie_curr = $_COOKIE['curr'];
+
 		//Condition to check the locale cookie
-		if($localeVal=='HK'&&($urlTemp[2]!='en_AU')){
+		if($localeVal=='HK'&&($cookie_locale=='en_AU')&&($cookie_curr=='AUD')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'AUD';
+		}
+		elseif($localeVal=='AU'&&($cookie_locale=='zh_HK')&&($cookie_curr=='CNY')){
+			$localeTemp['locale'] = 'zh_HK';
+			$localeTemp['currency'] = 'CNY';
+		}
+		elseif($localeVal=='GB'&&($cookie_locale=='en_AU')&&($cookie_curr=='USD')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'USD';
+		}
+		elseif($localeVal=='US'&&($cookie_locale=='en_AU')&&($cookie_curr=='GBP')){
+			$localeTemp['locale'] = 'en_AU';
+			$localeTemp['currency'] = 'GBP';
+		}
+		elseif($localeVal=='HK'&&($urlTemp[2]!='en_AU')){
 			$localeTemp['locale'] = $reader->locales->$localeVal;
-			$localeTemp['currency'] = 'HKD';
+			if($_COOKIE['curr']!=""){ $localeTemp['currency'] = $_COOKIE['curr'];}
+			else{ $localeTemp['currency'] = 'HKD'; }
 		}
 		elseif($localeVal=='HK'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
-			$localeTemp['currency'] = 'AUD';
+			if($_COOKIE['curr']!=""){ $localeTemp['currency'] = $_COOKIE['curr'];}
+			else{ $localeTemp['currency'] = 'AUD'; }
 		}
 		elseif($localeVal=='AU'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
-			$localeTemp['currency'] = 'AUD';
+			if($_COOKIE['curr']!=""){ $localeTemp['currency'] = $_COOKIE['curr'];}
+			else{ $localeTemp['currency'] = 'AUD'; }
 		}
 		elseif($localeVal=='GB'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
-			$localeTemp['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
+			if($_COOKIE['curr']!=""){ $localeTemp['currency'] = $_COOKIE['curr']; }
+			else{ $localeTemp['currency'] = 'AUD';//GBP needed to be added in the currency and modify the currency to GBP
+			}
 		}
 		elseif($localeVal=='US'&&($urlTemp[2]=='en_AU')){
 			$localeTemp['locale'] = 'en_AU';
-			$localeTemp['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
+			if($_COOKIE['curr']!=""){ $localeTemp['currency'] = $_COOKIE['curr'];}
+			else{ $localeTemp['currency'] = 'AUD';//USD needed to be added in the currency and modify the currency to USD
+			}
 		}
 		else{
 			$localeTemp['locale'] = $this->locale;
