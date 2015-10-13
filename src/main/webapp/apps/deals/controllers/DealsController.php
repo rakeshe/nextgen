@@ -423,7 +423,7 @@ class DealsController extends ControllerBase {
 
         if ($urlCurrency != '') {
             $defaultCurrency = $urlCurrency;
-        } elseif($cookieCurrency != '' ){
+        } elseif($cookieCurrency != '') {
             $defaultCurrency = $cookieCurrency;
         } else{
             $defaultCurrency = SELF::DEFAULT_CURR;
