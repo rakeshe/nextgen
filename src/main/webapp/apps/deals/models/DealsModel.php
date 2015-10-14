@@ -20,33 +20,6 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     /** define frame work documents names */
     const DOC_NAME_MASTER = 'campaigns';
-    const DOC_NAME_HOMEPAGE = 'homepage';
-    const DOC_NAME_HERO_IMAGES = 'hero_images';
-    const DOC_NAME_CITY_LIST = 'city_list';
-    const DOC_NAME_CURRENCY = 'currency';
-    const DOC_NAME_TRANSLATION = 'translation';
-
-    /** define cms document names */
-    const DOC_NAME_PROMO_CLUB = 'promo_club';
-    const DOC_NAME_PROMO_PM = 'promo_pm';
-    const DOC_NAME_FOOTER_SEO = 'footer_seo';
-    const DOC_NAME_FOOTER_ABOUT = 'footer_about';
-    const DOC_NAME_HTML_HEAD = 'html_head';
-    const DOC_NAME_HTML_BODY_START = 'html_body_start';
-    const DOC_NAME_HTML_BODY_END = 'html_body_end';
-
-   /* const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
-    const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm'; // sale:md5(deals):promo_pm
-    const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
-    const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
-    const HEROES_IMAGE_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:hero_images'; //sale:md5('deals'):heroes_images
-
-    const DOC_HTML_HEAD = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_head'; //sale:md5('deals'):html_head
-    const DOC_HTML_BODY_START = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_start'; //sale:md5('deals'):html_body_start
-    const DOC_HTML_BODY_END = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_end';  //sale:md5('deals'):html_body_end
-    
-    const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):translation
-    const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency*/
 
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_CITY = 'Sydney';
@@ -59,6 +32,7 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     private $dataCacheFilePath;
 
+    /** @var array Set default document names */
     public $campaignDocNames = [
         'city_list'     => 'city_list',
         'homepage'      => 'homepage',
@@ -75,22 +49,64 @@ class DealsModel extends \Phalcon\Mvc\Model
         'seo'           => 'seo'
     ];
 
+    /** @var  sting campaign name */
     public $campaignName;
 
     /**
-     * @var master document name
+     * @var string master document name
      */
     public $masterDocName;
 
     /**
-     * @var deals doc name
+     * @var string deals doc name
      */
     protected $dealsDocName;
 
-    /**
-     * @var currency code
-     */
+    /** @var string currency code */
     public $currency;
+
+    /** @var  string city list document data */
+    public $cityListDocData;
+
+    /** @var string footer data */
+    public $docFooterSeoDocData;
+
+    /** @var string seo doc data */
+    public $docSeoDocData;
+
+    /** @var string footer about data */
+    public $docFooterAboutDocData;
+
+    /** @var string htnml head data */
+    public $docHtmlHeadDocData;
+
+    /** @var string html body start data */
+    public $docHtmlBodyStartDocData;
+
+    /** @var string doc html body end data */
+    public $docHtmlBodyEndDocData;
+
+    /** @var string hero image data */
+    public $heroImageDocData;
+
+    /** @var string translation data */
+    public $transDocData;
+
+    /** @var string currency document */
+    public $currDocDocData;
+
+    /** @var string club promotion data */
+    public $clubPromoDocData;
+
+    /** @var string pm promotion data */
+    public $pmPromoDocData;
+
+    /** @var string homepage document data */
+    public $homePageDocData;
+
+    /** @var string deals data document */
+    public $dealsDocData;
+
 
     /**
      * initialize stuffs
@@ -102,6 +118,96 @@ class DealsModel extends \Phalcon\Mvc\Model
 
         $this->dataCacheFilePath = __DIR__ . '/../data/one/';
     }
+
+    /**
+     * set campaign document name
+     *
+     * @param $key
+     * @param $value
+     */
+
+    public function setCampaignDocumentName($key, $value) {
+
+        $this->campaignDocNames[$key] = $value;
+    }
+
+    /**
+     * To get campaign document name
+     * @param $key
+     * @return bool
+     */
+
+    public function getCampaignDocumentName($key) {
+
+        if (isset($this->campaignDocNames[$key])) {
+            return $this->campaignDocNames[$key];
+        }
+        return false;
+    }
+
+    /**
+     *  Fetch all couch document and set to class properties
+     */
+    public function loadCouchDocuments() {
+
+        $this->cityListDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['city_list'] )
+        );
+
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
+        $this->docFooterSeoDocData =  $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['footer_seo'] ), true
+        );
+
+        $this->docSeoDocData =  $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['seo'] ) );
+
+
+        $this->docFooterAboutDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['footer_about'] ), true
+        );
+
+        $this->docHtmlHeadDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['html_head'] ), true
+        );
+
+        $this->docHtmlBodyStartDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['html_body_start'] ), true
+        );
+
+        $this->docHtmlBodyEndDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['html_body_end'] ), true
+        );
+
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
+        $this->heroImageDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['hero_images'] )
+        );
+
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:translation:en_au
+        $this->transDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['translation'] )
+        );
+
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:currency:aud
+        $this->currDocDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['currency'], 'currency')
+        );
+
+        $this->clubPromoDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['promo_club'])
+        );
+
+        $this->pmPromoDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['promo_pm'])
+        );
+
+        // dev:sale:773417b30e69f2511c9afda61c8d936e:homepage:en_au
+        $this->homePageDocData = $this->getDocument(
+            $this->buildUrl( $this->campaignDocNames['homepage'])
+        );
+    }
+
 
     /**
      * set couch document names
@@ -154,11 +260,6 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
 
     public function buildUrl($suffix, $postFixType = 'locale') {
-		$localeVal = $this->getDealInfo();
-		if($localeVal['locale']!='en_AU'){
-			$this->locale = $localeVal['locale'];
-			$this->currency = $localeVal['currency'];
-		}
 
         $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
         if ($postFixType == 'locale') {

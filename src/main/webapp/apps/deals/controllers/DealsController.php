@@ -10,6 +10,7 @@
 
 namespace HC\Deals\Controllers;
 
+use Guzzle\Tests\Common\Cache\NullCacheAdapterTest;
 use HC\Deals\Models\DealsModel;
 use Phalcon\Http\Client\Request;
 use Phalcon\Http\Response;
@@ -194,87 +195,36 @@ class DealsController extends ControllerBase {
                 $this->config->languageOptions)) {
 
             $this->locale = $uris[2];
+
+            if ($this->cookies->get('AustinLocale')->__toString() != $this->locale) {
+                $this->cookies->set('AustinLocale', $this->locale, time() + 15 * 86400);
+            }
+
+        } elseif($this->request->get('locale','string') != null && array_key_exists($this->request->get('locale','string'),
+                $this->config->languageOptions)) {
+
+            $this->locale = $this->request->get('locale','string');
+
+            if ($this->cookies->get('AustinLocale')->__toString() != $this->locale) {
+                $this->cookies->set('AustinLocale', $this->locale, time() + 15 * 86400);
+            }
+
         } else {
             $this->locale = SELF::DEFAULT_LOCALE;
         }
     }
 
     public function indexAction() {
-		$localeVal = $this->model->getDealInfo();
-		$this->locale = $localeVal['locale'];
-		$this->currency = $localeVal['currency'];
 
-        $cityList = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
-        );
+        $this->cases();
 
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
+        $this->model->loadCouchDocuments();
 
-        $docFooterSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_seo'] ), true
-        );
-//        $docFooterSeo = json_decode($docFooterSeo);
-
-        $docSeo =  $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['seo'] ) );
-
-
-        $docFooterAbout = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['footer_about'] ), true
-        );
-//        $docFooterAbout = json_decode($docFooterAbout);
-
-        $docHtmlHead = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_head'] ), true
-        );
-//        $docHtmlHead = json_decode($docHtmlHead);
-
-        $docHtmlBodyStart = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_start'] ), true
-        );
-//        $docHtmlBodyStart = json_decode($docHtmlBodyStart);
-
-        $docHtmlBodyEnd = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['html_body_end'] ), true
-        );
-//        $docHtmlBodyEnd = json_decode($docHtmlBodyEnd);
-
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:en_au
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:hero_images:zh_cn
-        $heroImage = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['hero_images'] )
-        );
-
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:translation:en_au
-        $trans = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['translation'] )
-        );
-
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:currency:aud
-        $currDoc = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['currency'], 'currency')
-        );
-
-        $clubPromo = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['promo_club'])
-        );
-
-        $pmPromo = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['promo_pm'])
-        );
-        // dev:sale:773417b30e69f2511c9afda61c8d936e:homepage:en_au
-        $homePage = $this->model->getDocument(
-            $this->model->buildUrl( $this->model->campaignDocNames['homepage'])
-        );
         $noHotels = '';
-
-        $dealsData = false;
-
         if (null != $this->city && null != $this->when) {
-            $dealsData = $this->model->getDocument( $this->model->buildDealsUrl( $this->city, $this->when ) );
+            $this->model->dealsDocData = $this->model->getDocument( $this->model->buildDealsUrl( $this->city, $this->when ) );
 
-            if (false == $dealsData) {
+            if (false == $this->model->dealsDocData) {
                 $noHotels = 'true';
             }
         }
@@ -314,37 +264,37 @@ class DealsController extends ControllerBase {
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
-                'cityData'            => $cityList,
-                'homePageData'        => $homePage,
+                'cityData'            => $this->model->cityListDocData,
+                'homePageData'        => $this->model->homePageDocData,
                 'city'                => $this->city,
                 'when'                => $this->when,
                 'sort'                => $this->sort,
                 'appendURL'           => $this->appendURL,
                 'url'                 => $this->buildSiteUrl(),
-                'hData'               => $dealsData,
+                'hData'               => $this->model->dealsDocData,
                 'userInfo'            => json_encode($this->userInfo),
                 'wtMetaData'          => $webTrends
                     ->setOwwPage($this->router->getRewriteUri())
                     ->getWtMetaData(),
                 'wtDataCollectorData' => $webTrends->getWtDataCollectorData(),
-                'clubPromo'           => $clubPromo,
-                'pmPromo'             => $pmPromo,
+                'clubPromo'           => $this->model->clubPromoDocData,
+                'pmPromo'             => $this->model->pmPromoDocData,
                 'sortBy'              => $this->sortBy,
                 'sortType'            => $this->sortType,
                 'noHotels'            => $noHotels,
-                'heroImages'          => $heroImage,
-                'docFooterSeo'        => $this->getContentByScope($docFooterSeo),
-                'docFooterAbout'      => $this->getContentByScope($docFooterAbout),
-                'docHtmlHead'         => $this->getContentByScope($docHtmlHead),
-                'docHtmlBodyStart'    => $this->getContentByScope($docHtmlBodyStart),
-                'docHtmlBodyEnd'      => $this->getContentByScope($docHtmlBodyEnd),
-                'docSeo'              => $docSeo,
-                'translation'         => $trans,
+                'heroImages'          => $this->model->heroImageDocData,
+                'docFooterSeo'        => $this->getContentByScope($this->model->docFooterSeoDocData),
+                'docFooterAbout'      => $this->getContentByScope($this->model->docFooterAboutDocData),
+                'docHtmlHead'         => $this->getContentByScope($this->model->docHtmlHeadDocData),
+                'docHtmlBodyStart'    => $this->getContentByScope($this->model->docHtmlBodyStartDocData),
+                'docHtmlBodyEnd'      => $this->getContentByScope($this->model->docHtmlBodyEndDocData),
+                'docSeo'              => $this->model->docSeoDocData,
+                'translation'         => $this->model->transDocData,
                 'currenciesData'      => json_encode($c),
                 'localeData'          => json_encode($l),
                 'curr'                => $this->currency,
                 'locale'              => $this->locale,
-                'currDoc'             => $currDoc,
+                'currDoc'             => $this->model->currDocDocData,
                 'campaignName'        => $this->campaignName,
                 'dFormat'             => $dateFormat,
                 'dFormatPl'           => $dateFormatPlaceHolder,
@@ -352,6 +302,303 @@ class DealsController extends ControllerBase {
         );
 
         $this->view->pick('default/index/index');
+    }
+
+    /**
+     * Define cases and update the app behaviour
+     */
+
+    private function cases() {
+
+        //IP address for particular countries
+        //81.201.86.45 -- HK
+        //110.33.122.75 -- AU
+        //178.32.63.223 -- UK (GB)
+        //128.101.101.101 -- US
+        //219.93.183.103 --MY
+        //1.0.16.0 -- JP
+
+        $reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP']; //Fetching Ipaddress and there values
+
+        $clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
+        //$clientIp = '81.201.86.45';//default Ipaddress for HK (Hong Kong)
+
+        $record = $reader->country($clientIp);
+
+        $currentCountryCode = $record->raw['country']['iso_code'];
+
+        $userId = $this->cookies->get('mid')->__toString(); //making userId NULL
+
+
+        /*
+         * case 1.1
+           User with a Hong Kong IP address not logged in, no cookie information, comes to the deals page
+        */
+        if ($currentCountryCode == 'HK' && $userId == NULL) {
+
+            $this->locale = 'zh_HK'; //set default locale
+            $this->currency = 'HKD'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'hk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'hk_city_list');
+
+        }
+        /* case 1.2
+         * User with an Australian IP address not logged in, no cookie information, comes to the deals page
+         */
+        elseif ($currentCountryCode == 'AU' && $userId == NULL) {
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'AUD'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'au_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'au_city_list');
+
+        }
+        /*
+         * cases 1.3
+         * User with a UK IP address not logged in, no cookie information, comes to the deals page
+         */
+        elseif ($currentCountryCode == 'GB' && $userId == NULL) {
+            //
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'GBP'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'uk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'uk_city_list');
+        }
+
+        /*
+         * case 1.4
+         * User with a US IP address not logged in, no cookie information, comes to the deals page
+         */
+
+        elseif ($currentCountryCode == 'US' && $userId == NULL) {
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'USD'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'us_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'us_city_list');
+        }
+
+        /*
+         * case 2.1
+         * User with HK IP address but the cookie states locale en_AU and AUD currency comes to deals page.
+         */
+
+        elseif ($currentCountryCode == 'HK' && $this->cookies->get('AustinLocale')->__toString() == 'en_AU' &&
+            $this->cookies->get('curr')->__toString() == 'AUD') {
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'AUD'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'hk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'hk_city_list');
+        }
+
+        /*
+         * case 2.2
+         * User with Australian IP address but the cookie states locale zh_hk and CNY currency comes to deals page.
+         */
+        elseif ($currentCountryCode == 'AU' && $this->cookies->get('AustinLocale')->__toString() == 'zh_HK'
+            && $this->cookies->get('curr')->__toString() == 'CNY') {
+
+            $this->locale = 'zh_HK'; //set default locale
+            $this->currency = 'CNY'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'au_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'au_city_list');
+
+        }
+
+        /*
+        *c ase 2.3
+        * User with UK IP address but the cookie states locale en_AU and USD currency comes to deals page.
+        */
+        elseif ($currentCountryCode == 'GP' && $this->cookies->get('AustinLocale')->__toString() == 'en_AU' &&
+            $this->cookies->get('curr')->__toString() == 'USD') {
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'USD'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            $this->model->setCampaignDocumentName('homepage', 'uk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'uk_city_list');
+
+        }
+
+        /*
+        * case 2.4
+        * User with US IP address but the cookie states locale en_AU and GBP currency comes to deals page.
+        */
+        elseif ($currentCountryCode == 'US' && $this->cookies->get('AustinLocale')->__toString() == 'en_AU' &&
+            $this->cookies->get('curr')->__toString() == 'GBP') {
+
+            $this->locale = 'en_AU'; //set default locale
+            $this->currency = 'GBP'; //set default currency
+            $this->model->setLocale($this->locale)
+                ->setCurrency($this->currency);
+
+            $this->model->setCampaignDocumentName('homepage', 'uk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'uk_city_list');
+
+        }
+
+        /*
+        * case 3.1
+        * User with a HK IP clicks on URL  to the deals page (e.g. from an eDM) with the URL parameters locale zh_hk and currency HKD.
+        */
+        elseif ($currentCountryCode == 'HK' && $this->getUrlLocale() == 'zh_HK' &&
+            $this->request->get('curr','string') == 'HKD') {
+
+
+            $this->model->setCampaignDocumentName('homepage', 'hk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'hk_city_list');
+
+        }
+
+        /*
+        * case 3.2
+        * User with AU IP clicks on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency AUD.
+        */
+        elseif ($currentCountryCode == 'AU' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'AUD') {
+
+
+            $this->model->setCampaignDocumentName('homepage', 'au_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'au_city_list');
+
+        }
+
+        /*
+        * case 3.3
+        * User with UK IP clicks on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency GBP.
+        */
+        elseif ($currentCountryCode == 'UK' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'GBP') {
+
+
+            $this->model->setCampaignDocumentName('homepage', 'uk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'uk_city_list');
+
+        }
+
+        /*
+        * case 3.4
+        * User with US IP clicks on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency USD.
+        */
+        elseif ($currentCountryCode == 'US' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'USD') {
+
+            $this->model->setCampaignDocumentName('homepage', 'us_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'us_city_list');
+
+        }
+
+        /*
+        * case 4.1
+        * User with HK IP address clicks on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency AUD.
+        */
+        elseif ($currentCountryCode == 'HK' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'AUD') {
+
+
+            $this->model->setCampaignDocumentName('homepage', 'hk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'hk_city_list');
+
+        }
+
+        /*
+        * case 4.2
+        * User with Australian IP address clicks on URL to the deals page (e.g. from an eDM) with the URL parameters locale zh_hk and currency CNY.
+        */
+        elseif ($currentCountryCode == 'AU' && $this->getUrlLocale() == 'zh_HK' &&
+            $this->request->get('curr','string') == 'CNY') {
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'au_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'au_city_list');
+
+        }
+
+        /*
+        * case 4.3
+        * User with UK IP address click on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency USD.
+        */
+        elseif ($currentCountryCode == 'GB' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'USD') {
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'uk_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'uk_city_list');
+
+        }
+
+        /*
+        * case 4.4
+        * User with US IP address click on URL to the deals page (e.g. from an eDM) with the URL parameters locale en_AU and currency GBP.
+        */
+        elseif ($currentCountryCode == 'US' && $this->getUrlLocale() == 'en_AU' &&
+            $this->request->get('curr','string') == 'GBP') {
+
+            //override destination document name.
+            $this->model->setCampaignDocumentName('homepage', 'us_homepage');
+
+            //override city list document.
+            $this->model->setCampaignDocumentName('city_list', 'us_city_list');
+
+        }
     }
 
 
@@ -423,12 +670,66 @@ class DealsController extends ControllerBase {
 
         if ($urlCurrency != '') {
             $defaultCurrency = $urlCurrency;
+
+            if ($this->cookies->get('curr')->__toString() != $defaultCurrency) {
+                $this->cookies->set('curr', $defaultCurrency, time() + 15 * 86400);
+            }
+
         } elseif($cookieCurrency != '') {
             $defaultCurrency = $cookieCurrency;
         } else{
             $defaultCurrency = SELF::DEFAULT_CURR;
         }
         return $defaultCurrency;
+    }
+
+    /**
+     * @return mixed|string
+     */
+
+    protected function getLocale() {
+
+        $locale = null;
+        // check locale on url ex: n/en_AU/sale/asia-deals/
+        if ($this->dispatcher->getParam('locale') != null) {
+
+            $locale    = $this->dispatcher->getParam('locale');
+        // check locale on get request ex ?locale=en_AU
+        } elseif ( $this->request->get('locale','string') != null) {
+
+            $locale    = $this->request->get('locale','string');
+        // second priority for cookie
+        } elseif ($this->cookies->get('AustinLocale')->__toString() != null) {
+
+            $locale = $this->cookies->get('AustinLocale')->__toString();
+         // set default locale
+        } else {
+
+            $locale = SELF::DEFAULT_LOCALE;
+        }
+
+        return $locale;
+
+    }
+
+    /**
+     * @return mixed|null|string
+     */
+
+    protected function getUrlLocale() {
+
+        $locale = null;
+        // check locale on url ex: n/en_AU/sale/asia-deals/
+        if ($this->dispatcher->getParam('locale') != null) {
+
+            $locale    = $this->dispatcher->getParam('locale');
+            // check locale on get request ex ?locale=en_AU
+        } elseif ( $this->request->get('locale','string') != null) {
+
+            $locale    = $this->request->get('locale','string');
+            // second priority for cookie
+        }
+        return $locale;
     }
 
     /**
