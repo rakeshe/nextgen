@@ -320,8 +320,8 @@ class DealsController extends ControllerBase {
 
         $reader = \Phalcon\DI\FactoryDefault::getDefault()['geoIP']; //Fetching Ipaddress and there values
 
-        $clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
-        //$clientIp = '81.201.86.45';//default Ipaddress for HK (Hong Kong)
+        //$clientIp = $this->request->getClientAddress();//Fetches original Ipaddress of client Id
+        $clientIp = '81.201.86.45';//default Ipaddress for HK (Hong Kong)
 
         $record = $reader->country($clientIp);
 
