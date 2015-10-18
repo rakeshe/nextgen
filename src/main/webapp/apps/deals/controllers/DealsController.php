@@ -139,6 +139,7 @@ class DealsController extends ControllerBase {
     }
 
     private function setParams() {
+        // Get Ip and get default options for that country
 
 
         if ($this->dispatcher->getParam('campaignName') !== null) {
@@ -150,7 +151,9 @@ class DealsController extends ControllerBase {
             $this->city = str_replace('#','',$this->dispatcher->getParams()[0]);
             $this->appendURL .= $this->city . '/';
         } else {
-           // $this->city = self::DEFAULT_CITY;
+            // set city/ append url based on ip if campaign =1
+
+            $this->city = self::DEFAULT_CITY;
             $this->appendURL .= self::DEFAULT_CITY . '/';
         }
 
@@ -160,9 +163,14 @@ class DealsController extends ControllerBase {
             $this->when = $this->dispatcher->getParams()[1];
             $this->appendURL .= $this->when;
         } else {
-            //$this->when = self::DEFAULT_WHEN;
+            // set when/ append url based on ip if campaign =1
+            $this->when = self::DEFAULT_WHEN;
             $this->appendURL .= self::DEFAULT_WHEN;
         }
+
+        /** if campaign id is 1 and city/when not set then use default route based on ip */
+
+
 
         if (isset($this->request->get()['sort']))
             $this->sort = $this->request->get()['sort'];
