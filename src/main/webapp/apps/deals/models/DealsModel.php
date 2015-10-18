@@ -11,6 +11,8 @@
 namespace HC\Deals\Models;
 
 use Phalcon\Exception;
+use Phalcon\Http\Client\Request;
+use Phalcon\Http\Response;
 
 class DealsModel extends \Phalcon\Mvc\Model
 {
@@ -53,6 +55,8 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     const DEFAULT_LOCALE = 'en_AU';
     const DEFAULT_CURRENCY = 'AUD';
+
+    const SERVICE_URI_LOCATION = '//teakettle.qa1.o.com/location/geoip/city';
 
     protected $locale = 'en_AU';
 
@@ -241,5 +245,18 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     }
 
+    /**
+     * @param $requestUri
+     * @param $requestParams
+     * @return \Phalcon\Http\Client\Response
+     * @throws \Phalcon\Http\Client\Provider\Exception
+     */
+    protected function getProviderResponse($requestUri, $requestParams)
+    {
+        $provider = Request::getProvider();
+        $provider->setBaseUri(self::BASE_URL);
+        $provider->header->set('Accept', 'application/json');
+        return $provider->get($requestUri, $requestParams);
+    }
 
 }
