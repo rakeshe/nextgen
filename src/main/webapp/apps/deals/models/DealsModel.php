@@ -60,7 +60,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DEFAULT_CURRENCY = 'AUD';
 
     const BASE_URL = 'http://www.hotelclub.com';
-    const SERVICE_URI_LOCATION = '//teakettle.qa1.o.com/location/geoip/city';
+    const SERVICE_URI_LOCATION = 'http://teakettle.prod.o.com/location/';
 
     protected $locale = 'en_AU';
 
@@ -412,16 +412,16 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
     public function setClientGeoLocation()
     {
-        $requestParams = ['ip' =>  $this->getClientIp()];
-        $clientGeoLocation = $this->getProviderResponse($requestParams);
-        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
+//        $requestParams = ['ip' =>  $this->getClientIp()];
+//        $clientGeoLocation = $this->getProviderResponse($requestParams);
+//        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
 
 
-        /*$proxyPaylod = [
-            'host' => 'http://teakettle.prod.o.com/location/',
+        $proxyPaylod = [
+            'host' => self::SERVICE_URI_LOCATION,
             'port' => null,
-            'header' => ['Accept'=> 'Content-Type: application/json'],
-            'payload' => 'geoip/city?ip=220.101.22.153',
+            'headers[Accept]' => 'application/json',
+            'payload' => 'geoip/city?ip='. $this->getClientIp(),
             'method' => 'GET'
         ]   ;
         $provider  = Request::getProvider();
@@ -430,7 +430,7 @@ class DealsModel extends \Phalcon\Mvc\Model
         //send xml post data
         $response = $provider->post('', $proxyPaylod);
         //get response
-        return $response->body;*/
+        $this->clientGeoLocation = json_decode($response->body);
 
 
         return $this;
