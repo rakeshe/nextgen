@@ -166,9 +166,11 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->city . '/';
         } else {
             // set city/ append url based on ip if campaign =1
+            if($this->campaignName == 'deals' ){
+                $this->city =  $this->model->getClientDefaultCity();
+                $this->appendURL .= $this->city . '/';
+            }
 
-            $this->city =  $this->model->getClientDefaultCity();
-            $this->appendURL .= $this->city . '/';
         }
 
 
@@ -178,8 +180,10 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->when;
         } else {
             // set when/ append url based on ip if campaign =1
-            $this->when = self::DEFAULT_WHEN;
-            $this->appendURL .= self::DEFAULT_WHEN;
+            if($this->campaignName == 'deals' ) {
+                $this->when = self::DEFAULT_WHEN;
+                $this->appendURL .= self::DEFAULT_WHEN;
+            }
         }
 
         /** if campaign id is 1 and city/when not set then use default route based on ip */
