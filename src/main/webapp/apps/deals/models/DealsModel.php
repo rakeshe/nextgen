@@ -24,6 +24,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_HOMEPAGE = 'homepage';
     const DOC_NAME_HERO_IMAGES = 'hero_images';
     const DOC_NAME_CITY_LIST = 'city_list';
+    const DOC_NAME_COUNTRY_OPTIONS = 'country_options';
     const DOC_NAME_CURRENCY = 'currency';
     const DOC_NAME_TRANSLATION = 'translation';
 
@@ -49,13 +50,16 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):translation
     const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency*/
 
+    const DEFAULT_CAMPAIGN_NAME='deals';
     const DEFAULT_REGION='Australia, New Zealand Pacific';
+    const DEFAULT_COUNTRY_CODE='AU';
     const DEFAULT_CITY = 'Sydney';
     const DEFAULT_TRAVEL_PERIOD = '30-days';
 
     const DEFAULT_LOCALE = 'en_AU';
     const DEFAULT_CURRENCY = 'AUD';
 
+    const BASE_URL = 'http://www.hotelclub.com';
     const SERVICE_URI_LOCATION = '//teakettle.qa1.o.com/location/geoip/city';
 
     protected $locale = 'en_AU';
@@ -94,6 +98,18 @@ class DealsModel extends \Phalcon\Mvc\Model
      * @var currency code
      */
     public $currency;
+
+
+    protected $clientIp;
+
+    protected $clientGeoLocation;
+
+    protected $clientCountryCode;
+    protected $clientCountry;
+    protected $clientCity;
+    protected $clientDefaultLocale;
+    protected $clientDefaultCurrency;
+    protected $clientDefaultCity;
 
     /**
      * initialize stuffs
@@ -158,10 +174,10 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     public function buildUrl($suffix, $postFixType = 'locale') {
 
-        $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->campaignName) . ':' . $suffix;
+        $couchDocName = ORBITZ_ENV . ':'. self::DOC_PREFIX .':' . md5($this->getCampaignName()) . ':' . $suffix;
 
         if ($postFixType == 'locale') {
-            $couchDocName .=  ':'. strtolower($this->locale);
+            $couchDocName .=  ':'. strtolower($this->getLocale());
         } else if ($postFixType == 'currency') {
             $couchDocName .=  ':'. strtolower($this->currency);
         }
@@ -193,7 +209,7 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
     public function getLocale()
     {
-        return $this->locale;
+        return null === $this->locale ? $this->getClientDefaultLocale() : $this->locale;
     }
 
     /**
@@ -251,7 +267,7 @@ class DealsModel extends \Phalcon\Mvc\Model
      * @return \Phalcon\Http\Client\Response
      * @throws \Phalcon\Http\Client\Provider\Exception
      */
-    protected function getProviderResponse($requestUri, $requestParams)
+    public function getProviderResponse($requestParams, $requestUri = self::SERVICE_URI_LOCATION)
     {
         $provider = Request::getProvider();
         $provider->setBaseUri(self::BASE_URL);
@@ -259,4 +275,254 @@ class DealsModel extends \Phalcon\Mvc\Model
         return $provider->get($requestUri, $requestParams);
     }
 
+    public function setupClientLocationOptions(){
+        if(null !== $this->getClientIp()){
+            $this->setClientGeoLocation();
+            if($this->getClientGeoLocation()){
+                $this->setClientCountry($this->getClientGeoLocation()->country_name);
+                $this->setClientCountryCode($this->getClientGeoLocation()->country_code);
+                $this->setClientCity($this->getClientGeoLocation()->city_name);
+
+                $countryOptionDocumentName = $this->buildUrl(self::DOC_NAME_COUNTRY_OPTIONS,'locale');
+                $countryOptionData = $this->getDocument($countryOptionDocumentName, true);
+
+                if(!empty($countryOptionData[$this->getClientCountryCode()])){
+                    $countryOption = $countryOptionData[$this->getClientCountryCode()];
+                    $this->setClientDefaultLocale($countryOption['locale']);
+                    $this->setClientDefaultCurrency($countryOption['currency']);
+                    $this->setClientDefaultCity($countryOption['city']);
+                } else {
+                    $this->setClientDefaultLocale(self::DEFAULT_LOCALE);
+                    $this->setClientDefaultCurrency(self::DEFAULT_CURRENCY);
+                    $this->setClientDefaultCity(self::DEFAULT_CITY);
+                }
+
+            }
+        }
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getClientCountry()
+    {
+        return $this->clientCountry;
+    }
+
+    /**
+     * @param mixed $clientCountry
+     */
+    public function setClientCountry($clientCountry)
+    {
+        $this->clientCountry = $clientCountry;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientCountryCode()
+    {
+        return null === $this->clientCountryCode ? self::DEFAULT_COUNTRY_CODE : $this->clientCountryCode;
+    }
+
+    /**
+     * @param mixed $clientCountryCode
+     */
+    public function setClientCountryCode($clientCountryCode)
+    {
+        $this->clientCountryCode = $clientCountryCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientCity()
+    {
+        return $this->clientCity;
+    }
+
+    /**
+     * @param mixed $clientCity
+     */
+    public function setClientCity($clientCity)
+    {
+        $this->clientCity = $clientCity;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getClientDefaultCity()
+    {
+        return null ==$this->clientDefaultCity ? self::DEFAULT_CITY : $this->clientDefaultCity;
+    }
+
+    /**
+     * @param mixed $clientDefaultCity
+     */
+    public function setClientDefaultCity($clientDefaultCity)
+    {
+        $this->clientDefaultCity = $clientDefaultCity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientDefaultCurrency()
+    {
+        return null === $this->clientDefaultCurrency ? self::DEFAULT_CURRENCY : $this->clientDefaultCurrency;
+    }
+
+    /**
+     * @param mixed $clientDefaultCurrency
+     */
+    public function setClientDefaultCurrency($clientDefaultCurrency)
+    {
+        $this->clientDefaultCurrency = $clientDefaultCurrency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientDefaultLocale()
+    {
+        return null === $this->clientDefaultLocale ? self::DEFAULT_LOCALE : $this->clientDefaultLocale;
+    }
+
+    /**
+     * @param mixed $clientDefaultLocale
+     */
+    public function setClientDefaultLocale($clientDefaultLocale)
+    {
+        $this->clientDefaultLocale = $clientDefaultLocale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientGeoLocation()
+    {
+        return $this->clientGeoLocation;
+    }
+
+    /**
+     * @param mixed $clientGeoLocation
+     */
+    public function setClientGeoLocation()
+    {
+        $requestParams = ['ip' =>  $this->getClientIp()];
+        $clientGeoLocation = $this->getProviderResponse($requestParams);
+        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
+
+
+        /*$proxyPaylod = [
+            'host' => 'http://teakettle.prod.o.com/location/',
+            'port' => null,
+            'header' => ['Accept'=> 'Content-Type: application/json'],
+            'payload' => 'geoip/city?ip=220.101.22.153',
+            'method' => 'GET'
+        ]   ;
+        $provider  = Request::getProvider();
+        //set pricing gateway url path
+        $provider->setBaseUri('http://www.hotelclub.com/n/api/proxy/request/');
+        //send xml post data
+        $response = $provider->post('', $proxyPaylod);
+        //get response
+        return $response->body;*/
+
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientIp()
+    {
+        return $this->clientIp;
+    }
+
+    /**
+     * @param mixed $clientIp
+     */
+    public function setClientIp($clientIp = null)
+    {
+        $clientIp = null == $clientIp ? $this->getIpAddress() : $clientIp;
+        $this->clientIp = $clientIp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignName()
+    {
+        return null=== $this->campaignName ? self::DEFAULT_CAMPAIGN_NAME : $this->campaignName;
+    }
+
+
+    public function getIpAddress() {
+        // check for shared internet/ISP IP
+        if (!empty($_SERVER['HTTP_CLIENT_IP']) && $this->validateIp($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        }
+
+        // check for IPs passing through proxies
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // check if multiple ips exist in var
+            if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') !== false) {
+                $iplist = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+                foreach ($iplist as $ip) {
+                    if ($this->validateIp($ip))
+                        return $ip;
+                }
+            } else {
+                if ($this->validateIp($_SERVER['HTTP_X_FORWARDED_FOR']))
+                    return $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }
+        }
+        if (!empty($_SERVER['HTTP_X_FORWARDED']) && $this->validateIp($_SERVER['HTTP_X_FORWARDED']))
+            return $_SERVER['HTTP_X_FORWARDED'];
+        if (!empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']) && $this->validateIp($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
+            return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+        if (!empty($_SERVER['HTTP_FORWARDED_FOR']) && $this->validateIp($_SERVER['HTTP_FORWARDED_FOR']))
+            return $_SERVER['HTTP_FORWARDED_FOR'];
+        if (!empty($_SERVER['HTTP_FORWARDED']) && $this->validateIp($_SERVER['HTTP_FORWARDED']))
+            return $_SERVER['HTTP_FORWARDED'];
+
+        // return unreliable ip since all else failed
+        return $_SERVER['REMOTE_ADDR'];
+    }
+
+    /**
+     * Ensures an ip address is both a valid IP and does not fall within
+     * a private network range.
+     */
+    public function validateIp($ip) {
+        return true;
+        if (strtolower($ip) === 'unknown')
+            return false;
+
+        // generate ipv4 network address
+        $ip = ip2long($ip);
+
+        // if the ip is set and not equivalent to 255.255.255.255
+        if ($ip !== false && $ip !== -1) {
+            // make sure to get unsigned long representation of ip
+            // due to discrepancies between 32 and 64 bit OSes and
+            // signed numbers (ints default to signed in PHP)
+            $ip = sprintf('%u', $ip);
+            // do private network range checking
+            if ($ip >= 0 && $ip <= 50331647) return false;
+            if ($ip >= 167772160 && $ip <= 184549375) return false;
+            if ($ip >= 2130706432 && $ip <= 2147483647) return false;
+            if ($ip >= 2851995648 && $ip <= 2852061183) return false;
+            if ($ip >= 2886729728 && $ip <= 2887778303) return false;
+            if ($ip >= 3221225984 && $ip <= 3221226239) return false;
+            if ($ip >= 3232235520 && $ip <= 3232301055) return false;
+            if ($ip >= 4294967040) return false;
+        }
+        return true;
+    }
 }
