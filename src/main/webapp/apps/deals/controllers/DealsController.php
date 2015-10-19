@@ -145,18 +145,13 @@ class DealsController extends ControllerBase {
         }
 
         // Get Ip and get default options for that country
-
         $clientIp = $this->request->getClientAddress();
-        /**
-         * Mock ips
-         * 81.201.86.45 -- HK
-         * 110.33.122.75 -- AU
-         * 220.101.22.153 -- AU
-         * 178.32.63.223 -- UK (GB)
-         * 128.101.101.101 -- US
-         * 219.93.183.103 --MY
-         * 1.0.16.0 -- JP
-         */
+
+        // Check if ip sent over url param (for test only)
+        if(ORBITZ_ENV == 'dev' || ORBITZ_ENV == 'fqa1') {
+            $clientIp = !empty($this->request->get()['ip']) ? $this->request->get()['ip'] : $clientIp;
+        }
+
         $this->model->setClientIp($clientIp);
         $this->model->setupClientLocationOptions();
 
@@ -166,7 +161,7 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->city . '/';
         } else {
             // set city/ append url based on ip if campaign =1
-            if($this->campaignName == 'deals' ){
+            if($this->campaignName == \HC\Deals\Models\DealsModel::DEFAULT_CAMPAIGN_NAME ){
                 $this->city =  $this->model->getClientDefaultCity();
                 $this->appendURL .= $this->city . '/';
             }
@@ -180,15 +175,11 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->when;
         } else {
             // set when/ append url based on ip if campaign =1
-            if($this->campaignName == 'deals' ) {
+            if($this->campaignName == \HC\Deals\Models\DealsModel::DEFAULT_CAMPAIGN_NAME ) {
                 $this->when = self::DEFAULT_WHEN;
                 $this->appendURL .= self::DEFAULT_WHEN;
             }
         }
-
-        /** if campaign id is 1 and city/when not set then use default route based on ip */
-
-
 
         if (isset($this->request->get()['sort']))
             $this->sort = $this->request->get()['sort'];
@@ -214,21 +205,11 @@ class DealsController extends ControllerBase {
         }
 
         $this->currency = $this->getCurrency();
+        $this->locale = $this->getLocale();
 
-        $uris = explode( '/',$this->router->getRewriteUri()) ;
-        // detect locale based on url
-        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[2]) && array_key_exists($uris[2],
-                $this->config->languageOptions)) {
-
-            $this->locale = $uris[2];
-        } else {
-            $this->locale = $this->model->getClientDefaultLocale();
-        }
     }
 
     public function indexAction() {
-
-
         // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:zh_cn
         $cityList = $this->model->getDocument(
@@ -295,7 +276,6 @@ class DealsController extends ControllerBase {
         );
 
         $noHotels = '';
-
         $dealsData = false;
 
         if (null != $this->city && null != $this->when) {
@@ -338,7 +318,6 @@ class DealsController extends ControllerBase {
                 }
             }
         }
-
         $this->view->setVars(
             [
                 'appVersion'          => APPLICATION_VERSION,
@@ -447,6 +426,7 @@ class DealsController extends ControllerBase {
      * Logic use value if set in url param, fallback to cookie then final fallback to default currecy
      */
     protected function getCurrency(){
+        $defaultCurrency = self::DEFAULT_CURR;
         $urlCurrency = $this->request->get('curr','string');
         $cookieCurrency = $this->cookies->get('curr')->__toString();
 
@@ -457,9 +437,38 @@ class DealsController extends ControllerBase {
         } else{
             $defaultCurrency = $this->model->getClientDefaultCurrency();
         }
+
+        //Also set cookie
+        $this->cookies->set('curr',$defaultCurrency);
         return $defaultCurrency;
     }
 
+
+    protected function getLocale(){
+        $locale = self::DEFAULT_LOCALE;
+        $ipLocale =     $this->model->getClientDefaultLocale();
+        $urlParamLocale = $this->request->get('locale','string');
+        $cookieLocale = $this->cookies->get('AustinLocale')->__toString();
+        $uris = explode( '/',$this->router->getRewriteUri()) ;
+        $uriLocale = null;
+        // detect locale based on url
+        if (preg_match("/^[a-z]{2}+_[A-Z]{2}+$/" , $uris[2]) && array_key_exists($uris[2],
+                $this->config->languageOptions)) {
+
+            $uriLocale = $uris[2];
+        }
+
+        $locale = empty($ipLocale) ? $locale : $ipLocale;
+        $locale = empty($cookieLocale) ? $locale : $cookieLocale;
+        $locale = empty($uriLocale) ? $locale : $uriLocale;
+        $locale = empty($urlParamLocale) ? $locale : $urlParamLocale;
+
+        //Also set cookie
+        $this->cookies->set('AustinLocale',$locale);
+
+        return $locale;
+
+    }
     /**
      * @param $content
      * @return array|null
