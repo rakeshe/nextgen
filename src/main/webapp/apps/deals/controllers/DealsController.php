@@ -75,15 +75,16 @@ class DealsController extends ControllerBase {
 
     public function init() {
 
-        $this->setParams();
-
         $this->model = new \HC\Deals\Models\DealsModel();
+        $this->setParams();
 
         $this->model->setLocale($this->locale)
                     ->setCampaign($this->campaignName)
                     ->setCurrency($this->currency);
 
+
         $this->model->init();
+
 
         $this->validateCampaign();
 
@@ -139,12 +140,25 @@ class DealsController extends ControllerBase {
     }
 
     private function setParams() {
-        // Get Ip and get default options for that country
-
-
         if ($this->dispatcher->getParam('campaignName') !== null) {
             $this->campaignName = $this->dispatcher->getParam('campaignName');
         }
+
+        // Get Ip and get default options for that country
+
+        $clientIp = $this->request->getClientAddress();
+        /**
+         * Mock ips
+         * 81.201.86.45 -- HK
+         * 110.33.122.75 -- AU
+         * 220.101.22.153 -- AU
+         * 178.32.63.223 -- UK (GB)
+         * 128.101.101.101 -- US
+         * 219.93.183.103 --MY
+         * 1.0.16.0 -- JP
+         */
+        $this->model->setClientIp($clientIp);
+        $this->model->setupClientLocationOptions();
 
         //if exists and should be validated
         if (isset($this->dispatcher->getParams()[0])) {
@@ -153,8 +167,8 @@ class DealsController extends ControllerBase {
         } else {
             // set city/ append url based on ip if campaign =1
 
-            $this->city = self::DEFAULT_CITY;
-            $this->appendURL .= self::DEFAULT_CITY . '/';
+            $this->city =  $this->model->getClientDefaultCity();
+            $this->appendURL .= $this->city . '/';
         }
 
 
@@ -204,7 +218,7 @@ class DealsController extends ControllerBase {
 
             $this->locale = $uris[2];
         } else {
-            $this->locale = SELF::DEFAULT_LOCALE;
+            $this->locale = $this->model->getClientDefaultLocale();
         }
     }
 
@@ -437,7 +451,7 @@ class DealsController extends ControllerBase {
         } elseif($cookieCurrency != '' ){
             $defaultCurrency = $cookieCurrency;
         } else{
-            $defaultCurrency = SELF::DEFAULT_CURR;
+            $defaultCurrency = $this->model->getClientDefaultCurrency();
         }
         return $defaultCurrency;
     }
