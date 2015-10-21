@@ -27,6 +27,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_COUNTRY_OPTIONS = 'country_options';
     const DOC_NAME_CURRENCY = 'currency';
     const DOC_NAME_TRANSLATION = 'translation';
+    const DOC_NAME_SEARCH_REGIONS = 'search_regions';
 
     /** define cms document names */
     const DOC_NAME_PROMO_CLUB = 'promo_club';
@@ -99,9 +100,15 @@ class DealsModel extends \Phalcon\Mvc\Model
     protected $clientDefaultCurrency;
     protected $clientDefaultCity;
 
+    public $searchRegions;
+
     /**
      * initialize stuffs
      */
+
+    public function initialize() {
+        $this->init();
+    }
 
     public function init() {
 
@@ -276,6 +283,18 @@ class DealsModel extends \Phalcon\Mvc\Model
                 $countryOptionData = $this->getDocument($countryOptionDocumentName, true);
 
                 if(!empty($countryOptionData[$this->getClientCountryCode()])){
+
+                    $regionPos = $countryOptionData[$this->getClientCountryCode()]['search_region'];
+
+                    $searchRegions = $this->getDocument(
+                        $this->buildUrl(self::DOC_NAME_SEARCH_REGIONS, 'locale'),
+                        true
+                    );
+
+                    if (null != $searchRegions && isset($searchRegions[$regionPos])) {
+                       $this->searchRegions = $searchRegions[$regionPos];
+                    }
+
                     $countryOption = $countryOptionData[$this->getClientCountryCode()];
                     $this->setClientDefaultLocale($countryOption['locale']);
                     $this->setClientDefaultCurrency($countryOption['currency']);
