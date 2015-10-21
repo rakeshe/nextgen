@@ -2,7 +2,7 @@
 return new \Phalcon\Config ([
         'mailchimp' => [
             'apikey' => '4bbe6d0accb8985e4c6eb279ada4bcfe-us10',
-            'listId' => '0e6a8babf2',
+            'listId' => '3edae95dab',
             'campaignID' => '',
             'apiURL' => 'http://api.mailchimp.com/1.3/',
 
