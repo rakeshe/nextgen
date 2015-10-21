@@ -163,7 +163,7 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->city . '/';
         } else {
             // set city/ append url based on ip if campaign =1
-            if($this->isDefaultCampaign() && !$this->isCampaignHasLanding()){
+            if( !$this->isCampaignHasLanding()){
                 $this->city =  $this->model->getClientDefaultCity();
                 $this->appendURL .= $this->city . '/';
             }
@@ -177,7 +177,7 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->when;
         } else {
             // set when/ append url based on ip if campaign =1
-            if($this->isDefaultCampaign() && !$this->isCampaignHasLanding()){
+            if( !$this->isCampaignHasLanding()){
                 $this->when = self::DEFAULT_WHEN;
                 $this->appendURL .= self::DEFAULT_WHEN;
             }
@@ -218,6 +218,17 @@ class DealsController extends ControllerBase {
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
+
+        // If cityList is null then selected locale is not supported for this campaign, therefore fall back to default locale
+        if(!$cityList){
+            $this->locale= DealsModel::DEFAULT_LOCALE;
+            $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
+            //Also set cookie
+            $this->cookies->set('AustinLocale',$this->locale);
+            $cityList = $this->model->getDocument(
+                $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
+            );
+        }
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
