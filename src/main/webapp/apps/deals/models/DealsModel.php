@@ -37,19 +37,6 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DOC_NAME_HTML_BODY_START = 'html_body_start';
     const DOC_NAME_HTML_BODY_END = 'html_body_end';
 
-   /* const PROMOTIONS_CLUB_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_club'; // sale:md5(deals):promo_club
-    const PROMOTIONS_PM_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:promo_pm'; // sale:md5(deals):promo_pm
-    const DOC_NAME_FOOTER_SEO_LINKS = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_seo';
-    const DOC_NAME_FOOTER_ABOUT = 'sale:6c996181cb66b09cf475386ff06ad9e2:footer_about';
-    const HEROES_IMAGE_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:hero_images'; //sale:md5('deals'):heroes_images
-
-    const DOC_HTML_HEAD = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_head'; //sale:md5('deals'):html_head
-    const DOC_HTML_BODY_START = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_start'; //sale:md5('deals'):html_body_start
-    const DOC_HTML_BODY_END = 'sale:6c996181cb66b09cf475386ff06ad9e2:html_body_end';  //sale:md5('deals'):html_body_end
-    
-    const DEALS_TRANSLATION_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:translation'; //sale:md5('deals'):translation
-    const DEALS_CURRENCY_DOC_NAME = 'sale:6c996181cb66b09cf475386ff06ad9e2:currency'; //sale:md5('deals'):currency*/
-
     const DEFAULT_CAMPAIGN_NAME='deals';
     const DEFAULT_REGION='Australia, New Zealand Pacific';
     const DEFAULT_COUNTRY_CODE='AU';
@@ -60,7 +47,8 @@ class DealsModel extends \Phalcon\Mvc\Model
     const DEFAULT_CURRENCY = 'AUD';
 
     const BASE_URL = 'http://www.hotelclub.com';
-    const SERVICE_URI_LOCATION = 'http://teakettle.prod.o.com/location/';
+    const SERVICE_URI_LOCATION_PROD = 'http://teakettle.prod.o.com/location/geoip/city/';
+    const SERVICE_URI_LOCATION_DEV = 'http://teakettle.qa1.o.com/location/geoip/city/';
 
     protected $locale = 'en_AU';
 
@@ -267,11 +255,12 @@ class DealsModel extends \Phalcon\Mvc\Model
      * @return \Phalcon\Http\Client\Response
      * @throws \Phalcon\Http\Client\Provider\Exception
      */
-    public function getProviderResponse($requestParams, $requestUri = self::SERVICE_URI_LOCATION)
+    public function getProviderResponse($requestParams)
     {
         $provider = Request::getProvider();
         $provider->setBaseUri(self::BASE_URL);
         $provider->header->set('Accept', 'application/json');
+        $requestUri = ORBITZ_ENV === 'production' ? self::SERVICE_URI_LOCATION_PROD : self::SERVICE_URI_LOCATION_DEV;
         return $provider->get($requestUri, $requestParams);
     }
 
@@ -412,12 +401,12 @@ class DealsModel extends \Phalcon\Mvc\Model
      */
     public function setClientGeoLocation()
     {
-//        $requestParams = ['ip' =>  $this->getClientIp()];
-//        $clientGeoLocation = $this->getProviderResponse($requestParams);
-//        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
+        $requestParams = ['ip' =>  $this->getClientIp()];
+        $clientGeoLocation = $this->getProviderResponse($requestParams);
+        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
 
 
-        $proxyPaylod = [
+       /* $proxyPaylod = [
             'host' => self::SERVICE_URI_LOCATION,
             'port' => null,
             'headers[Accept]' => 'application/json',
@@ -430,7 +419,7 @@ class DealsModel extends \Phalcon\Mvc\Model
         //send xml post data
         $response = $provider->post('', $proxyPaylod);
         //get response
-        $this->clientGeoLocation = json_decode($response->body);
+        $this->clientGeoLocation = json_decode($response->body);*/
 
 
         return $this;
