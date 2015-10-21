@@ -25,7 +25,8 @@
             cName = '{{campaignName}}',
             dFormat = '{{dFormat}}',
             dFormatPl = '{{dFormatPl}}',
-            docSeo = '{{docSeo}}';
+            docSeo = '{{docSeo}}',
+            sRegions = '{{searchRegions}}';
 </script>
 <!-- Page Layout
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->

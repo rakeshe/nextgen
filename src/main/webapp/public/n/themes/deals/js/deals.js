@@ -493,6 +493,7 @@
 
         init : function() {
             this.locale = locale;
+
             this.city = city;
 
             this.region = '';
@@ -502,6 +503,8 @@
             this.cityNameUtf;
 
             this.setSeoData();
+
+            this.setSearchRegionData();
 
             this.setCityData();
 
@@ -555,6 +558,15 @@
                 $('body').html(data);
                 //alert(data);
             })*/
+        },
+
+        setSearchRegionData : function() {
+
+            try {
+                this.sReginData = $.parseJSON(sRegions);
+            } catch (e ) {
+                this.sReginData = false;
+            }
         },
 
         setDealData : function() {
@@ -1323,15 +1335,33 @@
 
             var chopArr = new Array, regionFlag = false, cityFlag = false, RegionOpt, regionVal, loopThrough = true;
 
+
+
             if (typeof this.cityData != 'undefined') {
+
+                var displayedSRegion = false;
+
+               if ( !$.isEmptyObject(this.sReginData) ) {
+
+                    $.each(this.sReginData, function(key, val){
+                        var RegionOpt = {
+                            value: $.trim(val),
+                            text: $.trim(val)
+                        };
+                        dropRegion.append($('<option>', RegionOpt));
+                        displayedSRegion = true;
+                    });
+                }
 
                 $.each(this.cityData, function (key, val) {
 
-                    var RegionOpt = {
-                        value: key,
-                        text: val.nameUtf8
-                    };
-                    dropRegion.append($('<option>', RegionOpt));
+                    if (displayedSRegion == false) {
+                        var RegionOpt = {
+                            value: key,
+                            text: val.nameUtf8
+                        };
+                        dropRegion.append($('<option>', RegionOpt));
+                    }
 
                     if (typeof val.cities === 'object' && loopThrough !== false) {
 
