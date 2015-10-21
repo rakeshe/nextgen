@@ -119,8 +119,6 @@ class DealsController extends ControllerBase {
 
     private function validateCampaign() {
 
-        $this->masterData = $this->model->getDocument( $this->model->masterDocName, true );
-
         if (false == $this->masterData ) {
             $this->dispatcher->forward([
                 'controller' => 'deals',
@@ -129,12 +127,14 @@ class DealsController extends ControllerBase {
 
         } else if ($this->campaignName == null ||
             array_key_exists($this->campaignName, $this->masterData['data']) == false) {
-
-          //there is no campaign is exists
-            $this->dispatcher->forward([
-                'controller' => 'deals',
-                'action' => 'show404',
-            ]);
+          //No campaign name by that name so load up default campaing as set in master doc
+            $this->dispatcher->forward(
+                [
+                    'controller' => 'deals',
+                    'action'     => 'index',
+                    'params'     => ['campaignName' => $this->getFallBackDefaultCampaign()]
+                ]
+            );
 
         }
     }
@@ -143,6 +143,8 @@ class DealsController extends ControllerBase {
         if ($this->dispatcher->getParam('campaignName') !== null) {
             $this->campaignName = $this->dispatcher->getParam('campaignName');
         }
+        $this->model->setDocumentNames();
+        $this->masterData = $this->model->getDocument( $this->model->masterDocName, true );
 
         // Get Ip and get default options for that country
         $clientIp = $this->request->getClientAddress();
@@ -161,7 +163,7 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->city . '/';
         } else {
             // set city/ append url based on ip if campaign =1
-            if($this->campaignName == \HC\Deals\Models\DealsModel::DEFAULT_CAMPAIGN_NAME ){
+            if( !$this->isCampaignHasLanding()){
                 $this->city =  $this->model->getClientDefaultCity();
                 $this->appendURL .= $this->city . '/';
             }
@@ -175,7 +177,7 @@ class DealsController extends ControllerBase {
             $this->appendURL .= $this->when;
         } else {
             // set when/ append url based on ip if campaign =1
-            if($this->campaignName == \HC\Deals\Models\DealsModel::DEFAULT_CAMPAIGN_NAME ) {
+            if( !$this->isCampaignHasLanding()){
                 $this->when = self::DEFAULT_WHEN;
                 $this->appendURL .= self::DEFAULT_WHEN;
             }
@@ -209,12 +211,24 @@ class DealsController extends ControllerBase {
 
     }
 
+
     public function indexAction() {
         // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:city_list:zh_cn
         $cityList = $this->model->getDocument(
             $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
         );
+
+        // If cityList is null then selected locale is not supported for this campaign, therefore fall back to default locale
+        if(!$cityList){
+            $this->locale= DealsModel::DEFAULT_LOCALE;
+            $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
+            //Also set cookie
+            $this->cookies->set('AustinLocale',$this->locale);
+            $cityList = $this->model->getDocument(
+                $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
+            );
+        }
 
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:en_au
         // dev:sale:773417b30e69f2511c9afda61c8d936e:footer_seo:zh_cn
@@ -493,5 +507,31 @@ class DealsController extends ControllerBase {
             $parsedContent = array_values($content)[0];
         }
         return $parsedContent;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isCampaignHasLanding(){
+        if(null !== $this->campaignName && !empty($this->masterData['data'][$this->campaignName])){
+            $campaignData = $this->masterData['data'][$this->campaignName];
+            return $campaignData['show_landing'] === '1' ? true : false;
+        }
+
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isDefaultCampaign(){
+        return $this->campaignName === \HC\Deals\Models\DealsModel::DEFAULT_CAMPAIGN_NAME;
+    }
+
+    protected function getFallBackDefaultCampaign(){
+        if(!empty($this->masterData['data'])){
+            foreach($this->masterData['data'] as $campaignName => $campaignData){
+                if($campaignData['is_default'] === '1') return $campaignName;
+            }
+        }
     }
 }
