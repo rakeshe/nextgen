@@ -29,25 +29,23 @@
 		}
 		else if(email == ''){
 			$('#EMAIL').addClass("error");
-			$('.error-message').append('Email is required');
+			$('.error-message').append('Email address is required');
 			$('#EMAIL').focus();
 			return false
 		}
-		else if(telephone == ''){
+        //validate email
+        if(!validateEmail(email)){
+            $('#EMAIL').addClass("error");
+            $('.error-message').append('Email address is not valid');
+            $('#EMAIL').focus();
+            return false;
+        }
+        else if(telephone == ''){
 			$('#telephone').addClass("error");
 			$('.error-message').append('Phone number is required');
 			$('#telephone').focus();
 			return false;
 		}
-
-		//validate email
-		if(!validateEmail(email)){
-			$('#EMAIL').addClass("error");
-			$('.error-message').append('E-mail is not valid');
-			$('#EMAIL').focus();
-			return false;
-		}
-
 		//validate phone
 		if(!validatePhone(telephone)){
 			$('#telephone').val('');
