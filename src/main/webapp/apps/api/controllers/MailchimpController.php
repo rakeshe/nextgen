@@ -19,7 +19,7 @@ class MailchimpController extends ControllerBase {
     }
 
     public function indexAction() {
-        die('yes');
+        
     }
 
 }
