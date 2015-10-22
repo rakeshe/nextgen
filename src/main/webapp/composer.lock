@@ -1,11 +1,49 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e6d2f470e18da7b98d7fa22c5ac880a6",
+    "hash": "5326a65c3865bcadeef83d1d9e9cbe03",
+    "content-hash": "296bbc65bf433168c8cc22fe91763e1e",
     "packages": [
+        {
+            "name": "drewm/mailchimp-api",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "707d555962442b21a75683a56bdb7cebd0a19f72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/707d555962442b21a75683a56bdb7cebd0a19f72",
+                "reference": "707d555962442b21a75683a56bdb7cebd0a19f72",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Drewm": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v2 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2015-07-07 15:38:25"
+        },
         {
             "name": "geoip2/geoip2",
             "version": "v2.1.1",
@@ -257,12 +295,12 @@
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
                 "reference": "720fe9bca893df7ad1b4546649473b5afddf0216"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/720fe9bca893df7ad1b4546649473b5afddf0216",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/720fe9bca893df7ad1b4546649473b5afddf0216",
                 "reference": "720fe9bca893df7ad1b4546649473b5afddf0216",
                 "shasum": ""
             },

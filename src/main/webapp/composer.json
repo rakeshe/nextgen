@@ -1,6 +1,7 @@
 {
     "require": {
         "geoip2/geoip2": "~2.0",
-        "swiftmailer/swiftmailer": " 5.3.1"
+        "swiftmailer/swiftmailer": " 5.3.1",
+        "drewm/mailchimp-api": "^1.1"
     }
 }

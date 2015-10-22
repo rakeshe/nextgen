@@ -12,4 +12,5 @@ return array(
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'GeoIp2' => array($vendorDir . '/geoip2/geoip2/src'),
+    'Drewm' => array($vendorDir . '/drewm/mailchimp-api/src'),
 );
