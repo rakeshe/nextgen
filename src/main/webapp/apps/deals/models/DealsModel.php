@@ -40,6 +40,7 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     const DEFAULT_CAMPAIGN_NAME='deals';
     const DEFAULT_REGION='Australia, New Zealand Pacific';
+    const DEFAULT_SEARCH_REGION_INDEX = 0;
     const DEFAULT_COUNTRY_CODE='AU';
     const DEFAULT_CITY = 'Sydney';
     const DEFAULT_TRAVEL_PERIOD = '30-days';
@@ -291,9 +292,10 @@ class DealsModel extends \Phalcon\Mvc\Model
                         true
                     );
 
-                    if (null != $searchRegions && isset($searchRegions[$regionPos])) {
-                       $this->searchRegions = $searchRegions[$regionPos];
-                    }
+                    $this->searchRegions = null != $searchRegions && isset($searchRegions[$regionPos])
+                        ? $searchRegions[$regionPos]
+                        : $searchRegions[self::DEFAULT_SEARCH_REGION_INDEX];
+
 
                     $countryOption = $countryOptionData[$this->getClientCountryCode()];
                     $this->setClientDefaultLocale($countryOption['locale']);
