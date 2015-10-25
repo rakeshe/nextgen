@@ -2212,7 +2212,10 @@ select {
 	@media (max-width: 765px) {
 		.destination-card-box li { float:left; display:inline-block; width:100%; margin-bottom:21px; border-bottom:1px solid #CCC; padding-bottom:16px;}
 	}
-	
+
+.destination-card-child:first-child {
+    border-left:0px;
+}
 .destination-card-child {
 	border-left:1px solid #CCC;
 }
