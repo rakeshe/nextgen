@@ -2265,9 +2265,8 @@ select {
 }
 .destination-card-info {
 	float:left;
-	width:170px;
+	width:180px;
 	padding-left:16px;
-	padding-right:16px;
 }
 	@media (max-width:1024px) {
 		.destination-card-info { float:left; width:160px; padding-left:16px; padding-right:16px; }
@@ -2316,7 +2315,7 @@ select {
 	line-height:16px;
 	font-weight:300;
 	color:#555555;
-	width:80px;
+	width:95px;
 	float:left;
 	padding-left:10px;
 }
