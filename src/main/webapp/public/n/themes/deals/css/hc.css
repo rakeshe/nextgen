@@ -416,14 +416,17 @@ select {
         margin-right:10%;
     }
     .currency-box {
-        width:80%;
+        /*width:80%;*/
+		width:55%;
         float:left;
         /*padding-bottom:12px;*/
         /*margin-left:10%;*/
         margin-right:10%;
+        margin-left:180px;
     }
     .currency-col {
-        width:100%;
+        /*width:100%;*/
+        width:30%;
         float:left;
     }
     .currency-col-space {
