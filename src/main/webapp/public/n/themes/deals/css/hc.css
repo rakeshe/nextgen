@@ -242,8 +242,10 @@ select {
     /*width:400px;*/
 	width: 160px;
 	padding: 5px;
-    background: rgba(255, 255, 255, 0.8);
-    background-color: rgba(255, 255, 255, 0.8);
+    /*background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);*/
+	background: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
     float:left;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
     font-weight:300;
@@ -385,8 +387,10 @@ select {
 	width:190px !important;
     float:left;
     /*padding-bottom:12px;*/
-    background: rgba(255, 255, 255, 0.8);
-    background-color: rgba(255, 255, 255, 0.8);
+    /*background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);*/
+	background: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
 	margin-left: 260px;
 }
 .currency-col {
