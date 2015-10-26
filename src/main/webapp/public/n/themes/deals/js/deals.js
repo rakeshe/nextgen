@@ -1404,19 +1404,19 @@
             for (var city in chopArr) {
                 sortable.push([chopArr[city]['code'], chopArr[city]['image'], chopArr[city]['nameUtf8'], chopArr[city]['name_en']]);
             }
-
+            console.log(sortable);
             sortable.sort(function(a, b) {
 
-                if (a[2] > b[2]) {
+                if (a[3] > b[3]) {
                     return 1;
                 }
-                if (a[2] < b[2]) {
+                if (a[3] < b[3]) {
                     return -1;
                 }
                 return 0;
             });
 
-            //console.log(sortable);
+            console.log(sortable);
 
             $.each(sortable, function (key, val) {
 
