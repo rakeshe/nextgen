@@ -383,7 +383,7 @@ select {
 	z-index:1;
 }
 .currency-box {
-    /*width:690px;*/
+    width:640px;
 	/*width:190px !important;*/
     float:left;
     /*padding-bottom:12px;*/
@@ -395,7 +395,7 @@ select {
 	margin-left: 100px;
 }
 .currency-col {
-    width:30%;
+    width:31%;
     /*width:100%;*/
     float:left;
 }
