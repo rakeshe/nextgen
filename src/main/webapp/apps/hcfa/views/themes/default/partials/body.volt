@@ -16,14 +16,15 @@
                         <h2>{{ cms['form_title'] }}</h2>
 
                         {% for m in msg %}
-                           <div class="row" style="color:#ff0000;"> {{ m }} </div>
+                           <div class="row" style="color:#ff0000;" id="error-message-val"> {{ m }} </div>
                         {% endfor  %}
+						<div class="error-message" style="color:#ff0000;"></div>
 
                         <form action="register" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
                             {% for element in form %}
                                     {{ element }}
                             {% endfor %}
-                            {{ submit_button("Register now", "class": "button-primary") }}
+                            {{ submit_button("Register now", "class": "button-primary", "id": "btn-register") }}
                         </form>
                         <!--End mc_embed_signup-->
                     </div><!-- End Content Display -->

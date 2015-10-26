@@ -157,6 +157,12 @@ class DealsController extends ControllerBase {
         $this->model->setClientIp($clientIp);
         $this->model->setupClientLocationOptions();
 
+        // Set cookie info
+        $this->cookies->set('client_location_ip', $clientIp);
+        $this->cookies->set('client_location_country', $this->model->getClientCountry());
+        $this->cookies->set('client_location_locale', $this->model->getClientDefaultLocale());
+        $this->cookies->set('client_location_currency', $this->model->getClientDefaultCurrency());
+
         //if exists and should be validated
         if (isset($this->dispatcher->getParams()[0])) {
             $this->city = str_replace('#','',$this->dispatcher->getParams()[0]);
@@ -460,7 +466,7 @@ class DealsController extends ControllerBase {
 
 
     protected function getLocale(){
-        $locale = self::DEFAULT_LOCALE;
+        $locale = $this->getDefaultCampaignLocale();
         $ipLocale =     $this->model->getClientDefaultLocale();
         $urlParamLocale = $this->request->get('locale','string');
         $cookieLocale = $this->cookies->get('AustinLocale')->__toString();
@@ -532,6 +538,24 @@ class DealsController extends ControllerBase {
             foreach($this->masterData['data'] as $campaignName => $campaignData){
                 if($campaignData['is_default'] === '1') return $campaignName;
             }
+        }
+    }
+
+    protected function getDefaultCampaignLocale(){
+        if(null !== $this->campaignName && !empty($this->masterData['data'][$this->campaignName])){
+            $campaignData = $this->masterData['data'][$this->campaignName];
+            $locales = explode(",", $campaignData['locales']);
+            $default = reset($locales);
+            return null === $default ? self::DEFAULT_LOCALE : $default;
+        }
+    }
+
+    protected function getDefaultCampaignCurrency(){
+        if(null !== $this->campaignName && !empty($this->masterData['data'][$this->campaignName])){
+            $campaignData = $this->masterData['data'][$this->campaignName];
+            $currencies = explode(",", $campaignData['currencies']);
+            $default =  reset($currencies);
+            return null === $default ? self::DEFAULT_CURR : $default;
         }
     }
 }

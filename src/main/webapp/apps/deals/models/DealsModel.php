@@ -40,6 +40,7 @@ class DealsModel extends \Phalcon\Mvc\Model
 
     const DEFAULT_CAMPAIGN_NAME='deals';
     const DEFAULT_REGION='Australia, New Zealand Pacific';
+    const DEFAULT_SEARCH_REGION_INDEX = 0;
     const DEFAULT_COUNTRY_CODE='AU';
     const DEFAULT_CITY = 'Sydney';
     const DEFAULT_TRAVEL_PERIOD = '30-days';
@@ -50,6 +51,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     const BASE_URL = 'http://www.hotelclub.com';
     const SERVICE_URI_LOCATION_PROD = 'http://teakettle.prod.o.com/location/geoip/city/';
     const SERVICE_URI_LOCATION_DEV = 'http://teakettle.qa1.o.com/location/geoip/city/';
+    const SERVICE_URI_LOCATION_PROXY = 'http://www.hotelclub.com/n/api/proxy/request/';
 
     protected $locale = 'en_AU';
 
@@ -291,9 +293,10 @@ class DealsModel extends \Phalcon\Mvc\Model
                         true
                     );
 
-                    if (null != $searchRegions && isset($searchRegions[$regionPos])) {
-                       $this->searchRegions = $searchRegions[$regionPos];
-                    }
+                    $this->searchRegions = null != $searchRegions && isset($searchRegions[$regionPos])
+                        ? $searchRegions[$regionPos]
+                        : $searchRegions[self::DEFAULT_SEARCH_REGION_INDEX];
+
 
                     $countryOption = $countryOptionData[$this->getClientCountryCode()];
                     $this->setClientDefaultLocale($countryOption['locale']);
@@ -421,25 +424,25 @@ class DealsModel extends \Phalcon\Mvc\Model
     public function setClientGeoLocation()
     {
         $requestParams = ['ip' =>  $this->getClientIp()];
-        $clientGeoLocation = $this->getProviderResponse($requestParams);
-        $this->clientGeoLocation = json_decode($clientGeoLocation->body);
-
-
-       /* $proxyPaylod = [
-            'host' => self::SERVICE_URI_LOCATION,
+        try{
+            $clientGeoLocation = $this->getProviderResponse($requestParams);
+        } catch (\Exception $e) {
+//            $this->getExceptionMessage($e);
+             $proxyPaylod = [
+            'host' => self::SERVICE_URI_LOCATION_PROD,
             'port' => null,
             'headers[Accept]' => 'application/json',
-            'payload' => 'geoip/city?ip='. $this->getClientIp(),
+            'payload' => '?ip='. $this->getClientIp(),
             'method' => 'GET'
         ]   ;
         $provider  = Request::getProvider();
-        //set pricing gateway url path
-        $provider->setBaseUri('http://www.hotelclub.com/n/api/proxy/request/');
-        //send xml post data
-        $response = $provider->post('', $proxyPaylod);
-        //get response
-        $this->clientGeoLocation = json_decode($response->body);*/
+        $provider->setBaseUri(self::SERVICE_URI_LOCATION_PROXY);
+            $clientGeoLocation = $provider->post('', $proxyPaylod);
+        }
 
+        if($clientGeoLocation){
+            $this->clientGeoLocation = json_decode($clientGeoLocation->body);
+        }
 
         return $this;
     }

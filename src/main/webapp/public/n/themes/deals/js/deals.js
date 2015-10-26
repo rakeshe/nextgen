@@ -737,6 +737,7 @@
                 var dest = '';
                 if (this.city != '') {
                     dest = this.seoData[type]['description'].replace('[Destination]', this.city);
+                    dest = this.seoData[type]['title'].replace('[Destination]', this.city);
                 } else {
                     dest = this.seoData[type]['description'];
                 }

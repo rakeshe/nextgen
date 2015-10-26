@@ -2212,7 +2212,10 @@ select {
 	@media (max-width: 765px) {
 		.destination-card-box li { float:left; display:inline-block; width:100%; margin-bottom:21px; border-bottom:1px solid #CCC; padding-bottom:16px;}
 	}
-	
+
+.destination-card-child:first-child {
+    border-left:0px;
+}
 .destination-card-child {
 	border-left:1px solid #CCC;
 }
@@ -2262,9 +2265,8 @@ select {
 }
 .destination-card-info {
 	float:left;
-	width:170px;
+	width:180px;
 	padding-left:16px;
-	padding-right:16px;
 }
 	@media (max-width:1024px) {
 		.destination-card-info { float:left; width:160px; padding-left:16px; padding-right:16px; }
@@ -2313,7 +2315,7 @@ select {
 	line-height:16px;
 	font-weight:300;
 	color:#555555;
-	width:80px;
+	width:95px;
 	float:left;
 	padding-left:10px;
 }
@@ -2340,6 +2342,7 @@ select {
 	display:block;
 	height:32px;
 	overflow:hidden;
+    width: 100%;
 }
 	@media (max-width: 765px) {
 		.destination-card-offer {
