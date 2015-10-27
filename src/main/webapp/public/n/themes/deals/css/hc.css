@@ -1218,7 +1218,8 @@ select {
 }
 .hero-text a {
     text-decoration:underline;
-    color:#da291c;
+    /*color:#da291c;*/
+    color:#592d6d;
 }
 .hero-text-title {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
@@ -1274,8 +1275,8 @@ select {
     text-align:center;
 }
 @media (max-width: 765px) {
-    .search-sale-box {
-        margin-top: 40%;
+    .hero-message{
+        padding-top: 40%;
     }
 }
 @media (min-width: 769px) {
@@ -1305,6 +1306,7 @@ select {
     line-height:24px;
     margin-top:8px;
     margin-bottom:20px;
+    color: #da291c;
 }
 @media (max-width: 480px) {
     .find-your h2 {
@@ -1989,7 +1991,7 @@ select {
     padding:18px;
 }
 .explore li a {
-    color:#da291c;
+    color:#592d6d;
     text-decoration:none;
 }
 .explore li a:hover {
@@ -2151,12 +2153,12 @@ select {
 		}
 	}
 .destination-info li a {
-	color:#da291c;
+	color:#592d6d;
 	text-decoration:none;
 }
 	@media (max-width: 765px) {
 		.destination-info li a {
-			color:#da291c;
+			color:#592d6d;
 			text-decoration:none;
 		}
 	}
