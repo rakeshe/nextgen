@@ -1279,9 +1279,10 @@ select {
     }
 }
 @media (min-width: 769px) {
-    .search-sale-box {
-        margin-top: 253px;
+    .hero-message{
+        padding-top: 291px;
     }
+
 }
 .search-sale-box {
     padding-top: 14px;
@@ -2669,6 +2670,6 @@ ul.footer-links li{
 ul.footer-links{
     float: none;
 }
-#mid-year-sale-logo {
-    display: none;
+#sale-logo {
+    /*display: none;*/
 }

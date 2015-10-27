@@ -1271,8 +1271,8 @@ select {
     }
 }
 @media (min-width: 769px) {
-    .search-sale-box {
-        margin-top: 253px;
+    .hero-message{
+        padding-top: 291px;
     }
 }
 .search-sale-box {
