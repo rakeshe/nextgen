@@ -1827,6 +1827,8 @@
 		/*drop down for currency selection*/
 		$(".club-id-currency").click(function() {
 
+            var numOfColumms = $(".currencySelector").children('li').length;
+            if(numOfColumms > 2) $('.currency-box').css({'width': '640px'});
             $(".currency-wrapper").toggle();
 
         });
