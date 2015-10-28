@@ -237,10 +237,11 @@ select {
 	z-index: 999;
 	position:absolute;
 	/*margin-top:30px;*/
+    margin-left: -8px;
 }
 .locale-menu {
     /*width:400px;*/
-	width: 160px;
+	width: 190px;
 	padding: 5px;
     /*background: rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.8);*/
@@ -334,7 +335,6 @@ select {
 }
 .currencySelector {
     padding:12px;
-
 }
 .currencySelector ul {
     margin-bottom:0px;
@@ -374,7 +374,7 @@ select {
     padding-top:16px;
     float:left;
     width:690px;
-	margin-left: -330px;
+	margin-left: -340px;
     background-image:url(../images/assets/menu-box-arrow.png);
     background-repeat:no-repeat;
     background-position:top center;
@@ -383,8 +383,8 @@ select {
 	z-index:1;
 }
 .currency-box {
-    width:640px;
-	/*width:190px !important;*/
+    /*width:640px;*/
+	/*min-width:190px;*/
     float:left;
     /*padding-bottom:12px;*/
     /*background: rgba(255, 255, 255, 0.8);
@@ -392,10 +392,10 @@ select {
 	background: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, 1);
 	/*margin-left: 260px;*/
-	margin-left: 100px;
+	margin-left: 200px;
 }
 .currency-col {
-    width:31%;
+    width:190px;
     /*width:100%;*/
     float:left;
 }
