@@ -926,7 +926,7 @@
 
             $('.section .hotel-cards-container').html('').append(
                 $('<div class="err-hotel-not-found">'+ this.t('sorry_no_deals') +'<br /><br />' + this.t('search_all_of_our_inventory_here') + '</div>') )
-                .append(template( {city : this.city, trans : this.trans} ));
+                .append(template( {city : this.city,cityNameUtf : this.cityNameUtf, trans : this.trans} ));
 
             $('.modal-wrapper').addClass ('orbot-in-page');
             $('.modal-box').removeClass('modal-box');
