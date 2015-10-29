@@ -563,4 +563,14 @@ class DealsModel extends \Phalcon\Mvc\Model
 
         return $ip;
     }
+
+    public function getTranslatedCityName($cityName, $cityList){
+        if(!is_array($cityList)) $cityList = json_decode($cityList, true);
+        foreach($cityList as $cities){
+            foreach($cities['cities'] as $city=>$cityData){
+                if($city === $cityName && !empty($cityData['nameUtf8'])) return $cityData['nameUtf8'];
+            }
+        }
+
+    }
 }
