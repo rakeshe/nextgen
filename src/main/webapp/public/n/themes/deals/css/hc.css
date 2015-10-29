@@ -117,6 +117,9 @@
     text-decoration:none;
     color:#FFF;
 }
+.user-id a:hover {
+    text-decoration:underline;
+}
 .user-member {
     font-size:15px;
     font-family:'museo_sans300',Verdana, Geneva, sans-serif;
@@ -761,6 +764,9 @@ select {
     -moz-border-radius: 32px;
     border-radius: 32px;
 }
+.select-dates-button:hover{
+    background-color: #9D6BCA;
+}
 .select-dates-footer{
 	float:left;
 	width:50%;
@@ -1217,10 +1223,15 @@ select {
 	width:98%;
 }
 .hero-text a {
-    text-decoration:underline;
+    text-decoration:none;
     /*color:#da291c;*/
     color:#592d6d;
 }
+.hero-text a:hover{
+    text-decoration:underline;
+    color: #9D6BCA;
+}
+
 .hero-text-title {
     font-family:'museo_slab500',Verdana, Geneva, sans-serif;
     color:#333;
@@ -1402,6 +1413,12 @@ select {
 }
 .breadcrumbs a {
     color: #55337e;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #9D6BCA;
+    text-decoration: underline;
 }
 .bc-space {
     padding-left: 11px;
@@ -1697,8 +1714,8 @@ select {
     color:#55337e;
 }
 .hotel-name a:hover{
-	text-decoration: none;
-    color:#e80f1e;
+	text-decoration: underline;
+    color:#9D6BCA;
 }
 .hotel-city {
     font-size:20px;
@@ -1878,6 +1895,9 @@ select {
     margin-top:50px;
 	cursor:pointer;
 }
+.hotel-card-button:hover{
+    background-color: #9D6BCA;
+}
 .add-room, .remove-room{
 	cursor: pointer;
     font-family: museo_sans300;
@@ -1995,8 +2015,8 @@ select {
     text-decoration:none;
 }
 .explore li a:hover {
-    color:#4f2984;
-    text-decoration:none;
+    color:#9D6BCA;
+    text-decoration:underline;
     cursor: pointer;
 }
 .explore h1 {
@@ -2164,6 +2184,7 @@ select {
 	}
 .destination-info li a:hover {
 	text-decoration:underline;
+    color: #9D6BCA;
 }
 .destination-top-deals {
 	font-family:'museo_sans300',Verdana, Geneva, sans-serif;
