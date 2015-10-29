@@ -147,9 +147,10 @@ class DealsController extends ControllerBase {
         $this->masterData = $this->model->getDocument( $this->model->masterDocName, true );
 
         // Get Ip and get default options for that country - test different ip retrieval methods
-        $clientIp = $this->request->getClientAddress();
-        $getIp = $this->model->getClientIp();
-        $getUserIp = $this->model->getUserIP();
+//        $clientIp = $this->request->getClientAddress(); does not resolve properly
+        $clientIp = $this->model->getClientIp();
+//        $getIp = $this->model->getClientIp();
+//        $getUserIp = $this->model->getUserIP();
 
         // Check if ip sent over url param (for test only)
         if(ORBITZ_ENV == 'dev' || ORBITZ_ENV == 'fqa1') {
@@ -164,8 +165,6 @@ class DealsController extends ControllerBase {
 
         // Set cookie info @todo remove redundant
         $this->cookies->set('client_location_ip', $clientIp);
-        $this->cookies->set('client_location_ip_client', $getIp);
-        $this->cookies->set('client_location_ip_user', $getUserIp);
         $this->cookies->set('client_location_country', $this->model->getClientCountry());
         $this->cookies->set('client_location_locale', $this->model->getClientDefaultLocale());
         $this->cookies->set('client_location_currency', $this->model->getClientDefaultCurrency());
