@@ -1009,6 +1009,10 @@ select {
     -moz-border-radius: 32px;
     border-radius: 32px;
 }
+.modal-row-button:hover{
+    background-color: #9D6BCA;
+}
+
 
 .modal-cancel {
     float:left;
