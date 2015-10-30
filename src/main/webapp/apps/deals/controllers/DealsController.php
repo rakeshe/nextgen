@@ -13,6 +13,7 @@ namespace HC\Deals\Controllers;
 use HC\Deals\Models\DealsModel;
 use Phalcon\Http\Client\Request;
 use Phalcon\Http\Response;
+use HC\Common\Helpers\CookieHelper;
 
 class DealsController extends ControllerBase {
 
@@ -163,11 +164,10 @@ class DealsController extends ControllerBase {
         $this->model->setClientIp($clientIp);
         $this->model->setupClientLocationOptions();
 
-        // Set cookie info @todo remove redundant
-        $this->cookies->set('client_location_ip', $clientIp);
-        $this->cookies->set('client_location_country', $this->model->getClientCountry());
-        $this->cookies->set('client_location_locale', $this->model->getClientDefaultLocale());
-        $this->cookies->set('client_location_currency', $this->model->getClientDefaultCurrency());
+        CookieHelper::set('client_location_ip',$clientIp);
+        CookieHelper::set('client_location_country',$this->model->getClientCountry());
+        CookieHelper::set('client_location_locale',$this->model->getClientDefaultLocale());
+        CookieHelper::set('client_location_currency',$this->model->getClientDefaultCurrency());
 
         //if exists and should be validated
         if (isset($this->dispatcher->getParams()[0])) {
@@ -236,7 +236,7 @@ class DealsController extends ControllerBase {
             $this->locale= DealsModel::DEFAULT_LOCALE;
             $this->model->setLocale(DealsModel::DEFAULT_LOCALE);
             //Also set cookie
-            $this->cookies->set('AustinLocale',$this->locale);
+            CookieHelper::set('AustinLocale',$this->locale);
             $cityList = $this->model->getDocument(
                 $this->model->buildUrl( $this->model->campaignDocNames['city_list'] )
             );
@@ -466,7 +466,7 @@ class DealsController extends ControllerBase {
         }
 
         //Also set cookie
-        $this->cookies->set('curr',$defaultCurrency);
+        CookieHelper::set('curr',$defaultCurrency);
         return $defaultCurrency;
     }
 
@@ -491,7 +491,7 @@ class DealsController extends ControllerBase {
         $locale = empty($urlParamLocale) ? $locale : $urlParamLocale;
 
         //Also set cookie
-        $this->cookies->set('AustinLocale',$locale);
+        CookieHelper::set('AustinLocale',$locale);
 
         return $locale;
 
