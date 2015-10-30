@@ -101,7 +101,7 @@ class DealsModel extends \Phalcon\Mvc\Model
     protected $clientDefaultLocale;
     protected $clientDefaultCurrency;
     protected $clientDefaultCity;
-
+    protected $countryOptionData;
     public $searchRegions;
 
     /**
@@ -281,22 +281,9 @@ class DealsModel extends \Phalcon\Mvc\Model
                 $this->setClientCountryCode($this->getClientGeoLocation()->country_code);
                 $this->setClientCity($this->getClientGeoLocation()->city_name);
 
-                $countryOptionDocumentName = $this->buildUrl(self::DOC_NAME_COUNTRY_OPTIONS,'locale');
-                $countryOptionData = $this->getDocument($countryOptionDocumentName, true);
+                $countryOptionData = $this->getCountryOptionData();
 
                 if(!empty($countryOptionData[$this->getClientCountryCode()])){
-
-                    $regionPos = $countryOptionData[$this->getClientCountryCode()]['search_region'];
-
-                    $searchRegions = $this->getDocument(
-                        $this->buildUrl(self::DOC_NAME_SEARCH_REGIONS, 'locale'),
-                        true
-                    );
-
-                    $this->searchRegions = null != $searchRegions && isset($searchRegions[$regionPos])
-                        ? $searchRegions[$regionPos]
-                        : $searchRegions[self::DEFAULT_SEARCH_REGION_INDEX];
-
 
                     $countryOption = $countryOptionData[$this->getClientCountryCode()];
                     $this->setClientDefaultLocale($countryOption['locale']);
@@ -450,6 +437,57 @@ class DealsModel extends \Phalcon\Mvc\Model
     /**
      * @return mixed
      */
+    public function getCountryOptionData()
+    {
+        if(null === $this->countryOptionData) $this->setCountryOptionData();
+        return $this->countryOptionData;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setCountryOptionData()
+    {
+        $countryOptionDocumentName = $this->buildUrl(self::DOC_NAME_COUNTRY_OPTIONS,'locale');
+        $this->countryOptionData = $this->getDocument($countryOptionDocumentName, true);
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSearchRegions()
+    {
+        if(null === $this->searchRegions) $this->setSearchRegions();
+        return $this->searchRegions;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setSearchRegions()
+    {
+        $countryOptionData = $this->getCountryOptionData();
+        if(!empty($countryOptionData[$this->getClientCountryCode()])){
+            $regionPos = $countryOptionData[$this->getClientCountryCode()]['search_region'];
+            $searchRegionsDocumentName =  $this->buildUrl(self::DOC_NAME_SEARCH_REGIONS, 'locale');
+            $searchRegions = $this->getDocument($searchRegionsDocumentName, true);
+
+            if($searchRegions) {
+                $this->searchRegions = isset($searchRegions[$regionPos])
+                    ? $searchRegions[$regionPos]
+                    : $searchRegions[self::DEFAULT_SEARCH_REGION_INDEX];
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getClientIp()
     {
         if(null === $this->clientIp) $this->setClientIp();
@@ -562,5 +600,15 @@ class DealsModel extends \Phalcon\Mvc\Model
         }
 
         return $ip;
+    }
+
+    public function getTranslatedCityName($cityName, $cityList){
+        if(!is_array($cityList)) $cityList = json_decode($cityList, true);
+        foreach($cityList as $cities){
+            foreach($cities['cities'] as $city=>$cityData){
+                if($city === $cityName && !empty($cityData['nameUtf8'])) return $cityData['nameUtf8'];
+            }
+        }
+
     }
 }
