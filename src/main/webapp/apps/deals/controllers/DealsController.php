@@ -381,7 +381,7 @@ class DealsController extends ControllerBase {
                 'campaignName'        => $this->campaignName,
                 'dFormat'             => $dateFormat,
                 'dFormatPl'           => $dateFormatPlaceHolder,
-                'searchRegions'       => json_encode($this->model->searchRegions)
+                'searchRegions'       => json_encode($this->model->getSearchRegions())
             ]
         );
 
