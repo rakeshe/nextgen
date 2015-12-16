@@ -22,7 +22,7 @@ ul{
 li{  
 	clear: right;
     float: right;
-    padding: 11px 15px 0 0;
+    padding: 0 15px 0 0;
 }
 a:link, .link {
     color: #562d82;
@@ -41,7 +41,7 @@ a:link, .link {
 }
 .header-logo{
 	float: left;
-    padding: 22px 0 20px 20px;
+    padding: 22px 0 10px 20px;
     width: auto;
 }
 .header-right-cont{
@@ -56,6 +56,82 @@ a:link, .link {
     border-right: 1px solid #CCC;
     float: left;
     padding: 0 9px;
+}
+.header-right-cont ul.login {
+    clear: right;
+    float: right;
+    padding: 0 15px 0 0;
+	margin:0;
+}
+.header-right-cont ul.login li {
+    float: left;
+}
+.header-right-cont li.registerLink {
+    border-left: 1px solid #ccc;
+    font-weight: normal;
+    padding-left: 9px;
+    padding-right: 0px;
+}
+.socialLogin{
+	padding-right:0px;
+}
+#main-menu{
+	clear:both;
+	width:100%;
+}
+.left-menu{
+	float:left; 
+	width:60%;
+}
+.left-menu-ul{
+	margin:0px;
+	padding:0px 0px 0px 15px;
+}
+.left-menu-ul li{
+	float:left; 
+	border-top:1px solid #E21E28; 
+	font-size:10pt; 
+	margin:9px 24px 0 0; 
+	padding:5px 0 0 0; 
+	width:150px;
+}
+.right-menu{
+	float:right;
+	width:32.6%;
+	font-size:10pt;
+}
+.right-menu ul{
+	margin:0;
+	padding:0;
+}
+.right-menu ul li{
+	float:left;
+	width:134px;
+	border-top:1px solid #E21E28;
+	margin:9px 23px 0 0;
+	padding:4px 0 0 0;
+}
+.right-menu-li{
+	margin:9px 0px 0 0 !important;
+	padding:5px 0 0 0;
+	width:140px !important;
+	text-align:center;
+}
+.right-menu-img{
+	border:1px solid #FFF;
+}
+.right-menu ul li a{
+	color: #000;
+}
+.header-right-cont ul.primary li {
+    border-right: 1px solid #ccc;
+    float: left;
+    padding: 0 9px;
+}
+li {
+    clear: right;
+    float: right;
+    padding: 0 15px 0 0;
 }
 .placeHolder ul.primary li.last {
     border: 0;
@@ -172,4 +248,34 @@ a:link, .link {
 	font-family: Arial,Helvetica,sans-serif;
 	color: #55337e;
 	text-decoration: underline;
+}
+.locale-ul{
+	position:absolute;
+	width:330px !important;
+	float:left;
+	margin-left:-255px !important;
+	border:1px solid #999; 
+	margin-top: 5px !important;
+	text-align:left;
+}
+.locale-li{
+	background: #efefef;
+    width: 165px !important;
+    margin: 0px !important;
+	border-top: 1px solid #EFEFEF !important;
+	padding-top: 20px !important;
+}
+.locale-li li{
+	float:left; 
+	background: #efefef; 
+	width:150px;
+	margin:10px 0px;
+}
+.locale-lang li{
+	border:0px !important;
+	margin-bottom:10px;	
+    padding: 2px 0 2px 15px !important;
+}
+.locale-lang-last{
+	margin-bottom:25px !important;
 }
