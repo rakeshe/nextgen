@@ -103,6 +103,8 @@ a:link, .link {
 .right-menu ul{
 	margin:0;
 	padding:0;
+	float:right;
+	margin-right:20px;
 }
 .right-menu ul li{
 	float:left;
@@ -250,20 +252,26 @@ li {
 	text-decoration: underline;
 }
 .locale-ul{
+	display:none;
 	position:absolute;
-	width:330px !important;
+	width:320px !important;
 	float:left;
-	margin-left:-255px !important;
+	margin-left:-250px !important;
 	border:1px solid #999; 
-	margin-top: 5px !important;
+	margin-top: 7px !important;
 	text-align:left;
+}
+.locale-heading, .currency-heading{
+	font-weight:bold;
 }
 .locale-li{
 	background: #efefef;
-    width: 165px !important;
+	background: #efefef;
+    width: 160px !important;
     margin: 0px !important;
-	border-top: 1px solid #EFEFEF !important;
+	border-top: 1px solid #cccccc !important;
 	padding-top: 20px !important;
+	padding-bottom: 20px !important;
 }
 .locale-li li{
 	float:left; 
@@ -271,10 +279,43 @@ li {
 	width:150px;
 	margin:10px 0px;
 }
+.currency-subval{    
+	margin-right: 0px !important;
+    margin-left: 30px !important;
+}
+.currency-subval  li{
+	border-right:1px solid #999 !important;
+	border-top:0px!important;
+	width:166px !important;
+}
+.currency-last{
+	border-bottom:1px solid #999 !important;
+	padding-bottom:30px !important;
+}
+.currency-val{
+	display: block;
+	position: absolute;
+	width: 695px !important;
+	float:left;
+	margin-left: -555px !important;
+	border: 1px solid #999;
+	margin-top: 7px !important;
+	text-align: left;
+	background:#F4F4F5;
+}
+.currency-val li{
+	border:0px !important; 	
+}
+.locale-lang {
+    height: 255px;
+}
 .locale-lang li{
 	border:0px !important;
+	border-right: 1px solid #ccc;
 	margin-bottom:10px;	
-    padding: 2px 0 2px 15px !important;
+    padding: 2px 0 !important;
+	margin: 9px 0 0 30px !important;
+    width: 120px !important;
 }
 .locale-lang-last{
 	margin-bottom:25px !important;
