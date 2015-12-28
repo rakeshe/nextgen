@@ -261,11 +261,11 @@ a:link, .link {
 }
 .faq-cont-block p{
 	display:block;
-	background-color: #FAFAFA;
-	padding:20px 40px;
-	border-bottom:2px solid #d6d6d6;
+	padding:30px 40px 80px 20px;
+	border-bottom:2px solid #E21E28;
 	font-size:10pt;
 	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	margin: 20px;
 }
 .add-hyper-link{
 	font-size:12pt;
@@ -342,4 +342,7 @@ a:link, .link {
 }
 .locale-lang-last{
 	margin-bottom:25px !important;
+}
+.add-faq{
+	text-decoration:underline !important;
 }
