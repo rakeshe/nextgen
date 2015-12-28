@@ -1,3 +1,14 @@
+@media only screen 
+  and (max-device-width: 768px) {
+    .main-content h2{
+		/*font-size: 17pt !important;*/
+		font-size: 100% !important;
+	}
+	.main-content p{
+		/*font-size: 8pt !important;*/
+		font-size: 65% !important;
+	}
+}
 body{
 	margin-left: 0px;
 	margin-top: 0px;
@@ -10,12 +21,12 @@ body{
 body, button, input, select, textarea {
     font-family: Arial,Helvetica,sans-serif;
 }
-h1{
+/*h1{
 	font-weight: 600 !important;
 }
 h2{
 	font-weight: 600 !important;
-}
+}*/
 ul{
 	list-style-type: none;
 }
@@ -129,11 +140,6 @@ a:link, .link {
     border-right: 1px solid #ccc;
     float: left;
     padding: 0 9px;
-}
-li {
-    clear: right;
-    float: right;
-    padding: 0 15px 0 0;
 }
 .placeHolder ul.primary li.last {
     border: 0;
@@ -293,7 +299,8 @@ li {
 	padding-bottom:30px !important;
 }
 .currency-val{
-	display: block;
+	/*display: block;*/
+	display: none;
 	position: absolute;
 	width: 695px !important;
 	float:left;
