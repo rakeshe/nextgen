@@ -4,211 +4,194 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Find Cheap Hotels & Accommodation Deals with HotelClub.com</title>
 <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/style.css">
+
+    <script id="header-template" type="text/x-handlebars-template">
+
+        <!-- Place holder DIV -->
+        <div class="placeHolder">
+            <div class="header-logo">
+                <img src="images/logo-header.png"/>
+            </div>
+            <div class="header-right-cont">
+                <ul class="primary">
+                    <li><a href="{{split trans.link:myBookings 1}}" class="link">{{split trans.link:myBookings 2}}</a></li>
+                    <li><a href="{{split trans.link:myAccounts 1}}" class="link">{{split trans.link:myAccounts 2}}</a></li>
+                    <li class="last"><a href="{{split trans.link:customerServices 1}}" class="link" id="myCustomerService">{{split trans.link:customerServices 2}}</a></li>
+                </ul>
+                <ul class="login">
+                    <li class="welcomeText">Welcome to HotelClub</li>
+                    <li class="signInLink socialLogin"><a class="link" href="#">Sign in <img src="images/icon-social-signin-color.svg" style="margin-bottom:-5px; padding:0 7px;"/></a></li>
+                    <li class="registerLink"><a class="link" href="#">Register</a></li>
+                </ul>
+            </div>
+            <div id="main-menu">
+                <div class="left-menu">
+                    <ul class="left-menu-ul">
+                        <li>Home</li>
+                        <li>The Club</li>
+                        <li>Travel Insurance</li>
+                    </ul>
+                </div>
+                <div class="right-menu">
+                <ul>
+                    <li class="right-menu-li"> &nbsp;
+                        <a href="#">
+                            <span>English</span>&nbsp;<img src="images/dropDownArrowActive.png" class="right-menu-img">
+                            <ul class="locale-ul">
+                                <li class="locale-li">
+                                    <ul class="locale-lang">
+                                        <li class="locale-heading">English</li>
+                                        <li>繁體中文 (台灣)</li>
+                                        <li>简体中文</li>
+                                        <li>繁體中文 (香港)</li>
+                                        <li>Bahasa Malaysia</li>
+                                        <li>Deutsch</li>
+                                        <li>Español</li>
+                                        <li>Français</li>
+                                        <li class="locale-lang-last">Bahasa Indonesia</li>
+                                    </ul>
+                                </li>
+                                <li class="locale-li">
+                                    <ul class="locale-lang">
+                                        <li>Italiano</li>
+                                        <li>日本語</li>
+                                        <li>한국어</li>
+                                        <li>Nederlands</li>
+                                        <li>Polski</li>
+                                        <li>Português</li>
+                                        <li>Русский</li>
+                                        <li>Svenska</li>
+                                        <li class="locale-lang-last">ไทย</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </a>
+                        | &nbsp;
+                        <a href="#">
+                            <span>INR</span>&nbsp;<img src="images/dropDownArrowActive.png" class="right-menu-img">
+                            <ul class="currency-val" style="">
+                                <li style="width:30%; float:left;margin-right:0px;">
+                                    <ul class="currency-subval">
+                                        <li class="currency-heading">Most-used currencies</li>
+                                        <li>AUD - Australian Dollar</li>
+                                        <li>CNY - Chinese Yuan</li>
+                                        <li>EUR - Euro</li>
+                                        <li>GBP - British Pound Sterling</li>
+                                        <li>INR - Indian Rupee</li>
+                                        <li>NZD - New Zealand Dollar</li>
+                                        <li class="currency-last">USD - US Dollar</li>
+                                        <li class="currency-heading" style="border-top:1px solid #999;">Africa</li>
+                                        <li class="currency-last">ZAR - South African Rand</li>
+                                        <li class="currency-heading">Americas</li>
+                                        <li>BRL - Brazilian Real</li>
+                                        <li>CAD - Canadian Dollar</li>
+                                        <li>COP - Colombia Peso</li>
+                                        <li>MXN - Mexican Peso</li>
+                                        <li class="currency-last">USD - US Dollar</li>
+                                    </ul>
+                                </li>
+                                <li style="width:30%; float:left;margin-right:0px;">
+                                    <ul  class="currency-subval">
+                                        <li class="currency-heading">Asia</li>
+                                        <li>CNY - Chinese Yuan</li>
+                                        <li>HKD - Hong Kong Dollar</li>
+                                        <li>IDR - Indonesia Rupiah</li>
+                                        <li>INR - Indian Rupee</li>
+                                        <li>JPY - Japanese Yen</li>
+                                        <li>KRW - South Korean Won</li>
+                                        <li>MYR - Malaysian Ringgit</li>
+                                        <li>PHP - Philippine Peso</li>
+                                        <li>SGD - Singapore Dollar</li>
+                                        <li>THB - Thai Baht</li>
+                                        <li class="currency-last">TWD - New Taiwan Dollar</li>
+                                        <li class="currency-heading">Middle East</li>
+                                        <li>AED - UAE Dirham</li>
+                                        <li>ILS - Israeli New Sheqel</li>
+                                        <li>QAR - Qatar Rial</li>
+                                        <li>SAR - Saudi Arabia Riyal</li>
+                                        <li class="currency-last">TRY - Turkish Lira</li>
+                                    </ul>
+                                </li>
+                                <li style="width:30%; float:left;margin-right:0px;">
+                                    <ul class="currency-subval">
+                                        <li class="currency-heading">Europe</li>
+                                        <li>CHF - Swiss Franc</li>
+                                        <li>CZK - Czech Republic Koruna</li>
+                                        <li>DKK - Danish Krone</li>
+                                        <li>EUR - Euro</li>
+                                        <li>GBP - British Pound Sterling</li>
+                                        <li>HUF - Hungary Forint</li>
+                                        <li>NOK - Norwegian Krone</li>
+                                        <li>PLN - Polish Zloty</li>
+                                        <li>RUB - Russian Ruble</li>
+                                        <li>SEK - Swedish Krona</li>
+                                        <li class="currency-last">UAH - Ukrainian Hryvnia</li>
+                                        <li class="currency-heading">Oceania</li>
+                                        <li>AUD - Australian Dollar</li>
+                                        <li class="currency-last">NZD - New Zealand Dollar</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </script>
+
+    <script id="banner-template" type="text/x-handlebars-template">
+
+        <!-- Header Image -->
+        <img src="{{split trans.src:headerBannerImage 1}}" alt="{{split trans.src:headerBannerImage 2}}" class="headerImg"/>
+        <div class="hotelclub-logo">
+            <div class="hotelclub-logo-1"><img src="{{split trans.src:topImage 1}}" alt="{{split trans.src:topImage 2}}"/></div>
+            <div class="hotelclub-logo-2"><img src="{{split trans.src:topImage2 1}}" alt="{{split trans.src:topImage2 2}}"/></div>
+        </div>
+
+    </script>
+
+    <script id="article-template" type="text/x-handlebars-template">
+
+        <!-- Main Content -->
+        <div class="main-content">
+            {{ safeSting trans.mainContent }}
+        </div>
+
+        <!-- Second Block -->
+        <div class="second-block">
+            {{ safeSting trans.secondBlock }}
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="faq-content">
+           {{ safeSting trans.faqContent }}
+        </div>
+
+        <h2 class="faq-cont-block-head">{{ trans.faqs }}</h2>
+        <div class="faq-cont-block">
+            {{ safeSting trans.faqQA }}
+        </div>
+
+    </script>
 </head>
 <body>
 <!-- Container for DIV -->
 <div class="container">
 
-	<!-- Place holder DIV -->
-	<div class="placeHolder">
-		<div class="header-logo">
-			<img src="images/logo-header.png"/>
-		</div>
-		<div class="header-right-cont">
-				<ul class="primary">
-					<li><a href="#" class="link">My Bookings</a></li>
-					<li><a href="#" class="link">My Account</a></li>
-					<li class="last"><a href="#" class="link">Customer Service</a></li>
-				</ul>
-				<ul class="login">
-					<li class="welcomeText">Welcome to HotelClub</li>
-					<li class="signInLink socialLogin"><a class="link" href="#">Sign in <img src="images/icon-social-signin-color.svg" style="margin-bottom:-5px; padding:0 7px;"/></a></li> 
-					<li class="registerLink"><a class="link" href="#">Register</a></li>
-				</ul>
-		</div>
-		<div id="main-menu">
-			<div class="left-menu">
-				<ul class="left-menu-ul">
-					<li>Home</li>
-					<li>The Club</li>
-					<li>Travel Insurance</li>
-				</ul>
-			</div>
-			<div class="right-menu"">
-				<ul>
-					<li class="right-menu-li"> &nbsp; 
-						<a href="#">
-							<span>English</span>&nbsp;<img src="images/dropDownArrowActive.png" class="right-menu-img">
-							<ul class="locale-ul">
-								<li class="locale-li">
-									<ul class="locale-lang">
-										<li class="locale-heading">English</li>
-										<li>繁體中文 (台灣)</li>
-										<li>简体中文</li>
-										<li>繁體中文 (香港)</li>
-										<li>Bahasa Malaysia</li>
-										<li>Deutsch</li>
-										<li>Español</li>
-										<li>Français</li>
-										<li class="locale-lang-last">Bahasa Indonesia</li>
-									</ul>
-								</li>
-								<li class="locale-li">
-									<ul class="locale-lang">
-										<li>Italiano</li>
-										<li>日本語</li>
-										<li>한국어</li>
-										<li>Nederlands</li>
-										<li>Polski</li>
-										<li>Português</li>
-										<li>Русский</li>
-										<li>Svenska</li>
-										<li class="locale-lang-last">ไทย</li>
-									</ul>
-								</li>
-							</ul>
-						</a>
-						| &nbsp; 
-						<a href="#">
-							<span>INR</span>&nbsp;<img src="images/dropDownArrowActive.png" class="right-menu-img">
-							<ul class="currency-val" style="">
-								<li style="width:30%; float:left;margin-right:0px;">
-									<ul class="currency-subval">
-										<li class="currency-heading">Most-used currencies</li>
-										<li>AUD - Australian Dollar</li>
-										<li>CNY - Chinese Yuan</li>
-										<li>EUR - Euro</li>
-										<li>GBP - British Pound Sterling</li>
-										<li>INR - Indian Rupee</li>
-										<li>NZD - New Zealand Dollar</li>
-										<li class="currency-last">USD - US Dollar</li>
-										<li class="currency-heading" style="border-top:1px solid #999;">Africa</li>
-										<li class="currency-last">ZAR - South African Rand</li>
-										<li class="currency-heading">Americas</li>
-										<li>BRL - Brazilian Real</li>
-										<li>CAD - Canadian Dollar</li>
-										<li>COP - Colombia Peso</li>
-										<li>MXN - Mexican Peso</li>
-										<li class="currency-last">USD - US Dollar</li>
-									</ul>
-								</li>
-								<li style="width:30%; float:left;margin-right:0px;">
-									<ul  class="currency-subval">
-										<li class="currency-heading">Asia</li>
-										<li>CNY - Chinese Yuan</li>
-										<li>HKD - Hong Kong Dollar</li>
-										<li>IDR - Indonesia Rupiah</li>
-										<li>INR - Indian Rupee</li>
-										<li>JPY - Japanese Yen</li>
-										<li>KRW - South Korean Won</li>
-										<li>MYR - Malaysian Ringgit</li>
-										<li>PHP - Philippine Peso</li>
-										<li>SGD - Singapore Dollar</li>
-										<li>THB - Thai Baht</li>
-										<li class="currency-last">TWD - New Taiwan Dollar</li>
-										<li class="currency-heading">Middle East</li>
-										<li>AED - UAE Dirham</li>
-										<li>ILS - Israeli New Sheqel</li>
-										<li>QAR - Qatar Rial</li>
-										<li>SAR - Saudi Arabia Riyal</li>
-										<li class="currency-last">TRY - Turkish Lira</li>
-									</ul>
-								</li>
-								<li style="width:30%; float:left;margin-right:0px;">
-									<ul class="currency-subval">
-										<li class="currency-heading">Europe</li>
-										<li>CHF - Swiss Franc</li>
-										<li>CZK - Czech Republic Koruna</li>
-										<li>DKK - Danish Krone</li>
-										<li>EUR - Euro</li>
-										<li>GBP - British Pound Sterling</li>
-										<li>HUF - Hungary Forint</li>
-										<li>NOK - Norwegian Krone</li>
-										<li>PLN - Polish Zloty</li>
-										<li>RUB - Russian Ruble</li>
-										<li>SEK - Swedish Krona</li>
-										<li class="currency-last">UAH - Ukrainian Hryvnia</li>
-										<li class="currency-heading">Oceania</li>
-										<li>AUD - Australian Dollar</li>
-										<li class="currency-last">NZD - New Zealand Dollar</li>
-									</ul>									
-								</li>
-							</ul>
-						</a>
-						</li>
-				</ul>
-			</div>
-		</div>		
-	</div>
+    <div id="header"></div>
 
-	<!-- Header Image -->
-	<img src="images/header-banner.png" alt="More extraordinary with every stay" class="headerImg"/>
-	<div class="hotelclub-logo">
-		<div class="hotelclub-logo-1"><img src="images/hotelclub-logo-1.png"/></div>
-		<div class="hotelclub-logo-2"><img src="images/hotelclub-logo-2.png"/></div>
-	</div>
-	
-	<!-- Main Content -->
-	<div class="main-content">
-		<h2>HotelClub is joining Hotels.com</h2>
-		<p>It’s a new year and exciting changes are afoot. Within the next few weeks, HotelClub will be joining forces with Hotels.com where an impressive new world of travel benefits awaits including free nights and deep discounts.</p>
-		<p>But right now we want you, our valued customer, to be assured that your active HotelClub bookings and existing Member Rewards points will not be affected by our merger.</p>
-		<p>You may also continue to book via HotelClub until further notice (including using your MR points to do so) and you will continue to earn MR points on all future reservations. Any unused Member Rewards points will be honoured by Hotels.com. You will not lose them.</p>
-		<p>And once our two companies become one, you’ll enjoy even greater travel benefits.</p>
-		<p class="hyper-link">Please see FAQs for more information</p>
-	</div>
-	
-	<!-- Second Block -->
-	<div class="second-block">
-		<h2>Who are Hotels.com?</h2>
-		<p>When you joined HotelClub, you became a member of a like-minded travel community, deriving more from your travel dollar and travel experience.</p>
-		<p>Hotels.com offers even more.</p>
-		<img src="images/hotelclub-logo-caption.png"/>
-		<div class="second-cont-block">
-			<div class="second-cont-block-1">
-				<img src="images/place-holder-1.png"/>
-				<h3>More choice</h3>
-				<span>Choose from hundreds of thousands of properties in more than 200 countries worldwide, with a network that is continually growing.<br/><br/>
-				Properties range from international chains and all-inclusive resorts to local favourites and B&Bs.
-				<br/>
-				</span>
-			</div>
-			<div class="second-cont-block-1">
-				<img src="images/place-holder-2.png"/><br/>
-				<h3>Deeper discounts</h3>
-				<span>As part of the Expedia family, Hotels.com wields significant international buying power.<br/><br/>
-				Not only can you expect even deeper discounts as a result, but the Secret Prices programme offers destinations at up to 50% off.</span>
-			</div>
-			<div class="second-cont-block-last">
-				<img src="images/place-holder-3.png"/><br/>
-				<h3>Hotels.com™ Rewards</h3>
-				<span>20 million members already enjoy a loyalty programme that rewards you with 1 night free for every 10 nights you stay.*<br/><br/>Plus, frequent travellers will be eligible for Silver or Gold membership offering exclusive deals, priority customer service and a hassle-free travel guarantee.</span>
-			</div>
-		</div>
-		<img src="images/find-out-btn.png" class="find-out-btn"/>
-	</div>	
-	
-	<!-- FAQ Content -->
-	<div class="faq-content">
-		<h2>What do you need to do now?</h2>
-		<p>Nothing.<br/><br/>
-		We will be in touch during the coming weeks with further information. Until then, continue enjoying the benefits of your HotelClub membership.<br/><br/>
-		And remember, we’ll soon let you know exactly what is going to happen during your membership migration and when.</p>
-	</div>
-	
-	<h2 class="faq-cont-block-head">FAQs</h2>
-	<div class="faq-cont-block">
-	<span class="faq-cont-block-first"><img src="images/right-arrow.png">&nbsp; How many hotels are in the Hotels.com portfolio? </span>
-	<span><img src="images/right-arrow.png">&nbsp; How do I know whether or not a property is the right one for me?</span>
-	<span><img src="images/right-arrow.png">&nbsp; Where can I stay using my Rewards points? </span>
-	<span><img src="images/right-arrow.png">&nbsp; What if I’m already a Hotels.com member? </span>
-	<span><img src="images/right-arrow.png">&nbsp; Question Ipsum condimentum parturient nisl ut et donec a nunc vivamus platea arcu mi volutpat fusce mus dictumst?</span>
-	<p>If you have further questions at this stage, please refer to our <a href="#" class="add-faq">additional FAQs or contact us</a></p>
-	</div>
-	
+    <div id="banner"></div>
+
+    <div id="article"></div>
+
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="js/handlebars-v3.0.3.js"></script>
+<script src="js/app.js"></script>
+
 </body>
 </html>
