@@ -90,18 +90,14 @@ a:link, .link {
     padding: 0 15px 0 0;
 	margin:0;
 }
-.header-right-cont ul.login li {
-    float: left;
-}
+.header-right-cont ul.login li { float: left; }
 .header-right-cont li.registerLink {
     border-left: 1px solid #ccc;
     font-weight: normal;
     padding-left: 9px;
     padding-right: 0px;
 }
-.socialLogin{
-	padding-right:0px;
-}
+.socialLogin{ padding-right:0px; }
 #main-menu{
 	clear:both;
 	width:100%;
@@ -146,12 +142,8 @@ a:link, .link {
 	width:140px !important;
 	text-align:center;
 }
-.right-menu-img{
-	border:1px solid #FFF;
-}
-.right-menu ul li a{
-	color: #000;
-}
+.right-menu-img{ border:1px solid #FFF; }
+.right-menu ul li a{ color: #000; }
 .header-right-cont ul.primary li {
     border-right: 1px solid #ccc;
     float: left;
@@ -161,9 +153,7 @@ a:link, .link {
     border: 0;
     padding-right: 0;
 }
-.hotelclub-logo{
-	padding:30px 140px;
-}
+.hotelclub-logo{ padding:30px 140px; }
 .hotelclub-logo-1, .hotelclub-logo-2{
 	float:left; 
 	text-align:center; 
@@ -210,10 +200,10 @@ a:link, .link {
 	font-size:10pt;
 	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
 }
-.second-block span{
-	padding:20px;
+.second-block p{
+	padding:20px 0px 10px 20px;
 	font-size:10pt;
-	text-align:justify;
+	text-align:center;
 	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
 }
 .second-cont-block{
@@ -234,8 +224,12 @@ a:link, .link {
 	float:left;
 	text-align:center;
 }
+/*.find-out-btn{ margin:70px 0 40px 0; }*/
 .find-out-btn{
-	margin:70px 0 40px 0;
+    clear: both;
+    display: block;
+    margin: 80px 0 40px;
+    text-align: left;
 }
 .faq-content{
 	padding:10px 40px;
@@ -261,7 +255,7 @@ a:link, .link {
 }
 .faq-cont-block p{
 	display:block;
-	padding:30px 40px 80px 20px;
+	padding:30px 40px 40px 20px;
 	border-bottom:2px solid #E21E28;
 	font-size:10pt;
 	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
@@ -326,12 +320,8 @@ a:link, .link {
 	text-align: left;
 	background:#F4F4F5;
 }
-.currency-val li{
-	border:0px !important; 	
-}
-.locale-lang {
-    height: 255px;
-}
+.currency-val li{	border:0px !important; }
+.locale-lang { height: 255px; }
 .locale-lang li{
 	border:0px !important;
 	border-right: 1px solid #ccc;
@@ -340,9 +330,10 @@ a:link, .link {
 	margin: 9px 0 0 30px !important;
     width: 120px !important;
 }
-.locale-lang-last{
-	margin-bottom:25px !important;
-}
-.add-faq{
-	text-decoration:underline !important;
-}
+.locale-lang-last{ margin-bottom:25px !important; }
+.add-faq{	text-decoration:underline !important; }
+.lang-val, .curr-val{ cursor:pointer; }
+.faq-cont-val{ 
+	border:0px solid  !important; 
+	padding: 20px 0 !important;
+    text-align: justify; }

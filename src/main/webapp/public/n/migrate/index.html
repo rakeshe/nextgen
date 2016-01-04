@@ -41,27 +41,27 @@
                                 <li class="locale-li">
                                     <ul class="locale-lang">
                                         <li class="locale-heading lang" data-lang="en">English</li>
-                                        <li data-lang="zh" class="lang-val">繁體中文 (台灣)</a></li>
-                                        <li data-lang="zh" class="lang-val">简体中文</li>
-                                        <li data-lang="zh" class="lang-val">繁體中文 (香港)</li>
-                                        <li data-lang="ms" class="lang-val">Bahasa Malaysia</li>
-                                        <li data-lang="de" class="lang-val">Deutsch</li>
-                                        <li data-lang="es" class="lang-val">Español</li>
-                                        <li data-lang="fr" class="lang-val">Français</li>
-                                        <li class="locale-lang-last lang-val" data-lang="id">Bahasa Indonesia</li>
+                                        <li data-lang="zh_tw" class="lang-val">繁體中文 (台灣)</a></li>
+                                        <li data-lang="zh_cn" class="lang-val">简体中文</li>
+                                        <li data-lang="zh_hk" class="lang-val">繁體中文 (香港)</li>
+                                        <li data-lang="ms_my" class="lang-val">Bahasa Malaysia</li>
+                                        <li data-lang="de_de" class="lang-val">Deutsch</li>
+                                        <li data-lang="es_es" class="lang-val">Español</li>
+                                        <li data-lang="fr_fr" class="lang-val">Français</li>
+                                        <li class="locale-lang-last lang-val" data-lang="id_id">Bahasa Indonesia</li>
                                     </ul>
                                 </li>
                                 <li class="locale-li">
                                     <ul class="locale-lang">
-                                        <li data-lang="en_au" class="lang-val">Italiano</li>
-                                        <li data-lang="en_au" class="lang-val">日本語</li>
-                                        <li data-lang="en_au" class="lang-val">한국어</li>
-                                        <li data-lang="en_au" class="lang-val">Nederlands</li>
-                                        <li data-lang="en_au" class="lang-val">Polski</li>
-                                        <li data-lang="en_au" class="lang-val">Português</li>
-                                        <li data-lang="en_au" class="lang-val">Русский</li>
-                                        <li data-lang="en_au" class="lang-val">Svenska</li>
-                                        <li class="locale-lang-last" data-lang="en_au" class="lang-val">ไทย</li>
+                                        <li data-lang="it_it" class="lang-val">Italiano</li>
+                                        <li data-lang="ja_jp" class="lang-val">日本語</li>
+                                        <li data-lang="ko_kr" class="lang-val">한국어</li>
+                                        <li data-lang="nl_nl" class="lang-val">Nederlands</li>
+                                        <li data-lang="pl_pl" class="lang-val">Polski</li>
+                                        <li data-lang="pt_pt" class="lang-val">Português</li>
+                                        <li data-lang="ru_ru" class="lang-val">Русский</li>
+                                        <li data-lang="sv_se" class="lang-val">Svenska</li>
+                                        <li class="locale-lang-last" data-lang="th_th" class="lang-val">ไทย</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -197,11 +197,14 @@
 			$(".currency-val").toggle();
 		});
 		$(document).on('click','.lang-val',  function(){
-			//console.log(window.location.href+"?locale="+$(this).data("lang"));return;
-			window.location = window.location.href+"?locale="+$(this).data("lang");
+			var langValUrl = location.href.replace(/&?[?|&]locale=([^&]$|[^&]*)/i, "");
+			//console.log(location.href.replace(/&?locale=([^&]$|[^&]*)/i, ""));return;
+			window.location = langValUrl+"?locale="+$(this).data("lang");
 		});
 		$(document).on('click','.curr-val',  function(){
-			 window.location = window.location.href +"?curr="+$(this).data("curr");
+			var currValUrl = location.href.replace(/&?[?|&]curr=([^&]$|[^&]*)/i, "");
+			window.location = currValUrl+"?curr="+$(this).data("curr");
+			//window.location = window.location.href +"?curr="+$(this).data("curr");
 		});
 	});
 </script>
