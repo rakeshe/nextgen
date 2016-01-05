@@ -139,7 +139,8 @@ a:link, .link {
 .right-menu-li{
 	margin:9px 0px 0 0 !important;
 	padding:5px 0 0 0;
-	width:140px !important;
+	/*width:140px !important;*/
+	width:175px !important;
 	text-align:center;
 }
 .right-menu-img{ border:1px solid #FFF; }
