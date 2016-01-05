@@ -19,9 +19,9 @@
 
     var App = {
 
-        lang : "en_AU",
+        lang : "en_au",
 
-        defaultLang :"en_AU",
+        defaultLang :"en_au",
 
         AjaxNotFound : false,
 
@@ -51,7 +51,17 @@
         },
 
         request : function(lang) {
-
+			/*$.urlParam = function(name){
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				return results[1] || 0; 
+			}
+			lang = $.urlParam('locale');*/
+			$.urlParam = function(name){
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				if (results==null){	return null; }
+				else{ return results[1] || 0; }
+			}
+			if(($.urlParam('locale'))!=null){ lang = $.urlParam('locale').split("?")[0]; }
             return $.ajax({
                 type : 'POST',
                 dataType : 'json',
