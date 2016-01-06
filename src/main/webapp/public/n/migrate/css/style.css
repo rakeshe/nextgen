@@ -30,7 +30,7 @@ body{
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	background-image:url(../images/Page-BG.jpg);
+	/*background-image:url(../images/Page-BG.jpg);*/
 	background-position:top left;
 	background-repeat:no-repeat;
 }
@@ -58,7 +58,7 @@ a:link, .link {
 .container{
 	width:960px;
 	text-align:left;
-	margin-left:19px;
+	/*margin-left:19px;*/
 }
 .placeHolder{
 	text-align:left;
@@ -165,11 +165,11 @@ a:link, .link {
 	text-align:justify;
 }
 .main-content h2{
-	font-size:23pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-size:30px;
+	font-family: Arial,Helvetica,sans-serif;
 }
 .main-content p{
-	font-size:12pt;
+	font-size:16px;
 	font-family: Arial,Helvetica,sans-serif;
 	line-height: 16pt;
 }
@@ -186,34 +186,34 @@ a:link, .link {
 	background-image:url(../images/pink-background.png);
 	background-position:top left;
 	background-repeat:no-repeat;
+    line-height: 16pt;
 }
 .second-block h2{
 	font-size:23pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-family: Arial,Helvetica,sans-serif;
 }
 .second-block h3{
 	font-size:12pt;
 	font-weight:bold;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
-}
-.second-block p{	
-	padding:0 150px;
-	font-size:10pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-family: Arial,Helvetica,sans-serif;
 }
 .second-block p{
-	padding:20px 0px 10px 20px;
-	font-size:10pt;
+	padding:0 10%;
+	font-size:16px;
 	text-align:center;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-family: Arial,Helvetica,sans-serif;
 }
 .second-cont-block{
 	clear:both; 
-	disply:block; 
+	display:block;
 	width:100%;
 	padding-top:30px;
-	height:300px;
+	min-height:400px;
 }
+
+.second-cont-block p{
+    font-size: 14px;
+    padding: 0 5%}
 .second-cont-block-1{
 	width:30%;
 	float:left;
@@ -229,16 +229,20 @@ a:link, .link {
 .find-out-btn{
     clear: both;
     display: block;
-    margin: 80px 0 40px;
+    padding-top: 10px;
+    margin-bottom: 20px;
     text-align: left;
+}
+.faq-content h2, .faq-cont-block-head{
+    font-size: 30px;
 }
 .faq-content{
 	padding:10px 40px;
 	text-align:left;
 }
 .faq-content p{
-	font-size:10pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
 }
 .faq-cont-block-head{
 	padding:0px 40px;
@@ -248,8 +252,9 @@ a:link, .link {
 	background-color: #FAFAFA;
 	padding:20px 40px;
 	border-bottom:2px solid #d6d6d6;
-	font-size:10pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
+    font-weight: normal;
 }
 .faq-cont-block-first{
 	border-top:2px solid #d6d6d6;	
@@ -258,9 +263,10 @@ a:link, .link {
 	display:block;
 	padding:30px 40px 40px 20px;
 	border-bottom:2px solid #E21E28;
-	font-size:10pt;
-	font-family: "Myriad Pro", Arial,Helvetica,sans-serif;
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
 	margin: 20px;
+    font-weight: normal;
 }
 .add-hyper-link{
 	font-size:12pt;
@@ -338,3 +344,6 @@ a:link, .link {
 	border:0px solid  !important; 
 	padding: 20px 0 !important;
     text-align: justify; }
+
+
+#header { display: none;}
