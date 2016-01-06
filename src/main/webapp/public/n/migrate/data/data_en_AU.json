@@ -8,7 +8,7 @@
 	  "link:locale" : "English"
     },
     "banner" : {
-      "src:headerBannerImage": "images/header-banner.png::Two Become One",
+      "src:headerBannerImage": "images/header-banner.png::HotelClub is changing",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },
