@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'MuseoSlab-500';
+  src: url(../fonts/museoslab-500.otf);
+}
 @media only screen 
   and (max-device-width: 768px) {
     .main-content h2{
@@ -74,6 +78,27 @@ a:link, .link {
 .header-right-cont{
 	float: right;
 	width:30%;
+}
+.header-banner-text{
+	position: absolute;
+	margin: 200px 0 0 50px;
+	padding:15px 20px;
+	color:#FFF;
+	background-color: #e21e28;
+	opacity: 0.8;
+}
+.find-out-more{
+	color: #fff;
+    font-size: 13pt;
+    margin: 24px 0 0 -360px;
+    position: absolute;
+}
+.banner-text{
+	font-family: MuseoSlab-500 !important;
+	opacity:1.0 !important;
+	color:#FFF !important;
+	font-size:30pt;
+	letter-spacing: 2px;
 }
 .header-right-cont ul.primary {
     float: right;
