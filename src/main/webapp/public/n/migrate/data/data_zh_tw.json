@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "HotelClub面臨重大改變",
-      "src:headerBannerImage": "images/header-banner.png::HotelClub面臨重大改變",
+      "src:headerBannerImage": "images/header-banner-zh_tw.png::HotelClub面臨重大改變",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

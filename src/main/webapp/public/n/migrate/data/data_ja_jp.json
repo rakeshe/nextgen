@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "ホテルクラブは変ります。",
-      "src:headerBannerImage": "images/header-banner.png::ホテルクラブは変ります。",
+      "src:headerBannerImage": "images/header-banner-ja_jp.png::ホテルクラブは変ります。",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

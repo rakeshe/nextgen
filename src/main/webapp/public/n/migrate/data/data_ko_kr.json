@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "HotelClub이 바뀝니다!",
-      "src:headerBannerImage": "images/header-banner.png::HotelClub이 바뀝니다!",
+      "src:headerBannerImage": "images/header-banner-ko_kr.png::HotelClub이 바뀝니다!",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

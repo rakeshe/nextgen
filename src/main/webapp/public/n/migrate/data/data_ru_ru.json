@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "HotelClub ждут перемены",
-      "src:headerBannerImage": "images/header-banner.png::HotelClub ждут перемены",
+      "src:headerBannerImage": "images/header-banner-ru_ru.png::HotelClub ждут перемены",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

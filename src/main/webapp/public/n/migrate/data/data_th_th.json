@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "HotelClub กำลังมีการเปลี่ยนแปลง",
-      "src:headerBannerImage": "images/header-banner.png::HotelClub กำลังมีการเปลี่ยนแปลง",
+      "src:headerBannerImage": "images/header-banner-th_th.png::HotelClub กำลังมีการเปลี่ยนแปลง",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

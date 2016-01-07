@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "HotelClub sedang mengalami perubahan",
-      "src:headerBannerImage": "images/header-banner.png::HotelClub sedang mengalami perubahan",
+      "src:headerBannerImage": "images/header-banner-ms_my.png::HotelClub sedang mengalami perubahan",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },

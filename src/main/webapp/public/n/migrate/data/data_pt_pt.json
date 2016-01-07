@@ -9,7 +9,7 @@
     },
     "banner" : {
 	  "src:headerBannerText" : "O HotelClub está a mudar",
-      "src:headerBannerImage": "images/header-banner.png::O HotelClub está a mudar",
+      "src:headerBannerImage": "images/header-banner-pt_pt.png::O HotelClub está a mudar",
       "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
       "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
     },
