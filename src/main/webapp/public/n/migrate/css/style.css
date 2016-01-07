@@ -1,0 +1,414 @@
+@font-face {
+  font-family: 'MuseoSlab-500';
+  src: url(../fonts/museoslab-500.otf);
+}
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	/*background-image:url(../images/Page-BG.jpg);*/
+	background-position:top left;
+	background-repeat:no-repeat;
+}
+body, button, input, select, textarea {
+    font-family: Arial,Helvetica,sans-serif;
+}
+/*h1{
+	font-weight: 600 !important;
+}
+h2{
+	font-weight: 600 !important;
+}*/
+ul{
+	list-style-type: none;
+}
+li{  
+	clear: right;
+    float: right;
+    padding: 0 15px 0 0;
+}
+a:link, .link {
+    color: #562d82;
+	text-decoration:none;
+}
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 996px;
+    margin: 0 auto;
+    padding: 0 0px;
+}
+.placeHolder{
+	text-align:left;
+	height:128px;
+	font-size: 11px;
+	border-bottom:5px solid #e21e28;
+}
+.header-logo{
+	float: left;
+    padding: 22px 0 10px 20px;
+    width: auto;
+}
+.header-right-cont{
+	float: right;
+	width:30%;
+}
+.header-banner-text{
+	position: absolute;
+	margin: 200px 0 0 50px;
+	padding:15px 20px;
+	color:#FFF;
+	background-color: #e21e28;
+	opacity: 0.8;
+}
+.find-out-more{
+	color: #fff;
+    font-size: 13pt;
+    margin: 22px 0 0 -360px;
+    position: absolute;
+}
+.banner-text{
+	font-family: MuseoSlab-500 !important;
+	opacity:1.0 !important;
+	color:#FFF !important;
+	font-size:30pt;
+	letter-spacing: 2px;
+}
+.header-right-cont ul.primary {
+    float: right;
+    padding: 18px 15px 0 0;
+}
+.header-right-cont ul.primary li {
+    border-right: 1px solid #CCC;
+    float: left;
+    padding: 0 9px;
+}
+.header-right-cont ul.login {
+    clear: right;
+    float: right;
+    padding: 0 15px 0 0;
+	margin:0;
+}
+.header-right-cont ul.login li { float: left; }
+.header-right-cont li.registerLink {
+    border-left: 1px solid #ccc;
+    font-weight: normal;
+    padding-left: 9px;
+    padding-right: 0px;
+}
+.socialLogin{ padding-right:0px; }
+#main-menu{
+	clear:both;
+	width:100%;
+}
+.left-menu{
+	float:left; 
+	width:60%;
+}
+.left-menu-ul{
+	margin:0px;
+	padding:0px 0px 0px 15px;
+}
+.left-menu-ul li{
+	float:left; 
+	border-top:1px solid #E21E28; 
+	font-size:10pt; 
+	margin:9px 24px 0 0; 
+	padding:5px 0 0 0; 
+	width:150px;
+}
+.right-menu{
+	float:right;
+	width:32.6%;
+	font-size:10pt;
+}
+.right-menu ul{
+	margin:0;
+	padding:0;
+	float:right;
+	margin-right:20px;
+}
+.right-menu ul li{
+	float:left;
+	width:134px;
+	border-top:1px solid #E21E28;
+	margin:9px 23px 0 0;
+	padding:4px 0 0 0;
+}
+.right-menu-li{
+	margin:9px 0px 0 0 !important;
+	padding:5px 0 0 0;
+	/*width:140px !important;*/
+	width:175px !important;
+	text-align:center;
+}
+.right-menu-img{ border:1px solid #FFF; }
+.right-menu ul li a{ color: #000; }
+.header-right-cont ul.primary li {
+    border-right: 1px solid #ccc;
+    float: left;
+    padding: 0 9px;
+}
+.placeHolder ul.primary li.last {
+    border: 0;
+    padding-right: 0;
+}
+.hotelclub-logo{ padding:30px 140px; }
+.hotelclub-logo-1, .hotelclub-logo-2{
+	float:left; 
+	text-align:center; 
+	width:50%;
+}
+.main-content {
+	padding:20px 40px;
+	text-align:justify;
+}
+.main-content h2{
+	font-size:30px;
+	font-family: Arial,Helvetica,sans-serif;
+}
+.main-content p{
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
+	line-height: 16pt;
+}
+.hyper-link {
+	font-size:12pt;
+	font-family: Arial,Helvetica,sans-serif;
+	line-height: 16pt;
+	color: #55337e;
+	text-decoration: underline;
+}
+.second-block{
+	padding:20px 40px;
+	text-align:center;	
+	background-image:url(../images/pink-background.png);
+	background-position:top left;
+	background-repeat:no-repeat;
+    line-height: 16pt;
+}
+.second-block h2{
+	font-size:23pt;
+	font-family: Arial,Helvetica,sans-serif;
+}
+.second-block h3{
+	font-size:12pt;
+	font-weight:bold;
+	font-family: Arial,Helvetica,sans-serif;
+}
+.second-block p{
+	padding:0 10%;
+	font-size:16px;
+	text-align:center;
+	font-family: Arial,Helvetica,sans-serif;
+}
+.second-cont-block{
+	clear:both; 
+	display:block;
+	width:100%;
+	padding-top:30px;
+	min-height:400px;
+}
+
+.second-cont-block p{
+    font-size: 14px;
+    padding: 0 5%}
+.second-cont-block-1{
+	width:30%;
+	float:left;
+	padding-right:35px;
+	text-align:center;
+}
+.second-cont-block-last{
+	width:30%;
+	float:left;
+	text-align:center;
+}
+/*.find-out-btn{ margin:70px 0 40px 0; }*/
+.find-out-btn{
+    clear: both;
+    display: block;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.faq-content h2, .faq-cont-block-head{
+    font-size: 30px;
+}
+.faq-content{
+	padding:10px 40px;
+	text-align:left;
+}
+.faq-content p{
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
+}
+.faq-cont-block-head{
+	padding:0px 40px;
+}
+.faq-cont-block span{
+	display:block;
+	background-color: #FAFAFA;
+	padding:20px 40px;
+	border-bottom:2px solid #d6d6d6;
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
+    font-weight: normal;
+}
+.faq-cont-block-first{
+	border-top:2px solid #d6d6d6;	
+}
+.faq-cont-block p{
+	display:block;
+	padding:30px 40px 40px 20px;
+	border-bottom:2px solid #E21E28;
+	font-size:16px;
+	font-family: Arial,Helvetica,sans-serif;
+	margin: 20px;
+    font-weight: normal;
+}
+.add-hyper-link{
+	font-size:12pt;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #55337e;
+	text-decoration: underline;
+}
+.locale-ul{
+	display:none;
+	position:absolute;
+	width:320px !important;
+	float:left;
+	margin-left:-250px !important;
+	border:1px solid #999; 
+	margin-top: 7px !important;
+	text-align:left;
+}
+.locale-heading, .currency-heading{
+	font-weight:bold;
+}
+.locale-li{
+	background: #efefef;
+	background: #efefef;
+    width: 160px !important;
+    margin: 0px !important;
+	border-top: 1px solid #cccccc !important;
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+}
+.locale-li li{
+	float:left; 
+	background: #efefef; 
+	width:150px;
+	margin:10px 0px;
+}
+.currency-subval{    
+	margin-right: 0px !important;
+    margin-left: 30px !important;
+}
+.currency-subval  li{
+	border-right:1px solid #999 !important;
+	border-top:0px!important;
+	width:166px !important;
+}
+.currency-last{
+	border-bottom:1px solid #999 !important;
+	padding-bottom:30px !important;
+}
+.currency-val{
+	/*display: block;*/
+	display: none;
+	position: absolute;
+	width: 695px !important;
+	float:left;
+	margin-left: -555px !important;
+	border: 1px solid #999;
+	margin-top: 7px !important;
+	text-align: left;
+	background:#F4F4F5;
+}
+.currency-val li{	border:0px !important; }
+.locale-lang { height: 255px; }
+.locale-lang li{
+	border:0px !important;
+	border-right: 1px solid #ccc;
+	margin-bottom:10px;	
+    padding: 2px 0 !important;
+	margin: 9px 0 0 30px !important;
+    width: 120px !important;
+}
+.locale-lang-last{ margin-bottom:25px !important; }
+.add-faq{	text-decoration:underline !important; }
+.lang-val, .curr-val{ cursor:pointer; }
+.faq-cont-val{ 
+	border:0px solid  !important; 
+	padding: 20px 0 !important;
+    text-align: justify; }
+
+
+#header { display: none;}
+
+/* For devices smaller than 768px */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+        font-size: smaller;
+    }
+    .second-block {
+        padding: 20px 0;
+    }
+    .main-content {
+        padding: 20px;
+        text-align: justify;
+        font-size: 90%;
+    }
+    .hotelclub-logo {
+        padding: 0 20px;
+    }
+    .hotelclub-logo-1, .hotelclub-logo-2 {
+        float: none;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .second-cont-block {
+        clear: both;
+        display: block;
+        width: 320px;
+        padding: 30px 20px;
+        min-height: 400px;
+    }
+    .second-cont-block-1, .second-cont-block-last {
+         width: 90%;
+        /* float: left; */
+        /* padding-right: 35px; */
+        text-align: left;
+        padding: 20px;
+    }
+}
+
+/* For devices larger than 768px */
+
+@media (min-width: 768px) and (max-width: 995px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+    }
+    .second-block {
+        padding: 20px 0;
+    }
+    .main-content {
+        padding: 20px;
+        text-align: justify;
+        font-size: 90%;
+    }
+    .hotelclub-logo {
+        padding: 10px 20px;
+    }
+    .hotelclub-logo-1, .hotelclub-logo-2 {
+        /*float: none;*/
+        text-align: left;
+        /*padding: 10px 0;*/
+    }
+}

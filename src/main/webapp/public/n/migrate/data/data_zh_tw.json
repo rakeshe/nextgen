@@ -1,0 +1,27 @@
+{
+  "lang" : "en_AU",
+  "translations" : {
+    "header" : {
+      "link:myBookings": "115::My Bookings",
+      "link:myAccounts": "#::My Accounts",
+      "link:customerServices": "#::Customer Services",
+	  "link:locale" : "繁體中文(台灣)"
+    },
+    "banner" : {
+	  "src:headerBannerText" : "HotelClub面臨重大改變",
+      "src:headerBannerImage": "images/header-banner.png::HotelClub面臨重大改變",
+      "src:topImage" : "images/hotelclub-logo-1.png::Hotelclub.com",
+      "src:topImage2" : "images/hotelclub-logo-2.png::Hotels.com"
+    },
+    "article" : {
+      "mainContent" : "<h2>HotelClub即將加入Hotels.com</h2><p>新的一年即將到來，我們也將面臨重大變化。在接下來幾週內，HotelClub將成為Hotels.com的一部份，即將帶給您振奮人心的全新旅遊福利。</p><p>由於您是我們非常重視的客戶，所以我們要在此向您保證，已確認的預訂及會員獎勵都不會受到任何影響，您也不需要採取任何行動。</p><p>在這段期間您還是可以繼續透過HotelClub預訂並如同平時一樣賺取或兌換會員獎勵。直到我們真正成為Hotels.com的一部份後，任何尚未使用的會員獎勵將會轉至Hotels.com供您繼續使用。您不會有任何損失。</p><p>我們總結了一些<span class='hyper-link'>關於這次改變的常見問題</span>以提供更加詳盡的資訊。",
+      "secondBlock" : "<img src=\"images/hotelclub-logo-caption.png\"/><h2>Hotels.com提供什麼呢？</h2><div class=\"second-cont-block\"><div class=\"second-cont-block-1\"><img src=\"images/place-holder-1.png\"/><h3>豐厚獎勵</h3><p>Hotels.com™ Rewards†獎勵更豐厚。訂房並住宿10晚，就可以兌換1晚免費*住宿*。<br/></p></div><div class=\"second-cont-block-1\"><img src=\"images/place-holder-2.png\"/><br/><h3>超值優惠</h3><p>Hotels.com提供上千間精選飯店的神秘優惠價。超低優惠價，並非人人可享，最低5折起。只要加入Hotels.com Rewards、註冊成為Hotels.com電郵通訊會員或下載Hotels.com行動App即可揭開神秘優惠價。</p></div><div class=\"second-cont-block-last\"><img src=\"images/place-holder-3.png\"/><br/><h3>最佳選擇</h3><p>提供最豐富的住宿選擇，全球上萬間飯店隨您選。</p></div></div><center><span class=\"find-out-more\">了解更多</span><img src=\"images/find-out-btn.png\" class=\"find-out-btn\"/></center>",
+      "faqContent" : "<h2>現在要做什麼？</h2><p>什麼都不用做！<br/><br/>如有進一步消息我們會通知您。在那之前，您可以繼續享受HotelClub會員福利。<br/></p>",
+      "faqs" : "常見問題",
+      "faqQA" : "<span class=\"faq-cont-block-first\"><img src=\"images/right-arrow.png\">&nbsp;<b>How many hotels are in the Hotels.com portfolio?</b><br/><br/>Even more than HotelClub. Hotels.com offers over 250,000 bookable hotels worldwide, and loyalty program members are eligible to collect Hotels.com® Rewards credits at more than 235,000 of these. </span><span><img src=\"images/right-arrow.png\">&nbsp; <b>How do I know whether or not a property is the right one for me?</b><br/><br/>It’s easy. Simply take the advice of your fellow travellers. Hotels.com has more than 17 million genuine guest reviews.</span><span><img src=\"images/right-arrow.png\">&nbsp; <b>Where can I stay using my Rewards points?</b><br/><br/>There are over 150,000 eligible hotels where loyalty program members can redeem Hotels.com Rewards nights. </span><span><img src=\"images/right-arrow.png\">&nbsp; <b>What if I’m already a Hotels.com member?</b><br/><br/>If your HotelClub Member Rewards and Hotels.com Rewards email addresses are the same we'll send your Member Rewards balance directly to you - you won't need to do anything apart from looking out for an email sent by Hotels.com.</span><!--<span><img src=\"images/right-arrow.png\">&nbsp; Question Ipsum condimentum parturient nisl ut et donec a nunc vivamus platea arcu mi volutpat fusce mus dictumst?</span>--><p>現階段如有任何疑問，請查詢我們其他<a href=\"#\" class=\"add-faq\">常見問題</a>或<a href=\"#\" class=\"add-faq\">聯絡我們。</a>.<span class=\"faq-cont-val\">†我們的顧客忠誠計劃 Hotels.com™ Rewards是開放給年滿 18歲、且使用有效電子郵件註冊的旅客。當您在參與計劃的預付飯店訂房並住宿10晚，就可以兌換參與計劃²的預付飯店之1晚免費¹住宿。我們會計算出您集到的10晚住宿平均每日房價，該房價就是您可以獲得的免費*住宿價值。您只需要付稅金和服務費即可。¹免費住宿不包含稅金和服務費。如果您選擇價錢較高的客房，您就必須支付差價。您必須支付稅金、服務費、餐飲費、附加費用或任何與預訂或住宿相關的其他費用。而且您不可以使用免費住宿的餘額來支付稅金、服務費、餐飲費、附加費用或任何其他費用。²旅客直接付款給飯店、套裝行程或使用折扣優惠券付款，諸如此類的訂房皆無法累積或兌換晚數。只要您以Hotels.com Rewards 帳號，每12個月至少(a)訂房並住宿或(b)兌換免費住宿1次，您累積的住宿天數就不會過期。視完整注意事項而定。</span><span class=\"faq-cont-val\">*免費住宿不包含稅金和服務費。<a href=\"#\" class=\"add-faq\">請按此處查詢完整注意事項。</a></span></p>"
+    },
+    "footer" : {
+
+    }
+  }
+}
