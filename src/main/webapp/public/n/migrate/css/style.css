@@ -370,10 +370,40 @@ a:link, .link {
     .second-block {
         padding: 20px 0;
     }
+    .second-block h2 {
+        font-size: 26px;
+        font-family: Arial,Helvetica,sans-serif;
+        text-align: left;
+        line-height: 36px;
+        padding: 0 0 0 20px;
+    }
+    .second-cont-block {
+        clear: both;
+        display: block;
+        width: 320px;
+        padding: 0 20px 20px 20px;
+        min-height: 400px;
+    }
+    .second-cont-block p {
+        font-size: 14px;
+        text-align: left;
+        padding: 0px;
+    }
+    .second-cont-block-1, .second-cont-block-last {
+        width: 90%;
+        /* float: left; */
+        /* padding-right: 35px; */
+        text-align: left;
+        padding: 20px;
+    }
     .main-content {
         padding: 20px;
         text-align: justify;
         font-size: 90%;
+    }
+    .main-content h2 {
+        font-size: 26px;
+        text-align: left;
     }
     .hotelclub-logo {
         padding: 0 20px;
@@ -383,21 +413,16 @@ a:link, .link {
         text-align: left;
         padding: 10px 0;
     }
+    .faq-content h2, .faq-cont-block-head {
+        font-size: 26px;
+    }
 
-    .second-cont-block {
-        clear: both;
-        display: block;
-        width: 320px;
-        padding: 30px 20px;
-        min-height: 400px;
+    .headerImg{
+        max-width: 100%;
+        height: auto;
+        width: auto;
     }
-    .second-cont-block-1, .second-cont-block-last {
-         width: 90%;
-        /* float: left; */
-        /* padding-right: 35px; */
-        text-align: left;
-        padding: 20px;
-    }
+
 }
 
 /* For devices larger than 768px */
@@ -422,5 +447,10 @@ a:link, .link {
         /*float: none;*/
         text-align: left;
         /*padding: 10px 0;*/
+    }
+    .headerImg{
+        max-width: 100%;
+        height: auto;
+        width: auto;
     }
 }
