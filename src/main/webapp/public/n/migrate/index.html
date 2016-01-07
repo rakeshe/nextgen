@@ -193,6 +193,30 @@
 <script src="js/app.js"></script>
 <script>
 	$(document).ready(function(){
+		$(document).on('click','.faq1',  function(){
+			$(".faq1-cont").slideToggle("slow");
+			$(".faq2-cont").hide();
+			$(".faq3-cont").hide();
+			$(".faq4-cont").hide();
+		});
+		$(document).on('click','.faq2',  function(){
+			$(".faq2-cont").slideToggle("slow");
+			$(".faq1-cont").hide();
+			$(".faq3-cont").hide();
+			$(".faq4-cont").hide();
+		});
+		$(document).on('click','.faq3',  function(){
+			$(".faq3-cont").slideToggle("slow");
+			$(".faq1-cont").hide();
+			$(".faq2-cont").hide();
+			$(".faq4-cont").hide();
+		});
+		$(document).on('click','.faq4',  function(){
+			$(".faq4-cont").slideToggle("slow");
+			$(".faq1-cont").hide();
+			$(".faq2-cont").hide();
+			$(".faq3-cont").hide();
+		});
 		$(document).on('click','.locale-ul-val',  function(){
 			$(".locale-ul").toggle();
 			$(".currency-val").hide();
