@@ -2,33 +2,6 @@
   font-family: 'MuseoSlab-500';
   src: url(../fonts/museoslab-500.otf);
 }
-@media only screen 
-  and (max-device-width: 768px) {
-    .main-content h2{
-		/*font-size: 17pt !important;*/
-		font-size: 100% !important;
-	}
-	.main-content p{
-		/*font-size: 8pt !important;*/
-		font-size: 65% !important;
-	}
-	.second-block p{
-		/*font-size: 8pt !important;*/
-		font-size: 65% !important;
-	}
-	.faq-content p{
-		/*font-size: 8pt !important;*/
-		font-size: 65% !important;
-	}
-	.faq-cont-block span{
-		/*font-size: 8pt !important;*/
-		font-size: 65% !important;
-	}
-	.faq-cont-block p{
-		/*font-size: 8pt !important;*/
-		font-size: 65% !important;
-	}
-}
 body{
 	margin-left: 0px;
 	margin-top: 0px;
@@ -59,10 +32,12 @@ a:link, .link {
     color: #562d82;
 	text-decoration:none;
 }
-.container{
-	width:960px;
-	text-align:left;
-	/*margin-left:19px;*/
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 996px;
+    margin: 0 auto;
+    padding: 0 0px;
 }
 .placeHolder{
 	text-align:left;
@@ -372,3 +347,68 @@ a:link, .link {
 
 
 #header { display: none;}
+
+/* For devices smaller than 768px */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+        font-size: smaller;
+    }
+    .second-block {
+        padding: 20px 0;
+    }
+    .main-content {
+        padding: 20px;
+        text-align: justify;
+        font-size: 90%;
+    }
+    .hotelclub-logo {
+        padding: 0 20px;
+    }
+    .hotelclub-logo-1, .hotelclub-logo-2 {
+        float: none;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .second-cont-block {
+        clear: both;
+        display: block;
+        width: 320px;
+        padding: 30px 20px;
+        min-height: 400px;
+    }
+    .second-cont-block-1, .second-cont-block-last {
+         width: 90%;
+        /* float: left; */
+        /* padding-right: 35px; */
+        text-align: left;
+        padding: 20px;
+    }
+}
+
+/* For devices larger than 768px */
+
+@media (min-width: 768px) and (max-width: 995px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+    }
+    .second-block {
+        padding: 20px 0;
+    }
+    .main-content {
+        padding: 20px;
+        text-align: justify;
+        font-size: 90%;
+    }
+    .hotelclub-logo {
+        padding: 10px 20px;
+    }
+    .hotelclub-logo-1, .hotelclub-logo-2 {
+        /*float: none;*/
+        text-align: left;
+        /*padding: 10px 0;*/
+    }
+}
