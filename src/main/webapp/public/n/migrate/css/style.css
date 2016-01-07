@@ -62,10 +62,15 @@ a:link, .link {
 	background-color: #e21e28;
 	opacity: 0.8;
 }
+.find-out-val{
+	text-align:center;
+	clear:both;
+	display:block;
+}
 .find-out-more{
 	color: #fff;
     font-size: 13pt;
-    margin: 22px 0 0 -360px;
+    margin: 22px 0 0 -50px;
     position: absolute;
 }
 .banner-text{
