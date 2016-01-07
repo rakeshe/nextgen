@@ -1024,6 +1024,7 @@
                 this.isLoggedIn = true;
                 var locale = 'en_AU';
                 var hclUrl = "http://www.hotelclub.com/?locale=en_AU&curr=" + curr;
+                //var hclUrl = "/n/logged-in-mobile.html";
                 //var hclUrl = "/n/logged-in.html";
                 var request = $.ajax({
                     type : "Get",
@@ -1037,9 +1038,25 @@
 
                     var Mydata = $.trim(msg);
                     var htmlObject = $($.parseHTML(Mydata));
-                    var userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
-                    var userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
-                    var userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+
+                    var userName, userTier, userBalance;
+
+                    if ( htmlObject.find('header .owwHeaderContent').length > 0 ) {
+
+                        //cache the object
+                        var cacheFindObj = htmlObject.find('header .owwHeaderContent nav.headerMenu ul');
+
+                        userName = cacheFindObj.find('li[data-context="myAccount"] a span.userName').html();
+                        userTier = cacheFindObj.find('li[data-context="myAccount"] a span.userTier').html().trim();
+                        userBalance = cacheFindObj.find('li[data-context="myRewards"] a span.userBalance').html().trim();
+
+                    } else {
+
+                        userName = htmlObject.find('#header .aboveNav ul.login li.welcomeText').html();
+                        userTier = htmlObject.find('#header .aboveNav ul.login li.loyaltyTier').html();
+                        userBalance = htmlObject.find('#header .aboveNav ul.login li.loyaltyInfo').html();
+                    }
+;
                     //console.log('userBalance raw' + userBalance);
                     if(null != userBalance) userName = userName.replace('Welcome ', '');
                     if(null != userTier) userTier = userTier.replace(':', '');
