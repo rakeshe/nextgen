@@ -194,25 +194,61 @@
 <script>
 	$(document).ready(function(){
 		$(document).on('click','.faq1',  function(){
-			$(".faq1-cont").slideToggle("slow");
+			$(".faq1-cont").slideToggle("fast", function() {
+				if ($(".faq1-cont").css('display') == 'none') {
+					$(".faq1").attr("src","images/right-arrow.png");
+				} else {
+					$(".faq1").attr("src","images/down-arrow.png");
+					$(".faq2").attr("src","images/right-arrow.png");
+					$(".faq3").attr("src","images/right-arrow.png");
+					$(".faq4").attr("src","images/right-arrow.png");
+				}
+			});
 			$(".faq2-cont").hide();
 			$(".faq3-cont").hide();
 			$(".faq4-cont").hide();
 		});
 		$(document).on('click','.faq2',  function(){
-			$(".faq2-cont").slideToggle("slow");
+			$(".faq2-cont").slideToggle("fast", function() {
+				if ($(".faq2-cont").css('display') == 'none') {
+					$(".faq2").attr("src","images/right-arrow.png");
+				} else {
+					$(".faq2").attr("src","images/down-arrow.png");
+					$(".faq1").attr("src","images/right-arrow.png");
+					$(".faq3").attr("src","images/right-arrow.png");
+					$(".faq4").attr("src","images/right-arrow.png");
+				}
+			});
 			$(".faq1-cont").hide();
 			$(".faq3-cont").hide();
 			$(".faq4-cont").hide();
 		});
 		$(document).on('click','.faq3',  function(){
-			$(".faq3-cont").slideToggle("slow");
+			$(".faq3-cont").slideToggle("fast", function() {
+				if ($(".faq3-cont").css('display') == 'none') {
+					$(".faq3").attr("src","images/right-arrow.png");
+				} else {
+					$(".faq3").attr("src","images/down-arrow.png");
+					$(".faq1").attr("src","images/right-arrow.png");
+					$(".faq2").attr("src","images/right-arrow.png");
+					$(".faq4").attr("src","images/right-arrow.png");
+				}
+			});
 			$(".faq1-cont").hide();
 			$(".faq2-cont").hide();
 			$(".faq4-cont").hide();
 		});
 		$(document).on('click','.faq4',  function(){
-			$(".faq4-cont").slideToggle("slow");
+			$(".faq4-cont").slideToggle("fast", function() {
+				if ($(".faq4-cont").css('display') == 'none') {
+					$(".faq4").attr("src","images/right-arrow.png");
+				} else {
+					$(".faq4").attr("src","images/down-arrow.png");
+					$(".faq1").attr("src","images/right-arrow.png");
+					$(".faq2").attr("src","images/right-arrow.png");
+					$(".faq3").attr("src","images/right-arrow.png");
+				}
+			});
 			$(".faq1-cont").hide();
 			$(".faq2-cont").hide();
 			$(".faq3-cont").hide();
