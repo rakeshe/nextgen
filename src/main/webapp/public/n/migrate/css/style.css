@@ -349,10 +349,10 @@ a:link, .link {
 	border:0px solid  !important; 
 	padding: 20px 0 !important;
     text-align: justify; }
-.faq1,.faq2,.faq3,.faq4{
+.faq1,.faq2,.faq3,.faq4,.faq5,.faq6,.faq7{
 	cursor:pointer;
 }
-.faq1-cont,.faq2-cont,.faq3-cont,.faq4-cont{
+.faq1-cont,.faq2-cont,.faq3-cont,.faq4-cont,.faq5-cont,.faq6-cont,.faq7-cont{
 	display:none;
 	padding:10px 0px !important;
 	border:0px !important;
