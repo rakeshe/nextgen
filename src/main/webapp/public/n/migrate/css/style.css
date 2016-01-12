@@ -261,6 +261,9 @@ a:link, .link {
 	font-family: Arial,Helvetica,sans-serif;
     font-weight: normal;
 }
+div.faq-cont-block > p > span{
+    font-size:12px;
+}
 .faq-cont-block-first{
 	border-top:2px solid #d6d6d6;	
 }
