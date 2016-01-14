@@ -65,8 +65,7 @@
             return $.ajax({
                 type : 'POST',
                 dataType : 'json',
-                //url : 'data/data_' + lang + '.json'
-                url : '/n/api/migrate/page/' + lang
+                url : 'data/data_' + lang + '.json'
             });
         },
 
