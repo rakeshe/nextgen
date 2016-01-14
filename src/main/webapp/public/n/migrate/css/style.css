@@ -73,6 +73,13 @@ a:link, .link {
     margin: 22px 0 0 -50px;
     position: absolute;
 }
+.find-out-more-wide{
+    color: #fff;
+    font-size: 13pt;
+    margin: 22px 0 0 -70px;
+    position: absolute;
+}
+
 .banner-text{
 	font-family: MuseoSlab-500 !important;
 	opacity:1.0 !important;
